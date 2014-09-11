@@ -1,0 +1,34 @@
+{
+  "name": "puppetlabs-java",
+  "version": "1.1.1",
+  "source": "git://github.com/puppetlabs/puppetlabs-java",
+  "author": "puppetlabs",
+  "license": "Apache",
+  "summary": "Manage the official Java runtime",
+  "description": "Manage the official Java runtime",
+  "project_page": "https://github.com/puppetlabs/puppetlabs-java",
+  "dependencies": [
+    {
+      "name": "puppetlabs/stdlib",
+      "version_requirement": ">= 0.1.6"
+    }
+  ],
+  "types": [
+
+  ],
+  "checksums": {
+    "CHANGELOG": "4f48ffa0d481d8487673b70fb8369f3e",
+    "Gemfile": "f98e8d931aa0824e21bf184ef0379d01",
+    "Gemfile.lock": "6368f283786fab8823ee646361eaa6ba",
+    "LICENSE": "927881786db06d253bfed0ecf1b42b21",
+    "Modulefile": "e8afc7b23510c9cc1aff571e52b0bca6",
+    "README.markdown": "d5821001972761ee2b5091676bab6c7a",
+    "Rakefile": "c6a91ef43608c5d4b22bc7e50a94d6a5",
+    "manifests/config.pp": "c7fb36d4ebed20342fbb69369b4dbd0e",
+    "manifests/init.pp": "4d62569ad47dd1c9276e1bb330b361fb",
+    "manifests/params.pp": "bb14671e700ec47cd09b365962687963",
+    "spec/classes/java_spec.rb": "4e7626e4779d3e7e57b227362f5366b5",
+    "spec/spec_helper.rb": "0db89c9a486df193c0e40095422e19dc",
+    "tests/init.pp": "91a343f9a46d8122c30df67c3d143508"
+  }
+}

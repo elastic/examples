@@ -1,0 +1,109 @@
+{
+  "name": "elasticsearch-logstash",
+  "source": "https://github.com/elasticsearch/puppet-logstash",
+  "summary": "Module for managing and configuring Logstash",
+  "version": "0.5.1",
+  "description": "Module for managing and configuring Logstash",
+  "dependencies": [
+    {
+      "version_requirement": ">= 3.2.0",
+      "name": "puppetlabs/stdlib"
+    },
+    {
+      "version_requirement": ">= 0.1.0",
+      "name": "ispavailability/file_concat"
+    }
+  ],
+  "requirements": [
+    {
+      "name": "pe",
+      "version_requirement": ">= 3.1.3"
+    },
+    {
+      "name": "puppet",
+      "version_requirement": ">=2.7.20 <4.0.0"
+    }
+  ],
+  "checksums": {
+    "manifests/patternfile.pp": "4ae4a20e20edfb46012f8f2f4ed8beb6",
+    "LICENSE": "87206ee6a28567b8effa1bd7d4958e9a",
+    "manifests/repo.pp": "36ad59f342297306d6c75c67ebf63644",
+    "manifests/java.pp": "67d4dd92d9117dc4ed6e0159b7ddecbe",
+    "manifests/init.pp": "0a8342e9f442fcab5a7ec1fa63b79c62",
+    "manifests/package/install.pp": "191a382d6b7c026ab81e3629c4d16432",
+    "CHANGELOG": "5caf76ee72e9753c1b441b53e69befe9",
+    "Modulefile": "5de9de8952c219b25aa81c47256a3f56",
+    "README.md": "2fb21d3e556d2b25d65382cf61fa7cfe",
+    "manifests/service/init.pp": "05c3a3ad00d57f732f18463a7c6b4022",
+    "manifests/params.pp": "faaad7f4af81be0cbd43debdceda967d",
+    "manifests/package.pp": "7e661ebac2c9fab3c4ec5e6de5f5ccdf",
+    "templates/etc/sysconfig/defaults.erb": "9b332d8466391c9feb04508fc168ba0e",
+    "templates/etc/init.d/logstash.RedHat.erb": "a6b62194729299e2ff264d520c8da900",
+    "manifests/service.pp": "e8141aa85b82df4b95219f5215c75bdc",
+    "manifests/plugin.pp": "4b0e446d52597ba14a18a168356d0867",
+    "templates/etc/init.d/logstash.Debian.erb": "464927f6fee2e9cfcafcb6c042a575c4",
+    "manifests/config.pp": "ad76aef285316592757caab3d72ae13a",
+    "manifests/configfile.pp": "661c698fdc804f32179ccb723aa6f6e8"
+  },
+  "types": [
+
+  ],
+  "license": "Apache License, Version 2.0",
+  "author": "elasticsearch",
+  "operatingsystem_support": [
+    {
+      "operatingsystemrelease": [
+        "5",
+        "6"
+      ],
+      "operatingsystem": "RedHat"
+    },
+    {
+      "operatingsystemrelease": [
+        "5",
+        "6"
+      ],
+      "operatingsystem": "CentOS"
+    },
+    {
+      "operatingsystemrelease": [
+        "5",
+        "6"
+      ],
+      "operatingsystem": "OracleLinux"
+    },
+    {
+      "operatingsystemrelease": [
+        "5",
+        "6"
+      ],
+      "operatingsystem": "Scientific"
+    },
+    {
+      "operatingsystemrelease": [
+        "6",
+        "7"
+      ],
+      "operatingsystem": "Debian"
+    },
+    {
+      "operatingsystemrelease": [
+        "10.04",
+        "10.10",
+        "12.04",
+        "12.10",
+        "13.04",
+        "13.10"
+      ],
+      "operatingsystem": "Ubuntu"
+    },
+    {
+      "operatingsystemrelease": [
+        "12.x",
+        "13.x"
+      ],
+      "operatingsystem": "OpenSuSE"
+    }
+  ],
+  "project_page": "https://github.com/elasticsearch/puppet-logstash"
+}

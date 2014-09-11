@@ -1,0 +1,99 @@
+{
+  "checksums": {
+    "CHANGELOG": "dd0c0cf9dec5b2e6f03121a84f859073",
+    "lib/puppet/provider/file_concat/ruby.rb": "824274e592b32c0ca46d47caac2c7970",
+    "LICENSE": "4cdeebffd8d00ed4770effbc8d0c6729",
+    "Modulefile": "e2f7eece93e24f4d979dd06e4caf9d40",
+    "lib/puppet/type/file_concat.rb": "51ce5cc0ee1f988036cb879cfb482fff",
+    "README.md": "4348449f80667fd6aa3fdca286272168",
+    "lib/puppet/type/file_fragment.rb": "6f17af08284cbf235244b7a4b10bdb78"
+  },
+  "license": "Apache License, Version 2.0",
+  "source": "https://github.com/electrical/puppet-lib-file_concat",
+  "types": [
+    {
+      "parameters": [
+        {
+          "doc": "Resource name",
+          "name": "name"
+        },
+        {
+          "doc": "Tag reference to collect all file_fragment's with the same tag",
+          "name": "tag"
+        },
+        {
+          "doc": "The output file",
+          "name": "path"
+        }
+      ],
+      "properties": [
+        {
+          "doc": "The basic property that the resource should be in.  Valid values are `present`, `absent`.",
+          "name": "ensure"
+        },
+        {
+          "doc": "Desired file owner.",
+          "name": "owner"
+        },
+        {
+          "doc": "Desired file group.",
+          "name": "group"
+        },
+        {
+          "doc": "Desired file mode.",
+          "name": "mode"
+        },
+        {
+          "doc": "Read only attribute. Represents the content.",
+          "name": "content"
+        }
+      ],
+      "providers": [
+        {
+          "doc": "",
+          "name": "ruby"
+        }
+      ],
+      "doc": "Gets all the file fragments and puts these into the target file.\n    This will mostly be used with exported resources.\n\n    example:\n      File_fragment <<| tag == 'unique_tag' |>>\n\n      file_concat { '/tmp/file:\n        tag   => 'unique_tag', # Mandatory\n        path  => '/tmp/file', # Optional. If given it overrides the resource name\n        owner => 'root', # Optional. Default to root\n        group => 'root', # Optional. Default to root\n        mode  => '0644'  # Optional. Default to 0644\n      }\n  ",
+      "name": "file_concat"
+    },
+    {
+      "parameters": [
+        {
+          "doc": "Unique name",
+          "name": "name"
+        },
+        {
+          "doc": "Content",
+          "name": "content"
+        },
+        {
+          "doc": "Source",
+          "name": "source"
+        },
+        {
+          "doc": "Order",
+          "name": "order"
+        },
+        {
+          "doc": "Tag name to be used by file_concat to collect all file_fragments by tag name",
+          "name": "tag"
+        }
+      ],
+      "properties": [
+
+      ],
+      "doc": "Create a file fragment to be used by file_concat.\n    the `file_fragment` type creates a file fragment to be collected by file_concat based on the tag.\n    The example is based on exported resources.\n\n    Example:\n    @@file_fragment { \"uniqe_name_${::fqdn}\":\n      tag => 'unique_name',\n      order => 10, # Optional. Default to 10\n      content => 'some content' # OR\n      content => template('template.erb') # OR\n      source  => 'puppet:///path/to/file'\n    }\n  ",
+      "name": "file_fragment"
+    }
+  ],
+  "description": "Library for concatenating different files into 1",
+  "version": "0.1.0",
+  "summary": "Library for concatenating different files into 1",
+  "name": "ispavailability-file_concat",
+  "project_page": "https://github.com/electrical/puppet-lib-file_concat",
+  "author": "ispavailability",
+  "dependencies": [
+
+  ]
+}
