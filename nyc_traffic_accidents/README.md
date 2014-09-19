@@ -2,7 +2,7 @@ NYC Traffic Accident Data Demo
 =====
 
 For some background information for this demo, please see the blog post here:
-[NYC accidents blog post](http://www.elasticsearch.org/blog/byodemos-new-york-city-traffic-incidents/)
+[#byodemos: new york city traffic incidents](http://www.elasticsearch.org/blog/byodemos-new-york-city-traffic-incidents/)
 
 #Installation
 
