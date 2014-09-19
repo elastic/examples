@@ -33,7 +33,6 @@ The 'vagrant up' step may fail if you are running on Windows for a variety of re
 
 * BIOS not configured to enable Hardware Virtualization. \[Windows, Linux\]
 * Ports 9200, 5200, 2222 blocked by firewall or other software. \[Any OS\]
-* Git repository cloned using default Windows setting for line endings. Git client must be configured to retain original line endings. See post here: [https://help.github.com/articles/dealing-with-line-endings](https://help.github.com/articles/dealing-with-line-endings). \[Windows\]
 
 
 ##Vagrant port forwarding
