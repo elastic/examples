@@ -11,7 +11,7 @@ This demo includes a Vagrantfile that you can use to provision a local VM with t
 * http://www.vagrantup.com/
 * https://www.virtualbox.org/
 
-You must also install a Git client to clone the demos repo or just download a zip of the repo from the [repo website](https://github.com/elasticsearch/demos).
+You must also install a Git client to clone the demos repo or just download a zip of the repo from the [repo website](https://github.com/elasticsearch/demo).
 
 After you've installed Vagrant and VirtualBox, run the steps below to get the code and instantiate the VM:
 
