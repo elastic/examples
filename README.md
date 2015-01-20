@@ -5,6 +5,19 @@ This is a collection of demos to help you get familiar with Elasticsearch, Logst
 
 You can find specific details for each demo in their respective README. The following information pertains to the demo repo as a whole.
 
+# Contents
+
+- [Quick start](#quick-start)
+- [Contributing](#contributing)
+
+# Quick start
+
+You can find the latest release of the demo repo as .zip and .tar.gz files in the "releases" area of this Github repo:
+
+[https://github.com/elasticsearch/demo/releases](https://github.com/elasticsearch/demo/releases)
+
+Download a .zip or .tar.gz release, unarchive it, then following instructions in the README file of the demo you're interested in.
+
 # Contributing
 
 If you have a bugfix or new demo that you would like to contribute to the Elasticsearch demo repo, please open an issue about it before you start working on it. Talk about what you would like to do. It may be that somebody is already working on it or we can help provide guidance to make it successful.
