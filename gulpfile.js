@@ -7,8 +7,8 @@ var gulp = require('gulp'),
 
 var version = package.version;
 
-gulp.task('stage', ['clean-stage'], function(cb) {
-	return gulp.src(['**/*', '!node_modules/**'])
+gulp.task('stage', ['clean'], function(cb) {
+	return gulp.src(['**/*', '!node_modules/**', '!node_modules'])
 		.pipe(gulp.dest('stage/elasticsearch-demo-' + version));
 });
 
@@ -26,11 +26,7 @@ gulp.task('tar', [], function() {
 });
 
 gulp.task('clean', function(cb) {
-    del(['dist'], cb)
-});
-
-gulp.task('clean-stage', function(cb) {
-    del(['stage'], cb)
+    del(['dist', 'stage'], cb)
 });
 
 gulp.task('default', ['clean', 'stage'], function() {

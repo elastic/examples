@@ -62,5 +62,15 @@ In order to keep things simple, there will be no concept of branching in this re
 
 All releases (major and minor) of the demo repo should be made available in .zip and .tar.gz formats.
 
+### Creating dists
+
 These .zip and .tar.gz distributions can be generated using Gulp.
 
+**Prerequisites**
+
+- [node](http://nodejs.org/)
+
+**Instructions**
+
+1. npm install
+2. gulp
