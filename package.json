@@ -1,0 +1,23 @@
+{
+  "name": "elasticsearch-demo",
+  "version": "1.0.0",
+  "description": "Elasticsearch demos. Helping you get familiar with Elasticsearch, Logstash, and Kibana.",
+  "main": "gulpfile.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/elasticsearch/demo"
+  },
+  "author": "Elasticsearch",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/elasticsearch/demo/issues"
+  },
+  "homepage": "https://github.com/elasticsearch/demo",
+  "devDependencies": {
+    "del": "^1.1.1",
+    "gulp": "^3.8.10",
+    "gulp-gzip": "0.0.8",
+    "gulp-tar": "^1.3.2",
+    "gulp-zip": "^2.0.2"
+  }
+}
