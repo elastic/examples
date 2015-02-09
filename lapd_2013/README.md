@@ -21,6 +21,6 @@ Follow these steps to run this demo locally on your machine:
 
 Instead of downloading the demo from the Docker Hub, you can build the Docker image on your own machine:
 
-1. Copy the files from the 'Docker' directory here to a separate directory on your local filesystem.
+1. Copy the files from this Github folder to a separate directory on your local filesystem.
 2. Run `docker build .`.
 3. You can then run the demo with `docker run -d -p 55555:5601 <image-id>`, where `<image-id>` is the id that resulted from the build in the previous step.
