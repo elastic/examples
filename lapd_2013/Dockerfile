@@ -1,7 +1,10 @@
 # Pull base image.
 FROM dockerfile/java:oracle-java8
+
+# Set variables
 ENV ES_PKG_NAME elasticsearch-1.4.2
 ENV KIBANA_PKG_NAME kibana-4.0.0-beta3
+
 # Install Elasticsearch and Kibana.
 RUN \
 cd / && \
@@ -14,16 +17,11 @@ tar xvzf $KIBANA_PKG_NAME.tar.gz && \
 rm -f $KIBANA_PKG_NAME.tar.gz && \
 mv /$KIBANA_PKG_NAME /kibana
 
-# Define mountable directories.
-VOLUME ["/data"]
-
+#Copy config and data into image.
 ADD config/elasticsearch.yml /elasticsearch/config/elasticsearch.yml
 ADD config/kibana.yml /kibana/config/kibana.yml
 ADD config/lapdsnap /lapdsnap
 ADD config/commands.sh /commands.sh
-
-# Define working directory.
-WORKDIR /data
 
 # Expose ports.
 # - 9200: HTTP
