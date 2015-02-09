@@ -7,7 +7,7 @@ The original raw data used in this demo can be found [here](https://data.lacity.
 
 #Installation
 
-In order to run this demo, you'll need Docker. Instructions for installing Docker on various operating systems can be found here: https://docs.docker.com/installation/
+In order to run this demo, you'll need Docker. Instructions for installing and running Docker on various operating systems can be found here: https://docs.docker.com/installation/
 
 Follow these steps to run this demo locally on your machine:
 
