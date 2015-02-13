@@ -11,11 +11,11 @@ This demo includes a Vagrantfile that you can use to provision a local VM with t
 * http://www.vagrantup.com/
 * https://www.virtualbox.org/
 
-If you're reading this on your computer, you've probably already downloaded a release of the Elasticsearch demo repo .zip file.
+If you haven't already, download the latest release of the Elasticsearch demo repo here: [https://github.com/elasticsearch/demo/releases](https://github.com/elasticsearch/demo/releases).
 
-After you've installed Vagrant and VirtualBox, go to the us\_fec subdirectory and run Vagrant up:
+After you've installed Vagrant and VirtualBox, unarchive the demo repo .tar.gz, go to the us\_fec subdirectory and run Vagrant up:
 
-* git clone https://github.com/elasticsearch/demo.git (HTTPS) or git clone git@github.com:elasticsearch/demo.git (SSH)
+* tar xf elasticsearch-demo-<ver>.tar.gz
 * cd us\_fec
 * vagrant up
 
