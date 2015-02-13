@@ -1,0 +1,11 @@
+---
+elasticsearch::instances:
+  es-01:
+    config:
+      node.name: 'es-01'
+elasticsearch::plugins:
+  'mobz/elasticsearch-head':
+    ensure: 'present'
+    module_dir: 'head'
+    instances:
+      - 'es-01'

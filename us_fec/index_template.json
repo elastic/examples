@@ -1,0 +1,134 @@
+{
+    "template" : "usfec",
+    "settings" : {
+      "index.refresh_interval" : "5s"
+    },
+    "mappings" : {
+      "_default_" : {
+        "dynamic_templates" : [ {
+          "string_fields" : {
+            "mapping" : {
+              "index" : "not_analyzed",
+			  "type": "string",
+			  "doc_values": true
+            },
+            "match_mapping_type" : "string",
+            "match" : "*"
+          }
+        } ],
+        "properties" : {
+          "@timestamp" : {
+            "type" : "date",
+			"doc_values": true
+          },
+          "transactionAmount" : {
+            "type" : "float",
+			"doc_values": true
+          },
+		  "contributingCommittee": {
+		  	  "type": "object",
+			  "properties": {
+				  "committeeName": {
+					  "type": "string",
+					  "index": "analyzed",
+					  "fields": {
+						  "raw": {
+							  "type": "string",
+							  "index": "not_analyzed",
+							  "doc_values": true
+						  }
+					  }
+				  }
+			  }
+		  },
+		  "receivingCommittee": {
+		  	  "type": "object",
+			  "properties": {
+				  "committeeName": {
+					  "type": "string",
+					  "index": "analyzed",
+					  "fields": {
+						  "raw": {
+							  "type": "string",
+							  "index": "not_analyzed",
+							  "doc_values": true
+						  }
+					  }
+				  }
+			  }
+		  },
+		  "candidate": {
+		  	  "type": "object",
+			  "properties": {
+				  "candidateName": {
+					  "type": "string",
+					  "index": "analyzed",
+					  "fields": {
+						  "raw": {
+							  "type": "string",
+							  "index": "not_analyzed",
+							  "doc_values": true
+						  }
+					  }
+				  }
+			  }
+		  },
+		  "name": {
+			  "type": "string",
+			  "index": "analyzed",
+			  "fields": {
+				  "raw": {
+					  "type": "string",
+					  "index": "not_analyzed",
+					  "doc_values": true
+				  }
+			  }
+		  },
+		  "employer": {
+			  "type": "string",
+			  "index": "analyzed",
+			  "fields": {
+				  "raw": {
+					  "type": "string",
+					  "index": "not_analyzed",
+					  "doc_values": true
+				  }
+			  }
+		  },
+		  "memo": {
+			  "type": "string",
+			  "index": "analyzed",
+			  "fields": {
+				  "raw": {
+					  "type": "string",
+					  "index": "not_analyzed",
+					  "doc_values": true
+				  }
+			  }
+		  },
+		  "occupation": {
+			  "type": "string",
+			  "index": "analyzed",
+			  "fields": {
+				  "raw": {
+					  "type": "string",
+					  "index": "not_analyzed",
+					  "doc_values": true
+				  }
+			  }
+		  },
+          "coords" : {
+            "type" : "geo_point"
+          },
+          "@version" : {
+            "index" : "not_analyzed",
+            "type" : "string"
+          }
+        },
+        "_all" : {
+          "enabled" : true
+        }
+      }
+    },
+    "aliases" : { }
+}
