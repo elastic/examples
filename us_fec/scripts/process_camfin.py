@@ -81,7 +81,7 @@ def main():
 
     # process individual contributions
     with open('itcont.txt', 'r') as f:
-        with open('camfin_indiv_contrib.json', 'a') as f2:
+        with open('usfec_indiv_contrib.json', 'a') as f2:
             reader = csv.reader(f, delimiter='|')
             for row in reader:
                 this_dict = dict()
@@ -91,19 +91,23 @@ def main():
                 if (row[0] in ccl_dict):
                     candidateId = ccl_dict[row[0]]['candidateId']
                     this_dict['candidate'] = candidate_dict[candidateId]
+                this_dict['reportType'] = row[2]
                 this_dict['primaryGeneralIndicator'] = row[3]
+                this_dict['microfilmLocation'] = row[4]
                 this_dict['transactionType'] = row[5]
                 this_dict['entityType'] = row[6]
                 this_dict['name'] = row[7]
                 this_dict['city'] = row[8]
                 this_dict['state'] = row[9]
                 this_dict['zip'] = row[10]
-                if (row[10] in zip_dict):
-                    this_dict['coords'] = zip_dict[row[10]]['coords']
+                if (row[10][0:5] in zip_dict):
+                    this_dict['coords'] = zip_dict[row[10][0:5]]['coords']
                 this_dict['employer'] = row[11]
                 this_dict['occupation'] = row[12]
                 this_dict['transactionDate'] = row[13]
                 this_dict['transactionAmount'] = row[14]
+                this_dict['transactionID'] = row[16]
+                this_dict['reportID'] = row[17]
                 this_dict['recordType'] = 'indiv_contrib'
                 this_dict['memo'] = row[19]
 
@@ -112,25 +116,29 @@ def main():
 
     # process committee contributions to candidates
     with open('itpas2.txt', 'r') as f:
-        with open('camfin_comm_contrib.json', 'a') as f2:
+        with open('usfec_comm_contrib.json', 'a') as f2:
             reader = csv.reader(f, delimiter='|')
             for row in reader:
                 this_dict = dict()
                 this_dict['recordNumber'] = row[21]
                 this_dict['contributingCommittee'] = committee_dict[row[0]]
+                this_dict['reportType'] = row[2]
                 this_dict['primaryGeneralIndicator'] = row[3]
+                this_dict['microfilmLocation'] = row[4]
                 this_dict['transactionType'] = row[5]
                 this_dict['entityType'] = row[6]
                 this_dict['name'] = row[7]
                 this_dict['city'] = row[8]
                 this_dict['state'] = row[9]
                 this_dict['zip'] = row[10]
-                if (row[10] in zip_dict):
-                    this_dict['coords'] = zip_dict[row[10]]['coords']
+                if (row[10][0:5] in zip_dict):
+                    this_dict['coords'] = zip_dict[row[10][0:5]]['coords']
                 this_dict['employer'] = row[11]
                 this_dict['occupation'] = row[12]
                 this_dict['transactionDate'] = row[13]
                 this_dict['transactionAmount'] = row[14]
+                this_dict['transactionID'] = row[17]
+                this_dict['reportID'] = row[18]
                 # Note: Some confusion about whether CMTE_ID or OTHER_ID is the Contributing committee ID
                 # if (row[15] in committee_dict):
                 #     this_dict['contributorCommittee'] = committee_dict[row[15]]
@@ -145,7 +153,7 @@ def main():
                 
     # process contributions from committee to committee
     with open('itoth.txt', 'r') as f:
-        with open('camfin_comm2comm_contrib.json', 'a') as f2:
+        with open('usfec_comm2comm_contrib.json', 'a') as f2:
             reader = csv.reader(f, delimiter='|')
             for row in reader:
                 this_dict = dict()
@@ -158,27 +166,78 @@ def main():
                 this_dict['recordNumber'] = row[20]
                 if (recipientCommitteeId in committee_dict):
                     this_dict['receivingCommittee'] = committee_dict[recipientCommitteeId]
+                this_dict['reportType'] = row[2]
                 this_dict['primaryGeneralIndicator'] = row[3]
+                this_dict['microfilmLocation'] = row[4]
                 this_dict['transactionType'] = row[5]
                 this_dict['entityType'] = row[6]
                 this_dict['name'] = row[7]
                 this_dict['city'] = row[8]
                 this_dict['state'] = row[9]
                 this_dict['zip'] = row[10]
-                if (row[10] in zip_dict):
-                    this_dict['coords'] = zip_dict[row[10]]['coords']
+                if (row[10][0:5] in zip_dict):
+                    this_dict['coords'] = zip_dict[row[10][0:5]]['coords']
                 this_dict['employer'] = row[11]
                 this_dict['occupation'] = row[12]
                 this_dict['transactionDate'] = row[13]
                 this_dict['transactionAmount'] = row[14]
+                this_dict['transactionID'] = row[16]
+                this_dict['reportID'] = row[17]
                 this_dict['recordType'] = 'comm2comm_contrib'
                 this_dict['memo'] = row[19]
-                # if committee contribution has candidate info, do lookup and join
+                # join committee info
                 if (contributorCommitteeId in committee_dict):
                     this_dict['contributingCommittee'] = committee_dict[contributorCommitteeId]
 
                 json.dump(this_dict, f2)
-                print('', file=f2)      
+                print('', file=f2)    
+                
+    # process operating expenditures
+    with open('oppexp.txt', 'r') as f:
+        with open('usfec_oppexp.json', 'a') as f2:
+            reader = csv.reader(f, delimiter='|')
+            for row in reader:
+                this_dict = dict()
+
+                spendingCommitteeId = row[0]
+                if (spendingCommitteeId in committee_dict):
+                    this_dict['spendingCommittee'] = committee_dict[spendingCommitteeId]
+                this_dict['reportYear'] = row[2]
+                this_dict['reportType'] = row[3]
+                this_dict['microfilmLocation'] = row[4]
+                this_dict['lineNumber'] = row[5]
+                this_dict['formType'] = row[6]
+                this_dict['scheduleType'] = row[7]
+
+                this_dict['name'] = row[8]
+                this_dict['city'] = row[9]
+                this_dict['state'] = row[10]
+                this_dict['zip'] = row[11]
+                if (row[11][0:5] in zip_dict):
+                    this_dict['coords'] = zip_dict[row[11][0:5]]['coords']
+                this_dict['transactionDate'] = row[12]
+                this_dict['transactionAmount'] = row[13]
+                this_dict['primaryGeneralIndicator'] = row[14]
+                this_dict['purpose'] = row[15]
+                this_dict['disbursementCategoryCode'] = row[16]
+                this_dict['disbursementCategoryCodeDesc'] = row[17]
+                this_dict['memo'] = row[19]
+                this_dict['entityType'] = row[20]
+                this_dict['recordNumber'] = row[21]
+                this_dict['reportID'] = row[22]
+                this_dict['transactionID'] = row[23]
+                this_dict['backRefTransactionID'] = row[24]
+                
+                # check to see if there's a candidate associated with the committee
+                if (row[0] in ccl_dict):
+                    candidateId = ccl_dict[row[0]]['candidateId']
+                    this_dict['candidate'] = candidate_dict[candidateId]
+                
+                this_dict['recordType'] = 'oppexp'
+
+
+                json.dump(this_dict, f2)
+                print('', file=f2)       
 
 if __name__ == '__main__':
     main()
