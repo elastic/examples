@@ -6,54 +6,72 @@ For some background information for this demo, please see the blog post here:
 
 #Installation
 
-This demo includes a Vagrantfile that you can use to provision a local VM with the US FEC data pre-loaded. You must have Vagrant and VirtualBox already installed:
+This demo consists of the following:
 
-* http://www.vagrantup.com/
-* https://www.virtualbox.org/
-
-If you haven't already, download the latest release of the Elasticsearch demo repo here: [https://github.com/elasticsearch/demo/releases](https://github.com/elasticsearch/demo/releases).
-
-After you've installed Vagrant and VirtualBox, unarchive the demo repo .tar.gz, go to the us\_fec subdirectory and run Vagrant up:
-
-* tar xf elasticsearch-demo-<ver>.tar.gz
-* cd us\_fec
-* vagrant up
-
-Once this is complete (should take anywhere between 3-20 minutes to run, depending on your network connection speed), you should have an Elasticsearch instance running with the US FEC index and Kibana dashboard loaded. No further steps are necessary.  To ensure everything is up and running correctly, click on the Elasticsearch Marvel link below.
-
-Marvel - [http://localhost:9200/_plugin/marvel/index.html](http://localhost:9200/_plugin/marvel/index.html)
-
-You should then be able to load Kibana in a browser as well:
-
-Kibana Dashboard - [http://localhost:5601/#/dashboard/elasticsearch/NYC%20Accidents%20v.2](http://localhost:5601/#/dashboard/elasticsearch/NYC%20Accidents%20v.2)
-
-#Potential issues
-
-The 'vagrant up' step may fail if you are running on Windows for a variety of reasons, some of which are listed here:
-
-* BIOS not configured to enable Hardware Virtualization. \[Windows, Linux\]
-* Ports 9200, 5200, 2222 blocked by firewall or other software. \[Any OS\]
+* Instructions for restoring index snapshot with pre-indexed campaign contributions data
+* Python script for joining normalized files and outputting JSON
+* Elasticsearch index template
+* Logstash config
 
 
-##Vagrant port forwarding
+## Restoring index snapshot
 
-The Vagrantfile is configured to forward requests from the host (laptop) to the VM using these rules:
+After downloading and installing the ELK stack, you’ll need to download the index snapshot file for the campaign contributions data which can be obtained here (FYI it’s a 1.4GB file; we take no responsibility for this download eating up your monthly mobile tethering quota):
 
-* 9200 -> 9200 (Elasticsearch instance)
-* 5601 -> 5601 (Kibana)
+http://download.elasticsearch.org/demos/usfec/snapshot_demo_usfec.tar.gz 
 
-If you have another Vagrant VM or a local Elasticsearch instance using ports 9200 and/or 5601, you will need to shut down those services while running this demo.
+Create a folder somewhere on your local drive called “snapshots” and uncompress the .tar.gz file into that directory. For example:
+```
+\# Create snapshots directory
+mkdir -p ~/elk/snapshots
+\# Copy snapshot download to your new snapshots directory
+cp ~/Downloads/snapshot_demo_usfec.tar.gz ~/elk/snapshots
+\# Go to snapshots directory
+cd ~/elk/snapshots
+\# Uncompress snapshot file
+tar xf snapshot_demo_usfec.tar.gz
+```
+Once you have Elasticsearch running, restoring the index is a two-step process:
 
-#Next steps
+1) Register a file system repository for the snapshot (change the value of the “location” parameter below to the location of your usfec snapshot directory):
+```
+curl -XPUT 'http://localhost:9200/_snapshot/usfec' -d '{
+    "type": "fs",
+    "settings": {
+        "location": "/tmp/snapshots/usfec",
+        "compress": true,
+        "max_snapshot_bytes_per_sec": "1000mb",
+        "max_restore_bytes_per_sec": "1000mb"
+    }
+}'
+```
+2) Call the Restore API endpoint to start restoring the index data into your Elasticsearch instance:
+```
+curl -XPOST "localhost:9200/_snapshot/usfec/1/_restore"
+```
+At this point, go make yourself a [coffee](https://bluebottlecoffee.com/preparation-guides). When your delicious cup of single-origin, direct trade coffee has finished brewing, you can check to see if the restore operation is complete by calling the cat recovery API:
+```
+curl -XGET 'localhost:9200/_cat/recovery?v'
+```
+Or get a count of the documents in the expected indexes:
+```
+curl -XGET localhost:9200/usfec*/_count -d '{
+	"query": {
+		"match_all": {}
+	}
+}'
+```
+which should return a count of approximately 4250251.
 
-The Vagrant/Puppet scripts provision a ready-to-use Elasticsearch index and Kibana dashboard for you but if you're interested in refreshing the dataset with the latest updates from the FEC, making tweaks to the Elasticsearch mapping config, enhancing the Logstash config and reindexing the data, or something else, this VM environment is ready for you to do that. 
+## Python script
 
-##Raw data updates
+The raw FEC data is provided in a number of 7 files. In order to do some useful querying of the data in a search engine / NoSQL store like Elasticsearch, you typically have to go through a data modeling process of identifying how to join data from various tables. 
 
-The latest version of the source data set can be found here: [http://www.fec.gov/finance/disclosure/ftpdet.shtml#a2013_2014](http://www.fec.gov/finance/disclosure/ftpdet.shtml#a2013_2014).
+The Python script (in scripts/process_camfin.py) takes care of some of the obvious ways to join the various data files and produces four .json files which can then be loaded into Elasticsearch using Logstash. The script requires Python 3.
 
+You don't need to run the Python script but it's here in case you want to modify how the data is joined, perform additional data cleansing/enrichment, re-process the latest raw data set from the FEC, etc.
 
-##Mapping config
+##Elasticsearch index template config
 
 The Elasticsearch mapping configuration is defined in the index template file: index\_template.json. Documentation:
 
