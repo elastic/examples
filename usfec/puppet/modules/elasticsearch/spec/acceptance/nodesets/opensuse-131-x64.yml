@@ -1,0 +1,12 @@
+HOSTS:
+  opensuse-131-x64:
+    roles:
+      - master
+      - database
+      - dashboard
+    platform: sles-13-x64
+    box: opensuse-13.1-test
+    box_url: https://s3-eu-west-1.amazonaws.com/users.eu.elasticsearch.org/electrical/opensuse-131.box
+    hypervisor: vagrant
+CONFIG:
+  type: foss

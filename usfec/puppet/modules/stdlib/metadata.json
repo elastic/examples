@@ -1,0 +1,336 @@
+{
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "RedHat",
+      "operatingsystemrelease": [
+        "4",
+        "5",
+        "6"
+      ]
+    },
+    {
+      "operatingsystem": "CentOS",
+      "operatingsystemrelease": [
+        "4",
+        "5",
+        "6"
+      ]
+    },
+    {
+      "operatingsystem": "OracleLinux",
+      "operatingsystemrelease": [
+        "4",
+        "5",
+        "6"
+      ]
+    },
+    {
+      "operatingsystem": "Scientific",
+      "operatingsystemrelease": [
+        "4",
+        "5",
+        "6"
+      ]
+    },
+    {
+      "operatingsystem": "SLES",
+      "operatingsystemrelease": [
+        "11 SP1"
+      ]
+    },
+    {
+      "operatingsystem": "Debian",
+      "operatingsystemrelease": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "operatingsystem": "Ubuntu",
+      "operatingsystemrelease": [
+        "10.04",
+        "12.04"
+      ]
+    },
+    {
+      "operatingsystem": "Solaris",
+      "operatingsystemrelease": [
+        "10",
+        "11"
+      ]
+    },
+    {
+      "operatingsystem": "Windows",
+      "operatingsystemrelease": [
+        "Server 2003",
+        "Server 2003 R2",
+        "Server 2008",
+        "Server 2008 R2",
+        "Server 2012",
+        "Server 2012 R2",
+        "7",
+        "8"
+      ]
+    },
+    {
+      "operatingsystem": "AIX",
+      "operatingsystemrelease": [
+        "5.3",
+        "6.1",
+        "7.1"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "name": "pe",
+      "version_requirement": "3.2.x"
+    },
+    {
+      "name": "puppet",
+      "version_requirement": ">=2.7.20 <4.0.0"
+    }
+  ],
+  "name": "puppetlabs-stdlib",
+  "version": "3.2.1",
+  "source": "git://github.com/puppetlabs/puppetlabs-stdlib",
+  "author": "puppetlabs",
+  "license": "Apache 2.0",
+  "summary": "Puppet Module Standard Library",
+  "description": "Standard Library for Puppet Modules",
+  "project_page": "https://github.com/puppetlabs/puppetlabs-stdlib",
+  "dependencies": [
+
+  ],
+  "types": [
+    {
+      "name": "anchor",
+      "doc": "A simple resource type intended to be used as an anchor in a composite class.\n\nIn Puppet 2.6, when a class declares another class, the resources in the\ninterior class are not contained by the exterior class. This interacts badly\nwith the pattern of composing complex modules from smaller classes, as it\nmakes it impossible for end users to specify order relationships between the\nexterior class and other modules.\n\nThe anchor type lets you work around this. By sandwiching any interior\nclasses between two no-op resources that _are_ contained by the exterior\nclass, you can ensure that all resources in the module are contained.\n\n    class ntp {\n      # These classes will have the correct order relationship with each\n      # other. However, without anchors, they won't have any order\n      # relationship to Class['ntp'].\n      class { 'ntp::package': }\n      -> class { 'ntp::config': }\n      -> class { 'ntp::service': }\n\n      # These two resources \"anchor\" the composed classes within the ntp\n      # class.\n      anchor { 'ntp::begin': } -> Class['ntp::package']\n      Class['ntp::service']    -> anchor { 'ntp::end': }\n    }\n\nThis allows the end user of the ntp module to establish require and before\nrelationships with Class['ntp']:\n\n    class { 'ntp': } -> class { 'mcollective': }\n    class { 'mcollective': } -> class { 'ntp': }",
+      "properties": [
+
+      ],
+      "parameters": [
+        {
+          "name": "name",
+          "doc": "The name of the anchor resource.\n\n"
+        }
+      ]
+    },
+    {
+      "name": "file_line",
+      "doc": "Ensures that a given line is contained within a file.  The implementation\nmatches the full line, including whitespace at the beginning and end.  If\nthe line is not contained in the given file, Puppet will add the line to\nensure the desired state.  Multiple resources may be declared to manage\nmultiple lines in the same file.\n\nExample:\n\n    file_line { 'sudo_rule':\n      path => '/etc/sudoers',\n      line => '%sudo ALL=(ALL) ALL',\n    }\n    file_line { 'sudo_rule_nopw':\n      path => '/etc/sudoers',\n      line => '%sudonopw ALL=(ALL) NOPASSWD: ALL',\n    }\n\nIn this example, Puppet will ensure both of the specified lines are\ncontained in the file /etc/sudoers.",
+      "properties": [
+        {
+          "name": "ensure",
+          "doc": "The basic property that the resource should be in.\n\nValid values are `present`, `absent`. "
+        }
+      ],
+      "parameters": [
+        {
+          "name": "name",
+          "doc": "An arbitrary name used as the identity of the resource.\n\n"
+        },
+        {
+          "name": "match",
+          "doc": "An optional regular expression to run against existing lines in the file;\\nif a match is found, we replace that line rather than adding a new line.\n\n"
+        },
+        {
+          "name": "line",
+          "doc": "The line to be appended to the file located by the path parameter.\n\n"
+        },
+        {
+          "name": "path",
+          "doc": "The file Puppet will ensure contains the line specified by the line parameter.\n\n"
+        }
+      ],
+      "providers": [
+        {
+          "name": "ruby",
+          "doc": ""
+        }
+      ]
+    }
+  ],
+  "checksums": {
+    "CHANGELOG.md": "f8ffe38740fb36071daad3c548989e96",
+    "LICENSE": "38a048b9d82e713d4e1b2573e370a756",
+    "Modulefile": "845d941ceb9361df73b3aaed2c61df49",
+    "README.markdown": "719cd9e9c77c8af555ac54baaf62c036",
+    "README_DEVELOPER.markdown": "220a8b28521b5c5d2ea87c4ddb511165",
+    "RELEASE_PROCESS.markdown": "1981f306c0047720e37be07bb6c976a4",
+    "Rakefile": "f37e6131fe7de9a49b09d31596f5fbf1",
+    "lib/facter/facter_dot_d.rb": "926b2c2e886a43c615d7663029d43595",
+    "lib/facter/pe_version.rb": "4a9353952963b011759f3e6652a10da5",
+    "lib/facter/puppet_vardir.rb": "c7ddc97e8a84ded3dd93baa5b9b3283d",
+    "lib/facter/root_home.rb": "f559294cceafcf70799339627d94871d",
+    "lib/facter/util/puppet_settings.rb": "9f1d2593d0ae56bfca89d4b9266aeee1",
+    "lib/puppet/parser/functions/abs.rb": "c2f2c4a62a56e7adbf5cf0b292e081fc",
+    "lib/puppet/parser/functions/bool2num.rb": "8e627eee990e811e35e7e838c586bd77",
+    "lib/puppet/parser/functions/capitalize.rb": "14481fc8c7c83fe002066ebcf6722f17",
+    "lib/puppet/parser/functions/chomp.rb": "7040b3348d2f770f265cf4c8c25c51c5",
+    "lib/puppet/parser/functions/chop.rb": "4cc840d63ec172d8533a613676391d39",
+    "lib/puppet/parser/functions/defined_with_params.rb": "ffab4433d03f32b551f2ea024a2948fc",
+    "lib/puppet/parser/functions/delete.rb": "9b17b9f7f820adf02360147c1a2f4279",
+    "lib/puppet/parser/functions/delete_at.rb": "6bc24b79390d463d8be95396c963381a",
+    "lib/puppet/parser/functions/downcase.rb": "9204a04c2a168375a38d502db8811bbe",
+    "lib/puppet/parser/functions/empty.rb": "ae92905c9d94ddca30bf56b7b1dabedf",
+    "lib/puppet/parser/functions/ensure_packages.rb": "ca852b2441ca44b91a984094de4e3afc",
+    "lib/puppet/parser/functions/ensure_resource.rb": "5c2e7990e22e5a532931627b4aaf545b",
+    "lib/puppet/parser/functions/flatten.rb": "251d63696564254d41742ecbfbfcb9fd",
+    "lib/puppet/parser/functions/fqdn_rotate.rb": "20743a138c56fc806a35cb7b60137dbc",
+    "lib/puppet/parser/functions/get_module_path.rb": "d4bf50da25c0b98d26b75354fa1bcc45",
+    "lib/puppet/parser/functions/getvar.rb": "10bf744212947bc6a7bfd2c9836dbd23",
+    "lib/puppet/parser/functions/grep.rb": "5682995af458b05f3b53dd794c4bf896",
+    "lib/puppet/parser/functions/has_interface_with.rb": "8d3ebca805dc6edb88b6b7a13d404787",
+    "lib/puppet/parser/functions/has_ip_address.rb": "ee207f47906455a5aa49c4fb219dd325",
+    "lib/puppet/parser/functions/has_ip_network.rb": "b4d726c8b2a0afac81ced8a3a28aa731",
+    "lib/puppet/parser/functions/has_key.rb": "7cd9728c38f0b0065f832dabd62b0e7e",
+    "lib/puppet/parser/functions/hash.rb": "75fd86c01d5b1e50be1bc8b22d3d0a61",
+    "lib/puppet/parser/functions/is_array.rb": "875ca4356cb0d7a10606fb146b4a3d11",
+    "lib/puppet/parser/functions/is_domain_name.rb": "fba9f855df3bbf90d72dfd5201f65d2b",
+    "lib/puppet/parser/functions/is_float.rb": "f1b0d333061d31bf0c25bd4c33dc134b",
+    "lib/puppet/parser/functions/is_hash.rb": "8c7d9a05084dab0389d1b779c8a05b1a",
+    "lib/puppet/parser/functions/is_integer.rb": "a50ebc15c30bffd759e4a6f8ec6a0cf3",
+    "lib/puppet/parser/functions/is_ip_address.rb": "a53f6e3a5855954148230846ccb3e04d",
+    "lib/puppet/parser/functions/is_mac_address.rb": "288bd4b38d4df42a83681f13e7eaaee0",
+    "lib/puppet/parser/functions/is_numeric.rb": "0a9bcc49e8f57af81bdfbb7e7c3a575c",
+    "lib/puppet/parser/functions/is_string.rb": "2bd9a652bbb2668323eee6c57729ff64",
+    "lib/puppet/parser/functions/join.rb": "b28087823456ca5cf943de4a233ac77f",
+    "lib/puppet/parser/functions/join_keys_to_values.rb": "f29da49531228f6ca5b3aa0df00a14c2",
+    "lib/puppet/parser/functions/keys.rb": "eb6ac815ea14fbf423580ed903ef7bad",
+    "lib/puppet/parser/functions/loadyaml.rb": "2b912f257aa078e376d3b3f6a86c2a00",
+    "lib/puppet/parser/functions/lstrip.rb": "210b103f78622e099f91cc2956b6f741",
+    "lib/puppet/parser/functions/max.rb": "02975799d44ded069c1a0769cbf8b73b",
+    "lib/puppet/parser/functions/member.rb": "541e67d06bc4155e79b00843a125e9bc",
+    "lib/puppet/parser/functions/merge.rb": "52281fe881b762e2adfef20f58dc4180",
+    "lib/puppet/parser/functions/min.rb": "35f1e50e7f9ff6d5b04e48952d4e13bd",
+    "lib/puppet/parser/functions/num2bool.rb": "dbdc81982468ebb8ac24ab78d7097ad3",
+    "lib/puppet/parser/functions/parsejson.rb": "e7f968c34928107b84cd0860daf50ab1",
+    "lib/puppet/parser/functions/parseyaml.rb": "6cfee471d287c8d110a3629a9ac31b69",
+    "lib/puppet/parser/functions/pick.rb": "2bede116a0651405c47e650bbf942abe",
+    "lib/puppet/parser/functions/prefix.rb": "6a2d86233c9435afc1738f60a0c34576",
+    "lib/puppet/parser/functions/range.rb": "033048bba333fe429e77e0f2e91db25f",
+    "lib/puppet/parser/functions/reject.rb": "689f6a7c961a55fe9dcd240921f4c7f9",
+    "lib/puppet/parser/functions/reverse.rb": "1386371c0f5301055fdf99079e862b3e",
+    "lib/puppet/parser/functions/rstrip.rb": "8a0d69876bdbc88a2054ba41c9c38961",
+    "lib/puppet/parser/functions/shuffle.rb": "6445e6b4dc62c37b184a60eeaf34414b",
+    "lib/puppet/parser/functions/size.rb": "8972d48c0f9e487d659bd7326b40b642",
+    "lib/puppet/parser/functions/sort.rb": "504b033b438461ca4f9764feeb017833",
+    "lib/puppet/parser/functions/squeeze.rb": "ae5aafb7478cced0ba0c23856e45cec5",
+    "lib/puppet/parser/functions/str2bool.rb": "846b49d623cb847c1870d7ac4a6bedf3",
+    "lib/puppet/parser/functions/str2saltedsha512.rb": "49afad7b386be38ce53deaefef326e85",
+    "lib/puppet/parser/functions/strftime.rb": "e02e01a598ca5d7d6eee0ba22440304a",
+    "lib/puppet/parser/functions/strip.rb": "273d547c7b05c0598556464dfd12f5fd",
+    "lib/puppet/parser/functions/swapcase.rb": "4902f38f0b9292afec66d40fee4b02ec",
+    "lib/puppet/parser/functions/time.rb": "08d88d52abd1e230e3a2f82107545d48",
+    "lib/puppet/parser/functions/to_bytes.rb": "83f23c33adbfa42b2a9d9fc2db3daeb4",
+    "lib/puppet/parser/functions/type.rb": "62f914d6c90662aaae40c5539701be60",
+    "lib/puppet/parser/functions/unique.rb": "217ccce6d23235af92923f50f8556963",
+    "lib/puppet/parser/functions/upcase.rb": "a5744a74577cfa136fca2835e75888d3",
+    "lib/puppet/parser/functions/uriescape.rb": "9ebc34f1b2f319626512b8cd7cde604c",
+    "lib/puppet/parser/functions/validate_absolute_path.rb": "385137ac24a2dec6cecc4e6ea75be442",
+    "lib/puppet/parser/functions/validate_array.rb": "72b29289b8af1cfc3662ef9be78911b8",
+    "lib/puppet/parser/functions/validate_bool.rb": "4ddffdf5954b15863d18f392950b88f4",
+    "lib/puppet/parser/functions/validate_hash.rb": "e9cfaca68751524efe16ecf2f958a9a0",
+    "lib/puppet/parser/functions/validate_re.rb": "c6664b3943bc820415a43f16372dc2a9",
+    "lib/puppet/parser/functions/validate_slength.rb": "0ca530d1d3b45c3fe2d604c69acfc22f",
+    "lib/puppet/parser/functions/validate_string.rb": "6afcbc51f83f0714348b8d61e06ea7eb",
+    "lib/puppet/parser/functions/values.rb": "066a6e4170e5034edb9a80463dff2bb5",
+    "lib/puppet/parser/functions/values_at.rb": "094ac110ce9f7a5b16d0c80a0cf2243c",
+    "lib/puppet/parser/functions/zip.rb": "a80782461ed9465f0cd0c010936f1855",
+    "lib/puppet/provider/file_line/ruby.rb": "f0f61ee3076d6b8f5883872abe844f37",
+    "lib/puppet/type/anchor.rb": "cc1da7acfe1259d5b86a64e2dea42c34",
+    "lib/puppet/type/file_line.rb": "3e8222cb58f3503b3ea7de3647c602a0",
+    "manifests/init.pp": "f2ba5f36e7227ed87bbb69034fc0de8b",
+    "manifests/stages.pp": "cc6ed1751d334b0ea278c0335c7f0b5a",
+    "spec/functions/defined_with_params_spec.rb": "3bdfac38e3d6f06140ff2e926f4ebed2",
+    "spec/functions/ensure_packages_spec.rb": "935b4aec5ab36bdd0458c1a9b2a93ad5",
+    "spec/functions/ensure_resource_spec.rb": "0ff2b16e3b1d23603c6cbfca08109c02",
+    "spec/monkey_patches/alias_should_to_must.rb": "7cd4065c63f06f1ab3aaa1c5f92af947",
+    "spec/monkey_patches/publicize_methods.rb": "1b03a4af94f7dac35f7c2809caf372ca",
+    "spec/spec.opts": "a600ded995d948e393fbe2320ba8e51c",
+    "spec/spec_helper.rb": "4449b0cafd8f7b2fb440c0cdb0a1f2b3",
+    "spec/unit/facter/pe_version_spec.rb": "ef031cca838f36f99b1dab3259df96a5",
+    "spec/unit/facter/root_home_spec.rb": "4f4c4236ac2368d2e27fd2f3eb606a19",
+    "spec/unit/facter/util/puppet_settings_spec.rb": "345bcbef720458e25be0190b7638e4d9",
+    "spec/unit/puppet/parser/functions/abs_spec.rb": "0a5864a29a8e9e99acc483268bd5917c",
+    "spec/unit/puppet/parser/functions/bool2num_spec.rb": "67c3055d5d4e4c9fbcaca82038a09081",
+    "spec/unit/puppet/parser/functions/capitalize_spec.rb": "82a4209a033fc88c624f708c12e64e2a",
+    "spec/unit/puppet/parser/functions/chomp_spec.rb": "3cd8e2fe6b12efeffad94cce5b693b7c",
+    "spec/unit/puppet/parser/functions/chop_spec.rb": "4e9534d25b952b261c9f46add677c390",
+    "spec/unit/puppet/parser/functions/delete_at_spec.rb": "5a4287356b5bd36a6e4c100421215b8e",
+    "spec/unit/puppet/parser/functions/delete_spec.rb": "0d84186ea618523b4b2a4ca0b5a09c9e",
+    "spec/unit/puppet/parser/functions/downcase_spec.rb": "b0197829512f2e92a2d2b06ce8e2226f",
+    "spec/unit/puppet/parser/functions/empty_spec.rb": "028c30267d648a172d8a81a9262c3abe",
+    "spec/unit/puppet/parser/functions/flatten_spec.rb": "c1c039171d1baef89452092731b9e003",
+    "spec/unit/puppet/parser/functions/fqdn_rotate_spec.rb": "c053cb14a26e820713c882040f0569ab",
+    "spec/unit/puppet/parser/functions/get_module_path_spec.rb": "24c75fb78853f05d35d041b59232c3f4",
+    "spec/unit/puppet/parser/functions/getvar_spec.rb": "842bf88d47077a9ae64097b6e39c3364",
+    "spec/unit/puppet/parser/functions/grep_spec.rb": "78179537496a7150469e591a95e255d8",
+    "spec/unit/puppet/parser/functions/has_interface_with_spec.rb": "7c16d731c518b434c81b8cb2227cc916",
+    "spec/unit/puppet/parser/functions/has_ip_address_spec.rb": "f53c7baeaf024ff577447f6c28c0f3a7",
+    "spec/unit/puppet/parser/functions/has_ip_network_spec.rb": "885ea8a4c987b735d683b742bf846cb1",
+    "spec/unit/puppet/parser/functions/has_key_spec.rb": "3e4e730d98bbdfb88438b6e08e45868e",
+    "spec/unit/puppet/parser/functions/hash_spec.rb": "826337a92d8f7a189b7ac19615db0ed7",
+    "spec/unit/puppet/parser/functions/is_array_spec.rb": "8c020af9c360abdbbf1ba887bb26babe",
+    "spec/unit/puppet/parser/functions/is_domain_name_spec.rb": "8eed3a9eb9334bf6a473ad4e2cabc2ec",
+    "spec/unit/puppet/parser/functions/is_float_spec.rb": "171fc0e382d9856c2d8db2b70c9ec9cd",
+    "spec/unit/puppet/parser/functions/is_hash_spec.rb": "408e121a5e30c4c5c4a0a383beb6e209",
+    "spec/unit/puppet/parser/functions/is_integer_spec.rb": "a302cf1de5ccb494ca9614d2fc2b53c5",
+    "spec/unit/puppet/parser/functions/is_ip_address_spec.rb": "6040a9bae4e5c853966148b634501157",
+    "spec/unit/puppet/parser/functions/is_mac_address_spec.rb": "644cd498b426ff2f9ea9cbc5d8e141d7",
+    "spec/unit/puppet/parser/functions/is_numeric_spec.rb": "5f08148803b6088c27b211c446ad3658",
+    "spec/unit/puppet/parser/functions/is_string_spec.rb": "5c015d8267de852da3a12b984e077092",
+    "spec/unit/puppet/parser/functions/join_keys_to_values_spec.rb": "7c7937411b7fe4bb944c0c022d3a96b0",
+    "spec/unit/puppet/parser/functions/join_spec.rb": "c3b50c39390a86b493511be2c6722235",
+    "spec/unit/puppet/parser/functions/keys_spec.rb": "35cc2ed490dc68da6464f245dfebd617",
+    "spec/unit/puppet/parser/functions/lstrip_spec.rb": "1fc2c2d80b5f724a358c3cfeeaae6249",
+    "spec/unit/puppet/parser/functions/max_spec.rb": "8c8eb040afb373d55c88745377fc2313",
+    "spec/unit/puppet/parser/functions/member_spec.rb": "067c60985efc57022ca1c5508d74d77f",
+    "spec/unit/puppet/parser/functions/merge_spec.rb": "a0e0d7514b90a157def16244cbbf81df",
+    "spec/unit/puppet/parser/functions/min_spec.rb": "8371e367c8ff0525308b9cbeeba3ab94",
+    "spec/unit/puppet/parser/functions/num2bool_spec.rb": "7c80e016a73122fa5f921dac02626d89",
+    "spec/unit/puppet/parser/functions/parsejson_spec.rb": "37ab84381e035c31d6a3dd9bf73a3d53",
+    "spec/unit/puppet/parser/functions/parseyaml_spec.rb": "65dfed872930ffe0d21954c15daaf498",
+    "spec/unit/puppet/parser/functions/pick_spec.rb": "aba6247d3925e373272fca6768fd5403",
+    "spec/unit/puppet/parser/functions/prefix_spec.rb": "16a95b321d76e773812693c80edfbe36",
+    "spec/unit/puppet/parser/functions/range_spec.rb": "91d69115dea43f62a2dca9a10467d836",
+    "spec/unit/puppet/parser/functions/reject_spec.rb": "8e16c9f064870e958b6278261e480954",
+    "spec/unit/puppet/parser/functions/reverse_spec.rb": "48169990e59081ccbd112b6703418ce4",
+    "spec/unit/puppet/parser/functions/rstrip_spec.rb": "a408e933753c9c323a05d7079d32cbb3",
+    "spec/unit/puppet/parser/functions/shuffle_spec.rb": "2141a54d2fb3cf725b88184d639677f4",
+    "spec/unit/puppet/parser/functions/size_spec.rb": "d126b696b21a8cd754d58f78ddba6f06",
+    "spec/unit/puppet/parser/functions/sort_spec.rb": "7039cd230a94e95d9d1de2e1094acae2",
+    "spec/unit/puppet/parser/functions/squeeze_spec.rb": "df5b349c208a9a2a4d4b8e6d9324756f",
+    "spec/unit/puppet/parser/functions/str2bool_spec.rb": "a3f9c1e4121a58e02c1614cc771d180d",
+    "spec/unit/puppet/parser/functions/str2saltedsha512_spec.rb": "215579d1a544bd62b251bf048c565b26",
+    "spec/unit/puppet/parser/functions/strftime_spec.rb": "bf140883ecf3254277306fa5b25f0344",
+    "spec/unit/puppet/parser/functions/strip_spec.rb": "a01796bebbdabd3fad12b0662ea5966e",
+    "spec/unit/puppet/parser/functions/swapcase_spec.rb": "0660ce8807608cc8f98ad1edfa76a402",
+    "spec/unit/puppet/parser/functions/time_spec.rb": "b6d0279062779efe5153fe5cfafc5bbd",
+    "spec/unit/puppet/parser/functions/to_bytes_spec.rb": "80aaf68cf7e938e46b5278c1907af6be",
+    "spec/unit/puppet/parser/functions/type_spec.rb": "422f2c33458fe9b0cc9614d16f7573ba",
+    "spec/unit/puppet/parser/functions/unique_spec.rb": "2df8b3b2edb9503943cb4dcb4a371867",
+    "spec/unit/puppet/parser/functions/upcase_spec.rb": "813668919bc62cdd1d349dafc19fbbb3",
+    "spec/unit/puppet/parser/functions/uriescape_spec.rb": "8d9e15156d93fe29bfe91a2e83352ff4",
+    "spec/unit/puppet/parser/functions/validate_absolute_path_spec.rb": "07839082d24d5a7628fd5bce6c8b35c3",
+    "spec/unit/puppet/parser/functions/validate_array_spec.rb": "3fd3c8cca1c69e47e89acf27fafd2ddb",
+    "spec/unit/puppet/parser/functions/validate_bool_spec.rb": "9b1e15d42a7aaa45e56cca0e60ac1fc3",
+    "spec/unit/puppet/parser/functions/validate_hash_spec.rb": "399d936c9532e7f328291027b7535ea7",
+    "spec/unit/puppet/parser/functions/validate_re_spec.rb": "b21292ad2f30c0d43ab2f0c2df0ba7d5",
+    "spec/unit/puppet/parser/functions/validate_slength_spec.rb": "a1b4d805149dc0143e9a57e43e1f84bf",
+    "spec/unit/puppet/parser/functions/validate_string_spec.rb": "3c04a751615a86656f04d313028a4cf4",
+    "spec/unit/puppet/parser/functions/values_at_spec.rb": "de45fd8abbc4c037c3c4fac2dcf186f9",
+    "spec/unit/puppet/parser/functions/values_spec.rb": "0ac9e141ed1f612d7cc224f747b2d1d9",
+    "spec/unit/puppet/parser/functions/zip_spec.rb": "06a86e4e70d2aea63812582aae1d26c4",
+    "spec/unit/puppet/provider/file_line/ruby_spec.rb": "e8cd7432739cb212d40a9148523bd4d7",
+    "spec/unit/puppet/type/anchor_spec.rb": "a5478a72a7fab2d215f39982a9230c18",
+    "spec/unit/puppet/type/file_line_spec.rb": "0f532215c0467bf323b233c9f1733e37",
+    "spec/watchr.rb": "b588ddf9ef1c19ab97aa892cc776da73",
+    "tests/file_line.pp": "67727539aa7b7dd76f06626fe734f7f7",
+    "tests/has_interface_with.pp": "384f0afaafc04dcbd6b0bda20214854c",
+    "tests/has_ip_address.pp": "f8ac1b6d3c75c484d0b8b33f24a732b1",
+    "tests/has_ip_network.pp": "2250fc62ed9aec64bd8542ac12829005",
+    "tests/init.pp": "1d98070412c76824e66db4b7eb74d433"
+  }
+}

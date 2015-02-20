@@ -1,0 +1,12 @@
+HOSTS:
+  opensuse-121-x64:
+    roles:
+      - master
+      - database
+      - dashboard
+    platform: sles-12-x64
+    box: opensuse-121-x64
+    box_url: https://s3.amazonaws.com/circlejtp/OpenSuseVagrant/OpenSuse12_1x64_July14.box
+    hypervisor: vagrant
+CONFIG:
+  type: foss

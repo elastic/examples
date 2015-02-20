@@ -1,0 +1,15 @@
+HOSTS:
+  ubuntu-13-10:
+    roles:
+      - master
+      - database
+      - dashboard
+    platform: ubuntu-13.10-amd64
+    image: electrical/ubuntu:13.10
+    hypervisor: docker
+    docker_cmd: '["/sbin/init"]'
+    docker_image_commands:
+      - 'apt-get install -yq ruby1.8-dev libaugeas-dev libaugeas-ruby ruby rubygems lsb-release wget net-tools curl'
+    docker_preserve_image: true
+CONFIG:
+  type: foss
