@@ -55,14 +55,14 @@ class elasticsearch-demo_vagrant_env {
 	############################################################################
 
 	# Get latest Kibana
-	exec { "/usr/bin/wget --timestamping https://download.elasticsearch.org/kibana/kibana/kibana-4.0.0-rc1-linux-x64.tar.gz":
+	exec { "/usr/bin/wget --timestamping https://download.elasticsearch.org/kibana/kibana/kibana-4.0.0-linux-x64.tar.gz":
 	  alias => "kibana_latest_wget",
 	  cwd => "/tmp",
 	}
 
-	file { "/opt/kibana-4.0.0-rc1-linux-x64.tar.gz":
+	file { "/opt/kibana-4.0.0-linux-x64.tar.gz":
 	  ensure => present,
-	  source => "/tmp/kibana-4.0.0-rc1-linux-x64.tar.gz",
+	  source => "/tmp/kibana-4.0.0-linux-x64.tar.gz",
 	  alias => "kibana_dist_file",
 	  require => [Exec["kibana_latest_wget"]], 
 	}
@@ -75,7 +75,7 @@ class elasticsearch-demo_vagrant_env {
 	}
 
 	exec {"kibana_unzip":
-	  command => "/bin/tar xzfv kibana-4.0.0-rc1-linux-x64.tar.gz",
+	  command => "/bin/tar xzfv kibana-4.0.0-linux-x64.tar.gz",
 	  cwd => "/opt",
 	  require => File["kibana_dist_file"],
 	}
@@ -86,14 +86,25 @@ class elasticsearch-demo_vagrant_env {
 	  repo_version => "1.4",
 	  java_install => true,
 	  init_defaults => {
-	    "ES_HEAP_SIZE" => "2048m",
+	    "ES_HEAP_SIZE" => "1024m",
 	  },
 	  config => {
 	    "bootstrap.mlockall" => true,
 	    "cluster.name" => "es_demo",
 	    "node.name" => $::hostname,
-	  }
+	  },
 	}
+	
+	# exec {"wait_for_es":
+	#   require => Service["elasticsearch-es-01"],
+	#   command => "/usr/bin/curl --retry 10 --retry-delay 10 http://localhost:9200/_cluster/health",
+	# }
+
+	# exec {"kibana":
+	# 	command => "/opt/kibana-4.0.0-rc1-linux-x64/bin/kibana",
+	# 	cwd => "/opt/kibana-4.0.0-rc1-linux-x64/",
+	# 	require => Exec["wait_for_es"],
+	# }
 
 	# Install Marvel
 	elasticsearch::plugin { "elasticsearch/marvel/latest":
@@ -105,5 +116,7 @@ class elasticsearch-demo_vagrant_env {
 	elasticsearch::instance { 'es-01': 
 	  datadir => '/var/lib/es-data-es01'
 	} 	
+	
+	# Service["elasticsearch-es-01"]->Exec["kibana"]
 
 }
