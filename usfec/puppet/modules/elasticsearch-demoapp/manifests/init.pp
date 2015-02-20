@@ -45,49 +45,49 @@ class elasticsearch-demoapp {
 	############################################################################
 
 	# Remove local snapshot archive to avoid naming conflicts while downloading remote snapshot archive
-	exec { "sanitize_from_old_remainings":
-	  command => "/bin/rm -f /vagrant/snapshot_demo_usfec.tar.gz",
-	}
-
-	exec { "get_data_from_download.elasticsearch.org":
-	  command => "/usr/bin/wget https://download.elasticsearch.org/demos/usfec/snapshot_demo_usfec.tar.gz",
-	  cwd => "/tmp",
-	  timeout => 0,
-	  require => [Exec["sanitize_from_old_remainings"]],
-	}
+	# exec { "sanitize_from_old_remainings":
+	#   command => "/bin/rm -f /vagrant/snapshot_demo_usfec.tar.gz",
+	# }
+	#
+	# exec { "get_data_from_download.elasticsearch.org":
+	#   command => "/usr/bin/wget https://download.elasticsearch.org/demos/usfec/snapshot_demo_usfec.tar.gz",
+	#   cwd => "/tmp",
+	#   timeout => 0,
+	#   require => [Exec["sanitize_from_old_remainings"]],
+	# }
 
 
 
 	# ############################################################################
 	# # RESTORE SNAPSHOT
 	# ############################################################################
-	->
-	exec {"create_es_dir":
-	  command => "mkdir -p /tmp/elasticsearch",
-	  path => ["/bin"],
-	}
-	->
-	exec { "unzip_snapshot":
-	  command => "tar xzfv /tmp/snapshot_demo_usfec.tar.gz",
-	  cwd => "/tmp/elasticsearch",
-	  path => ["/bin"],
-	  require => [Exec["get_data_from_download.elasticsearch.org"]],
-	}
-	->
-	exec {"register_snapshot":
-	  command => "wget --spider --tries 10 --retry-connrefused --no-check-certificate http://localhost:9200 && curl -XPUT \'http://localhost:9200/_snapshot/usfec\' -d \'{
-	    \"type\": \"fs\",
-	    \"settings\": {
-	        \"location\": \"/tmp/elasticsearch/usfec\",
-	        \"compress\": true
-	    }
-	  }\'",
-	  path => ["/usr/bin", "/bin"],
-	}
-	->
-	exec {"restore_snapshot":
-	  command => "curl -XPOST \'http://localhost:9200/_snapshot/snapshots/usfec/1/_restore\' -d {"indices": "usfec_indiv_contrib","ignore_unavailable": "true","include_global_state": false}",
-	  path => ["/usr/bin"],
-	}
+	# ->
+	# exec {"create_es_dir":
+	#   command => "mkdir -p /tmp/elasticsearch",
+	#   path => ["/bin"],
+	# }
+	# ->
+	# exec { "unzip_snapshot":
+	#   command => "tar xzfv /tmp/snapshot_demo_usfec.tar.gz",
+	#   cwd => "/tmp/elasticsearch",
+	#   path => ["/bin"],
+	#   require => [Exec["get_data_from_download.elasticsearch.org"]],
+	# }
+	# ->
+	# exec {"register_snapshot":
+	#   command => "wget --spider --tries 10 --retry-connrefused --no-check-certificate http://localhost:9200 && curl -XPUT \'http://localhost:9200/_snapshot/usfec\' -d \'{
+	#     \"type\": \"fs\",
+	#     \"settings\": {
+	#         \"location\": \"/tmp/elasticsearch/usfec\",
+	#         \"compress\": true
+	#     }
+	#   }\'",
+	#   path => ["/usr/bin", "/bin"],
+	# }
+	# ->
+	# exec {"restore_snapshot":
+	#   command => "curl -XPOST \'http://localhost:9200/_snapshot/snapshots/usfec/1/_restore\' -d {"indices": "usfec_indiv_contrib","ignore_unavailable": "true","include_global_state": false}",
+	#   path => ["/usr/bin"],
+	# }
 
 }
