@@ -9,20 +9,21 @@ def main():
     with open('US.txt', 'r') as f:
         reader = csv.reader(f, delimiter='\t')
         for row in reader:
-            this_dict = dict()
-            this_dict['zipCode'] = row[1]
-            this_dict['city'] = row[2]
-            this_dict['state'] = row[3]
-            this_dict['stateAbbrev'] = row[4]
-            this_dict['coords'] = row[9] + "," + row[10]
+            if row[9] and row[10]:
+                this_dict = dict()
+                this_dict['zipCode'] = row[1]
+                this_dict['city'] = row[2]
+                this_dict['state'] = row[3]
+                this_dict['stateAbbrev'] = row[4]
+                this_dict['coords'] = row[9] + "," + row[10]
 
-            zip_dict[row[1]] = this_dict
+                zip_dict[row[1]] = this_dict
 
     # supplement original list with other zip code list
     with open('zip_codes.csv', 'r') as f:
         reader = csv.reader(f, delimiter=',')
         for row in reader:
-            if row[0] not in zip_dict:
+            if (row[0] not in zip_dict) and (row[1] and row[2]):
                 this_dict = dict()
                 this_dict['zipCode'] = row[0]
                 this_dict['city'] = row[3]
