@@ -2,7 +2,7 @@ US FEC Campaign Contributions Demo: 2013-2014 US Election cycle
 =====
 
 For some background information for this demo, please see the blog post here:
-[#byodemos: us election campaign contributions](http://www.elasticsearch.org/blog/byodemos-new-york-city-traffic-incidents/)
+[Kibana 4 for investigating PACs, Super PACs, and who your neighbor might be voting for](http://www.elasticsearch.org/blog/kibana-4-for-investigating-pacs-super-pacs-and-your-neighbors/)
 
 #Installation
 
@@ -75,9 +75,16 @@ You don't need to run the Python script but it's here in case you want to modify
 
 The Elasticsearch mapping configuration is defined in the index template file: index\_template.json. Documentation:
 
-* [Mapping](http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/mapping.html)
-* [Index templates](http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/indices-templates.html)
+* [Mapping documentation](http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/mapping.html)
+* [Index templates documentation](http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/indices-templates.html)
 
 ##Logstash config
 
 The Logstash configuration is defined in the file: logstash.conf. Documentation for Logstash plugins: [http://www.elasticsearch.org/guide/en/logstash/current/index.html](http://www.elasticsearch.org/guide/en/logstash/current/index.html).
+
+##Miscellaneous
+
+There are a few other files in this directory which probably deserves explanation:
+
+* data/US.txt, data/zip_codes.csv: These are two zip code to lat/long mapping files which the Python script uses to enrich zip codes in the raw data with a lat/long that Elasticsearch can use for geo queries. If you run the Python script, make sure these two files are in the same directory as the current working dir at the time of execution.
+* Vagrant/Puppet files: The first demo released in this demo repo, the NYC traffic accidents demo, included these Vagrant/Puppet files to programmatically instantiate a virtual machine that installs the ELK stack and restore the index snapshot with a simple 'vagrant up' command. While you are still free to use these files, we chose not to recommend this for this demo since the index snapshot is so large which can cause problems if people's internet connections are slow, laptops don't have sufficient resources for running a larger VM, etc.
