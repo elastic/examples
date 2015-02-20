@@ -22,13 +22,13 @@ http://download.elasticsearch.org/demos/usfec/snapshot_demo_usfec.tar.gz
 
 Create a folder somewhere on your local drive called “snapshots” and uncompress the .tar.gz file into that directory. For example:
 ```
-\# Create snapshots directory
+# Create snapshots directory
 mkdir -p ~/elk/snapshots
-\# Copy snapshot download to your new snapshots directory
+# Copy snapshot download to your new snapshots directory
 cp ~/Downloads/snapshot_demo_usfec.tar.gz ~/elk/snapshots
-\# Go to snapshots directory
+# Go to snapshots directory
 cd ~/elk/snapshots
-\# Uncompress snapshot file
+# Uncompress snapshot file
 tar xf snapshot_demo_usfec.tar.gz
 ```
 Once you have Elasticsearch running, restoring the index is a two-step process:
