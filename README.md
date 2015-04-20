@@ -14,7 +14,17 @@ Visit TODO: add hosted app URL
 
 2. Download and unzip Elasticsearch.
 
-3. Start an Elasticsearch node.
+   ```
+   $ wget 'https://download.elastic.co/elasticsearch/elasticsearch/elasticsearch-1.5.1.zip'
+   $ unzip elasticsearch-1.5.1.zip
+   ```
+
+3. Start one Elasticsearch node.
+
+   ```
+   $ cd elasticsearch-1.5.1
+   $ ./bin/elasticsearch
+   ```
 
    By default the node's REST API will be available at http://localhost:9200, unless port 9200 is already taken. In
    that case Elasticsearch will automatically choose another port. Read through the log messages emitted when you
@@ -23,18 +33,24 @@ Visit TODO: add hosted app URL
 
 4. Download the code in this repo and unzip it.
 
-    $ wget -O recipe-search-simple.zip 'https://github.com/ycombinator/recipe-search-simple/archive/master.zip'
-    $ unzip recipe-search-simple.zip
+   ```
+   $ wget -O recipe-search-simple.zip 'https://github.com/ycombinator/recipe-search-simple/archive/master.zip'
+   $ unzip recipe-search-simple.zip
+   ```
 
 5. Start the application using PHP's built-in web server.
 
-    $ cd recipe-search-simple-master
-    $ php -S localhost:8000
+   ```
+   $ cd recipe-search-simple-master
+   $ php -S localhost:8000
+   ```
 
    By default this application will communicate with the Elasticsearch API at http://localhost:9200. If, in step 3, you
    noted a different port than 9200 being used, you will need to pass this information to the application when starting
    it up via an environment variable:
 
-    $ APP_ES_NODE_PORT=<PORT> php -S localhost:8000
+   ```
+   $ APP_ES_NODE_PORT=<PORT> php -S localhost:8000
+   ```
 
 6. Open your web browser and visit [`http://localhost:8000`](http://localhost:8000).
