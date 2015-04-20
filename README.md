@@ -1,4 +1,4 @@
-# Recipe Search
+# Recipe Search - Simple
 
 This sample application demonstrates:
 * Creating new recipes and saving them in Elasticsearch
