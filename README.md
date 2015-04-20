@@ -23,12 +23,12 @@ Visit TODO: add hosted app URL
 
 4. Download the code in this repo and unzip it.
 
-    $ wget ''
-    $ unzip 
+    $ wget -O recipe-search-simple.zip 'https://github.com/ycombinator/recipe-search-simple/archive/master.zip'
+    $ unzip recipe-search-simple.zip
 
 5. Start the application using PHP's built-in web server.
 
-    $ cd 
+    $ cd recipe-search-simple-master
     $ php -S localhost:8000
 
    By default this application will communicate with the Elasticsearch API at http://localhost:9200. If, in step 3, you
