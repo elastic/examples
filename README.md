@@ -14,14 +14,14 @@ Visit TODO: add hosted app URL
 
 2. Download and unzip Elasticsearch.
 
-   ```
+   ```sh
    $ wget 'https://download.elastic.co/elasticsearch/elasticsearch/elasticsearch-1.5.1.zip'
    $ unzip elasticsearch-1.5.1.zip
    ```
 
 3. Start one Elasticsearch node.
 
-   ```
+   ```sh
    $ cd elasticsearch-1.5.1
    $ ./bin/elasticsearch
    ```
@@ -33,14 +33,14 @@ Visit TODO: add hosted app URL
 
 4. Download the code in this repo and unzip it.
 
-   ```
+   ```sh
    $ wget -O recipe-search-simple.zip 'https://github.com/ycombinator/recipe-search-simple/archive/master.zip'
    $ unzip recipe-search-simple.zip
    ```
 
 5. Start the application using PHP's built-in web server.
 
-   ```
+   ```sh
    $ cd recipe-search-simple-master
    $ php -S localhost:8000
    ```
@@ -49,7 +49,7 @@ Visit TODO: add hosted app URL
    noted a different port than 9200 being used, you will need to pass this information to the application when starting
    it up via an environment variable:
 
-   ```
+   ```sh
    $ APP_ES_NODE_PORT=<PORT> php -S localhost:8000
    ```
 
