@@ -26,7 +26,7 @@ Visit TODO: add hosted app URL
    $ ./bin/elasticsearch
    ```
 
-   By default the node's REST API will be available at http://localhost:9200, unless port 9200 is already taken. In
+   By default the node's REST API will be available at `http://localhost:9200`, unless port 9200 is already taken. In
    that case Elasticsearch will automatically choose another port. Read through the log messages emitted when you
    start the node, and look for a log message containing `http`. In this message, look for `bound_address` and note the
    port shown in the accompanying network address.
@@ -45,7 +45,7 @@ Visit TODO: add hosted app URL
    $ php -S localhost:8000
    ```
 
-   By default this application will communicate with the Elasticsearch API at http://localhost:9200. If, in step 3, you
+   By default this application will communicate with the Elasticsearch API at `http://localhost:9200`. If, in step 3, you
    noted a different port than 9200 being used, you will need to pass this information to the application when starting
    it up via an environment variable:
 
