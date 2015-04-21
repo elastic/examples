@@ -15,10 +15,10 @@ if (!empty($_REQUEST['q'])) {
     ]);
 
     // Setup search query
-    $searchParams['index'] = Constants::ES_INDEX;
-    $searchParams['type']  = Constants::ES_TYPE;
-    $searchParams['body']['query']['multi_match']['query'] = $_REQUEST['q'];
-    $searchParams['body']['query']['multi_match']['fields'] = [ 'name', 'description', 'tags' ];
+    $searchParams['index'] = Constants::ES_INDEX; // which index to search
+    $searchParams['type']  = Constants::ES_TYPE;  // which type within the index to search
+    $searchParams['body']['query']['multi_match']['fields'] = [ 'name', 'description', 'tags' ]; // which fields within the type to search
+    $searchParams['body']['query']['multi_match']['query'] = $_REQUEST['q']; // what to search for
 
     // Send search query to Elasticsearch and get results
     $queryResponse = $client->search($searchParams);
