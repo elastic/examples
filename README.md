@@ -65,7 +65,7 @@ Visit TODO: add hosted app URL
    it up via an environment variable:
 
    ```sh
-   $ APP_ES_NODE_PORT=<PORT> php -S localhost:8000
+   $ APP_ES_PORT=<PORT> php -S localhost:8000
    ```
 
 1. Open your web browser and visit [`http://localhost:8000`](http://localhost:8000).
