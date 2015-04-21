@@ -6,10 +6,6 @@ This sample application demonstrates:
 
 This application uses vanilla PHP (that is, no PHP frameworks) and minimal [Bootstrap CSS](http://getbootstrap.com/css/) to make things pretty. There is no Javascript in use either. These choices are deliberate to keep non-Elasticsearch-related code to a minimum and make it as easy as possible to focus on the Elasticsearch-related code in this application.
 
-## Demonstration
-
-Visit TODO: add hosted app URL
-
 ## Running this on your own machine
 
 1. Download and install PHP.
