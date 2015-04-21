@@ -67,3 +67,15 @@ This application uses vanilla PHP (that is, no PHP frameworks) and minimal [Boot
    ```
 
 1. Open your web browser and visit [`http://localhost:8000`](http://localhost:8000).
+
+## Code Organization
+The code in this project is organized as follows, starting at the root directory level (only relevant files and folders listed):
+
+* `data/` &mdash; *contains seed data and loader script*
+  * `seed.txt` &mdash; *contains seed data in [bulk index](http://www.elastic.co/guide/en/elasticsearch/guide/master/bulk.html) format*
+  * `seed.php` &mdash; *script to load seed data*
+* `public/` &mdash; *contains files served by web server*
+  * `css/` &mdash; *contains the Bootstrap CSS file*
+  * `add.php` &mdash; *script to add a new recipe to Elasticsearch*
+  * `index.php` &mdash; *script to search for recipes in Elasticsearch*
+* `composer.json` &mdash; *file describing application dependencies, including the [Elasticsearch PHP language client](http://www.elastic.co/guide/en/elasticsearch/client/php-api/current/index.html)*
