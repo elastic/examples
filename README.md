@@ -1,8 +1,8 @@
 # Recipe Search - Simple
 
 This sample application demonstrates:
+* Searching for recipes by keywords, *and*
 * Creating new recipes and saving them in Elasticsearch
-* Searching for recipes by keyword
 
 ![Screenshot of search page](../../blob/gh-pages/images/screenshot.png)
 
