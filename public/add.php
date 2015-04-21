@@ -7,7 +7,7 @@ if (count($_POST) > 0) {
 <html>
 <head>
   <title>Recipe Search</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"></head>
+  <link rel="stylesheet" href="/css/bootstrap.min.css" />
 </head>
 <body>
 <div class="container">
