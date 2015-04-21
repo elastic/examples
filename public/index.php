@@ -8,17 +8,19 @@ use RecipeSearchSimple\Constants;
 $results = [];
 if (!empty($_REQUEST['q'])) {
 
+    // Connect to Elasticsearch node
     $esPort = getenv('APP_ES_PORT') ?: 9200;
-
     $client = new Elasticsearch\Client([
         'hosts' => [ 'localhost:' . $esPort ]
     ]);
 
+    // Setup search query
     $searchParams['index'] = Constants::ES_INDEX;
     $searchParams['type']  = Constants::ES_TYPE;
     $searchParams['body']['query']['multi_match']['query'] = $_REQUEST['q'];
     $searchParams['body']['query']['multi_match']['fields'] = [ 'name', 'description', 'tags' ];
 
+    // Send search query to Elasticsearch and get results
     $queryResponse = $client->search($searchParams);
     $results = $queryResponse['hits']['hits'];
 }
