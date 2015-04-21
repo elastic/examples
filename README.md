@@ -4,6 +4,8 @@ This sample application demonstrates:
 * Creating new recipes and saving them in Elasticsearch
 * Searching for recipes by keyword
 
+![Screenshot of search page](http://ycombinator.github.io/recipe-search-simple/images/screenshot.png)
+
 This application uses vanilla PHP (that is, no PHP frameworks) and minimal [Bootstrap CSS](http://getbootstrap.com/css/) to make things pretty. There is no Javascript in use either. These choices are deliberate to keep non-Elasticsearch-related code to a minimum and make it as easy as possible to focus on the Elasticsearch-related code in this application.
 
 ## Running this on your own machine
