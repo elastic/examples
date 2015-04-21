@@ -47,9 +47,16 @@ Visit TODO: add hosted app URL
    $ composer install
    ```
 
+1. Seed Elasticsearch index with initial recipe data.
+
+   ```sh
+   $ php data/seed.php
+   ```
+
 1. Start the application using PHP's built-in web server.
 
    ```sh
+   $ cd public
    $ php -S localhost:8000
    ```
 
