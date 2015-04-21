@@ -19,11 +19,11 @@ This application uses vanilla PHP (that is, no PHP frameworks) and minimal [Boot
    $ unzip elasticsearch-1.5.1.zip
    ```
 
-1. Start one Elasticsearch node.
+1. Start a 1-node Elasticsearch cluster.
 
    ```sh
    $ cd elasticsearch-1.5.1
-   $ ./bin/elasticsearch
+   $ ./bin/elasticsearch # The process started by this command corresponds to a single Elasticsearch node
    ```
 
    By default the node's REST API will be available at `http://localhost:9200`, unless port 9200 is already taken. In
