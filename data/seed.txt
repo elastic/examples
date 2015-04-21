@@ -1,0 +1,6 @@
+{ "index": {} }
+{ "title": "Lemon chicken", "description": "Baked boneless chicken with lemon-garlic seasoning", "cooking_time_min": 40 }
+{ "index": {} }
+{ "title": "Salmon in dill sauce", "description": "Baked and broiled salmon fillet in dill-mayo sauce", "cooking_time_min": 25 }
+{ "index": {} }
+{ "title": "Masala chai", "description": "Hot street-style Indian beverage infused with ginger and cardamom", "cooking_time_min": 15 }
