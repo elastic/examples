@@ -8,7 +8,7 @@ use RecipeSearchSimple\Constants;
 $results = [];
 if (!empty($_REQUEST['q'])) {
 
-    // Connect to Elasticsearch node
+    // Connect to Elasticsearch (1-node cluster)
     $esPort = getenv('APP_ES_PORT') ?: 9200;
     $client = new Elasticsearch\Client([
         'hosts' => [ 'localhost:' . $esPort ]
