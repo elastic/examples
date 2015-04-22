@@ -48,11 +48,12 @@ if (count($results) > 0) {
 </thead>
 <?php
     foreach ($results as $result) {
+        $recipe = $result['_source'];
 ?>
 <tr>
-  <td><?php echo $result['_source']['name']; ?></td>
-  <td><?php echo $result['_source']['description']; ?></td>
-  <td><?php echo $result['_source']['cooking_time_min']; ?></td>
+  <td><a href="/view.php?id=<?php echo $result['_id']; ?>"><?php echo $recipe['name']; ?></a></td>
+  <td><?php echo $recipe['description']; ?></td>
+  <td><?php echo $recipe['cooking_time_min']; ?></td>
 </tr>
 <?php
     } // END foreach loop over results
