@@ -79,6 +79,8 @@ The code in this project is organized as follows, starting at the root directory
   * `seed.php` &mdash; *script to load seed data*
 * `public/` &mdash; *contains files served by web server*
   * `css/` &mdash; *contains the Bootstrap CSS file*
+  * `js/` &mdash; *contains the jQuery and this project's Javascript files*
   * `add.php` &mdash; *script to add a new recipe to Elasticsearch*
   * `index.php` &mdash; *script to search for recipes in Elasticsearch*
+  * `view.php` &mdash; *script to view a recipe from Elasticsearch*
 * `composer.json` &mdash; *file describing application dependencies, including the [Elasticsearch PHP language client](http://www.elastic.co/guide/en/elasticsearch/client/php-api/current/index.html)*
