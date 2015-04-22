@@ -1,6 +1,6 @@
-{ "index": {} }
+{ "index": { "_id": "lemon-chicken" } }
 { "name": "Lemon chicken", "description": "Baked boneless chicken with lemon-garlic seasoning", "cooking_time_min": 40 }
-{ "index": {} }
+{ "index": { "_id": "salmon-in-dill-sauce" } }
 { "name": "Salmon in dill sauce", "description": "Baked and broiled salmon fillet in dill-mayo sauce", "cooking_time_min": 25, "tags": "fish" }
-{ "index": {} }
+{ "index": { "_id": "masala-chai" } }
 { "name": "Masala chai", "description": "Hot street-style Indian beverage infused with ginger and cardamom", "cooking_time_min": 15 }
