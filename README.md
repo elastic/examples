@@ -6,7 +6,10 @@ This sample application demonstrates:
 
 ![Screenshot of search page](../../blob/gh-pages/images/screenshot.png)
 
-This application uses vanilla PHP (that is, no PHP frameworks) and minimal [Bootstrap CSS](http://getbootstrap.com/css/) to make things pretty. There is no Javascript in use either. These choices are deliberate to keep non-Elasticsearch-related code to a minimum and make it as easy as possible to focus on the Elasticsearch-related code in this application.
+This sample application deliberately uses plain PHP code (that is, no PHP frameworks), a little bit of 
+[Bootstrap CSS](http://getbootstrap.com/css/) and even less [jQuery](https://jquery.com/). These minimalist choices
+are deliberate. We want to keep non-Elasticsearch-related code to a minimum so it as easy as possible to focus on the
+Elasticsearch-related code in this application.
 
 ## Running this on your own machine
 
