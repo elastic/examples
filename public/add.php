@@ -51,7 +51,7 @@ if (count($_POST) > 0) {
   <link rel="stylesheet" href="/css/bootstrap.min.css" />
 </head>
 <body>
-<div class="container bg-warning" id="message">
+<div class="container bg-danger" id="message">
 <?php
 if (!empty($message)) {
 ?>
