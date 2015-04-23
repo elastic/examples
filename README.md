@@ -1,6 +1,8 @@
 elasticsearch/demo
 ====
 
+[![Join the chat at https://gitter.im/elastic/demo](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/elastic/demo?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 This is a collection of demos to help you get familiar with Elasticsearch, Logstash and Kibana. Most will require some minimal technical skills to get running. While we are aiming to make these as easy as possible to set up, we're also trying to leverage tools like [Vagrant](https://www.vagrantup.com/) and [Puppet](http://puppetlabs.com/), not just to simplify the distribution and setup of these demos, but also as a way to introduce people to modern development tools. Feel free to file issues for bugs or enhancement requests and even contribute code via pull requests. 
 
 You can find specific details for each demo in their respective README. The following information pertains to the demo repo as a whole.
