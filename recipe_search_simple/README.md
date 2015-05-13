@@ -37,14 +37,16 @@ Elasticsearch-related code in this application.
 1. Download the code in this repo and unzip it.
 
    ```sh
-   $ wget -O recipe-search-simple.zip 'https://github.com/ycombinator/recipe-search-simple/archive/master.zip'
-   $ unzip recipe-search-simple.zip
+   $ wget -O elastic-demo.zip 'https://github.com/elastic/demo/archive/master.zip'
+   $ unzip elastic-demo.zip
+   $ mv demo-master/recipe_search_simple .
+   $ rm -rf demo-master elastic-demo.zip
+   $ cd recipe_search_simple
    ```
 
 1. Install application dependencies.
 
    ```sh
-   $ cd recipe-search-simple-master
    $ composer install
    ```
 
