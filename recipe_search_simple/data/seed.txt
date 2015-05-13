@@ -1,0 +1,6 @@
+{ "index": { "_id": "lemon-chicken" } }
+{ "name": "Lemon chicken", "description": "Baked boneless chicken with lemon-garlic seasoning", "cooking_time_min": 40, "ingredients": [ "Chicken breast, 1 fillet", "Lemon-garlic seasoning, 2 tbsp", "Olive oil, 1 tbsp" ], "directions": [ "Pre-heat oven to 350 F.", "Take an oven-safe ceramic utensil and add the olive oil to it.", "Place the chicken in the olive oil and move it around until it is completely covered by the oil.", "Sprinkle about half the lemon-pepper seasoning on one side, usually the top, of the chicken.", "Place the utensil in the oven once it has heated up to 350 F.", "After 20 minutes, remove the utensil, flip the chicken, sprinkle the rest of the seasoning on the other side and put the utensil back in the oven.", "After another 20 minutes, remove the utensil, slice up the chicken to desired size and serve hot."], "servings": 2 }
+{ "index": { "_id": "salmon-in-dill-sauce" } }
+{ "name": "Salmon in dill sauce", "description": "Baked and broiled salmon fillet in dill-mayo sauce", "cooking_time_min": 25, "tags": "fish", "ingredients": [ "Salmon, 1 fillet" ], "directions": [ "Pre-heat oven to 400 F.", "Do other stuff." ] }
+{ "index": { "_id": "masala-chai" } }
+{ "name": "Masala chai", "description": "Hot street-style Indian beverage infused with ginger and cardamom", "cooking_time_min": 15 }
