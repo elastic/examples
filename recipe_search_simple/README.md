@@ -18,14 +18,14 @@ Elasticsearch-related code in this application.
 1. Download and unzip Elasticsearch.
 
    ```sh
-   $ wget 'https://download.elastic.co/elasticsearch/elasticsearch/elasticsearch-1.5.1.zip'
-   $ unzip elasticsearch-1.5.1.zip
+   $ wget 'https://download.elastic.co/elasticsearch/elasticsearch/elasticsearch-1.6.0.zip'
+   $ unzip elasticsearch-1.6.0.zip
    ```
 
 1. Start a 1-node Elasticsearch cluster.
 
    ```sh
-   $ cd elasticsearch-1.5.1
+   $ cd elasticsearch-1.6.0
    $ ./bin/elasticsearch # The process started by this command corresponds to a single Elasticsearch node
    ```
 
