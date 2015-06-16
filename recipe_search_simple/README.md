@@ -4,7 +4,7 @@ This sample application demonstrates:
 * Searching for recipes by keywords, *and*
 * Creating new recipes and saving them in Elasticsearch
 
-![Screenshot of search page](../../blob/gh-pages/images/screenshot.png)
+![Screenshot of search page](http://i.snag.gy/quVui.jpg)
 
 This sample application deliberately uses plain PHP code (that is, no PHP frameworks), a little bit of 
 [Bootstrap CSS](http://getbootstrap.com/css/) and even less [jQuery](https://jquery.com/). These minimalist choices
