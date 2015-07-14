@@ -22,7 +22,23 @@ if ($client->indices()->exists($deleteParams)) {
 $params = [];
 $params['index'] = Constants::ES_INDEX;
 $params['type']  = Constants::ES_TYPE;
-$params['body']  = file_get_contents(__DIR__ . '/seed.txt');
+
+$batchLines = [];
+$iter = new DirectoryIterator("recipes");
+foreach ($iter as $item) {
+    if (!$item->isDot()
+        && $item->isFile() 
+        && $item->isReadable()) {
+
+        $filepath = $item->getPathname();
+        $basename = $item->getBasename(".json");
+
+        $batchLines[] = '{ "index": { "_id": "' . $basename . '" } }';
+        $batchLines[] = json_encode(json_decode(file_get_contents($filepath)));
+    }
+}
+
+$params['body']  = implode("\n", $batchLines);
 
 // Bulk load seed data
 $ret = $client->bulk($params);
