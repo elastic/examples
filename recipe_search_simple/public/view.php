@@ -45,7 +45,7 @@ if (!empty($message)) {
 </div>
 
 <div class="container">
-<h1><?php echo $recipe['name']; ?></h1>
+<h1><?php echo $recipe['title']; ?></h1>
 <p><em><?php echo $recipe['description']; ?></em></p>
 </div>
 

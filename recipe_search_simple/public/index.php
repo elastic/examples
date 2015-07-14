@@ -41,7 +41,7 @@ if (count($results) > 0) {
 ?>
 <table class="table table-striped">
 <thead>
-  <th>Name</th>
+  <th>Title</th>
   <th>Description</th>
   <th>Cooking time (minutes)</th>
 </thead>
@@ -50,9 +50,9 @@ if (count($results) > 0) {
         $recipe = $result['_source'];
 ?>
 <tr>
-  <td><a href="/view.php?id=<?php echo $result['_id']; ?>"><?php echo $recipe['name']; ?></a></td>
+  <td><a href="/view.php?id=<?php echo $result['_id']; ?>"><?php echo $recipe['title']; ?></a></td>
   <td><?php echo $recipe['description']; ?></td>
-  <td><?php echo $recipe['cooking_time_min']; ?></td>
+  <td><?php echo $recipe['cook_time_min']; ?></td>
 </tr>
 <?php
     } // END foreach loop over results
