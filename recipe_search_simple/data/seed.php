@@ -24,7 +24,7 @@ $params['index'] = Constants::ES_INDEX;
 $params['type']  = Constants::ES_TYPE;
 
 $batchLines = [];
-$iter = new DirectoryIterator("recipes");
+$iter = new DirectoryIterator(__DIR__ . "/recipes");
 foreach ($iter as $item) {
     if (!$item->isDot()
         && $item->isFile() 
