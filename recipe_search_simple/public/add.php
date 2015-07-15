@@ -91,14 +91,6 @@ if (!empty($message)) {
         </div>
       </div>
     </div>
-    <div class="form-group">
-      <div class="row">
-        <div class="col-xs-10">
-          <label for="tags">Tags</label>
-          <input name="tags" value="<?php echo $_REQUEST['tags']; ?>" placeholder="Comma-separated" class="form-control"/>
-        </div>
-      </div>
-    </div>
   </div>
 
   <!-- Ingredients -->
@@ -161,6 +153,17 @@ if (isset($_REQUEST['directions']) && (count($_REQUEST['directions']) > 0)) {
 }
 ?>
     <a id="add-step" href="#add-step">Add another step</a>
+  </div>
+
+  <div class="container">
+    <div class="form-group">
+      <div class="row">
+        <div class="col-xs-10">
+          <label for="tags">Tags</label>
+          <input name="tags" value="<?php echo $_REQUEST['tags']; ?>" placeholder="Comma-separated" class="form-control"/>
+        </div>
+      </div>
+    </div>
   </div>
 
   <input type="submit" value="Save" class="btn btn-default" />
