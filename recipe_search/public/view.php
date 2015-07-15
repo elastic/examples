@@ -2,7 +2,7 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
-use RecipeSearchSimple\Constants;
+use RecipeSearch\Constants;
 use Elasticsearch\Common\Exceptions\Missing404Exception;
 
 // Check if recipe ID was provided

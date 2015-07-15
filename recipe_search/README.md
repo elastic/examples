@@ -1,4 +1,4 @@
-# Recipe Search - Simple
+# Recipe Search
 
 This sample application demonstrates:
 * Searching for recipes by keywords, *and*
@@ -39,9 +39,9 @@ Elasticsearch-related code in this application.
    ```sh
    $ wget -O elastic-demo.zip 'https://github.com/elastic/demo/archive/master.zip'
    $ unzip elastic-demo.zip
-   $ mv demo-master/recipe_search_simple .
+   $ mv demo-master/recipe_search .
    $ rm -rf demo-master elastic-demo.zip
-   $ cd recipe_search_simple
+   $ cd recipe_search
    ```
 
 1. Install application dependencies.

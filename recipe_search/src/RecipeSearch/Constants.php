@@ -1,6 +1,6 @@
 <?php
 
-namespace RecipeSearchSimple;
+namespace RecipeSearch;
 
 class Constants {
     const ES_INDEX = 'food';

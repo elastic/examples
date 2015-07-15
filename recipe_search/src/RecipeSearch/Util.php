@@ -1,6 +1,6 @@
 <?php
 
-namespace RecipeSearchSimple;
+namespace RecipeSearch;
 
 class Util {
     public static function recipeTitleToId($recipeTitle)

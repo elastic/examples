@@ -2,8 +2,8 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
-use RecipeSearchSimple\Constants;
-use RecipeSearchSimple\Util;
+use RecipeSearch\Constants;
+use RecipeSearch\Util;
 
 // Add recipe if one was submitted
 if (count($_POST) > 0) {

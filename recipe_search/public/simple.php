@@ -2,7 +2,7 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
-use RecipeSearchSimple\Constants;
+use RecipeSearch\Constants;
 
 // Get search results from Elasticsearch if the user searched for something
 $results = [];

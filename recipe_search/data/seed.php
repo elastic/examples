@@ -2,7 +2,7 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
-use RecipeSearchSimple\Constants;
+use RecipeSearch\Constants;
 
 // Connect to local Elasticsearch node
 $esPort = getenv('APP_ES_PORT') ?: 9200;
