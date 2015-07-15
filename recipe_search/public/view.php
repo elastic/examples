@@ -50,10 +50,20 @@ if (!empty($message)) {
 </div>
 
 <?php
-if (!empty($recipe['cooking_time_min'])) {
+if (!empty($recipe['prep_time_min'])) {
 ?>
 <div class="container">
-  <p>Cooking time: <?php echo $recipe['cooking_time_min']; ?> minutes</p>
+  <p>Preparation time: <?php echo $recipe['prep_time_min']; ?> minutes</p>
+</div>
+<?php
+}
+?>
+
+<?php
+if (!empty($recipe['cook_time_min'])) {
+?>
+<div class="container">
+  <p>Cooking time: <?php echo $recipe['cook_time_min']; ?> minutes</p>
 </div>
 <?php
 }

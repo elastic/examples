@@ -27,7 +27,7 @@ $batchLines = [];
 $iter = new DirectoryIterator(__DIR__ . "/recipes");
 foreach ($iter as $item) {
     if (!$item->isDot()
-        && $item->isFile() 
+        && $item->isFile()
         && $item->isReadable()) {
 
         $filepath = $item->getPathname();
@@ -42,3 +42,8 @@ $params['body']  = implode("\n", $batchLines);
 
 // Bulk load seed data
 $ret = $client->bulk($params);
+if ($ret['errors']) {
+  var_dump($ret);
+} else {
+  echo "Bulk load of seed data completed successfully!\n";
+}

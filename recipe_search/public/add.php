@@ -29,11 +29,13 @@ if (count($_POST) > 0) {
             . '<a href="/view.php?id=' . $id . '">here</a> or rename your recipe.';
     } else {
         // Index the recipe in Elasticsearch
+        $recipe = $_POST;
+        $recipe['tags'] = Util::recipeTagsToArray($_POST['tags']);
         $document = [
             'id'    => $id,
             'index' => Constants::ES_INDEX,
             'type'  => Constants::ES_TYPE,
-            'body'  => $_REQUEST
+            'body'  => $recipe
         ];
         $client->index($document);
 
