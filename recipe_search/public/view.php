@@ -5,6 +5,8 @@ require __DIR__ . '/../vendor/autoload.php';
 use RecipeSearch\Constants;
 use Elasticsearch\Common\Exceptions\Missing404Exception;
 
+$message = $_REQUEST['message'];
+
 // Check if recipe ID was provided
 if (empty($_REQUEST['id'])) {
     $message = 'No recipe requested! Please provide a recipe ID.';
