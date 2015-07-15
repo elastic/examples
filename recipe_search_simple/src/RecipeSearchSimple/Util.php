@@ -3,8 +3,8 @@
 namespace RecipeSearchSimple;
 
 class Util {
-    public static function recipeNameToId($recipeName)
+    public static function recipeTitleToId($recipeTitle)
     {
-        return preg_replace('/[^\w]+/', '-', strtolower($recipeName));
+        return preg_replace('/[^\w]+/', '-', strtolower($recipeTitle));
     }
 }
