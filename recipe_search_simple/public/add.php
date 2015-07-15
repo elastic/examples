@@ -74,8 +74,12 @@ if (!empty($message)) {
           <input name="title" value="<?php echo $_REQUEST['title']; ?>" required="true" class="form-control" />
         </div>
         <div class="col-xs-2">
-          <label for="cooking_time_min">Cooking time</label>
-          <input name="cooking_time_min" value="<?php echo $_REQUEST['cooking_time_min']; ?>" type="number" placeholder="minutes" class="form-control"/>
+          <label for="prep_time_min">Preparation time</label>
+          <input name="prep_time_min" value="<?php echo $_REQUEST['prep_time_min']; ?>" type="number" placeholder="minutes" class="form-control"/>
+        </div>
+        <div class="col-xs-2">
+          <label for="cook_time_min">Cooking time</label>
+          <input name="cook_time_min" value="<?php echo $_REQUEST['cook_time_min']; ?>" type="number" placeholder="minutes" class="form-control"/>
         </div>
         <div class="col-xs-1">
           <label for="servings">Servings</label>
