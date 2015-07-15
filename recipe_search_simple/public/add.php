@@ -14,8 +14,8 @@ if (count($_POST) > 0) {
         'hosts' => [ 'localhost:' . $esPort ]
     ]);
 
-    // Convert recipe name to ID
-    $id = Util::recipeNameToId($_POST['name']);
+    // Convert recipe title to ID
+    $id = Util::recipeTitleToId($_POST['title']);
 
     // Check if recipe with this ID already exists
     $exists = $client->exists([
@@ -25,7 +25,7 @@ if (count($_POST) > 0) {
     ]);
 
     if ($exists) {
-        $message = 'A recipe with this name already exists. You can view it '
+        $message = 'A recipe with this title already exists. You can view it '
             . '<a href="/view.php?id=' . $id . '">here</a> or rename your recipe.';
     } else {
         // Index the recipe in Elasticsearch
@@ -69,9 +69,9 @@ if (!empty($message)) {
     <h3>The Basics</h3>
     <div class="form-group">
       <div class="row">
-        <div class="col-xs-7">
-          <label for="name">Name</label>
-          <input name="name" value="<?php echo $_REQUEST['name']; ?>" required="true" class="form-control" />
+        <div class="col-xs-5">
+          <label for="title">Title</label>
+          <input name="title" value="<?php echo $_REQUEST['title']; ?>" required="true" class="form-control" />
         </div>
         <div class="col-xs-2">
           <label for="cooking_time_min">Cooking time</label>
