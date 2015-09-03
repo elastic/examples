@@ -1,4 +1,4 @@
-### Overview
+### Getting Started with ELK for Apache Logs
 This **Getting Started with ELK** example provides sample files to ingest, analyze & visualize **Apache Access Logs** using the ELK stack, i.e. Elasticsearch, Logstash and Kibana. The sample logs in this example are in the default apache combined log format.
 
 ##### Version
