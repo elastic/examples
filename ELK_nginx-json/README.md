@@ -29,7 +29,6 @@ Download the following files in this repo to a local directory:
 - `nginx_json_logstash.conf` - Logstash config for ingesting data into Elasticsearch
 - `nginx_json_template.json` - template for custom mapping of fields
 - `nginx_json_kibana.json` - config file to load prebuilt Kibana dashboard
-- `nginx_json_dashboard.png` - screenshot of sample Kibana dashboard  
 
 Unfortunately, Github does not provide a convenient one-click option to download entire contents of a subfolder in a repo. Use sample code provided below to download the required files to a local directory:
 
