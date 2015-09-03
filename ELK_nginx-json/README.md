@@ -80,9 +80,6 @@ cat nginx_json_logs | <path_to_logstash_root_dir>/bin/logstash -f nginx_json_log
 <<<<<<< HEAD
 * Open dashboard
     * Click on **Dashboard** tab and open `Sample Dashboard for Nginx Logs` dashboard
-    * Set your time interval to May-01-2015 to June-30-2015
-=======
->>>>>>> test-branch
 
 Voila! You should see the following dashboards. Enjoy!
 ![Kibana Dashboard Screenshot](https://cloud.githubusercontent.com/assets/5269751/9672317/7c5b763e-524e-11e5-949f-b8dad81bce8f.png)
