@@ -1,7 +1,7 @@
 elasticsearch/demo
 ====
 
-This is a collection of demos to help you get familiar with Elasticsearch, Logstash and Kibana. Most will require some minimal technical skills to get running. While we are aiming to make these as easy as possible to set up, we're also trying to leverage tools like [Vagrant](https://www.vagrantup.com/) and [Puppet](http://puppetlabs.com/), not just to simplify the distribution and setup of these demos, but also as a way to introduce people to modern development tools. Feel free to file issues for bugs or enhancement requests and even contribute code via pull requests. 
+This is a collection of demos to help you get familiar with Elasticsearch, Logstash and Kibana. Most will require some minimal technical skills to get running. While we are aiming to make these as easy as possible to set up, we're also trying to leverage tools like [Vagrant](https://www.vagrantup.com/) and [Puppet](http://puppetlabs.com/), not just to simplify the distribution and setup of these demos, but also as a way to introduce people to modern development tools. Feel free to file issues for bugs or enhancement requests and even contribute code via pull requests.
 
 You can find specific details for each demo in their respective README. The following information pertains to the demo repo as a whole.
 
@@ -43,22 +43,22 @@ Since one of the major goals of this repo is to help people learn about Elastics
 
 ### Packaging
 
-Demos can come in many different forms so it might not be worth being overly prescriptive in how a particular demo should be packaged. However, in accordance with the purpose of this demo repo, each demo should be relatively easy to install/deploy for a person with some technical abilities, with as few steps or actions as possible. 
+Demos can come in many different forms so it might not be worth being overly prescriptive in how a particular demo should be packaged. However, in accordance with the purpose of this demo repo, each demo should be relatively easy to install/deploy for a person with some technical abilities, with as few steps or actions as possible.
 
 This can mean providing a bash script that encapsulates the entire setup of the demo data set. Or it could involve relying on a combination of Puppet and Vagrant to bring up the demo with a single Vagrant command.
 
 
 ## Release process
 
-While this demo repo doesn't represent packaged software, it'd be helpful to maintain sanity by incorporating a lightweight release process to this project. 
+While this demo repo doesn't represent packaged software, it'd be helpful to maintain sanity by incorporating a lightweight release process to this project.
 
-There are major and minor releases. 
+There are major and minor releases.
 
-A major release will typically be done whenever there is a new demo ready to be distributed for general consumption. A major release can consist of 1) one or more new demos ready for public consumption and/or 2) a rollup of bug fixes and enhancements to existing demos since the last release. 
+A major release will typically be done whenever there is a new demo ready to be distributed for general consumption. A major release can consist of 1) one or more new demos ready for public consumption and/or 2) a rollup of bug fixes and enhancements to existing demos since the last release.
 
 A minor release will be done when one or more bug fixes must be made to an existing demo.
 
-In order to keep things simple, there will be no concept of branching in this repo. For example, if Demo A was released in v1.0 and Demo B was released in v2.0, a new bug fix to Demo A will result in a minor release v2.1, not a minor release v1.1 on a v1.0 branch. 
+In order to keep things simple, there will be no concept of branching in this repo. For example, if Demo A was released in v1.0 and Demo B was released in v2.0, a new bug fix to Demo A will result in a minor release v2.1, not a minor release v1.1 on a v1.0 branch.
 
 All releases (major and minor) of the demo repo should be made available in .zip and .tar.gz formats.
 
