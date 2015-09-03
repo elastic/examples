@@ -85,9 +85,9 @@ input {
 * Load sample dashboard into Kibana
     * Click the **Settings** tab >> **Objects** tab >> **Import**, and select `twitter_kibana.json`
 * Open dashboard
-    * Click on **Dashboard** tab and open `Sample Twitter Dashboard` dashboard
+    * Click on **Dashboard** tab and open `Sample Twitter Dashboard` dashboard. (Since we are using visualizing twitter-feed in real time here, be sure to switch on the Auto-refresh option to see your dashboard update in real time)
 
-Voila! You should see the following dashboards with real-time Twitter stream. Enjoy!
+Voila! You should see a dashboard similar to the one below. Enjoy!
 ![Kibana Dashboard Screenshot](https://cloud.githubusercontent.com/assets/5269751/9672393/070e94dc-524f-11e5-9e80-3101e2cf1573.png)
 
 ### We would love your feedback!
