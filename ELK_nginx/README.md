@@ -1,4 +1,4 @@
-### Overview
+### Getting Started with ELK for Nginx Logs
 This **Getting Started with ELK** example provides sample files to ingest, analyze & visualize **Nginx access logs** using the ELK stack, i.e. Elasticsearch, Logstash and Kibana. The sample Nginx access logs in this example use the default Nginx combined log format.
 
 ##### Version
