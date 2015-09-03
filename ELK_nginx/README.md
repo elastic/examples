@@ -29,7 +29,6 @@ Download the following files in this repo to a local directory:
 - `nginx_logstash.conf` - Logstash config for ingesting data into Elasticsearch
 - `nginx_template.json` - template for custom mapping of fields
 - `nginx_kibana.json` - config file to load prebuilt Kibana dashboard
-- `nginx_dashboard.png` - screenshot of final Kibana dashboard  
 
 Unfortunately, Github does not provide a convenient one-click option to download entire contents of a subfolder in a repo. Use sample code provided below to download the required files to a local directory:
 
@@ -70,7 +69,6 @@ cat nginx_logs | <path_to_logstash_root_dir>/bin/logstash -f nginx_logstash.conf
     * Click the **Settings** tab >> **Indices** tab >> **Add New**. Specify `nginx_elk_example` as the index pattern name and click **Create** to define the index pattern
 * Load sample dashboard into Kibana
     * Click the **Settings** tab >> **Objects** tab >> **Import**, and select `nginx_kibana.json`
-<<<<<<< HEAD
 * Open dashboard
     * Click on **Dashboard** tab and open `Sample Dashboard for Nginx Logs` dashboard
 
