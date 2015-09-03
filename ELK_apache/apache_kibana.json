@@ -9,8 +9,8 @@
       "panelsJSON": "[{\"col\":1,\"id\":\"Apache-Dashboard\",\"row\":1,\"size_x\":3,\"size_y\":4,\"type\":\"visualization\"},{\"col\":7,\"id\":\"Traffic-by-Country-ampersand-Device\",\"row\":5,\"size_x\":6,\"size_y\":3,\"type\":\"visualization\"},{\"col\":7,\"id\":\"Traffic-by-Country-ampersand-OS\",\"row\":8,\"size_x\":6,\"size_y\":3,\"type\":\"visualization\"},{\"col\":4,\"id\":\"Traffic-vs.-Location\",\"row\":1,\"size_x\":9,\"size_y\":4,\"type\":\"visualization\"},{\"col\":1,\"id\":\"Unique-Visitors\",\"row\":5,\"size_x\":3,\"size_y\":2,\"type\":\"visualization\"},{\"col\":1,\"id\":\"Non-200-Response-Code-vs.-Time\",\"row\":11,\"size_x\":6,\"size_y\":3,\"type\":\"visualization\"},{\"col\":4,\"id\":\"Total-Hits-by-City\",\"row\":7,\"size_x\":3,\"size_y\":4,\"type\":\"visualization\"},{\"col\":1,\"id\":\"Unique-Visits-by-City\",\"row\":7,\"size_x\":3,\"size_y\":4,\"type\":\"visualization\"},{\"col\":4,\"id\":\"Total-Visitors\",\"row\":5,\"size_x\":3,\"size_y\":2,\"type\":\"visualization\"},{\"id\":\"Bytes-vs.-Time\",\"type\":\"visualization\",\"size_x\":6,\"size_y\":3,\"col\":7,\"row\":11}]",
       "version": 1,
       "timeRestore": true,
-      "timeTo": "2015-31-01T19:10:56.990Z",
-      "timeFrom": "2015-01-01T19:10:56.990Z",
+      "timeTo": "2015-05-25T19:10:56.990Z",
+      "timeFrom": "2015-05-10T19:10:56.990Z",
       "kibanaSavedObjectMeta": {
         "searchSourceJSON": "{\"filter\":[{\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}}}]}"
       }
