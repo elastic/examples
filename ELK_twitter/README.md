@@ -92,7 +92,7 @@ input {
 >>>>>>> test-branch
 
 Voila! You should see the following dashboards with real-time Twitter stream. Enjoy!
-![Kibana Dashboard Screenshot](https://github.com/elastic/examples/blob/master/ELK_nginx-json/nginx_json_dashboard.png)
+![Kibana Dashboard Screenshot](https://github.com/elastic/examples/blob/master/ELK_twitter/twitter_dashboard.png)
 
 ### We would love your feedback!
 If you found this example helpful and would like to see more such getting started examples for other standard formats or web APIs, we would love your feedback. If you would like to contribute examples to this repo, we'd love that too!

@@ -78,7 +78,7 @@ cat nginx_logs | <path_to_logstash_root_dir>/bin/logstash -f nginx_logstash.conf
 >>>>>>> test-branch
 
 Voila! You should see the following dashboards. Enjoy!
-![Kibana Dashboard Screenshot](https://github.com/asawariS/test/blob/master/Nginx/nginx_dashboard.png)
+![Kibana Dashboard Screenshot](https://github.com/elastic/examples/blob/master/ELK_nginx/nginx_dashboard.png)
 
 ### We would love your feedback!
 If you found this example helpful and would like to see more such Getting Started examples for other standard formats, we would love to hear from you. If you would like to contribute examples to this repo, we'd love that too!

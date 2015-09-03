@@ -68,7 +68,7 @@ cat apache_logs | <path_to_logstash_root_dir>/bin/logstash -f apache_logstash.co
 
 Voila! You should see the following dashboard. Happy Data Exploration!
 
-![Kibana Dashboard Screenshot](https://github.com/asawariS/test/blob/master/Apache/apache_dashboard.png)
+![Kibana Dashboard Screenshot](https://github.com/elastic/examples/blob/master/ELK_apache/apache_dashboard.png)
 
 ### We would love your feedback!
 If you found this example helpful and would like more such Getting Started examples for other standard formats, we would love to hear from you. If you would like to contribute Getting Started examples to this repo, we'd love that too!
