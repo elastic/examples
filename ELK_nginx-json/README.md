@@ -1,4 +1,4 @@
-### Getting Started with ELK for Nginx Logs
+### Getting Started with ELK for Nginx (JSON) Logs
 This **Getting Started with ELK** example provides sample files to ingest, analyze & visualize **Nginx access logs** using the ELK stack, i.e. Elasticsearch, Logstash and Kibana. This example uses JSON formatted version of Nginx logs. The Nginx `log format` entry used to generate these logs is shown in  Download section below.
 
 ##### Version
