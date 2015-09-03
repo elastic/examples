@@ -84,15 +84,11 @@ input {
     * Click the **Settings** tab >> **Indices** tab >> ** Add New. Specify `twitter_elk_example` as the index pattern name and click **Create** to define the index pattern (Leave the **Use event times to create index names** box unchecked)
 * Load sample dashboard into Kibana
     * Click the **Settings** tab >> **Objects** tab >> **Import**, and select `twitter_kibana.json`
-<<<<<<< HEAD
 * Open dashboard
     * Click on **Dashboard** tab and open `Sample Twitter Dashboard` dashboard
 
-=======
->>>>>>> test-branch
-
 Voila! You should see the following dashboards with real-time Twitter stream. Enjoy!
-![Kibana Dashboard Screenshot](https://github.com/elastic/examples/blob/master/ELK_twitter/twitter_dashboard.png)
+![Kibana Dashboard Screenshot](https://cloud.githubusercontent.com/assets/5269751/9672393/070e94dc-524f-11e5-9e80-3101e2cf1573.png)
 
 ### We would love your feedback!
 If you found this example helpful and would like to see more such getting started examples for other standard formats or web APIs, we would love your feedback. If you would like to contribute examples to this repo, we'd love that too!
