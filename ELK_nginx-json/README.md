@@ -85,7 +85,7 @@ cat nginx_json_logs | <path_to_logstash_root_dir>/bin/logstash -f nginx_json_log
 >>>>>>> test-branch
 
 Voila! You should see the following dashboards. Enjoy!
-![Kibana Dashboard Screenshot](https://github.com/asawariS/test/blob/master/Nginx-json/nginx_json_dashboard.png)
+![Kibana Dashboard Screenshot](https://cloud.githubusercontent.com/assets/5269751/9672317/7c5b763e-524e-11e5-949f-b8dad81bce8f.png)
 
 ### We would love your feedback!
 If you found this example helpful and would like to see more such Getting Started examples for other standard formats, we would love would to hear from you. If you would like to contribute examples to this repo, we'd love that too!
