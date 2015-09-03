@@ -8,7 +8,7 @@ Example has been tested in following versions:
 - Kibana 4.1.0
 
 ### Installation & Setup
-* Follow the [Installation & Setup Guide](https://github.com/asawariS/test/blob/master/Installation%20and%20Setup.md) to install and test the ELK stack (*you can skip this step if you have a working installation of the ELK stack,*)
+* Follow the [Installation & Setup Guide](https://github.com/elastic/examples/blob/master/Installation%20and%20Setup.md) to install and test the ELK stack (*you can skip this step if you have a working installation of the ELK stack,*)
 
 * Run Elasticsearch & Kibana
   ```
@@ -36,10 +36,10 @@ Unfortunately, Github does not provide a convenient one-click option to download
 ```shell
 mkdir  nginx_json_ELK_Example
 cd nginx_json_ELK_Example
-wget https://raw.githubusercontent.com/asawariS/test/master/Nginx-json/nginx_json_logstash.conf
-wget https://raw.githubusercontent.com/asawariS/test/master/Nginx-json/nginx_json_kibana.json
-wget https://raw.githubusercontent.com/asawariS/test/master/Nginx-json/nginx_json_template.json
-wget https://raw.githubusercontent.com/asawariS/test/master/Nginx-json/nginx_json_logs
+wget https://raw.githubusercontent.com/elastic/examples/master/ELK_nginx-json/nginx_json_logstash.conf
+wget https://raw.githubusercontent.com/elastic/examples/master/ELK_nginx-json/nginx_json_kibana.json
+wget https://raw.githubusercontent.com/elastic/examples/master/ELK_nginx-json/nginx_json_template.json
+wget https://raw.githubusercontent.com/elastic/examples/master/ELK_nginx-json/nginx_json_logs
 ```
 
 ** The JSON formatted nginx logs used in this example were created with the following `log_format` entry in the `nginx.config` file.

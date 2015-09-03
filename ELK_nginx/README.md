@@ -8,7 +8,7 @@ Example has been tested in following versions:
 - Kibana 4.1.0
 
 ### Installation & Setup
-* Follow the [Installation & Setup Guide](https://github.com/asawariS/test/blob/master/Installation%20and%20Setup.md) to install and test the ELK stack (*you can skip this step if you have a working installation of the ELK stack,*)
+* Follow the [Installation & Setup Guide](https://github.com/elastic/examples/blob/master/Installation%20and%20Setup.md) to install and test the ELK stack (*you can skip this step if you have a working installation of the ELK stack,*)
 
 * Run Elasticsearch & Kibana
   ```shell
@@ -43,10 +43,10 @@ log_format combined '$remote_addr - $remote_user [$time_local] '
 ```shell
 mkdir  nginx_ELK_Example
 cd nginx_ELK_Example
-wget https://raw.githubusercontent.com/asawariS/test/master/Nginx/nginx_logstash.conf
-wget https://raw.githubusercontent.com/asawariS/test/master/Nginx/nginx_template.json
-wget https://raw.githubusercontent.com/asawariS/test/master/Nginx/nginx_kibana.json
-wget https://raw.githubusercontent.com/asawariS/test/master/Nginx/nginx_logs
+wget https://raw.githubusercontent.com/elastic/examples/master/ELK_nginx/nginx_logstash.conf
+wget https://raw.githubusercontent.com/elastic/examples/master/ELK_nginx/nginx_template.json
+wget https://raw.githubusercontent.com/elastic/examples/master/ELK_nginx/nginx_kibana.json
+wget https://raw.githubusercontent.com/elastic/examples/master/ELK_nginx/nginx_logs
 ```
 
 ### Run Example

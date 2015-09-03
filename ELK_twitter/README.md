@@ -8,7 +8,7 @@ Example has been tested in following versions:
 - Kibana 4.1.0
 
 ### Installation & Setup
-* Follow the [Installation & Setup Guide](https://github.com/asawariS/test/blob/master/Installation%20and%20Setup.md) to install and test the ELK stack (*you can skip this step if you have a working installation of the ELK stack*)
+* Follow the [Installation & Setup Guide](https://github.com/elastic/examples/blob/master/Installation%20and%20Setup.md) to install and test the ELK stack (*you can skip this step if you have a working installation of the ELK stack*)
 
 * Run Elasticsearch & Kibana
   ```shell
@@ -35,9 +35,9 @@ Unfortunately, Github does not provide a convenient one-click option to download
 ```shell
 mkdir  twitter_elk_example
 cd twitter_elk_example
-wget https://raw.githubusercontent.com/asawariS/test/master/Twitter/twitter_logstash.conf
-wget https://raw.githubusercontent.com/asawariS/test/master/Twitter/twitter_template.json
-wget https://raw.githubusercontent.com/asawariS/test/master/Twitter/twitter_kibana.json
+wget https://raw.githubusercontent.com/elastic/examples/master/ELK_twitter/twitter_logstash.conf
+wget https://raw.githubusercontent.com/elastic/examples/master/ELK_twitter/twitter_template.json
+wget https://raw.githubusercontent.com/elastic/examples/master/ELK_twitter/twitter_kibana.json
 ```
 
 ### Run Example
@@ -87,12 +87,12 @@ input {
 <<<<<<< HEAD
 * Open dashboard
     * Click on **Dashboard** tab and open `Sample Twitter Dashboard` dashboard
-    * Set your time interval to `Last 15 minutes` and set `Auto-refresh` option to 10 seconds.
+
 =======
 >>>>>>> test-branch
 
 Voila! You should see the following dashboards with real-time Twitter stream. Enjoy!
-![Kibana Dashboard Screenshot](https://github.com/asawariS/test/blob/master/Twitter/twitter_dashboard.png)
+![Kibana Dashboard Screenshot](https://github.com/elastic/examples/blob/master/ELK_nginx-json/nginx_json_dashboard.png)
 
 ### We would love your feedback!
 If you found this example helpful and would like to see more such getting started examples for other standard formats or web APIs, we would love your feedback. If you would like to contribute examples to this repo, we'd love that too!
