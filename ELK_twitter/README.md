@@ -1,4 +1,4 @@
-### Overview
+### Getting Started with ELK for Twitter 
 This **Getting Started with ELK** example provides sample code to ingest, analyze & visualize **Twitter stream** around a topic of interest using the ELK stack, i.e. Elasticsearch, Logstash and Kibana.
 
 ##### Version
