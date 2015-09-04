@@ -239,4 +239,4 @@ The *defaults* file (`/etc/defaults/logstash` or `/etc/sysconfig/logstash`) for 
 
 ## Support
 
-Need help? Join us in [#logstash](https://webchat.freenode.net?channels=%23logstash) on Freenode IRC or subscribe to the [logstash-users@googlegroups.com](https://groups.google.com/forum/#!forum/logstash-users) mailing list.
+Need help? Join us in [#logstash](https://webchat.freenode.net?channels=%23logstash) on Freenode IRC or on the https://discuss.elastic.co/c/logstash discussion forum.
