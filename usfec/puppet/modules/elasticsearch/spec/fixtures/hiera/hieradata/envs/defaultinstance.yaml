@@ -1,5 +1,0 @@
----
-elasticsearch::instances:
-  default:
-    config:
-      node.name: 'default'

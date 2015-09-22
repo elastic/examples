@@ -1,8 +1,0 @@
----
-:backends: yaml
-:yaml:
-  :datadir: spec/fixtures/hiera/hieradata
-:hierarchy:
-- ! '%{scenario}'
-- envs/%{common}
-:logger: console

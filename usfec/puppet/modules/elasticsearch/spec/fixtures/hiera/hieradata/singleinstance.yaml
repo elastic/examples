@@ -1,5 +1,0 @@
----
-elasticsearch::instances:
-  es-01:
-    config:
-      node.name: 'es-01'
