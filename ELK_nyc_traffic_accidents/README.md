@@ -49,7 +49,6 @@ Example has been tested in following versions:
   - `nyc_collision_kibana.json` - config file to load prebuilt Kibana dashboard
 
   Unfortunately, Github does not provide a convenient one-click option to download entire contents of a subfolder in a repo. You can either (a) [download](https://github.com/elastic/examples/archive/master.zip) or [clone](https://github.com/elastic/examples.git) the entire examples repo and navigate to `elk_nyc_accidents` subfolder, or (b) individually download the above files. The code below makes option (b) a little easier:
-(**LINKS BELOW WILL BE CHANGED**)
   ```shell
   wget https://raw.githubusercontent.com/elastic/examples/master/ELK_nyc_traffic_accidents/nyc_collision_logstash.conf
   wget https://raw.githubusercontent.com/elastic/examples/master/ELK_nyc_traffic_accidents/nyc_collision_template.json
