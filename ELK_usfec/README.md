@@ -41,21 +41,21 @@ Using this option involves 4 easy steps:
   
   ```shell
   # Create snapshots directory
-  mkdir ./snapshots
+  mkdir ./elk_usfec
+  cd elk_usfec
   # Download index snapshot to your new snapshots directory
-  wget http://download.elasticsearch.org/demos/usfec/snapshot_demo_usfec.tar.gz ./snapshots/
-  # Uncompress snapshot file
-  cd ./snapshots
+  wget http://download.elasticsearch.org/demos/usfec/snapshot_demo_usfec.tar.gz .
+  # Uncompress snapshot file (uncompressed to usfec subfolder)
   tar xf snapshot_demo_usfec.tar.gz
   ```
-  * Add snapshot dir to `path.repo` variable in the `elasticsearch.yml` in the `path_to_elasticsearch_root_dir/config/` folder. See example [here.](https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-snapshots.html#_shared_file_system_repository)
+  * Add the location of the uncompressed snapshot dir to `path.repo` variable in the `elasticsearch.yml` in the `path_to_elasticsearch_root_dir/config/` folder. See example [here](https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-snapshots.html#_shared_file_system_repository). You will need to restart Elasticsearch for the settings to take effect. 
 
-  * Register a file system repository for the snapshot *(change the value of the “location” parameter below to the location of your snapshot directory)*
+  * Register a file system repository for the snapshot *(change the value of the “location” parameter below to the location of your uncompressed snapshot directory)*
   ```shell
   curl -XPUT 'http://localhost:9200/_snapshot/usfec' -d '{
       "type": "fs",
       "settings": {
-          "location": "<path_to_snapshots_dir>",
+          "location": "<path_to_elk_usfec>/usfec",
           "compress": true,
           "max_snapshot_bytes_per_sec": "1000mb",
           "max_restore_bytes_per_sec": "1000mb"
@@ -90,6 +90,7 @@ Once the index is created using either of the above options, you can check to se
 
 #### Visualize Data in Kibana
 * Access Kibana by going to `http://localhost:5601` in a web browser
+* Download `usfec_kibana.json` 
 * Connect Kibana to the `usfec*` index in Elasticsearch
     * Click the **Settings** tab >> **Indices** tab >> **Create New**. Specify `usfec*` as the index pattern name and click **Create** to define the index pattern. (Leave the **Use event times to create index names** box unchecked)
 * Load sample dashboard into Kibana
