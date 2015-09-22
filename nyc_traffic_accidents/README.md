@@ -81,8 +81,7 @@ Example has been tested in following versions:
     * Click on **Dashboard** tab and open `NYC Motor Vehicles Collision` dashboard
 
 Voila! You should see the following dashboard. Happy Data Exploration!
-(**LINKS BELOW WILL BE CHANGED**)
-![Kibana Dashboard Screenshot](https://raw.githubusercontent.com/elastic/asawari-workbench/master/nyc_accidents/nyc_collision_dashboard.png?token=AFBo98DIlpRN2cJcWnWmEqbJ4FMX9nmwks5V82NWwA%3D%3D)
+![Kibana Dashboard Screenshot](https://cloud.githubusercontent.com/assets/5269751/10008565/f548dc28-6084-11e5-9956-b29c2ca043ee.png)
 
 ### We would love to hear from you!
 If you run into issues running this example or have suggestions to improve it, please use Github issues to let us know. Have an easy fix, submit a pull request. We will try our best to respond in a timely manner!
