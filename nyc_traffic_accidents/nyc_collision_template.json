@@ -1,0 +1,68 @@
+{
+    "template" : "nyc_visionzero",
+    "settings" : {
+      "index.refresh_interval" : "5s"
+    },
+    "mappings" : {
+      "_default_" : {
+        "dynamic_templates" : [ {
+          "string_fields" : {
+            "mapping" : {
+              "index" : "analyzed",
+              "omit_norms" : true,
+              "type" : "string",
+              "fields" : {
+                "raw" : {
+                  "index" : "not_analyzed",
+                  "ignore_above" : 256,
+                  "type" : "string"
+                }
+              }
+            },
+            "match_mapping_type" : "string",
+            "match" : "*"
+          }
+        } ],
+        "properties" : {
+          "coords" : {
+            "type" : "geo_point"
+          },
+          "@version" : {
+            "index" : "not_analyzed",
+            "type" : "string"
+          },
+          "borough": {
+          	"index":"not_analyzed",
+          	"type":"string"
+          },
+          "cross_street_name" :{
+          	"index":"not_analyzed",
+          	"type":"string"
+          },
+          "off_street_name":{
+          	"index":"not_analyzed",
+          	"type":"string"
+          },
+          "on_street_name":{
+          	"index":"not_analyzed",
+          	"type":"string"
+          },
+          "contributing_factor_vehicle":{
+          	"index":"not_analyzed",
+          	"type":"string"
+          },
+          "intersection":{
+            "index":"not_analyzed",
+            "type":"string"
+          },
+          "hour_of_day": {
+            "type" : "integer"
+          }
+        },
+        "_all" : {
+          "enabled" : true
+        }
+      }
+    },
+    "aliases" : { }
+}

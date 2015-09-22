@@ -1,66 +1,90 @@
-NYC Traffic Accident Data Demo
-=====
+## Using ELK Stack to Analyze NYPD Motor Vehicle Collision Data
+This example demonstrates how to analyze & visualize New York City traffic incident data using the ELK stack, i.e. Elasticsearch, Logstash and Kibana. The [NYPD Motor Vehicle Collision data](https://data.cityofnewyork.us/Public-Safety/NYPD-Motor-Vehicle-Collisions/h9gi-nx95?) analyzed in this example is from the [NYC Open Data](https://data.cityofnewyork.us/) initiative.
 
-For some background information for this demo, please see the blog post here:
-[#byodemos: new york city traffic incidents](http://www.elasticsearch.org/blog/byodemos-new-york-city-traffic-incidents/)
+Feel free to read the [#byodemos: New York city traffic incidents](https://www.elastic.co/blog/byodemos-new-york-city-traffic-incidents) blog post for additional commentary on this analysis. A couple of notes on the blog. The screenshots in the blog post were created with an older version of Kibana. So, don't be alarmed if your Kibana UI looks a little different. Secondly, the good folks at [NYC Open Data](https://data.cityofnewyork.us/) are great at updating their dataset with latest information. So the visualization and metrics that you see might not match the ones highlighted in the blog post. But, that is the fun part of exploring a living & dynamic dataset, isn't it? 
 
-#Installation
+##### Version
+Example has been tested in following versions:
+- Elasticsearch 1.7.0
+- Logstash 1.5.2
+- Kibana 4.1.0
 
-This demo includes a Vagrantfile that you can use to provision a local VM with the NYC accident data pre-loaded. You must have Vagrant and VirtualBox already installed:
+### Contents
+* [Installation & Setup](#installation--setup)
+* [Download](#download-data--example-files)
+* [Run Example](#run-example)
+* [Feedback](#we-would-love-to-hear-from-you)
 
-* http://www.vagrantup.com/
-* https://www.virtualbox.org/
+### Installation & Setup
+* Follow the [Installation & Setup Guide](https://github.com/elastic/examples/blob/master/Installation%20and%20Setup.md) to install and test the ELK stack (*you can skip this step if you already have a working installation of the ELK stack*)
 
-You must also install a Git client to clone the demos repo or just download a zip of the repo from the [repo website](https://github.com/elasticsearch/demo).
+* Run Elasticsearch & Kibana
+  ```shell
+  <path_to_elasticsearch_root_dir>/bin/elasticsearch
+  <path_to_kibana_root_dir>/bin/kibana
+  ```
 
-After you've installed Vagrant and VirtualBox, run the steps below to get the code and instantiate the VM:
+* Check that Elasticsearch and Kibana are up and running.
+  - Open `localhost:9200` in web browser -- should return status code 200
+  - Open `localhost:5601` in web browser -- should display Kibana UI.
 
-* git clone https://github.com/elasticsearch/demo.git (HTTPS) or git clone git@github.com:elasticsearch/demo.git (SSH)
-* cd nyc\_traffic\_accidents
-* vagrant up
+  **Note:** By default, Elasticsearch runs on port 9200, and Kibana run on ports 5601. If you changed the default ports, change   the above calls to use appropriate ports.
 
-Once this is complete (should take anywhere between 3-20 minutes to run, depending on your network connection speed), you should have an Elasticsearch instance running with the NYC accident data index and kibana dashboard loaded. No further steps are necessary.  To ensure everything is up and running correctly, click on the Elasticsearch Marvel link below.
+### Download Data & Example Files
 
-Marvel - [http://localhost:9200/_plugin/marvel/sense/index.html](http://localhost:9200/_plugin/marvel/sense/index.html)
+-  **Download Data:**
 
-You should then be able to load Kibana in a browser as well:
+    Download the CSV version of the NYPD Motor Vehicle Collision dataset from the [NYC Open Data Portal](https://data.cityofnewyork.us/Public-Safety/NYPD-Motor-Vehicle-Collisions/h9gi-nx95?). In this example, we are renaming the downloaded CSV file to `nyc_collision_data.csv`.
+  ```
+  mkdir nyc_collision
+  cd nyc_collision
+  wget https://data.cityofnewyork.us/api/views/h9gi-nx95/rows.csv?accessType=DOWNLOAD -O nyc_collision_data.csv
+  ```
 
-Kibana Dashboard - [http://localhost:5200/#/dashboard/elasticsearch/NYC%20Accidents%20v.2](http://localhost:5200/#/dashboard/elasticsearch/NYC%20Accidents%20v.2)
+* **Download Example Files:**
 
-#Potential issues
+  Download the following files to the folder containing the downloaded `nyc_collision_data.csv file`:
+  - `nyc_collision_logstash.conf` - Logstash config for ingesting data into Elasticsearch
+  - `nyc_collision_template.json` - template for custom mapping of fields
+  - `nyc_collision_kibana.json` - config file to load prebuilt Kibana dashboard
 
-The 'vagrant up' step may fail if you are running on Windows for a variety of reasons, some of which are listed here:
+  Unfortunately, Github does not provide a convenient one-click option to download entire contents of a subfolder in a repo. You can either (a) [download](https://github.com/elastic/examples/archive/master.zip) or [clone](https://github.com/elastic/examples.git) the entire examples repo and navigate to `elk_nyc_accidents` subfolder, or (b) individually download the above files. The code below makes option (b) a little easier:
+(**LINKS BELOW WILL BE CHANGED**)
+  ```shell
+  wget https://raw.githubusercontent.com/elastic/examples/master/ELK_apache/apache_logstash.conf
+  wget https://raw.githubusercontent.com/elastic/examples/master/ELK_apache/apache_template.json
+  wget https://raw.githubusercontent.com/elastic/examples/master/ELK_apache/apache_kibana.json
+  ```
 
-* BIOS not configured to enable Hardware Virtualization. \[Windows, Linux\]
-* Ports 9200, 5200, 2222 blocked by firewall or other software. \[Any OS\]
+### Run Example
+##### 1. Ingest data into Elasticsearch using Logstash
+* Execute the following command to `nyc_collision_data.csv` data into Elasticsearch.
 
+    ```shell
+    cat nyc_collision_data.csv | <path_to_logstash_root_dir>/bin/logstash -f nyc_collision_logstash.conf
+    ```
 
-##Vagrant port forwarding
+* Verify that data is successfully indexed into Elasticsearch
 
-The Vagrantfile is configured to forward requests from the host (laptop) to the VM using these rules:
+  Running `http://localhost:9200/nyc_visionzero/_count` should return positive `count` value
 
-* 9200 -> 9200 (Elasticsearch instance)
-* 5200 -> 5200 (ngnix instance hosting Kibana)
+ **Note:** Included `nyc_collision_logstash.conf` configuration file assumes that you are running Elasticsearch on the same host as Logstash and have not changed the defaults. Modify the `host` and `cluster` settings in the `output { elasticsearch { ... } }`   section of apache_logstash.conf, if needed.
 
-If you have another Vagrant VM or a local Elasticsearch instance using ports 9200 and/or 5200, you will need to shut down those services while running this demo.
+##### 2. Visualize data in Kibana
 
-#Next steps
+* Access Kibana by going to `http://localhost:5601` in a web browser
+* Connect Kibana to the `nyc_visionzero` index in Elasticsearch (autocreated in step 1)
+    * Click the **Settings** tab >> **Indices** tab >> **Create New**. Specify `nyc_visionzero` as the index pattern name and click **Create** to define the index pattern. (Leave the **Use event times to create index names** box unchecked)
+* Load sample dashboard into Kibana
+    * Click the **Settings** tab >> **Objects** tab >> **Import**, and select `nyc_collision_kibana.json`
+* Open dashboard
+    * Click on **Dashboard** tab and open `NYC Motor Vehicles Collision` dashboard
 
-The Vagrant/Puppet scripts provision a ready-to-use Elasticsearch index and Kibana dashboard for you but if you're interested in refreshing the dataset with the latest updates from the City of New York, making tweaks to the Elasticsearch mapping config, enhancing the Logstash config and reindexing the data, or something else, this VM environment is ready for you to do that. 
+Voila! You should see the following dashboard. Happy Data Exploration!
+(**LINKS BELOW WILL BE CHANGED**)
+![Kibana Dashboard Screenshot](https://raw.githubusercontent.com/elastic/asawari-workbench/master/nyc_accidents/nyc_collision_dashboard.png?token=AFBo98DIlpRN2cJcWnWmEqbJ4FMX9nmwks5V82NWwA%3D%3D)
 
-##Raw data updates
+### We would love to hear from you!
+If you run into issues running this example or have suggestions to improve it, please use Github issues to let us know. Have an easy fix, submit a pull request. We will try our best to respond in a timely manner!
 
-The latest version of the source data set can be found here: [https://data.cityofnewyork.us/NYC-BigApps/NYPD-Motor-Vehicle-Collisions/h9gi-nx95?](https://data.cityofnewyork.us/NYC-BigApps/NYPD-Motor-Vehicle-Collisions/h9gi-nx95?).
-
-We recommend downloading the CSV version of the data set. 
-
-##Mapping config
-
-The Elasticsearch mapping configuration is defined in the index template file: nyc\_accidents\_index\_template.json. Documentation:
-
-* [Mapping](http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/mapping.html)
-* [Index templates](http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/indices-templates.html)
-
-##Logstash config
-
-The Logstash configuration is defined in the file: nyc\_pedfatals.conf. Documentation for Logstash plugins: [http://logstash.net/docs/1.4.2/](http://logstash.net/docs/1.4.2/).
+Have you created interesting examples using the ELK stack? Looking for a way to share your amazing work with the community? We would love to include your awesome work here. For more information on how to contribute, check out the **[Contribution](https://github.com/elastic/examples#contributing) section!** 
