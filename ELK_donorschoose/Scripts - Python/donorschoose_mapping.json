@@ -1,0 +1,237 @@
+{
+     "donation": {
+        "properties": {
+           "cartid": {
+              "type": "string", "index": "not_analyzed"
+           },
+           "donor_acctid": {
+              "type": "string" , "index": "not_analyzed"
+           },
+           "projectid": {
+              "type": "string", "index": "not_analyzed"
+           },
+           "dollar_amount": {
+              "type": "string", "index": "not_analyzed"
+           },
+           "donation_included_optional_support": {
+              "type": "string", "index": "not_analyzed"
+           },
+           "donation_message": {
+              "type": "string"
+           },
+           "donation_optional_support": {
+              "type": "double"
+           },
+           "donation_timestamp": {
+              "type": "date",
+              "format": "dateOptionalTime"
+           },
+           "donation_to_project": {
+              "type": "double"
+           },
+           "donation_total": {
+              "type": "double"
+           },
+           "donor_city": {
+              "type": "string", "index": "not_analyzed"
+           },
+           "donor_state": {
+              "type": "string", "index": "not_analyzed"
+           },
+           "donor_zip": {
+              "type": "string", "index": "not_analyzed"
+           },
+           "for_honoree": {
+              "type": "string", "index": "not_analyzed"
+           },
+           "is_teacher_acct": {
+              "type": "string", "index": "not_analyzed"
+           },
+           "payment_included_acct_credit": {
+              "type": "string", "index": "not_analyzed"
+           },
+           "payment_included_campaign_gift_card": {
+              "type": "string", "index": "not_analyzed"
+           },
+           "payment_included_web_purchased_gift_card": {
+              "type": "string", "index": "not_analyzed"
+           },
+           "payment_method": {
+              "type": "string", "index": "not_analyzed"
+           },
+           "payment_was_promo_matched": {
+              "type": "string", "index": "not_analyzed"
+           },
+           "resourceid": {
+              "type": "string"
+           },
+           "resource_item_name": {
+              "type": "string", "index": "not_analyzed"
+           },
+           "resource_item_number": {
+              "type": "string"
+           },
+           "resource_item_quantity": {
+              "type": "float"
+            },
+            "resource_item_unit_price": {
+                "type": "float"
+            },
+            "resource_vendor_name": {
+                "type": "string", "index": "not_analyzed"
+            },
+            "resource_vendorid": {
+                "type": "string"
+            },
+             "project_schoolid": {
+                "type": "string", "index": "not_analyzed"
+             },
+             "project_teacher_acctid": {
+                "type": "string", "index": "not_analyzed"
+             },
+             "project_date_completed": {
+               "type": "date",
+               "format": "dateOptionalTime"
+             },
+             "project_date_expiration": {
+                "type": "date",
+                "format": "dateOptionalTime"
+             },
+             "project_date_posted": {
+                "type": "date",
+                "format": "dateOptionalTime"
+             },
+             "project_date_thank_you_packet_mailed": {
+               "type": "date",
+               "format": "dateOptionalTime"
+             },
+             "project_eligible_almost_home_match": {
+                "type": "string", "index": "not_analyzed"
+             },
+             "project_eligible_double_your_impact_match": {
+                "type": "string", "index": "not_analyzed"
+             },
+             "project_fulfillment_labor_materials": {
+                "type": "double"
+             },
+             "project_funding_status": {
+                "type": "string"
+             },
+             "project_grade_level": {
+                "type": "string",
+                "index":"not_analyzed"
+             },
+             "project_location": {
+                "type": "geo_point"
+             },
+             "project_num_donors": {
+                "type": "long"
+             },
+             "project_payment_processing_charges": {
+                "type": "double"
+             },
+             "project_poverty_level": {
+                "type": "string",
+                "index":"not_analyzed"
+             },
+             "project_primary_focus_area": {
+                "type": "string",
+                "index":"not_analyzed"
+             },
+             "project_primary_focus_subject": {
+                "type": "string",
+                "index":"not_analyzed"
+             },
+             "project_resource_type": {
+                "type": "string", "index": "not_analyzed"
+             },
+             "project_sales_tax": {
+                "type": "double"
+             },
+             "project_school_charter": {
+                "type": "string"
+             },
+             "project_school_charter_ready_promise": {
+                "type": "string"
+             },
+             "project_school_city": {
+                "type": "string",
+                "index":"not_analyzed"
+             },
+             "project_school_county": {
+                "type": "string",
+                "index":"not_analyzed"
+             },
+             "project_school_district": {
+                "type": "string",
+                "index":"not_analyzed"
+             },
+             "project_school_kipp": {
+                "type": "string",
+                "index":"not_analyzed"
+             },
+             "project_school_magnet": {
+                "type": "string"
+             },
+             "project_school_metro": {
+                "type": "string",
+                "index":"not_analyzed"
+             },
+             "project_school_ncesid": {
+                "type": "double"
+             },
+             "project_school_nlns": {
+                "type": "string"
+             },
+             "project_school_state": {
+                "type": "string",
+                "index":"not_analyzed"
+             },
+             "project_school_year_round": {
+                "type": "string"
+             },
+             "project_school_zip": {
+                "type": "double"
+             },
+             "project_secondary_focus_area": {
+                "type": "string",
+                "index":"not_analyzed"
+             },
+             "project_secondary_focus_subject": {
+                "type": "string",
+                "index":"not_analyzed"
+             },
+             "project_students_reached": {
+                "type": "double"
+             },
+             "project_teacher_ny_teaching_fellow": {
+                "type": "string",
+                "index":"not_analyzed"
+             },
+             "project_teacher_prefix": {
+                "type": "string",
+                "index":"not_analyzed"
+             },
+             "project_teacher_teach_for_america": {
+                "type": "string",
+                "index":"not_analyzed"
+             },
+             "project_total_donations": {
+                "type": "double"
+             },
+             "project_total_price_excluding_optional_support": {
+                "type": "double"
+             },
+             "project_total_price_including_optional_support": {
+                "type": "double"
+             },
+             "project_vendor_shipping_charges": {
+                "type": "double"
+           },
+            "via_giving_page": {
+              "type": "string",
+              "index":"not_analyzed"
+           }
+        }
+     }
+   }
