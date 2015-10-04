@@ -39,6 +39,7 @@ Using this option involves 4 easy steps:
   ```shell
   # Create snapshots directory
   mkdir elk_donorschoose
+  cd elk_donorschoose
   # Download index snapshot to elk_donorschoose directory
   wget http://download.elasticsearch.org/demos/donorschoose/donorschoose_backup.tar.gz .
   # Uncompress snapshot file
