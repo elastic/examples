@@ -20,7 +20,9 @@ Run `donorschoose_process_data.py` (requires Python 3). When the script is done 
 ```
   python3 donorschoose_process_data.py
 ```
-NOTE: It might take ~ 30 minutes for this step.
+NOTE:
+- It might take ~ 30 minutes for this step. 
+- We have also included a iPython Notebook version of the script `donorschoose_process_data.ipynb` in case you prefer running in a cell-by-cell mode.
 
 ##### 4. Check if data is available in Elasticsearch
 Check to see if all the data is available in Elasticsearch. If all goes well, you should get a `count` response of `3506071` when you run the following command.
