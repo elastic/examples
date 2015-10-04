@@ -30,7 +30,7 @@ Example has been tested in following versions:
 You have 2 options to index the data into Elasticsearch. You can either use the Elasticsearch [snapshot and restore](https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-snapshots.html) API to directly restore the `donorschoose` index from a snapshot. OR, you can download the raw data from the DonorsChoose.org website and then use the scripts in the [Scripts - Python](https://github.com/elastic/examples/tree/master/ELK_donorschoose/Scripts%20-%20Python) folder to process the raw files and index the data.
 
 #### Option 1. Load data by restoring index snapshot
-(Learn more about snapshot / restore [here]())
+(Learn more about snapshot / restore [here](https://www.elastic.co/guide/en/elasticsearch/reference/1.3/modules-snapshots.html))
 
 Using this option involves 4 easy steps:
 
