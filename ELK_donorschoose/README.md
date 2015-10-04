@@ -27,7 +27,7 @@ Example has been tested in following versions:
 
 ### Download & Ingest Data
 
-You have 2 options to index the data into Elasticsearch. You can either use the Elasticsearch [snapshot and restore](https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-snapshots.html) API to directly restore the `donorschoose` index from a snapshot. OR, you can download the raw data from the DonorsChoose.org website and then use the scripts in the [Scripts - Python ADD LINK]() folder to process the raw files and index the data.
+You have 2 options to index the data into Elasticsearch. You can either use the Elasticsearch [snapshot and restore](https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-snapshots.html) API to directly restore the `donorschoose` index from a snapshot. OR, you can download the raw data from the DonorsChoose.org website and then use the scripts in the [Scripts - Python](https://github.com/elastic/examples/tree/master/ELK_donorschoose/Scripts%20-%20Python) folder to process the raw files and index the data.
 
 #### Option 1. Load data by restoring index snapshot
 (Learn more about snapshot / restore [here]())
@@ -44,11 +44,11 @@ Using this option involves 4 easy steps:
   # Uncompress snapshot file
   tar -xf donorschoose_backup.tar.gz
   ```
-  This adds a `donorschoose_backup` subfolder containing the index snapshots to the `elk_donorschoose` folder
+  This adds a `donorschoose_backup` subfolder containing the index snapshots.
 
   * Add `donorschoose_backup` dir to `path.repo` variable in the `elasticsearch.yml` in the `path_to_elasticsearch_root_dir/config/` folder. See example [here.](https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-snapshots.html#_shared_file_system_repository). Restart elasticsearch for the change to take effect.
 
-  * Register a file system repository for the snapshot *(change the value of the “location” parameter below to the location of your snapshot directory)*
+  * Register a file system repository for the snapshot *(change the value of the “location” parameter below to the location of your `donorschoose_backup` directory)*
   ```shell
   curl -XPUT 'http://localhost:9200/_snapshot/donorschoose_backup' -d '{
       "type": "fs",
@@ -66,13 +66,13 @@ Using this option involves 4 easy steps:
     curl -XPOST "localhost:9200/_snapshot/donorschoose_backup/snapshot_1/_restore"
     ```
 
-At this point, go make yourself a coffee. When your delicious cup of single-origin, direct trade coffee has finished brewing, check to see if the restore operation is complete.
+At this point, go make yourself a coffee. When you are done enjoying your cup of delicious coffee, check to see if the restore operation is complete.
 
 #### Option 2: Process and load data using Python script
 
-The raw DonorsChoose.org data is provided as 5 separate files. In order to do some useful querying of the data in a search engine / NoSQL store like Elasticsearch, you typically have to go through a data modeling process of identifying how to join data from various tables. The files and instructions provided in the `Scripts - Python` folder provide example of processing, modeling and ingesting data into Elasticsearch starting with the raw data.
+The raw DonorsChoose.org data is provided as 5 separate files. In order to do some useful querying of the data in a search engine / NoSQL store like Elasticsearch, you typically have to go through a data modeling process of identifying how to join data from various tables. The files and instructions provided in the [Scripts - Python](https://github.com/elastic/examples/tree/master/ELK_donorschoose/Scripts%20-%20Python) folder provide example of processing, modeling and ingesting data into Elasticsearch starting with the raw data.
 
-We are providing this option in case you want to modify how the data is joined, perform additional data cleansing, enrich with additional data, etc. Follow the [ReadMe ADD LINK]() in the [Scripts - Python ADD LINK]() folder if you want to try this option.
+We are providing this option in case you want to modify how the data is joined, perform additional data cleansing, enrich with additional data, etc. Follow the [ReadMe](https://github.com/elastic/examples/blob/master/ELK_donorschoose/Scripts%20-%20Python/README.md) in the [Scripts - Python](https://github.com/elastic/examples/tree/master/ELK_donorschoose/Scripts%20-%20Python) folder if you want to try this option.
 
 #### Check data availability
 Once the index is created using either of the above options, you can check to see if all the data is available in Elasticsearch. If all goes well, you should get a `count` response of approximately `3506071` when you run the following command.
@@ -92,7 +92,7 @@ Once the index is created using either of the above options, you can check to se
 * Load sample dashboard into Kibana
     * Click the **Settings** tab >> **Objects** tab >> **Import**, and select `donorschoose_kibana.json`
 * Open dashboard
-    * Click on **Dashboard** tab and open `Donors Choose Dashboard` dashboard. Voila! You should see the following dashboard. Happy Data Exploration!
+    * Click on **Dashboard** tab and open `Donors Choose` dashboard. Voila! You should see the following dashboard. Happy Data Exploration!
 
 ![Kibana Dashboard Screenshot](https://cloud.githubusercontent.com/assets/5269751/10270320/679104f0-6aa2-11e5-869f-652e1bcfe0c1.png)
 

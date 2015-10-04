@@ -13,7 +13,7 @@ The DonorsChoose.org provide ~ decade's worth of donations, projects, resources,
   - [Donations](https://s3.amazonaws.com/open_data/csv/opendata_donations.zip)
   - [Resources](https://s3.amazonaws.com/open_data/csv/opendata_resources.zip)
 
-Copy the downloaded files to a sub-folder called `data`, and uncompress them. The `donorschoose_process_data.py` will read the `opendata_resources.csv`, `opendata_donations.csv` and `opendata_projects.csv` from the `data` folder.
+Copy the downloaded files to a sub-folder called `data`, and uncompress them. The `donorschoose_process_data.py` is configured to read `opendata_resources.csv`, `opendata_donations.csv` and `opendata_projects.csv` from the `data` folder. If you saved the uncompressed data files to a different folder, be sure to modify the path in the Python script.
 
 ##### 3. Run Python script to process, join data and index data<br>
 Run `donorschoose_process_data.py` (requires Python 3). When the script is done running, you will have a `donorschoose` index in your Elasticsearch instance
