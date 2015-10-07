@@ -34,8 +34,8 @@ You have 2 options to index the data into Elasticsearch. You can either use the 
 
 Using this option involves 4 easy steps:
 
-  * Download and uncompress the index snapshot .tar.gz file into a local folder
-
+  * Download and uncompress the index snapshot .tar.gz file into a local folder <br>
+  **NOTE** - The index snapshot file is ~7.5 GB. Make sure you have a fast internet connection, and enough free space on disk before you download. 
   ```shell
   # Create snapshots directory
   mkdir elk_donorschoose
