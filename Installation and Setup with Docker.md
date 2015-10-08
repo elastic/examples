@@ -172,8 +172,8 @@ To test, point your web browser at port 5601 [localhost:5601](http://localhost:5
 
 You should see the Kibana UI.
 
-<a href="images/docker-elk-quickstart/kibana1.png" target="_blank">
-<img src="images/docker-elk-quickstart/kibana1.png" width="800"/>
+<a href="images/docker-elk-quickstart/kibana1.jpg" target="_blank">
+<img src="images/docker-elk-quickstart/kibana1.jpg" width="800"/>
 </a>
 
 Click green *Create* button to create the Kibana index, then click *Discover* from the main top menu to load up the log entries from Elasticsearch.
@@ -194,8 +194,8 @@ Now let's create a new log entry, switch to the terminal command line and enter 
 
 Now back in Kibana after 5 or less seconds we should see the `201` log entry.
 
-<a href="images/docker-elk-quickstart/kibana3.png" target="_blank">
-<img src="images/docker-elk-quickstart/kibana3.png" width="800"/>
+<a href="images/docker-elk-quickstart/kibana3.jpg" target="_blank">
+<img src="images/docker-elk-quickstart/kibana3.jpg" width="800"/>
 </a>
 
 
