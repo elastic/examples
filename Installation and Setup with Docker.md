@@ -210,7 +210,7 @@ For example:
 1. Docker has other features you can use like linking containers, so you don't expose ports.
 2. Using the '--net host' flag might also not be the best option for production.
 3. Pin the docker images you are using to a specific version eg: `sudo docker pull logstash:1.5.2`
-4. If you have many machines, run your own *Docker Private Registry* so that your deployments are faster.
+4. If you have many machines, run your own [Docker Private Registry](https://docs.docker.com/registry/deploying/) so that your deployments are faster.
 
 This example should get you up and running quickly and painlessly - ready to explore more of the power of the ELK stack.
 
