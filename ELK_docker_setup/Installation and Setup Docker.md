@@ -121,10 +121,7 @@ output {
 }
 ```
 
-**Ingest Logs**
-
-For our use case here, our Docker Logstash container will monitor a log file from our host machine.
-- Create a directory for log files that our Logstash Docker container will monitor: `mkdir -p var/log`
+* For our use case here, our Docker Logstash container will monitor a log file from our host machine. Create a directory for log files that our Logstash Docker container will monitor: `mkdir -p var/log`
 - Start our logstash docker container. It will watch the `test.log` file from the `var/log` directory we just created:
  ```
  sudo docker run -d --name logstash -v $PWD/logstash/conf.d:/etc/logstash/conf.d:ro -v $PWD/var/log:/host/var/log --net host logstash logstash -f /etc/logstash/conf.d --debug
