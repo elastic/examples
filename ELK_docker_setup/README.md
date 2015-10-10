@@ -3,14 +3,14 @@
 
 Contributed by [Rudi Starcevic](https://github.com/rudijs). 
 
-#### Product Versions:
+##### Product Versions:
 Example has been tested in the following versions:
 * Elasticsearch 1.7.2
 * Logstash 1.5.4
 * Kibana 4.1.2
 * Docker 1.7.1 
 
-#### OS:
+##### OS:
 Example has been created for and tested in **Linux only** - Ubuntu 14.04. Contributions for OSX / Windows instructions, where applicable, would be appreciated.
 
 If you have trouble running the example or have suggestions for improvement, please create a Github issue and copy Rudi Starcevic (@rudijs) in it.
