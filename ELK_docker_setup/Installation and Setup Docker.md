@@ -1,10 +1,10 @@
 
 ### Community Contribution
 This example was contributed by [Rudi Starcevic](https://github.com/rudijs). It has been tested (and works) in the following versions:
-* Elasticsearch x.x.x
-* Logstash x.x.x
-* Kibana x.x.x
-* Docker x.x.x (for non Elastic products)
+* Elasticsearch 1.7.2
+* Logstash 1.5.4
+* Kibana 4.1.2
+* Docker 1.7.1 (for non Elastic products)
 
 If you have trouble running the example or have suggestions for improvement, please create a Github issue and copy Rudi Starcevic (@rudijs) in it.
 
@@ -16,7 +16,9 @@ In this example, we'll look at a quick start 'how to' for setting up the ELK sta
 
 ## Method
 
-The following method has been tested, and is being used, with Linux Ubuntu 14.04.
+Currently the following method has been tested, and is being used, with Linux **only** - Ubuntu 14.04.
+
+Contributions for OSX / Windows instructions, where applicable, would be appreciated.
 
 ## Installation
 
