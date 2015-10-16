@@ -43,8 +43,8 @@ def concatdf(x):
 
 ### Import Data
 # Load projects, resources & donations data
-projects = pd.read_csv('./data/opendata_projects.csv', index_col=None)
-donations = pd.read_csv('./data/opendata_donations.csv', index_col=None)
+projects = pd.read_csv('./data/opendata_projects.csv', index_col=None, escapechar='\\')
+donations = pd.read_csv('./data/opendata_donations.csv', index_col=None, escapechar='\\')
 resources = pd.read_csv('./data/opendata_resources.csv', index_col=None, escapechar='\\' )
 
 ### Data Cleanup
@@ -54,6 +54,7 @@ donations = donations.fillna('')
 resources = resources.fillna('')
 
 #  Clean up column names: remove _ at the start of column name
+donations.columns = donations.columns.map(lambda x: re.sub('^ ', '', x))
 donations.columns = donations.columns.map(lambda x: re.sub('^_', '', x))
 projects.columns = projects.columns.map(lambda x: re.sub('^_', '', x))
 resources.columns = resources.columns.map(lambda x: re.sub('^ ', '', x))
@@ -88,6 +89,7 @@ concat_resource.reset_index(drop=True);
 projects.rename(columns=lambda x: "project_" + x, inplace=True)
 projects.rename(columns={"project_projectid": "projectid"}, inplace=True)
 projects.columns.values
+
 
 #### Merge data into single frame
 data = pd.merge(projects, concat_resource, how='left', right_on='projectid', left_on='projectid')
@@ -126,6 +128,7 @@ with open('donorschoose_mapping.json') as json_mapping:
     d = json.load(json_mapping)
 
 es.indices.put_mapping(index=index_name, doc_type=doc_name, body=d)
+
 
 ### Index Data into Elasticsearch
 
