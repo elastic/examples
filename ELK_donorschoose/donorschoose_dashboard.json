@@ -17,26 +17,6 @@
     }
   },
   {
-    "_id": "USFEC:-All",
-    "_type": "search",
-    "_source": {
-      "title": "USFEC: All",
-      "description": "",
-      "hits": 0,
-      "columns": [
-        "_source"
-      ],
-      "sort": [
-        "@timestamp",
-        "desc"
-      ],
-      "version": 1,
-      "kibanaSavedObjectMeta": {
-        "searchSourceJSON": "{\"highlight\":{\"pre_tags\":[\"@kibana-highlighted-field@\"],\"post_tags\":[\"@/kibana-highlighted-field@\"],\"fields\":{\"*\":{}}},\"filter\":[],\"index\":\"usfec*\"}"
-      }
-    }
-  },
-  {
     "_id": "Total-Donation",
     "_type": "visualization",
     "_source": {
