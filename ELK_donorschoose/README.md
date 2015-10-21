@@ -1,13 +1,12 @@
-## Using ELK to Analyze DonorsChoose.org data
+## Using Elasticsearch & Kibana to Analyze DonorsChoose.org data
 
 This examples provides supplementary material to the blog post on [Hacking Education with Elastic stack](https://www.elastic.co/blog/hacking-education-with-the-elastic-stack).
 
-In this example, we will be analyzing the historical donations and projects data provided by [DonorsChoose.org](http://data.donorschoose.org/open-data/overview/) using Elasticsearch, Logstash and Kibana. DonorsChoose.org is an online charity that connect individuals with schools and teachers in need of resources. For additional background on this dataset, please refer to the accompanying [blog post](https://www.elastic.co/blog/hacking-education-with-the-elastic-stack)
+In this example, we will be analyzing the historical donations and projects data provided by [DonorsChoose.org](http://data.donorschoose.org/open-data/overview/) using Elasticsearch and Kibana. DonorsChoose.org is an online charity that connect individuals with schools and teachers in need of resources. For additional background on this dataset, please refer to the accompanying [blog post](https://www.elastic.co/blog/hacking-education-with-the-elastic-stack)
 
 ##### Version
 Example has been tested in following versions:
 - Elasticsearch 1.7.0
-- Logstash 1.5.2
 - Kibana 4.1.0
 
 ### Installation & Setup
