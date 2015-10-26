@@ -67,7 +67,7 @@ cat nginx_json_logs | <path_to_logstash_root_dir>/bin/logstash -f nginx_json_log
 
   Running `http://localhost:9200/nginx_json_elk_example/_count` should return a response a `"count":51462`
 
- **Note:** Included `nginx_json_logstash.conf` configuration file assumes that you are running Elasticsearch on the same host as     Logstash and have not changed the defaults. Modify the `host` and `cluster` settings in the `output { elasticsearch { ... } }`   section of apache_logstash.conf, if needed.
+ **Note:** Included `nginx_json_logstash.conf` configuration file assumes that you are running Elasticsearch on the same host as     Logstash and have not changed the defaults. Modify the `host` and `cluster` settings in the `output { elasticsearch { ... } }`   section of nginx_json_logstash.conf, if needed.
 
 ##### 2. Visualize data in Kibana
 
