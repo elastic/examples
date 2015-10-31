@@ -40,7 +40,6 @@
         "properties": {
            "geoip": {
               "dynamic": true,
-              "path": "full",
               "properties": {
                  "location": {
                     "type": "geo_point"
