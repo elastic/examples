@@ -3,9 +3,9 @@ This **Getting Started with ELK** example provides sample files to ingest, analy
 
 ##### Version
 Example has been tested in following versions:
-- Elasticsearch 1.7.0
-- Logstash 1.5.2
-- Kibana 4.1.0
+- Elasticsearch 2.0 
+- Logstash 2.0
+- Kibana 4.2.0
 
 ### Installation & Setup
 * Follow the [Installation & Setup Guide](https://github.com/elastic/examples/blob/master/Installation%20and%20Setup.md) to install and test the ELK stack (*you can skip this step if you have a working installation of the ELK stack,*)
