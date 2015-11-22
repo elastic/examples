@@ -8,7 +8,7 @@ Example has been tested with following versions:
 - Logstash 1.5.4
 - Kibana 4.1.1
 
-If you have trouble running the example or have suggestions for improvement, please create a Github issue and copy Kunal Pariani (@kunalvjti) in it.
+If you have trouble running the example or have suggestions for improvement, please create a Github issue and copy Kunal Pariani [@kunalvjti](https://github.com/kunalvjti) in it.
 
 ### Getting Started with ELK for Nginx Plus (JSON) Logs
 This **Getting Started with ELK** example provides sample files to ingest, analyze & visualize **Nginx Plus logs obtained from its status API** using the ELK stack, i.e. Elasticsearch, Logstash and Kibana. The logs obtained from the status API are in JSON format.
@@ -71,7 +71,6 @@ cat nginxplus_json_logs | <path_to_logstash_root_dir>/bin/logstash -f nginxplus_
     * Click the **Settings** tab >> **Indices** tab >> **Add New**. Specify `nginxplus_json_elk_example` as the index pattern name and click **Create** to define the index pattern
 * Load sample dashboard into Kibana
     * Click the **Settings** tab >> **Objects** tab >> **Import**, and select `nginxplus_json_kibana.json`
-<<<<<<< HEAD
 * Open dashboard
     * Click on **Dashboard** tab and open `Sample Dashboard for Nginx Logs` dashboard
 
