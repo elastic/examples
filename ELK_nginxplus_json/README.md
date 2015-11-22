@@ -1,6 +1,6 @@
 ### Community Contribution
 
-Contributed by [Kunal Pariani](https://github.com/kunalvjti).
+Contributed by [Kunal Pariani](https://github.com/kunalvjti) from NGINX
 
 ##### Product Versions:
 Example has been tested with following versions:
