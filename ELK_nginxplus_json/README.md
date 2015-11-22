@@ -41,10 +41,10 @@ Unfortunately, Github does not provide a convenient one-click option to download
 ```
 mkdir nginxplus_json_ELK_Example
 cd nginxplus_json_ELK_Example
-wget https://raw.githubusercontent.com/elastic/examples/master/ELK_nginxplus-json/nginxplus_json_logstash.conf
-wget https://raw.githubusercontent.com/elastic/examples/master/ELK_nginxplus-json/nginxplus_json_kibana.json
-wget https://raw.githubusercontent.com/elastic/examples/master/ELK_nginxplus-json/nginxplus_json_template.json
-wget https://raw.githubusercontent.com/elastic/examples/master/ELK_nginxplus-json/nginxplus_json_logs
+wget https://raw.githubusercontent.com/elastic/examples/master/ELK_nginxplus_json/nginxplus_json_logstash.conf
+wget https://raw.githubusercontent.com/elastic/examples/master/ELK_nginxplus_json/nginxplus_json_kibana.json
+wget https://raw.githubusercontent.com/elastic/examples/master/ELK_nginxplus_json/nginxplus_json_template.json
+wget https://raw.githubusercontent.com/elastic/examples/master/ELK_nginxplus_json/nginxplus_json_logs
 ```
 
 ** The JSON formatted logs used in this example were created using status API of Nginx Plus. Please refer to [Live activity monitoring with Nginx Plus](https://www.nginx.com/products/live-activity-monitoring/) for more information on how to use status API of Nginx Plus
