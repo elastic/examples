@@ -1,0 +1,406 @@
+{
+  "respondent": {
+    "properties": {
+      "Nutrition_Green_times_per_day": {
+        "type": "double"
+      },
+      "Number_of_Children": {
+        "index": "not_analyzed",
+        "type": "string"
+      },
+      "Coordinates": {
+        "type": "geo_point"
+      },
+      "Nutrition_Fruit_times_per_day": {
+        "type": "double"
+      },
+      "College_Housing": {
+        "index": "not_analyzed",
+        "type": "string"
+      },
+      "Height": {
+        "type": "string"
+      },
+      "Interview_Month": {
+        "type": "long"
+      },
+      "Difficulty_walking__climbing": {
+        "index": "not_analyzed",
+        "type": "string"
+      },
+      "Activity_1_intensity": {
+        "index": "not_analyzed",
+        "type": "string"
+      },
+      "BMI_Obesity": {
+        "index": "not_analyzed",
+        "type": "string"
+      },
+      "Nutrition_Sugar_fruit_drinks": {
+        "index": "not_analyzed",
+        "type": "string"
+      },
+      "Total_Vigorous_Activity_weekly_duration_minutes": {
+        "type": "double"
+      },
+      "Days_of_Poor_Health_past_30_days": {
+        "type": "double"
+      },
+      "Income": {
+        "index": "not_analyzed",
+        "type": "string"
+      },
+      "Difficulty_decision_making": {
+        "index": "not_analyzed",
+        "type": "string"
+      },
+      "Physical_activity_2": {
+        "index": "not_analyzed",
+        "type": "string"
+      },
+      "Interview_Day": {
+        "type": "long"
+      },
+      "Difficulty_running_errands": {
+        "index": "not_analyzed",
+        "type": "string"
+      },
+      "Activity_2_weekly_freq": {
+        "type": "double"
+      },
+      "Physical_activity_1": {
+        "index": "not_analyzed",
+        "type": "string"
+      },
+      "Activity_2_MET": {
+        "type": "double"
+      },
+      "Physical_activity_2__frequency": {
+        "index": "not_analyzed",
+        "type": "string"
+      },
+      "Activity_1_MET": {
+        "type": "double"
+      },
+      "Private_Residence": {
+        "index": "not_analyzed",
+        "type": "string"
+      },
+      "Nutrition_Sugar_Drinks": {
+        "index": "not_analyzed",
+        "type": "string"
+      },
+      "Activity_1_weekly_duration_minutes": {
+        "type": "double"
+      },
+      "File_Month": {
+        "type": "long"
+      },
+      "Interview_Year": {
+        "type": "double"
+      },
+      "Weight": {
+        "type": "string"
+      },
+      "Demo_edu_level": {
+        "index": "not_analyzed",
+        "type": "string"
+      },
+      "Alcohol_Drinks_per_occasion": {
+        "type": "long"
+      },
+      "Limited_physical_activity": {
+        "index": "not_analyzed",
+        "type": "string"
+      },
+      "Served_on_Active_Duty": {
+        "index": "not_analyzed",
+        "type": "string"
+      },
+      "Interview_Date": {
+        "format": "dateOptionalTime",
+        "type": "date"
+      },
+      "Nutrition_Beans_consumption": {
+        "index": "not_analyzed",
+        "type": "string"
+      },
+      "General_Health": {
+        "index": "not_analyzed",
+        "type": "string"
+      },
+      "Functional_capacity": {
+        "type": "double"
+      },
+      "Vigorous_Activity_2_weekly_duration_minutes": {
+        "type": "double"
+      },
+      "Nutrition_Fruit_juice_times_per_day": {
+        "type": "double"
+      },
+      "Alcohol_Binge_days_per_month": {
+        "type": "double"
+      },
+      "Longitude": {
+        "type": "double"
+      },
+      "Alcohol_Frequency": {
+        "index": "not_analyzed",
+        "type": "string"
+      },
+      "Smoke_tried_to_quit": {
+        "index": "not_analyzed",
+        "type": "string"
+      },
+      "Weight_kg": {
+        "type": "double"
+      },
+      "Had_Stroke": {
+        "index": "not_analyzed",
+        "type": "string"
+      },
+      "Latitude": {
+        "type": "double"
+      },
+      "Muscle_strengthening_guideline": {
+        "index": "not_analyzed",
+        "type": "string"
+      },
+      "State": {
+        "index": "not_analyzed",
+        "type": "string"
+      },
+      "Max_O2_consumption": {
+        "type": "double"
+      },
+      "Total_Activity_weekly_duration_minutes": {
+        "type": "double"
+      },
+      "Activity_index": {
+        "index": "not_analyzed",
+        "type": "string"
+      },
+      "Alcohol_Drinks_per_month": {
+        "type": "double"
+      },
+      "Physical_Health": {
+        "type": "double"
+      },
+      "Exercise": {
+        "index": "not_analyzed",
+        "type": "string"
+      },
+      "Alcohol_Max_drinks": {
+        "type": "double"
+      },
+      "Alcohol_Binge_drinker": {
+        "index": "not_analyzed",
+        "type": "string"
+      },
+      "Gender": {
+        "index": "not_analyzed",
+        "type": "string"
+      },
+      "Last_Cholesterol_Check": {
+        "index": "not_analyzed",
+        "type": "string"
+      },
+      "Is_Adult": {
+        "index": "not_analyzed",
+        "type": "string"
+      },
+      "BMI": {
+        "type": "double"
+      },
+      "Mental_Health": {
+        "type": "double"
+      },
+      "Smoke_GT_100_cigarettes": {
+        "index": "not_analyzed",
+        "type": "string"
+      },
+      "Nutrition_Orange_veg_times_per_day": {
+        "type": "double"
+      },
+      "Nutrition_Beans_times_per_day": {
+        "type": "double"
+      },
+      "Had_Diabetes": {
+        "index": "not_analyzed",
+        "type": "string"
+      },
+      "Demo_income_group": {
+        "index": "not_analyzed",
+        "type": "string"
+      },
+      "Physical_activity_1__duration": {
+        "type": "double"
+      },
+      "Strength_Activity_Weekly_frequency": {
+        "type": "double"
+      },
+      "Activity_yes__no": {
+        "index": "not_analyzed",
+        "type": "string"
+      },
+      "Smoke_current_status": {
+        "index": "not_analyzed",
+        "type": "string"
+      },
+      "Had_Heart_Attack": {
+        "index": "not_analyzed",
+        "type": "string"
+      },
+      "Alcohol_any_drink_in_last_month": {
+        "index": "not_analyzed",
+        "type": "string"
+      },
+      "SEQN": {
+        "index": "not_analyzed",
+        "type": "string"
+      },
+      "BP_Meds": {
+        "index": "not_analyzed",
+        "type": "string"
+      },
+      "Smoke_time_since_last_smoke": {
+        "index": "not_analyzed",
+        "type": "string"
+      },
+      "Alcohol_Drinks_per_day": {
+        "type": "long"
+      },
+      "Nutrition_Fruit_juice_consumption": {
+        "index": "not_analyzed",
+        "type": "string"
+      },
+      "Activity_2_intensity": {
+        "index": "not_analyzed",
+        "type": "string"
+      },
+      "Educatio_Level": {
+        "index": "not_analyzed",
+        "type": "string"
+      },
+      "BMI_Category": {
+        "index": "not_analyzed",
+        "type": "string"
+      },
+      "Physical_activity_2__duration": {
+        "type": "double"
+      },
+      "Uses_special_equipment": {
+        "index": "not_analyzed",
+        "type": "string"
+      },
+      "Activity_1_duration_minutes": {
+        "type": "double"
+      },
+      "Age_category": {
+        "index": "not_analyzed",
+        "type": "string"
+      },
+      "Nutrition_Fruit_consumption": {
+        "type": "double"
+      },
+      "Nutrition_Orange_veg_consumption": {
+        "index": "not_analyzed",
+        "type": "string"
+      },
+      "Activity_2_weekly_duration_minutes": {
+        "type": "double"
+      },
+      "Height_inches": {
+        "type": "double"
+      },
+      "Employment": {
+        "index": "not_analyzed",
+        "type": "string"
+      },
+      "Nutrition_Vegetable_per_day": {
+        "type": "double"
+      },
+      "Nutrition_Vegetable_times_per_day": {
+        "type": "double"
+      },
+      "Aerobic_and_strengthening_guideline": {
+        "index": "not_analyzed",
+        "type": "string"
+      },
+      "Had_Heart_Disease": {
+        "index": "not_analyzed",
+        "type": "string"
+      },
+      "High_BP": {
+        "index": "not_analyzed",
+        "type": "string"
+      },
+      "Difficulty_dressing__bathing": {
+        "index": "not_analyzed",
+        "type": "string"
+      },
+      "Physical_activity_1__frequency": {
+        "index": "not_analyzed",
+        "type": "string"
+      },
+      "Sleep_per_day_hours": {
+        "type": "long"
+      },
+      "Vigorous_Activity_1_weekly_duration_minutes": {
+        "type": "double"
+      },
+      "Nutrition_Greens_consumption": {
+        "index": "not_analyzed",
+        "type": "string"
+      },
+      "High_Cholesterol": {
+        "index": "not_analyzed",
+        "type": "string"
+      },
+      "Activity_2_duration_minutes": {
+        "type": "double"
+      },
+      "Activity_1_weekly_freq": {
+        "type": "double"
+      },
+      "Smoke_smoker_type": {
+        "index": "not_analyzed",
+        "type": "string"
+      },
+      "Activity_category": {
+        "index": "not_analyzed",
+        "type": "string"
+      },
+      "Marital": {
+        "index": "not_analyzed",
+        "type": "string"
+      },
+      "Var": {
+        "index": "not_analyzed",
+        "type": "string"
+      },
+      "Nutrition_Fruit_per_day": {
+        "type": "double"
+      },
+      "Height_m": {
+        "type": "double"
+      },
+      "Primary_Sampling_Unit": {
+        "index": "not_analyzed",
+        "type": "string"
+      },
+      "Nutrition_Other_veg_consumption": {
+        "index": "not_analyzed",
+        "type": "string"
+      },
+      "Cholesterol_Awareness": {
+        "index": "not_analyzed",
+        "type": "string"
+      },
+      "Smoke_current_smoker": {
+        "index": "not_analyzed",
+        "type": "string"
+      }
+    }
+  }
+}
