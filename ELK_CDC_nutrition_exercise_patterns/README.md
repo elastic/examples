@@ -1,8 +1,8 @@
-## Using Elasticsearch & Kibana to Analyze DonorsChoose.org data
+## Using Elasticsearch & Kibana to Analyze Health Behavior Survey data from CDC
 
-This examples provides supplementary material to the Movember Data Dives. [blog 1]() and [blog 2]()
+This example provides supplementary material to the Movember Data Dives - see [blog 1](https://www.elastic.co/blog/movember-data-dive-part-1) and [blog 2](https://www.elastic.co/blog/movember-data-dive-part-2)
 
-In this example, we will analyze the [Behavioral Risk Factor Surveillance System data] (http://www.cdc.gov/brfss/annual_data/annual_2013.html) from 2013.  using the Elastic stack. Every year, the Centers for Disease Control and Prevention (CDC) conducts approximately 500,000 telephone surveys to collect data on a variety of personal health-related topics, such as nutrition, drinking habits, physical activity and health history. We explored the exercise and nutrition patterns in the US. For additional commentary on the analysis and insights, refer to the accompanying blogs. see [here]() for analysis of physical activity and exercise patterns, and [here]() for analysis of eating and drinking patterns.
+In this example, we will analyze the 2013 [Behavioral Risk Factor Surveillance System] (http://www.cdc.gov/brfss/annual_data/annual_2013.html) data using the Elastic stack. Every year, the Centers for Disease Control and Prevention (CDC) conducts approximately 500,000 telephone surveys to collect data on a variety of personal health-related topics, such as nutrition, drinking habits, physical activity and health history. We analyzed this data to explore exercise and nutrition patterns for male respondents as a part of our Movember Data Dive. For additional commentary on the analysis and unearthed insights, refer to the accompanying blogs [here](https://www.elastic.co/blog/movember-data-dive-part-1) (for analysis of physical activity and exercise patterns) and [here](https://www.elastic.co/blog/movember-data-dive-part-2) (for analysis of eating and drinking patterns).
 
 ##### Version
 Example has been tested in following versions:
