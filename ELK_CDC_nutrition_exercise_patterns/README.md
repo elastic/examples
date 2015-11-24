@@ -27,7 +27,7 @@ Example has been tested in following versions:
 ### Download & Ingest Data
 
 In this example, we ingest the data into Elasticsearch using the Elasticsearch Python client.
-Follow the instructions in the  [ReadMe]() in the [Scripts - Python](https://github.com/elastic/examples/tree/master/ELK_donorschoose/Scripts%20-%20Python) folder if you want to try this option.
+Follow the instructions in the  [ReadMe]() in the [Ingest Scripts - Python](https://github.com/elastic/examples/tree/master/ELK_CDC_nutrition_exercise_patterns/Ingest%20Scripts%20-%20Python) folder if you want to try this option.
 
 #### Check data availability
 Once the index is created using either of the above options, you can check to see if all the data is available in Elasticsearch. If all goes well, you should get a `count` response of approximately `TO DO` when you run the following command.
