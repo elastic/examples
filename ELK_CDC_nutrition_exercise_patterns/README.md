@@ -1,4 +1,4 @@
-## Using Elasticsearch & Kibana to Analyze Health Behavior Survey data from CDC
+### Using Elasticsearch & Kibana to Analyze Health Behavior Survey data from CDC
 
 This example provides supplementary material to the Movember Data Dives - see [blog 1](https://www.elastic.co/blog/movember-data-dive-part-1) and [blog 2](https://www.elastic.co/blog/movember-data-dive-part-2)
 
@@ -27,10 +27,10 @@ Example has been tested in following versions:
 ### Download & Ingest Data
 
 In this example, we ingest the data into Elasticsearch using the Elasticsearch Python client.
-Follow the instructions in the  [ReadMe](https://github.com/elastic/examples/blob/master/ELK_CDC_nutrition_exercise_patterns/Python%20-%20Ingest%20Scripts/README.md) in the [Ingest Scripts - Python](https://github.com/elastic/examples/tree/master/ELK_CDC_nutrition_exercise_patterns/Ingest%20Scripts%20-%20Python) folder if you want to try this option.
+Follow the instructions in the  [ReadMe](https://github.com/elastic/examples/blob/master/ELK_CDC_nutrition_exercise_patterns/Ingest%20Scripts%20-%20Python/README.md) in the [Ingest Scripts - Python](https://github.com/elastic/examples/tree/master/ELK_CDC_nutrition_exercise_patterns/Ingest%20Scripts%20-%20Python) folder if you want to try this option.
 
 #### Check data availability
-Once the index is created using either of the above options, you can check to see if all the data is available in Elasticsearch. If all goes well, you should get a `count` response of approximately `491773` when you run the following command.
+Once the index is created, data will available in Elasticsearch. If all goes well, you should get a `count` response of `491773` when you run the following command.
 
   ```shell
   curl -XGET localhost:9200/brfss/_count -d '{
@@ -43,10 +43,10 @@ Once the index is created using either of the above options, you can check to se
 #### Visualize Data in Kibana
 * Access Kibana by going to `http://localhost:5601` in a web browser
 * Connect Kibana to the `brfss` index in Elasticsearch
-    * Click the **Settings** tab >> **Indices** tab >> **Create New**. Specify `brfss` as the index pattern name, select `interview_date` as the **Time-field name**, and click **Create** to define the index pattern. (Leave the **Use event times to create index names** box unchecked)
+    * Click the **Settings** tab >> **Indices** tab >> **Create New**. Specify `brfss` as the index pattern name, select `Interview_Date` as the **Time-field name**, and click **Create** to define the index pattern. (Leave the **Use event times to create index names** box unchecked)
 * Load sample dashboard into Kibana
     * Click the **Settings** tab >> **Objects** tab >> **Import**, and select `brfss_kibana_dashboard.json`
-* Open dashboard(S)
+* Open dashboard(s)
     * Click on **Dashboard** tab and open either the `BRFSS: Nutrition` or `BRFSS: Fitness` dashboard. Voila! You should see one of the following dashboards. Happy Data Exploration!
 
 ![Kibana Dashboard Screenshot](https://cloud.githubusercontent.com/assets/5269751/11385430/a0e76804-92cd-11e5-99a7-0450c87ca375.png)
