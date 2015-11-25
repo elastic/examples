@@ -30,7 +30,7 @@ In this example, we ingest the data into Elasticsearch using the Elasticsearch P
 Follow the instructions in the  [ReadMe]() in the [Ingest Scripts - Python](https://github.com/elastic/examples/tree/master/ELK_CDC_nutrition_exercise_patterns/Ingest%20Scripts%20-%20Python) folder if you want to try this option.
 
 #### Check data availability
-Once the index is created using either of the above options, you can check to see if all the data is available in Elasticsearch. If all goes well, you should get a `count` response of approximately `TO DO` when you run the following command.
+Once the index is created using either of the above options, you can check to see if all the data is available in Elasticsearch. If all goes well, you should get a `count` response of approximately `491773` when you run the following command.
 
   ```shell
   curl -XGET localhost:9200/brfss/_count -d '{
@@ -45,9 +45,9 @@ Once the index is created using either of the above options, you can check to se
 * Connect Kibana to the `brfss` index in Elasticsearch
     * Click the **Settings** tab >> **Indices** tab >> **Create New**. Specify `brfss` as the index pattern name, select `interview_date` as the **Time-field name**, and click **Create** to define the index pattern. (Leave the **Use event times to create index names** box unchecked)
 * Load sample dashboard into Kibana
-    * Click the **Settings** tab >> **Objects** tab >> **Import**, and select `brfss_kibana.json`
+    * Click the **Settings** tab >> **Objects** tab >> **Import**, and select `brfss_kibana_dashboard.json`
 * Open dashboard(S)
-    * Click on **Dashboard** tab and open either the `BRFSS: Nutrition` or `BRFSS: Exercise` dashboard. Voila! You should see one of the following dashboards. Happy Data Exploration!
+    * Click on **Dashboard** tab and open either the `BRFSS: Nutrition` or `BRFSS: Fitness` dashboard. Voila! You should see one of the following dashboards. Happy Data Exploration!
 
 ![Kibana Dashboard Screenshot](https://cloud.githubusercontent.com/assets/5269751/11385430/a0e76804-92cd-11e5-99a7-0450c87ca375.png)
 ![Kibana Dashboard Screenshot](https://cloud.githubusercontent.com/assets/5269751/11385436/a542ed56-92cd-11e5-9f0a-8a243a55f054.png)
