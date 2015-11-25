@@ -47,10 +47,10 @@ Once the index is created using either of the above options, you can check to se
 * Load sample dashboard into Kibana
     * Click the **Settings** tab >> **Objects** tab >> **Import**, and select `brfss_kibana.json`
 * Open dashboard(S)
-    * Click on **Dashboard** tab and open either the `BRFSS Nutrition Dashboard` or `BRFSS Exercise Dashboard` dashboard. Voila! You should see one of the following dashboards. Happy Data Exploration!
+    * Click on **Dashboard** tab and open either the `BRFSS: Nutrition` or `BRFSS: Exercise` dashboard. Voila! You should see one of the following dashboards. Happy Data Exploration!
 
-![Kibana Dashboard Screenshot]()
-![Kibana Dashboard Screenshot]()
+![Kibana Dashboard Screenshot](https://cloud.githubusercontent.com/assets/5269751/11385430/a0e76804-92cd-11e5-99a7-0450c87ca375.png)
+![Kibana Dashboard Screenshot](https://cloud.githubusercontent.com/assets/5269751/11385436/a542ed56-92cd-11e5-9f0a-8a243a55f054.png)
 
 ### We would love to hear from you!
 If you run into issues running this example or have suggestions to improve it, please use Github issues to let us know. Have an easy fix? Submit a pull request. We will try our best to respond in a timely manner!
