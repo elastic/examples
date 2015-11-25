@@ -1,34 +1,30 @@
 ## Ingest Data using Python scripts
 
-If you want to ingest data into Elasticsearch starting with the raw data files from DonorsChoose.org, follow the instructions below:
+If you want to ingest data into Elasticsearch starting with the raw data files from [www.cdc.gov](http://www.cdc.gov/brfss/annual_data/annual_2013.html), follow the instructions below:
 
 
-##### 1. Download the following files: <br>
-- `donorschoose_process_data.py` - Python script to process and join raw files
-- `donorschoose_mapping.json` contains mapping for Elasticsearch index
+##### 1. Download files in this folder: <br>
 
-##### 2. Download data from DonorsChoose.org website <br>
-The DonorsChoose.org provide ~ decade's worth of donations, projects, resources, essay and gift card data. In this example, we will only use the donations, projects and resources datasets. Download the following datasets:
-  - [Projects](https://s3.amazonaws.com/open_data/csv/opendata_projects.zip)
-  - [Donations](https://s3.amazonaws.com/open_data/csv/opendata_donations.zip)
-  - [Resources](https://s3.amazonaws.com/open_data/csv/opendata_resources.zip)
+##### 2. Download 2013 BRFSS data from cdc.gov website <br>
 
-Copy the downloaded files to a sub-folder called `data`, and uncompress them. The `donorschoose_process_data.py` is configured to read `opendata_resources.csv`, `opendata_donations.csv` and `opendata_projects.csv` from the `data` folder. If you saved the uncompressed data files to a different folder, be sure to modify the path in the Python script.
+  - [2013 BRFSS ASCII.zip](http://www.cdc.gov/brfss/annual_data/2013/files/LLCP2013ASC.ZIP)
 
-##### 3. Run Python script to process, join data and index data<br>
-Run `donorschoose_process_data.py` (requires Python 3). When the script is done running, you will have a `donorschoose` index in your Elasticsearch instance
+Unzip and copy the files into the folder containing the files downloaded in step 1.
+
+##### 3. Run Python script to process and index data<br>
+Run `process_brfss_data.py` (requires Python 3). When the script is done running, you will have a `brfss` index in your Elasticsearch instance
 ```
-  python3 donorschoose_process_data.py
+  python3 process_brfss_data.py
 ```
 NOTE:
-- It might take ~ 30 minutes for this step. 
-- We have also included a iPython Notebook version of the script `donorschoose_process_data.ipynb` in case you prefer running in a cell-by-cell mode.
+- It might take ~ 30-60 minutes for this step (depending on your machine)
+- We have also included a iPython Notebook version of the script `process_brfss_data.ipynb` in case you prefer running in a cell-by-cell mode.
 
 ##### 4. Check if data is available in Elasticsearch
-Check to see if all the data is available in Elasticsearch. If all goes well, you should get a `count` response of `3506071` when you run the following command.
+Check to see if all the data is available in Elasticsearch. If all goes well, you should get a `count` response of `` when you run the following command.
 
   ```shell
-  curl -XGET localhost:9200/donorschoose/_count -d '{
+  curl -XGET localhost:9200/brfss/_count -d '{
   	"query": {
   		"match_all": {}
   	}
