@@ -6,26 +6,13 @@
       "title": "NginxPlus: Sample Dashboard",
       "hits": 0,
       "description": "",
-      "panelsJSON": "[{\"col\":1,\"id\":\"Nginx-Plus-Dashboard-json\",\"row\":1,\"size_x\":3,\"size_y\":4,\"type\":\"visualization\"},{\"col\":4,\"id\":\"NginxPlus:-Avg-requests-slash-min\",\"row\":1,\"size_x\":9,\"size_y\":2,\"type\":\"visualization\"},{\"col\":1,\"id\":\"NginxPlus:-Current-Request\",\"row\":5,\"size_x\":3,\"size_y\":2,\"type\":\"visualization\"},{\"col\":9,\"id\":\"NginxPlus:-SSL-handshakes-slash-min\",\"row\":3,\"size_x\":4,\"size_y\":2,\"type\":\"visualization\"},{\"col\":4,\"id\":\"Server-zone-traffic-sent-ampersand-received-v-slash-s-time\",\"row\":3,\"size_x\":5,\"size_y\":2,\"type\":\"visualization\"}]",
+      "panelsJSON": "[{\"col\":6,\"id\":\"NginxPlus:-Avg-requests-slash-min\",\"row\":1,\"size_x\":7,\"size_y\":2,\"type\":\"visualization\"},{\"col\":4,\"id\":\"NginxPlus:-Current-Request\",\"row\":1,\"size_x\":2,\"size_y\":2,\"type\":\"visualization\"},{\"col\":9,\"id\":\"NginxPlus:-SSL-handshakes-slash-min\",\"row\":3,\"size_x\":4,\"size_y\":2,\"type\":\"visualization\"},{\"col\":9,\"id\":\"Server-zone-traffic-sent-ampersand-received-v-slash-s-time\",\"row\":5,\"size_x\":4,\"size_y\":2,\"type\":\"visualization\"},{\"id\":\"Nginx-Plus-Dashboard\",\"type\":\"visualization\",\"size_x\":3,\"size_y\":4,\"col\":1,\"row\":1},{\"id\":\"NginxPlus:-Average-active-connections-slash-min\",\"type\":\"visualization\",\"size_x\":5,\"size_y\":2,\"col\":4,\"row\":3},{\"id\":\"NginxPlus:-SSL-failed-handshakes-slash-min\",\"type\":\"visualization\",\"size_x\":4,\"size_y\":2,\"col\":1,\"row\":5},{\"id\":\"NginxPlus:-SSL-Session-reuses-slash-min\",\"type\":\"visualization\",\"size_x\":4,\"size_y\":2,\"col\":5,\"row\":5}]",
       "version": 1,
       "timeRestore": true,
       "timeTo": "2015-10-31T01:01:19.948Z",
       "timeFrom": "2015-10-30T23:50:41.089Z",
       "kibanaSavedObjectMeta": {
         "searchSourceJSON": "{\"filter\":[{\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}}}]}"
-      }
-    }
-  },
-  {
-    "_id": "Nginx-Plus-Dashboard-json",
-    "_type": "visualization",
-    "_source": {
-      "title": "Nginx Plus Dashboard",
-      "visState": "{\"type\":\"markdown\",\"params\":{\"markdown\":\"#### Sample Dashboard for Nginx Plus logs\\nSimple dashboard for exploring & visualizing web traffic by analyzing JSON from Nginx Plus's status API. This dashboard is included as a part of the [Getting Started with ELK](https://github.com/asawariS/test/tree/master/nginx) repo on Github.\\n\\n**Example visualizations in the dashboard include:**\\n* Number of total & unique visitors \\n* Map show web traffic from various locations\\n* Pie chart of traffic by operating systems\\n\\nFeel free to explore & modify the dashboards to your hearts content. Ask questions, test hypothesis, diagnose issues!\\n\\n**Happy exploration!!!**\"},\"aggs\":[],\"listeners\":{}}",
-      "description": "",
-      "version": 1,
-      "kibanaSavedObjectMeta": {
-        "searchSourceJSON": "{\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
       }
     }
   },
@@ -43,50 +30,11 @@
     }
   },
   {
-    "_id": "NginxPlus:-Current-Dropped",
-    "_type": "visualization",
-    "_source": {
-      "title": "NginxPlus: Current Dropped",
-      "visState": "{\"aggs\":[{\"id\":\"1\",\"params\":{\"field\":\"connections.dropped\"},\"schema\":\"metric\",\"type\":\"max\"}],\"listeners\":{},\"params\":{\"fontSize\":60},\"type\":\"metric\"}",
-      "description": "",
-      "version": 1,
-      "kibanaSavedObjectMeta": {
-        "searchSourceJSON": "{\"index\":\"nginxplus_json_elk_example\",\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"@timestamp: [ 2015-10-31T00:36:32.000 TO 2015-10-31T00:36:39.000 ]\"}},\"filter\":[]}"
-      }
-    }
-  },
-  {
     "_id": "NginxPlus:-Current-Request",
     "_type": "visualization",
     "_source": {
       "title": "NginxPlus: Current Request",
       "visState": "{\"type\":\"metric\",\"params\":{\"fontSize\":60},\"aggs\":[{\"id\":\"1\",\"type\":\"max\",\"schema\":\"metric\",\"params\":{\"field\":\"requests.current\"}}],\"listeners\":{}}",
-      "description": "",
-      "version": 1,
-      "kibanaSavedObjectMeta": {
-        "searchSourceJSON": "{\"index\":\"nginxplus_json_elk_example\",\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"@timestamp: [ 2015-10-31T00:36:32.000 TO 2015-10-31T00:36:39.000 ]\"}},\"filter\":[]}"
-      }
-    }
-  },
-  {
-    "_id": "NginxPlus:-Current-Active",
-    "_type": "visualization",
-    "_source": {
-      "title": "NginxPlus: Current Active",
-      "visState": "{\"type\":\"metric\",\"params\":{\"fontSize\":60},\"aggs\":[{\"id\":\"1\",\"type\":\"max\",\"schema\":\"metric\",\"params\":{\"field\":\"connections.active\"}}],\"listeners\":{}}",
-      "description": "",
-      "version": 1,
-      "kibanaSavedObjectMeta": {
-        "searchSourceJSON": "{\"index\":\"nginxplus_json_elk_example\",\"query\":{\"query_string\":{\"query\":\"@timestamp: [ 2015-10-31T00:36:32.000 TO 2015-10-31T00:36:39.000 ]\",\"analyze_wildcard\":true}},\"filter\":[]}"
-      }
-    }
-  },
-  {
-    "_id": "NginxPlus:-Current-Idle",
-    "_type": "visualization",
-    "_source": {
-      "title": "NginxPlus: Current Idle",
-      "visState": "{\"type\":\"metric\",\"params\":{\"fontSize\":60},\"aggs\":[{\"id\":\"1\",\"type\":\"max\",\"schema\":\"metric\",\"params\":{\"field\":\"connections.idle\"}}],\"listeners\":{}}",
       "description": "",
       "version": 1,
       "kibanaSavedObjectMeta": {
@@ -160,54 +108,15 @@
     }
   },
   {
-    "_id": "Average-active-connections-per-min",
+    "_id": "Nginx-Plus-Dashboard",
     "_type": "visualization",
     "_source": {
-      "title": "Average active connections per min",
-      "visState": "{\"type\":\"line\",\"params\":{\"shareYAxis\":true,\"addTooltip\":true,\"addLegend\":true,\"showCircles\":true,\"smoothLines\":false,\"interpolate\":\"linear\",\"scale\":\"linear\",\"drawLinesBetweenPoints\":true,\"radiusRatio\":9,\"times\":[],\"addTimeMarker\":false,\"defaultYExtents\":false,\"setYExtents\":false,\"yAxis\":{}},\"aggs\":[{\"id\":\"1\",\"type\":\"avg\",\"schema\":\"metric\",\"params\":{\"field\":\"connections.active\"}},{\"id\":\"2\",\"type\":\"date_histogram\",\"schema\":\"segment\",\"params\":{\"field\":\"@timestamp\",\"interval\":\"auto\",\"customInterval\":\"2h\",\"min_doc_count\":1,\"extended_bounds\":{}}}],\"listeners\":{}}",
+      "title": "Nginx Plus Dashboard",
+      "visState": "{\"type\":\"markdown\",\"params\":{\"markdown\":\"#### Sample Dashboard for Nginx Plus logs\\nSimple dashboard for exploring & visualizing web traffic by analyzing JSON from Nginx Plus's status API. This dashboard is included as a part of the [Getting Started with ELK for Nginx Plus (JSON) Logs](https://github.com/elastic/examples/tree/master/ELK_nginxplus_json) repo on Github.\\n\\n**Example visualizations in the dashboard include:**\\n* Current number of requests\\n* Average number of requests per min \\n* Average number of active connections per min\\n* SSL handshakes passed/failed per min, SSL session reuses per min\\n* Server zone traffic sent & received v/s time\\n\\nFeel free to explore & modify the dashboards to your hearts content. Ask questions, test hypothesis, diagnose issues!\\n\\n**Happy exploration!!!**\"},\"aggs\":[],\"listeners\":{}}",
       "description": "",
       "version": 1,
       "kibanaSavedObjectMeta": {
-        "searchSourceJSON": "{\"index\":\"nginxplus_json_elk_example\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
-      }
-    }
-  },
-  {
-    "_id": "NginxPlus:-Server-zone-average-requests-slash-min",
-    "_type": "visualization",
-    "_source": {
-      "title": "NginxPlus: Server zone average requests / min",
-      "visState": "{\"aggs\":[{\"id\":\"1\",\"params\":{\"field\":\"server_zones.hg.nginx.org.requests\"},\"schema\":\"metric\",\"type\":\"avg\"},{\"id\":\"2\",\"params\":{\"customInterval\":\"2h\",\"extended_bounds\":{},\"field\":\"@timestamp\",\"interval\":\"m\",\"min_doc_count\":1},\"schema\":\"segment\",\"type\":\"date_histogram\"}],\"listeners\":{},\"params\":{\"addLegend\":true,\"addTimeMarker\":false,\"addTooltip\":true,\"defaultYExtents\":false,\"mode\":\"stacked\",\"scale\":\"linear\",\"setYExtents\":false,\"shareYAxis\":true,\"times\":[],\"yAxis\":{}},\"type\":\"histogram\"}",
-      "description": "",
-      "version": 1,
-      "kibanaSavedObjectMeta": {
-        "searchSourceJSON": "{\"index\":\"nginxplus_json_elk_example\",\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[]}"
-      }
-    }
-  },
-  {
-    "_id": "NginxPlus:-Accepted-connections-slash-min",
-    "_type": "visualization",
-    "_source": {
-      "title": "NginxPlus: Accepted connections / min",
-      "visState": "{\"type\":\"histogram\",\"params\":{\"shareYAxis\":true,\"addTooltip\":true,\"addLegend\":true,\"scale\":\"linear\",\"mode\":\"stacked\",\"times\":[],\"addTimeMarker\":false,\"defaultYExtents\":false,\"setYExtents\":false,\"yAxis\":{}},\"aggs\":[{\"id\":\"1\",\"type\":\"avg\",\"schema\":\"metric\",\"params\":{\"field\":\"connections.accepted\"}},{\"id\":\"2\",\"type\":\"date_histogram\",\"schema\":\"segment\",\"params\":{\"field\":\"@timestamp\",\"interval\":\"m\",\"customInterval\":\"2h\",\"min_doc_count\":1,\"extended_bounds\":{}}}],\"listeners\":{}}",
-      "description": "",
-      "version": 1,
-      "kibanaSavedObjectMeta": {
-        "searchSourceJSON": "{\"index\":\"nginxplus_json_elk_example\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
-      }
-    }
-  },
-  {
-    "_id": "NginxPlus:-Current-processing-requests-for-server-zone",
-    "_type": "visualization",
-    "_source": {
-      "title": "NginxPlus: Current processing requests for server zone",
-      "visState": "{\"type\":\"table\",\"params\":{\"perPage\":10,\"showPartialRows\":false,\"showMeticsAtAllLevels\":false},\"aggs\":[{\"id\":\"1\",\"type\":\"avg\",\"schema\":\"metric\",\"params\":{\"field\":\"server_zones.hg.nginx.org.processing\"}}],\"listeners\":{}}",
-      "description": "",
-      "version": 1,
-      "kibanaSavedObjectMeta": {
-        "searchSourceJSON": "{\"index\":\"nginxplus_json_elk_example\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+        "searchSourceJSON": "{\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
       }
     }
   }
