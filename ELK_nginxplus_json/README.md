@@ -75,4 +75,4 @@ cat nginxplus_json_logs | <path_to_logstash_root_dir>/bin/logstash -f nginxplus_
     * Click on **Dashboard** tab and open `Sample Dashboard for Nginx Logs` dashboard
 
 Voila! You should see the following dashboard. Enjoy!
-![Kibana Dashboard Screenshot](https://cloud.githubusercontent.com/assets/1437560/11281194/5d18f368-8eae-11e5-81b6-7f401f0d2723.png)
+![Kibana Dashboard Screenshot](https://cloud.githubusercontent.com/assets/1437560/11547099/4578e76a-9906-11e5-8650-5a386c82b201.png)
