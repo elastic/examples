@@ -1,9 +1,11 @@
 ### Getting Started with ELK for Nginx (JSON) Logs
 This **Getting Started with ELK** example provides sample files to ingest, analyze & visualize **Nginx access logs** using the ELK stack, i.e. Elasticsearch, Logstash and Kibana. This example uses JSON formatted version of Nginx logs. The Nginx `log format` entry used to generate these logs is shown in  Download section below.
 
+##### WARNING: nginx uses \xXX to encode some characters. The resulting "JSON" string is not valid (the JSON standard specifies \u00XX) and in Logstash you will get a json parse error for the invalid JSON string. It only happens when any variables e.g. $http_user_agent contain characters that nginx will escape e.g. backslash or reverse solidus.
+
 ##### Version
 Example has been tested in following versions:
-- Elasticsearch 2.0 
+- Elasticsearch 2.0
 - Logstash 2.0
 - Kibana 4.2.0
 
