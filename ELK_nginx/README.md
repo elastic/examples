@@ -1,5 +1,5 @@
-### Getting Started with ELK for Nginx Logs
-This **Getting Started with ELK** example provides sample files to ingest, analyze & visualize **Nginx access logs** using the ELK stack, i.e. Elasticsearch, Logstash and Kibana. The sample Nginx access logs in this example use the default Nginx combined log format.
+### Getting Started with ELK for NGINX Logs
+This **Getting Started with ELK** example provides sample files to ingest, analyze & visualize **NGINX access logs** using the ELK stack, i.e. Elasticsearch, Logstash and Kibana. The sample NGINX access logs in this example use the default NGINX combined log format.
 
 ##### Version
 Example has been tested in following versions:
@@ -32,7 +32,7 @@ Download the following files in this repo to a local directory:
 
 Unfortunately, Github does not provide a convenient one-click option to download entire contents of a subfolder in a repo. Use sample code provided below to download the required files to a local directory:
 
-** The Nginx logs used in this example were created with the default combined `log_format` entry in the `nginx.config` file.
+** The NGINX logs used in this example were created with the default combined `log_format` entry in the `nginx.config` file.
 ```
 log_format combined '$remote_addr - $remote_user [$time_local] '
                     '"$request" $status $body_bytes_sent '

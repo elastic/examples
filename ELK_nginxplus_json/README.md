@@ -10,7 +10,7 @@ Example has been tested with following versions:
 
 If you have trouble running the example or have suggestions for improvement, please create a Github issue and copy Kunal Pariani [@kunalvjti](https://github.com/kunalvjti) in it.
 
-### Getting Started with ELK for Nginx Plus (JSON) Logs
+### Getting Started with ELK for NGINX Plus (JSON) Logs
 This **Getting Started with ELK** example provides sample files to ingest, analyze & visualize **Nginx Plus logs obtained from its status API** using the ELK stack, i.e. Elasticsearch, Logstash and Kibana. The logs obtained from the status API are in JSON format.
 
 ### Installation & Setup
@@ -47,7 +47,7 @@ wget https://raw.githubusercontent.com/elastic/examples/master/ELK_nginxplus_jso
 wget https://raw.githubusercontent.com/elastic/examples/master/ELK_nginxplus_json/nginxplus_json_logs
 ```
 
-** The JSON formatted logs used in this example were created using status API of Nginx Plus. Please refer to [Live activity monitoring with Nginx Plus](https://www.nginx.com/products/live-activity-monitoring/) for more information on how to use status API of Nginx Plus
+** The JSON formatted logs used in this example were created using status API of NGINX Plus. Please refer to [Live activity monitoring with NGINX Plus](https://www.nginx.com/products/live-activity-monitoring/) for more information on how to use status API of NGINX Plus
 
 ### Run Example
 ##### 1. Ingest data into Elasticsearch using Logstash
