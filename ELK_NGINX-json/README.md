@@ -1,7 +1,7 @@
-### Getting Started with ELK for Nginx (JSON) Logs
-This **Getting Started with ELK** example provides sample files to ingest, analyze & visualize **Nginx access logs** using the ELK stack, i.e. Elasticsearch, Logstash and Kibana. This example uses JSON formatted version of Nginx logs. The Nginx `log format` entry used to generate these logs is shown in  Download section below.
+### Getting Started with ELK for NGINX (JSON) Logs
+This **Getting Started with ELK** example provides sample files to ingest, analyze & visualize **NGINX access logs** using the ELK stack, i.e. Elasticsearch, Logstash and Kibana. This example uses JSON formatted version of Nginx logs. The NGINX `log format` entry used to generate these logs is shown in  Download section below.
 
-##### WARNING: nginx uses \xXX to encode some characters. The resulting "JSON" string is not valid (the JSON standard specifies \u00XX) and in Logstash you will get a json parse error for the invalid JSON string. It only happens when any variables e.g. $http_user_agent contain characters that nginx will escape e.g. backslash or reverse solidus.
+##### WARNING: NGINX uses \xXX to encode some characters. The resulting "JSON" string is not valid (the JSON standard specifies \u00XX) and in Logstash you will get a json parse error for the invalid JSON string. It only happens when any variables e.g. $http_user_agent contain characters that NGINX will escape e.g. backslash or reverse solidus.
 
 ##### Version
 Example has been tested in following versions:
@@ -27,7 +27,7 @@ Example has been tested in following versions:
 ### Download Example Files
 
 Download the following files in this repo to a local directory:
-- `nginx_json_logs` - sample JSON formatted Nginx logs**
+- `nginx_json_logs` - sample JSON formatted NGINX logs**
 - `nginx_json_logstash.conf` - Logstash config for ingesting data into Elasticsearch
 - `nginx_json_template.json` - template for custom mapping of fields
 - `nginx_json_kibana.json` - config file to load prebuilt Kibana dashboard
@@ -43,7 +43,7 @@ wget https://raw.githubusercontent.com/elastic/examples/master/ELK_nginx-json/ng
 wget https://raw.githubusercontent.com/elastic/examples/master/ELK_nginx-json/nginx_json_logs
 ```
 
-** The JSON formatted nginx logs used in this example were created with the following `log_format` entry in the `nginx.config` file.
+** The JSON formatted NGINX logs used in this example were created with the following `log_format` entry in the `nginx.config` file.
 
 ```
 log_format json_logstash '{ "time": "$time_local", '
