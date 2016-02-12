@@ -1,0 +1,9 @@
+# /etc/packetbeat/packetbeat.yml
+interfaces:
+  device: en0
+protocols:
+  dns:
+    ports: [53]
+output:
+  elasticsearch:
+    hosts: ["localhost:9200"]
