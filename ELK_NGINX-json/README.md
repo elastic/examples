@@ -37,10 +37,10 @@ Unfortunately, Github does not provide a convenient one-click option to download
 ```shell
 mkdir  nginx_json_ELK_Example
 cd nginx_json_ELK_Example
-wget https://raw.githubusercontent.com/elastic/examples/master/ELK_nginx-json/nginx_json_logstash.conf
-wget https://raw.githubusercontent.com/elastic/examples/master/ELK_nginx-json/nginx_json_kibana.json
-wget https://raw.githubusercontent.com/elastic/examples/master/ELK_nginx-json/nginx_json_template.json
-wget https://raw.githubusercontent.com/elastic/examples/master/ELK_nginx-json/nginx_json_logs
+wget https://raw.githubusercontent.com/elastic/examples/master/ELK_NGINX-json/nginx_json_logstash.conf
+wget https://raw.githubusercontent.com/elastic/examples/master/ELK_NGINX-json/nginx_json_kibana.json
+wget https://raw.githubusercontent.com/elastic/examples/master/ELK_NGINX-json/nginx_json_template.json
+wget https://raw.githubusercontent.com/elastic/examples/master/ELK_NGINX-json/nginx_json_logs
 ```
 
 ** The JSON formatted NGINX logs used in this example were created with the following `log_format` entry in the `nginx.config` file.

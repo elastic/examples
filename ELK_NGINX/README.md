@@ -42,10 +42,10 @@ log_format combined '$remote_addr - $remote_user [$time_local] '
 ```shell
 mkdir  nginx_ELK_Example
 cd nginx_ELK_Example
-wget https://raw.githubusercontent.com/elastic/examples/master/ELK_nginx/nginx_logstash.conf
-wget https://raw.githubusercontent.com/elastic/examples/master/ELK_nginx/nginx_template.json
-wget https://raw.githubusercontent.com/elastic/examples/master/ELK_nginx/nginx_kibana.json
-wget https://raw.githubusercontent.com/elastic/examples/master/ELK_nginx/nginx_logs
+wget https://raw.githubusercontent.com/elastic/examples/master/ELK_NGINX/nginx_logstash.conf
+wget https://raw.githubusercontent.com/elastic/examples/master/ELK_NGINX/nginx_template.json
+wget https://raw.githubusercontent.com/elastic/examples/master/ELK_NGINX/nginx_kibana.json
+wget https://raw.githubusercontent.com/elastic/examples/master/ELK_NGINX/nginx_logs
 ```
 
 ### Run Example
