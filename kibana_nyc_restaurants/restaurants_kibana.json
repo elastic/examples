@@ -1,0 +1,610 @@
+[
+  {
+    "_id": "House-Spending",
+    "_type": "dashboard",
+    "_source": {
+      "title": "House Spending",
+      "hits": 0,
+      "description": "",
+      "panelsJSON": "[{\"col\":1,\"id\":\"House-Spending:-Word-Cloud-Payee\",\"panelIndex\":1,\"row\":1,\"size_x\":5,\"size_y\":5,\"type\":\"visualization\"},{\"col\":6,\"id\":\"House-Spending:-Word-Cloud-Purpose\",\"panelIndex\":2,\"row\":1,\"size_x\":7,\"size_y\":5,\"type\":\"visualization\"}]",
+      "optionsJSON": "{\"darkTheme\":false}",
+      "uiStateJSON": "{}",
+      "version": 1,
+      "timeRestore": false,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[{\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}}}]}"
+      }
+    }
+  },
+  {
+    "_id": "HOUSE-SPENDING:-2",
+    "_type": "dashboard",
+    "_source": {
+      "title": "HOUSE SPENDING: 2",
+      "hits": 0,
+      "description": "",
+      "panelsJSON": "[{\"col\":1,\"id\":\"House-Spending:-Word-Cloud-Payee\",\"panelIndex\":1,\"row\":4,\"size_x\":6,\"size_y\":4,\"type\":\"visualization\"},{\"col\":7,\"id\":\"House-Spending:-Word-Cloud-Purpose\",\"panelIndex\":2,\"row\":4,\"size_x\":6,\"size_y\":4,\"type\":\"visualization\"},{\"col\":5,\"id\":\"House-Spending:-Trends-over-time-(vs-Cat)\",\"panelIndex\":3,\"row\":1,\"size_x\":8,\"size_y\":3,\"type\":\"visualization\"},{\"id\":\"House-Spending:-Category\",\"type\":\"visualization\",\"panelIndex\":4,\"size_x\":4,\"size_y\":3,\"col\":1,\"row\":1}]",
+      "optionsJSON": "{\"darkTheme\":false}",
+      "uiStateJSON": "{}",
+      "version": 1,
+      "timeRestore": false,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[{\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}}}]}"
+      }
+    }
+  },
+  {
+    "_id": "Kibana-Webinar",
+    "_type": "dashboard",
+    "_source": {
+      "title": "Kibana Webinar",
+      "hits": 0,
+      "description": "",
+      "panelsJSON": "[{\"col\":1,\"id\":\"Kibana-Webinar:-Summary\",\"panelIndex\":1,\"row\":1,\"size_x\":12,\"size_y\":7,\"type\":\"visualization\"}]",
+      "optionsJSON": "{\"darkTheme\":false}",
+      "uiStateJSON": "{}",
+      "version": 1,
+      "timeRestore": false,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[{\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}}}]}"
+      }
+    }
+  },
+  {
+    "_id": "DOHMH:-Restaurant",
+    "_type": "dashboard",
+    "_source": {
+      "title": "DOHMH: Restaurant",
+      "hits": 0,
+      "description": "",
+      "panelsJSON": "[{\"col\":1,\"id\":\"DOHMH:-Description\",\"panelIndex\":9,\"row\":1,\"size_x\":4,\"size_y\":2,\"type\":\"visualization\"},{\"col\":1,\"id\":\"DOHMH:-Restaurant-Review\",\"panelIndex\":10,\"row\":3,\"size_x\":4,\"size_y\":2,\"type\":\"visualization\"},{\"id\":\"DOHMH:-Violation-Details\",\"type\":\"search\",\"panelIndex\":11,\"size_x\":8,\"size_y\":5,\"col\":5,\"row\":3,\"columns\":[\"Violation_Code\",\"Violation_Description\",\"Critical_Flag\"],\"sort\":[\"Inspection_Date\",\"desc\"]},{\"id\":\"DOHMH:-Inspections-and-Flags-(vs-time)\",\"type\":\"visualization\",\"panelIndex\":13,\"size_x\":8,\"size_y\":2,\"col\":5,\"row\":1},{\"id\":\"DOHMH:-Violation-Code-Distribution\",\"type\":\"visualization\",\"panelIndex\":14,\"size_x\":4,\"size_y\":3,\"col\":1,\"row\":5}]",
+      "optionsJSON": "{\"darkTheme\":false}",
+      "uiStateJSON": "{\"vis\":{\"colors\":{\"Critical\":\"#BF1B00\",\"Not Applicable\":\"#D683CE\",\"Not Critical\":\"#E5AC0E\"}}}",
+      "version": 1,
+      "timeRestore": false,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[{\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}}}]}"
+      }
+    }
+  },
+  {
+    "_id": "DOHMH:-Overview",
+    "_type": "dashboard",
+    "_source": {
+      "title": "DOHMH: Overview",
+      "hits": 0,
+      "description": "",
+      "panelsJSON": "[{\"col\":1,\"id\":\"DOHMH:-Description\",\"panelIndex\":16,\"row\":1,\"size_x\":2,\"size_y\":3,\"type\":\"visualization\"},{\"col\":3,\"id\":\"DOHMH:-Worst-Restaurants\",\"panelIndex\":17,\"row\":4,\"size_x\":5,\"size_y\":3,\"type\":\"visualization\"},{\"col\":3,\"id\":\"DOHMH:-Boro-ampersand-Grade\",\"panelIndex\":18,\"row\":1,\"size_x\":3,\"size_y\":3,\"type\":\"visualization\"},{\"col\":6,\"id\":\"DOHMH:-Score-and-Restaurants-(vs-time)\",\"panelIndex\":19,\"row\":1,\"size_x\":7,\"size_y\":3,\"type\":\"visualization\"},{\"col\":1,\"id\":\"DOHMH:-KPI\",\"panelIndex\":20,\"row\":4,\"size_x\":2,\"size_y\":3,\"type\":\"visualization\"},{\"col\":1,\"id\":\"DOHMH:-Violation-and-Restaurants\",\"panelIndex\":21,\"row\":7,\"size_x\":7,\"size_y\":4,\"type\":\"visualization\"},{\"col\":8,\"id\":\"DOHMH:-Average-Score-Map\",\"panelIndex\":22,\"row\":4,\"size_x\":5,\"size_y\":7,\"type\":\"visualization\"}]",
+      "optionsJSON": "{\"darkTheme\":false}",
+      "uiStateJSON": "{\"P-19\":{\"spy\":{\"mode\":{\"fill\":false,\"name\":null}}},\"P-21\":{\"vis\":{\"colors\":{\"Asian\":\"#5195CE\",\"CafÃ©/Coffee/Tea\":\"#CFFAFF\",\"Café/Coffee/Tea\":\"#0A50A1\",\"Caribbean\":\"#447EBC\",\"Chicken\":\"#0A437C\",\"Chinese\":\"#82B5D8\",\"Donuts\":\"#FCE2DE\",\"Indian\":\"#BADFF4\",\"Japanese\":\"#BADFF4\",\"Juice, Smoothies, Fruit Salads\":\"#2F575E\",\"Korean\":\"#82B5D8\",\"Latin (Cuban, Dominican, Puerto Rican, South & Central American)\":\"#70DBED\",\"Mexican\":\"#82B5D8\",\"Middle Eastern\":\"#BA43A9\",\"Spanish\":\"#1F78C1\",\"Thai\":\"#CFFAFF\"}}},\"P-18\":{\"vis\":{\"colors\":{\"A\":\"#508642\",\"B\":\"#E5AC0E\",\"C\":\"#E24D42\",\"\":\"#447EBC\",\"Critical\":\"#BF1B00\",\"Not Critical\":\"#629E51\",\"Not Applicable\":\"#3F2B5B\",\"BRONX\":\"#65C5DB\",\"STATEN ISLAND\":\"#890F02\",\"P\":\"#EA6460\",\"Z\":\"#BADFF4\",\"Not Yet Graded\":\"#CFFAFF\",\"BROOKLYN\":\"#962D82\"}}}}",
+      "version": 1,
+      "timeRestore": true,
+      "timeTo": "now",
+      "timeFrom": "now-90d",
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[{\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}}}]}"
+      }
+    }
+  },
+  {
+    "_id": "NYC:-Overview",
+    "_type": "dashboard",
+    "_source": {
+      "title": "NYC: Overview",
+      "hits": 0,
+      "description": "",
+      "panelsJSON": "[{\"id\":\"NYC:-KPI\",\"type\":\"visualization\",\"panelIndex\":1,\"size_x\":3,\"size_y\":3,\"col\":1,\"row\":1},{\"id\":\"NYC:-Grade-and-Boro-Distribution\",\"type\":\"visualization\",\"panelIndex\":2,\"size_x\":4,\"size_y\":4,\"col\":1,\"row\":4},{\"id\":\"NYC:-Score-vs-Time\",\"type\":\"visualization\",\"panelIndex\":3,\"size_x\":9,\"size_y\":3,\"col\":4,\"row\":1},{\"id\":\"NYC:-Score-Map\",\"type\":\"visualization\",\"panelIndex\":4,\"size_x\":8,\"size_y\":4,\"col\":5,\"row\":4}]",
+      "optionsJSON": "{\"darkTheme\":false}",
+      "uiStateJSON": "{}",
+      "version": 1,
+      "timeRestore": false,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[{\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}}}]}"
+      }
+    }
+  },
+  {
+    "_id": "NYC-Restaurant:-Inspections",
+    "_type": "search",
+    "_source": {
+      "title": "NYC Restaurant: Inspections",
+      "description": "",
+      "hits": 0,
+      "columns": [
+        "_source"
+      ],
+      "sort": [
+        "Inspection_Date",
+        "desc"
+      ],
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"nyc_restaurants\",\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[],\"highlight\":{\"pre_tags\":[\"@kibana-highlighted-field@\"],\"post_tags\":[\"@/kibana-highlighted-field@\"],\"fields\":{\"*\":{}},\"require_field_match\":false,\"fragment_size\":2147483647}}"
+      }
+    }
+  },
+  {
+    "_id": "DOHMH:-Violation-Details",
+    "_type": "search",
+    "_source": {
+      "title": "DOHMH: Violation Details",
+      "description": "",
+      "hits": 0,
+      "columns": [
+        "Violation_Code",
+        "Violation_Description",
+        "Critical_Flag"
+      ],
+      "sort": [
+        "Inspection_Date",
+        "desc"
+      ],
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"nyc_restaurants\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[],\"highlight\":{\"pre_tags\":[\"@kibana-highlighted-field@\"],\"post_tags\":[\"@/kibana-highlighted-field@\"],\"fields\":{\"*\":{}},\"require_field_match\":false,\"fragment_size\":2147483647}}"
+      }
+    }
+  },
+  {
+    "_id": "House-Spending:-Personnel-Compesation",
+    "_type": "visualization",
+    "_source": {
+      "title": "House Spending: Personnel Compesation",
+      "visState": "{\"aggs\":[{\"id\":\"1\",\"params\":{\"field\":\"AMOUNT\"},\"schema\":\"metric\",\"type\":\"sum\"},{\"id\":\"4\",\"params\":{\"field\":\"CATEGORY\",\"order\":\"desc\",\"orderBy\":\"1\",\"size\":5},\"schema\":\"group\",\"type\":\"terms\"},{\"id\":\"2\",\"params\":{\"customInterval\":\"2h\",\"extended_bounds\":{},\"field\":\"START_DATE\",\"interval\":\"y\",\"min_doc_count\":1},\"schema\":\"segment\",\"type\":\"date_histogram\"},{\"id\":\"3\",\"params\":{},\"schema\":\"radius\",\"type\":\"count\"}],\"listeners\":{},\"params\":{\"addLegend\":true,\"addTimeMarker\":false,\"addTooltip\":true,\"defaultYExtents\":false,\"drawLinesBetweenPoints\":true,\"interpolate\":\"linear\",\"radiusRatio\":9,\"scale\":\"linear\",\"setYExtents\":false,\"shareYAxis\":true,\"showCircles\":true,\"smoothLines\":false,\"times\":[],\"yAxis\":{}},\"title\":\"New Visualization\",\"type\":\"line\"}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"house_spending\",\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[{\"$state\":{\"store\":\"appState\"},\"meta\":{\"alias\":null,\"apply\":true,\"disabled\":false,\"index\":\"house_spending\",\"key\":\"CATEGORY\",\"negate\":false,\"value\":\"PERSONNEL COMPENSATION\"},\"query\":{\"match\":{\"CATEGORY\":{\"query\":\"PERSONNEL COMPENSATION\",\"type\":\"phrase\"}}}}]}"
+      }
+    }
+  },
+  {
+    "_id": "House-Spending:-Pers.-Comp-vs-time",
+    "_type": "visualization",
+    "_source": {
+      "title": "House Spending: Pers. Comp vs time",
+      "visState": "{\"title\":\"New Visualization\",\"type\":\"histogram\",\"params\":{\"addLegend\":true,\"addTimeMarker\":false,\"addTooltip\":true,\"defaultYExtents\":false,\"mode\":\"stacked\",\"scale\":\"linear\",\"setYExtents\":false,\"shareYAxis\":true,\"times\":[],\"yAxis\":{}},\"aggs\":[{\"id\":\"1\",\"type\":\"sum\",\"schema\":\"metric\",\"params\":{\"field\":\"AMOUNT\",\"customLabel\":\"Amount\"}},{\"id\":\"2\",\"type\":\"date_histogram\",\"schema\":\"segment\",\"params\":{\"field\":\"START_DATE\",\"interval\":\"y\",\"customInterval\":\"2h\",\"min_doc_count\":1,\"extended_bounds\":{}}},{\"id\":\"3\",\"type\":\"terms\",\"schema\":\"group\",\"params\":{\"field\":\"CATEGORY\",\"size\":5,\"order\":\"desc\",\"orderBy\":\"1\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"house_spending\",\"query\":{\"query_string\":{\"query\":\"CATEGORY: \\\"PERSONNEL COMPENSATION\\\"\",\"analyze_wildcard\":true}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "House-Spending:-Word-Cloud-Purpose",
+    "_type": "visualization",
+    "_source": {
+      "title": "House Spending: Word Cloud Purpose",
+      "visState": "{\"title\":\"House Spending: Word Cloud Purpose\",\"type\":\"tagcloud\",\"params\":{\"textScale\":\"linear\",\"orientations\":1,\"fromDegree\":0,\"toDegree\":0,\"font\":\"serif\",\"fontStyle\":\"normal\",\"fontWeight\":\"normal\",\"timeInterval\":500,\"spiral\":\"archimedean\",\"minFontSize\":\"12\",\"maxFontSize\":\"46\"},\"aggs\":[{\"id\":\"1\",\"type\":\"sum\",\"schema\":\"metric\",\"params\":{\"field\":\"AMOUNT\"}},{\"id\":\"2\",\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"PURPOSE.raw\",\"size\":100,\"order\":\"desc\",\"orderBy\":\"1\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"house_spending\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "House-Spending:-Word-Cloud-Payee",
+    "_type": "visualization",
+    "_source": {
+      "title": "House Spending: Word Cloud Payee",
+      "visState": "{\"title\":\"House Spending: Word Cloud Payee\",\"type\":\"tagcloud\",\"params\":{\"textScale\":\"linear\",\"orientations\":1,\"fromDegree\":0,\"toDegree\":0,\"font\":\"serif\",\"fontStyle\":\"normal\",\"fontWeight\":\"normal\",\"timeInterval\":500,\"spiral\":\"archimedean\",\"minFontSize\":\"12\",\"maxFontSize\":\"37\"},\"aggs\":[{\"id\":\"1\",\"type\":\"sum\",\"schema\":\"metric\",\"params\":{\"field\":\"AMOUNT\"}},{\"id\":\"2\",\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"PAYEE.raw\",\"size\":500,\"order\":\"desc\",\"orderBy\":\"1\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"house_spending\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "House-Spending:-Temp-Employee",
+    "_type": "visualization",
+    "_source": {
+      "title": "House Spending: Temp Employee",
+      "visState": "{\"title\":\"House Spending: Trends over time (vs Cat)\",\"type\":\"line\",\"params\":{\"addLegend\":true,\"addTimeMarker\":false,\"addTooltip\":true,\"defaultYExtents\":false,\"drawLinesBetweenPoints\":true,\"interpolate\":\"linear\",\"radiusRatio\":9,\"scale\":\"square root\",\"setYExtents\":false,\"shareYAxis\":true,\"showCircles\":true,\"smoothLines\":false,\"times\":[],\"yAxis\":{}},\"aggs\":[{\"id\":\"1\",\"type\":\"sum\",\"schema\":\"metric\",\"params\":{\"field\":\"AMOUNT\"}},{\"id\":\"3\",\"type\":\"terms\",\"schema\":\"group\",\"params\":{\"field\":\"CATEGORY\",\"size\":10,\"order\":\"desc\",\"orderBy\":\"1\"}},{\"id\":\"2\",\"type\":\"date_histogram\",\"schema\":\"segment\",\"params\":{\"field\":\"START_DATE\",\"interval\":\"y\",\"customInterval\":\"2h\",\"min_doc_count\":1,\"extended_bounds\":{}}},{\"id\":\"4\",\"type\":\"count\",\"schema\":\"radius\",\"params\":{}}],\"listeners\":{}}",
+      "uiStateJSON": "{\"spy\":{\"mode\":{\"name\":null,\"fill\":false}}}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"house_spending\",\"query\":{\"query_string\":{\"query\":\"PURPOSE: \\\"TEMPORARY EMPLOYEE\\\"\",\"analyze_wildcard\":true}},\"filter\":[{\"$state\":{\"store\":\"appState\"},\"meta\":{\"alias\":null,\"disabled\":false,\"index\":\"house_spending\",\"key\":\"CATEGORY\",\"negate\":false,\"value\":\"PERSONNEL COMPENSATION\"},\"query\":{\"match\":{\"CATEGORY\":{\"query\":\"PERSONNEL COMPENSATION\",\"type\":\"phrase\"}}}}]}"
+      }
+    }
+  },
+  {
+    "_id": "House-Spending:-FRANKED-MAILE",
+    "_type": "visualization",
+    "_source": {
+      "title": "House Spending: FRANKED MAILE",
+      "visState": "{\"title\":\"House Spending: Pers. Comp vs time\",\"type\":\"histogram\",\"params\":{\"addLegend\":true,\"addTimeMarker\":false,\"addTooltip\":true,\"defaultYExtents\":false,\"mode\":\"stacked\",\"scale\":\"linear\",\"setYExtents\":false,\"shareYAxis\":true,\"times\":[],\"yAxis\":{}},\"aggs\":[{\"id\":\"1\",\"type\":\"sum\",\"schema\":\"metric\",\"params\":{\"field\":\"AMOUNT\",\"customLabel\":\"Amount\"}},{\"id\":\"2\",\"type\":\"date_histogram\",\"schema\":\"segment\",\"params\":{\"field\":\"START_DATE\",\"interval\":\"y\",\"customInterval\":\"2h\",\"min_doc_count\":1,\"extended_bounds\":{}}},{\"id\":\"3\",\"type\":\"terms\",\"schema\":\"group\",\"params\":{\"field\":\"CATEGORY\",\"size\":5,\"order\":\"desc\",\"orderBy\":\"1\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"house_spending\",\"query\":{\"query_string\":{\"query\":\"\\\"FRANKED MAIL\\\"\",\"analyze_wildcard\":true}},\"filter\":[{\"meta\":{\"index\":\"house_spending\",\"key\":\"CATEGORY\",\"value\":\"FRANKED MAIL\",\"disabled\":false,\"negate\":false,\"alias\":null},\"query\":{\"match\":{\"CATEGORY\":{\"query\":\"FRANKED MAIL\",\"type\":\"phrase\"}}},\"$state\":{\"store\":\"appState\"}}]}"
+      }
+    }
+  },
+  {
+    "_id": "House-Spending:-FRANKED-MAIL",
+    "_type": "visualization",
+    "_source": {
+      "title": "House Spending: FRANKED MAIL",
+      "visState": "{\"aggs\":[{\"id\":\"1\",\"params\":{\"customLabel\":\"Amount\",\"field\":\"AMOUNT\"},\"schema\":\"metric\",\"type\":\"sum\"},{\"id\":\"2\",\"params\":{\"customInterval\":\"2h\",\"extended_bounds\":{},\"field\":\"START_DATE\",\"interval\":\"y\",\"min_doc_count\":1},\"schema\":\"segment\",\"type\":\"date_histogram\"},{\"id\":\"3\",\"params\":{\"field\":\"CATEGORY\",\"order\":\"desc\",\"orderBy\":\"1\",\"size\":5},\"schema\":\"group\",\"type\":\"terms\"}],\"listeners\":{},\"params\":{\"addLegend\":true,\"addTimeMarker\":false,\"addTooltip\":true,\"defaultYExtents\":false,\"mode\":\"stacked\",\"scale\":\"linear\",\"setYExtents\":false,\"shareYAxis\":true,\"times\":[],\"yAxis\":{}},\"title\":\"House Spending: FRANKED MAILE\",\"type\":\"histogram\"}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"house_spending\",\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"\\\"FRANKED MAIL\\\"\"}},\"filter\":[{\"$state\":{\"store\":\"appState\"},\"meta\":{\"alias\":null,\"disabled\":false,\"index\":\"house_spending\",\"key\":\"CATEGORY\",\"negate\":false,\"value\":\"FRANKED MAIL\"},\"query\":{\"match\":{\"CATEGORY\":{\"query\":\"FRANKED MAIL\",\"type\":\"phrase\"}}}}]}"
+      }
+    }
+  },
+  {
+    "_id": "House-Spending:-Trends-over-time-(vs-Payee)",
+    "_type": "visualization",
+    "_source": {
+      "title": "House Spending: Trends over time (vs Payee)",
+      "visState": "{\"title\":\"House Spending: Trends over time (vs Cat)\",\"type\":\"line\",\"params\":{\"shareYAxis\":true,\"addTooltip\":true,\"addLegend\":true,\"showCircles\":true,\"smoothLines\":false,\"interpolate\":\"linear\",\"scale\":\"square root\",\"drawLinesBetweenPoints\":false,\"radiusRatio\":9,\"times\":[],\"addTimeMarker\":false,\"defaultYExtents\":false,\"setYExtents\":false,\"yAxis\":{}},\"aggs\":[{\"id\":\"1\",\"type\":\"sum\",\"schema\":\"metric\",\"params\":{\"field\":\"AMOUNT\"}},{\"id\":\"3\",\"type\":\"terms\",\"schema\":\"group\",\"params\":{\"field\":\"PAYEE.raw\",\"size\":25,\"order\":\"desc\",\"orderBy\":\"1\"}},{\"id\":\"2\",\"type\":\"date_histogram\",\"schema\":\"segment\",\"params\":{\"field\":\"START_DATE\",\"interval\":\"M\",\"customInterval\":\"2h\",\"min_doc_count\":1,\"extended_bounds\":{}}},{\"id\":\"4\",\"type\":\"count\",\"schema\":\"radius\",\"params\":{}}],\"listeners\":{}}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"house_spending\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "House-Spending:-Trends-over-time-(vs-Cat)",
+    "_type": "visualization",
+    "_source": {
+      "title": "House Spending: Trends over time (vs Cat)",
+      "visState": "{\"title\":\"House Spending: Trends over time (vs Cat)\",\"type\":\"line\",\"params\":{\"shareYAxis\":true,\"addTooltip\":true,\"addLegend\":true,\"showCircles\":true,\"smoothLines\":false,\"interpolate\":\"linear\",\"scale\":\"square root\",\"drawLinesBetweenPoints\":false,\"radiusRatio\":9,\"times\":[],\"addTimeMarker\":false,\"defaultYExtents\":false,\"setYExtents\":false,\"yAxis\":{}},\"aggs\":[{\"id\":\"1\",\"type\":\"sum\",\"schema\":\"metric\",\"params\":{\"field\":\"AMOUNT\"}},{\"id\":\"3\",\"type\":\"terms\",\"schema\":\"group\",\"params\":{\"field\":\"CATEGORY\",\"size\":10,\"order\":\"desc\",\"orderBy\":\"1\"}},{\"id\":\"2\",\"type\":\"date_histogram\",\"schema\":\"segment\",\"params\":{\"field\":\"START_DATE\",\"interval\":\"M\",\"customInterval\":\"2h\",\"min_doc_count\":1,\"extended_bounds\":{}}},{\"id\":\"4\",\"type\":\"count\",\"schema\":\"radius\",\"params\":{}}],\"listeners\":{}}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"house_spending\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "House-Spending:-Top-Payee",
+    "_type": "visualization",
+    "_source": {
+      "title": "House Spending: Top Payee",
+      "visState": "{\"title\":\"New Visualization\",\"type\":\"table\",\"params\":{\"perPage\":10,\"showPartialRows\":false,\"showMeticsAtAllLevels\":false},\"aggs\":[{\"id\":\"1\",\"type\":\"sum\",\"schema\":\"metric\",\"params\":{\"field\":\"AMOUNT\"}},{\"id\":\"2\",\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"PAYEE.raw\",\"size\":50,\"order\":\"desc\",\"orderBy\":\"1\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"house_spending\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "New-Visualization",
+    "_type": "visualization",
+    "_source": {
+      "title": "New Visualization",
+      "visState": "{\"title\":\"New Visualization\",\"type\":\"pie\",\"params\":{\"shareYAxis\":true,\"addTooltip\":true,\"addLegend\":true,\"isDonut\":true},\"aggs\":[{\"id\":\"1\",\"type\":\"cardinality\",\"schema\":\"metric\",\"params\":{\"field\":\"Camis\",\"customLabel\":\"# of Restaurants\"}},{\"id\":\"3\",\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"Boro\",\"size\":5,\"order\":\"desc\",\"orderBy\":\"1\"}},{\"id\":\"2\",\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"Grade\",\"size\":10,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"Grade\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{\"vis\":{\"colors\":{\"A\":\"#508642\",\"B\":\"#E5AC0E\",\"C\":\"#E24D42\",\"\":\"#447EBC\",\"Critical\":\"#BF1B00\",\"Not Critical\":\"#629E51\",\"Not Applicable\":\"#3F2B5B\",\"BRONX\":\"#E5A8E2\",\"STATEN ISLAND\":\"#F9D9F9\"},\"legendOpen\":true}}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"nyc_restaurants\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[{\"meta\":{\"index\":\"nyc_restaurants\",\"negate\":true,\"key\":\"Grade\",\"value\":\"\",\"disabled\":false,\"alias\":null},\"query\":{\"match\":{\"Grade\":{\"query\":\"\",\"type\":\"phrase\"}}},\"$state\":{\"store\":\"appState\"}}]}"
+      }
+    }
+  },
+  {
+    "_id": "House-Spending:-Heatmap-Office-vs-Cat",
+    "_type": "visualization",
+    "_source": {
+      "title": "House Spending: Heatmap Office vs Cat",
+      "visState": "{\"title\":\"House Spending: Heatmap Office vs Cat\",\"type\":\"heatmap\",\"params\":{\"margin\":{\"top\":20,\"right\":200,\"bottom\":100,\"left\":100},\"stroke\":\"#eee\",\"strokeWidth\":1,\"padding\":0,\"rowAxis\":{\"title\":\"OFFICE.raw: Descending\"},\"columnAxis\":{\"title\":\"CATEGORY: Ascending\"}},\"aggs\":[{\"id\":\"1\",\"type\":\"avg\",\"schema\":\"metric\",\"params\":{\"field\":\"AMOUNT\"}},{\"id\":\"3\",\"type\":\"terms\",\"schema\":\"rows\",\"params\":{\"field\":\"OFFICE.raw\",\"size\":100,\"orderAgg\":{\"id\":\"3-orderAgg\",\"type\":\"sum\",\"schema\":\"orderAgg\",\"params\":{\"field\":\"AMOUNT\"}},\"order\":\"desc\",\"orderBy\":\"custom\"}},{\"id\":\"2\",\"type\":\"terms\",\"schema\":\"columns\",\"params\":{\"field\":\"CATEGORY\",\"size\":10,\"order\":\"asc\",\"orderBy\":\"_term\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"house_spending\",\"query\":{\"query_string\":{\"query\":\"OFFICE: HON.\",\"analyze_wildcard\":true}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "House-Spending:-Payee",
+    "_type": "visualization",
+    "_source": {
+      "title": "House Spending: Payee",
+      "visState": "{\"title\":\"New Visualization\",\"type\":\"table\",\"params\":{\"perPage\":10,\"showMeticsAtAllLevels\":false,\"showPartialRows\":false},\"aggs\":[{\"id\":\"1\",\"type\":\"sum\",\"schema\":\"metric\",\"params\":{\"field\":\"AMOUNT\"}},{\"id\":\"2\",\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"PAYEE.raw\",\"size\":10,\"order\":\"desc\",\"orderBy\":\"1\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"house_spending\",\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[{\"meta\":{\"index\":\"house_spending\",\"key\":\"PAYEE.raw\",\"value\":\"\",\"disabled\":false,\"negate\":true,\"alias\":null},\"query\":{\"match\":{\"PAYEE.raw\":{\"query\":\"\",\"type\":\"phrase\"}}},\"$state\":{\"store\":\"appState\"}}]}"
+      }
+    }
+  },
+  {
+    "_id": "HOUSE-SPENDING:-CATEGORY",
+    "_type": "visualization",
+    "_source": {
+      "title": "HOUSE SPENDING: CATEGORY",
+      "visState": "{\"title\":\"\",\"type\":\"histogram\",\"params\":{\"shareYAxis\":true,\"addTooltip\":true,\"addLegend\":true,\"scale\":\"linear\",\"mode\":\"stacked\",\"times\":[],\"addTimeMarker\":false,\"defaultYExtents\":false,\"setYExtents\":false,\"yAxis\":{}},\"aggs\":[{\"id\":\"3\",\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"CATEGORY\",\"size\":100,\"order\":\"desc\",\"orderBy\":\"2\"}},{\"id\":\"2\",\"type\":\"count\",\"schema\":\"metric\",\"params\":{}}],\"listeners\":{}}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"house_spending\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "House-Spending:-Category",
+    "_type": "visualization",
+    "_source": {
+      "title": "House Spending: Category",
+      "visState": "{\"title\":\"New Visualization\",\"type\":\"pie\",\"params\":{\"shareYAxis\":true,\"addTooltip\":true,\"addLegend\":true,\"isDonut\":false},\"aggs\":[{\"id\":\"1\",\"type\":\"sum\",\"schema\":\"metric\",\"params\":{\"field\":\"AMOUNT\"}},{\"id\":\"2\",\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"CATEGORY\",\"size\":20,\"order\":\"desc\",\"orderBy\":\"1\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"house_spending\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "DOHMH:-Restaurant-Review",
+    "_type": "visualization",
+    "_source": {
+      "title": "DOHMH: Restaurant Review",
+      "visState": "{\"title\":\"New Visualization\",\"type\":\"table\",\"params\":{\"perPage\":10,\"showPartialRows\":false,\"showMeticsAtAllLevels\":false},\"aggs\":[{\"id\":\"1\",\"type\":\"avg\",\"schema\":\"metric\",\"params\":{\"field\":\"Score\"}},{\"id\":\"2\",\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"Dba\",\"size\":5,\"order\":\"desc\",\"orderBy\":\"1\"}},{\"id\":\"3\",\"type\":\"cardinality\",\"schema\":\"metric\",\"params\":{\"field\":\"Violation_Code\",\"customLabel\":\"# of Violations\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"nyc_restaurants\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "DOHMH:-Description",
+    "_type": "visualization",
+    "_source": {
+      "title": "DOHMH: Description",
+      "visState": "{\"title\":\"DOHMH: Description\",\"type\":\"markdown\",\"params\":{\"markdown\":\"#### NYC Restaurant Inspection \\n\\n**Dashboards** \\n\\n* [Overview](http://localhost:5601/app/kibana#/dashboard/DOHMH:-Overview)\\n* [Restaurant Metrics](http://localhost:5601/app/kibana#/dashboard/DOHMH:-Restaurant?)\\n\\n## \\n\\n**Data Source**: [https://data.cityofnewyork.us/](https://data.cityofnewyork.us/Health/DOHMH-New-York-City-Restaurant-Inspection-Results/43nn-pn8j)\"},\"aggs\":[],\"listeners\":{}}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "DOHMH:-Average-Score-Map",
+    "_type": "visualization",
+    "_source": {
+      "title": "DOHMH: Average Score Map",
+      "visState": "{\"title\":\"NYC Restaurant: Location Score\",\"type\":\"tile_map\",\"params\":{\"addTooltip\":true,\"heatBlur\":\"8\",\"heatMaxZoom\":\"16\",\"heatMinOpacity\":\"0.66\",\"heatNormalizeData\":true,\"heatRadius\":\"6\",\"isDesaturated\":true,\"mapType\":\"Heatmap\",\"wms\":{\"enabled\":false,\"options\":{\"attribution\":\"Maps provided by USGS\",\"format\":\"image/png\",\"layers\":\"0\",\"styles\":\"\",\"transparent\":true,\"version\":\"1.3.0\"},\"url\":\"https://basemap.nationalmap.gov/arcgis/services/USGSTopo/MapServer/WMSServer\"}},\"aggs\":[{\"id\":\"1\",\"type\":\"avg\",\"schema\":\"metric\",\"params\":{\"field\":\"Score\"}},{\"id\":\"2\",\"type\":\"geohash_grid\",\"schema\":\"segment\",\"params\":{\"field\":\"Coord\",\"autoPrecision\":true,\"mapZoom\":12,\"mapCenter\":[40.7508982634657,-73.89232635498047],\"precision\":7}}],\"listeners\":{}}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"nyc_restaurants\",\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "DOHMH:-Location",
+    "_type": "visualization",
+    "_source": {
+      "title": "DOHMH: Location",
+      "visState": "{\"title\":\"NYC Restaurant: Location\",\"type\":\"tile_map\",\"params\":{\"addTooltip\":true,\"heatBlur\":15,\"heatMaxZoom\":16,\"heatMinOpacity\":0.1,\"heatNormalizeData\":true,\"heatRadius\":25,\"isDesaturated\":true,\"mapType\":\"Scaled Circle Markers\",\"wms\":{\"enabled\":false,\"options\":{\"attribution\":\"Maps provided by USGS\",\"format\":\"image/png\",\"layers\":\"0\",\"styles\":\"\",\"transparent\":true,\"version\":\"1.3.0\"},\"url\":\"https://basemap.nationalmap.gov/arcgis/services/USGSTopo/MapServer/WMSServer\"}},\"aggs\":[{\"id\":\"1\",\"type\":\"cardinality\",\"schema\":\"metric\",\"params\":{\"field\":\"Inspection_Date\"}},{\"id\":\"2\",\"type\":\"geohash_grid\",\"schema\":\"segment\",\"params\":{\"field\":\"Coord\",\"autoPrecision\":true,\"mapZoom\":2,\"mapCenter\":[15.114552871944102,4.921875],\"precision\":3}}],\"listeners\":{}}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"nyc_restaurants\",\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "DOHMH:-Violation-Code-Distribution",
+    "_type": "visualization",
+    "_source": {
+      "title": "DOHMH: Violation Code Distribution",
+      "visState": "{\"title\":\"NYC Restaurants: Violation Code\",\"type\":\"pie\",\"params\":{\"shareYAxis\":true,\"addTooltip\":true,\"addLegend\":true,\"isDonut\":false},\"aggs\":[{\"id\":\"1\",\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"Violation_Code\",\"size\":50,\"order\":\"desc\",\"orderBy\":\"1\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"nyc_restaurants\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "DOHMH:-Score-and-Restaurants-(vs-time)",
+    "_type": "visualization",
+    "_source": {
+      "title": "DOHMH: Score and Restaurants (vs time)",
+      "visState": "{\"title\":\"DOHMH: Score and Restaurants (vs time)\",\"type\":\"line\",\"params\":{\"addLegend\":true,\"addTimeMarker\":false,\"addTooltip\":true,\"defaultYExtents\":true,\"drawLinesBetweenPoints\":false,\"interpolate\":\"linear\",\"radiusRatio\":\"11\",\"scale\":\"linear\",\"setYExtents\":false,\"shareYAxis\":true,\"showCircles\":true,\"smoothLines\":false,\"times\":[],\"yAxis\":{}},\"aggs\":[{\"id\":\"1\",\"type\":\"avg\",\"schema\":\"metric\",\"params\":{\"field\":\"Score\"}},{\"id\":\"4\",\"type\":\"terms\",\"schema\":\"group\",\"params\":{\"field\":\"Boro\",\"size\":5,\"order\":\"desc\",\"orderBy\":\"3\"}},{\"id\":\"2\",\"type\":\"date_histogram\",\"schema\":\"segment\",\"params\":{\"field\":\"Inspection_Date\",\"interval\":\"auto\",\"customInterval\":\"2h\",\"min_doc_count\":1,\"extended_bounds\":{},\"customLabel\":\"Inspection Date\"}},{\"id\":\"3\",\"type\":\"cardinality\",\"schema\":\"radius\",\"params\":{\"field\":\"Camis\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{\"vis\":{\"colors\":{\"BRONX\":\"#65C5DB\",\"STATEN ISLAND\":\"#BF1B00\",\"BROOKLYN\":\"#962D82\"}}}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"nyc_restaurants\",\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[{\"$state\":{\"store\":\"appState\"},\"meta\":{\"alias\":null,\"disabled\":false,\"index\":\"nyc_restaurants\",\"key\":\"Boro\",\"negate\":true,\"value\":\"Missing\"},\"query\":{\"match\":{\"Boro\":{\"query\":\"Missing\",\"type\":\"phrase\"}}}}]}"
+      }
+    }
+  },
+  {
+    "_id": "test",
+    "_type": "visualization",
+    "_source": {
+      "title": "test",
+      "visState": "{\"aggs\":[{\"id\":\"1\",\"params\":{\"field\":\"Unique_Score\"},\"schema\":\"metric\",\"type\":\"avg\"},{\"id\":\"3\",\"params\":{\"field\":\"Boro\",\"order\":\"desc\",\"orderBy\":\"1\",\"size\":5},\"schema\":\"group\",\"type\":\"terms\"},{\"id\":\"2\",\"params\":{\"customInterval\":\"2h\",\"extended_bounds\":{},\"field\":\"Inspection_Date\",\"interval\":\"M\",\"min_doc_count\":1},\"schema\":\"segment\",\"type\":\"date_histogram\"},{\"id\":\"4\",\"params\":{\"field\":\"Camis\"},\"schema\":\"radius\",\"type\":\"cardinality\"}],\"listeners\":{},\"params\":{\"addLegend\":true,\"addTimeMarker\":false,\"addTooltip\":true,\"defaultYExtents\":true,\"drawLinesBetweenPoints\":false,\"interpolate\":\"linear\",\"radiusRatio\":9,\"scale\":\"linear\",\"setYExtents\":false,\"shareYAxis\":true,\"showCircles\":true,\"smoothLines\":false,\"times\":[],\"yAxis\":{}},\"title\":\"New Visualization\",\"type\":\"line\"}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"nyc_restaurants_1\",\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[{\"$state\":{\"store\":\"appState\"},\"meta\":{\"alias\":null,\"disabled\":false,\"index\":\"nyc_restaurants_1\",\"key\":\"Boro\",\"negate\":true,\"value\":\"Missing\"},\"query\":{\"match\":{\"Boro\":{\"query\":\"Missing\",\"type\":\"phrase\"}}}}]}"
+      }
+    }
+  },
+  {
+    "_id": "Kibana-Webinar:-Icon",
+    "_type": "visualization",
+    "_source": {
+      "title": "Kibana Webinar: Icon",
+      "visState": "{\"title\":\"Kibana Webinar: Icon\",\"type\":\"markdown\",\"params\":{\"markdown\":\"![](data:image/png;base64,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)\"},\"aggs\":[],\"listeners\":{}}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "DOHMH:-Boro-ampersand-Grade",
+    "_type": "visualization",
+    "_source": {
+      "title": "DOHMH: Boro & Grade",
+      "visState": "{\"title\":\"DOHMH: Boro & Grade\",\"type\":\"pie\",\"params\":{\"shareYAxis\":true,\"addTooltip\":true,\"addLegend\":true,\"isDonut\":true},\"aggs\":[{\"id\":\"1\",\"type\":\"cardinality\",\"schema\":\"metric\",\"params\":{\"field\":\"Camis\",\"customLabel\":\"# of Restaurants\"}},{\"id\":\"3\",\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"Boro\",\"size\":5,\"order\":\"desc\",\"orderBy\":\"1\"}},{\"id\":\"2\",\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"Grade\",\"size\":10,\"order\":\"asc\",\"orderBy\":\"_term\",\"customLabel\":\"Grade\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{\"vis\":{\"colors\":{\"A\":\"#508642\",\"B\":\"#E5AC0E\",\"C\":\"#E24D42\",\"\":\"#447EBC\",\"Critical\":\"#BF1B00\",\"Not Critical\":\"#629E51\",\"Not Applicable\":\"#3F2B5B\",\"BRONX\":\"#E5A8E2\",\"STATEN ISLAND\":\"#F9D9F9\",\"P\":\"#EA6460\",\"Z\":\"#BADFF4\",\"Not Yet Graded\":\"#CFFAFF\"},\"legendOpen\":true}}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"nyc_restaurants\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[{\"meta\":{\"index\":\"nyc_restaurants\",\"negate\":true,\"key\":\"Grade\",\"value\":\"\",\"disabled\":false,\"alias\":null},\"query\":{\"match\":{\"Grade\":{\"query\":\"\",\"type\":\"phrase\"}}},\"$state\":{\"store\":\"appState\"}}]}"
+      }
+    }
+  },
+  {
+    "_id": "DOHMH:-KPI",
+    "_type": "visualization",
+    "_source": {
+      "title": "DOHMH: KPI",
+      "visState": "{\"title\":\"DOHMH: KPI\",\"type\":\"metric\",\"params\":{\"fontSize\":\"41\",\"handleNoResults\":true},\"aggs\":[{\"id\":\"2\",\"type\":\"cardinality\",\"schema\":\"metric\",\"params\":{\"field\":\"Camis\",\"customLabel\":\"# of Restaurants\"}},{\"id\":\"1\",\"type\":\"avg\",\"schema\":\"metric\",\"params\":{\"field\":\"Score\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"nyc_restaurants\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "DOHMH:-Worst-Restaurants",
+    "_type": "visualization",
+    "_source": {
+      "title": "DOHMH: Worst Restaurants",
+      "visState": "{\"title\":\"DOHMH: Worst Restaurants\",\"type\":\"tagcloud\",\"params\":{\"textScale\":\"linear\",\"orientations\":0,\"fromDegree\":\"0\",\"toDegree\":\"-32\",\"font\":\"serif\",\"fontStyle\":\"normal\",\"fontWeight\":\"bold\",\"timeInterval\":\"2000\",\"spiral\":\"archimedean\",\"minFontSize\":\"12\",\"maxFontSize\":\"26\"},\"aggs\":[{\"id\":\"1\",\"type\":\"avg\",\"schema\":\"metric\",\"params\":{\"field\":\"Score\"}},{\"id\":\"2\",\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"Dba\",\"size\":200,\"order\":\"desc\",\"orderBy\":\"1\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"nyc_restaurants\",\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "DOHMH:-Violation-and-Restaurants",
+    "_type": "visualization",
+    "_source": {
+      "title": "DOHMH: Violation and Restaurants",
+      "visState": "{\"title\":\"DOHMH: Violation and Restaurants\",\"type\":\"area\",\"params\":{\"addLegend\":true,\"addTimeMarker\":false,\"addTooltip\":true,\"defaultYExtents\":false,\"interpolate\":\"linear\",\"mode\":\"overlap\",\"scale\":\"linear\",\"setYExtents\":false,\"shareYAxis\":true,\"smoothLines\":false,\"times\":[],\"yAxis\":{}},\"aggs\":[{\"id\":\"1\",\"type\":\"cardinality\",\"schema\":\"metric\",\"params\":{\"field\":\"Camis\",\"customLabel\":\"# Restaurants\"}},{\"id\":\"2\",\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"Violation_Code\",\"size\":25,\"orderAgg\":{\"id\":\"2-orderAgg\",\"type\":\"count\",\"schema\":\"orderAgg\",\"params\":{}},\"order\":\"desc\",\"orderBy\":\"custom\"}},{\"id\":\"3\",\"type\":\"significant_terms\",\"schema\":\"group\",\"params\":{\"field\":\"Cuisine_Description\",\"size\":3}}],\"listeners\":{}}",
+      "uiStateJSON": "{\"vis\":{\"colors\":{\"Chinese\":\"#614D93\",\"Spanish\":\"#AEA2E0\",\"Caribbean\":\"#DEDAF7\",\"Latin (Cuban, Dominican, Puerto Rican, South & Central American)\":\"#70DBED\",\"Juice, Smoothies, Fruit Salads\":\"#447EBC\",\"CafÃ©/Coffee/Tea\":\"#0A437C\",\"Indian\":\"#70DBED\",\"Asian\":\"#5195CE\",\"Japanese\":\"#BADFF4\",\"Mexican\":\"#E5A8E2\",\"Middle Eastern\":\"#BA43A9\",\"Korean\":\"#82B5D8\",\"Thai\":\"#CFFAFF\",\"Donuts\":\"#FCE2DE\",\"Café/Coffee/Tea\":\"#82B5D8\"}}}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"nyc_restaurants\",\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[{\"$state\":{\"store\":\"appState\"},\"meta\":{\"alias\":null,\"disabled\":false,\"index\":\"nyc_restaurants\",\"key\":\"Violation_Code\",\"negate\":true,\"value\":\"\"},\"query\":{\"match\":{\"Violation_Code\":{\"query\":\"\",\"type\":\"phrase\"}}}}]}"
+      }
+    }
+  },
+  {
+    "_id": "DOHMH:-Inspections-and-Flags-(vs-time)",
+    "_type": "visualization",
+    "_source": {
+      "title": "DOHMH: Inspections and Flags (vs time)",
+      "visState": "{\"title\":\"DOHMH: Inspections and Flags (vs time)\",\"type\":\"histogram\",\"params\":{\"addLegend\":true,\"addTimeMarker\":false,\"addTooltip\":true,\"defaultYExtents\":false,\"mode\":\"stacked\",\"scale\":\"linear\",\"setYExtents\":false,\"shareYAxis\":true,\"times\":[],\"yAxis\":{}},\"aggs\":[{\"id\":\"1\",\"type\":\"count\",\"schema\":\"metric\",\"params\":{\"customLabel\":\"# of Violations\"}},{\"id\":\"2\",\"type\":\"date_histogram\",\"schema\":\"segment\",\"params\":{\"field\":\"Inspection_Date\",\"interval\":\"auto\",\"customInterval\":\"6M\",\"min_doc_count\":1,\"extended_bounds\":{},\"customLabel\":\"Time\"}},{\"id\":\"3\",\"type\":\"terms\",\"schema\":\"group\",\"params\":{\"field\":\"Critical_Flag\",\"size\":10,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{\"vis\":{\"colors\":{\"Critical\":\"#BF1B00\",\"Not Applicable\":\"#D683CE\",\"Not Critical\":\"#E5AC0E\"}}}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"nyc_restaurants\",\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[{\"meta\":{\"index\":\"nyc_restaurants\",\"negate\":true,\"key\":\"Critical_Flag\",\"value\":\"Not Applicable\",\"disabled\":false,\"alias\":null},\"query\":{\"match\":{\"Critical_Flag\":{\"query\":\"Not Applicable\",\"type\":\"phrase\"}}},\"$state\":{\"store\":\"appState\"}}]}"
+      }
+    }
+  },
+  {
+    "_id": "Kibana-Webinar:-Summary",
+    "_type": "visualization",
+    "_source": {
+      "title": "Kibana Webinar: Summary",
+      "visState": "{\"title\":\"Kibana Webinar: Summary\",\"type\":\"markdown\",\"params\":{\"markdown\":\"![](data:image/png;base64,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)\\n#Ask Questions, Learn More, Get Involved\\n \\n* ##Download & Play\\n###[elastic.co/downloads/kibana](elastic.co/downloads/kibana)\\n\\n* ##Learn & Explore\\n###[elastic.co/guide/](elastic.co/guide/)\\n\\n* ##Ask questions\\n###[discuss.elastic.co/c/kibana](discuss.elastic.co/c/kibana)\\n\\n* ##Get Involved\\n###[github.com/elastic/kibana](github.com/elastic/kibana )\\n###[github.com/elastic/kibana/wiki/Known-Plugins](github.com/elastic/kibana/wiki/Known-Plugins)\"},\"aggs\":[],\"listeners\":{}}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "NYC:-Score-vs-Time",
+    "_type": "visualization",
+    "_source": {
+      "title": "NYC: Score vs Time",
+      "visState": "{\"title\":\"New Visualization\",\"type\":\"line\",\"params\":{\"shareYAxis\":true,\"addTooltip\":true,\"addLegend\":true,\"showCircles\":true,\"smoothLines\":false,\"interpolate\":\"linear\",\"scale\":\"linear\",\"drawLinesBetweenPoints\":false,\"radiusRatio\":9,\"times\":[],\"addTimeMarker\":false,\"defaultYExtents\":false,\"setYExtents\":false,\"yAxis\":{}},\"aggs\":[{\"id\":\"1\",\"type\":\"avg\",\"schema\":\"metric\",\"params\":{\"field\":\"Score\"}},{\"id\":\"3\",\"type\":\"terms\",\"schema\":\"group\",\"params\":{\"field\":\"Boro\",\"size\":5,\"order\":\"desc\",\"orderBy\":\"1\"}},{\"id\":\"2\",\"type\":\"date_histogram\",\"schema\":\"segment\",\"params\":{\"field\":\"Inspection_Date\",\"interval\":\"auto\",\"customInterval\":\"2h\",\"min_doc_count\":1,\"extended_bounds\":{}}},{\"id\":\"4\",\"type\":\"cardinality\",\"schema\":\"radius\",\"params\":{\"field\":\"Camis\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"nyc_restaurants\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[{\"meta\":{\"index\":\"nyc_restaurants\",\"negate\":true,\"key\":\"Boro\",\"value\":\"Missing\",\"disabled\":false,\"alias\":null},\"query\":{\"match\":{\"Boro\":{\"query\":\"Missing\",\"type\":\"phrase\"}}},\"$state\":{\"store\":\"appState\"}}]}"
+      }
+    }
+  },
+  {
+    "_id": "NYC:-Score-Map",
+    "_type": "visualization",
+    "_source": {
+      "title": "NYC: Score Map",
+      "visState": "{\"title\":\"New Visualization\",\"type\":\"tile_map\",\"params\":{\"mapType\":\"Heatmap\",\"isDesaturated\":true,\"addTooltip\":true,\"heatMaxZoom\":\"3\",\"heatMinOpacity\":\"0.21\",\"heatRadius\":\"9\",\"heatBlur\":\"11\",\"heatNormalizeData\":true,\"wms\":{\"enabled\":false,\"url\":\"https://basemap.nationalmap.gov/arcgis/services/USGSTopo/MapServer/WMSServer\",\"options\":{\"version\":\"1.3.0\",\"layers\":\"0\",\"format\":\"image/png\",\"transparent\":true,\"attribution\":\"Maps provided by USGS\",\"styles\":\"\"}}},\"aggs\":[{\"id\":\"1\",\"type\":\"avg\",\"schema\":\"metric\",\"params\":{\"field\":\"Score\"}},{\"id\":\"2\",\"type\":\"geohash_grid\",\"schema\":\"segment\",\"params\":{\"field\":\"Coord\",\"autoPrecision\":true,\"mapZoom\":11,\"mapCenter\":[40.74205475883487,-73.83636474609375],\"precision\":6}}],\"listeners\":{}}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"nyc_restaurants\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "NYC:-Grade-and-Boro-Distribution",
+    "_type": "visualization",
+    "_source": {
+      "title": "NYC: Grade and Boro Distribution",
+      "visState": "{\"title\":\"New Visualization\",\"type\":\"pie\",\"params\":{\"shareYAxis\":true,\"addTooltip\":true,\"addLegend\":true,\"isDonut\":false},\"aggs\":[{\"id\":\"1\",\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"3\",\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"Boro\",\"size\":5,\"order\":\"desc\",\"orderBy\":\"1\"}},{\"id\":\"2\",\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"Grade\",\"size\":10,\"order\":\"desc\",\"orderBy\":\"1\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{\"vis\":{\"colors\":{\"A\":\"#629E51\",\"B\":\"#E5AC0E\",\"C\":\"#E24D42\",\"Z\":\"#70DBED\",\"Not Yet Graded\":\"#6ED0E0\"}}}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"nyc_restaurants\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[{\"meta\":{\"index\":\"nyc_restaurants\",\"negate\":true,\"key\":\"Grade\",\"value\":\"\",\"disabled\":false,\"alias\":null},\"query\":{\"match\":{\"Grade\":{\"query\":\"\",\"type\":\"phrase\"}}},\"$state\":{\"store\":\"appState\"}}]}"
+      }
+    }
+  },
+  {
+    "_id": "NYC:-KPI",
+    "_type": "visualization",
+    "_source": {
+      "title": "NYC: KPI",
+      "visState": "{\"title\":\"NYC: KPI\",\"type\":\"metric\",\"params\":{\"handleNoResults\":true,\"fontSize\":\"42\"},\"aggs\":[{\"id\":\"1\",\"type\":\"cardinality\",\"schema\":\"metric\",\"params\":{\"field\":\"Camis\",\"customLabel\":\"# of Restaurants Inspected\"}},{\"id\":\"2\",\"type\":\"avg\",\"schema\":\"metric\",\"params\":{\"field\":\"Score\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"nyc_restaurants\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+      }
+    }
+  }
+]
