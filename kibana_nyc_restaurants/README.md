@@ -34,7 +34,7 @@ Example has been tested in following versions:
   You have 2 options to index the data into Elasticsearch. You can either use the Elasticsearch [snapshot and restore](https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-snapshots.html) API to directly restore the `nyc_restaurants` index from a snapshot. OR, you can download the raw data from the data.cityofnewyork.us website and then use the scripts in the [Scripts - Python](https://github.com/elastic/examples/tree/master/kibana_nyc_restaurants/Scripts%20-%20Python) folder to process the raw files and index the data.
 
   #### Option 1. Load data by restoring index snapshot
-  (Learn more about snapshot / restore [here](https://www.elastic.co/guide/en/elasticsearch/reference/1.3/modules-snapshots.html)
+  (Learn more about snapshot / restore [here](https://www.elastic.co/guide/en/elasticsearch/reference/1.3/modules-snapshots.html) )
 
   Using this option involves 4 easy steps:
 
@@ -96,7 +96,7 @@ Example has been tested in following versions:
   * Open dashboard
       * Click on **Dashboard** tab and open `DOHMH: Overview` dashboard. Voila! You should see the following dashboard. Happy Data Exploration!
 
-  ![Kibana Dashboard Screenshot](https://raw.githubusercontent.com/elastic/examples/master/kibana_nyc_restaurants/restaurants_kibana.jpg)
+  ![Kibana Dashboard Screenshot](https://cloud.githubusercontent.com/assets/5269751/14194018/dcebcb2e-f75e-11e5-924a-673731d89743.jpg)
 
   ### We would love to hear from you!
   If you run into issues running this example or have suggestions to improve it, please use Github issues to let us know. Have an easy fix? Submit a pull request. We will try our best to respond in a timely manner!
