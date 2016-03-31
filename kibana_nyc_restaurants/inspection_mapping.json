@@ -1,0 +1,66 @@
+{
+  "inspection": {
+    "properties": {
+      "Action": {
+        "type": "string", "index" : "not_analyzed"
+      },
+      "Boro": {
+          "type": "string", "index" : "not_analyzed"
+      },
+      "Building": {
+          "type": "string", "index" : "not_analyzed"
+      },
+      "Camis": {
+        "type": "long"
+      },
+      "Coord": {
+        "type": "geo_point"
+      },
+      "Critical_Flag": {
+        "type": "string", "index" : "not_analyzed"
+      },
+      "Cuisine_Description": {
+          "type": "string", "index" : "not_analyzed"
+      },
+      "Dba": {
+        "type": "string", "index" : "not_analyzed"
+      },
+      "Grade": {
+          "type": "string", "index" : "not_analyzed"
+      },
+      "Grade_Date": {
+        "format": "strict_date_optional_time||epoch_millis",
+        "type": "date"
+      },
+      "Inspection_Date": {
+        "format": "strict_date_optional_time||epoch_millis",
+        "type": "date"
+      },
+      "Inspection_Type": {
+          "type": "string", "index" : "not_analyzed"
+      },
+      "Phone": {
+          "type": "string", "index" : "not_analyzed"
+      },
+      "Record_Date": {
+        "format": "strict_date_optional_time||epoch_millis",
+        "type": "date"
+      },
+      "Score": {
+        "type": "double"
+      },
+      "Street": {
+          "type": "string", "index" : "not_analyzed"
+      },
+      "Violation_Code": {
+          "type": "string", "index" : "not_analyzed"
+      },
+      "Violation_Description": {
+        "type": "string"
+      },
+      "Zipcode": {
+        "type": "long"
+      }
+    }
+  }
+}
