@@ -74,7 +74,7 @@ Example has been tested in following versions:
 
   The raw NYC Restaurants Inspection data is provided as a CSV file. For this example, we ingested the data into Elasticsearch using the Python Elasticsearch client. See [Scripts - Python](https://github.com/elastic/examples/tree/master/kibana_nyc_restaurants/Scripts%20-%20Python)
 
-  We are providing this option in case you want to modify how the data is processed before ingest. Follow the [ReadMe]() in the [Scripts - Python](https://github.com/elastic/examples/tree/master/kibana_nyc_restaurants/Scripts%20-%20Python) folder if you want to try this option.
+  We are providing this option in case you want to modify how the data is processed before ingest. Follow the [ReadMe](https://github.com/elastic/examples/blob/master/kibana_nyc_restaurants/Scripts%20-%20Python/README.md) in the [Scripts - Python](https://github.com/elastic/examples/tree/master/kibana_nyc_restaurants/Scripts%20-%20Python) folder if you want to try this option.
 
   #### Check data availability
   Once the index is created using either of the above options, you can check to see if all the data is available in Elasticsearch. If all goes well, you should get a `count` response of approximately `473039` when you run the following command.
@@ -96,7 +96,7 @@ Example has been tested in following versions:
   * Open dashboard
       * Click on **Dashboard** tab and open `DOHMH: Overview` dashboard. Voila! You should see the following dashboard. Happy Data Exploration!
 
-  ![Kibana Dashboard Screenshot]()
+  ![Kibana Dashboard Screenshot](https://raw.githubusercontent.com/elastic/examples/master/kibana_nyc_restaurants/restaurants_dashboard.jpg)
 
   ### We would love to hear from you!
   If you run into issues running this example or have suggestions to improve it, please use Github issues to let us know. Have an easy fix? Submit a pull request. We will try our best to respond in a timely manner!
