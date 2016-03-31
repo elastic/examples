@@ -96,7 +96,7 @@ Example has been tested in following versions:
   * Open dashboard
       * Click on **Dashboard** tab and open `DOHMH: Overview` dashboard. Voila! You should see the following dashboard. Happy Data Exploration!
 
-  ![Kibana Dashboard Screenshot](https://raw.githubusercontent.com/elastic/examples/master/kibana_nyc_restaurants/restaurants_dashboard.jpg)
+  ![Kibana Dashboard Screenshot](https://raw.githubusercontent.com/elastic/examples/master/kibana_nyc_restaurants/restaurants_kibana.jpg)
 
   ### We would love to hear from you!
   If you run into issues running this example or have suggestions to improve it, please use Github issues to let us know. Have an easy fix? Submit a pull request. We will try our best to respond in a timely manner!
