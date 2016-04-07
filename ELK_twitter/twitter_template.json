@@ -7,7 +7,6 @@
   "mappings": {
     "_default_": {
       "_all": { "enabled": true } ,
-      "_source": { "compress": true },
       "properties" : {
         "@timestamp" :{"type": "date", "format": "dateOptionalTime" },
         "text" : {  "type": "string", "index": "analyzed" },
