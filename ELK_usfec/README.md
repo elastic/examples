@@ -1,6 +1,6 @@
-## Using ELK to Analyze US FEC Campaign Contribution data
+## Using Elastic Stack to Analyze US FEC Campaign Contribution data
 
-This example demonstrates how to analyze & visualize US Federal Election Commission (FEC) campaign contribution data from the 2013-2014 election cycle data using Elasticsearch, Logstash and Kibana. The [data](http://www.fec.gov/finance/disclosure/ftpdet.shtml#a2013_2014) analyzed in this example is taken from the [Federal Election Commission](http://www.fec.gov/finance/disclosure/ftpdet.shtml) site.
+This example demonstrates how to analyze & visualize US Federal Election Commission (FEC) campaign contribution data from the 2013-2014 election cycle data using Elasticsearch and Kibana. The [data](http://www.fec.gov/finance/disclosure/ftpdet.shtml#a2013_2014) analyzed in this example is taken from the [Federal Election Commission](http://www.fec.gov/finance/disclosure/ftpdet.shtml) site.
 
 For some background information for this demo, please see the blog post here:
 [Kibana 4 for investigating PACs, Super PACs, and who your neighbor might be voting for](http://www.elasticsearch.org/blog/kibana-4-for-investigating-pacs-super-pacs-and-your-neighbors/). Note that the screenshots in the blog were created with Kibana 4.0 - your dashboard may look a little different depending on the Kibana version you are using.
@@ -12,7 +12,7 @@ Example has been tested in following versions:
 - Kibana 4.1.0
 
 ### Installation & Setup
-* Follow the [Installation & Setup Guide](https://github.com/elastic/examples/blob/master/Installation%20and%20Setup.md) to install and test the ELK stack (*you can skip this step if you already have a working installation of the ELK stack*)
+* Follow the [Installation & Setup Guide](https://github.com/elastic/examples/blob/master/Installation%20and%20Setup.md) to install and test the Elastic Stack (*you can skip this step if you already have a working installation of the Elastic Stack*)
 
 * Run Elasticsearch & Kibana
   ```shell
