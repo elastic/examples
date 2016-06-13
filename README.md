@@ -24,7 +24,7 @@ One of the major goals of this repo is to help people learn about Elasticsearch,
 
 * **README**
   * clear instructions to install and run the example
-  * version of ELK (and other tools) that the example was tested with
+  * version of Elastic Stack (and other tools) that the example was tested with
   * additional tool requirements (along with instructions to use / download)
   * known gotchas, system requirements, compatibility issue, etc.
 * **Code**
