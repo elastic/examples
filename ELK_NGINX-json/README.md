@@ -1,5 +1,5 @@
-### Getting Started with ELK for NGINX (JSON) Logs
-This **Getting Started with ELK** example provides sample files to ingest, analyze & visualize **NGINX access logs** using the ELK stack, i.e. Elasticsearch, Logstash and Kibana. This example uses JSON formatted version of Nginx logs. The NGINX `log format` entry used to generate these logs is shown in  Download section below.
+### Getting Started with Elastic Stack for NGINX (JSON) Logs
+This **Getting Started with Elastic Stack** example provides sample files to ingest, analyze & visualize **NGINX access logs** using the Elastic Stack. This example uses JSON formatted version of Nginx logs. The NGINX `log format` entry used to generate these logs is shown in  Download section below.
 
 ##### WARNING: NGINX uses \xXX to encode some characters. The resulting "JSON" string is not valid (the JSON standard specifies \u00XX) and in Logstash you will get a json parse error for the invalid JSON string. It only happens when any variables e.g. $http_user_agent contain characters that NGINX will escape e.g. backslash or reverse solidus.
 
@@ -10,7 +10,7 @@ Example has been tested in following versions:
 - Kibana 4.2.0
 
 ### Installation & Setup
-* Follow the [Installation & Setup Guide](https://github.com/elastic/examples/blob/master/Installation%20and%20Setup.md) to install and test the ELK stack (*you can skip this step if you have a working installation of the ELK stack,*)
+* Follow the [Installation & Setup Guide](https://github.com/elastic/examples/blob/master/Installation%20and%20Setup.md) to install and test the Elastic Stack stack (*you can skip this step if you have a working installation of the Elastic Stack,*)
 
 * Run Elasticsearch & Kibana
   ```
