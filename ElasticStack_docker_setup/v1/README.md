@@ -19,7 +19,7 @@ If you have trouble running the example or have suggestions for improvement, ple
 
 ## Overview
 
-In this example, we'll look at a quick start 'how to' for setting up the ELK stack in Docker. In just a few commands and configuration files, we'll have an ELK stack up and running in Docker.
+In this example, we'll look at a quick start 'how to' for setting up the Elastic stack in Docker. In just a few commands and configuration files, we'll have an Elastic stack up and running in Docker.
 
 ## Installation
 
@@ -190,7 +190,7 @@ curl localhost:9200/logstash-*/_search?pretty=true
 
 ## Summary
 
-Once you know how to use Docker and are comfortable with it, building and deploying an ELK stack is very quick and easy. The steps described above are solid, but can be hardened for production use.
+Once you know how to use Docker and are comfortable with it, building and deploying an Elastic stack is very quick and easy. The steps described above are solid, but can be hardened for production use.
 
 For example:
 1. Docker has other features like linking containers, so you don't expose ports.
