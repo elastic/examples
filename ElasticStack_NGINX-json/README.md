@@ -35,12 +35,12 @@ Download the following files in this repo to a local directory:
 Unfortunately, Github does not provide a convenient one-click option to download entire contents of a subfolder in a repo. Use sample code provided below to download the required files to a local directory:
 
 ```shell
-mkdir  nginx_json_ELK_Example
-cd nginx_json_ELK_Example
-wget https://raw.githubusercontent.com/elastic/examples/master/ELK_NGINX-json/nginx_json_logstash.conf
-wget https://raw.githubusercontent.com/elastic/examples/master/ELK_NGINX-json/nginx_json_kibana.json
-wget https://raw.githubusercontent.com/elastic/examples/master/ELK_NGINX-json/nginx_json_template.json
-wget https://raw.githubusercontent.com/elastic/examples/master/ELK_NGINX-json/nginx_json_logs
+mkdir  nginx_json_ElasticStack_Example
+cd nginx_json_ElasticStack_Example
+wget https://raw.githubusercontent.com/elastic/examples/master/ElasticStack_NGINX-json/nginx_json_logstash.conf
+wget https://raw.githubusercontent.com/elastic/examples/master/ElasticStack_NGINX-json/nginx_json_kibana.json
+wget https://raw.githubusercontent.com/elastic/examples/master/ElasticStack_NGINX-json/nginx_json_template.json
+wget https://raw.githubusercontent.com/elastic/examples/master/ElasticStack_NGINX-json/nginx_json_logs
 ```
 
 ** The JSON formatted NGINX logs used in this example were created with the following `log_format` entry in the `nginx.config` file.
@@ -61,13 +61,13 @@ log_format json_logstash '{ "time": "$time_local", '
 * Execute the following command to load sample logs into Elasticsearch.
 
 ```shell
-cd nginx_json_ELK_Example
+cd nginx_json_ElasticStack_Example
 cat nginx_json_logs | <path_to_logstash_root_dir>/bin/logstash -f nginx_json_logstash.conf
 ```
 
  * Verify that data is successfully indexed into Elasticsearch
 
-  Running `http://localhost:9200/nginx_json_elk_example/_count` should return a response a `"count":51462`
+  Running `http://localhost:9200/nginx_json_ElasticStack_example/_count` should return a response a `"count":51462`
 
  **Note:** Included `nginx_json_logstash.conf` configuration file assumes that you are running Elasticsearch on the same host as     Logstash and have not changed the defaults. Modify the `host` and `cluster` settings in the `output { elasticsearch { ... } }`   section of nginx_json_logstash.conf, if needed.
 
