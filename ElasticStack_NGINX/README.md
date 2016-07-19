@@ -1,5 +1,5 @@
-### Getting Started with ELK for NGINX Logs
-This **Getting Started with ELK** example provides sample files to ingest, analyze & visualize **NGINX access logs** using the ELK stack, i.e. Elasticsearch, Logstash and Kibana. The sample NGINX access logs in this example use the default NGINX combined log format.
+### Getting Started with Elastic Stack for NGINX Logs
+This **Getting Started with Elastic Stack** example provides sample files to ingest, analyze & visualize **NGINX access logs** using the Elastic Stack, i.e. Elasticsearch, Logstash and Kibana. The sample NGINX access logs in this example use the default NGINX combined log format.
 
 ##### Version
 Example has been tested in following versions:
@@ -8,7 +8,7 @@ Example has been tested in following versions:
 - Kibana 4.2.0
 
 ### Installation & Setup
-* Follow the [Installation & Setup Guide](https://github.com/elastic/examples/blob/master/Installation%20and%20Setup.md) to install and test the ELK stack (*you can skip this step if you have a working installation of the ELK stack,*)
+* Follow the [Installation & Setup Guide](https://github.com/elastic/examples/blob/master/Installation%20and%20Setup.md) to install and test the ELK stack (*you can skip this step if you have a working installation of the Elastic Stack,*)
 
 * Run Elasticsearch & Kibana
   ```shell
@@ -40,12 +40,12 @@ log_format combined '$remote_addr - $remote_user [$time_local] '
 ```
 
 ```shell
-mkdir  nginx_ELK_Example
-cd nginx_ELK_Example
-wget https://raw.githubusercontent.com/elastic/examples/master/ELK_NGINX/nginx_logstash.conf
-wget https://raw.githubusercontent.com/elastic/examples/master/ELK_NGINX/nginx_template.json
-wget https://raw.githubusercontent.com/elastic/examples/master/ELK_NGINX/nginx_kibana.json
-wget https://raw.githubusercontent.com/elastic/examples/master/ELK_NGINX/nginx_logs
+mkdir  nginx_ElasticStack_Example
+cd nginx_ElasticStack_Example
+wget https://raw.githubusercontent.com/elastic/examples/master/ElasticStack_NGINX/nginx_logstash.conf
+wget https://raw.githubusercontent.com/elastic/examples/master/ElasticStack_NGINX/nginx_template.json
+wget https://raw.githubusercontent.com/elastic/examples/master/ElasticStack_NGINX/nginx_kibana.json
+wget https://raw.githubusercontent.com/elastic/examples/master/ElasticStack_NGINX/nginx_logs
 ```
 
 ### Run Example
