@@ -10,7 +10,7 @@ Example has been tested in following versions:
 - Kibana 4.1.0
 
 ### Installation & Setup
-* Follow the [Installation & Setup Guide](https://github.com/elastic/examples/blob/master/Installation%20and%20Setup.md) to install and test the ELK stack (*you can skip this step if you already have a working installation of the ELK stack*)
+* Follow the [Installation & Setup Guide](https://github.com/elastic/examples/blob/master/Installation%20and%20Setup.md) to install and test the Elastic Stack (*you can skip this step if you already have a working installation of the Elastic Stack*)
 
 * Run Elasticsearch & Kibana
   ```shell
@@ -27,7 +27,7 @@ Example has been tested in following versions:
 ### Download & Ingest Data
 
 In this example, we ingest the data into Elasticsearch using the Elasticsearch Python client.
-Follow the instructions in the  [ReadMe](https://github.com/elastic/examples/blob/master/ELK_CDC_nutrition_exercise_patterns/Ingest%20Scripts%20-%20Python/README.md) in the [Ingest Scripts - Python](https://github.com/elastic/examples/tree/master/ELK_CDC_nutrition_exercise_patterns/Ingest%20Scripts%20-%20Python) folder if you want to try this option.
+Follow the instructions in the  [ReadMe](https://github.com/elastic/examples/blob/master/ElasticStack_CDC_nutrition_exercise_patterns/Ingest%20Scripts%20-%20Python/README.md) in the [Ingest Scripts - Python](https://github.com/elastic/examples/tree/master/ElasticStack_CDC_nutrition_exercise_patterns/Ingest%20Scripts%20-%20Python) folder if you want to try this option.
 
 #### Check data availability
 Once the index is created, data will available in Elasticsearch. If all goes well, you should get a `count` response of `491773` when you run the following command.
@@ -55,4 +55,4 @@ Once the index is created, data will available in Elasticsearch. If all goes wel
 ### We would love to hear from you!
 If you run into issues running this example or have suggestions to improve it, please use Github issues to let us know. Have an easy fix? Submit a pull request. We will try our best to respond in a timely manner!
 
-Have you created interesting examples using the ELK stack? Looking for a way to share your amazing work with the community? We would love to include your awesome work here. For more information on how to contribute, check out the **[Contribution](https://github.com/elastic/examples#contributing)** section!
+Have you created interesting examples using the Elastic Stack? Looking for a way to share your amazing work with the community? We would love to include your awesome work here. For more information on how to contribute, check out the **[Contribution](https://github.com/elastic/examples#contributing)** section!
