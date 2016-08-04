@@ -36,10 +36,10 @@ Unfortunately, Github does not provide a convenient one-click option to download
 ```shell
 mkdir  Apache_ELK_Example
 cd Apache_ELK_Example
-wget https://raw.githubusercontent.com/elastic/examples/master/ELK_apache/apache_logstash.conf
-wget https://raw.githubusercontent.com/elastic/examples/master/ELK_apache/apache_template.json
-wget https://raw.githubusercontent.com/elastic/examples/master/ELK_apache/apache_kibana.json
-wget https://raw.githubusercontent.com/elastic/examples/master/ELK_apache/apache_logs
+wget https://raw.githubusercontent.com/elastic/examples/master/ElasticStack_apache/apache_logstash.conf
+wget https://raw.githubusercontent.com/elastic/examples/master/ElasticStack_apache/apache_template.json
+wget https://raw.githubusercontent.com/elastic/examples/master/ElasticStack_apache/apache_kibana.json
+wget https://raw.githubusercontent.com/elastic/examples/master/ElasticStack_apache/apache_logs
 ```
 
 ### Run Example
