@@ -97,7 +97,7 @@ https://github.com/stormpython/tagcloud
   * Load sample dashboard into Kibana
       * Click the **Settings** tab >> **Objects** tab >> **Import**, and select `restaurants_kibana.json`
   * Open dashboard
-      * Click on **Dashboard** tab and open `DOHMH: Overview` dashboard. Voila! You should see the following dashboard. Happy Data Exploration!
+      * Click on **Dashboard** tab, open `DOHMH: Overview` dashboard, and change the time interval to something like "Last 5 years". Voila! You should see something similar to the following dashboard. Happy Data Exploration!
 
   ![Kibana Dashboard Screenshot](https://cloud.githubusercontent.com/assets/5269751/14194018/dcebcb2e-f75e-11e5-924a-673731d89743.jpg)
 
