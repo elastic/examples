@@ -23,6 +23,9 @@ Example has been tested in following versions:
   <path_to_kibana_root_dir>/bin/kibana
   ```
 
+* Install the Tagcloud Kibana plugin per instructions here:
+https://github.com/stormpython/tagcloud
+
 * Check that Elasticsearch and Kibana are up and running.
   - Open `localhost:9200` in web browser -- should return status code 200
   - Open `localhost:5601` in web browser -- should display Kibana UI.
