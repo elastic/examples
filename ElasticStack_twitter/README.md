@@ -35,9 +35,9 @@ Unfortunately, Github does not provide a convenient one-click option to download
 ```shell
 mkdir  twitter_elk_example
 cd twitter_elk_example
-wget https://raw.githubusercontent.com/elastic/examples/master/ELK_twitter/twitter_logstash.conf
-wget https://raw.githubusercontent.com/elastic/examples/master/ELK_twitter/twitter_template.json
-wget https://raw.githubusercontent.com/elastic/examples/master/ELK_twitter/twitter_kibana.json
+wget https://raw.githubusercontent.com/elastic/examples/master/ElasticStack_twitter/twitter_logstash.conf
+wget https://raw.githubusercontent.com/elastic/examples/master/ElasticStack_twitter/twitter_template.json
+wget https://raw.githubusercontent.com/elastic/examples/master/ElasticStack_twitter/twitter_kibana.json
 ```
 
 ### Run Example
