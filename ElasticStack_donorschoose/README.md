@@ -94,7 +94,7 @@ Once the index is created using either of the above options, you can check to se
 * Open dashboard
     * Click on **Dashboard** tab and open `Donors Choose` dashboard. Voila! You should see the following dashboard. Happy Data Exploration!
 
-![Kibana Dashboard Screenshot](https://cloud.githubusercontent.com/assets/5269751/10270320/679104f0-6aa2-11e5-869f-652e1bcfe0c1.png)
+![Kibana Dashboard Screenshot](https://github.com/elastic/examples/blob/master/ElasticStack_donorschoose/donorschoose_dashboard.jpg?raw=true)
 
 ### We would love to hear from you!
 If you run into issues running this example or have suggestions to improve it, please use Github issues to let us know. Have an easy fix? Submit a pull request. We will try our best to respond in a timely manner!
