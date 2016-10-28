@@ -5,9 +5,9 @@ This **Getting Started with Elastic Stack** example provides sample files to ing
 
 ##### Version
 Example has been tested in following versions:
-- Elasticsearch 2.0
-- Logstash 2.0
-- Kibana 4.2.0
+- Elasticsearch 5.0
+- Logstash 5.0
+- Kibana 5.0.0
 
 ### Installation & Setup
 * Follow the [Installation & Setup Guide](https://github.com/elastic/examples/blob/master/Installation%20and%20Setup.md) to install and test the Elastic Stack stack (*you can skip this step if you have a working installation of the Elastic Stack,*)
@@ -74,10 +74,10 @@ cat nginx_json_logs | <path_to_logstash_root_dir>/bin/logstash -f nginx_json_log
 ##### 2. Visualize data in Kibana
 
 * Access Kibana by going to `http://localhost:5601` in a web browser
-* Connect Kibana to the `nginx_json_elk_example` index in Elasticsearch (auto-created in step 1)
-    * Click the **Settings** tab >> **Indices** tab >> **Add New**. Specify `nginx_json_elk_example` as the index pattern name and click **Create** to define the index pattern
+* Connect Kibana to the `nginx_json_elastic_stack_example` index in Elasticsearch (auto-created in step 1)
+    * Click the **Management** tab >> **Index Patterns** tab >> **Add New**. Specify `nginx_json_elastic_stack_example` as the index pattern name and click **Create** to define the index pattern
 * Load sample dashboard into Kibana
-    * Click the **Settings** tab >> **Objects** tab >> **Import**, and select `nginx_json_kibana.json`
+    * Click the **Management** tab >> **Saved Objects** tab >> **Import**, and select `nginx_json_kibana.json`
 <<<<<<< HEAD
 * Open dashboard
     * Click on **Dashboard** tab and open `Sample Dashboard for Nginx Logs` dashboard
