@@ -80,7 +80,7 @@ Example has been tested in following versions:
     * Click on **Dashboard** tab and open `NYC Motor Vehicles Collision` dashboard
 
 Voila! You should see the following dashboard. Happy Data Exploration!
-![Kibana Dashboard Screenshot](https://cloud.githubusercontent.com/assets/5269751/10008565/f548dc28-6084-11e5-9956-b29c2ca043ee.png)
+![Kibana Dashboard Screenshot](https://github.com/elastic/examples/blob/master/ElasticStack_nyc_traffic_accidents/nyc_collision_dashboard.jpg?raw=true)
 
 ### We would love to hear from you!
 If you run into issues running this example or have suggestions to improve it, please use Github issues to let us know. Have an easy fix, submit a pull request. We will try our best to respond in a timely manner!
