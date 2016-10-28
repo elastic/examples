@@ -1,6 +1,6 @@
 {
 
-  "template": "nginxplus_json_elk_example",
+  "template": "nginxplus_json_elastic_stack_example",
   "settings": {
      "index.refresh_interval": "5s"
   },
@@ -10,9 +10,8 @@
            {
               "message_field": {
                  "mapping": {
-                    "index": "analyzed",
                     "omit_norms": true,
-                    "type": "string"
+                    "type": "text"
                  },
                  "match_mapping_type": "string",
                  "match": "message"
@@ -21,14 +20,12 @@
            {
               "string_fields": {
                  "mapping": {
-                    "index": "analyzed",
                     "omit_norms": true,
-                    "type": "string",
+                    "type": "text",
                     "fields": {
                        "raw": {
-                          "index": "not_analyzed",
                           "ignore_above": 256,
-                          "type": "string"
+                          "type": "keyword"
                        }
                     }
                  },
