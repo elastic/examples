@@ -53,7 +53,7 @@ Using this option involves 4 easy steps:
   curl -XPUT 'http://localhost:9200/_snapshot/donorschoose_backup' -d '{
       "type": "fs",
       "settings": {
-          "location": "<path_to_donorschoose_backup_dir>/",
+          "location": "<path_to_donorschoose_backup_dir>",
           "compress": true,
           "max_snapshot_bytes_per_sec": "1000mb",
           "max_restore_bytes_per_sec": "1000mb"
