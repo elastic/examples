@@ -11,8 +11,14 @@ If you want to ingest data into Elasticsearch starting with the raw data files f
 
   Unzip and copy the files into the folder containing the files downloaded in step 1.
 
-###### 3. Run Python script to process and index data<br>
-  Run `process_brfss_data.py` (requires Python 3). When the script is done running, you will have a `brfss` index in your Elasticsearch instance
+###### 3. Install Python dependencies
+
+Requires Python 3
+
+Run `pip install -r requirements.txt`
+
+###### 4. Run Python script to process and index data<br>
+  Run `process_brfss_data.py`. When the script is done running, you will have a `brfss` index in your Elasticsearch instance
 ```
   python3 process_brfss_data.py
 ```

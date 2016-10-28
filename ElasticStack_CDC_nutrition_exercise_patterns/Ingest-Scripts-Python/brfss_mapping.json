@@ -5,8 +5,7 @@
         "type": "double"
       },
       "Number_of_Children": {
-        "index": "not_analyzed",
-        "type": "string"
+        "type": "keyword"
       },
       "Coordinates": {
         "type": "geo_point"
@@ -15,30 +14,25 @@
         "type": "double"
       },
       "College_Housing": {
-        "index": "not_analyzed",
-        "type": "string"
+        "type": "keyword"
       },
       "Height": {
-        "type": "string"
+        "type": "keyword"
       },
       "Interview_Month": {
         "type": "long"
       },
       "Difficulty_walking__climbing": {
-        "index": "not_analyzed",
-        "type": "string"
+        "type": "keyword"
       },
       "Activity_1_intensity": {
-        "index": "not_analyzed",
-        "type": "string"
+        "type": "keyword"
       },
       "BMI_Obesity": {
-        "index": "not_analyzed",
-        "type": "string"
+        "type": "keyword"
       },
       "Nutrition_Sugar_fruit_drinks": {
-        "index": "not_analyzed",
-        "type": "string"
+        "type": "keyword"
       },
       "Total_Vigorous_Activity_weekly_duration_minutes": {
         "type": "double"
@@ -47,48 +41,40 @@
         "type": "double"
       },
       "Income": {
-        "index": "not_analyzed",
-        "type": "string"
+        "type": "keyword"
       },
       "Difficulty_decision_making": {
-        "index": "not_analyzed",
-        "type": "string"
+        "type": "keyword"
       },
       "Physical_activity_2": {
-        "index": "not_analyzed",
-        "type": "string"
+        "type": "keyword"
       },
       "Interview_Day": {
         "type": "long"
       },
       "Difficulty_running_errands": {
-        "index": "not_analyzed",
-        "type": "string"
+        "type": "keyword"
       },
       "Activity_2_weekly_freq": {
         "type": "double"
       },
       "Physical_activity_1": {
-        "index": "not_analyzed",
-        "type": "string"
+        "type": "keyword"
       },
       "Activity_2_MET": {
         "type": "double"
       },
       "Physical_activity_2__frequency": {
-        "index": "not_analyzed",
-        "type": "string"
+        "type": "keyword"
       },
       "Activity_1_MET": {
         "type": "double"
       },
       "Private_Residence": {
-        "index": "not_analyzed",
-        "type": "string"
+        "type": "keyword"
       },
       "Nutrition_Sugar_Drinks": {
-        "index": "not_analyzed",
-        "type": "string"
+        "type": "keyword"
       },
       "Activity_1_weekly_duration_minutes": {
         "type": "double"
@@ -100,34 +86,29 @@
         "type": "double"
       },
       "Weight": {
-        "type": "string"
+        "type": "keyword"
       },
       "Demo_edu_level": {
-        "index": "not_analyzed",
-        "type": "string"
+        "type": "keyword"
       },
       "Alcohol_Drinks_per_occasion": {
         "type": "long"
       },
       "Limited_physical_activity": {
-        "index": "not_analyzed",
-        "type": "string"
+        "type": "keyword"
       },
       "Served_on_Active_Duty": {
-        "index": "not_analyzed",
-        "type": "string"
+        "type": "keyword"
       },
       "Interview_Date": {
         "format": "dateOptionalTime",
         "type": "date"
       },
       "Nutrition_Beans_consumption": {
-        "index": "not_analyzed",
-        "type": "string"
+        "type": "keyword"
       },
       "General_Health": {
-        "index": "not_analyzed",
-        "type": "string"
+        "type": "keyword"
       },
       "Functional_capacity": {
         "type": "double"
@@ -145,30 +126,25 @@
         "type": "double"
       },
       "Alcohol_Frequency": {
-        "index": "not_analyzed",
-        "type": "string"
+        "type": "keyword"
       },
       "Smoke_tried_to_quit": {
-        "index": "not_analyzed",
-        "type": "string"
+        "type": "keyword"
       },
       "Weight_kg": {
         "type": "double"
       },
       "Had_Stroke": {
-        "index": "not_analyzed",
-        "type": "string"
+        "type": "keyword"
       },
       "Latitude": {
         "type": "double"
       },
       "Muscle_strengthening_guideline": {
-        "index": "not_analyzed",
-        "type": "string"
+        "type": "keyword"
       },
       "State": {
-        "index": "not_analyzed",
-        "type": "string"
+        "type": "keyword"
       },
       "Max_O2_consumption": {
         "type": "double"
@@ -177,8 +153,7 @@
         "type": "double"
       },
       "Activity_index": {
-        "index": "not_analyzed",
-        "type": "string"
+        "type": "keyword"
       },
       "Alcohol_Drinks_per_month": {
         "type": "double"
@@ -187,27 +162,22 @@
         "type": "double"
       },
       "Exercise": {
-        "index": "not_analyzed",
-        "type": "string"
+        "type": "keyword"
       },
       "Alcohol_Max_drinks": {
         "type": "double"
       },
       "Alcohol_Binge_drinker": {
-        "index": "not_analyzed",
-        "type": "string"
+        "type": "keyword"
       },
       "Gender": {
-        "index": "not_analyzed",
-        "type": "string"
+        "type": "keyword"
       },
       "Last_Cholesterol_Check": {
-        "index": "not_analyzed",
-        "type": "string"
+        "type": "keyword"
       },
       "Is_Adult": {
-        "index": "not_analyzed",
-        "type": "string"
+        "type": "keyword"
       },
       "BMI": {
         "type": "double"
@@ -216,8 +186,7 @@
         "type": "double"
       },
       "Smoke_GT_100_cigarettes": {
-        "index": "not_analyzed",
-        "type": "string"
+        "type": "keyword"
       },
       "Nutrition_Orange_veg_times_per_day": {
         "type": "double"
@@ -226,12 +195,10 @@
         "type": "double"
       },
       "Had_Diabetes": {
-        "index": "not_analyzed",
-        "type": "string"
+        "type": "keyword"
       },
       "Demo_income_group": {
-        "index": "not_analyzed",
-        "type": "string"
+        "type": "keyword"
       },
       "Physical_activity_1__duration": {
         "type": "double"
@@ -240,72 +207,58 @@
         "type": "double"
       },
       "Activity_yes__no": {
-        "index": "not_analyzed",
-        "type": "string"
+        "type": "keyword"
       },
       "Smoke_current_status": {
-        "index": "not_analyzed",
-        "type": "string"
+        "type": "keyword"
       },
       "Had_Heart_Attack": {
-        "index": "not_analyzed",
-        "type": "string"
+        "type": "keyword"
       },
       "Alcohol_any_drink_in_last_month": {
-        "index": "not_analyzed",
-        "type": "string"
+        "type": "keyword"
       },
       "SEQN": {
-        "index": "not_analyzed",
-        "type": "string"
+        "type": "keyword"
       },
       "BP_Meds": {
-        "index": "not_analyzed",
-        "type": "string"
+        "type": "keyword"
       },
       "Smoke_time_since_last_smoke": {
-        "index": "not_analyzed",
-        "type": "string"
+        "type": "keyword"
       },
       "Alcohol_Drinks_per_day": {
         "type": "long"
       },
       "Nutrition_Fruit_juice_consumption": {
-        "index": "not_analyzed",
-        "type": "string"
+        "type": "keyword"
       },
       "Activity_2_intensity": {
-        "index": "not_analyzed",
-        "type": "string"
+        "type": "keyword"
       },
       "Educatio_Level": {
-        "index": "not_analyzed",
-        "type": "string"
+        "type": "keyword"
       },
       "BMI_Category": {
-        "index": "not_analyzed",
-        "type": "string"
+        "type": "keyword"
       },
       "Physical_activity_2__duration": {
         "type": "double"
       },
       "Uses_special_equipment": {
-        "index": "not_analyzed",
-        "type": "string"
+        "type": "keyword"
       },
       "Activity_1_duration_minutes": {
         "type": "double"
       },
       "Age_category": {
-        "index": "not_analyzed",
-        "type": "string"
+        "type": "keyword"
       },
       "Nutrition_Fruit_consumption": {
         "type": "double"
       },
       "Nutrition_Orange_veg_consumption": {
-        "index": "not_analyzed",
-        "type": "string"
+        "type": "keyword"
       },
       "Activity_2_weekly_duration_minutes": {
         "type": "double"
@@ -314,8 +267,7 @@
         "type": "double"
       },
       "Employment": {
-        "index": "not_analyzed",
-        "type": "string"
+        "type": "keyword"
       },
       "Nutrition_Vegetable_per_day": {
         "type": "double"
@@ -324,24 +276,19 @@
         "type": "double"
       },
       "Aerobic_and_strengthening_guideline": {
-        "index": "not_analyzed",
-        "type": "string"
+        "type": "keyword"
       },
       "Had_Heart_Disease": {
-        "index": "not_analyzed",
-        "type": "string"
+        "type": "keyword"
       },
       "High_BP": {
-        "index": "not_analyzed",
-        "type": "string"
+        "type": "keyword"
       },
       "Difficulty_dressing__bathing": {
-        "index": "not_analyzed",
-        "type": "string"
+        "type": "keyword"
       },
       "Physical_activity_1__frequency": {
-        "index": "not_analyzed",
-        "type": "string"
+        "type": "keyword"
       },
       "Sleep_per_day_hours": {
         "type": "long"
@@ -350,12 +297,10 @@
         "type": "double"
       },
       "Nutrition_Greens_consumption": {
-        "index": "not_analyzed",
-        "type": "string"
+        "type": "keyword"
       },
       "High_Cholesterol": {
-        "index": "not_analyzed",
-        "type": "string"
+        "type": "keyword"
       },
       "Activity_2_duration_minutes": {
         "type": "double"
@@ -364,20 +309,16 @@
         "type": "double"
       },
       "Smoke_smoker_type": {
-        "index": "not_analyzed",
-        "type": "string"
+        "type": "keyword"
       },
       "Activity_category": {
-        "index": "not_analyzed",
-        "type": "string"
+        "type": "keyword"
       },
       "Marital": {
-        "index": "not_analyzed",
-        "type": "string"
+        "type": "keyword"
       },
       "Var": {
-        "index": "not_analyzed",
-        "type": "string"
+        "type": "keyword"
       },
       "Nutrition_Fruit_per_day": {
         "type": "double"
@@ -386,20 +327,16 @@
         "type": "double"
       },
       "Primary_Sampling_Unit": {
-        "index": "not_analyzed",
-        "type": "string"
+        "type": "keyword"
       },
       "Nutrition_Other_veg_consumption": {
-        "index": "not_analyzed",
-        "type": "string"
+        "type": "keyword"
       },
       "Cholesterol_Awareness": {
-        "index": "not_analyzed",
-        "type": "string"
+        "type": "keyword"
       },
       "Smoke_current_smoker": {
-        "index": "not_analyzed",
-        "type": "string"
+        "type": "keyword"
       }
     }
   }
