@@ -5,3 +5,4 @@ node_modules
 **/.venv*
 /ElasticStack_nyc_traffic_accidents/nyc_collision_data.csv
 /ElasticStack_twitter/twitter_logstash.conf.local
+*.idea*
