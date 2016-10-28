@@ -3,12 +3,12 @@ This **Getting Started with Elastic Stack** example provides sample files to ing
 
 ##### Version
 Example has been tested in following versions:
-- Elasticsearch 2.0 
-- Logstash 2.0
-- Kibana 4.2.0
+- Elasticsearch 5.0
+- Logstash 5.0
+- Kibana 5.0
 
 ### Installation & Setup
-* Follow the [Installation & Setup Guide](https://github.com/elastic/examples/blob/master/Installation%20and%20Setup.md) to install and test the ELK stack (*you can skip this step if you have a working installation of the Elastic Stack,*)
+* Follow the [Installation & Setup Guide](https://github.com/elastic/examples/blob/master/Installation%20and%20Setup.md) to install and test the Elastic Stack (*you can skip this step if you have a working installation of the Elastic Stack,*)
 
 * Run Elasticsearch & Kibana
   ```shell
@@ -58,17 +58,17 @@ cat nginx_logs | <path_to_logstash_root_dir>/bin/logstash -f nginx_logstash.conf
 
  * Verify that data is succesfully indexed into Elasticsearch
 
-  Running `http://localhost:9200/nginx_elk_example/_count` should return a response a `"count":51462`
+  Running `http://localhost:9200/nginx_elastic_stack_example/_count` should return a response a `"count":51462`
 
  **Note:** Included `nginx_logstash.conf` configuration file assumes that you are running Elasticsearch on the same host as     Logstash and have not changed the defaults. Modify the `host` and `cluster` settings in the `output { elasticsearch { ... } }`   section of nginx_logstash.conf, if needed.
 
 ##### 2. Visualize data in Kibana
 
 * Access Kibana by going to `http://localhost:5601` in a web browser
-* Connect Kibana to the `nginx_elk_example` index in Elasticsearch (autocreated in step 1)
-    * Click the **Settings** tab >> **Indices** tab >> **Add New**. Specify `nginx_elk_example` as the index pattern name and click **Create** to define the index pattern
+* Connect Kibana to the `nginx_elastic_stack_example` index in Elasticsearch (autocreated in step 1)
+    * Click the **Management** tab >> **Index Patterns** tab >> **Add New**. Specify `nginx_elastic_stack_example` as the index pattern name and click **Create** to define the index pattern with the field @timestamp
 * Load sample dashboard into Kibana
-    * Click the **Settings** tab >> **Objects** tab >> **Import**, and select `nginx_kibana.json`
+    * Click the **Management** tab >> **Saved Objects** tab >> **Import**, and select `nginx_kibana.json`
 * Open dashboard
     * Click on **Dashboard** tab and open `Sample Dashboard for Nginx Logs` dashboard
 

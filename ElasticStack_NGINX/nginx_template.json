@@ -1,6 +1,6 @@
 {
 
-  "template": "nginx_elk_example",
+  "template": "nginx_elastic_stack_example",
   "settings": {
      "index.refresh_interval": "5s"
   },
@@ -21,14 +21,11 @@
            {
               "string_fields": {
                  "mapping": {
-                    "index": "analyzed",
                     "omit_norms": true,
-                    "type": "string",
+                    "type": "text",
                     "fields": {
                        "raw": {
-                          "index": "not_analyzed",
-                          "ignore_above": 256,
-                          "type": "string"
+                          "type": "keyword"
                        }
                     }
                  },
@@ -51,8 +48,7 @@
               "type": "float"
            },
            "request": {
-              "index": "not_analyzed",
-              "type": "string"
+              "type": "keyword"
            }
         },
         "_all": {
