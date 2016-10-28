@@ -1,6 +1,6 @@
 {
     "require": {
-        "elasticsearch/elasticsearch": "~1.0"
+        "elasticsearch/elasticsearch": "~5.0"
     },
     "autoload": {
         "psr-4": { "RecipeSearch\\": "src/RecipeSearch/" }
