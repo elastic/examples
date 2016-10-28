@@ -17,10 +17,10 @@ output {
   }
   elasticsearch {
       hosts => "localhost:9200"
-      index         => "twitter_elk_example"
+      index         => "twitter_elastic_example"
       document_type => "tweets"
       template      => "./twitter_template.json"
-      template_name => "twitter_elk_example"
+      template_name => "twitter_elastic_example"
       template_overwrite => true
   }
 }

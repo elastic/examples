@@ -6,11 +6,11 @@ In this example, we will be analyzing the historical donations and projects data
 
 ##### Version
 Example has been tested in following versions:
-- Elasticsearch 1.7.0
-- Kibana 4.1.0
+- Elasticsearch 5.0
+- Kibana 5.0
 
 ### Installation & Setup
-* Follow the [Installation & Setup Guide](https://github.com/elastic/examples/blob/master/Installation%20and%20Setup.md) to install and test the ELK stack (*you can skip this step if you already have a working installation of the ELK stack*)
+* Follow the [Installation & Setup Guide](https://github.com/elastic/examples/blob/master/Installation%20and%20Setup.md) to install and test the Elastic Stack (*you can skip this step if you already have a working installation of the Elastic Stack*)
 
 * Run Elasticsearch & Kibana
   ```shell
@@ -26,10 +26,10 @@ Example has been tested in following versions:
 
 ### Download & Ingest Data
 
-You have 2 options to index the data into Elasticsearch. You can either use the Elasticsearch [snapshot and restore](https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-snapshots.html) API to directly restore the `donorschoose` index from a snapshot. OR, you can download the raw data from the DonorsChoose.org website and then use the scripts in the [Scripts - Python](https://github.com/elastic/examples/tree/master/ELK_donorschoose/Scripts%20-%20Python) folder to process the raw files and index the data.
+You have 2 options to index the data into Elasticsearch. You can either use the Elasticsearch [snapshot and restore](https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-snapshots.html) API to directly restore the `donorschoose` index from a snapshot. OR, you can download the raw data from the DonorsChoose.org website and then use the scripts in the [Scripts-Python](https://github.com/elastic/examples/tree/master/ELK_donorschoose/Scripts-Python) folder to process the raw files and index the data.
 
 #### Option 1. Load data by restoring index snapshot
-(Learn more about snapshot / restore [here](https://www.elastic.co/guide/en/elasticsearch/reference/1.3/modules-snapshots.html))
+(Learn more about snapshot / restore [here](https://www.elastic.co/guide/en/elasticsearch/reference/5.0/modules-snapshots.html))
 
 Using this option involves 4 easy steps:
 
@@ -37,12 +37,12 @@ Using this option involves 4 easy steps:
   **NOTE** - The index snapshot file is ~7.5 GB. Make sure you have a fast internet connection, and enough free space on disk before you download. 
   ```shell
   # Create snapshots directory
-  mkdir elk_donorschoose
-  cd elk_donorschoose
-  # Download index snapshot to elk_donorschoose directory
-  wget http://download.elasticsearch.org/demos/donorschoose/donorschoose_backup.tar.gz .
+  mkdir elastic_donorschoose
+  cd elastic_donorschoose
+  # Download index snapshot to elastic_donorschoose directory
+  wget http://download.elasticsearch.org/demos/donorschoose/donorschoose.tar.gz .
   # Uncompress snapshot file
-  tar -xf donorschoose_backup.tar.gz
+  tar -xf donorschoose.tar.gz
   ```
   This adds a `donorschoose_backup` subfolder containing the index snapshots.
 
@@ -70,9 +70,9 @@ At this point, go make yourself a coffee. When you are done enjoying your cup of
 
 #### Option 2: Process and load data using Python script
 
-The raw DonorsChoose.org data is provided as 5 separate files. In order to do some useful querying of the data in a search engine / NoSQL store like Elasticsearch, you typically have to go through a data modeling process of identifying how to join data from various tables. The files and instructions provided in the [Scripts - Python](https://github.com/elastic/examples/tree/master/ELK_donorschoose/Scripts%20-%20Python) folder provide example of processing, modeling and ingesting data into Elasticsearch starting with the raw data.
+The raw DonorsChoose.org data is provided as 5 separate files. In order to do some useful querying of the data in a search engine / NoSQL store like Elasticsearch, you typically have to go through a data modeling process of identifying how to join data from various tables. The files and instructions provided in the [Scripts-Python](https://github.com/elastic/examples/tree/master/ELK_donorschoose/Scripts-Python) folder provide example of processing, modeling and ingesting data into Elasticsearch starting with the raw data.
 
-We are providing this option in case you want to modify how the data is joined, perform additional data cleansing, enrich with additional data, etc. Follow the [ReadMe](https://github.com/elastic/examples/blob/master/ELK_donorschoose/Scripts%20-%20Python/README.md) in the [Scripts - Python](https://github.com/elastic/examples/tree/master/ELK_donorschoose/Scripts%20-%20Python) folder if you want to try this option.
+We are providing this option in case you want to modify how the data is joined, perform additional data cleansing, enrich with additional data, etc. Follow the [ReadMe](https://github.com/elastic/examples/blob/master/ELK_donorschoose/Scripts-Python/README.md) in the [Scripts - Python](https://github.com/elastic/examples/tree/master/ELK_donorschoose/Scripts-Python) folder if you want to try this option.
 
 #### Check data availability
 Once the index is created using either of the above options, you can check to see if all the data is available in Elasticsearch. If all goes well, you should get a `count` response of approximately `3506071` when you run the following command.
@@ -99,4 +99,4 @@ Once the index is created using either of the above options, you can check to se
 ### We would love to hear from you!
 If you run into issues running this example or have suggestions to improve it, please use Github issues to let us know. Have an easy fix? Submit a pull request. We will try our best to respond in a timely manner!
 
-Have you created interesting examples using the ELK stack? Looking for a way to share your amazing work with the community? We would love to include your awesome work here. For more information on how to contribute, check out the **[Contribution](https://github.com/elastic/examples#contributing)** section!
+Have you created interesting examples using the Elastic Stack? Looking for a way to share your amazing work with the community? We would love to include your awesome work here. For more information on how to contribute, check out the **[Contribution](https://github.com/elastic/examples#contributing)** section!
