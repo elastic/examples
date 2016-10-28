@@ -25,7 +25,7 @@
       "description": "",
       "version": 1,
       "kibanaSavedObjectMeta": {
-        "searchSourceJSON": "{\"index\":\"apache_elk_example\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+        "searchSourceJSON": "{\"index\":\"apache_elastic_example\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
       }
     }
   },
@@ -51,7 +51,7 @@
       "description": "",
       "version": 1,
       "kibanaSavedObjectMeta": {
-        "searchSourceJSON": "{\"index\":\"apache_elk_example\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[{\"meta\":{\"index\":\"apache_elk_example\",\"key\":\"response\",\"value\":\"200\",\"disabled\":false,\"negate\":true,\"apply\":true},\"query\":{\"match\":{\"response\":{\"query\":200,\"type\":\"phrase\"}}}}]}"
+        "searchSourceJSON": "{\"index\":\"apache_elastic_example\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[{\"meta\":{\"index\":\"apache_elastic_example\",\"key\":\"response\",\"value\":\"200\",\"disabled\":false,\"negate\":true,\"apply\":true},\"query\":{\"match\":{\"response\":{\"query\":200,\"type\":\"phrase\"}}}}]}"
       }
     }
   },
@@ -64,7 +64,7 @@
       "description": "",
       "version": 1,
       "kibanaSavedObjectMeta": {
-        "searchSourceJSON": "{\"index\":\"apache_elk_example\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[{\"meta\":{\"index\":\"apache_elk_example\",\"key\":\"useragent.device.raw\",\"value\":\"Other\",\"disabled\":false,\"negate\":true,\"apply\":true},\"query\":{\"match\":{\"useragent.device.raw\":{\"query\":\"Other\",\"type\":\"phrase\"}}}},{\"meta\":{\"index\":\"apache_elk_example\",\"key\":\"useragent.device.raw\",\"value\":\"Spider\",\"disabled\":false,\"negate\":true,\"apply\":true},\"query\":{\"match\":{\"useragent.device.raw\":{\"query\":\"Spider\",\"type\":\"phrase\"}}}}]}"
+        "searchSourceJSON": "{\"index\":\"apache_elastic_example\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[{\"meta\":{\"index\":\"apache_elastic_example\",\"key\":\"useragent.device.raw\",\"value\":\"Other\",\"disabled\":false,\"negate\":true,\"apply\":true},\"query\":{\"match\":{\"useragent.device.raw\":{\"query\":\"Other\",\"type\":\"phrase\"}}}},{\"meta\":{\"index\":\"apache_elastic_example\",\"key\":\"useragent.device.raw\",\"value\":\"Spider\",\"disabled\":false,\"negate\":true,\"apply\":true},\"query\":{\"match\":{\"useragent.device.raw\":{\"query\":\"Spider\",\"type\":\"phrase\"}}}}]}"
       }
     }
   },
@@ -77,7 +77,7 @@
       "description": "",
       "version": 1,
       "kibanaSavedObjectMeta": {
-        "searchSourceJSON": "{\"index\":\"apache_elk_example\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[{\"meta\":{\"index\":\"apache_elk_example\",\"key\":\"useragent.os.raw\",\"value\":\"Other\",\"disabled\":false,\"negate\":true,\"apply\":true},\"query\":{\"match\":{\"useragent.os.raw\":{\"query\":\"Other\",\"type\":\"phrase\"}}}}]}"
+        "searchSourceJSON": "{\"index\":\"apache_elastic_example\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[{\"meta\":{\"index\":\"apache_elastic_example\",\"key\":\"useragent.os.raw\",\"value\":\"Other\",\"disabled\":false,\"negate\":true,\"apply\":true},\"query\":{\"match\":{\"useragent.os.raw\":{\"query\":\"Other\",\"type\":\"phrase\"}}}}]}"
       }
     }
   },
@@ -90,7 +90,7 @@
       "description": "",
       "version": 1,
       "kibanaSavedObjectMeta": {
-        "searchSourceJSON": "{\"index\":\"apache_elk_example\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+        "searchSourceJSON": "{\"index\":\"apache_elastic_example\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
       }
     }
   },
@@ -103,7 +103,7 @@
       "description": "",
       "version": 1,
       "kibanaSavedObjectMeta": {
-        "searchSourceJSON": "{\"index\":\"apache_elk_example\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+        "searchSourceJSON": "{\"index\":\"apache_elastic_example\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
       }
     }
   },
@@ -116,7 +116,7 @@
       "description": "",
       "version": 1,
       "kibanaSavedObjectMeta": {
-        "searchSourceJSON": "{\"index\":\"apache_elk_example\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+        "searchSourceJSON": "{\"index\":\"apache_elastic_example\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
       }
     }
   },
@@ -129,7 +129,7 @@
       "description": "",
       "version": 1,
       "kibanaSavedObjectMeta": {
-        "searchSourceJSON": "{\"index\":\"apache_elk_example\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+        "searchSourceJSON": "{\"index\":\"apache_elastic_example\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
       }
     }
   },
@@ -142,7 +142,7 @@
       "description": "",
       "version": 1,
       "kibanaSavedObjectMeta": {
-        "searchSourceJSON": "{\"index\":\"apache_elk_example\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+        "searchSourceJSON": "{\"index\":\"apache_elastic_example\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
       }
     }
   }
