@@ -1,0 +1,26 @@
+input {
+  twitter {
+    consumer_key       => "A7gsA6CGnB5mGc4oegubxB3yp"
+    consumer_secret    => "NUAGFbiY6x4Eca3kwqQnH7PE3BFyNXJFS45stlbdvrMWGHnhCM"
+    oauth_token        => "1151742912-hg3owdfp3Wdz4ZVBhw7F8Y3lRh7KiZyarD86417"
+    oauth_token_secret => "KkQrenbFhfNHxvTwLqIOoA9NYr1JP9xMC5j8mGEOPG86i"
+    keywords           => [ "thor", "spiderman", "wolverine", "ironman", "hulk"]
+    full_tweet         => true
+  }
+}
+
+filter { }
+
+output {
+  stdout {
+    codec => dots
+  }
+  elasticsearch {
+      hosts => "localhost:9200"
+      index         => "twitter_elk_example"
+      document_type => "tweets"
+      template      => "./twitter_template.json"
+      template_name => "twitter_elk_example"
+      template_overwrite => true
+  }
+}

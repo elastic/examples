@@ -1,0 +1,6 @@
+-e git+git@github.com:elastic/elasticsearch-py.git#egg=elasticsearch
+numpy==1.11.2
+pandas==0.19.0
+python-dateutil==2.5.3
+pytz==2016.7
+six==1.10.0

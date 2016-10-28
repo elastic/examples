@@ -1,13 +1,13 @@
-## Using ELK Stack to Analyze NYPD Motor Vehicle Collision Data
-This example demonstrates how to analyze & visualize New York City traffic incident data using the ELK stack, i.e. Elasticsearch, Logstash and Kibana. The [NYPD Motor Vehicle Collision data](https://data.cityofnewyork.us/Public-Safety/NYPD-Motor-Vehicle-Collisions/h9gi-nx95?) analyzed in this example is from the [NYC Open Data](https://data.cityofnewyork.us/) initiative.
+## Using Elastic Stack to Analyze NYPD Motor Vehicle Collision Data
+This example demonstrates how to analyze & visualize New York City traffic incident data using the Elastic Stack, i.e. Elasticsearch, Logstash and Kibana. The [NYPD Motor Vehicle Collision data](https://data.cityofnewyork.us/Public-Safety/NYPD-Motor-Vehicle-Collisions/h9gi-nx95?) analyzed in this example is from the [NYC Open Data](https://data.cityofnewyork.us/) initiative.
 
 Feel free to read the [#byodemos: New York city traffic incidents](https://www.elastic.co/blog/byodemos-new-york-city-traffic-incidents) blog post for additional commentary on this analysis. A couple of notes on the blog. The screenshots in the blog post were created with an older version of Kibana. So, don't be alarmed if your Kibana UI looks a little different. Secondly, the good folks at [NYC Open Data](https://data.cityofnewyork.us/) are great at updating their dataset with latest information. So the visualization and metrics that you see might not match the ones highlighted in the blog post. But, that is the fun part of exploring a living & dynamic dataset, isn't it? 
 
 ##### Version
 Example has been tested in following versions:
-- Elasticsearch 1.7.0
-- Logstash 1.5.2
-- Kibana 4.1.0
+- Elasticsearch 5.0.0
+- Logstash 5.0.0
+- Kibana 5.0.0
 
 ### Contents
 * [Installation & Setup](#installation--setup)
@@ -48,11 +48,11 @@ Example has been tested in following versions:
   - `nyc_collision_template.json` - template for custom mapping of fields
   - `nyc_collision_kibana.json` - config file to load prebuilt Kibana dashboard
 
-  Unfortunately, Github does not provide a convenient one-click option to download entire contents of a subfolder in a repo. You can either (a) [download](https://github.com/elastic/examples/archive/master.zip) or [clone](https://github.com/elastic/examples.git) the entire examples repo and navigate to `elk_nyc_accidents` subfolder, or (b) individually download the above files. The code below makes option (b) a little easier:
+  Unfortunately, Github does not provide a convenient one-click option to download entire contents of a subfolder in a repo. You can either (a) [download](https://github.com/elastic/examples/archive/master.zip) or [clone](https://github.com/elastic/examples.git) the entire examples repo and navigate to `ElasticStack_nyc_traffic_accidents` subfolder, or (b) individually download the above files. The code below makes option (b) a little easier:
   ```shell
-  wget https://raw.githubusercontent.com/elastic/examples/master/ELK_nyc_traffic_accidents/nyc_collision_logstash.conf
-  wget https://raw.githubusercontent.com/elastic/examples/master/ELK_nyc_traffic_accidents/nyc_collision_template.json
-  wget https://raw.githubusercontent.com/elastic/examples/master/ELK_nyc_traffic_accidents/nyc_collision_kibana.json
+  wget https://raw.githubusercontent.com/elastic/examples/master/ElasticStack_nyc_traffic_accidents/nyc_collision_logstash.conf
+  wget https://raw.githubusercontent.com/elastic/examples/master/ElasticStack_nyc_traffic_accidents/nyc_collision_template.json
+  wget https://raw.githubusercontent.com/elastic/examples/master/ElasticStack_nyc_traffic_accidents/nyc_collision_kibana.json
   ```
 
 ### Run Example
@@ -73,9 +73,9 @@ Example has been tested in following versions:
 
 * Access Kibana by going to `http://localhost:5601` in a web browser
 * Connect Kibana to the `nyc_visionzero` index in Elasticsearch (autocreated in step 1)
-    * Click the **Settings** tab >> **Indices** tab >> **Create New**. Specify `nyc_visionzero` as the index pattern name and click **Create** to define the index pattern. (Leave the **Use event times to create index names** box unchecked)
+    * Click the **Management** tab >> **Index Patterns** tab >> **Create New**. Specify `nyc_visionzero` as the index pattern name and click **Create** to define the index pattern. (Leave the **Use event times to create index names** box unchecked and the Time Field as @timestamp)
 * Load sample dashboard into Kibana
-    * Click the **Settings** tab >> **Objects** tab >> **Import**, and select `nyc_collision_kibana.json`
+    * Click the **Management** tab >> **Saved Objects** tab >> **Import**, and select `nyc_collision_kibana.json`
 * Open dashboard
     * Click on **Dashboard** tab and open `NYC Motor Vehicles Collision` dashboard
 
@@ -85,4 +85,4 @@ Voila! You should see the following dashboard. Happy Data Exploration!
 ### We would love to hear from you!
 If you run into issues running this example or have suggestions to improve it, please use Github issues to let us know. Have an easy fix, submit a pull request. We will try our best to respond in a timely manner!
 
-Have you created interesting examples using the ELK stack? Looking for a way to share your amazing work with the community? We would love to include your awesome work here. For more information on how to contribute, check out the **[Contribution](https://github.com/elastic/examples#contributing) section!** 
+Have you created interesting examples using the Elastic Stack? Looking for a way to share your amazing work with the community? We would love to include your awesome work here. For more information on how to contribute, check out the **[Contribution](https://github.com/elastic/examples#contributing) section!**

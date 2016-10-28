@@ -8,14 +8,12 @@
         "dynamic_templates" : [ {
           "string_fields" : {
             "mapping" : {
-              "index" : "analyzed",
+              "type" : "text",
               "omit_norms" : true,
-              "type" : "string",
               "fields" : {
                 "raw" : {
-                  "index" : "not_analyzed",
-                  "ignore_above" : 256,
-                  "type" : "string"
+                  "type" : "keyword",
+                  "ignore_above" : 256
                 }
               }
             },
@@ -28,32 +26,25 @@
             "type" : "geo_point"
           },
           "@version" : {
-            "index" : "not_analyzed",
-            "type" : "string"
+            "type" : "keyword"
           },
           "borough": {
-          	"index":"not_analyzed",
-          	"type":"string"
+          	"type" : "keyword"
           },
           "cross_street_name" :{
-          	"index":"not_analyzed",
-          	"type":"string"
+          	"type" : "keyword"
           },
           "off_street_name":{
-          	"index":"not_analyzed",
-          	"type":"string"
+          	"type" : "keyword"
           },
           "on_street_name":{
-          	"index":"not_analyzed",
-          	"type":"string"
+          	"type" : "keyword"
           },
           "contributing_factor_vehicle":{
-          	"index":"not_analyzed",
-          	"type":"string"
+          	"type" : "keyword"
           },
           "intersection":{
-            "index":"not_analyzed",
-            "type":"string"
+            "type" : "keyword"
           },
           "hour_of_day": {
             "type" : "integer"
