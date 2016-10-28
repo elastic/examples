@@ -3,16 +3,31 @@
 require __DIR__ . '/../vendor/autoload.php';
 
 use RecipeSearch\Constants;
+use Elasticsearch\ClientBuilder;
+
 
 // Get search results from Elasticsearch if the user searched for something
 $results = [];
+
+if (empty($_REQUEST['q'])) {
+        $_REQUEST['q']="";
+}
+
 if (!empty($_REQUEST['submitted'])) {
 
-    // Connect to Elasticsearch (1-node cluster)
+
+
+    // Connect to local Elasticsearch node
     $esPort = getenv('APP_ES_PORT') ?: 9200;
-    $client = new Elasticsearch\Client([
-        'hosts' => [ 'localhost:' . $esPort ]
-    ]);
+
+    $hosts = [
+        'localhost:' . $esPort
+    ];
+
+    $client = ClientBuilder::create()           // Instantiate a new ClientBuilder
+                        ->setHosts($hosts)      // Set the hosts
+                        ->build();              // Build the client object
+
 
     // Setup search query
     $searchParams['index'] = Constants::ES_INDEX; // which index to search

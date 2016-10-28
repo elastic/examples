@@ -9,6 +9,8 @@ if (count($results) > 0) {
   <th>Cooking time (minutes)</th>
 </thead>
 <?php
+    error_reporting(E_ALL ^ E_NOTICE);
+
     foreach ($results as $result) {
         $recipe = $result['_source'];
 ?>

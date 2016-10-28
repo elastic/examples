@@ -4,6 +4,9 @@ require __DIR__ . '/../vendor/autoload.php';
 
 use RecipeSearch\Constants;
 use Elasticsearch\Common\Exceptions\Missing404Exception;
+use Elasticsearch\ClientBuilder;
+
+error_reporting(E_ALL ^ E_NOTICE);
 
 $message = $_REQUEST['message'];
 
@@ -11,11 +14,14 @@ $message = $_REQUEST['message'];
 if (empty($_REQUEST['id'])) {
     $message = 'No recipe requested! Please provide a recipe ID.';
 } else {
-    // Connect to Elasticsearch (1-node cluster)
+   // Connect to local Elasticsearch node
     $esPort = getenv('APP_ES_PORT') ?: 9200;
-    $client = new Elasticsearch\Client([
-        'hosts' => [ 'localhost:' . $esPort ]
-    ]);
+    $hosts = [
+        'localhost:' . $esPort
+    ];
+    $client = ClientBuilder::create()           // Instantiate a new ClientBuilder
+                        ->setHosts($hosts)      // Set the hosts
+                        ->build();              // Build the client object
 
     // Try to get recipe from Elasticsearch
     try {
