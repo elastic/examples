@@ -1,14 +1,20 @@
 <?php
 
 require __DIR__ . '/../vendor/autoload.php';
-
 use RecipeSearch\Constants;
+use Elasticsearch\ClientBuilder;
+
 
 // Connect to local Elasticsearch node
 $esPort = getenv('APP_ES_PORT') ?: 9200;
-$client = new Elasticsearch\Client([
-    'hosts' => [ 'localhost:' . $esPort ]
-]);
+
+$hosts = [
+    'localhost:' . $esPort
+];
+
+$client = ClientBuilder::create()           // Instantiate a new ClientBuilder
+                    ->setHosts($hosts)      // Set the hosts
+                    ->build();              // Build the client object
 
 // Delete index to clear out existing data
 $deleteParams = [];

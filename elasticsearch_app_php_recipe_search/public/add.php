@@ -4,15 +4,19 @@ require __DIR__ . '/../vendor/autoload.php';
 
 use RecipeSearch\Constants;
 use RecipeSearch\Util;
+use Elasticsearch\ClientBuilder;
 
+error_reporting(E_ALL ^ E_NOTICE);
 // Add recipe if one was submitted
 if (count($_POST) > 0) {
 
-    // Connect to Elasticsearch (1-node cluster)
     $esPort = getenv('APP_ES_PORT') ?: 9200;
-    $client = new Elasticsearch\Client([
-        'hosts' => [ 'localhost:' . $esPort ]
-    ]);
+    $hosts = [
+        'localhost:' . $esPort
+    ];
+    $client = ClientBuilder::create()           // Instantiate a new ClientBuilder
+                        ->setHosts($hosts)      // Set the hosts
+                        ->build();              // Build the client object
 
     // Convert recipe title to ID
     $id = Util::recipeTitleToId($_POST['title']);

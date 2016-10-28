@@ -8,8 +8,7 @@
         "dynamic_templates" : [ {
           "string_fields" : {
             "mapping" : {
-              "index" : "not_analyzed",
-			  "type": "string",
+			  "type": "keyword",
 			  "doc_values": true
             },
             "match_mapping_type" : "string",
@@ -26,20 +25,17 @@
 			"doc_values": true
           },
 		  "transactionDate": {
-              "index" : "not_analyzed",
-			  "type": "string",
+              "type" : "keyword",
 			  "doc_values": true
 		  },
 		  "candidate": {
 		  	  "type": "object",
 			  "properties": {
 				  "candidateName": {
-					  "type": "string",
-					  "index": "analyzed",
+					  "type": "text",
 					  "fields": {
 						  "raw": {
-							  "type": "string",
-							  "index": "not_analyzed",
+							  "type": "keyword",
 							  "doc_values": true
 						  }
 					  }
@@ -47,45 +43,37 @@
 			  }
 		  },
 		  "name": {
-			  "type": "string",
-			  "index": "analyzed",
+			  "type": "text",
 			  "fields": {
 				  "raw": {
-					  "type": "string",
-					  "index": "not_analyzed",
+					  "type": "keyword",
 					  "doc_values": true
 				  }
 			  }
 		  },
 		  "employer": {
-			  "type": "string",
-			  "index": "analyzed",
+			  "type": "text",
 			  "fields": {
 				  "raw": {
-					  "type": "string",
-					  "index": "not_analyzed",
+					  "type": "keyword",
 					  "doc_values": true
 				  }
 			  }
 		  },
 		  "memo": {
-			  "type": "string",
-			  "index": "analyzed",
+			  "type": "text",
 			  "fields": {
 				  "raw": {
-					  "type": "string",
-					  "index": "not_analyzed",
+					  "type": "keyword",
 					  "doc_values": true
 				  }
 			  }
 		  },
 		  "occupation": {
-			  "type": "string",
-			  "index": "analyzed",
+			  "type": "text",
 			  "fields": {
 				  "raw": {
-					  "type": "string",
-					  "index": "not_analyzed",
+					  "type": "keyword",
 					  "doc_values": true
 				  }
 			  }
@@ -94,8 +82,7 @@
             "type" : "geo_point"
           },
           "@version" : {
-            "index" : "not_analyzed",
-            "type" : "string"
+            "type": "keyword"
           }
         },
         "_all" : {
@@ -106,8 +93,7 @@
           "dynamic_templates" : [ {
             "string_fields" : {
               "mapping" : {
-                "index" : "not_analyzed",
-  			  "type": "string",
+  			  "type": "keyword",
   			  "doc_values": true
               },
               "match_mapping_type" : "string",
@@ -127,20 +113,17 @@
 				"doc_values": true
 	          },
 			  "transactionDate": {
-	              "index" : "not_analyzed",
-				  "type": "string",
+				  "type": "keyword",
 				  "doc_values": true
 			  },
 			  "candidate": {
 			  	  "type": "object",
 				  "properties": {
 					  "candidateName": {
-						  "type": "string",
-						  "index": "analyzed",
+						  "type": "text",
 						  "fields": {
 							  "raw": {
-								  "type": "string",
-								  "index": "not_analyzed",
+								  "type": "keyword",
 								  "doc_values": true
 							  }
 						  }
@@ -148,45 +131,37 @@
 				  }
 			  },
 			  "name": {
-				  "type": "string",
-				  "index": "analyzed",
+				  "type": "text",
 				  "fields": {
 					  "raw": {
-						  "type": "string",
-						  "index": "not_analyzed",
+						  "type": "keyword",
 						  "doc_values": true
 					  }
 				  }
 			  },
 			  "employer": {
-				  "type": "string",
-				  "index": "analyzed",
+				  "type": "text",
 				  "fields": {
 					  "raw": {
-						  "type": "string",
-						  "index": "not_analyzed",
+						  "type": "keyword",
 						  "doc_values": true
 					  }
 				  }
 			  },
 			  "memo": {
-				  "type": "string",
-				  "index": "analyzed",
+				  "type": "text",
 				  "fields": {
 					  "raw": {
-						  "type": "string",
-						  "index": "not_analyzed",
+						  "type": "keyword",
 						  "doc_values": true
 					  }
 				  }
 			  },
 			  "occupation": {
-				  "type": "string",
-				  "index": "analyzed",
+				  "type": "text",
 				  "fields": {
 					  "raw": {
-						  "type": "string",
-						  "index": "not_analyzed",
+						  "type": "keyword",
 						  "doc_values": true
 					  }
 				  }
@@ -195,19 +170,16 @@
 	            "type" : "geo_point"
 	          },
 	          "@version" : {
-	            "index" : "not_analyzed",
-	            "type" : "string"
+	            "type": "keyword"
 	          },
 	  		  "receivingCommittee": {
 	  		  	  "type": "object",
 	  			  "properties": {
 	  				  "committeeName": {
-	  					  "type": "string",
-	  					  "index": "analyzed",
+	  					  "type": "text",
 	  					  "fields": {
 	  						  "raw": {
-	  							  "type": "string",
-	  							  "index": "not_analyzed",
+	  							  "type": "keyword",
 	  							  "doc_values": true
 	  						  }
 	  					  }
@@ -220,9 +192,8 @@
           "dynamic_templates" : [ {
             "string_fields" : {
               "mapping" : {
-                "index" : "not_analyzed",
-  			  "type": "string",
-  			  "doc_values": true
+  			    "type": "keyword",
+  			    "doc_values": true
               },
               "match_mapping_type" : "string",
               "match" : "*"
@@ -241,20 +212,17 @@
 				"doc_values": true
 	          },
 			  "transactionDate": {
-	              "index" : "not_analyzed",
-				  "type": "string",
+	              "type" : "keyword",
 				  "doc_values": true
 			  },
 			  "candidate": {
 			  	  "type": "object",
 				  "properties": {
 					  "candidateName": {
-						  "type": "string",
-						  "index": "analyzed",
+						  "type": "text",
 						  "fields": {
 							  "raw": {
-								  "type": "string",
-								  "index": "not_analyzed",
+								  "type": "keyword",
 								  "doc_values": true
 							  }
 						  }
@@ -262,45 +230,37 @@
 				  }
 			  },
 			  "name": {
-				  "type": "string",
-				  "index": "analyzed",
+				  "type": "text",
 				  "fields": {
 					  "raw": {
-						  "type": "string",
-						  "index": "not_analyzed",
+						  "type": "keyword",
 						  "doc_values": true
 					  }
 				  }
 			  },
 			  "employer": {
-				  "type": "string",
-				  "index": "analyzed",
+				  "type": "text",
 				  "fields": {
 					  "raw": {
-						  "type": "string",
-						  "index": "not_analyzed",
+						  "type": "keyword",
 						  "doc_values": true
 					  }
 				  }
 			  },
 			  "memo": {
-				  "type": "string",
-				  "index": "analyzed",
+				  "type": "text",
 				  "fields": {
 					  "raw": {
-						  "type": "string",
-						  "index": "not_analyzed",
+						  "type": "keyword",
 						  "doc_values": true
 					  }
 				  }
 			  },
 			  "occupation": {
-				  "type": "string",
-				  "index": "analyzed",
+				  "type": "text",
 				  "fields": {
 					  "raw": {
-						  "type": "string",
-						  "index": "not_analyzed",
+						  "type": "keyword",
 						  "doc_values": true
 					  }
 				  }
@@ -309,19 +269,16 @@
 	            "type" : "geo_point"
 	          },
 	          "@version" : {
-	            "index" : "not_analyzed",
-	            "type" : "string"
+	            "type" : "keyword"
 	          },
 	  		  "contributingCommittee": {
 	  		  	  "type": "object",
 	  			  "properties": {
 	  				  "committeeName": {
-	  					  "type": "string",
-	  					  "index": "analyzed",
+	  					  "type": "text",
 	  					  "fields": {
 	  						  "raw": {
-	  							  "type": "string",
-	  							  "index": "not_analyzed",
+	  							  "type": "keyword",
 	  							  "doc_values": true
 	  						  }
 	  					  }
@@ -334,9 +291,8 @@
           "dynamic_templates" : [ {
             "string_fields" : {
               "mapping" : {
-                "index" : "not_analyzed",
-  			  "type": "string",
-  			  "doc_values": true
+  			    "type": "keyword",
+  			    "doc_values": true
               },
               "match_mapping_type" : "string",
               "match" : "*"
@@ -355,20 +311,17 @@
 				"doc_values": true
 	          },
 			  "transactionDate": {
-	              "index" : "not_analyzed",
-				  "type": "string",
+	              "type": "keyword",
 				  "doc_values": true
 			  },
 			  "candidate": {
 			  	  "type": "object",
 				  "properties": {
 					  "candidateName": {
-						  "type": "string",
-						  "index": "analyzed",
+						  "type": "text",
 						  "fields": {
 							  "raw": {
-								  "type": "string",
-								  "index": "not_analyzed",
+								  "type": "keyword",
 								  "doc_values": true
 							  }
 						  }
@@ -376,45 +329,37 @@
 				  }
 			  },
 			  "name": {
-				  "type": "string",
-				  "index": "analyzed",
+				  "type": "text",
 				  "fields": {
 					  "raw": {
-						  "type": "string",
-						  "index": "not_analyzed",
+						  "type": "keyword",
 						  "doc_values": true
 					  }
 				  }
 			  },
 			  "employer": {
-				  "type": "string",
-				  "index": "analyzed",
+				  "type": "text",
 				  "fields": {
 					  "raw": {
-						  "type": "string",
-						  "index": "not_analyzed",
+						  "type": "keyword",
 						  "doc_values": true
 					  }
 				  }
 			  },
 			  "memo": {
-				  "type": "string",
-				  "index": "analyzed",
+				  "type": "text",
 				  "fields": {
 					  "raw": {
-						  "type": "string",
-						  "index": "not_analyzed",
+						  "type": "keyword",
 						  "doc_values": true
 					  }
 				  }
 			  },
 			  "occupation": {
-				  "type": "string",
-				  "index": "analyzed",
+				  "type": "text",
 				  "fields": {
 					  "raw": {
-						  "type": "string",
-						  "index": "not_analyzed",
+						  "type": "keyword",
 						  "doc_values": true
 					  }
 				  }
@@ -423,19 +368,16 @@
 	            "type" : "geo_point"
 	          },
 	          "@version" : {
-	            "index" : "not_analyzed",
-	            "type" : "string"
+	            "type": "keyword"
 	          },
 	  		  "contributingCommittee": {
 	  		  	  "type": "object",
 	  			  "properties": {
 	  				  "committeeName": {
-	  					  "type": "string",
-	  					  "index": "analyzed",
+	  					  "type": "text",
 	  					  "fields": {
 	  						  "raw": {
-	  							  "type": "string",
-	  							  "index": "not_analyzed",
+	  							  "type": "keyword",
 	  							  "doc_values": true
 	  						  }
 	  					  }
@@ -446,12 +388,10 @@
 	  		  	  "type": "object",
 	  			  "properties": {
 	  				  "committeeName": {
-	  					  "type": "string",
-	  					  "index": "analyzed",
+	  					  "type": "text",
 	  					  "fields": {
 	  						  "raw": {
-	  							  "type": "string",
-	  							  "index": "not_analyzed",
+	  							  "type": "keyword",
 	  							  "doc_values": true
 	  						  }
 	  					  }
@@ -464,9 +404,8 @@
           "dynamic_templates" : [ {
             "string_fields" : {
               "mapping" : {
-                "index" : "not_analyzed",
-  			  "type": "string",
-  			  "doc_values": true
+                "type": "keyword",
+  			    "doc_values": true
               },
               "match_mapping_type" : "string",
               "match" : "*"
@@ -485,20 +424,17 @@
 				"doc_values": true
 	          },
 			  "transactionDate": {
-	              "index" : "not_analyzed",
-				  "type": "string",
+	              "type": "keyword",
 				  "doc_values": true
 			  },
 			  "candidate": {
 			  	  "type": "object",
 				  "properties": {
 					  "candidateName": {
-						  "type": "string",
-						  "index": "analyzed",
+						  "type": "text",
 						  "fields": {
 							  "raw": {
-								  "type": "string",
-								  "index": "not_analyzed",
+								  "type": "keyword",
 								  "doc_values": true
 							  }
 						  }
@@ -506,45 +442,37 @@
 				  }
 			  },
 			  "name": {
-				  "type": "string",
-				  "index": "analyzed",
+				  "type": "text",
 				  "fields": {
 					  "raw": {
-						  "type": "string",
-						  "index": "not_analyzed",
+						  "type": "keyword",
 						  "doc_values": true
 					  }
 				  }
 			  },
 			  "employer": {
-				  "type": "string",
-				  "index": "analyzed",
+				  "type": "text",
 				  "fields": {
 					  "raw": {
-						  "type": "string",
-						  "index": "not_analyzed",
+						  "type": "keyword",
 						  "doc_values": true
 					  }
 				  }
 			  },
 			  "memo": {
-				  "type": "string",
-				  "index": "analyzed",
+				  "type": "text",
 				  "fields": {
 					  "raw": {
-						  "type": "string",
-						  "index": "not_analyzed",
+						  "type": "keyword",
 						  "doc_values": true
 					  }
 				  }
 			  },
 			  "occupation": {
-				  "type": "string",
-				  "index": "analyzed",
+				  "type": "text",
 				  "fields": {
 					  "raw": {
-						  "type": "string",
-						  "index": "not_analyzed",
+						  "type": "keyword",
 						  "doc_values": true
 					  }
 				  }
@@ -553,19 +481,16 @@
 	            "type" : "geo_point"
 	          },
 	          "@version" : {
-	            "index" : "not_analyzed",
-	            "type" : "string"
+	            "type": "keyword"
 	          },
 	  		  "spendingCommittee": {
 	  		  	  "type": "object",
 	  			  "properties": {
 	  				  "committeeName": {
-	  					  "type": "string",
-	  					  "index": "analyzed",
+	  					  "type": "text",
 	  					  "fields": {
 	  						  "raw": {
-	  							  "type": "string",
-	  							  "index": "not_analyzed",
+	  							  "type": "keyword",
 	  							  "doc_values": true
 	  						  }
 	  					  }

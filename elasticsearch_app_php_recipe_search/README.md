@@ -13,28 +13,24 @@ Elasticsearch-related code in this application.
 
 ## Running this on your own machine
 
-1. Download and install PHP.
+1. Download and install PHP 7.0.
 
-1. Download and unzip Elasticsearch.
+2. Download and unzip Elasticsearch.
 
-   ```sh
-   $ wget 'https://download.elastic.co/elasticsearch/elasticsearch/elasticsearch-1.6.0.zip'
-   $ unzip elasticsearch-1.6.0.zip
-   ```
+* Follow the [Installation & Setup Guide](https://github.com/elastic/examples/blob/master/Installation%20and%20Setup.md) to install and test the Elastic Stack (*you can skip this step if you have a working installation of the Elastic Stack*).  Additionaly for this demo there is no requirement to install either Kibana or Logstash.
 
-1. Start a 1-node Elasticsearch cluster.
+* Run Elasticsearch
+  ```shell
+    <path_to_elasticsearch_root_dir>/bin/elasticsearch
+    ```
 
-   ```sh
-   $ cd elasticsearch-1.6.0
-   $ ./bin/elasticsearch # The process started by this command corresponds to a single Elasticsearch node
-   ```
+* Check that Elasticsearch is up and running.
+  - Open `localhost:9200` in web browser -- should return status code 200
 
-   By default the node's REST API will be available at `http://localhost:9200`, unless port 9200 is already taken. In
-   that case Elasticsearch will automatically choose another port. Read through the log messages emitted when you
-   start the node, and look for a log message containing `http`. In this message, look for `bound_address` and note the
-   port shown in the accompanying network address.
+  **Note:** By default, Elasticsearch runs on port 9200. If you changed the default ports during installation, change the above calls to use appropriate ports.
 
-1. Download the code in this repo and unzip it.
+
+3. Download the code in this repo and unzip it.
 
    ```sh
    $ wget -O elastic-demo.zip 'https://github.com/elastic/demo/archive/master.zip'
@@ -44,7 +40,7 @@ Elasticsearch-related code in this application.
    $ cd recipe_search
    ```
 
-1. Install application dependencies.
+4. Install application dependencies.
 
    ```sh
    $ composer install
