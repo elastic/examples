@@ -1,14 +1,14 @@
-### Getting Started with ELK for Twitter 
-This **Getting Started with ELK** example provides sample code to ingest, analyze & visualize **Twitter stream** around a topic of interest using the ELK stack, i.e. Elasticsearch, Logstash and Kibana.
+### Getting Started with Elastic Stack for Twitter
+This **Getting Started with Elastic Stack** example provides sample code to ingest, analyze & visualize **Twitter stream** around a topic of interest using the Elastic Stack, i.e. Elasticsearch, Logstash and Kibana.
 
 ##### Version
 Example has been tested in following versions:
-- Elasticsearch 1.7.0
-- Logstash 1.5.2
-- Kibana 4.1.0
+- Elasticsearch 5.0
+- Logstash 5.0
+- Kibana 5.0
 
 ### Installation & Setup
-* Follow the [Installation & Setup Guide](https://github.com/elastic/examples/blob/master/Installation%20and%20Setup.md) to install and test the ELK stack (*you can skip this step if you have a working installation of the ELK stack*)
+* Follow the [Installation & Setup Guide](https://github.com/elastic/examples/blob/master/Installation%20and%20Setup.md) to install and test the Elastic Stack (*you can skip this step if you have a working installation of the Elastic Stack*)
 
 * Run Elasticsearch & Kibana
   ```shell
@@ -33,8 +33,8 @@ Download the following files in this repo to a local directory:
 Unfortunately, Github does not provide a convenient one-click option to download the entire content of a subfolder in a repo. Use sample code provided below to download the required files to a local directory:
 
 ```shell
-mkdir  twitter_elk_example
-cd twitter_elk_example
+mkdir twitter_elastic_example
+cd twitter_elastic_example
 wget https://raw.githubusercontent.com/elastic/examples/master/ELK_twitter/twitter_logstash.conf
 wget https://raw.githubusercontent.com/elastic/examples/master/ELK_twitter/twitter_template.json
 wget https://raw.githubusercontent.com/elastic/examples/master/ELK_twitter/twitter_kibana.json
@@ -70,9 +70,9 @@ input {
    <path_to_logstash_root_dir>/bin/logstash -f twitter_logstash.conf
   ```
 
-* Verify that data is succesfully indexed into Elasticsearch
+* Verify that data is successfully indexed into Elasticsearch
 
-  Running `http://localhost:9200/twitter_elk_example/_count` should show a positive response for `count`.
+  Running `http://localhost:9200/twitter_elastic_example/_count` should show a positive response for `count`.
 
   **Note:** Included `twitter_logstash.conf` configuration file assumes that you are running Elasticsearch on the same host as   Logstash and have not changed the defaults. Modify the `host` and `cluster` settings in the `output { elasticsearch { ... } }`   section of `twitter_logstash.conf`, if needed.
 
@@ -80,10 +80,10 @@ input {
 ##### 3. Visualize data in Kibana
 
 * Access Kibana by going to `http://localhost:5601` in a web browser
-* Connect Kibana to the `twitter_elk_example` index in Elasticsearch (autocreated in step 2)
-    * Click the **Settings** tab >> **Indices** tab >> ** Add New. Specify `twitter_elk_example` as the index pattern name and click **Create** to define the index pattern (Leave the **Use event times to create index names** box unchecked)
+* Connect Kibana to the `twitter_elastic_example` index in Elasticsearch (autocreated in step 2)
+    * Click the **Management** tab >> **Index Patterns** tab >> ** Add New. Specify `twitter_elastic_example` as the index pattern name and click **Create** to define the index pattern (Leave the **Use event times to create index names** box unchecked and the Event time as @timestamp)
 * Load sample dashboard into Kibana
-    * Click the **Settings** tab >> **Objects** tab >> **Import**, and select `twitter_kibana.json`
+    * Click the **Management** tab >> **Saved Objects** tab >> **Import**, and select `twitter_kibana.json`
 * Open dashboard
     * Click on **Dashboard** tab and open `Sample Twitter Dashboard` dashboard. (Since we are visualizing twitter-feed in real time here, be sure to switch on the Auto-refresh option to see your dashboard update in real time)
 

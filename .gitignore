@@ -1,3 +1,8 @@
 .DS_Store
 node_modules
 .vagrant
+/ElasticStack_CDC_nutrition_exercise_patterns/Ingest-Scripts-Python/LLCP2013.ASC
+**/.venv*
+/ElasticStack_nyc_traffic_accidents/nyc_collision_data.csv
+/ElasticStack_twitter/twitter_logstash.conf.local
+*.idea*

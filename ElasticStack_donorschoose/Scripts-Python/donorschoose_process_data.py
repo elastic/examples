@@ -7,7 +7,7 @@ import elasticsearch
 import re
 import json
 from datetime import datetime
-from pprint import pprint
+from elasticsearch import helpers
 import timeit
 
 # Define elasticsearch class
@@ -43,12 +43,14 @@ def concatdf(x):
 
 ### Import Data
 # Load projects, resources & donations data
-projects = pd.read_csv('./data/opendata_projects.csv', index_col=None, escapechar='\\')
-donations = pd.read_csv('./data/opendata_donations.csv', index_col=None, escapechar='\\')
-resources = pd.read_csv('./data/opendata_resources.csv', index_col=None, escapechar='\\' )
+print("Loading datasets")
+projects = pd.read_csv('./data/opendata_projects000.gz', escapechar='\\', names=['projectid', 'teacher_acctid', 'schoolid', 'school_ncesid', 'school_latitude', 'school_longitude', 'school_city', 'school_state', 'school_zip', 'school_metro', 'school_district', 'school_county', 'school_charter', 'school_magnet', 'school_year_round', 'school_nlns', 'school_kipp', 'school_charter_ready_promise', 'teacher_prefix', 'teacher_teach_for_america', 'teacher_ny_teaching_fellow', 'primary_focus_subject', 'primary_focus_area' ,'secondary_focus_subject', 'secondary_focus_area', 'resource_type', 'poverty_level', 'grade_level', 'vendor_shipping_charges', 'sales_tax', 'payment_processing_charges', 'fulfillment_labor_materials', 'total_price_excluding_optional_support', 'total_price_including_optional_support', 'students_reached', 'total_donations', 'num_donors', 'eligible_double_your_impact_match', 'eligible_almost_home_match', 'funding_status', 'date_posted', 'date_completed', 'date_thank_you_packet_mailed', 'date_expiration'])
+donations = pd.read_csv('./data/opendata_donations000.gz', escapechar='\\', names=['donationid', 'projectid', 'donor_acctid', 'cartid', 'donor_city', 'donor_state', 'donor_zip', 'is_teacher_acct', 'donation_timestamp', 'donation_to_project', 'donation_optional_support', 'donation_total', 'donation_included_optional_support', 'payment_method', 'payment_included_acct_credit', 'payment_included_campaign_gift_card', 'payment_included_web_purchased_gift_card', 'payment_was_promo_matched', 'is_teacher_referred', 'giving_page_id', 'giving_page_type', 'for_honoree', 'thank_you_packet_mailed'])
+resources = pd.read_csv('./data/opendata_resources000.gz', escapechar='\\', names=['resourceid', 'projectid', 'vendorid', 'vendor_name', 'item_name', 'item_number', 'item_unit_price', 'item_quantity'])
 
 ### Data Cleanup
 # replace nan with ''
+print("Cleaning Data")
 projects = projects.fillna('')
 donations = donations.fillna('')
 resources = resources.fillna('')
@@ -70,6 +72,7 @@ resources.rename(columns={'vendorid': 'resource_vendorid', 'vendor_name': 'resou
 
 ### Merge multiple resource row per projectid into a single row
 # NOTE: section may take a few minutes to execute
+print("Grouping Data by ProjectId")
 concat_resource = pd.DataFrame()
 gb = resources.groupby('projectid')
 
@@ -92,6 +95,7 @@ projects.columns.values
 
 
 #### Merge data into single frame
+print("Merging datasets")
 data = pd.merge(projects, concat_resource, how='left', right_on='projectid', left_on='projectid')
 data = pd.merge(donations, data, how='left', right_on='projectid', left_on='projectid')
 data = data.fillna('')
@@ -111,9 +115,9 @@ del(data['project_school_longitude']) # delete longitude
 
 
 ### Create and configure Elasticsearch index
-
+print("Preparing to Index to ES")
 # Name of index and document type
-index_name = 'donorschoose';
+index_name = 'donorschoose'
 doc_name = 'donation'
 
 # Delete donorschoose index if one does exist
@@ -129,15 +133,18 @@ with open('donorschoose_mapping.json') as json_mapping:
 
 es.indices.put_mapping(index=index_name, doc_type=doc_name, body=d)
 
+def read_data(data):
+    for don_id, thisDonation in data.iterrows():
+        # print every 10000 iteration
+        if don_id % 10000 == 0:
+            print(don_id)
+        doc={}
+        doc["_index"]=index_name
+        doc["_id"]=thisDonation['donationid']
+        doc["_type"]=doc_name
+        doc["_source"]=thisDonation.to_dict()
+        yield doc
 
 ### Index Data into Elasticsearch
-
-for don_id, thisDonation in data.iterrows():
-    # print every 10000 iteration
-    if don_id % 10000 == 0:
-        print(don_id)
-
-    thisDoc = json.dumps(thisDonation.to_dict(), cls=SetEncoder);
-
-    # write to elasticsearch
-    es.index(index=index_name, doc_type=doc_name, id=thisDonation['donationid'], body=thisDoc)
+print("Indexing")
+helpers.bulk(es,read_data(data),index=index_name,doc_type=doc_name)

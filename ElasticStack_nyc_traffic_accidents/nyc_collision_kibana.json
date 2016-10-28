@@ -6,39 +6,20 @@
       "title": "NYC Motor Vehicle Collisions",
       "hits": 0,
       "description": "",
-      "panelsJSON": "[{\"col\":5,\"id\":\"NYCTA-Monthly-Accidents-vs-Time\",\"row\":1,\"size_x\":8,\"size_y\":4,\"type\":\"visualization\"},{\"col\":7,\"id\":\"NYCTA-Monthly-Fatalities-vs-Time\",\"row\":8,\"size_x\":6,\"size_y\":3,\"type\":\"visualization\"},{\"col\":1,\"id\":\"NYCTA-Accidents-on-Map\",\"row\":5,\"size_x\":6,\"size_y\":6,\"type\":\"visualization\"},{\"col\":9,\"id\":\"NYCTA:-Top-Contributing-Factor-by-Borough\",\"row\":11,\"size_x\":4,\"size_y\":6,\"type\":\"visualization\"},{\"col\":1,\"id\":\"NYCTA-Accident-by-Vehicle-Type\",\"row\":17,\"size_x\":4,\"size_y\":3,\"type\":\"visualization\"},{\"col\":7,\"id\":\"NYCTA-Weekly-Injuries-vs-Time\",\"row\":5,\"size_x\":6,\"size_y\":3,\"type\":\"visualization\"},{\"col\":1,\"id\":\"NYCTA:-Hourly-Trend-(by-vehicle-type)\",\"row\":11,\"size_x\":8,\"size_y\":3,\"type\":\"visualization\"},{\"col\":1,\"id\":\"NYCTA:-Hourly-Trend\",\"row\":14,\"size_x\":8,\"size_y\":3,\"type\":\"visualization\"},{\"col\":1,\"id\":\"NYCTA:-Incidents-(last-12-months)\",\"row\":1,\"size_x\":4,\"size_y\":2,\"type\":\"visualization\"},{\"col\":3,\"id\":\"NYCTA:-Incidents-(last-week)\",\"row\":3,\"size_x\":2,\"size_y\":2,\"type\":\"visualization\"},{\"col\":9,\"id\":\"NYCTA-Most-Dangerous-Intersections\",\"row\":17,\"size_x\":4,\"size_y\":3,\"type\":\"visualization\"},{\"col\":5,\"id\":\"NYCTA:-Vehicles\",\"row\":17,\"size_x\":4,\"size_y\":3,\"type\":\"visualization\"},{\"id\":\"Accidents-(Last-Month)\",\"type\":\"visualization\",\"size_x\":2,\"size_y\":2,\"col\":1,\"row\":3}]",
+      "panelsJSON": "[{\"col\":5,\"id\":\"NYCTA-Monthly-Accidents-vs-Time\",\"panelIndex\":1,\"row\":1,\"size_x\":8,\"size_y\":4,\"type\":\"visualization\"},{\"col\":7,\"id\":\"NYCTA-Monthly-Fatalities-vs-Time\",\"panelIndex\":2,\"row\":8,\"size_x\":6,\"size_y\":3,\"type\":\"visualization\"},{\"col\":1,\"id\":\"NYCTA-Accidents-on-Map\",\"panelIndex\":3,\"row\":5,\"size_x\":6,\"size_y\":6,\"type\":\"visualization\"},{\"col\":9,\"id\":\"NYCTA:-Top-Contributing-Factor-by-Borough\",\"panelIndex\":4,\"row\":11,\"size_x\":4,\"size_y\":6,\"type\":\"visualization\"},{\"col\":1,\"id\":\"NYCTA-Accident-by-Vehicle-Type\",\"panelIndex\":5,\"row\":17,\"size_x\":4,\"size_y\":3,\"type\":\"visualization\"},{\"col\":7,\"id\":\"NYCTA-Weekly-Injuries-vs-Time\",\"panelIndex\":6,\"row\":5,\"size_x\":6,\"size_y\":3,\"type\":\"visualization\"},{\"col\":1,\"id\":\"NYCTA:-Hourly-Trend-(by-vehicle-type)\",\"panelIndex\":7,\"row\":11,\"size_x\":8,\"size_y\":3,\"type\":\"visualization\"},{\"col\":1,\"id\":\"NYCTA:-Hourly-Trend\",\"panelIndex\":8,\"row\":14,\"size_x\":8,\"size_y\":3,\"type\":\"visualization\"},{\"col\":9,\"id\":\"NYCTA-Most-Dangerous-Intersections\",\"panelIndex\":11,\"row\":17,\"size_x\":4,\"size_y\":3,\"type\":\"visualization\"},{\"col\":5,\"id\":\"NYCTA:-Vehicles\",\"panelIndex\":12,\"row\":17,\"size_x\":4,\"size_y\":3,\"type\":\"visualization\"},{\"col\":1,\"id\":\"Accidents\",\"panelIndex\":13,\"row\":1,\"size_x\":4,\"size_y\":4,\"type\":\"visualization\"}]",
+      "optionsJSON": "{\"darkTheme\":false}",
+      "uiStateJSON": "{\"P-11\":{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}},\"P-5\":{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}}}",
       "version": 1,
       "timeRestore": true,
-      "timeTo": "2015-09-04T22:02:43.283Z",
+      "timeTo": "2014-09-04T22:02:43.283Z",
       "timeFrom": "2012-01-02T03:10:57.015Z",
+      "refreshInterval": {
+        "display": "Off",
+        "pause": false,
+        "value": 0
+      },
       "kibanaSavedObjectMeta": {
         "searchSourceJSON": "{\"filter\":[{\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}}}]}"
-      }
-    }
-  },
-  {
-    "_id": "NYCTA:-Hourly-Trend",
-    "_type": "visualization",
-    "_source": {
-      "title": "Hourly Trend",
-      "visState": "{\n  \"type\": \"histogram\",\n  \"params\": {\n    \"shareYAxis\": true,\n    \"addTooltip\": true,\n    \"addLegend\": true,\n    \"scale\": \"linear\",\n    \"mode\": \"stacked\",\n    \"times\": [],\n    \"addTimeMarker\": false,\n    \"defaultYExtents\": true,\n    \"setYExtents\": false,\n    \"yAxis\": {}\n  },\n  \"aggs\": [\n    {\n      \"id\": \"2\",\n      \"type\": \"histogram\",\n      \"schema\": \"segment\",\n      \"params\": {\n        \"field\": \"hour_of_day\",\n        \"interval\": 1,\n        \"extended_bounds\": {}\n      }\n    },\n    {\n      \"id\": \"4\",\n      \"type\": \"count\",\n      \"schema\": \"metric\",\n      \"params\": {}\n    },\n    {\n      \"id\": \"5\",\n      \"type\": \"terms\",\n      \"schema\": \"group\",\n      \"params\": {\n        \"field\": \"contributing_factor_vehicle\",\n        \"size\": 10,\n        \"order\": \"desc\",\n        \"orderBy\": \"4\"\n      }\n    }\n  ],\n  \"listeners\": {}\n}",
-      "description": "",
-      "version": 1,
-      "kibanaSavedObjectMeta": {
-        "searchSourceJSON": "{\n  \"index\": \"nyc_visionzero\",\n  \"query\": {\n    \"query_string\": {\n      \"query\": \"*\",\n      \"analyze_wildcard\": true\n    }\n  },\n  \"filter\": [\n    {\n      \"meta\": {\n        \"index\": \"nyc_visionzero\",\n        \"key\": \"contributing_factor_vehicle\",\n        \"value\": \"Unspecified\",\n        \"disabled\": false,\n        \"negate\": true,\n        \"apply\": true\n      },\n      \"query\": {\n        \"match\": {\n          \"contributing_factor_vehicle\": {\n            \"query\": \"Unspecified\",\n            \"type\": \"phrase\"\n          }\n        }\n      }\n    }\n  ]\n}"
-      }
-    }
-  },
-  {
-    "_id": "NYCTA-Most-Dangerous-Intersections",
-    "_type": "visualization",
-    "_source": {
-      "title": "Dangerous Intersections",
-      "visState": "{\n  \"type\": \"table\",\n  \"params\": {\n    \"perPage\": 10,\n    \"showMeticsAtAllLevels\": false,\n    \"showPartialRows\": false\n  },\n  \"aggs\": [\n    {\n      \"id\": \"1\",\n      \"type\": \"sum\",\n      \"schema\": \"metric\",\n      \"params\": {\n        \"field\": \"number_persons_impacted\"\n      }\n    },\n    {\n      \"id\": \"2\",\n      \"type\": \"terms\",\n      \"schema\": \"bucket\",\n      \"params\": {\n        \"field\": \"intersection\",\n        \"size\": 20,\n        \"order\": \"desc\",\n        \"orderBy\": \"1\"\n      }\n    }\n  ],\n  \"listeners\": {}\n}",
-      "description": "",
-      "version": 1,
-      "kibanaSavedObjectMeta": {
-        "searchSourceJSON": "{\n  \"index\": \"nyc_visionzero\",\n  \"query\": {\n    \"query_string\": {\n      \"analyze_wildcard\": true,\n      \"query\": \"*\"\n    }\n  },\n  \"filter\": []\n}"
       }
     }
   },
@@ -47,24 +28,12 @@
     "_type": "visualization",
     "_source": {
       "title": "Accidents by Vehicle Type",
-      "visState": "{\n  \"type\": \"table\",\n  \"params\": {\n    \"perPage\": 10,\n    \"showMeticsAtAllLevels\": false,\n    \"showPartialRows\": false\n  },\n  \"aggs\": [\n    {\n      \"id\": \"1\",\n      \"type\": \"count\",\n      \"schema\": \"metric\",\n      \"params\": {}\n    },\n    {\n      \"id\": \"2\",\n      \"type\": \"terms\",\n      \"schema\": \"bucket\",\n      \"params\": {\n        \"field\": \"vehicle_type.raw\",\n        \"size\": 20,\n        \"order\": \"desc\",\n        \"orderBy\": \"1\"\n      }\n    }\n  ],\n  \"listeners\": {}\n}",
+      "visState": "{\"type\":\"table\",\"params\":{\"perPage\":10,\"showMeticsAtAllLevels\":false,\"showPartialRows\":false},\"aggs\":[{\"id\":\"1\",\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"vehicle_type.raw\",\"size\":20,\"order\":\"desc\",\"orderBy\":\"1\"}}],\"listeners\":{},\"title\":\"Accidents by Vehicle Type\"}",
+      "uiStateJSON": "{}",
       "description": "",
       "version": 1,
       "kibanaSavedObjectMeta": {
-        "searchSourceJSON": "{\n  \"index\": \"nyc_visionzero\",\n  \"query\": {\n    \"query_string\": {\n      \"analyze_wildcard\": true,\n      \"query\": \"*\"\n    }\n  },\n  \"filter\": []\n}"
-      }
-    }
-  },
-  {
-    "_id": "NYCTA:-Hourly-Trend-(by-vehicle-type)",
-    "_type": "visualization",
-    "_source": {
-      "title": "Hourly Trend (by Vehicle Type)",
-      "visState": "{\n  \"type\": \"histogram\",\n  \"params\": {\n    \"shareYAxis\": true,\n    \"addTooltip\": true,\n    \"addLegend\": true,\n    \"scale\": \"linear\",\n    \"mode\": \"percentage\",\n    \"times\": [],\n    \"addTimeMarker\": false,\n    \"defaultYExtents\": true,\n    \"setYExtents\": false,\n    \"yAxis\": {}\n  },\n  \"aggs\": [\n    {\n      \"id\": \"2\",\n      \"type\": \"histogram\",\n      \"schema\": \"segment\",\n      \"params\": {\n        \"field\": \"hour_of_day\",\n        \"interval\": 1,\n        \"extended_bounds\": {}\n      }\n    },\n    {\n      \"id\": \"4\",\n      \"type\": \"count\",\n      \"schema\": \"metric\",\n      \"params\": {}\n    },\n    {\n      \"id\": \"5\",\n      \"type\": \"terms\",\n      \"schema\": \"group\",\n      \"params\": {\n        \"field\": \"contributing_factor_vehicle\",\n        \"size\": 10,\n        \"order\": \"desc\",\n        \"orderBy\": \"4\"\n      }\n    }\n  ],\n  \"listeners\": {}\n}",
-      "description": "",
-      "version": 1,
-      "kibanaSavedObjectMeta": {
-        "searchSourceJSON": "{\n  \"index\": \"nyc_visionzero\",\n  \"query\": {\n    \"query_string\": {\n      \"query\": \"*\",\n      \"analyze_wildcard\": true\n    }\n  },\n  \"filter\": [\n    {\n      \"meta\": {\n        \"index\": \"nyc_visionzero\",\n        \"key\": \"contributing_factor_vehicle\",\n        \"value\": \"Unspecified\",\n        \"disabled\": false,\n        \"negate\": true,\n        \"apply\": true\n      },\n      \"query\": {\n        \"match\": {\n          \"contributing_factor_vehicle\": {\n            \"query\": \"Unspecified\",\n            \"type\": \"phrase\"\n          }\n        }\n      }\n    }\n  ]\n}"
+        "searchSourceJSON": "{\"index\":\"nyc_visionzero\",\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[]}"
       }
     }
   },
@@ -73,24 +42,12 @@
     "_type": "visualization",
     "_source": {
       "title": "Weekly # of Injuries vs. Time",
-      "visState": "{\n  \"type\": \"line\",\n  \"params\": {\n    \"addLegend\": true,\n    \"addTimeMarker\": false,\n    \"addTooltip\": true,\n    \"defaultYExtents\": false,\n    \"drawLinesBetweenPoints\": true,\n    \"interpolate\": \"linear\",\n    \"radiusRatio\": 9,\n    \"scale\": \"linear\",\n    \"setYExtents\": false,\n    \"shareYAxis\": true,\n    \"showCircles\": true,\n    \"smoothLines\": false,\n    \"times\": [],\n    \"yAxis\": {}\n  },\n  \"aggs\": [\n    {\n      \"id\": \"1\",\n      \"type\": \"sum\",\n      \"schema\": \"metric\",\n      \"params\": {\n        \"field\": \"number_of_cyclist_injured\"\n      }\n    },\n    {\n      \"id\": \"2\",\n      \"type\": \"date_histogram\",\n      \"schema\": \"segment\",\n      \"params\": {\n        \"field\": \"@timestamp\",\n        \"interval\": \"w\",\n        \"customInterval\": \"2h\",\n        \"min_doc_count\": 1,\n        \"extended_bounds\": {}\n      }\n    },\n    {\n      \"id\": \"3\",\n      \"type\": \"sum\",\n      \"schema\": \"metric\",\n      \"params\": {\n        \"field\": \"number_of_pedestrians_injured\"\n      }\n    },\n    {\n      \"id\": \"4\",\n      \"type\": \"sum\",\n      \"schema\": \"metric\",\n      \"params\": {\n        \"field\": \"number_of_motorist_injured\"\n      }\n    }\n  ],\n  \"listeners\": {}\n}",
+      "visState": "{\"type\":\"line\",\"params\":{\"addLegend\":true,\"addTimeMarker\":false,\"addTooltip\":true,\"defaultYExtents\":false,\"drawLinesBetweenPoints\":true,\"interpolate\":\"linear\",\"radiusRatio\":9,\"scale\":\"linear\",\"setYExtents\":false,\"shareYAxis\":true,\"showCircles\":true,\"smoothLines\":false,\"times\":[],\"yAxis\":{}},\"aggs\":[{\"id\":\"1\",\"type\":\"sum\",\"schema\":\"metric\",\"params\":{\"field\":\"number_of_cyclist_injured\"}},{\"id\":\"2\",\"type\":\"date_histogram\",\"schema\":\"segment\",\"params\":{\"field\":\"@timestamp\",\"interval\":\"w\",\"customInterval\":\"2h\",\"min_doc_count\":1,\"extended_bounds\":{}}},{\"id\":\"3\",\"type\":\"sum\",\"schema\":\"metric\",\"params\":{\"field\":\"number_of_pedestrians_injured\"}},{\"id\":\"4\",\"type\":\"sum\",\"schema\":\"metric\",\"params\":{\"field\":\"number_of_motorist_injured\"}}],\"listeners\":{},\"title\":\"Weekly # of Injuries vs. Time\"}",
+      "uiStateJSON": "{}",
       "description": "",
       "version": 1,
       "kibanaSavedObjectMeta": {
-        "searchSourceJSON": "{\n  \"index\": \"nyc_visionzero\",\n  \"query\": {\n    \"query_string\": {\n      \"analyze_wildcard\": true,\n      \"query\": \"*\"\n    }\n  },\n  \"filter\": []\n}"
-      }
-    }
-  },
-  {
-    "_id": "NYCTA-Monthly-Fatalities-vs-Time",
-    "_type": "visualization",
-    "_source": {
-      "title": "Monthly # of Fatalities vs. Time",
-      "visState": "{\n  \"aggs\": [\n    {\n      \"id\": \"1\",\n      \"params\": {\n        \"field\": \"number_of_cyclist_killed\"\n      },\n      \"schema\": \"metric\",\n      \"type\": \"sum\"\n    },\n    {\n      \"id\": \"2\",\n      \"params\": {\n        \"customInterval\": \"2h\",\n        \"extended_bounds\": {},\n        \"field\": \"@timestamp\",\n        \"interval\": \"M\",\n        \"min_doc_count\": 1\n      },\n      \"schema\": \"segment\",\n      \"type\": \"date_histogram\"\n    },\n    {\n      \"id\": \"3\",\n      \"params\": {\n        \"field\": \"number_of_pedestrians_killed\"\n      },\n      \"schema\": \"metric\",\n      \"type\": \"sum\"\n    },\n    {\n      \"id\": \"4\",\n      \"params\": {\n        \"field\": \"number_of_motorist_killed\"\n      },\n      \"schema\": \"metric\",\n      \"type\": \"sum\"\n    }\n  ],\n  \"listeners\": {},\n  \"params\": {\n    \"addLegend\": true,\n    \"addTimeMarker\": false,\n    \"addTooltip\": true,\n    \"defaultYExtents\": false,\n    \"drawLinesBetweenPoints\": true,\n    \"interpolate\": \"linear\",\n    \"radiusRatio\": 9,\n    \"scale\": \"linear\",\n    \"setYExtents\": false,\n    \"shareYAxis\": true,\n    \"showCircles\": true,\n    \"smoothLines\": false,\n    \"times\": [],\n    \"yAxis\": {}\n  },\n  \"type\": \"line\"\n}",
-      "description": "",
-      "version": 1,
-      "kibanaSavedObjectMeta": {
-        "searchSourceJSON": "{\n  \"index\": \"nyc_visionzero\",\n  \"query\": {\n    \"query_string\": {\n      \"analyze_wildcard\": true,\n      \"query\": \"*\"\n    }\n  },\n  \"filter\": []\n}"
+        "searchSourceJSON": "{\"index\":\"nyc_visionzero\",\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[]}"
       }
     }
   },
@@ -99,11 +56,12 @@
     "_type": "visualization",
     "_source": {
       "title": "Top Contributing Factors by Borough",
-      "visState": "{\n  \"type\": \"pie\",\n  \"params\": {\n    \"shareYAxis\": true,\n    \"addTooltip\": true,\n    \"addLegend\": true,\n    \"isDonut\": true\n  },\n  \"aggs\": [\n    {\n      \"id\": \"1\",\n      \"type\": \"count\",\n      \"schema\": \"metric\",\n      \"params\": {}\n    },\n    {\n      \"id\": \"3\",\n      \"type\": \"terms\",\n      \"schema\": \"split\",\n      \"params\": {\n        \"field\": \"borough\",\n        \"size\": 10,\n        \"order\": \"desc\",\n        \"orderBy\": \"1\",\n        \"row\": true\n      }\n    },\n    {\n      \"id\": \"2\",\n      \"type\": \"terms\",\n      \"schema\": \"segment\",\n      \"params\": {\n        \"field\": \"contributing_factor_vehicle\",\n        \"size\": 10,\n        \"order\": \"desc\",\n        \"orderBy\": \"1\"\n      }\n    }\n  ],\n  \"listeners\": {}\n}",
+      "visState": "{\"type\":\"pie\",\"params\":{\"shareYAxis\":true,\"addTooltip\":true,\"addLegend\":true,\"isDonut\":true},\"aggs\":[{\"id\":\"1\",\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"3\",\"type\":\"terms\",\"schema\":\"split\",\"params\":{\"field\":\"borough\",\"size\":10,\"order\":\"desc\",\"orderBy\":\"1\",\"row\":true}},{\"id\":\"2\",\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"contributing_factor_vehicle\",\"size\":10,\"order\":\"desc\",\"orderBy\":\"1\"}}],\"listeners\":{},\"title\":\"Top Contributing Factors by Borough\"}",
+      "uiStateJSON": "{}",
       "description": "",
       "version": 1,
       "kibanaSavedObjectMeta": {
-        "searchSourceJSON": "{\n  \"index\": \"nyc_visionzero\",\n  \"query\": {\n    \"query_string\": {\n      \"analyze_wildcard\": true,\n      \"query\": \"*\"\n    }\n  },\n  \"filter\": [\n    {\n      \"meta\": {\n        \"apply\": true,\n        \"disabled\": false,\n        \"index\": \"nyc_visionzero\",\n        \"key\": \"contributing_factor_vehicle\",\n        \"negate\": true,\n        \"value\": \"Unspecified\"\n      },\n      \"query\": {\n        \"match\": {\n          \"contributing_factor_vehicle\": {\n            \"query\": \"Unspecified\",\n            \"type\": \"phrase\"\n          }\n        }\n      }\n    }\n  ]\n}"
+        "searchSourceJSON": "{\"index\":\"nyc_visionzero\",\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[{\"meta\":{\"apply\":true,\"disabled\":false,\"index\":\"nyc_visionzero\",\"key\":\"contributing_factor_vehicle\",\"negate\":true,\"value\":\"Unspecified\"},\"query\":{\"match\":{\"contributing_factor_vehicle\":{\"query\":\"Unspecified\",\"type\":\"phrase\"}}}}]}"
       }
     }
   },
@@ -112,50 +70,12 @@
     "_type": "visualization",
     "_source": {
       "title": "Accident Map",
-      "visState": "{\n  \"aggs\": [\n    {\n      \"id\": \"1\",\n      \"params\": {},\n      \"schema\": \"metric\",\n      \"type\": \"count\"\n    },\n    {\n      \"id\": \"2\",\n      \"params\": {\n        \"autoPrecision\": true,\n        \"field\": \"coords\",\n        \"precision\": 2\n      },\n      \"schema\": \"segment\",\n      \"type\": \"geohash_grid\"\n    }\n  ],\n  \"listeners\": {},\n  \"params\": {\n    \"addTooltip\": true,\n    \"heatBlur\": 15,\n    \"heatMaxZoom\": 16,\n    \"heatMinOpacity\": 0.1,\n    \"heatNormalizeData\": true,\n    \"heatRadius\": 25,\n    \"isDesaturated\": true,\n    \"mapType\": \"Scaled Circle Markers\"\n  },\n  \"type\": \"tile_map\"\n}",
+      "visState": "{\"aggs\":[{\"id\":\"1\",\"params\":{},\"schema\":\"metric\",\"type\":\"count\"},{\"id\":\"2\",\"params\":{\"autoPrecision\":true,\"field\":\"coords\",\"precision\":2},\"schema\":\"segment\",\"type\":\"geohash_grid\"}],\"listeners\":{},\"params\":{\"addTooltip\":true,\"heatBlur\":15,\"heatMaxZoom\":16,\"heatMinOpacity\":0.1,\"heatNormalizeData\":true,\"heatRadius\":25,\"isDesaturated\":true,\"mapType\":\"Scaled Circle Markers\"},\"type\":\"tile_map\",\"title\":\"Accident Map\"}",
+      "uiStateJSON": "{}",
       "description": "",
       "version": 1,
       "kibanaSavedObjectMeta": {
-        "searchSourceJSON": "{\n  \"index\": \"nyc_visionzero\",\n  \"query\": {\n    \"query_string\": {\n      \"analyze_wildcard\": true,\n      \"query\": \"*\"\n    }\n  },\n  \"filter\": []\n}"
-      }
-    }
-  },
-  {
-    "_id": "NYCTA-Monthly-Accidents-vs-Time",
-    "_type": "visualization",
-    "_source": {
-      "title": "Monthly # of Accidents vs. Time",
-      "visState": "{\n  \"type\": \"histogram\",\n  \"params\": {\n    \"shareYAxis\": true,\n    \"addTooltip\": true,\n    \"addLegend\": true,\n    \"mode\": \"stacked\"\n  },\n  \"aggs\": [\n    {\n      \"id\": \"1\",\n      \"type\": \"count\",\n      \"schema\": \"metric\",\n      \"params\": {}\n    },\n    {\n      \"id\": \"2\",\n      \"type\": \"date_histogram\",\n      \"schema\": \"segment\",\n      \"params\": {\n        \"field\": \"@timestamp\",\n        \"interval\": \"auto\",\n        \"min_doc_count\": 1,\n        \"extended_bounds\": {}\n      }\n    }\n  ],\n  \"listeners\": {}\n}",
-      "description": "",
-      "version": 1,
-      "kibanaSavedObjectMeta": {
-        "searchSourceJSON": "{\n  \"index\": \"nyc_visionzero\",\n  \"query\": {\n    \"query_string\": {\n      \"query\": \"*\",\n      \"analyze_wildcard\": true\n    }\n  },\n  \"filter\": []\n}"
-      }
-    }
-  },
-  {
-    "_id": "NYCTA:-Incidents-(last-12-months)",
-    "_type": "visualization",
-    "_source": {
-      "title": "Accidents (Last 12 Months)",
-      "visState": "{\n  \"type\": \"metric\",\n  \"params\": {\n    \"fontSize\": \"46\"\n  },\n  \"aggs\": [\n    {\n      \"id\": \"1\",\n      \"type\": \"count\",\n      \"schema\": \"metric\",\n      \"params\": {}\n    }\n  ],\n  \"listeners\": {}\n}",
-      "description": "",
-      "version": 1,
-      "kibanaSavedObjectMeta": {
-        "searchSourceJSON": "{\n  \"index\": \"nyc_visionzero\",\n  \"query\": {\n    \"query_string\": {\n      \"query\": \"@timestamp: [now-12M TO now]\",\n      \"analyze_wildcard\": true\n    }\n  },\n  \"filter\": []\n}"
-      }
-    }
-  },
-  {
-    "_id": "NYCTA:-Incidents-(last-week)",
-    "_type": "visualization",
-    "_source": {
-      "title": "Accidents (Last Week)",
-      "visState": "{\n  \"type\": \"metric\",\n  \"params\": {\n    \"fontSize\": \"35\"\n  },\n  \"aggs\": [\n    {\n      \"id\": \"1\",\n      \"type\": \"count\",\n      \"schema\": \"metric\",\n      \"params\": {}\n    }\n  ],\n  \"listeners\": {}\n}",
-      "description": "",
-      "version": 1,
-      "kibanaSavedObjectMeta": {
-        "searchSourceJSON": "{\n  \"index\": \"nyc_visionzero\",\n  \"query\": {\n    \"query_string\": {\n      \"query\": \"@timestamp: [now-1w TO now]\",\n      \"analyze_wildcard\": true\n    }\n  },\n  \"filter\": []\n}"
+        "searchSourceJSON": "{\"index\":\"nyc_visionzero\",\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[]}"
       }
     }
   },
@@ -164,24 +84,96 @@
     "_type": "visualization",
     "_source": {
       "title": "Vehicles Involved in Accidents",
-      "visState": "{\n  \"type\": \"pie\",\n  \"params\": {\n    \"shareYAxis\": true,\n    \"addTooltip\": true,\n    \"addLegend\": true,\n    \"isDonut\": false\n  },\n  \"aggs\": [\n    {\n      \"id\": \"1\",\n      \"type\": \"count\",\n      \"schema\": \"metric\",\n      \"params\": {}\n    },\n    {\n      \"id\": \"2\",\n      \"type\": \"terms\",\n      \"schema\": \"segment\",\n      \"params\": {\n        \"field\": \"vehicle_type.raw\",\n        \"size\": 100,\n        \"order\": \"desc\",\n        \"orderBy\": \"1\"\n      }\n    }\n  ],\n  \"listeners\": {}\n}",
+      "visState": "{\"type\":\"pie\",\"params\":{\"shareYAxis\":true,\"addTooltip\":true,\"addLegend\":true,\"isDonut\":false},\"aggs\":[{\"id\":\"1\",\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"vehicle_type.raw\",\"size\":100,\"order\":\"desc\",\"orderBy\":\"1\"}}],\"listeners\":{},\"title\":\"Vehicles Involved in Accidents\"}",
+      "uiStateJSON": "{}",
       "description": "",
       "version": 1,
       "kibanaSavedObjectMeta": {
-        "searchSourceJSON": "{\n  \"index\": \"nyc_visionzero\",\n  \"query\": {\n    \"query_string\": {\n      \"analyze_wildcard\": true,\n      \"query\": \"*\"\n    }\n  },\n  \"filter\": []\n}"
+        "searchSourceJSON": "{\"index\":\"nyc_visionzero\",\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[]}"
       }
     }
   },
   {
-    "_id": "Accidents-(Last-Month)",
+    "_id": "NYCTA:-Hourly-Trend",
     "_type": "visualization",
     "_source": {
-      "title": "Accidents (Last Month)",
-      "visState": "{\"type\":\"metric\",\"params\":{\"fontSize\":\"35\"},\"aggs\":[{\"id\":\"1\",\"type\":\"count\",\"schema\":\"metric\",\"params\":{}}],\"listeners\":{}}",
+      "title": "Hourly Trend",
+      "visState": "{\"type\":\"histogram\",\"params\":{\"shareYAxis\":true,\"addTooltip\":true,\"addLegend\":true,\"scale\":\"linear\",\"mode\":\"stacked\",\"times\":[],\"addTimeMarker\":false,\"defaultYExtents\":true,\"setYExtents\":false,\"yAxis\":{}},\"aggs\":[{\"id\":\"2\",\"type\":\"histogram\",\"schema\":\"segment\",\"params\":{\"field\":\"hour_of_day\",\"interval\":1,\"extended_bounds\":{}}},{\"id\":\"4\",\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"5\",\"type\":\"terms\",\"schema\":\"group\",\"params\":{\"field\":\"contributing_factor_vehicle\",\"size\":10,\"order\":\"desc\",\"orderBy\":\"4\"}}],\"listeners\":{},\"title\":\"Hourly Trend\"}",
+      "uiStateJSON": "{}",
       "description": "",
       "version": 1,
       "kibanaSavedObjectMeta": {
-        "searchSourceJSON": "{\"index\":\"nyc_visionzero\",\"query\":{\"query_string\":{\"query\":\"@timestamp: [now-1M TO now]\",\"analyze_wildcard\":true}},\"filter\":[]}"
+        "searchSourceJSON": "{\"index\":\"nyc_visionzero\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[{\"meta\":{\"index\":\"nyc_visionzero\",\"key\":\"contributing_factor_vehicle\",\"value\":\"Unspecified\",\"disabled\":false,\"negate\":true,\"apply\":true},\"query\":{\"match\":{\"contributing_factor_vehicle\":{\"query\":\"Unspecified\",\"type\":\"phrase\"}}}}]}"
+      }
+    }
+  },
+  {
+    "_id": "NYCTA:-Hourly-Trend-(by-vehicle-type)",
+    "_type": "visualization",
+    "_source": {
+      "title": "Hourly Trend (by Vehicle Type)",
+      "visState": "{\"type\":\"histogram\",\"params\":{\"shareYAxis\":true,\"addTooltip\":true,\"addLegend\":true,\"scale\":\"linear\",\"mode\":\"percentage\",\"times\":[],\"addTimeMarker\":false,\"defaultYExtents\":true,\"setYExtents\":false,\"yAxis\":{}},\"aggs\":[{\"id\":\"2\",\"type\":\"histogram\",\"schema\":\"segment\",\"params\":{\"field\":\"hour_of_day\",\"interval\":1,\"extended_bounds\":{}}},{\"id\":\"4\",\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"5\",\"type\":\"terms\",\"schema\":\"group\",\"params\":{\"field\":\"contributing_factor_vehicle\",\"size\":10,\"order\":\"desc\",\"orderBy\":\"4\"}}],\"listeners\":{},\"title\":\"Hourly Trend (by Vehicle Type)\"}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"nyc_visionzero\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[{\"meta\":{\"index\":\"nyc_visionzero\",\"key\":\"contributing_factor_vehicle\",\"value\":\"Unspecified\",\"disabled\":false,\"negate\":true,\"apply\":true},\"query\":{\"match\":{\"contributing_factor_vehicle\":{\"query\":\"Unspecified\",\"type\":\"phrase\"}}}}]}"
+      }
+    }
+  },
+  {
+    "_id": "NYCTA-Monthly-Fatalities-vs-Time",
+    "_type": "visualization",
+    "_source": {
+      "title": "Monthly # of Fatalities vs. Time",
+      "visState": "{\"aggs\":[{\"id\":\"1\",\"params\":{\"field\":\"number_of_cyclist_killed\"},\"schema\":\"metric\",\"type\":\"sum\"},{\"id\":\"2\",\"params\":{\"customInterval\":\"2h\",\"extended_bounds\":{},\"field\":\"@timestamp\",\"interval\":\"M\",\"min_doc_count\":1},\"schema\":\"segment\",\"type\":\"date_histogram\"},{\"id\":\"3\",\"params\":{\"field\":\"number_of_pedestrians_killed\"},\"schema\":\"metric\",\"type\":\"sum\"},{\"id\":\"4\",\"params\":{\"field\":\"number_of_motorist_killed\"},\"schema\":\"metric\",\"type\":\"sum\"}],\"listeners\":{},\"params\":{\"addLegend\":true,\"addTimeMarker\":false,\"addTooltip\":true,\"defaultYExtents\":false,\"drawLinesBetweenPoints\":true,\"interpolate\":\"linear\",\"radiusRatio\":9,\"scale\":\"linear\",\"setYExtents\":false,\"shareYAxis\":true,\"showCircles\":true,\"smoothLines\":false,\"times\":[],\"yAxis\":{}},\"type\":\"line\",\"title\":\"Monthly # of Fatalities vs. Time\"}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"nyc_visionzero\",\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "NYCTA-Most-Dangerous-Intersections",
+    "_type": "visualization",
+    "_source": {
+      "title": "Dangerous Intersections",
+      "visState": "{\"type\":\"table\",\"params\":{\"perPage\":10,\"showMeticsAtAllLevels\":false,\"showPartialRows\":false},\"aggs\":[{\"id\":\"1\",\"type\":\"sum\",\"schema\":\"metric\",\"params\":{\"field\":\"number_persons_impacted\"}},{\"id\":\"2\",\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"intersection\",\"size\":20,\"order\":\"desc\",\"orderBy\":\"1\"}}],\"listeners\":{},\"title\":\"Dangerous Intersections\"}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"nyc_visionzero\",\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "NYCTA-Monthly-Accidents-vs-Time",
+    "_type": "visualization",
+    "_source": {
+      "title": "Monthly # of Accidents vs. Time",
+      "visState": "{\"type\":\"histogram\",\"params\":{\"shareYAxis\":true,\"addTooltip\":true,\"addLegend\":true,\"mode\":\"stacked\"},\"aggs\":[{\"id\":\"1\",\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"type\":\"date_histogram\",\"schema\":\"segment\",\"params\":{\"field\":\"@timestamp\",\"interval\":\"auto\",\"min_doc_count\":1,\"extended_bounds\":{}}}],\"listeners\":{},\"title\":\"Monthly # of Accidents vs. Time\"}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"nyc_visionzero\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "Accidents",
+    "_type": "visualization",
+    "_source": {
+      "title": "Accidents",
+      "visState": "{\"title\":\"Accidents\",\"type\":\"metric\",\"params\":{\"fontSize\":\"46\",\"handleNoResults\":true},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{}}],\"listeners\":{}}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"nyc_visionzero\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
       }
     }
   }

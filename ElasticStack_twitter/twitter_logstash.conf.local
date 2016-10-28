@@ -1,9 +1,9 @@
 input {
   twitter {
-    consumer_key       => "INSERT YOUR CONSUMER KEY"
-    consumer_secret    => "INSERT YOUR CONSUMER SECRET"
-    oauth_token        => "INSERT YOUR ACCESS TOKEN"
-    oauth_token_secret => "INSERT YOUR ACCESS TOKEN SECRET"
+    consumer_key       => "A7gsA6CGnB5mGc4oegubxB3yp"
+    consumer_secret    => "NUAGFbiY6x4Eca3kwqQnH7PE3BFyNXJFS45stlbdvrMWGHnhCM"
+    oauth_token        => "1151742912-hg3owdfp3Wdz4ZVBhw7F8Y3lRh7KiZyarD86417"
+    oauth_token_secret => "KkQrenbFhfNHxvTwLqIOoA9NYr1JP9xMC5j8mGEOPG86i"
     keywords           => [ "thor", "spiderman", "wolverine", "ironman", "hulk"]
     full_tweet         => true
   }
