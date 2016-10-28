@@ -73,7 +73,7 @@ cat nginx_logs | <path_to_logstash_root_dir>/bin/logstash -f nginx_logstash.conf
     * Click on **Dashboard** tab and open `Sample Dashboard for Nginx Logs` dashboard
 
 Voila! You should see the following dashboards. Enjoy!
-![Kibana Dashboard Screenshot](https://cloud.githubusercontent.com/assets/5269751/9672317/7c5b763e-524e-11e5-949f-b8dad81bce8f.png)
+![Kibana Dashboard Screenshot](https://github.com/elastic/examples/blob/master/ElasticStack_NGINX/nginx_dashboard.jpg?raw=true)
 
 ### We would love your feedback!
 If you found this example helpful and would like to see more such Getting Started examples for other standard formats, we would love to hear from you. If you would like to contribute examples to this repo, we'd love that too!
