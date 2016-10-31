@@ -1,6 +1,6 @@
 # Introduction
 
-This is a collection of examples to help you get familiar with Elasticsearch, Logstash and Kibana. Each example folder includes a README with detailed instructions for getting up and running with the  particular example. The following information pertains to the [examples](https://github.com/elastic/examples) repo as a whole.
+This is a collection of examples to help you get familiar with the Elastic stack. Each example folder includes a README with detailed instructions for getting up and running with the  particular example. The following information pertains to the [examples](https://github.com/elastic/examples) repo as a whole.
 
 ### Contents
 
@@ -20,7 +20,7 @@ You have a few options to get started with the examples:
 If you would like to contribute new examples to the Elastic examples repo, we would love to hear from you!!! Please open an issue briefly describing your content before you start working on it. We would love to provide guidance to make for a pleasant contribution experience.
 
 #### Packaging
-One of the major goals of this repo is to help people learn about Elasticsearch, Logstash and Kibana. Which is why we are asking contributors to consider delivering more than simply a set of code and configuration files as a part of their demo. In accordance with the purpose of this repo, each example should be relatively easy to install and deploy for a person with some technical abilities. We do not want to be being overly prescriptive in how a particular demo is packaged, but below is the list of assets that we recommend be delivered with each demo.
+One of the major goals of this repo is to help people learn about the Elastic Stack. Which is why we are asking contributors to consider delivering more than simply a set of code and configuration files as a part of their demo. In accordance with the purpose of this repo, each example should be relatively easy to install and deploy for a person with some technical abilities. We do not want to be being overly prescriptive in how a particular demo is packaged, but below is the list of assets that we recommend be delivered with each demo.
 
 * **README**
   * clear instructions to install and run the example
