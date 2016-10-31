@@ -33,7 +33,7 @@ Example has been tested in following versions:
 
   ### Download & Ingest Data
 
-  You have 2 options to index the data into Elasticsearch. You can either use the Elasticsearch [snapshot and restore](https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-snapshots.html) API to directly restore the `nyc_restaurants` index from a snapshot. OR, you can download the raw data from the data.cityofnewyork.us website and then use the scripts in the [Scripts - Python](https://github.com/elastic/examples/tree/master/kibana_nyc_restaurants/Scripts-Python) folder to process the raw files and index the data.
+  You have 2 options to index the data into Elasticsearch. You can either use the Elasticsearch [snapshot and restore](https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-snapshots.html) API to directly restore the `nyc_restaurants` index from a snapshot. OR, you can download the raw data from the data.cityofnewyork.us website and then use the scripts in the [Scripts-Python](https://github.com/elastic/examples/tree/master/kibana_nyc_restaurants/Scripts-Python) folder to process the raw files and index the data.
 
   #### Option 1. Load data by restoring index snapshot
   (Learn more about snapshot / restore [here](https://www.elastic.co/guide/en/elasticsearch/reference/5.0/modules-snapshots.html) )
