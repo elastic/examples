@@ -1,12 +1,15 @@
 ### Install Elasticsearch, Logstash & Kibana
 
-  **Check Java version**
+**Check Versions**
+All examples target 5.0 of the Elastic Stack.
 
-Elasticsearch and Logstash require Java 7 or later. Install or update as needed - use the [official Oracle distribution](http://www.oracle.com/technetwork/java/javase/downloads/index.html) or an open-source distribution such as [OpenJDK](http://openjdk.java.net/). To check your Java version, run the following command: `java -version`. 
+**Check Java version**
+
+Elasticsearch and Logstash require Java 8 or later. Install or update as needed - use the [official Oracle distribution](http://www.oracle.com/technetwork/java/javase/downloads/index.html) or an open-source distribution such as [OpenJDK](http://openjdk.java.net/). To check your Java version, run the following command: `java -version`.
 
 **Install Elasticsearch**
 *	Download the [Elasticsearch binary package](https://www.elastic.co/downloads/elasticsearch) for your platform.
-*	Extract the `.zip` or `tar.gz` archive file 
+*	Extract the `.zip` or `tar.gz` archive file
 
 (see [here](https://www.elastic.co/guide/en/elasticsearch/reference/current/_installation.html) for more help)
 
@@ -17,7 +20,7 @@ Elasticsearch and Logstash require Java 7 or later. Install or update as needed 
 (see [here](https://www.elastic.co/guide/en/logstash/current/getting-started-with-logstash.html) for more help)
 
 **Install Kibana**
--	Download the [Kibana 4 binary package](https://www.elastic.co/downloads/kibana) for your platform.
+-	Download the [Kibana 5 binary package](https://www.elastic.co/downloads/kibana) for your platform.
 -	Extract the `.zip` or `tar.gz` archive file.
 
 (see [here](https://www.elastic.co/guide/en/kibana/current/setup.html) for more help)
