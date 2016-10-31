@@ -7,3 +7,4 @@ node_modules
 /ElasticStack_twitter/twitter_logstash.conf.local
 *.idea*
 /ElasticStack_usfec/Scripts-Python+Logstash/data/
+/packetbeat_dns_tunnel_detection/dns-tunnel-iodine-timeshifted.pcap

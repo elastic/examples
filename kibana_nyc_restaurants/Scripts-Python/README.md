@@ -3,8 +3,14 @@
 If you want to ingest data into Elasticsearch starting with the raw CSV data files follow the instructions below:
 
 ##### 1. Download the following files: <br>
-- `ingestRestaurantData.py` - Python script to process and ingest
+- `ingestRestaurantData.py` - Python script to process and ingest.  This script downloads the required dataset.
 - `inspection_mapping.json` contains mapping for Elasticsearch index
+
+#### 2. Install and Configure Python
+
+Requires Python 3.
+Install Dependencies using pip i.e. `pip install -r requirements.txt`
+
 
 ##### 2. Run Python script to process, join data and index data<br>
 Run `ingestRestaurantData.py` (requires Python 3). When the script is done running, you will have a `nyc_restaurants` index in your Elasticsearch instance
