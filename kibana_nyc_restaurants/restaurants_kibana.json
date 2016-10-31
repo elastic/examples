@@ -1,5 +1,4 @@
 [
-
   {
     "_id": "Kibana-Webinar",
     "_type": "dashboard",
@@ -24,11 +23,18 @@
       "title": "DOHMH: Restaurant",
       "hits": 0,
       "description": "",
-      "panelsJSON": "[{\"col\":1,\"id\":\"DOHMH:-Description\",\"panelIndex\":9,\"row\":1,\"size_x\":4,\"size_y\":2,\"type\":\"visualization\"},{\"col\":1,\"id\":\"DOHMH:-Restaurant-Review\",\"panelIndex\":10,\"row\":3,\"size_x\":4,\"size_y\":2,\"type\":\"visualization\"},{\"id\":\"DOHMH:-Violation-Details\",\"type\":\"search\",\"panelIndex\":11,\"size_x\":8,\"size_y\":5,\"col\":5,\"row\":3,\"columns\":[\"Violation_Code\",\"Violation_Description\",\"Critical_Flag\"],\"sort\":[\"Inspection_Date\",\"desc\"]},{\"id\":\"DOHMH:-Inspections-and-Flags-(vs-time)\",\"type\":\"visualization\",\"panelIndex\":13,\"size_x\":8,\"size_y\":2,\"col\":5,\"row\":1},{\"id\":\"DOHMH:-Violation-Code-Distribution\",\"type\":\"visualization\",\"panelIndex\":14,\"size_x\":4,\"size_y\":3,\"col\":1,\"row\":5}]",
+      "panelsJSON": "[{\"col\":1,\"id\":\"DOHMH:-Description\",\"panelIndex\":9,\"row\":1,\"size_x\":4,\"size_y\":2,\"type\":\"visualization\"},{\"id\":\"DOHMH:-Inspections-and-Flags-(vs-time)\",\"type\":\"visualization\",\"panelIndex\":13,\"size_x\":8,\"size_y\":2,\"col\":5,\"row\":1},{\"col\":1,\"id\":\"DOHMH:-Restaurant-Review\",\"panelIndex\":10,\"row\":3,\"size_x\":4,\"size_y\":2,\"type\":\"visualization\"},{\"id\":\"DOHMH:-Violation-Details\",\"type\":\"search\",\"panelIndex\":11,\"size_x\":8,\"size_y\":5,\"col\":5,\"row\":3,\"columns\":[\"Violation_Code\",\"Violation_Description\",\"Critical_Flag\"],\"sort\":[\"Inspection_Date\",\"desc\"]},{\"id\":\"DOHMH:-Violation-Code-Distribution\",\"type\":\"visualization\",\"panelIndex\":14,\"size_x\":4,\"size_y\":3,\"col\":1,\"row\":5}]",
       "optionsJSON": "{\"darkTheme\":false}",
-      "uiStateJSON": "{\"vis\":{\"colors\":{\"Critical\":\"#BF1B00\",\"Not Applicable\":\"#D683CE\",\"Not Critical\":\"#E5AC0E\"}}}",
+      "uiStateJSON": "{\"vis\":{\"colors\":{\"Critical\":\"#BF1B00\",\"Not Applicable\":\"#D683CE\",\"Not Critical\":\"#E5AC0E\"}},\"P-10\":{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}}}",
       "version": 1,
-      "timeRestore": false,
+      "timeRestore": true,
+      "timeTo": "now",
+      "timeFrom": "now-5y",
+      "refreshInterval": {
+        "display": "Off",
+        "pause": false,
+        "value": 0
+      },
       "kibanaSavedObjectMeta": {
         "searchSourceJSON": "{\"filter\":[{\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}}}]}"
       }
@@ -41,36 +47,23 @@
       "title": "DOHMH: Overview",
       "hits": 0,
       "description": "",
-      "panelsJSON": "[{\"col\":1,\"id\":\"DOHMH:-Description\",\"panelIndex\":16,\"row\":1,\"size_x\":2,\"size_y\":3,\"type\":\"visualization\"},{\"col\":3,\"id\":\"DOHMH:-Worst-Restaurants\",\"panelIndex\":17,\"row\":4,\"size_x\":5,\"size_y\":3,\"type\":\"visualization\"},{\"col\":3,\"id\":\"DOHMH:-Boro-ampersand-Grade\",\"panelIndex\":18,\"row\":1,\"size_x\":3,\"size_y\":3,\"type\":\"visualization\"},{\"col\":6,\"id\":\"DOHMH:-Score-and-Restaurants-(vs-time)\",\"panelIndex\":19,\"row\":1,\"size_x\":7,\"size_y\":3,\"type\":\"visualization\"},{\"col\":1,\"id\":\"DOHMH:-KPI\",\"panelIndex\":20,\"row\":4,\"size_x\":2,\"size_y\":3,\"type\":\"visualization\"},{\"col\":1,\"id\":\"DOHMH:-Violation-and-Restaurants\",\"panelIndex\":21,\"row\":7,\"size_x\":7,\"size_y\":4,\"type\":\"visualization\"},{\"col\":8,\"id\":\"DOHMH:-Average-Score-Map\",\"panelIndex\":22,\"row\":4,\"size_x\":5,\"size_y\":7,\"type\":\"visualization\"}]",
+      "panelsJSON": "[{\"col\":1,\"id\":\"DOHMH:-Description\",\"panelIndex\":16,\"row\":1,\"size_x\":2,\"size_y\":3,\"type\":\"visualization\"},{\"col\":3,\"id\":\"DOHMH:-Boro-ampersand-Grade\",\"panelIndex\":18,\"row\":1,\"size_x\":3,\"size_y\":3,\"type\":\"visualization\"},{\"col\":6,\"id\":\"DOHMH:-Score-and-Restaurants-(vs-time)\",\"panelIndex\":19,\"row\":1,\"size_x\":7,\"size_y\":3,\"type\":\"visualization\"},{\"col\":1,\"id\":\"DOHMH:-KPI\",\"panelIndex\":20,\"row\":4,\"size_x\":2,\"size_y\":3,\"type\":\"visualization\"},{\"col\":3,\"id\":\"DOHMH:-Worst-Restaurants\",\"panelIndex\":17,\"row\":4,\"size_x\":5,\"size_y\":3,\"type\":\"visualization\"},{\"col\":8,\"id\":\"DOHMH:-Average-Score-Map\",\"panelIndex\":22,\"row\":4,\"size_x\":5,\"size_y\":7,\"type\":\"visualization\"},{\"col\":1,\"id\":\"DOHMH:-Violation-and-Restaurants\",\"panelIndex\":21,\"row\":7,\"size_x\":7,\"size_y\":4,\"type\":\"visualization\"}]",
       "optionsJSON": "{\"darkTheme\":false}",
-      "uiStateJSON": "{\"P-19\":{\"spy\":{\"mode\":{\"fill\":false,\"name\":null}}},\"P-21\":{\"vis\":{\"colors\":{\"Asian\":\"#5195CE\",\"CafÃ©/Coffee/Tea\":\"#CFFAFF\",\"Café/Coffee/Tea\":\"#0A50A1\",\"Caribbean\":\"#447EBC\",\"Chicken\":\"#0A437C\",\"Chinese\":\"#82B5D8\",\"Donuts\":\"#FCE2DE\",\"Indian\":\"#BADFF4\",\"Japanese\":\"#BADFF4\",\"Juice, Smoothies, Fruit Salads\":\"#2F575E\",\"Korean\":\"#82B5D8\",\"Latin (Cuban, Dominican, Puerto Rican, South & Central American)\":\"#70DBED\",\"Mexican\":\"#82B5D8\",\"Middle Eastern\":\"#BA43A9\",\"Spanish\":\"#1F78C1\",\"Thai\":\"#CFFAFF\"}}},\"P-18\":{\"vis\":{\"colors\":{\"A\":\"#508642\",\"B\":\"#E5AC0E\",\"C\":\"#E24D42\",\"\":\"#447EBC\",\"Critical\":\"#BF1B00\",\"Not Critical\":\"#629E51\",\"Not Applicable\":\"#3F2B5B\",\"BRONX\":\"#65C5DB\",\"STATEN ISLAND\":\"#890F02\",\"P\":\"#EA6460\",\"Z\":\"#BADFF4\",\"Not Yet Graded\":\"#CFFAFF\",\"BROOKLYN\":\"#962D82\"}}}}",
+      "uiStateJSON": "{\"P-18\":{\"vis\":{\"colors\":{\"\":\"#447EBC\",\"A\":\"#508642\",\"B\":\"#E5AC0E\",\"BRONX\":\"#65C5DB\",\"BROOKLYN\":\"#962D82\",\"C\":\"#E24D42\",\"Critical\":\"#BF1B00\",\"Not Applicable\":\"#3F2B5B\",\"Not Critical\":\"#629E51\",\"Not Yet Graded\":\"#CFFAFF\",\"P\":\"#EA6460\",\"STATEN ISLAND\":\"#890F02\",\"Z\":\"#BADFF4\"}}},\"P-19\":{\"spy\":{\"mode\":{\"fill\":false,\"name\":null}}},\"P-21\":{\"vis\":{\"colors\":{\"Asian\":\"#5195CE\",\"CafÃ©/Coffee/Tea\":\"#CFFAFF\",\"Café/Coffee/Tea\":\"#0A50A1\",\"Caribbean\":\"#447EBC\",\"Chicken\":\"#0A437C\",\"Chinese\":\"#82B5D8\",\"Donuts\":\"#FCE2DE\",\"Indian\":\"#BADFF4\",\"Japanese\":\"#BADFF4\",\"Juice, Smoothies, Fruit Salads\":\"#2F575E\",\"Korean\":\"#82B5D8\",\"Latin (Cuban, Dominican, Puerto Rican, South & Central American)\":\"#70DBED\",\"Mexican\":\"#82B5D8\",\"Middle Eastern\":\"#BA43A9\",\"Spanish\":\"#1F78C1\",\"Thai\":\"#CFFAFF\"}}},\"P-22\":{\"mapCenter\":[14.944784875088372,5.2734375]},\"P-17\":{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}}}",
       "version": 1,
       "timeRestore": true,
       "timeTo": "now",
-      "timeFrom": "now-90d",
+      "timeFrom": "now-5y",
+      "refreshInterval": {
+        "display": "Off",
+        "pause": false,
+        "value": 0
+      },
       "kibanaSavedObjectMeta": {
         "searchSourceJSON": "{\"filter\":[{\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}}}]}"
       }
     }
   },
-  {
-    "_id": "NYC:-Overview",
-    "_type": "dashboard",
-    "_source": {
-      "title": "NYC: Overview",
-      "hits": 0,
-      "description": "",
-      "panelsJSON": "[{\"id\":\"NYC:-KPI\",\"type\":\"visualization\",\"panelIndex\":1,\"size_x\":3,\"size_y\":3,\"col\":1,\"row\":1},{\"id\":\"NYC:-Grade-and-Boro-Distribution\",\"type\":\"visualization\",\"panelIndex\":2,\"size_x\":4,\"size_y\":4,\"col\":1,\"row\":4},{\"id\":\"NYC:-Score-vs-Time\",\"type\":\"visualization\",\"panelIndex\":3,\"size_x\":9,\"size_y\":3,\"col\":4,\"row\":1},{\"id\":\"NYC:-Score-Map\",\"type\":\"visualization\",\"panelIndex\":4,\"size_x\":8,\"size_y\":4,\"col\":5,\"row\":4}]",
-      "optionsJSON": "{\"darkTheme\":false}",
-      "uiStateJSON": "{}",
-      "version": 1,
-      "timeRestore": false,
-      "kibanaSavedObjectMeta": {
-        "searchSourceJSON": "{\"filter\":[{\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}}}]}"
-      }
-    }
-  },
-
   {
     "_id": "DOHMH:-Violation-Details",
     "_type": "search",
@@ -93,92 +86,6 @@
       }
     }
   },
-
-
-  {
-    "_id": "DOHMH:-Restaurant-Review",
-    "_type": "visualization",
-    "_source": {
-      "title": "DOHMH: Restaurant Review",
-      "visState": "{\"title\":\"New Visualization\",\"type\":\"table\",\"params\":{\"perPage\":10,\"showPartialRows\":false,\"showMeticsAtAllLevels\":false},\"aggs\":[{\"id\":\"1\",\"type\":\"avg\",\"schema\":\"metric\",\"params\":{\"field\":\"Score\"}},{\"id\":\"2\",\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"Dba\",\"size\":5,\"order\":\"desc\",\"orderBy\":\"1\"}},{\"id\":\"3\",\"type\":\"cardinality\",\"schema\":\"metric\",\"params\":{\"field\":\"Violation_Code\",\"customLabel\":\"# of Violations\"}}],\"listeners\":{}}",
-      "uiStateJSON": "{}",
-      "description": "",
-      "version": 1,
-      "kibanaSavedObjectMeta": {
-        "searchSourceJSON": "{\"index\":\"nyc_restaurants\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
-      }
-    }
-  },
-  {
-    "_id": "DOHMH:-Description",
-    "_type": "visualization",
-    "_source": {
-      "title": "DOHMH: Description",
-      "visState": "{\"title\":\"DOHMH: Description\",\"type\":\"markdown\",\"params\":{\"markdown\":\"#### NYC Restaurant Inspection \\n\\n**Dashboards** \\n\\n* [Overview](http://localhost:5601/app/kibana#/dashboard/DOHMH:-Overview)\\n* [Restaurant Metrics](http://localhost:5601/app/kibana#/dashboard/DOHMH:-Restaurant?)\\n\\n## \\n\\n**Data Source**: [https://data.cityofnewyork.us/](https://data.cityofnewyork.us/Health/DOHMH-New-York-City-Restaurant-Inspection-Results/43nn-pn8j)\"},\"aggs\":[],\"listeners\":{}}",
-      "uiStateJSON": "{}",
-      "description": "",
-      "version": 1,
-      "kibanaSavedObjectMeta": {
-        "searchSourceJSON": "{\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[]}"
-      }
-    }
-  },
-  {
-    "_id": "DOHMH:-Average-Score-Map",
-    "_type": "visualization",
-    "_source": {
-      "title": "DOHMH: Average Score Map",
-      "visState": "{\"title\":\"NYC Restaurant: Location Score\",\"type\":\"tile_map\",\"params\":{\"addTooltip\":true,\"heatBlur\":\"8\",\"heatMaxZoom\":\"16\",\"heatMinOpacity\":\"0.66\",\"heatNormalizeData\":true,\"heatRadius\":\"6\",\"isDesaturated\":true,\"mapType\":\"Heatmap\",\"wms\":{\"enabled\":false,\"options\":{\"attribution\":\"Maps provided by USGS\",\"format\":\"image/png\",\"layers\":\"0\",\"styles\":\"\",\"transparent\":true,\"version\":\"1.3.0\"},\"url\":\"https://basemap.nationalmap.gov/arcgis/services/USGSTopo/MapServer/WMSServer\"}},\"aggs\":[{\"id\":\"1\",\"type\":\"avg\",\"schema\":\"metric\",\"params\":{\"field\":\"Score\"}},{\"id\":\"2\",\"type\":\"geohash_grid\",\"schema\":\"segment\",\"params\":{\"field\":\"Coord\",\"autoPrecision\":true,\"mapZoom\":12,\"mapCenter\":[40.7508982634657,-73.89232635498047],\"precision\":7}}],\"listeners\":{}}",
-      "uiStateJSON": "{}",
-      "description": "",
-      "version": 1,
-      "kibanaSavedObjectMeta": {
-        "searchSourceJSON": "{\"index\":\"nyc_restaurants\",\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[]}"
-      }
-    }
-  },
-  {
-    "_id": "DOHMH:-Location",
-    "_type": "visualization",
-    "_source": {
-      "title": "DOHMH: Location",
-      "visState": "{\"title\":\"NYC Restaurant: Location\",\"type\":\"tile_map\",\"params\":{\"addTooltip\":true,\"heatBlur\":15,\"heatMaxZoom\":16,\"heatMinOpacity\":0.1,\"heatNormalizeData\":true,\"heatRadius\":25,\"isDesaturated\":true,\"mapType\":\"Scaled Circle Markers\",\"wms\":{\"enabled\":false,\"options\":{\"attribution\":\"Maps provided by USGS\",\"format\":\"image/png\",\"layers\":\"0\",\"styles\":\"\",\"transparent\":true,\"version\":\"1.3.0\"},\"url\":\"https://basemap.nationalmap.gov/arcgis/services/USGSTopo/MapServer/WMSServer\"}},\"aggs\":[{\"id\":\"1\",\"type\":\"cardinality\",\"schema\":\"metric\",\"params\":{\"field\":\"Inspection_Date\"}},{\"id\":\"2\",\"type\":\"geohash_grid\",\"schema\":\"segment\",\"params\":{\"field\":\"Coord\",\"autoPrecision\":true,\"mapZoom\":2,\"mapCenter\":[15.114552871944102,4.921875],\"precision\":3}}],\"listeners\":{}}",
-      "uiStateJSON": "{}",
-      "description": "",
-      "version": 1,
-      "kibanaSavedObjectMeta": {
-        "searchSourceJSON": "{\"index\":\"nyc_restaurants\",\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[]}"
-      }
-    }
-  },
-  {
-    "_id": "DOHMH:-Violation-Code-Distribution",
-    "_type": "visualization",
-    "_source": {
-      "title": "DOHMH: Violation Code Distribution",
-      "visState": "{\"title\":\"NYC Restaurants: Violation Code\",\"type\":\"pie\",\"params\":{\"shareYAxis\":true,\"addTooltip\":true,\"addLegend\":true,\"isDonut\":false},\"aggs\":[{\"id\":\"1\",\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"Violation_Code\",\"size\":50,\"order\":\"desc\",\"orderBy\":\"1\"}}],\"listeners\":{}}",
-      "uiStateJSON": "{}",
-      "description": "",
-      "version": 1,
-      "kibanaSavedObjectMeta": {
-        "searchSourceJSON": "{\"index\":\"nyc_restaurants\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
-      }
-    }
-  },
-  {
-    "_id": "DOHMH:-Score-and-Restaurants-(vs-time)",
-    "_type": "visualization",
-    "_source": {
-      "title": "DOHMH: Score and Restaurants (vs time)",
-      "visState": "{\"title\":\"DOHMH: Score and Restaurants (vs time)\",\"type\":\"line\",\"params\":{\"addLegend\":true,\"addTimeMarker\":false,\"addTooltip\":true,\"defaultYExtents\":true,\"drawLinesBetweenPoints\":false,\"interpolate\":\"linear\",\"radiusRatio\":\"11\",\"scale\":\"linear\",\"setYExtents\":false,\"shareYAxis\":true,\"showCircles\":true,\"smoothLines\":false,\"times\":[],\"yAxis\":{}},\"aggs\":[{\"id\":\"1\",\"type\":\"avg\",\"schema\":\"metric\",\"params\":{\"field\":\"Score\"}},{\"id\":\"4\",\"type\":\"terms\",\"schema\":\"group\",\"params\":{\"field\":\"Boro\",\"size\":5,\"order\":\"desc\",\"orderBy\":\"3\"}},{\"id\":\"2\",\"type\":\"date_histogram\",\"schema\":\"segment\",\"params\":{\"field\":\"Inspection_Date\",\"interval\":\"auto\",\"customInterval\":\"2h\",\"min_doc_count\":1,\"extended_bounds\":{},\"customLabel\":\"Inspection Date\"}},{\"id\":\"3\",\"type\":\"cardinality\",\"schema\":\"radius\",\"params\":{\"field\":\"Camis\"}}],\"listeners\":{}}",
-      "uiStateJSON": "{\"vis\":{\"colors\":{\"BRONX\":\"#65C5DB\",\"STATEN ISLAND\":\"#BF1B00\",\"BROOKLYN\":\"#962D82\"}}}",
-      "description": "",
-      "version": 1,
-      "kibanaSavedObjectMeta": {
-        "searchSourceJSON": "{\"index\":\"nyc_restaurants\",\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[{\"$state\":{\"store\":\"appState\"},\"meta\":{\"alias\":null,\"disabled\":false,\"index\":\"nyc_restaurants\",\"key\":\"Boro\",\"negate\":true,\"value\":\"Missing\"},\"query\":{\"match\":{\"Boro\":{\"query\":\"Missing\",\"type\":\"phrase\"}}}}]}"
-      }
-    }
-  },
   {
     "_id": "DOHMH:-Boro-ampersand-Grade",
     "_type": "visualization",
@@ -194,39 +101,11 @@
     }
   },
   {
-    "_id": "DOHMH:-KPI",
-    "_type": "visualization",
-    "_source": {
-      "title": "DOHMH: KPI",
-      "visState": "{\"title\":\"DOHMH: KPI\",\"type\":\"metric\",\"params\":{\"fontSize\":\"41\",\"handleNoResults\":true},\"aggs\":[{\"id\":\"2\",\"type\":\"cardinality\",\"schema\":\"metric\",\"params\":{\"field\":\"Camis\",\"customLabel\":\"# of Restaurants\"}},{\"id\":\"1\",\"type\":\"avg\",\"schema\":\"metric\",\"params\":{\"field\":\"Score\"}}],\"listeners\":{}}",
-      "uiStateJSON": "{}",
-      "description": "",
-      "version": 1,
-      "kibanaSavedObjectMeta": {
-        "searchSourceJSON": "{\"index\":\"nyc_restaurants\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
-      }
-    }
-  },
-  {
-    "_id": "DOHMH:-Worst-Restaurants",
-    "_type": "visualization",
-    "_source": {
-      "title": "DOHMH: Worst Restaurants",
-      "visState": "{\"title\":\"DOHMH: Worst Restaurants\",\"type\":\"tagcloud\",\"params\":{\"textScale\":\"linear\",\"orientations\":0,\"fromDegree\":\"0\",\"toDegree\":\"-32\",\"font\":\"serif\",\"fontStyle\":\"normal\",\"fontWeight\":\"bold\",\"timeInterval\":\"2000\",\"spiral\":\"archimedean\",\"minFontSize\":\"12\",\"maxFontSize\":\"26\"},\"aggs\":[{\"id\":\"1\",\"type\":\"avg\",\"schema\":\"metric\",\"params\":{\"field\":\"Score\"}},{\"id\":\"2\",\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"Dba\",\"size\":200,\"order\":\"desc\",\"orderBy\":\"1\"}}],\"listeners\":{}}",
-      "uiStateJSON": "{}",
-      "description": "",
-      "version": 1,
-      "kibanaSavedObjectMeta": {
-        "searchSourceJSON": "{\"index\":\"nyc_restaurants\",\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[]}"
-      }
-    }
-  },
-  {
     "_id": "DOHMH:-Violation-and-Restaurants",
     "_type": "visualization",
     "_source": {
       "title": "DOHMH: Violation and Restaurants",
-      "visState": "{\"title\":\"DOHMH: Violation and Restaurants\",\"type\":\"area\",\"params\":{\"addLegend\":true,\"addTimeMarker\":false,\"addTooltip\":true,\"defaultYExtents\":false,\"interpolate\":\"linear\",\"mode\":\"overlap\",\"scale\":\"linear\",\"setYExtents\":false,\"shareYAxis\":true,\"smoothLines\":false,\"times\":[],\"yAxis\":{}},\"aggs\":[{\"id\":\"1\",\"type\":\"cardinality\",\"schema\":\"metric\",\"params\":{\"field\":\"Camis\",\"customLabel\":\"# Restaurants\"}},{\"id\":\"2\",\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"Violation_Code\",\"size\":25,\"orderAgg\":{\"id\":\"2-orderAgg\",\"type\":\"count\",\"schema\":\"orderAgg\",\"params\":{}},\"order\":\"desc\",\"orderBy\":\"custom\"}},{\"id\":\"3\",\"type\":\"significant_terms\",\"schema\":\"group\",\"params\":{\"field\":\"Cuisine_Description\",\"size\":3}}],\"listeners\":{}}",
+      "visState": "{\"title\":\"DOHMH: Violation and Restaurants\",\"type\":\"area\",\"params\":{\"addLegend\":true,\"addTimeMarker\":false,\"addTooltip\":true,\"defaultYExtents\":false,\"interpolate\":\"linear\",\"mode\":\"overlap\",\"scale\":\"linear\",\"setYExtents\":false,\"shareYAxis\":true,\"smoothLines\":false,\"times\":[],\"yAxis\":{}},\"aggs\":[{\"id\":\"1\",\"type\":\"cardinality\",\"schema\":\"metric\",\"params\":{\"field\":\"Camis\",\"customLabel\":\"# Restaurants\"}},{\"id\":\"2\",\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"Violation_Code\",\"size\":25,\"orderAgg\":{\"id\":\"2-orderAgg\",\"type\":\"count\",\"schema\":{\"group\":\"none\",\"name\":\"orderAgg\",\"title\":\"Order Agg\",\"aggFilter\":[\"!percentiles\",\"!median\",\"!std_dev\"],\"min\":0,\"max\":null,\"editor\":false,\"params\":[],\"deprecate\":false},\"params\":{}},\"order\":\"desc\",\"orderBy\":\"custom\"}},{\"id\":\"3\",\"type\":\"significant_terms\",\"schema\":\"group\",\"params\":{\"field\":\"Cuisine_Description\",\"size\":3}}],\"listeners\":{}}",
       "uiStateJSON": "{\"vis\":{\"colors\":{\"Chinese\":\"#614D93\",\"Spanish\":\"#AEA2E0\",\"Caribbean\":\"#DEDAF7\",\"Latin (Cuban, Dominican, Puerto Rican, South & Central American)\":\"#70DBED\",\"Juice, Smoothies, Fruit Salads\":\"#447EBC\",\"CafÃ©/Coffee/Tea\":\"#0A437C\",\"Indian\":\"#70DBED\",\"Asian\":\"#5195CE\",\"Japanese\":\"#BADFF4\",\"Mexican\":\"#E5A8E2\",\"Middle Eastern\":\"#BA43A9\",\"Korean\":\"#82B5D8\",\"Thai\":\"#CFFAFF\",\"Donuts\":\"#FCE2DE\",\"Café/Coffee/Tea\":\"#82B5D8\"}}}",
       "description": "",
       "version": 1,
@@ -250,6 +129,20 @@
     }
   },
   {
+    "_id": "DOHMH:-Description",
+    "_type": "visualization",
+    "_source": {
+      "title": "DOHMH: Description",
+      "visState": "{\"title\":\"DOHMH: Description\",\"type\":\"markdown\",\"params\":{\"markdown\":\"#### NYC Restaurant Inspection \\n\\n**Dashboards** \\n\\n* [Overview](http://localhost:5601/app/kibana#/dashboard/DOHMH:-Overview)\\n* [Restaurant Metrics](http://localhost:5601/app/kibana#/dashboard/DOHMH:-Restaurant?)\\n\\n## \\n\\n**Data Source**: [https://data.cityofnewyork.us/](https://data.cityofnewyork.us/Health/DOHMH-New-York-City-Restaurant-Inspection-Results/43nn-pn8j)\"},\"aggs\":[],\"listeners\":{}}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[]}"
+      }
+    }
+  },
+  {
     "_id": "Kibana-Webinar:-Summary",
     "_type": "visualization",
     "_source": {
@@ -260,6 +153,118 @@
       "version": 1,
       "kibanaSavedObjectMeta": {
         "searchSourceJSON": "{\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "DOHMH:-Restaurant-Review",
+    "_type": "visualization",
+    "_source": {
+      "title": "DOHMH: Restaurant Review",
+      "visState": "{\"title\":\"DOHMH: Restaurant Review\",\"type\":\"table\",\"params\":{\"perPage\":10,\"showPartialRows\":false,\"showMeticsAtAllLevels\":false},\"aggs\":[{\"id\":\"1\",\"type\":\"avg\",\"schema\":\"metric\",\"params\":{\"field\":\"Score\"}},{\"id\":\"2\",\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"Dba\",\"size\":5,\"order\":\"desc\",\"orderBy\":\"1\"}},{\"id\":\"3\",\"type\":\"cardinality\",\"schema\":\"metric\",\"params\":{\"field\":\"Violation_Code\",\"customLabel\":\"# of Violations\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"nyc_restaurants\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "DOHMH:-Average-Score-Map",
+    "_type": "visualization",
+    "_source": {
+      "title": "DOHMH: Average Score Map",
+      "visState": "{\"title\":\"DOHMH: Average Score Map\",\"type\":\"tile_map\",\"params\":{\"addTooltip\":true,\"heatBlur\":\"8\",\"heatMaxZoom\":\"16\",\"heatMinOpacity\":\"0.66\",\"heatNormalizeData\":true,\"heatRadius\":\"6\",\"isDesaturated\":true,\"mapType\":\"Heatmap\",\"wms\":{\"enabled\":false,\"options\":{\"attribution\":\"Maps provided by USGS\",\"format\":\"image/png\",\"layers\":\"0\",\"styles\":\"\",\"transparent\":true,\"version\":\"1.3.0\"},\"url\":\"https://basemap.nationalmap.gov/arcgis/services/USGSTopo/MapServer/WMSServer\"}},\"aggs\":[{\"id\":\"1\",\"type\":\"avg\",\"schema\":\"metric\",\"params\":{\"field\":\"Score\"}},{\"id\":\"2\",\"type\":\"geohash_grid\",\"schema\":\"segment\",\"params\":{\"field\":\"Coord\",\"autoPrecision\":true,\"mapZoom\":12,\"mapCenter\":[40.7508982634657,-73.89232635498047],\"precision\":7}}],\"listeners\":{}}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"nyc_restaurants\",\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "DOHMH:-Location",
+    "_type": "visualization",
+    "_source": {
+      "title": "DOHMH: Location",
+      "visState": "{\"title\":\"DOHMH: Location\",\"type\":\"tile_map\",\"params\":{\"addTooltip\":true,\"heatBlur\":15,\"heatMaxZoom\":16,\"heatMinOpacity\":0.1,\"heatNormalizeData\":true,\"heatRadius\":25,\"isDesaturated\":true,\"mapType\":\"Scaled Circle Markers\",\"wms\":{\"enabled\":false,\"options\":{\"attribution\":\"Maps provided by USGS\",\"format\":\"image/png\",\"layers\":\"0\",\"styles\":\"\",\"transparent\":true,\"version\":\"1.3.0\"},\"url\":\"https://basemap.nationalmap.gov/arcgis/services/USGSTopo/MapServer/WMSServer\"}},\"aggs\":[{\"id\":\"1\",\"type\":\"cardinality\",\"schema\":\"metric\",\"params\":{\"field\":\"Inspection_Date\"}},{\"id\":\"2\",\"type\":\"geohash_grid\",\"schema\":\"segment\",\"params\":{\"field\":\"Coord\",\"autoPrecision\":true,\"mapZoom\":2,\"mapCenter\":[15.114552871944102,4.921875],\"precision\":3}}],\"listeners\":{}}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"nyc_restaurants\",\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "DOHMH:-Violation-Code-Distribution",
+    "_type": "visualization",
+    "_source": {
+      "title": "DOHMH: Violation Code Distribution",
+      "visState": "{\"title\":\"DOHMH: Violation Code Distribution\",\"type\":\"pie\",\"params\":{\"shareYAxis\":true,\"addTooltip\":true,\"addLegend\":true,\"isDonut\":false},\"aggs\":[{\"id\":\"1\",\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"Violation_Code\",\"size\":50,\"order\":\"desc\",\"orderBy\":\"1\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"nyc_restaurants\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "DOHMH:-Score-and-Restaurants-(vs-time)",
+    "_type": "visualization",
+    "_source": {
+      "title": "DOHMH: Score and Restaurants (vs time)",
+      "visState": "{\"title\":\"DOHMH: Score and Restaurants (vs time)\",\"type\":\"line\",\"params\":{\"addLegend\":true,\"addTimeMarker\":false,\"addTooltip\":true,\"defaultYExtents\":true,\"drawLinesBetweenPoints\":false,\"interpolate\":\"linear\",\"radiusRatio\":\"11\",\"scale\":\"linear\",\"setYExtents\":false,\"shareYAxis\":true,\"showCircles\":true,\"smoothLines\":false,\"times\":[],\"yAxis\":{}},\"aggs\":[{\"id\":\"1\",\"type\":\"avg\",\"schema\":\"metric\",\"params\":{\"field\":\"Score\"}},{\"id\":\"4\",\"type\":\"terms\",\"schema\":\"group\",\"params\":{\"field\":\"Boro\",\"size\":5,\"order\":\"desc\",\"orderBy\":\"3\"}},{\"id\":\"2\",\"type\":\"date_histogram\",\"schema\":\"segment\",\"params\":{\"field\":\"Inspection_Date\",\"interval\":\"auto\",\"customInterval\":\"2h\",\"min_doc_count\":1,\"extended_bounds\":{},\"customLabel\":\"Inspection Date\"}},{\"id\":\"3\",\"type\":\"cardinality\",\"schema\":\"radius\",\"params\":{\"field\":\"Camis\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{\"vis\":{\"colors\":{\"BRONX\":\"#65C5DB\",\"STATEN ISLAND\":\"#BF1B00\",\"BROOKLYN\":\"#962D82\"}}}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"nyc_restaurants\",\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[{\"$state\":{\"store\":\"appState\"},\"meta\":{\"alias\":null,\"disabled\":false,\"index\":\"nyc_restaurants\",\"key\":\"Boro\",\"negate\":true,\"value\":\"Missing\"},\"query\":{\"match\":{\"Boro\":{\"query\":\"Missing\",\"type\":\"phrase\"}}}}]}"
+      }
+    }
+  },
+  {
+    "_id": "DOHMH:-KPI",
+    "_type": "visualization",
+    "_source": {
+      "title": "DOHMH: KPI",
+      "visState": "{\"title\":\"DOHMH: KPI\",\"type\":\"metric\",\"params\":{\"fontSize\":\"41\",\"handleNoResults\":true},\"aggs\":[{\"id\":\"2\",\"type\":\"cardinality\",\"schema\":\"metric\",\"params\":{\"field\":\"Camis\",\"customLabel\":\"# of Restaurants\"}},{\"id\":\"1\",\"type\":\"avg\",\"schema\":\"metric\",\"params\":{\"field\":\"Score\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"nyc_restaurants\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "DOHMH-Worst-Restaurants-by-Location",
+    "_type": "visualization",
+    "_source": {
+      "title": "DOHMH - Worst Restaurants by Location",
+      "visState": "{\"title\":\"DOHMH - Worst Restaurants by Location\",\"type\":\"tile_map\",\"params\":{\"mapType\":\"Scaled Circle Markers\",\"isDesaturated\":true,\"addTooltip\":true,\"heatMaxZoom\":16,\"heatMinOpacity\":0.1,\"heatRadius\":25,\"heatBlur\":15,\"heatNormalizeData\":true,\"mapZoom\":2,\"mapCenter\":[15,5],\"wms\":{\"enabled\":false,\"url\":\"https://basemap.nationalmap.gov/arcgis/services/USGSTopo/MapServer/WMSServer\",\"options\":{\"version\":\"1.3.0\",\"layers\":\"0\",\"format\":\"image/png\",\"transparent\":true,\"attribution\":\"Maps provided by USGS\",\"styles\":\"\"}}},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"enabled\":true,\"type\":\"geohash_grid\",\"schema\":\"segment\",\"params\":{\"field\":\"Coord\",\"autoPrecision\":true}}],\"listeners\":{}}",
+      "uiStateJSON": "{\"mapZoom\":10,\"mapCenter\":[40.914550362677204,-74.23187255859375]}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"nyc_restaurants\",\"query\":{\"query_string\":{\"query\":\"Score:<20\",\"analyze_wildcard\":true}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "DOHMH:-Worst-Restaurants",
+    "_type": "visualization",
+    "_source": {
+      "title": "DOHMH:-Worst-Restaurants",
+      "visState": "{\"title\":\"DOHMH:-Worst-Restaurants\",\"type\":\"table\",\"params\":{\"perPage\":10,\"showPartialRows\":false,\"showMeticsAtAllLevels\":false,\"sort\":{\"columnIndex\":null,\"direction\":null},\"showTotal\":false,\"totalFunc\":\"sum\"},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"avg\",\"schema\":\"metric\",\"params\":{\"field\":\"Score\"}},{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"Dba\",\"size\":20,\"order\":\"asc\",\"orderBy\":\"1\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"nyc_restaurants\",\"query\":{\"query_string\":{\"query\":\"Critical_Flag: Critical\",\"analyze_wildcard\":true}},\"filter\":[]}"
       }
     }
   }
