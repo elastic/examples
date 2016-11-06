@@ -7,18 +7,19 @@ One of the major goals of this repo is to help people learn about the Elastic St
 
 All Contributions should be contained with a folder that describes the content of the example e.g. "ElasticStack_Twitter".  The structure of the example, within the folder itself, can be flexible but should always include:
 
-  * clear instructions to install and run the example.  Any installation instructions that are unique to those detailed in the [Installation & Setup Guide](https://github.com/elastic/examples/blob/master/Installation%20and%20Setup.md)
-  * steps for loading any required data into Elasticsearch
-  * version of Elastic Stack (and other tools) that the example was tested with
-  * additional tool requirements (along with instructions to use / download)
-  * known gotchas, system requirements, compatibility issue, etc.
+  * Clear instructions to install and run the example.  Especially consider any installation instructions that are unique to those detailed in the [Installation & Setup Guide](https://github.com/elastic/examples/blob/master/Installation%20and%20Setup.md)
+  * Steps for loading any required data into Elasticsearch
+  * Version of Elastic Stack (and other tools) that the example was tested with
+  * Additional tool requirements (along with instructions to use / download)
+  * Known gotchas, system requirements, compatibility issue, etc.
   * Logstash config files to process and ingest data
   * Template with index mappings (if needed)
   * Kibana config file to load a prebuilt Kibana dashboard  
-  * Any other code that is a part of the instruction set. Scripts should be documented and dependencies available in a standard format e.g. Python a requirements.txt and pip would be appropriate. Detail tested language versions for scripts e.g.Python 3.5.x
+  * Any other code that is a part of the instruction set. Scripts should be documented and dependencies available in a standard format e.g.for Python a requirements.txt and pip would be appropriate. Always detail tested language versions for scripts e.g.Python 3.5.x
 
 * **Data** <br>
   You can either provide the data file with the example (for small sample datasets), or provide instructions / link to download the raw data (or Elasticsearch index snapshot) from another source (such as Amazon S3). 10mb is a reasonable threshold before moving to an external download- but this shouldn't be considered a hardline.
+  
 * **Story** <br>
     If your example revolves around an analysis of a real-world dataset, try to include some color commentary to describe analysis in narrative form. How is data being used to solve a problem? What interesting insights were mined from this data? You can include this information in the README, or provide links to external blog / video, or perhaps document the narrative with markdown widgets in the Kibana dashboard.
 
