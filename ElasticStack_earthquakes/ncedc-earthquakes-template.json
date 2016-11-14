@@ -1,0 +1,32 @@
+{
+  "template": "ncedc-earthquakes",
+    "settings": {
+      "number_of_shards": 1,
+      "number_of_replicas" : 0,
+      "index.refresh_interval": "60s"
+    },
+    "mappings": {
+      "_default_": {
+        "dynamic_templates": [
+        {
+          "strings": {
+            "match": "*",
+            "match_mapping_type": "string",
+            "mapping": {
+              "type": "string",
+              "index": "not_analyzed"
+            }
+          }
+        }
+        ],
+        "properties": {
+          "location": {
+            "type": "geo_point"
+          }
+        },
+        "_all": {
+          "enabled": false
+        }
+      }
+    }
+}
