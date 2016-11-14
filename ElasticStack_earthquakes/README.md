@@ -32,17 +32,17 @@ Size: 222 lines (17837 bytes)
 
 ## Installation & Setup
 
-* Follow the [Installation & Setup Guide](https://github.com/elastic/examples/blob/master/Installation%20and%20Setup.md) to install and test the Elastic Stack (*you can skip this step if you have a working installation of the Elastic Stack,*)
+- Follow the [Installation & Setup Guide](https://github.com/elastic/examples/blob/master/Installation%20and%20Setup.md) to install and test the Elastic Stack (*you can skip this step if you have a working installation of the Elastic Stack,*)
 
-* Run Elasticsearch & Kibana
+- Run Elasticsearch & Kibana
 ```shell
 <path_to_elasticsearch_root_dir>/bin/elasticsearch
 <path_to_kibana_root_dir>/bin/kibana
 ```
 
-* Check that Elasticsearch and Kibana are up and running.
-- Open `localhost:9200` in web browser -- should return status code 200
-- Open `localhost:5601` in web browser -- should display Kibana UI.
+- Check that Elasticsearch and Kibana are up and running.
+  - Open `localhost:9200` in web browser -- should return status code 200
+  - Open `localhost:5601` in web browser -- should display Kibana UI.
 
 **Note:** By default, Elasticsearch runs on port 9200, and Kibana run on ports 5601. If you changed the default ports, change   the above calls to use appropriate ports.
 
@@ -57,11 +57,11 @@ Download the following files in this repo to a local directory:
 
 ### Ingest Data
 
-Extract the dataset archive with `tar zxf ncedc-earthquakes-dataset.tar.gz` from the terminal. Run the below commands to ingest the data sets to your Elasticsearch cluster. Please note, you may need to configure `ncedc-earthquakes-logstash.conf` file in case your are not running Elasticsearch node on your local host.
+Extract the dataset archive with `tar zxf ncedc-earthquakes-dataset.tar.gz` from the terminal. Run the below commands to ingest the data into your Elasticsearch cluster. Please note, you may need to configure `ncedc-earthquakes-logstash.conf` file in case your are not running Elasticsearch node on your local host.
 
 ```shell
-tail -n +2 earthquakes.txt| EVENT="earthquake" logstash/bin/logstash -f ncedc-earthquakes-logstash.conf
-tail -n +2 blasts.txt| EVENT="blast" logstash/bin/logstash -f ncedc-earthquakes-logstash.conf
+tail -n +2 earthquakes.txt | EVENT="earthquake" logstash/bin/logstash -f ncedc-earthquakes-logstash.conf
+tail -n +2 blasts.txt | EVENT="blast" logstash/bin/logstash -f ncedc-earthquakes-logstash.conf
 ```
 
 ### Importing Kibana Visuals and Dashboards
@@ -70,4 +70,4 @@ tail -n +2 blasts.txt| EVENT="blast" logstash/bin/logstash -f ncedc-earthquakes-
 2. Go to Objects tab and click on Import, and select `ncedc-earthquakes-dashboard.json` by the file chooser.
 3. Go to Dashboard and click on `Earthqueke` from the list of the dashboards.
 
-![Dashboard Screenshot](ncedc-earthquakes-dashboard.png?raw=true)
+![Dashboard Screenshot](ncedc-earthquakes-screenshot.png?raw=true)
