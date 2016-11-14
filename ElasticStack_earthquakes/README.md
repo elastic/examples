@@ -1,6 +1,6 @@
 # Earthquakes Demo
 
-This example provides sample files to ingest, analyze and visualize **earthquake data** using the Elastic Stack.
+This example provides sample files to ingest, analyze and visualize **earthquake data** using the Elastic Stack. You may refer to [Earthquake data with the Elastic Stack](https://www.elastic.co/blog/earthquake-data-with-the-elastic-stack) blog post to find out your own story behind the data.
 
 ## Version Requirements
 
