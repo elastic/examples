@@ -8,3 +8,6 @@ node_modules
 *.idea*
 /ElasticStack_usfec/Scripts-Python+Logstash/data/
 /packetbeat_dns_tunnel_detection/dns-tunnel-iodine-timeshifted.pcap
+/dallas_crime_linking_with_graph/
+/ElasticStack_earthquakes/blasts.txt
+/ElasticStack_earthquakes/earthquakes.txt
