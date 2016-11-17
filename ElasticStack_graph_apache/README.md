@@ -1,6 +1,6 @@
-## Using Graph to Analyze Apache Logs and Potential Points of Compromise
+## Using Graph to explore attacks and potential points of compromise in Apache web logs
 
-This example demonstrates how to analyze Apache Log data for security vulnerabilities using the Graph capability of the Elastic Stack. 
+This example demonstrates how to analyze Apache logs for security vulnerabilities using the Graph capability of the Elastic Stack. 
 The aim here is to begin exploration of the data from a security vulnerability that is well known (and likely unsuccessful) and can be identified in the logs e.g. an attempted directory traversal. From here, the user identify:
 
 1. The origin of the request and subsequently other statistically significant attempts by the same source
@@ -92,10 +92,11 @@ The following assumes the default username and password of "elastic" and "change
 ### Configure Kibana for Index
   
   * Access Kibana by going to `http://localhost:5601` in a web browser
+  * Login with the default credentials: username: `elastic` and password: `changeme`
   * Connect Kibana to the `secrepo` index in Elasticsearch
       * Click the **Management** tab >> **Index Patterns** tab >> **Create New**. Specify `secrepo` as the index pattern name, using the default field `@timestamp` as the **Time-field name**, and click **Create** to define the index pattern. (Leave the **Use event times to create index names** box unchecked)
   * Open graph
-      * Click on **Graph** tab.
+      * Click on **Graph** app in the side navigation
       
 ### Explore Potential Threats
     
