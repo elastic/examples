@@ -112,7 +112,7 @@ For further simple common attack vectors see [here](https://www.sans.org/reading
  
 The following illustrates a search for `%2f`, using the fields  `url.parts`, `url`, `params`  and `src` as nodes.   
       
-  ![Kibana Dashboard Screenshot](https://github.com/elastic/examples/blob/master/ElasticStack_graph_apache/secrepo_graph.jpg?raw=true)
+  ![Graph Screenshot](https://github.com/gingerwizard/examples/blob/master/ElasticStack_graph_apache/secrepo_graph.jpg)
 
 ### We would love to hear from you!
 
