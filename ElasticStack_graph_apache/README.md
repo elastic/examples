@@ -9,7 +9,7 @@ The aim here is to begin exploration of the data from a security vulnerability t
 These above steps can be repeated as the graph and 'threat space' is explored.
 
 The data analyzed in this example is from the [Secrep.com](http://www.secrepo.com/) and represents the sites apache logs.
-This data, published by Mike Sconzo, is licensed under a Creative Commons Attribution 4.0 International License.
+This data, published by Mike Sconzo, is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/) .
 
 ### Versions and Pre-requisites
 
