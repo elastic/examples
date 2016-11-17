@@ -1,11 +1,12 @@
 # Introduction
 
-This is a collection of examples to help you get familiar with the Elastic stack. Each example folder includes a README with detailed instructions for getting up and running with the  particular example. The following information pertains to the [examples](https://github.com/elastic/examples) repo as a whole.
+This is a collection of examples to help you get familiar with the Elastic Stack and X-Pack. Each example folder includes a README with detailed instructions for getting up and running with the  particular example. The following information pertains to the [examples](https://github.com/elastic/examples) repo as a whole.
 
 ### Contents
 
 - [Quick start](#quick-start)
 - [Contributing](#contributing)
+- [Example catalog](#example-catalog)
 
 ### Quick start
 
@@ -18,3 +19,53 @@ You have a few options to get started with the examples:
 ### Contributing
 
 See [here](https://github.com/elastic/examples/blob/master/CONTRIBUTING.md)
+
+### Example catalog
+
+Below is the list of examples available in this repo:
+
+#### Getting Started with Elastic Stack:
+
+- [NGINX - JSON](https://github.com/elastic/examples/tree/master/ElasticStack_NGINX-json)
+- [NGINX - common format](https://github.com/elastic/examples/tree/master/ElasticStack_NGINX)
+- [NGINX Plus - JSON](https://github.com/elastic/examples/tree/master/ElasticStack_NGINX)
+- [Twitter](https://github.com/elastic/examples/tree/master/ElasticStack_twitter)
+- [Apache access logs](https://github.com/elastic/examples/tree/master/ElasticStack_apache)
+- [Simple recipe search app in PHP](https://github.com/elastic/examples/tree/master/elasticsearch_app_php_recipe_search)
+
+#### Analyzing Public Datasets
+
+Examples using the Elastic Stack for analyzing public dataset.
+- [DonorsChoose.org donations](https://github.com/elastic/examples/tree/master/ElasticStack_donorschoose)
+- [NCEDC earthquakes data](https://github.com/elastic/examples/tree/master/ElasticStack_earthquakes)
+- [NYC traffic accidents](https://github.com/elastic/examples/tree/master/ElasticStack_nyc_traffic_accidents)
+- [US FEC campaign contributions](https://github.com/elastic/examples/tree/master/ElasticStack_usfec)
+- [CDC health behavior survey](https://github.com/elastic/examples/tree/master/ElasticStack_CDC_nutrition_exercise_patterns)
+- [NYC restaurant health grades](https://github.com/elastic/examples/tree/master/kibana_nyc_restaurants)
+
+
+#### Alerting on Elastic Stack
+
+X-Pack lets you set up watches (or rules) to detect and alert on changes in your Elasticsearch data. Below is a list of examples watches that configured to detect and alert on a few common scenarios:
+
+- High I/O wait on CPU
+- Critical error  in logs
+- High filesystem usage
+- Lateral movement in user communication
+- New process started on hosts
+- Port scan detected
+- Interrupted log flow from hosts
+- Trending hashtag on twitter
+- Unexpected account activity
+- [Detecting DNS tunnels](https://github.com/elastic/examples/tree/master/packetbeat_dns_tunnel_detection)
+- Watch history dashboard
+
+
+#### Getting Started with Graph exploration
+
+- [Exploring attack vectors in Apache logs using Graph] (https://github.com/elastic/examples/tree/master/ElasticStack_graph_apache)
+
+
+#### Miscellaneous
+- [Setting up Elastic Stack on Docker](https://github.com/elastic/examples/tree/master/ElasticStack_docker_setup/)
+- [Creating a custom realm in Shield](https://github.com/elastic/examples/tree/master/shield_custom_realm_example)]
