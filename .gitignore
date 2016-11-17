@@ -11,3 +11,5 @@ node_modules
 /dallas_crime_linking_with_graph/
 /ElasticStack_earthquakes/blasts.txt
 /ElasticStack_earthquakes/earthquakes.txt
+/ElasticStack_graph_apache/data/
+/ElasticStack_graph_apache/ideas.txt
