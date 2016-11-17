@@ -1,6 +1,14 @@
 ## Using Graph to Analyze Apache Logs and Potential Points of Compromise
 
-This example demonstrates how to analyze & visualize Apache Log data using the Graph capability of the Elastic Stack. The data analyzed in this example is from the [Secrep.com](http://www.secrepo.com/) and represents the sites apache logs.
+This example demonstrates how to analyze Apache Log data for security vulnerabilities using the Graph capability of the Elastic Stack. 
+The aim here is to begin exploration of the data from a security vulnerability that is well known (and likely unsuccessful) and can be identified in the logs e.g. an attempted directory traversal. From here, the user identify:
+
+1. The origin of the request and subsequently other statistically significant attempts by the same source
+1. From other threats identified in (1) other potential sources of threat.
+
+These above steps can be repeated as the graph and 'threat space' is explored.
+
+The data analyzed in this example is from the [Secrep.com](http://www.secrepo.com/) and represents the sites apache logs.
 This data, published by Mike Sconzo, is licensed under a Creative Commons Attribution 4.0 International License.
 
 ### Versions and Pre-requisites
@@ -85,15 +93,29 @@ This script will create a subfolder `data` into which a log file for each day wi
     }'
     ```
 
-### Visualize Data in Kibana
+### Configure Kibana for Index
   
   * Access Kibana by going to `http://localhost:5601` in a web browser
   * Connect Kibana to the `secrepo` index in Elasticsearch
       * Click the **Management** tab >> **Index Patterns** tab >> **Create New**. Specify `secrepo` as the index pattern name, using the default field `@timestamp` as the **Time-field name**, and click **Create** to define the index pattern. (Leave the **Use event times to create index names** box unchecked)
-  * Load sample dashboard into Kibana
-      * Click the **Management** tab >> **Saved Objects** tab >> **Import**, and select `secrepo_kibana.json`
   * Open graph
-      * Click on **Graph** tab and open ``.
+      * Click on **Graph** tab.
+      
+### Explore Potential Threats
+    
+   * Select index `secrepo` in the upper left. 
+   * Add the fields `url.parts`, `url`, `params`  and `src` as graph nodes using the (+) icon.  Select an appropriate icon/colour for the node types.  Not all of these fields are required and certain attack vectors maybe more effective by exploring specific fields.
+   * Search for a common attack vector. Suggestions:
+      * Directory traversal - e.g. `%255c`, `%2e%2e/` 
+      * SQL injections e.g. `select AND from`  
+      * Wordpress exploits e.g. `wordpress`
+      * Hint: Explore the ip `71.19.248.47`
+   * Expand the selection of nodes to explore common behaviours and to identify other potential threats and high risk sources.
+   
+   
+For further simple common attack vectors see [here](https://www.sans.org/reading-room/whitepapers/logging/detecting-attacks-web-applications-log-files-2074)
+ 
+The following illustrates a search for `%2f`, using the fields  `url.parts`, `url`, `params`  and `src` as nodes.   
       
   ![Kibana Dashboard Screenshot](https://github.com/elastic/examples/blob/master/ElasticStack_graph_apache/secrepo_graph.jpg?raw=true)
 

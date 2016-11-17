@@ -44,6 +44,15 @@
           "bytes": {
             "type": "integer"
           },
+          "params": {
+            "type": "text",
+            "fielddata":true,
+            "fields":{
+              "raw": {
+                "type":  "keyword"
+              }
+            }
+          },
           "message": {
             "type": "text"
           },
