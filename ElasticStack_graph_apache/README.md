@@ -63,11 +63,11 @@ The following assumes the default username and password of "elastic" and "change
     - `patterns/` - Grok patterns for processing file
     - `secrepo_kibana.json` - Configuration for graph
     
-1. Setup Python environment
+2. Setup Python environment
 
 Requires Python 3.  Install dependencies with pip i.e. `pip install -r requirements.txt`
 
-1. Run Python script to download data. This will download all data starting from 2015-01-17 to the current day.
+3. Run Python script to download data. This will download all data starting from 2015-01-17 to the current day.
 
 ```
   python3 download_data.py
@@ -75,13 +75,13 @@ Requires Python 3.  Install dependencies with pip i.e. `pip install -r requireme
     
 This script will create a subfolder `data` into which a log file for each day will be extracted.  Some days may not be available.
 
-1. Index the data using Logstash and the configuration provided.
+4. Index the data using Logstash and the configuration provided.
  
 ```
   cat ./data/* | <path_to_logstash_root_dir>/bin/logstash -f secrepo_logstash.conf
 ```
    
-1. Check data availability
+5. Check data availability
   
   Once the index is indexed you can check to see if all the data is available in Elasticsearch. If you have downloaded all of the data from 2015-01-17 to the current day, you should get a `count` response greater than `300840` when you run the following command.
 
