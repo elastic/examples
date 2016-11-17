@@ -1,0 +1,66 @@
+{
+  "template": "secrepo",
+    "settings": {
+      "number_of_shards": 1,
+      "number_of_replicas" : 0,
+      "index.refresh_interval": "60s",
+      "analysis": {
+        "analyzer": {
+          "path_analyzer": {
+            "tokenizer": "path_hierarchy",
+            "filter": [
+              "lowercase"
+            ]
+          }
+        }
+      }
+    },
+    "mappings": {
+      "_default_": {
+        "dynamic_templates": [
+        {
+          "strings": {
+            "match": "*",
+            "match_mapping_type": "string",
+            "mapping": {
+              "type": "keyword"
+            }
+          }
+        }
+        ],
+        "properties": {
+          "src": {
+            "type": "ip"
+          },
+          "response_code": {
+            "type": "integer"
+          },
+          "minor": {
+            "type": "integer"
+          },
+          "major": {
+            "type": "integer"
+          },
+          "bytes": {
+            "type": "integer"
+          },
+          "message": {
+            "type": "text"
+          },
+          "url": {
+            "type": "keyword",
+            "fields":{
+              "parts": {
+                "type":  "text",
+                "analyzer": "path_analyzer",
+                "fielddata":true
+              }
+            }
+          }
+        },
+        "_all": {
+          "enabled": true
+        }
+      }
+    }
+}
