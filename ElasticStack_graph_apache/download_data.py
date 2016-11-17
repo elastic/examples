@@ -7,10 +7,7 @@ from dateutil import parser
 base_url="http://www.secrepo.com/self.logs/%s"
 base_filename="access.log.%s.gz"
 start_date="2015-01-17"
-#By default we download all data until today.  Modify as required.
-end_date= datetime.date.today()
-
-
+end_date = datetime.date.today()
 output_folder="./data"
 current_date = parser.parse(start_date)
 

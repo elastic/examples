@@ -25,6 +25,7 @@ Example has been tested in following versions:
   ```
 
 * Run Elasticsearch & Kibana
+
   ```shell
   <path_to_elasticsearch_root_dir>/bin/elasticsearch
   <path_to_kibana_root_dir>/bin/kibana
@@ -58,7 +59,7 @@ The following assumes the default username and password of "elastic" and "change
 
 Requires Python 3.  Install dependencies with pip i.e. `pip install -r requirements.txt`
 
-1. Run Python script to download data. This will download all data starting from 2015-01-17 to the current day.  These script parameters can be modified as required.
+1. Run Python script to download data. This will download all data starting from 2015-01-17 to the current day.
 
 ```
   python3 download_data.py
@@ -69,7 +70,7 @@ This script will create a subfolder `data` into which a log file for each day wi
 1. Index the data using Logstash and the configuration provided.
  
 ```
-  cat ./data/* | /opt/elastic-5-0/logstash-5.0.0/bin/logstash -f secrepo_logstash.conf
+  cat ./data/* | <path_to_logstash_root_dir>/bin/logstash -f secrepo_logstash.conf
 ```
    
 1. Check data availability
