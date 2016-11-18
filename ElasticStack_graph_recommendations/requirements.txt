@@ -1,0 +1,2 @@
+elasticsearch==5.0.1
+urllib3==1.19.1

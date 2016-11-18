@@ -13,3 +13,4 @@ node_modules
 /ElasticStack_earthquakes/earthquakes.txt
 /ElasticStack_graph_apache/data/
 /ElasticStack_graph_apache/ideas.txt
+/ElasticStack_graph_recommendations/data/
