@@ -37,6 +37,9 @@
           "disliked": {
             "type": "keyword"
           },
+          "implicit": {
+            "type": "keyword"
+          },
           "indifferent": {
             "type": "keyword"
           },
@@ -50,10 +53,6 @@
                 "type":  "keyword"
               }
             }
-          },
-          "timestamp":{
-            "type":"date",
-            "format":"yyyy-MM-dd"
           }
         },
         "_all": {

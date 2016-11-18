@@ -39,7 +39,6 @@ def read_users(filename,movies):
             user["all_rated"].append(title)
             user["liked"].append(title) if rating >= 4.0 else (
             user["indifferent"].append(title) if rating > 2.0 else user["disliked"].append(title))
-            user["timestamp"]=row["timestamp"]
         yield user
 
 es.indices.delete(index="movie_lens_users",ignore=404)

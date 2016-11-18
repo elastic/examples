@@ -1,26 +1,30 @@
 import csv
 from collections import deque
 import elasticsearch
-import time
+import string
 from elasticsearch import helpers
 
 es = elasticsearch.Elasticsearch(http_auth=('elastic', 'changeme'))
 books_file = "./data/BX-Books.csv"
 mapping_file="book_crossing.json"
 ratings_file="./data/BX-Book-Ratings.csv"
+
+
+
 def read_books(filename):
     book_dict = dict()
+    translator = str.maketrans({key: None for key in string.punctuation})
     with open(filename, encoding="iso-8859-1") as f:
         f.seek(0)
         for x, row in enumerate(csv.DictReader(f, delimiter=';' ,quotechar='"' ,quoting=csv.QUOTE_ALL)):
-            book_dict[row["ISBN"]]={'title':row['Book-Title'],'author':row['Book-Author']}
+            book_dict[row["ISBN"]]={'title':row['Book-Title'].translate(translator).lower(),'author':row['Book-Author']}
     return book_dict
 
 def read_users(filename,books):
     with open(filename, encoding="iso-8859-1") as f:
         f.seek(0)
         num_users=0
-        user = {"userId":276725,"liked":[],"disliked":[],"indifferent":[],"all_rated":[],"timestamp":time.strftime("%Y-%m-%d"),"authors":set()}
+        user = {"userId":276725,"liked":[],"disliked":[],"indifferent":[],"implicit":[],"authors":set()}
         for x, row in enumerate(csv.DictReader(f, delimiter=';', quotechar='"', quoting=csv.QUOTE_ALL)):
             if row["ISBN"] in books:
                 title = books[row["ISBN"]]["title"]
@@ -28,27 +32,23 @@ def read_users(filename,books):
                 author = books[row["ISBN"]]["author"]
                 if not int(row["User-ID"]) == user["userId"]:
                     user["authors"]=list(user["authors"])
-                    if len(user["liked"]) > 2:
-                        yield user
-                        num_users+=1
-                        if num_users % 10000 == 0:
-                            print("Indexed %s users"%(num_users))
+                    yield user
+                    num_users+=1
+                    if num_users % 10000 == 0:
+                        print("Indexed %s users"%(num_users))
                     user.clear()
-                    user["timestamp"] = time.strftime("%Y-%m-%d")
                     user["userId"] = int(row["User-ID"])
                     user["liked"]=[]
                     user["disliked"]=[]
+                    user["implicit"]=[]
                     user["indifferent"]=[]
-                    user["all_rated"]=[]
                     user["authors"]=set()
                 user["authors"].add(author)
-                user["all_rated"].append(title)
                 user["liked"].append(title) if rating >= 7.0 else (
-                user["indifferent"].append(title) if (rating >= 4.0 or rating == 0) else user["disliked"].append(title))
+                user["indifferent"].append(title) if rating >= 4.0 else (user["disliked"].append(title) if rating > 0 else user["implicit"].append(title)))
         print("Final User: %s"%user["userId"])
-        if len(user["liked"]) > 2:
-            num_users+=1
-            yield user
+        num_users+=1
+        yield user
         print("Indexed %s users"%num_users)
 
 es.indices.delete(index="book_crossing_users",ignore=404)
