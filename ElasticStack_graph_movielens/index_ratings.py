@@ -1,13 +1,14 @@
 import csv
+from collections import deque
 import elasticsearch
 from elasticsearch import helpers
 
 es = elasticsearch.Elasticsearch(http_auth=('elastic', 'changeme'))
 movies_file = "./data/movies.csv"
 ratings_file = "./data/ratings.csv"
-mapping_file = "ratings.json"
+mapping_file = "movie_lens.json"
 
-def readMovies(filename):
+def read_movies(filename):
     movie_dict = dict()
     with open(filename, encoding="utf-8") as f:
         f.seek(0)
@@ -15,18 +16,20 @@ def readMovies(filename):
             movie_dict[row["movieId"]]={'title':row['title'],'genres':row['genres'].split('|')}
     return movie_dict
 
-def readRatings(filename,movies):
+def read_ratings(filename,movies):
     with open(filename, encoding="utf-8") as f:
         f.seek(0)
+        num_ratings=0
         for x, row in enumerate(csv.DictReader(f, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)):
             row.update(movies[row["movieId"]])
+            num_ratings += 1
+            if num_ratings % 100000 == 0:
+                print("Indexed %s ratings" % (num_ratings))
             yield row
 
-es.indices.create(index="movie_lens", body=open(mapping_file,"r").read(), ignore=404)
-
-for success, info in  helpers.bulk(es,readRatings(ratings_file,readMovies(movies_file)),index="movie_lens",doc_type="rating"):
-    if not success:
-        print('A document failed:', info)
-
-
+es.indices.delete(index="movie_lens_ratings",ignore=404)
+es.indices.create(index="movie_lens_ratings", body=open(mapping_file,"r").read(), ignore=404)
+print("Indexing ratings...")
+deque(helpers.parallel_bulk(es,read_ratings(ratings_file,read_movies(movies_file)),index="movie_lens_ratings",doc_type="rating"), maxlen=0)
+print ("Indexing Complete")
 es.indices.refresh()

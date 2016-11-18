@@ -1,0 +1,65 @@
+{
+  "template": "movie_lens*",
+    "settings": {
+      "number_of_shards": 1,
+      "number_of_replicas" : 0,
+      "index.refresh_interval": "30s"
+    },
+    "mappings": {
+      "_default_": {
+        "dynamic_templates": [
+        {
+          "strings": {
+            "match": "*",
+            "match_mapping_type": "string",
+            "mapping": {
+              "type": "keyword"
+            }
+          }
+        }
+        ],
+        "properties": {
+          "movieId": {
+            "type": "integer"
+          },
+          "rating": {
+            "type": "scaled_float",
+            "scaling_factor": 10
+          },
+          "userId": {
+            "type": "integer"
+          },
+          "genres": {
+            "type": "keyword"
+          },
+          "liked": {
+            "type": "keyword"
+          },
+          "disliked": {
+            "type": "keyword"
+          },
+          "indifferent": {
+            "type": "keyword"
+          },
+          "all_rated": {
+            "type": "keyword"
+          },
+          "title": {
+            "type": "text",
+            "fields":{
+              "raw": {
+                "type":  "keyword"
+              }
+            }
+          },
+          "timestamp":{
+            "type":"date",
+            "format":"epoch_second"
+          }
+        },
+        "_all": {
+          "enabled": true
+        }
+      }
+    }
+}
