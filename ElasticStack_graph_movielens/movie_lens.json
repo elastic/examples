@@ -44,6 +44,21 @@
           "all_rated": {
             "type": "keyword"
           },
+          "years": {
+            "type": "integer"
+          },
+          "median_yr": {
+            "type": "keyword"
+          },
+          "popular_yr": {
+            "type": "keyword"
+          },
+          "median_decade": {
+            "type": "keyword"
+          },
+          "popular_decade": {
+            "type": "keyword"
+          },
           "title": {
             "type": "text",
             "fields":{

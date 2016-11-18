@@ -20,11 +20,12 @@ def read_books(filename):
             book_dict[row["ISBN"]]={'title':row['Book-Title'].translate(translator).lower(),'author':row['Book-Author']}
     return book_dict
 
-def read_users(filename,books):
+def read_ratings(filename, books):
     with open(filename, encoding="iso-8859-1") as f:
         f.seek(0)
         num_users=0
         user = {"userId":276725,"liked":[],"disliked":[],"indifferent":[],"implicit":[],"authors":set()}
+
         for x, row in enumerate(csv.DictReader(f, delimiter=';', quotechar='"', quoting=csv.QUOTE_ALL)):
             if row["ISBN"] in books:
                 title = books[row["ISBN"]]["title"]
@@ -54,6 +55,6 @@ def read_users(filename,books):
 es.indices.delete(index="book_crossing_users",ignore=404)
 es.indices.create(index="book_crossing_users", body=open(mapping_file,"r").read(), ignore=404)
 print("Indexing users...")
-deque(helpers.parallel_bulk(es,read_users(ratings_file,read_books(books_file)),index="book_crossing_users",doc_type="user"), maxlen=0)
+deque(helpers.parallel_bulk(es, read_ratings(ratings_file, read_books(books_file)), index="book_crossing_users", doc_type="user"), maxlen=0)
 print ("Indexing Complete")
 es.indices.refresh()
