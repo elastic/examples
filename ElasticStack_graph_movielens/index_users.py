@@ -19,7 +19,7 @@ def read_movies(filename):
             movie = {'title': t, 'genres': row['genres'].split('|')}
             try:
                 year = int((row['title'][t.rfind("(") + 1: t.rfind(")")]).replace("-", ""))
-                if year < 2016:
+                if year <= 2016 and year > 1900:
                     movie['year'] = year
             except:
                 pass

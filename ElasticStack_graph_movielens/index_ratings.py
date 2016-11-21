@@ -13,7 +13,15 @@ def read_movies(filename):
     with open(filename, encoding="utf-8") as f:
         f.seek(0)
         for x, row in enumerate(csv.DictReader(f, delimiter=',' ,quotechar='"' ,quoting=csv.QUOTE_MINIMAL)):
-            movie_dict[row["movieId"]]={'title':row['title'],'genres':row['genres'].split('|')}
+            movie={'title':row['title'],'genres':row['genres'].split('|')}
+            t = row['title']
+            try:
+                year = int((row['title'][t.rfind("(") + 1: t.rfind(")")]).replace("-", ""))
+                if year <= 2016 and year > 1900:
+                    movie['year'] = year
+            except:
+                pass
+            movie_dict[row["movieId"]]=movie
     return movie_dict
 
 def read_ratings(filename,movies):

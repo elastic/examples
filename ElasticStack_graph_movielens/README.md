@@ -122,17 +122,15 @@ The script `index_ratings.py` allows the reader to index the data in a more trad
 
 ## Challenges
    
-You may notice recommendations cluster around common dates with an obvious bias towards more recent films. This maybe caused by a number of factors, including but not limited to:
+You may notice recommendations cluster around common dates with an obvious bias towards more recent films. By indexing the data in an event based structure into the index `movies_lens_ratings`, using the script `index_ratings.py`, we are able to hypothesise as to the possible cause.
 
-* Users tend to watch and review more recent films. This "date clustering" is more pronounced on more recent reviews.  
-* More recent films are typically reviewed more favourably - especially "blocker blusters".
-* More recent films are reviewed more often and thus inherently have more connections, resulting in their bias in recommendations.
-* The data set is inherently biased due to the method of data collection. MovieLens encourages users to select categories or genres of films in which they are interested, in order to assist recommeding content.  
+A number of factors maybe be causing this behaviour, including but not limited to:
+
+* Certain periods are reviewed more often and thus inherently have more connections, resulting in their bias in recommendations. This could be simply due to more films being produced in recent years.  For example, we can [see]() certain periods have considerable more reviews.
+* Users tend to watch and review more films within the same date period. This "date clustering" is more pronounced in certain periods e.g. users reviewing more recent "block buster" films are more prone to this clustering.  
+Consider [this]() graph of "liked_years".
+* The data set is inherently biased due to the method of data collection. MovieLens encourages users to select categories or genres of films in which they are interested, in order to assist recommending content.  
 The result is a "clustering" effect in the data set where users only review the films in which they are interested. We are basing recommendations on recommendations!
-
-By indexing the data in an event based structure into the index `movies_lens_ratings`, using the script `index_ratings.py`, we are able to illustrate the some of the above hypothesise.
-    
-    
     
 Multiple techniques to be used to improve recommendations, including but not limited to:
 
@@ -150,7 +148,9 @@ Ideas for exploration:
  
 ### Using the API    
 
-The above illustrates use of the UI for Graph only. Consider using the API to generate recommendations.
+The above illustrates use of the UI for Graph only. Consider using the API to generate recommendations.  Navigate to **Settings** >> **Last Request** to see the query used to generate each graph.
+
+Further details can be found [here](https://www.elastic.co/guide/en/graph/current/graph-api-rest.html) .
 
 ### We would love to hear from you!
 

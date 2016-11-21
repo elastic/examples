@@ -29,6 +29,9 @@
           "userId": {
             "type": "integer"
           },
+          "yearmovie_lens_graph": {
+            "type": "short"
+          },
           "liked": {
             "type": "keyword"
           },
