@@ -1,0 +1,3 @@
+{
+  "script": "def triggered_time = ctx.trigger.triggered_time; def sensitivity = ctx.metadata.sensitivity; return ['_doc':ctx.payload.aggregations.source_dest.buckets.stream().filter(p -> p.port_stats.std_deviation > 0 && (p.series.buckets[p.series.buckets.length-1].num_ports.value > ((sensitivity * p.port_stats.std_deviation)+p.median_ports.values['50.0']))).map(e -> ['@timestamp':triggered_time,'source_dest':e.key,'source':e.key.split('_')[0],'dest':e.key.split('_')[1],'port_count':e.series.buckets[e.series.buckets.length-1].num_ports.value])];"
+}

@@ -13,3 +13,9 @@ node_modules
 /ElasticStack_earthquakes/earthquakes.txt
 /ElasticStack_graph_apache/data/
 /ElasticStack_graph_apache/ideas.txt
+/ElasticStack_graph_recommendations/data/
+/ElasticStack_graph_books/data/
+/ElasticStack_graph_books/TODO
+/ElasticStack_graph_movielens/TODO
+/ElasticStack_graph_movielens/data/
+/ElasticStack_graph_books/

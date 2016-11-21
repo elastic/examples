@@ -1,0 +1,123 @@
+{
+  "metadata": {
+    "window_period": "30s"
+  },
+  "trigger": {
+    "schedule": {
+      "interval": "30s"
+    }
+  },
+  "input": {
+    "chain": {
+      "inputs": [
+        {
+          "started_processes": {
+            "search": {
+              "request": {
+                "indices": [
+                  "log"
+                ],
+                "body": {
+                  "query": {
+                    "bool": {
+                      "must": [
+                        {
+                          "range": {
+                            "@timestamp": {
+                              "gte": "now-{{ctx.metadata.window_period}}"
+                            }
+                          }
+                        },
+                        {
+                          "term": {
+                            "event_type": {
+                              "value": "process_started"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "aggs": {
+                    "process_hosts": {
+                      "terms": {
+                        "field": "process_host",
+                        "size": 1000
+                      }
+                    }
+                  },
+                  "size": 0
+                }
+              }
+            }
+          },
+          "history_started_processes": {
+            "search": {
+              "request": {
+                "indices": [
+                  "log"
+                ],
+                "body": {
+                  "query": {
+                    "bool": {
+                      "must": [
+                        {
+                          "terms": {
+                            "process_host": [
+                              "{{#ctx.payload.started_processes.aggregations.process_hosts.buckets}}{{key}}",
+                              "{{/ctx.payload.started_processes.aggregations.process_hosts.buckets}}"
+                            ]
+                          }
+                        },
+                        {
+                          "range": {
+                            "@timestamp": {
+                              "lt": "now-{{ctx.metadata.window_period}}"
+                            }
+                          }
+                        },
+                        {
+                          "term": {
+                            "event_type": {
+                              "value": "process_started"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "aggs": {
+                    "process_hosts": {
+                      "terms": {
+                        "field": "process_host",
+                        "size": 10
+                      }
+                    }
+                  },
+                  "size": 0
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "condition": {
+    "script": {
+      "id":"condition"
+    }
+  },
+  "transform": {
+    "script": {
+      "id":"transform"
+    }
+  },
+  "actions": {
+    "log": {
+      "logging": {
+        "text": "Processes started:{{#ctx.payload._value}}{{.}}:{{/ctx.payload._value}}"
+      }
+    }
+  }
+}
