@@ -56,6 +56,10 @@
           "most_liked_yr": {
             "type": "short"
           },
+          "timestamp":{
+            "type":"date",
+            "format":"epoch_second"
+          },
           "title": {
             "type": "text",
             "fields":{
