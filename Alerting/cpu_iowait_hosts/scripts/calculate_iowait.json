@@ -1,0 +1,3 @@
+{
+  "script": "(doc['cpu.iowait'].value\/(doc['cpu.user'].value + doc['cpu.nice'].value + doc['cpu.system'].value + doc['cpu.idle'].value + doc['cpu.iowait'].value + doc['cpu.irq'].value + doc['cpu.softirq'].value + doc['cpu.steal'].value))*100"
+}

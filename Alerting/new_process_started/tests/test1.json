@@ -1,0 +1,56 @@
+{
+  "watch_name":"new_process_started",
+  "mapping_file":"./new_process_started/mapping.json",
+  "index":"log",
+  "type":"log",
+  "match": true,
+  "watch_file":"./new_process_started/watch.json",
+  "scripts":[{"name":"transform","path":"./new_process_started/scripts/transform.json"},{"name":"condition","path":"./new_process_started/scripts/condition.json"}],
+  "events":[
+  {
+    "offset":-600,
+    "process_host":"processA_serverA",
+    "process":"processA",
+    "host":"serverA",
+    "event_type":"process_started"
+  },
+  {
+    "offset":-500,
+    "process_host":"processA_serverB",
+    "process":"processA",
+    "host":"serverB",
+    "event_type":"process_started"
+
+  },
+  {
+    "offset":-400,
+    "process_host":"processB_serverA",
+    "process":"processB",
+    "host":"serverA",
+    "event_type":"process_started"
+  },
+  {
+    "offset":-250,
+    "process_host":"processC_serverB",
+    "process":"processC",
+    "host":"serverB",
+    "event_type":"process_started"
+  },
+  {
+    "offset":-10,
+    "process_host":"processB_serverB",
+    "process":"processB",
+    "host":"serverB",
+    "event_type":"process_started"
+  },
+  {
+    "offset":-20,
+    "process_host":"processC_serverA",
+    "process":"processC",
+    "host":"serverA",
+    "event_type":"process_started"
+  }
+],
+"expected_response":"Processes started:processB_serverB:processC_serverA:"
+}
+

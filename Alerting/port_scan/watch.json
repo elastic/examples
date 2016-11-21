@@ -1,0 +1,102 @@
+{
+  "metadata": {
+    "time_period": "1m",
+    "time_window": "30m",
+    "sensitivity": 2.0
+  },
+  "trigger": {
+    "schedule": {
+      "interval": "1m"
+    }
+  },
+  "input": {
+    "search": {
+      "request": {
+        "indices": "connection",
+        "body": {
+          "query": {
+            "range": {
+              "@timestamp": {
+                  "gte": "now-{{ctx.metadata.time_window}}"
+                }
+            }
+          },
+          "aggs": {
+            "source_dest": {
+              "terms": {
+                "field": "source_dest",
+                "size": 100,
+                "order": {
+                  "unique_ports": "desc"
+                }
+              },
+              "aggs": {
+                "series": {
+                  "date_histogram": {
+                    "field": "@timestamp",
+                    "interval": "{{ctx.metadata.time_period}}"
+                  },
+                  "aggs": {
+                    "num_ports": {
+                      "cardinality": {
+                        "field": "dest_port"
+                      }
+                    }
+                  }
+                },
+                "port_stats": {
+                  "extended_stats_bucket": {
+                    "buckets_path": "series>num_ports"
+                  }
+                },
+                "median_ports": {
+                  "percentiles_bucket": {
+                    "buckets_path": "series>num_ports",
+                    "percents": [
+                      50.0
+                    ]
+                  }
+                },
+                "unique_ports": {
+                  "cardinality": {
+                    "field": "dest_port"
+                  }
+                }
+              }
+            }
+          },
+          "size": 0
+        }
+      }
+    }
+  },
+  "throttle_period": "1m",
+  "condition": {
+    "script": {
+      "id": "condition"
+    }
+  },
+  "actions": {
+    "log": {
+      "transform": {
+        "script": {
+          "id":"log_transform"
+        }
+      },
+      "logging": {
+        "text": "Port scan detected:{{#ctx.payload._value}}{{.}}:{{/ctx.payload._value}}"
+      }
+    },
+    "index_payload": {
+      "transform": {
+        "script": {
+          "id":"index_transform"
+        }
+      },
+      "index": {
+        "index": "connection-scans",
+        "doc_type": "scan"
+      }
+    }
+  }
+}

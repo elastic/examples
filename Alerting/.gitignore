@@ -1,0 +1,9 @@
+todo
+dist*
+*.venv
+*.idea
+*.gz
+*.log
+*.local
+/dist/
+/build/

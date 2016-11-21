@@ -1,0 +1,11 @@
+{
+  "mappings": {
+    "log": {
+      "properties": {
+        "host": {
+          "type": "keyword"
+        }
+      }
+    }
+  }
+}

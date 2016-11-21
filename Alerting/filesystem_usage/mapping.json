@@ -1,0 +1,17 @@
+{
+  "mappings": {
+    "filesystem":{
+      "properties": {
+        "hostname":{
+          "type": "keyword"
+        },
+        "used_p":{
+          "type": "double"
+        },
+        "@timestamp":{
+          "type":"date"
+        }
+      }
+    }
+  }
+}

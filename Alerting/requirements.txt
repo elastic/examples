@@ -1,0 +1,15 @@
+cffi==1.8.3
+cryptography==1.5.2
+elasticsearch==5.0.0
+elasticsearch-xpack==5.0.0
+idna==2.1
+lxml==3.6.4
+ndg-httpsclient==0.4.2
+ordereddict==1.1
+protobuf==3.1.0.post1
+pyasn1==0.1.9
+pycparser==2.14
+pyOpenSSL==16.1.0
+simplejson==3.8.2
+six==1.10.0
+urllib3==1.17

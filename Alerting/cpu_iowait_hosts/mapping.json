@@ -1,0 +1,43 @@
+{
+  "mappings": {
+    "filesystem":{
+      "properties": {
+        "beat":{
+          "properties": {
+            "hostname": {
+              "type": "keyword"
+            }
+          }
+        },
+        "cpu":{
+          "properties": {
+            "iowait": {
+              "type": "double"
+            },
+            "system": {
+              "type": "double"
+            },
+            "nice": {
+              "type": "double"
+            },
+            "idle": {
+              "type": "double"
+            },
+            "user": {
+              "type": "double"
+            },
+            "irq": {
+              "type": "double"
+            },
+            "softirq": {
+              "type": "double"
+            },
+            "steal": {
+              "type": "double"
+            }
+          }
+        }
+      }
+    }
+  }
+}
