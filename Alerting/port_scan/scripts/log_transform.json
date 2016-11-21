@@ -1,0 +1,3 @@
+{
+  "script": "def sensitivity = ctx.metadata.sensitivity; return ctx.payload.aggregations.source_dest.buckets.stream().filter(p -> p.port_stats.std_deviation > 0 && (p.series.buckets[p.series.buckets.length-1].num_ports.value > ((sensitivity * p.port_stats.std_deviation)+p.median_ports.values['50.0']))).map(p -> p.key.replace('_',' to ')).collect(Collectors.toList());"
+}

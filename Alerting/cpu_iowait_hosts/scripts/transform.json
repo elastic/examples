@@ -1,0 +1,3 @@
+{
+  "script": "def threshold=ctx.metadata.threshold; def hosts = ctx.payload.aggregations.per_host.buckets; return hosts.stream().filter(p -> p.per_minute.buckets[p.per_minute.buckets.length - 1].iowait_deriv.value > threshold).map(e -> ['key': e.key, 'value': e.per_minute.buckets[e.per_minute.buckets.length - 1].iowait_deriv.value]).collect(Collectors.toList());"
+}

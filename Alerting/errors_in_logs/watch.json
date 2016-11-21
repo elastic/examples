@@ -1,0 +1,62 @@
+{
+  "trigger": {
+    "schedule": {
+      "interval": "1m"
+    }
+  },
+  "input": {
+    "search": {
+      "request": {
+        "indices": [
+          "logs"
+        ],
+        "body": {
+          "query": {
+            "bool": {
+              "must": [
+                {
+                  "query_string": {
+                    "query": "error OR loglevel:ERROR"
+                  }
+                },
+                {
+                  "range": {
+                    "@timestamp": {
+                      "gte": "now-1m"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "_source": [
+            "message"
+          ],
+          "sort": [
+            {
+              "@timestamp": {
+                "order": "desc"
+              }
+            }
+          ]
+        }
+      }
+    }
+  },
+  "condition": {
+    "compare": {
+      "ctx.payload.hits.total": {
+        "gt": 0
+      }
+    }
+  },
+  "throttle_period": "15m",
+  "actions": {
+    "log": {
+      "logging": {
+        "level": "info",
+        "text": "{{ctx.payload.hits.total}} Errors have occured in the logs:{{#ctx.payload.hits.hits}}{{_id}}:{{/ctx.payload.hits.hits}}"
+      }
+    }
+  }
+}

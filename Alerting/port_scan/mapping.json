@@ -1,0 +1,20 @@
+{
+  "mappings": {
+    "connection": {
+      "properties": {
+        "source_dest": {
+          "type": "keyword"
+        },
+        "source_dest_port": {
+          "type": "keyword"
+        },
+        "port": {
+          "type": "integer"
+        },
+        "@timestamp":{
+          "type":"date"
+        }
+      }
+    }
+  }
+}

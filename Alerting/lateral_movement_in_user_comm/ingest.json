@@ -1,0 +1,16 @@
+{
+  "description": "extracts time field required  lateral_movement_in_user_comm watch",
+  "processors": [
+    {
+      "grok": {
+        "field": "@timestamp",
+        "patterns": [
+          "%{YEAR}-%{MONTHNUM}-%{MONTHDAY}T%{TIME:time}"
+        ],
+        "pattern_definitions": {
+          "TIME": "%{ISO8601_HOUR}:%{MINUTE}:([0-5]?[0-9]|60)"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,87 @@
+{
+    "metadata": {
+        "threshold": 5,
+        "interval": "2m",
+        "window": "4m"
+    },
+    "trigger": {
+        "schedule": {
+            "interval": "2m"
+        }
+    },
+    "input": {
+        "search": {
+            "request": {
+                "search_type": "query_then_fetch",
+                "indices": [
+                    "topbeat-*"
+                ],
+                "types": [
+                    "system"
+                ],
+                "body": {
+                  "size": 0,
+                  "aggs": {
+                    "per_host": {
+                      "aggs": {
+                        "per_minute": {
+                          "date_histogram": {
+                            "field": "@timestamp",
+                            "interval": "{{ctx.metadata.interval}}"
+                          },
+                          "aggs": {
+                            "iowait": {
+                              "max": {
+                                "script": {
+                                  "id":"calculate_iowait"
+                                }
+                              }
+                            },
+                            "iowait_deriv": {
+                              "derivative": {
+                                "buckets_path": "iowait"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "terms": {
+                        "size": 10,
+                        "field": "beat.hostname"
+                      }
+                    }
+                  },
+                  "query": {
+                    "bool": {
+                      "filter": {
+                        "range": {
+                          "@timestamp": {
+                            "lte": "now",
+                            "gte": "now-{{ctx.metadata.window}}"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+            }
+        }
+    },
+    "condition": {
+        "script": {
+            "id":"condition"
+        }
+    },
+    "actions": {
+        "log": {
+            "transform": {
+                "script": {
+                    "id":"transform"
+                }
+            },
+	    "logging": {
+		  "text": "The following hosts iowait cpu usage has increased dramatically over the last {{ctx.metadata.interval}}: {{#ctx.payload._value}}{{key}}:{{value}}% iowait change:{{/ctx.payload._value}}"
+	      }
+        }
+    }
+}
