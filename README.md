@@ -48,15 +48,15 @@ Examples using the Elastic Stack for analyzing public dataset.
 
 X-Pack lets you set up watches (or rules) to detect and alert on changes in your Elasticsearch data. Below is a list of examples watches that configured to detect and alert on a few common scenarios:
 
-- High I/O wait on CPU
-- Critical error  in logs
-- High filesystem usage
-- Lateral movement in user communication
-- New process started on hosts
-- Port scan detected
-- Interrupted log flow from hosts
-- Trending hashtag on twitter
-- Unexpected account activity
+- [High I/O wait on CPU] (https://github.com/elastic/examples/tree/master/Alerting/cpu_iowait_hosts)
+- [Critical error  in logs] (https://github.com/elastic/examples/tree/master/Alerting/errors_in_logs)
+- [High filesystem usage] (https://github.com/elastic/examples/tree/master/Alerting/filesystem_usage)
+- [Lateral movement in user communication] (https://github.com/elastic/examples/tree/master/Alerting/lateral_movement_in_user_comm)
+- [New process started on hosts] (https://github.com/elastic/examples/tree/master/Alerting/new_process_started)
+- [Port scan detected] (https://github.com/elastic/examples/tree/master/Alerting/port_scan)
+- [Interrupted log flow from hosts] (https://github.com/elastic/examples/tree/master/Alerting/system_fails_to_provide_data)
+- [Trending hashtag on twitter] (https://github.com/elastic/examples/tree/master/Alerting/twitter_trends)
+- [Unexpected account activity] (https://github.com/elastic/examples/tree/master/Alerting/unexpected_account_activity)
 - [Detecting DNS tunnels](https://github.com/elastic/examples/tree/master/packetbeat_dns_tunnel_detection)
 - Watch history dashboard
 
