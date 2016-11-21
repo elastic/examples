@@ -44,20 +44,20 @@
           "all_rated": {
             "type": "keyword"
           },
-          "years": {
-            "type": "integer"
+          "all_years": {
+            "type": "short"
           },
-          "median_yr": {
-            "type": "keyword"
+          "liked_years": {
+            "type": "short"
           },
-          "popular_yr": {
-            "type": "keyword"
+          "disliked_years":{
+            "type": "short"
           },
-          "median_decade": {
-            "type": "keyword"
+          "indifferent_years":{
+            "type": "short"
           },
-          "popular_decade": {
-            "type": "keyword"
+          "most_liked_yr": {
+            "type": "short"
           },
           "title": {
             "type": "text",

@@ -61,7 +61,6 @@ The following assumes the default username and password of "elastic" and "change
     - `secrepo_logstash.conf` - Logstash config file to ingest data
     - `requirements.txt` - Python dependencies for above script
     - `patterns/` - Grok patterns for processing file
-    - `secrepo_kibana.json` - Configuration for graph
     
 2. Setup Python environment
 
@@ -79,14 +78,10 @@ The following assumes the default username and password of "elastic" and "change
       cat ./data/* | <path_to_logstash_root_dir>/bin/logstash -f secrepo_logstash.conf
     ```
    
-5. Check data availability. Once the index is indexed you can check to see if all the data is available in Elasticsearch. If you have downloaded all of the data from 2015-01-17 to the current day, you should get a `count` response greater than `300840` when you run the following command.
+5. Check data availability. Once the index is indexed you can check to see if all the data is available in Elasticsearch. If you have downloaded all of the data from 2015-01-17 to the current day, you should get a `count` response greater than `300840` when you run the following command (assumes default user).
 
     ```shell
-    curl -XGET localhost:9200/secrepo/_count -d '{
-    	"query": {
-    		"match_all": {}
-    	}
-    }'
+    curl -XGET localhost:9200/secrepo/_count -d '{"query": {"match_all": {}}}' -u elastic:changeme
     ```
 
 ### Configure Kibana for Index
@@ -112,7 +107,7 @@ For further simple common attack vectors see [here](https://www.sans.org/reading
  
 The following illustrates a search for `%2f`, using the fields  `url.parts`, `url`, `params`  and `src` as nodes.   
       
-  ![Graph Screenshot](https://github.com/gingerwizard/examples/blob/master/ElasticStack_graph_apache/secrepo_graph.jpg)
+  ![Graph Screenshot](https://raw.githubusercontent.com/elastic/examples/master/ElasticStack_graph_apache/secrepo_graph.jpg)
 
 ### We would love to hear from you!
 
