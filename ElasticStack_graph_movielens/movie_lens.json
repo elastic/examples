@@ -29,9 +29,6 @@
           "userId": {
             "type": "integer"
           },
-          "genres": {
-            "type": "keyword"
-          },
           "liked": {
             "type": "keyword"
           },

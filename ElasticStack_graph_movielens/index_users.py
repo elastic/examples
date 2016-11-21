@@ -30,10 +30,11 @@ def read_users(filename, movies):
     with open(filename, encoding="utf-8") as f:
         f.seek(0)
         num_users = 0
-        user = {"userId": 1, "liked": [], "disliked": [], "indifferent": [], "all_rated": [], "all_years": [], "liked_years":[], "genres":[], "liked_genres":[]}
+        user = {"userId": 1, "liked": [], "disliked": [], "indifferent": [], "all_rated": [], "all_years": [], "liked_years":[]}
         for x, row in enumerate(csv.DictReader(f, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)):
             title = movies[row["movieId"]]["title"]
             rating = float(row["rating"])
+            genres = movies[row["movieId"]]["genres"]
             if not int(row["userId"]) == user["userId"]:
                 if len(user["liked_years"]) > 0:
                     user["most_liked_yr"] = max(set(user["liked_years"]), key=user["liked_years"].count)
@@ -47,7 +48,6 @@ def read_users(filename, movies):
                 user.clear()
                 user["userId"] = int(row["userId"])
                 user["liked"] = []
-                user["genres"] = []
                 user["disliked"] = []
                 user["indifferent"] = []
                 user["all_rated"] = []

@@ -112,8 +112,6 @@ In addition to the field "liked", the script produces a list of complementary fi
 * all_rated - all films rated by the user
 * indifferent - films the user considered "indifferent" i.e. rating > 2 && < 4.
 * disliked - films disliked by the user i.e. rating <= 2.
-* genres - list of genres watched by the user.
-* liked_genres - list of genres liked by the user
 * all_years - a list of the film years reviewed by the user - one entry per film reviewed.
 * liked_years - film years liked by the user (years where the film was rated >= 4). 
 * most_liked_yr - year most liked the by the user. Useful for diversification - see below.
