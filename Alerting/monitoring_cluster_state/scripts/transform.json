@@ -1,3 +1,0 @@
-{
-  "script":"def required_periods = (ctx.metadata.not_green_secs-ctx.metadata.marvel_update_interval)/ctx.metadata.marvel_update_interval; return ctx.payload.aggregations.clusters.buckets.stream().filter(t -> (t.latest_state.hits.hits[0]._source.cluster_state.status == 'yellow' || t.latest_state.hits.hits[0]._source.cluster_state.status == 'red')).filter(t -> (t.cluster_state.buckets.red.doc_count + t.cluster_state.buckets.yellow.doc_count) >= required_periods).map(t -> ['cluster_id':t.key,'cluster_state':t.latest_state.hits.hits[0]._source.cluster_state.status]).collect(Collectors.toList());"
-}

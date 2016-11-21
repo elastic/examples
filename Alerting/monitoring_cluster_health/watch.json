@@ -1,13 +1,14 @@
 {
   "metadata": {
     "not_green_secs": 60,
-    "marvel_update_interval": 10
+    "monitoring_update_interval": 10
   },
   "trigger": {
     "schedule": {
       "interval": "60s"
     }
   },
+  "throttle_period": "30m",
   "input": {
     "search": {
       "request": {
@@ -22,7 +23,7 @@
                     {
                       "range": {
                         "timestamp": {
-                          "gte": "now-60s"
+                          "gte": "now-{{ctx.metadata.not_green_secs}}s"
                         }
                       }
                     }
