@@ -150,6 +150,8 @@ Ideas for exploration:
  
 ### Using the API    
 
+The above illustrates use of the UI for Graph only. Consider using the API to generate recommendations.
+
 ### We would love to hear from you!
 
 If you run into issues running this example or have suggestions to improve it, please use Github issues to let us know. Have an easy fix? Submit a pull request. We will try our best to respond in a timely manner!
