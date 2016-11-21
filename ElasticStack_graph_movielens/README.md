@@ -102,7 +102,7 @@ The following assumes the default username and password of "elastic" and "change
 
 The following illustrates a search for `Rocky`, using default Graph settings,movie followed by a series of selective node expansions.  
 
-  ![Graph Screenshot](https://raw.githubusercontent.com/elastic/examples/master/ElasticStack_graph_movielens/movie_lens_graph.jpg)
+  ![Graph Screenshot](https://cloud.githubusercontent.com/assets/12695796/20490466/072dea1a-b006-11e6-924d-d4f7c55a5aa5.jpg)
 
 ### Data Insights - Structure, Challenges and Areas for Exploration
 
