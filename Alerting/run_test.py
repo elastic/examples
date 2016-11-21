@@ -44,10 +44,11 @@ with open(args.test_file,'r') as test_file:
     #Index data
     current_data=last_time=datetime.datetime.utcnow()
     i=0
+    time_field = test["time_field"] if "time_field" in test else "@timestamp"
     for event in test['events']:
         #All offsets in seconds
         event_time=current_data+datetime.timedelta(seconds=int(event['offset'] if 'offset' in event else 0))
-        event["@timestamp"]=event_time.strftime('%Y-%m-%dT%H:%M:%S.%fZ') if not '@timestamp' in event else event["@timestamp"]
+        event[time_field]=event_time.strftime('%Y-%m-%dT%H:%M:%S.%fZ') if not time_field in event else event[time_field]
         es.index(index=test['index'],doc_type=test['type'],body=event,id=event['id'] if "id" in event else i,params=params)
         i+=1
     es.indices.refresh(index=test["index"])
