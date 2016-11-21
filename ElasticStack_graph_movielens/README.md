@@ -102,7 +102,7 @@ The following assumes the default username and password of "elastic" and "change
 
 The following illustrates a search for `Rocky`, using default Graph settings,movie followed by a series of selective node expansions.  
 
-  ![Graph Screenshot](https://raw.githubusercontent.com/elastic/examples/master/ElasticStack_graph_movielens/movie_lens_graph.jpg)
+  ![Graph Screenshot](https://cloud.githubusercontent.com/assets/12695796/20490466/072dea1a-b006-11e6-924d-d4f7c55a5aa5.jpg)
 
 ### Data Insights - Structure, Challenges and Areas for Exploration
 
@@ -126,9 +126,8 @@ You may notice recommendations cluster around common dates with an obvious bias 
 
 A number of factors maybe be causing this behaviour, including but not limited to:
 
-* Certain periods are reviewed more often and thus inherently have more connections, resulting in their bias in recommendations. This could be simply due to more films being produced in recent years.  For example, we can [see]() certain periods have considerable more reviews.
-* Users tend to watch and review more films within the same date period. This "date clustering" is more pronounced in certain periods e.g. users reviewing more recent "block buster" films are more prone to this clustering.  
-Consider [this]() graph of "liked_years".
+* Certain periods are reviewed more often and thus inherently have more connections, resulting in their bias in recommendations. This could be simply due to more films being produced in recent years.  For example, we can [see](https://cloud.githubusercontent.com/assets/12695796/20490652/99acb592-b006-11e6-90bc-b0b018afb3e0.png) certain periods have considerable more reviews.
+* Users tend to watch and review more films within the same date period. This "date clustering" is more pronounced in certain periods e.g. users reviewing more recent "block buster" films are more prone to this clustering.  Consider [this](https://cloud.githubusercontent.com/assets/12695796/20490545/47276e7a-b006-11e6-988a-4e0d1054eee2.png) graph of "liked_years".
 * The data set is inherently biased due to the method of data collection. MovieLens encourages users to select categories or genres of films in which they are interested, in order to assist recommending content.  
 The result is a "clustering" effect in the data set where users only review the films in which they are interested. We are basing recommendations on recommendations!
     
