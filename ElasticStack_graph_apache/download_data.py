@@ -1,15 +1,16 @@
-import datetime,requests,gzip,shutil
-import os
-
+import datetime,requests,gzip,shutil,os,argparse
 from dateutil.relativedelta import *
-from dateutil import parser
-
+from dateutil import parser as date_parser
+parser = argparse.ArgumentParser(description='Download Secrepo Logs')
+parser.add_argument('--start_date', dest="start_date", default="2015-01-17",help='start date')
+parser.add_argument('--output_folder', dest="output_folder", default="./data",help='output folder')
+parser.add_argument('--overwrite', dest="overwrite",type=bool, default=False,help='overwrite previous files')
+args = parser.parse_args()
 base_url="http://www.secrepo.com/self.logs/%s"
 base_filename="access.log.%s.gz"
-start_date="2015-01-17"
 end_date = datetime.date.today()
-output_folder="./data"
-current_date = parser.parse(start_date)
+output_folder=args.output_folder
+current_date = date_parser.parse(args.start_date)
 
 def download_file(url,filename):
     r = requests.get(url, stream=True)
@@ -22,19 +23,25 @@ def download_file(url,filename):
     print("Received %s code for %s"%(r.status_code,url))
     return None
 
-def extract(filename):
-    print ("Extracting file %s"%filename)
-    with gzip.open(filename, 'rb') as f_in, open(output_folder+'/'+(os.path.splitext(filename)[0]), 'wb') as f_out:
-        shutil.copyfileobj(f_in, f_out)
+def extract(filename,overwrite):
+    #only extract if it doesn't exist
+    output_file=output_folder+'/'+(os.path.splitext(filename)[0])
+    if not os.path.exists(output_file) or overwrite:
+        print ("Extracting file %s"%filename)
+        with gzip.open(filename, 'rb') as f_in, open(output_file, 'wb') as f_out:
+            shutil.copyfileobj(f_in, f_out)
+    else:
+        print("Skipping Extraction File Exists")
 
-os.mkdir(output_folder)
+if not os.path.exists(output_folder):
+    os.mkdir(output_folder)
 while current_date.date() < end_date:
     filename=base_filename%current_date.strftime('%Y-%m-%d')
     url = base_url%filename
     print("Downloading %s"%url)
     filename = download_file(url,filename)
     if filename:
-        extract(filename)
+        extract(filename,overwrite=args.overwrite)
         os.remove(filename)
     else:
         print("Could not download %s. Skipping."%url)
