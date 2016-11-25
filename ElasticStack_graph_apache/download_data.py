@@ -46,12 +46,3 @@ while current_date.date() < end_date:
     else:
         print("Could not download %s. Skipping."%url)
     current_date = current_date+relativedelta(days=+1)
-
-
-
-
-
-
-
-
-
