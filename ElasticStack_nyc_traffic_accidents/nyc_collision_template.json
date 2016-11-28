@@ -9,7 +9,7 @@
           "string_fields" : {
             "mapping" : {
               "type" : "text",
-              "omit_norms" : true,
+              "norms" : false,
               "fields" : {
                 "raw" : {
                   "type" : "keyword",
