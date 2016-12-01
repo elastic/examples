@@ -43,6 +43,12 @@
                  },
                  "ip": {
                    "type": "ip"
+                 },
+                 "continent_code": {
+                  "type": "keyword"
+                 },
+                 "country_name": {
+                   "type": "keyword"
                  }
               },
               "type": "object"
