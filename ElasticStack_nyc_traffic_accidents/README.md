@@ -60,7 +60,7 @@ Example has been tested in following versions:
 * Execute the following command to `nyc_collision_data.csv` data into Elasticsearch.
 
     ```shell
-    cat nyc_collision_data.csv | <path_to_logstash_root_dir>/bin/logstash -f nyc_collision_logstash.conf
+    cat nyc_collision/nyc_collision_data.csv | <path_to_logstash_root_dir>/bin/logstash -f nyc_collision_logstash.conf
     ```
 
 * Verify that data is successfully indexed into Elasticsearch
