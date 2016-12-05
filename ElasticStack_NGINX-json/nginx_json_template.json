@@ -10,7 +10,7 @@
            {
               "message_field": {
                  "mapping": {
-                    "omit_norms": true,
+                    "norms": false,
                     "type": "text"
                  },
                  "match_mapping_type": "string",
@@ -21,7 +21,7 @@
               "string_fields": {
                  "mapping": {
                     "type": "text",
-                    "omit_norms": true,
+                    "norms": false,
                     "fields": {
                        "raw": {
                           "type":"keyword",
