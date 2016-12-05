@@ -64,8 +64,9 @@ X-Pack lets you set up watches (or rules) to detect and alert on changes in your
 #### Getting Started with Graph exploration
 
 - [Exploring attack vectors in Apache logs using Graph] (https://github.com/elastic/examples/tree/master/ElasticStack_graph_apache)
+- [Powering recommendation using Graph](https://github.com/elastic/examples/tree/master/ElasticStack_graph_movielens
 
 
 #### Miscellaneous
 - [Setting up Elastic Stack on Docker](https://github.com/elastic/examples/tree/master/ElasticStack_docker_setup/)
-- [Creating a custom realm in Shield](https://github.com/elastic/examples/tree/master/shield_custom_realm_example)]
+- [Creating a custom realm in Shield](https://github.com/elastic/examples/tree/master/shield_custom_realm_example)
