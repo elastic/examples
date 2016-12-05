@@ -64,7 +64,7 @@ X-Pack lets you set up watches (or rules) to detect and alert on changes in your
 #### Getting Started with Graph exploration
 
 - [Exploring attack vectors in Apache logs using Graph] (https://github.com/elastic/examples/tree/master/ElasticStack_graph_apache)
-- [Powering recommendation using Graph](https://github.com/elastic/examples/tree/master/ElasticStack_graph_movielens
+- [Powering recommendation using Graph](https://github.com/elastic/examples/tree/master/ElasticStack_graph_movielens)
 
 
 #### Miscellaneous
