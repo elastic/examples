@@ -8,32 +8,30 @@ The watch searches across the last X minutes (default 4m), aggregating by hostna
 For each interval a metric script aggregation calculates the percentage of time spent in IOWait.  A derivative pipeline aggregation in turn calculates the 'change' in IOWait between the intervals.
 If the 'change' for any host exceeds the configured threshold N, an alert is raised.
 
-This watch can be adapted to work with either topbeat or metricbeat data.
+This watch assumes the data has been collected with Metricbeat 5.0.  It can be adapted to work with either the earlier topbeat or other metric collection frameworks.
 
 ## Mapping Assumptions
 
-A mapping is provided in mapping.json.  Watches require data producing the following fields:
+A mapping is provided in mapping.json.  This provides a subset of the mapping provided with Metricbeat.  Watches require data producing the following fields:
 
-* @timestamp - authorative date field for each log message
+* @timestamp - authoritative date field for each log message
 * beat.hostname (string not_analyzed) - The host for which the document represents.
 
-CPU statistics configured as double (with doc values) as produced by topbeat/metricbeat:
+CPU pct statistics configured as scaled_float (with doc values) as produced by Metricbeat:
 
-* cpu.iowait
-* cpu.user
-* cpu.nice
-* cpu.system
-* cpu.idle
-* cpu.iowait
-* cpu.irq
-* cpu.softirq
-* cpu.steal
-
+* system.cpu.iowait.pct
+* system.cpu.user.pct
+* system.cpu.nice.pct
+* system.cpu.system.pct
+* system.cpu.idle.pct
+* system.cpu.irq.pct
+* system.cpu.softirq.pct
+* system.cpu.steal.pct
 
 ## Data Assumptions
 
 The Watch assumes each document represents the CPU state for a specific host at any moment in time.
-The watch assumes data is indexed into an index prefixed by "topbeat" with type "system".
+The watch assumes data is indexed into an index prefixed by "metricbeat" with type "metricsets".
 
 ## Other Assumptions
 
