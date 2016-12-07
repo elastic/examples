@@ -14,7 +14,7 @@ You have a few options to get started with the examples:
 
 - If you want to try them all, you can [download the entire repo ](https://github.com/elastic/examples/archive/master.zip). Or, if you are familiar with Git, you can [clone the repo](https://github.com/elastic/examples.git). Then, simply follow the instructions in the individual README of the examples you're interested in to get started.
 
-- If you are only interested in a specific example or two, you can download the contents of just those examples (instructions in the individual READMEs).
+- If you are only interested in a specific example or two, you can download the contents of just those examples - follow instructions in the individual READMEs OR you can use some of the [options mentioned here](http://stackoverflow.com/questions/7106012/download-a-single-folder-or-directory-from-a-github-repo).
 
 ### Contributing
 
