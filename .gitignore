@@ -19,3 +19,8 @@ node_modules
 /ElasticStack_graph_movielens/TODO
 /ElasticStack_graph_movielens/data/
 /ElasticStack_graph_books/
+/Security_Analytics/firewall-analysis/honeynet-Feb/
+/Security_Analytics/ssh-analysis/cowrie-ssh-honeypot-json/
+/Security_Analytics/firewall-analysis/convert_to_cef.py
+/Security_Analytics/ssh-analysis/convert_to_cef.py
+/Security_Analytics/ssh-analysis/cowrie.cef
