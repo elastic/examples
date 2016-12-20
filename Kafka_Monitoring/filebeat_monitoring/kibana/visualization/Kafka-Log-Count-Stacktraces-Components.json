@@ -1,0 +1,11 @@
+{
+  "visState": "{\"title\":\"Kafka Log Count Stacktraces Components\",\"type\":\"histogram\",\"params\":{\"addLegend\":true,\"addTimeMarker\":false,\"addTooltip\":true,\"defaultYExtents\":false,\"legendPosition\":\"right\",\"mode\":\"stacked\",\"scale\":\"linear\",\"setYExtents\":false,\"shareYAxis\":true,\"times\":[],\"yAxis\":{}},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"enabled\":true,\"type\":\"date_histogram\",\"schema\":\"segment\",\"params\":{\"field\":\"@timestamp\",\"interval\":\"auto\",\"customInterval\":\"2h\",\"min_doc_count\":1,\"extended_bounds\":{}}},{\"id\":\"3\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"group\",\"params\":{\"field\":\"component\",\"size\":5,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"Stacktraces in Components\"}}],\"listeners\":{}}", 
+  "description": "", 
+  "title": "Kafka Log Count Stacktraces Components", 
+  "uiStateJSON": "{}", 
+  "version": 1, 
+  "savedSearchId": "Kafka-Logs-Stack-Traces", 
+  "kibanaSavedObjectMeta": {
+    "searchSourceJSON": "{\"filter\":[]}"
+  }
+}

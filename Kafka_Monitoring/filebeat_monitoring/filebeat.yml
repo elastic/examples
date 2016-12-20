@@ -1,0 +1,77 @@
+###################### Filebeat Configuration Example #########################
+
+# This file is an example configuration file highlighting only the most common
+# options. The filebeat.full.yml file from the same directory contains all the
+# supported options with more comments. You can use it as a reference.
+#
+# You can find the full configuration reference here:
+# https://www.elastic.co/guide/en/beats/filebeat/index.html
+
+#=========================== Filebeat prospectors =============================
+
+kafka.home: /opt/kafka
+
+filebeat.prospectors:
+
+- input_type: log
+  # kafka log files prospector
+  paths:
+    - ${kafka.home}/logs/controller.log*
+    - ${kafka.home}/logs/server.log*
+    - ${kafka.home}/logs/state-change.log*
+    - ${kafka.home}/logs/kafka-*.log*
+
+  # match multiline events
+  multiline.pattern: '^\['
+  multiline.negate: true
+  multiline.match: after
+
+  # configure pipeline
+  fields.pipeline: kafka-logs
+
+
+- input_type: log
+  # kafka gc log prospector
+  paths:
+    - ${kafka.home}/logs/kafkaServer-gc.log
+
+  # match multiline events
+  multiline.pattern: '^\s'
+  multiline.negate: false
+  multiline.match: after
+
+  # include only 'GC pause' stats
+  include_lines: ['GC pause']
+
+  # configure pipeline
+  fields.pipeline: kafka-gc-logs
+
+
+#================================ Outputs =====================================
+
+# Configure what outputs to use when sending the data collected by the beat.
+# Multiple outputs may be used.
+
+#-------------------------- Elasticsearch output ------------------------------
+
+output.elasticsearch:
+  # Array of hosts to connect to.
+  hosts: ["elasticsearch:9200"]
+  index: 'kafkalogs-%{+yyyy.MM.dd}'
+  pipeline: '%{[fields.pipeline]}'
+
+  # Optional protocol and basic auth credentials.
+  username: "elastic"
+  password: "changeme"
+
+
+#================================ Logging =====================================
+
+# Sets log level. The default log level is info.
+# Available log levels are: critical, error, warning, info, debug
+#logging.level: debug
+
+# At debug level, you can selectively enable logging only for some components.
+# To enable all selectors use ["*"]. Examples of other selectors are "beat",
+# "publish", "service".
+#logging.selectors: ["*"]
