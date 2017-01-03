@@ -9,7 +9,7 @@ It is assumed this data will be collected by X-Pack Monitoring.  The watch raise
 
 * The ratio `node_stats.fs.total.total_in_bytes/node_stats.fs.total.available_in_bytes` is lower than the metadata parameter `lower_bound` (default 0.5), where `total_in_bytes` and `available_in_bytes` are the total file system size and available space in bytes respectively as reported by the X-Pack Monitoring agent.
 
-This watch monitors the data reported by all nodes - potentially from multiple clusters.  Every N minutes the watches queries the previous period, aggregating on the node name field `source_node.name`.  This watch uses date math to only target the current day's monitoring index.  A bucket_script aggregation `free_ratio` in turn calculates the used file system ratio using two sibling metric aggregations - which request the max values for the fields `node_stats.fs.total.total_in_bytes` and `node_stats.fs.total.available_in_bytes`.  A painless condition script fires the alert if **any** node has a `free_ratio` value that is < than the metadata parameter `lower_bound`. Finally a painless script uses several lambda functions to collect an entry for each node which satisfies the earlier condition, returning the used and available space in GB. 
+This watch monitors the data reported by all nodes - potentially from multiple clusters.  Every N minutes the watches queries the previous period, aggregating on the node name field `source_node.name`.  A bucket_script aggregation `free_ratio` in turn calculates the used file system ratio using two sibling metric aggregations - which request the max values for the fields `node_stats.fs.total.total_in_bytes` and `node_stats.fs.total.available_in_bytes`.  A painless condition script fires the alert if **any** node has a `free_ratio` value that is < than the metadata parameter `lower_bound`. Finally a painless script uses several lambda functions to collect an entry for each node which satisfies the earlier condition, returning the used and available space in GB. 
 
 
 ## Mapping Assumptions
@@ -24,8 +24,8 @@ A mapping is provided in mapping.json.  Watches require data producing the follo
 ## Data Assumptions
 
 * The Watch assumes each document represents a node_stat update as produced by the Monitoring plugin for a specific host i.e. Each document contains a disk report for a specific host on which ES is running.
-* The watch assumes the index pattern `<.monitoring-es-2-{now/d}>`. 
-**The index prefix should be modified prior to production deployment to target the correct version of the X-Pack monitoring indices**.  It defaults to 2.
+* The watch assumes the index pattern `.monitoring-es-test`. 
+**This should be modified prior to production deployment to target the correct X-Pack monitoring index.  It is recommend the user use date math to only target the current day's index e.g. <.monitoring-es-2-{now/d}>.**
 * The watch assumes the data is indexed into the type `node_stats`
 
 ## Other Assumptions
