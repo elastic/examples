@@ -1,0 +1,77 @@
+{
+  "mappings": {
+    "node_stats": {
+      "_all": {
+        "enabled": false
+      },
+      "date_detection": false,
+      "properties": {
+        "cluster_uuid": {
+          "type": "keyword"
+        },
+        "node_stats": {
+          "properties": {
+            "fs": {
+              "properties": {
+                "data": {
+                  "properties": {
+                    "spins": {
+                      "type": "boolean"
+                    }
+                  }
+                },
+                "io_stats": {
+                  "properties": {
+                    "total": {
+                      "properties": {
+                        "operations": {
+                          "type": "long"
+                        },
+                        "read_kilobytes": {
+                          "type": "long"
+                        },
+                        "read_operations": {
+                          "type": "long"
+                        },
+                        "write_kilobytes": {
+                          "type": "long"
+                        },
+                        "write_operations": {
+                          "type": "long"
+                        }
+                      }
+                    }
+                  }
+                },
+                "total": {
+                  "properties": {
+                    "available_in_bytes": {
+                      "type": "long"
+                    },
+                    "free_in_bytes": {
+                      "type": "long"
+                    },
+                    "total_in_bytes": {
+                      "type": "long"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "source_node": {
+          "properties": {
+            "name": {
+              "type": "keyword"
+            }
+          }
+        },
+        "timestamp": {
+          "type": "date",
+          "format": "date_time"
+        }
+      }
+    }
+  }
+}

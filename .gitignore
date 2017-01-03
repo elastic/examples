@@ -24,3 +24,4 @@ node_modules
 /Security_Analytics/firewall-analysis/convert_to_cef.py
 /Security_Analytics/ssh-analysis/convert_to_cef.py
 /Security_Analytics/ssh-analysis/cowrie.cef
+/Security_Analytics/firewall-analysis/honeynet_firewall.cef

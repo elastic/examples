@@ -4,7 +4,7 @@
     "settings": {
       "index": {
         "number_of_shards": "3",
-        "number_of_replicas": "1"
+        "number_of_replicas": "0"
       }
     },
     "mappings": {
@@ -29,7 +29,7 @@
             "type": "integer"
           },
           "flexDate1": {
-            "format": "epoch_millis||epoch_second||date_time",
+            "format": "epoch_millis||epoch_second||date_time||MMM dd yyyy HH:mm:ss",
             "type": "date"
           },
           "sourcePort": {
@@ -84,7 +84,7 @@
             }
           },
           "deviceReceiptTime": {
-            "format": "epoch_millis||epoch_second||date_time",
+            "format": "epoch_millis||epoch_second||date_time||MMM dd yyyy HH:mm:ss",
             "type": "date"
           },
           "destinationTranslatedPort": {
@@ -97,11 +97,11 @@
             "type": "ip"
           },
           "agentReceiptTime": {
-            "format": "epoch_millis||epoch_second||date_time",
+            "format": "epoch_millis||epoch_second||date_time||MMM dd yyyy HH:mm:ss",
             "type": "date"
           },
           "startTime": {
-            "format": "epoch_millis||epoch_second||date_time",
+            "format": "epoch_millis||epoch_second||date_time||MMM dd yyyy HH:mm:ss",
             "type": "date"
           },
           "sourceProcessId": {
@@ -130,11 +130,11 @@
             "type": "integer"
           },
           "deviceCustomDate2": {
-            "format": "epoch_millis||epoch_second||date_time",
+            "format": "epoch_millis||epoch_second||date_time||MMM dd yyyy HH:mm:ss",
             "type": "date"
           },
           "deviceCustomDate1": {
-            "format": "epoch_millis||epoch_second||date_time",
+            "format": "epoch_millis||epoch_second||date_time||MMM dd yyyy HH:mm:ss",
             "type": "date"
           },
           "flexNumber1": {
@@ -144,14 +144,14 @@
             "type": "float"
           },
           "oldFileModificationTime": {
-            "format": "epoch_millis||epoch_second||date_time",
+            "format": "epoch_millis||epoch_second||date_time||MMM dd yyyy HH:mm:ss",
             "type": "date"
           },
           "deviceCustomFloatingPoint2": {
             "type": "float"
           },
           "oldFileCreateTime": {
-            "format": "epoch_millis||epoch_second||date_time",
+            "format": "epoch_millis||epoch_second||date_time||MMM dd yyyy HH:mm:ss",
             "type": "date"
           },
           "deviceCustomFloatingPoint3": {
@@ -167,11 +167,11 @@
             "type": "long"
           },
           "fileCreateTime": {
-            "format": "epoch_millis||epoch_second||date_time",
+            "format": "epoch_millis||epoch_second||date_time||MMM dd yyyy HH:mm:ss",
             "type": "date"
           },
           "fileModificationTime": {
-            "format": "epoch_millis||epoch_second||date_time",
+            "format": "epoch_millis||epoch_second||date_time||MMM dd yyyy HH:mm:ss",
             "type": "date"
           },
           "fileSize": {
@@ -181,7 +181,7 @@
             "type": "ip"
           },
           "endTime": {
-            "format": "epoch_millis||epoch_second||date_time",
+            "format": "epoch_millis||epoch_second||date_time||MMM dd yyyy HH:mm:ss",
             "type": "date"
           },
           "deviceCustomNumber1": {
@@ -213,9 +213,18 @@
           },
           "deviceCustomNumber2": {
             "type": "long"
+          },
+          "categoryOutcome": {
+            "type": "keyword"
+          },
+          "destinationHostName": {
+            "type": "keyword"
+          },
+          "destinationAddress": {
+            "type":"ip"
           }
         }
       }
     },
     "aliases": {}
-  }
+}
