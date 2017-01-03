@@ -1,0 +1,81 @@
+{
+  "trigger": {
+    "schedule": {
+      "interval": "5m"
+    }
+  },
+  "metadata": {
+    "lower_bound": 0.5
+  },
+  "input": {
+    "search": {
+      "request": {
+        "indices": "<.monitoring-es-2-{now/d}>",
+        "types": "node_stats",
+        "body": {
+          "query": {
+            "bool": {
+              "filter": [
+                {
+                  "range": {
+                    "timestamp": {
+                      "gte": "{{ctx.trigger.scheduled_time}}||-5m"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "aggs": {
+            "nodes": {
+              "terms": {
+                "field": "source_node.name",
+                "size": 100
+              },
+              "aggs": {
+                "total_in_bytes": {
+                  "max": {
+                    "field": "node_stats.fs.total.total_in_bytes"
+                  }
+                },
+                "available_in_bytes": {
+                  "max": {
+                    "field": "node_stats.fs.total.available_in_bytes"
+                  }
+                },
+                "free_ratio": {
+                  "bucket_script": {
+                    "buckets_path": {
+                      "available_in_bytes": "available_in_bytes",
+                      "total_in_bytes": "total_in_bytes"
+                    },
+                    "script": "params.available_in_bytes / params.total_in_bytes"
+                  }
+                }
+              }
+            }
+          },
+          "size": 0
+        }
+      }
+    }
+  },
+  "throttle_period": "30m",
+  "condition": {
+    "script": {
+      "id": "condition"
+    }
+  },
+  "transform": {
+    "script": {
+      "id": "transform"
+    }
+  },
+  "actions": {
+    "log": {
+      "logging": {
+        "text": "Available space on Filesystem is below recommended ratio of {{ctx.metadata.lower_bound}} for following nodes: \n {{#ctx.payload._value}}For node {{node_name}}: {{available_in_gb}}gb of {{total_in_gb}}gb is available\n{{/ctx.payload._value}}"
+      }
+    }
+  }
+}
