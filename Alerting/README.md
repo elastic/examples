@@ -43,6 +43,8 @@ If username and password are not specified, the above scripts assume the x-pack 
 * System Fails to Provide Data - A watch which alerts if a system, which has previously sent data, fails to send events.
 * File System Usage - A watch which alerts if a systems filesystem usage exceeds a predetermined percentage threshold.
 * IO Wait time increases - A watch which alerts if a systems iowait time rises beyond a predetermined threshold.
+* Monitoring Cluster Health - A watch which monitors an ES cluster for red or yellow cluster state.  Assumes use of X-Pack Monitoring.
+* Monitoring Free Disk Space - A watch which monitors an ES cluster for free disk usage on hosts.  Assumes use of X-Pack Monitoring.
 
 #Testing
 
