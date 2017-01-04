@@ -138,7 +138,7 @@ OR MANUALLY
 * Click the **Dev Tools** tab >> **Console** tab
 * Use the [inline execution api](https://www.elastic.co/guide/en/x-pack/5.1/watcher-api-execute-watch.html#watcher-api-execute-inline-watch) to execute the watch, copying the contents for the watch key from the appropriate inline file e.g. `successful_login_external.json.inline`
 
-##### 5. Visualize the results in Kibana
+#### 5. Visualize the results in Kibana
 
 * Access Kibana by going to `http://localhost:5601` in a web browser
 * Connect Kibana to the `cef-ssh-*` and `cef-ssh-watch-results` indices in Elasticsearch (autocreated in step 1)
