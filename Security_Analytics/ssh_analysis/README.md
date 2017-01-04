@@ -11,7 +11,7 @@ This example includes:
 - `ssh_analysis_logstash.conf` - An appropriate Logstash configuration for indexing the above CEF data
 - `ssh_analysis_kibana.json` - Simple Kibana visualizations and dashboards for the associated blog posts
 - `successful_login_external.json` -  A watch detects remote logins from external IP addresses. REFERENCE ONLY. 
-- `successful_login_external.json.inline` - The above watch in an inline execution format so it can be used with the `run_watch.sh` script and be executed over the full dataset.
+- `successful_login_external.inline.json` - The above watch in an inline execution format so it can be used with the `run_watch.sh` script and be executed over the full dataset.
 - `run_watch.sh` - A convenience script to execute a watch
 
 This example depends on:
@@ -59,7 +59,7 @@ Download the following files in this repo to a local directory:
 - `ssh_analysis_logstash.conf`
 - `ssh_analysis_kibana.json`
 - `successful_login_external.json`
-- `successful_login_external.json.inline`
+- `successful_login_external.inline.json`
 
 Additionally, download the following template dependency into the same local directory:
 
@@ -72,7 +72,7 @@ mkdir ssh_analysis
 cd ssh_analysis
 wget https://raw.githubusercontent.com/elastic/examples/master/Security_Analytics/ssh_analysis/ssh_analysis_logstash.conf
 wget https://raw.githubusercontent.com/elastic/examples/master/Security_Analytics/ssh_analysis/successful_login_external.json
-wget https://raw.githubusercontent.com/elastic/examples/master/Security_Analytics/ssh_analysis/successful_login_external.json.inline
+wget https://raw.githubusercontent.com/elastic/examples/master/Security_Analytics/ssh_analysis/successful_login_external.inline.json
 wget https://raw.githubusercontent.com/elastic/examples/master/Security_Analytics/ssh_analysis/ssh_analysis_kibana.json
 wget http://download.elasticsearch.org/demos/cef_ssh/ssh.cef
 wget https://raw.githubusercontent.com/elastic/examples/master/Security_Analytics/cef_demo/logstash/pipeline/cef_template.json
@@ -123,7 +123,7 @@ To run a watch over the full dataset, either:
 e.g.
 
 ```shell
-./run_watch successful_login_external
+./run_watch successful_login_external.inline
 ```
 
 
