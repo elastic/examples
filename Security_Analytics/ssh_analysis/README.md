@@ -1,4 +1,4 @@
-### Alerting on SSH CEF Data
+# Alerting on SSH CEF Data
 
 This **Getting Started with Elastic Stack** example provides sample files to ingest, analyze and alert on **SSH Logs in the CEF Format** using the Elastic Stack. 
 
@@ -18,7 +18,7 @@ This example depends on:
 
 - [cef_template.json](https://github.com/elastic/examples/blob/master/Security_Analytics/cef_demo/logstash/pipeline/cef_template.json) 
 
-##### Version
+### Versions
 
 Example has been tested in following versions:
 
