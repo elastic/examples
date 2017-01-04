@@ -7,7 +7,7 @@ The first watch provides the means to detect successful logins from external IP 
 
 This example includes:
 
-- `ssh.cef.tar.gz` - Sample CEF data as a compressed archive
+- [`ssh.cef`](http://download.elasticsearch.org/demos/cef_ssh/ssh.cef) - Sample SSH logs in CEF format
 - `ssh_analysis_logstash.conf` - An appropriate Logstash configuration for indexing the above CEF data
 - `ssh_analysis_kibana.json` - Simple Kibana visualizations and dashboards for the associated blog posts
 - `successful_login_external.json` -  A watch detects remote logins from external IP addresses.  
@@ -55,7 +55,7 @@ Example has been tested in following versions:
 
 Download the following files in this repo to a local directory:
 
-- `ssh.cef.tar.gz`
+- [`ssh.cef`](http://download.elasticsearch.org/demos/cef_ssh/ssh.cef)
 - `ssh_analysis_logstash.conf`
 - `ssh_analysis_kibana.json`
 - `successful_login_external.json`
@@ -74,21 +74,13 @@ wget https://raw.githubusercontent.com/elastic/examples/master/Security_Analytic
 wget https://raw.githubusercontent.com/elastic/examples/master/Security_Analytics/ssh_analysis/successful_login_external.json
 wget https://raw.githubusercontent.com/elastic/examples/master/Security_Analytics/ssh_analysis/successful_login_external.json.inline
 wget https://raw.githubusercontent.com/elastic/examples/master/Security_Analytics/ssh_analysis/ssh_analysis_kibana.json
-wget https://raw.githubusercontent.com/elastic/examples/master/Security_Analytics/ssh_analysis/ssh.cef.tar.gz
+wget http://download.elasticsearch.org/demos/cef_ssh/ssh.cef
 wget https://raw.githubusercontent.com/elastic/examples/master/Security_Analytics/cef_demo/logstash/pipeline/cef_template.json
 ```
 
 ### Run Example
 
-#### 1. Extract the data file
-
-* Execute the following command from the `ssh_analysis` directory to extract the compressed data file
-
-```shell
-tar -xvf ssh.cef.tar.gz
-```
-
-#### 2. Start Logstash with the appropriate configuration
+#### 1. Start Logstash with the appropriate configuration
 
 ```shell
 cat ssh.cef | <path_to_logstash_root_dir>/bin/logstash -f ssh_analysis_logstash.conf
@@ -97,7 +89,7 @@ cat ssh.cef | <path_to_logstash_root_dir>/bin/logstash -f ssh_analysis_logstash.
 Wait for Logstash to start, as indicated by the message "Successfully started Logstash API endpoint"
 
 
-#### 3. Ingest data into Elasticsearch using Logstash
+#### 2. Ingest data into Elasticsearch using Logstash
 
 * Execute the following command to load sample logs into Elasticsearch. [Note: It takes a few minutes to ingest the entire file (114,147 documents) into Elasticsearch]
 
@@ -113,7 +105,7 @@ Once indexing is complete this command will return.
 
 **Note:** Included `ssh_analysis_logstash.conf` configuration file assumes that you are running Elasticsearch on the same host as Logstash and have not changed the defaults. Modify the `host` and `cluster` settings in the `output { elasticsearch { ... } }`   section of apache_logstash.conf, if needed. Furthermore, it assumes the default X-Pack security username/password of elastic/changeme - change as required.
 
-#### 4. Execute A Watch
+#### 3. Execute A Watch
 
 To run a watch over the full dataset, either:
 
@@ -138,7 +130,7 @@ OR MANUALLY
 * Click the **Dev Tools** tab >> **Console** tab
 * Use the [inline execution api](https://www.elastic.co/guide/en/x-pack/5.1/watcher-api-execute-watch.html#watcher-api-execute-inline-watch) to execute the watch, copying the contents for the watch key from the appropriate inline file e.g. `successful_login_external.json.inline`
 
-#### 5. Visualize the results in Kibana
+#### 4. Visualize the results in Kibana
 
 * Access Kibana by going to `http://localhost:5601` in a web browser
 * Connect Kibana to the `cef-ssh-*` and `cef-ssh-watch-results` indices in Elasticsearch (autocreated in step 1)
