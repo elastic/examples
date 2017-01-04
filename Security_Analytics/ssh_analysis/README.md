@@ -10,8 +10,8 @@ This example includes:
 - [`ssh.cef`](http://download.elasticsearch.org/demos/cef_ssh/ssh.cef) - Sample SSH logs in CEF format
 - `ssh_analysis_logstash.conf` - An appropriate Logstash configuration for indexing the above CEF data
 - `ssh_analysis_kibana.json` - Simple Kibana visualizations and dashboards for the associated blog posts
-- `successful_login_external.json` -  A watch detects remote logins from external IP addresses.  
-- `successful_login_external.json.inline` - The above watch in an inline execution format so it can be used with the `run_watch.sh` script.
+- `successful_login_external.json` -  A watch detects remote logins from external IP addresses. REFERENCE ONLY. 
+- `successful_login_external.json.inline` - The above watch in an inline execution format so it can be used with the `run_watch.sh` script and be executed over the full dataset.
 - `run_watch.sh` - A convenience script to execute a watch
 
 This example depends on:
@@ -106,6 +106,9 @@ Once indexing is complete this command will return.
 **Note:** Included `ssh_analysis_logstash.conf` configuration file assumes that you are running Elasticsearch on the same host as Logstash and have not changed the defaults. Modify the `host` and `cluster` settings in the `output { elasticsearch { ... } }`   section of apache_logstash.conf, if needed. Furthermore, it assumes the default X-Pack security username/password of elastic/changeme - change as required.
 
 #### 3. Execute A Watch
+
+**The watch must be executed over the full dataset, rather than just the previous N minutes, as the data is historical.**
+**The inline version of the watch removes the time restriction and allows this.**
 
 To run a watch over the full dataset, either:
 
