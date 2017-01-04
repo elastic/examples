@@ -80,7 +80,7 @@ wget https://raw.githubusercontent.com/elastic/examples/master/Security_Analytic
 
 ### Run Example
 
-##### 1. Extract the data file
+#### 1. Extract the data file
 
 * Execute the following command from the `ssh_analysis` directory to extract the compressed data file
 
@@ -88,7 +88,7 @@ wget https://raw.githubusercontent.com/elastic/examples/master/Security_Analytic
 tar -xvf ssh.cef.tar.gz
 ```
 
-##### 2. Start Logstash with the appropriate configuration
+#### 2. Start Logstash with the appropriate configuration
 
 ```shell
 cat ssh.cef | <path_to_logstash_root_dir>/bin/logstash -f ssh_analysis_logstash.conf
@@ -97,7 +97,7 @@ cat ssh.cef | <path_to_logstash_root_dir>/bin/logstash -f ssh_analysis_logstash.
 Wait for Logstash to start, as indicated by the message "Successfully started Logstash API endpoint"
 
 
-##### 3. Ingest data into Elasticsearch using Logstash
+#### 3. Ingest data into Elasticsearch using Logstash
 
 * Execute the following command to load sample logs into Elasticsearch. [Note: It takes a few minutes to ingest the entire file (114,147 documents) into Elasticsearch]
 
@@ -113,7 +113,7 @@ Once indexing is complete this command will return.
 
 **Note:** Included `ssh_analysis_logstash.conf` configuration file assumes that you are running Elasticsearch on the same host as Logstash and have not changed the defaults. Modify the `host` and `cluster` settings in the `output { elasticsearch { ... } }`   section of apache_logstash.conf, if needed. Furthermore, it assumes the default X-Pack security username/password of elastic/changeme - change as required.
 
-##### 4. Execute A Watch
+#### 4. Execute A Watch
 
 To run a watch over the full dataset, either:
 
