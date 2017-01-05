@@ -16,7 +16,7 @@ fi
 echo "Loading $1 watch "
 
 curl -s -o /dev/null -X DELETE localhost:9200/_xpack/watcher/watch/$1 -u $username:$password
-es_response=$(curl --w "%{http_code}" -s -o /dev/null -X POST localhost:9200/_xpack/watcher/watch/_execute -u $username:$password -d @$1.json.inline)
+es_response=$(curl --w "%{http_code}" -s -o /dev/null -X POST localhost:9200/_xpack/watcher/watch/_execute -u $username:$password -d @$1.json)
 if [ 0 -eq $? ] && [ $es_response = "200" ]; then
 echo "Loading $2 watch...OK"
 exit 0
