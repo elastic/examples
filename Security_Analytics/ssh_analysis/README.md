@@ -78,6 +78,8 @@ wget http://download.elasticsearch.org/demos/cef_ssh/ssh.cef
 wget https://raw.githubusercontent.com/elastic/examples/master/Security_Analytics/cef_demo/logstash/pipeline/cef_template.json
 ```
 
+Using curl or don't have wget? Try replacing 'wget' with 'curl -O' for the above commands.
+
 ### Run Example
 
 #### 1. Start Logstash with the appropriate configuration
