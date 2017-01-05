@@ -85,7 +85,7 @@ Using curl or don't have wget? Try replacing 'wget' with 'curl -O' for the above
 #### 1. Start Logstash with the appropriate configuration
 
 ```shell
-cat ssh.cef | <path_to_logstash_root_dir>/bin/logstash -f ssh_analysis_logstash.conf
+<path_to_logstash_root_dir>/bin/logstash -f ssh_analysis_logstash.conf
 ```
 
 Wait for Logstash to start, as indicated by the message "Successfully started Logstash API endpoint"
