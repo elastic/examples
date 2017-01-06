@@ -2,7 +2,7 @@
 
 This **Getting Started with Elastic Stack** example provides sample files to ingest, analyze and alert on **SSH Logs in the CEF Format** using the Elastic Stack. 
 
-Included are example Watches for proactively monitoring this data for possible security incidents.  These examples support the Security Analytics blog post series, specifically [Integrating Elasticsearch with ArcSight SIEM - Part 3]().  
+Included are example Watches for proactively monitoring this data for possible security incidents.  These examples support the Security Analytics blog post series, specifically [Integrating Elasticsearch with ArcSight SIEM - Part 2]().  
 The first watch provides the means to detect successful logins from external IP Addresses.
 
 This example includes:
@@ -18,9 +18,11 @@ This example depends on:
 
 - [cef_template.json](https://github.com/elastic/examples/blob/master/Security_Analytics/cef_demo/logstash/pipeline/cef_template.json) 
 
+which will be installed when Logstash is run with the above configuration.
+
 ### Versions
 
-Example has been tested in following versions:
+Example has been tested with the following versions:
 
 - Elasticsearch 5.1
 - Logstash 5.1
@@ -46,7 +48,7 @@ Example has been tested in following versions:
     ```
 
 * Check that Elasticsearch and Kibana are up and running.
-  - Open `localhost:9200` in web browser -- should return status code 200
+  - Open `localhost:9200` in web browser -- should return a json message indicating ES is running.
   - Open `localhost:5601` in web browser -- should display Kibana UI.
 
   **Note:** By default, Elasticsearch runs on port 9200, and Kibana run on ports 5601. If you changed the default ports, change   the above calls to use appropriate ports.
@@ -93,7 +95,7 @@ Wait for Logstash to start, as indicated by the message "Successfully started Lo
 
 #### 2. Ingest data into Elasticsearch using Logstash
 
-* Execute the following command to load sample logs into Elasticsearch. [Note: It takes a few minutes to ingest the entire file (114,147 documents) into Elasticsearch]
+* Execute the following command to load sample logs into Elasticsearch in a separate terminal. [Note: It takes a few minutes to ingest the entire file (114,147 documents) into Elasticsearch]
 
 ```shell
 cat ssh.cef | nc localhost 5000
@@ -101,7 +103,7 @@ cat ssh.cef | nc localhost 5000
 
 Once indexing is complete this command will return.
 
-* Verify that data is succesfully indexed into Elasticsearch
+* Verify that data is successfully indexed into Elasticsearch
 
   Running `http://localhost:9200/cef-ssh-*/_count` should return a response a `"count":114147`
 
