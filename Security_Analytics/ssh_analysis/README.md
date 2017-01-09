@@ -150,7 +150,7 @@ OR MANUALLY
 
 Voila! You should see the following dashboard.
 
-![Kibana Dashboard Screenshot](https://cloud.githubusercontent.com/assets/12695796/21648199/0078db7e-d295-11e6-8a3c-357074a4e12a.png)
+![Kibana Dashboard Screenshot](https://cloud.githubusercontent.com/assets/12695796/21771118/08339dd0-d67e-11e6-9fdf-9473ddd3e1f6.png)
 
 ### We would love your feedback!
 If you found this example helpful and would like more such Getting Started examples for other standard formats, we would love to hear from you. If you would like to contribute Getting Started examples to this repo, we'd love that too!
