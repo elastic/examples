@@ -29,7 +29,7 @@
                 "filter": [
                   {
                     "term": {
-                      "categoryOutcome": "success"
+                      "categoryBehaviour": "cowrie.login.success"
                     }
                   }
                 ]
