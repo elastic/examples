@@ -2,7 +2,7 @@
 
 This **Getting Started with Elastic Stack** example provides sample files to ingest, analyze and alert on **SSH Logs in the CEF Format** using the Elastic Stack. 
 
-Included are example Watches for proactively monitoring this data for possible security incidents.  These examples support the Security Analytics blog post series, specifically [Integrating Elasticsearch with ArcSight SIEM - Part 2](https://elastic.co/blog/integrating-elasticsearch-with-archsight-siem-part-2).  
+Included are example Watches for proactively monitoring this data for possible security incidents.  These examples support the Security Analytics blog post series, specifically [Integrating Elasticsearch with ArcSight SIEM - Part 2](https://elastic.co/blog/integrating-elasticsearch-with-arcsight-siem-part-2).  
 The first watch provides the means to detect successful logins from external IP Addresses.
 
 This example includes:
