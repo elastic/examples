@@ -21,16 +21,16 @@
                 },
                 "must_not": {
                   "terms": {
-                    "dns.question.name": [
-                      "akadns.net",
-                      "amazonaws.com",
-                      "apple.com",
-                      "apple-dns.net",
-                      "cloudfront.net",
-                      "icloud.com",
-                      "in-addr.arpa",
-                      "google.com",
-                      "yahoo.com"
+                    "dns.question.etld_plus_one": [
+                      "akadns.net.",
+                      "amazonaws.com.",
+                      "apple.com.",
+                      "apple-dns.net.",
+                      "cloudfront.net.",
+                      "icloud.com.",
+                      "in-addr.arpa.",
+                      "google.com.",
+                      "yahoo.com."
                     ]
                   }
                 }
@@ -41,14 +41,12 @@
               "by_domain": {
                 "terms": {
                   "size": 1000,
-                  "script": {
-                    "inline": "def name = doc['dns.question.name.raw'].value;if (name == null){return null;}def sld = null;def labels = Arrays.asList(/\\./.split(name));if (labels.size() >= 2) {sld = labels.subList(labels.size() - 2, labels.size()).stream().collect(Collectors.joining('.')) + '.';}return sld;"
-                  }
+                  "field": "dns.question.etld_plus_one"
                 },
                 "aggs": {
                   "unique_hostnames": {
                     "cardinality": {
-                      "field": "dns.question.name.raw"
+                      "field": "dns.question.name"
                     }
                   },
                   "total_bytes_in": {
