@@ -8,7 +8,7 @@
     "search": {
       "request": {
         "indices": [
-          "cef-ssh-{now/d}"
+          "<cef-ssh-{now/d}>"
         ],
         "types": [
           "syslog"
