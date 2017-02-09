@@ -43,6 +43,8 @@ If username and password are not specified, the above scripts assume the x-pack 
 * System Fails to Provide Data - A watch which alerts if a system, which has previously sent data, fails to send events.
 * File System Usage - A watch which alerts if a systems filesystem usage exceeds a predetermined percentage threshold.
 * IO Wait time increases - A watch which alerts if a systems iowait time rises beyond a predetermined threshold.
+* Monitoring Cluster Health - A watch which monitors an ES cluster for red or yellow cluster state.  Assumes use of X-Pack Monitoring.
+* Monitoring Free Disk Space - A watch which monitors an ES cluster for free disk usage on hosts.  Assumes use of X-Pack Monitoring.
 
 #Testing
 
@@ -53,8 +55,10 @@ Each watch includes a test directory containing a set of tests expressed as JSON
 * mapping_file - Location of the mapping file (relative to base directory)
 * index - The required index on which both the watch and test depend.
 * type - The required type on which both the watch and test depend.
-* events - A list of test data objects.  Each test data object contains the required fields and an 'offset' value.  This is only considered if the event does not have a @timestamp field.  This integer can be positive and negative.  This value is added to the current system time when the events are indexed by the run_test.py.  To ensure the "past" is populated as required use negative values.  This ensures the test data is populated for the current period, allowing time based watches to match. If an offset is not specified, the default is 0 i.e. the event receives the current time. If the user specifies an "id" field this will be used as the event id, otherwise events are assigned a sequential id based on their list order, starting at 0.
-* match - A field indicating if the watch should match - defaults to true.
+* scripts (optional) - List of Painless scripts, each with a name and path, that need to be indexed prior to the watch running.
+* events - A list of test data objects.  Each test data object contains the required fields and an 'offset' value.  This is only considered if the event does not have a time_field field.  This integer can be positive and negative.  This value is added to the current system time when the events are indexed by the run_test.py.  To ensure the "past" is populated as required use negative values.  This ensures the test data is populated for the current period, allowing time based watches to match. If an offset is not specified, the default is 0 i.e. the event receives the current time. If the user specifies an "id" field this will be used as the event id, otherwise events are assigned a sequential id based on their list order, starting at 0.
+* match (optional) - A field indicating if the watch should match - defaults to true.
+* time_field (optional) - time to use for events. Defaults to @timestamp.
 
 The run_test.py performs the following when running a test file:
 

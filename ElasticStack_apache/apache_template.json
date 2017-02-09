@@ -10,7 +10,7 @@
            {
               "message_field": {
                  "mapping": {
-                    "omit_norms": true,
+                    "norms": false,
                     "type": "text"
                  },
                  "match_mapping_type": "string",
@@ -20,7 +20,7 @@
            {
               "string_fields": {
                  "mapping": {
-                    "omit_norms": true,
+                    "norms": false,
                     "type": "text",
                     "fields": {
                        "raw": {
@@ -40,6 +40,15 @@
               "properties": {
                  "location": {
                     "type": "geo_point"
+                 },
+                 "ip": {
+                   "type": "ip"
+                 },
+                 "continent_code": {
+                  "type": "keyword"
+                 },
+                 "country_name": {
+                   "type": "keyword"
                  }
               },
               "type": "object"

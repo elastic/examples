@@ -1,0 +1,11 @@
+{
+  "name": "nhl-stats-elasticsearch",
+  "version": "0.0.1",
+  "scripts": {
+    "go": "node go.js"
+  },
+  "dependencies": {
+    "futures": "*",
+    "request": "*"
+  }
+}

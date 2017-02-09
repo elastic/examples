@@ -29,7 +29,7 @@
           "userId": {
             "type": "integer"
           },
-          "yearmovie_lens_graph": {
+          "year": {
             "type": "short"
           },
           "liked": {

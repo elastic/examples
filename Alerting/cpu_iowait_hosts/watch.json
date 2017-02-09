@@ -14,10 +14,10 @@
             "request": {
                 "search_type": "query_then_fetch",
                 "indices": [
-                    "topbeat-*"
+                    "metricbeat-*"
                 ],
                 "types": [
-                    "system"
+                    "metricsets"
                 ],
                 "body": {
                   "size": 0,

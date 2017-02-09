@@ -1,0 +1,68 @@
+[
+  {
+    "_id": "CEF-Login-Dashboard",
+    "_type": "dashboard",
+    "_source": {
+      "title": "CEF Login Dashboard",
+      "hits": 0,
+      "description": "",
+      "panelsJSON": "[{\"id\":\"Top-Attempted-Passwords\",\"type\":\"visualization\",\"panelIndex\":1,\"size_x\":6,\"size_y\":4,\"col\":1,\"row\":1},{\"id\":\"Logins\",\"type\":\"visualization\",\"panelIndex\":2,\"size_x\":12,\"size_y\":4,\"col\":1,\"row\":5},{\"id\":\"Failed-vs-Successful-Logins\",\"type\":\"visualization\",\"panelIndex\":3,\"size_x\":6,\"size_y\":4,\"col\":7,\"row\":1}]",
+      "optionsJSON": "{\"darkTheme\":false}",
+      "uiStateJSON": "{\"P-2\":{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}}}",
+      "version": 1,
+      "timeRestore": true,
+      "timeTo": "2016-12-08T16:45:03.557Z",
+      "timeFrom": "2016-11-14T06:30:21.343Z",
+      "refreshInterval": {
+        "display": "Off",
+        "pause": false,
+        "value": 0
+      },
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[{\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true,\"default_field\":\"_all\"}}}]}"
+      }
+    }
+  },
+  {
+    "_id": "Failed-vs-Successful-Logins",
+    "_type": "visualization",
+    "_source": {
+      "title": "Failed vs Successful Logins",
+      "visState": "{\n  \"type\": \"timelion\",\n  \"title\": \"Failed vs Successful Logins\",\n  \"params\": {\n    \"expression\": \".es(q=categoryOutcome:success, timefield=@timestamp,index=cef-ssh-*).label(\\\"successful logins\\\").yaxis(2) .es(q=categoryOutcome:failure, timefield=@timestamp,index=cef-ssh-*).label(\\\"failed logins\\\")\",\n    \"interval\": \"auto\"\n  }\n}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{}"
+      }
+    }
+  },
+  {
+    "_id": "Logins",
+    "_type": "visualization",
+    "_source": {
+      "title": "Logins",
+      "visState": "{\n  \"title\": \"Logins\",\n  \"type\": \"table\",\n  \"params\": {\n    \"perPage\": 10,\n    \"showPartialRows\": false,\n    \"showMeticsAtAllLevels\": false,\n    \"sort\": {\n      \"columnIndex\": null,\n      \"direction\": null\n    },\n    \"showTotal\": false,\n    \"totalFunc\": \"sum\"\n  },\n  \"aggs\": [\n    {\n      \"id\": \"1\",\n      \"enabled\": true,\n      \"type\": \"max\",\n      \"schema\": \"metric\",\n      \"params\": {\n        \"field\": \"@timestamp\",\n        \"customLabel\": \"Latest Event Time\"\n      }\n    },\n    {\n      \"id\": \"2\",\n      \"enabled\": true,\n      \"type\": \"terms\",\n      \"schema\": \"bucket\",\n      \"params\": {\n        \"field\": \"destinationHostName\",\n        \"size\": 100,\n        \"order\": \"desc\",\n        \"orderBy\": \"1\",\n        \"customLabel\": \"Target Server\"\n      }\n    },\n    {\n      \"id\": \"3\",\n      \"enabled\": true,\n      \"type\": \"terms\",\n      \"schema\": \"bucket\",\n      \"params\": {\n        \"field\": \"sourceAddress\",\n        \"size\": 100,\n        \"order\": \"desc\",\n        \"orderBy\": \"1\",\n        \"customLabel\": \"Source IP Address\"\n      }\n    }\n  ],\n  \"listeners\": {}\n}",
+      "uiStateJSON": "{\n  \"vis\": {\n    \"params\": {\n      \"sort\": {\n        \"columnIndex\": null,\n        \"direction\": null\n      }\n    }\n  }\n}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\n  \"index\": \"cef-ssh-watch-results\",\n  \"query\": {\n    \"query_string\": {\n      \"query\": \"*\",\n      \"analyze_wildcard\": true,\n      \"default_field\": \"_all\"\n    }\n  },\n  \"filter\": []\n}"
+      }
+    }
+  },
+  {
+    "_id": "Top-Attempted-Passwords",
+    "_type": "visualization",
+    "_source": {
+      "title": "Top Attempted Passwords",
+      "visState": "{\n  \"title\": \"Top Attempted Passwords\",\n  \"type\": \"histogram\",\n  \"params\": {\n    \"shareYAxis\": true,\n    \"addTooltip\": true,\n    \"addLegend\": true,\n    \"legendPosition\": \"right\",\n    \"scale\": \"linear\",\n    \"mode\": \"stacked\",\n    \"times\": [],\n    \"addTimeMarker\": false,\n    \"defaultYExtents\": false,\n    \"setYExtents\": false,\n    \"yAxis\": {}\n  },\n  \"aggs\": [\n    {\n      \"id\": \"1\",\n      \"enabled\": true,\n      \"type\": \"count\",\n      \"schema\": \"metric\",\n      \"params\": {}\n    },\n    {\n      \"id\": \"2\",\n      \"enabled\": true,\n      \"type\": \"terms\",\n      \"schema\": \"segment\",\n      \"params\": {\n        \"field\": \"deviceCustomString3\",\n        \"exclude\": {\n          \"pattern\": \"\"\n        },\n        \"size\": 10,\n        \"order\": \"desc\",\n        \"orderBy\": \"1\",\n        \"customLabel\": \"Attempted Passwords\"\n      }\n    }\n  ],\n  \"listeners\": {}\n}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\n  \"index\": \"cef-ssh-*\",\n  \"query\": {\n    \"query_string\": {\n      \"query\": \"*\",\n      \"analyze_wildcard\": true,\n      \"default_field\": \"_all\"\n    }\n  },\n  \"filter\": []\n}"
+      }
+    }
+  }
+]

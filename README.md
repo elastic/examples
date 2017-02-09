@@ -14,7 +14,7 @@ You have a few options to get started with the examples:
 
 - If you want to try them all, you can [download the entire repo ](https://github.com/elastic/examples/archive/master.zip). Or, if you are familiar with Git, you can [clone the repo](https://github.com/elastic/examples.git). Then, simply follow the instructions in the individual README of the examples you're interested in to get started.
 
-- If you are only interested in a specific example or two, you can download the contents of just those examples (instructions in the individual READMEs).
+- If you are only interested in a specific example or two, you can download the contents of just those examples - follow instructions in the individual READMEs OR you can use some of the [options mentioned here](http://stackoverflow.com/questions/7106012/download-a-single-folder-or-directory-from-a-github-repo).
 
 ### Contributing
 
@@ -48,15 +48,15 @@ Examples using the Elastic Stack for analyzing public dataset.
 
 X-Pack lets you set up watches (or rules) to detect and alert on changes in your Elasticsearch data. Below is a list of examples watches that configured to detect and alert on a few common scenarios:
 
-- High I/O wait on CPU
-- Critical error  in logs
-- High filesystem usage
-- Lateral movement in user communication
-- New process started on hosts
-- Port scan detected
-- Interrupted log flow from hosts
-- Trending hashtag on twitter
-- Unexpected account activity
+- [High I/O wait on CPU] (https://github.com/elastic/examples/tree/master/Alerting/cpu_iowait_hosts)
+- [Critical error  in logs] (https://github.com/elastic/examples/tree/master/Alerting/errors_in_logs)
+- [High filesystem usage] (https://github.com/elastic/examples/tree/master/Alerting/filesystem_usage)
+- [Lateral movement in user communication] (https://github.com/elastic/examples/tree/master/Alerting/lateral_movement_in_user_comm)
+- [New process started on hosts] (https://github.com/elastic/examples/tree/master/Alerting/new_process_started)
+- [Port scan detected] (https://github.com/elastic/examples/tree/master/Alerting/port_scan)
+- [Interrupted log flow from hosts] (https://github.com/elastic/examples/tree/master/Alerting/system_fails_to_provide_data)
+- [Trending hashtag on twitter] (https://github.com/elastic/examples/tree/master/Alerting/twitter_trends)
+- [Unexpected account activity] (https://github.com/elastic/examples/tree/master/Alerting/unexpected_account_activity)
 - [Detecting DNS tunnels](https://github.com/elastic/examples/tree/master/packetbeat_dns_tunnel_detection)
 - Watch history dashboard
 
@@ -64,8 +64,9 @@ X-Pack lets you set up watches (or rules) to detect and alert on changes in your
 #### Getting Started with Graph exploration
 
 - [Exploring attack vectors in Apache logs using Graph] (https://github.com/elastic/examples/tree/master/ElasticStack_graph_apache)
+- [Powering recommendation using Graph](https://github.com/elastic/examples/tree/master/ElasticStack_graph_movielens)
 
 
 #### Miscellaneous
 - [Setting up Elastic Stack on Docker](https://github.com/elastic/examples/tree/master/ElasticStack_docker_setup/)
-- [Creating a custom realm in Shield](https://github.com/elastic/examples/tree/master/shield_custom_realm_example)]
+- [Creating a custom realm in Shield](https://github.com/elastic/examples/tree/master/shield_custom_realm_example)

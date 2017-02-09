@@ -50,7 +50,9 @@
                 }
               }
             }
-          },
+          }
+        },
+        {
           "history_started_processes": {
             "search": {
               "request": {

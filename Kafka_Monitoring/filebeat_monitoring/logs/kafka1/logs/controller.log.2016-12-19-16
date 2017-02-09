@@ -1,0 +1,2 @@
+[2016-12-19 16:32:01,175] INFO [Controller 1]: Controller starting up (kafka.controller.KafkaController)
+[2016-12-19 16:32:01,193] INFO [Controller 1]: Controller startup complete (kafka.controller.KafkaController)
