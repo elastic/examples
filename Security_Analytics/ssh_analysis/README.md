@@ -2,17 +2,28 @@
 
 This **Getting Started with Elastic Stack** example provides sample files to ingest, analyze and alert on **SSH Logs in the CEF Format** using the Elastic Stack. 
 
-Included are example Watches for proactively monitoring this data for possible security incidents.  These examples support the Security Analytics blog post series, specifically [Integrating Elasticsearch with ArcSight SIEM - Part 2](https://elastic.co/blog/integrating-elasticsearch-with-arcsight-siem-part-2).  
-The first watch provides the means to detect successful logins from external IP Addresses.
+Included are example Watches for proactively monitoring this data for possible security incidents.  These examples support the Security Analytics blog post series, specifically:
+ 
+* [Integrating Elasticsearch with ArcSight SIEM - Part 2](https://elastic.co/blog/integrating-elasticsearch-with-arcsight-siem-part-2).
+* [Integrating Elasticsearch with ArcSight SIEM - Part 4](https://elastic.co/blog/integrating-elasticsearch-with-arcsight-siem-part-4).  
+
+
+Watches include:
+
+* The means to detect successful logins from an external IP Addresses.
+* The means to detect a successful brute force attack - defined as a sequence of N failed logins, followed by a success.
+
 
 This example includes:
 
 - [`ssh.cef`](http://download.elasticsearch.org/demos/cef_ssh/ssh.cef) - Sample SSH logs in CEF format
 - `ssh_analysis_logstash.conf` - An appropriate Logstash configuration for indexing the above CEF data
 - `ssh_analysis_kibana.json` - Simple Kibana visualizations and dashboards for the associated blog posts
-- `successful_login_external.json` -  A watch detects remote logins from external IP addresses. REFERENCE ONLY. 
+- `successful_login_external.json` -  A watch that detects remote logins from external IP addresses. REFERENCE ONLY. 
 - `successful_login_external.inline.json` - The above watch in an inline execution format so it can be used with the `run_watch.sh` script and be executed over the full dataset.
-- `run_watch.sh` - A convenience script to execute a watch
+- `brute_force_login.json` -  A watch that detects successful failed logins followed by a success for a specific user. REFERENCE ONLY. 
+- `brute_force_login.inline.json` - The above watch in an inline execution format so it can be used with the `run_watch.sh` script and be executed over the full dataset.
+- `run_watch.sh` - A convenience script to execute the above watches
 
 This example depends on:
 
@@ -24,10 +35,10 @@ which will be installed when Logstash is run with the above configuration.
 
 Example has been tested with the following versions:
 
-- Elasticsearch 5.1
-- Logstash 5.1
-- Kibana 5.1
-- X-Pack 5.1
+- Elasticsearch 5.2
+- Logstash 5.2
+- Kibana 5.2
+- X-Pack 5.2
 
 ### Installation & Setup
 
@@ -62,6 +73,8 @@ Download the following files in this repo to a local directory:
 - `ssh_analysis_kibana.json`
 - `successful_login_external.json`
 - `successful_login_external.inline.json`
+- `brute_force_login.json`
+- `brute_force_login.inline.json`
 
 Additionally, download the following template dependency into the same local directory:
 
@@ -75,6 +88,8 @@ cd ssh_analysis
 wget https://raw.githubusercontent.com/elastic/examples/master/Security_Analytics/ssh_analysis/ssh_analysis_logstash.conf
 wget https://raw.githubusercontent.com/elastic/examples/master/Security_Analytics/ssh_analysis/successful_login_external.json
 wget https://raw.githubusercontent.com/elastic/examples/master/Security_Analytics/ssh_analysis/successful_login_external.inline.json
+wget https://raw.githubusercontent.com/elastic/examples/master/Security_Analytics/ssh_analysis/brute_force_login.json
+wget https://raw.githubusercontent.com/elastic/examples/master/Security_Analytics/ssh_analysis/brute_force_login.inline.json
 wget https://raw.githubusercontent.com/elastic/examples/master/Security_Analytics/ssh_analysis/ssh_analysis_kibana.json
 wget http://download.elasticsearch.org/demos/cef_ssh/ssh.cef
 wget https://raw.githubusercontent.com/elastic/examples/master/Security_Analytics/cef_demo/logstash/pipeline/cef_template.json
@@ -116,7 +131,7 @@ Once indexing is complete this command will return.
 
 To run a watch over the full dataset, either:
 
-* Execute the following command from the `ssh_analysis` directory to execute a specific watch
+* Execute the following command from the `ssh_analysis` directory to execute a specific watch.  For all dashboards to function, all watches will need to be executed.
 
 ```shell
 ./run_watch <name of watch> <username> <password>
@@ -127,7 +142,8 @@ To run a watch over the full dataset, either:
 e.g.
 
 ```shell
-./run_watch successful_login_external.inline
+./run_watch.sh successful_login_external.inline
+./run_watch.sh brute_force_login.inline
 ```
 
 
@@ -146,9 +162,7 @@ OR MANUALLY
 * Load sample dashboard into Kibana
     * Click the **Management** tab >> **Saved Objects** tab >> **Import**, and select `ssh_analysis_kibana.json`
 * Open dashboard
-    * Click on **Dashboard** tab and open `CEF Login Dashboard` dashboard
-
-Voila! You should see the following dashboard.
+    * Click on **Dashboard** tab and open either `CEF Login Dashboard` or `CEF Brute Force Dashboard` dashboard
 
 ![Kibana Dashboard Screenshot](https://cloud.githubusercontent.com/assets/12695796/21771118/08339dd0-d67e-11e6-9fdf-9473ddd3e1f6.png)
 
