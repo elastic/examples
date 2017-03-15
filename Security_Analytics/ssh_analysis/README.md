@@ -7,16 +7,14 @@ Included are example Watches for proactively monitoring this data for possible s
 * [Integrating Elasticsearch with ArcSight SIEM - Part 2](https://elastic.co/blog/integrating-elasticsearch-with-arcsight-siem-part-2).
 * [Integrating Elasticsearch with ArcSight SIEM - Part 4](https://elastic.co/blog/integrating-elasticsearch-with-arcsight-siem-part-4).  
 
-
 Watches include:
 
 * The means to detect successful logins from an external IP Addresses.
 * The means to detect a successful brute force attack - defined as a sequence of N failed logins, followed by a success.
 
-
 This example includes:
 
-- [`ssh.cef`](http://download.elasticsearch.org/demos/cef_ssh/ssh.cef) - Sample SSH logs in CEF format
+- [`ssh.cef`](http://download.elasticsearch.org/demos/cef_ssh/ssh.cef) - Sample SSH logs in CEF format used in both blog posts.
 - `ssh_analysis_logstash.conf` - An appropriate Logstash configuration for indexing the above CEF data
 - `ssh_analysis_kibana.json` - Simple Kibana visualizations and dashboards for the associated blog posts
 - `successful_login_external.json` -  A watch that detects remote logins from external IP addresses. REFERENCE ONLY. 
@@ -62,19 +60,23 @@ Example has been tested with the following versions:
   - Open `localhost:9200` in web browser -- should return a json message indicating ES is running.
   - Open `localhost:5601` in web browser -- should display Kibana UI.
 
-  **Note:** By default, Elasticsearch runs on port 9200, and Kibana run on ports 5601. If you changed the default ports, change   the above calls to use appropriate ports.
+  **Note:** By default, Elasticsearch runs on port 9200, and Kibana run on ports 5601. If you changed the default ports, change the above calls to use the appropriate ports.  
+  The cluster will be secured using basic auth. If changing the default credentials of `elastic` and `changeme` as described [here](https://www.elastic.co/guide/en/x-pack/current/security-getting-started.html), ensure the logstash configuration file is updated.
 
 ### Download Example Files
 
+The following assumes the user is using curl. Commands below can be replicated with wget if required.
+
 Download the following files in this repo to a local directory:
 
-- [`ssh.cef`](http://download.elasticsearch.org/demos/cef_ssh/ssh.cef)
+- [`ssh.cef`](http://download.elasticsearch.org/demos/cef_ssh/ssh.cef).  
 - `ssh_analysis_logstash.conf`
 - `ssh_analysis_kibana.json`
 - `successful_login_external.json`
 - `successful_login_external.inline.json`
 - `brute_force_login.json`
 - `brute_force_login.inline.json`
+- `run_watch.sh` - depends on curl.
 
 Additionally, download the following template dependency into the same local directory:
 
@@ -85,28 +87,30 @@ Unfortunately, Github does not provide a convenient one-click option to download
 ```shell
 mkdir ssh_analysis
 cd ssh_analysis
-wget https://raw.githubusercontent.com/elastic/examples/master/Security_Analytics/ssh_analysis/ssh_analysis_logstash.conf
-wget https://raw.githubusercontent.com/elastic/examples/master/Security_Analytics/ssh_analysis/successful_login_external.json
-wget https://raw.githubusercontent.com/elastic/examples/master/Security_Analytics/ssh_analysis/successful_login_external.inline.json
-wget https://raw.githubusercontent.com/elastic/examples/master/Security_Analytics/ssh_analysis/brute_force_login.json
-wget https://raw.githubusercontent.com/elastic/examples/master/Security_Analytics/ssh_analysis/brute_force_login.inline.json
-wget https://raw.githubusercontent.com/elastic/examples/master/Security_Analytics/ssh_analysis/ssh_analysis_kibana.json
-wget http://download.elasticsearch.org/demos/cef_ssh/ssh.cef
-wget https://raw.githubusercontent.com/elastic/examples/master/Security_Analytics/cef_demo/logstash/pipeline/cef_template.json
+curl -O https://raw.githubusercontent.com/elastic/examples/master/Security_Analytics/ssh_analysis/ssh_analysis_logstash.conf
+curl -O https://raw.githubusercontent.com/elastic/examples/master/Security_Analytics/ssh_analysis/successful_login_external.json
+curl -O https://raw.githubusercontent.com/elastic/examples/master/Security_Analytics/ssh_analysis/successful_login_external.inline.json
+curl -O https://raw.githubusercontent.com/elastic/examples/master/Security_Analytics/ssh_analysis/brute_force_login.json
+curl -O https://raw.githubusercontent.com/elastic/examples/master/Security_Analytics/ssh_analysis/brute_force_login.inline.json
+curl -O https://raw.githubusercontent.com/elastic/examples/master/Security_Analytics/ssh_analysis/ssh_analysis_kibana.json
+curl -O http://download.elasticsearch.org/demos/cef_ssh/ssh.cef
+curl -O https://raw.githubusercontent.com/elastic/examples/master/Security_Analytics/cef_demo/logstash/pipeline/cef_template.json
 ```
 
-Using curl or don't have wget? Try replacing 'wget' with 'curl -O' for the above commands.
 
 ### Run Example
 
+Both blog posts utilise the same dataset.  Steps 1 and 2 therefore only need to be performed once, after which both watches can be utilised.
+
 #### 1. Start Logstash with the appropriate configuration
+
+**Note:** Included `ssh_analysis_logstash.conf` configuration file assumes that you are running Elasticsearch on the same host as Logstash and have not changed the defaults. Modify the `host` and `cluster` settings in the `output { elasticsearch { ... } }`   section of apache_logstash.conf, if needed. Furthermore, it assumes the default X-Pack security username/password of elastic/changeme - [change as required](https://github.com/elastic/examples/blob/master/Security_Analytics/ssh_analysis/ssh_analysis_logstash.conf#L42-L43) .
 
 ```shell
 <path_to_logstash_root_dir>/bin/logstash -f ssh_analysis_logstash.conf
 ```
 
 Wait for Logstash to start, as indicated by the message "Successfully started Logstash API endpoint"
-
 
 #### 2. Ingest data into Elasticsearch using Logstash
 
@@ -120,9 +124,8 @@ Once indexing is complete this command will return.
 
 * Verify that data is successfully indexed into Elasticsearch
 
-  Running `http://localhost:9200/cef-ssh-*/_count` should return a response a `"count":114147`
+  Running `curl http://localhost:9200/cef-ssh-*/_count` should return a response a `"count":114147`.  This command will return a higher count if you have executed either of the watches.
 
-**Note:** Included `ssh_analysis_logstash.conf` configuration file assumes that you are running Elasticsearch on the same host as Logstash and have not changed the defaults. Modify the `host` and `cluster` settings in the `output { elasticsearch { ... } }`   section of apache_logstash.conf, if needed. Furthermore, it assumes the default X-Pack security username/password of elastic/changeme - change as required.
 
 #### 3. Execute A Watch
 
@@ -160,7 +163,7 @@ OR MANUALLY
     * Click the **Management** tab >> **Index Patterns** tab >> **Create New**. Specify `cef-ssh-*` as the index pattern name and click **Create** to define the index pattern. (Leave the **Use event times to create index names** box unchecked and use @timestamp as the Time Field)
     * Click the **Management** tab >> **Index Patterns** tab >> **Create New**. Specify `cef-ssh-watch-results` as the index pattern name and click **Create** to define the index pattern. (Leave the **Use event times to create index names** box unchecked and use @timestamp as the Time Field)
 * Load sample dashboard into Kibana
-    * Click the **Management** tab >> **Saved Objects** tab >> **Import**, and select `ssh_analysis_kibana.json`
+    * Click the **Management** tab >> **Saved Objects** tab >> **Import**, and select `ssh_analysis_kibana.json`. If you have loaded an earlier version of this dashboard you will be promoted to override existing objects. Accept this override.
 * Open dashboard
     * Click on **Dashboard** tab and open either `CEF Login Dashboard` or `CEF Brute Force Dashboard` dashboard
 
