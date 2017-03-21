@@ -134,7 +134,7 @@ Once indexing is complete this command will return.
 
 To run a watch over the full dataset, either:
 
-* Execute the following command from the `ssh_analysis` directory to execute a specific watch.  For all dashboards to function, all watches will need to be executed.
+* Execute the following command from the `ssh_analysis` directory to execute a specific watch.  For all dashboards to function, all watches will need to be executed once.
 
 ```shell
 ./run_watch <name of watch> <username> <password>
