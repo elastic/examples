@@ -104,7 +104,8 @@ Both blog posts utilise the same dataset.  Steps 1 and 2 therefore only need to 
 
 #### 1. Start Logstash with the appropriate configuration
 
-**Note:** Included `ssh_analysis_logstash.conf` configuration file assumes that you are running Elasticsearch on the same host as Logstash and have not changed the defaults. Modify the `host` and `cluster` settings in the `output { elasticsearch { ... } }`   section of apache_logstash.conf, if needed. Furthermore, it assumes the default X-Pack security username/password of elastic/changeme - [change as required](https://github.com/elastic/examples/blob/master/Security_Analytics/ssh_analysis/ssh_analysis_logstash.conf#L42-L43) .
+**Note:** Included `ssh_analysis_logstash.conf` configuration file assumes that you are running Elasticsearch on the same host as Logstash and have not changed the defaults. Modify the `host` and `cluster` settings in the `output { elasticsearch { ... } }`   section of apache_logstash.conf, if needed. 
+Furthermore, it assumes the default X-Pack security username/password of elastic/changeme - [change as required](https://github.com/elastic/examples/blob/master/Security_Analytics/ssh_analysis/ssh_analysis_logstash.conf#L42-L43) .
 
 ```shell
 <path_to_logstash_root_dir>/bin/logstash -f ssh_analysis_logstash.conf
@@ -124,8 +125,9 @@ Once indexing is complete this command will return.
 
 * Verify that data is successfully indexed into Elasticsearch
 
-  Running `curl http://localhost:9200/cef-ssh-*/_count` should return a response a `"count":114147`.  This command will return a higher count if you have executed either of the watches.
+  Running `curl http://localhost:9200/cef-ssh-*/_count -u elastic:changeme` should return a response a `"count":114147`.  This command will return a higher count if you have executed either of the watches.
 
+The above assumes the default username and password.
 
 #### 3. Execute A Watch
 
@@ -154,7 +156,7 @@ OR MANUALLY
 
 * Access Kibana by going to `http://localhost:5601` in a web browser
 * Click the **Dev Tools** tab >> **Console** tab
-* Use the [inline execution api](https://www.elastic.co/guide/en/x-pack/5.1/watcher-api-execute-watch.html#watcher-api-execute-inline-watch) to execute the watch, copying the contents for the watch key from the appropriate inline file e.g. `successful_login_external.inline.json`
+* Use the [inline execution api](https://www.elastic.co/guide/en/x-pack/5.2/watcher-api-execute-watch.html#watcher-api-execute-inline-watch) to execute the watch, copying the contents for the watch key from the appropriate inline file e.g. `successful_login_external.inline.json`
 
 #### 4. Visualize the results in Kibana
 
@@ -167,7 +169,8 @@ OR MANUALLY
 * Open dashboard
     * Click on **Dashboard** tab and open either `CEF Login Dashboard` or `CEF Brute Force Dashboard` dashboard
 
-![Kibana Dashboard Screenshot](https://cloud.githubusercontent.com/assets/12695796/21771118/08339dd0-d67e-11e6-9fdf-9473ddd3e1f6.png)
+![Kibana External Login Dashboard Screenshot](https://cloud.githubusercontent.com/assets/12695796/24197080/168a40fc-0ef8-11e7-9c32-3182dd23c76c.png)
+![Kibana Brute Force Dashboard Screenshot](https://cloud.githubusercontent.com/assets/12695796/24197092/1eb5f82a-0ef8-11e7-9cdf-6c55e144f9b5.png)
 
 ### We would love your feedback!
 If you found this example helpful and would like more such Getting Started examples for other standard formats, we would love to hear from you. If you would like to contribute Getting Started examples to this repo, we'd love that too!

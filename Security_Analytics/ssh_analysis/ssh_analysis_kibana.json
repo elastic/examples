@@ -96,20 +96,6 @@
     }
   },
   {
-    "_id": "Failed-vs-Successful-Logins",
-    "_type": "visualization",
-    "_source": {
-      "title": "Failed vs Successful Logins",
-      "visState": "{\"type\":\"timelion\",\"title\":\"Failed vs Successful Logins\",\"params\":{\"expression\":\".es(q=categoryOutcome:success, timefield=@timestamp,index=cef-ssh-*).label(\\\"successful logins\\\").yaxis(2) .es(q=categoryOutcome:failure, timefield=@timestamp,index=cef-ssh-*).label(\\\"failed logins\\\")\",\"interval\":\"auto\"}}",
-      "uiStateJSON": "{}",
-      "description": "",
-      "version": 1,
-      "kibanaSavedObjectMeta": {
-        "searchSourceJSON": "{}"
-      }
-    }
-  },
-  {
     "_id": "Top-Attempted-Passwords",
     "_type": "visualization",
     "_source": {
@@ -134,6 +120,20 @@
       "version": 1,
       "kibanaSavedObjectMeta": {
         "searchSourceJSON": "{\"index\":\"cef-ssh-watch-results\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true,\"default_field\":\"_all\"}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "Failed-vs-Successful-Logins",
+    "_type": "visualization",
+    "_source": {
+      "title": "Failed vs Successful Logins",
+      "visState": "{\"title\":\"Failed vs Successful Logins\",\"type\":\"timelion\",\"params\":{\"expression\":\".es(q=categoryOutcome:success, timefield=@timestamp,index=cef-ssh-*).label(\\\"successful logins\\\").yaxis(2) .es(q=categoryOutcome:failure, timefield=@timestamp,index=cef-ssh-*).label(\\\"failed logins\\\") .es(index=\\\"cef-ssh-watch-results\\\",q=\\\"_type:external_login\\\").label(\\\"external_login\\\").points(fill=10, radius=10).if(eq, 0, null).color(red).yaxis(3).label(\\\"external login\\\")\",\"interval\":\"auto\"},\"aggs\":[],\"listeners\":{}}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
       }
     }
   }

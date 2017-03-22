@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 if [ -z "$1" ] ; then
     echo "No watch name supplied e.g. ./load_watch.sh successful_login_external"
     exit 1
