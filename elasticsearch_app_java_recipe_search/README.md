@@ -1,19 +1,20 @@
-# Recipe Search
+# Elastic Recipe Search
 
 This sample application demonstrates:
-* Searching for recipes by keywords, *and*
-* Creating new recipes and saving them in Elasticsearch
+* Indexing recipes using the Java Client API *and*
+* Using the Java Client API to searching for recipes by keywords
 
-![Screenshot of search page](http://i.snag.gy/quVui.jpg)
 
-This sample application deliberately uses plain PHP code (that is, no PHP frameworks), a little bit of 
-[Bootstrap CSS](http://getbootstrap.com/css/) and even less [jQuery](https://jquery.com/). These minimalist choices
-are deliberate. We want to keep non-Elasticsearch-related code to a minimum so it as easy as possible to focus on the
-Elasticsearch-related code in this application.
+![Screenshot of search page](https://snag.gy/GqMvDB.jpg)
+
+A simple recipe search UI constructed with Servlets, HTML, CSS, Javascript, JQuery Bootstrap, Bootstrap Table all served up from an embedded Jetty web server. 
+
+Uses an IntelliJ developer environment to assist with getting familiar with Elasticsearch Java Client APIs.
+
 
 ## Running this on your own machine
 
-1. Download and install PHP 7.0.
+1. Download and install Java Version 8.
 
 2. Download and unzip Elasticsearch.
 
@@ -29,56 +30,14 @@ Elasticsearch-related code in this application.
 
   **Note:** By default, Elasticsearch runs on port 9200. If you changed the default ports during installation, change the above calls to use appropriate ports.
 
+3. Download and install IntelliJ IDEA (https://www.jetbrains.com/idea/download/#section=mac).
 
-3. Download the code in this repo and unzip it.
+4. Clone the elastic/examples repo.
 
-   ```sh
-   $ wget -O elastic-demo.zip 'https://github.com/elastic/demo/archive/master.zip'
-   $ unzip elastic-demo.zip
-   $ mv demo-master/recipe_search .
-   $ rm -rf demo-master elastic-demo.zip
-   $ cd recipe_search
-   ```
+5. Start IntelliJ and Import project elastic/examples/elasticsearch_app_java_recipe_search and select all defaults (hit next).
 
-4. Install application dependencies.
+6. Seed Elasticsearch index with initial recipe data. In IntelliJ Run the file IndexRecipesApp located in srs/main/java/com/elastic/recipe.
 
-   ```sh
-   $ composer install
-   ```
-
-1. Seed Elasticsearch index with initial recipe data.
-
-   ```sh
-   $ php data/seed.php
-   ```
-
-1. Start the application using PHP's built-in web server.
-
-   ```sh
-   $ cd public
-   $ php -S localhost:8000
-   ```
-
-   By default this application will communicate with the Elasticsearch API at `http://localhost:9200`. If, in step 3, you
-   noted a different port than 9200 being used, you will need to pass this information to the application when starting
-   it up via an environment variable:
-
-   ```sh
-   $ APP_ES_PORT=<PORT> php -S localhost:8000
-   ```
-
-1. Open your web browser and visit [`http://localhost:8000`](http://localhost:8000).
-
-## Code Organization
-The code in this project is organized as follows, starting at the root directory level (only relevant files and folders listed):
-
-* `data/` &mdash; *contains seed data and loader script*
-  * `seed.txt` &mdash; *contains seed data in [bulk index](http://www.elastic.co/guide/en/elasticsearch/guide/master/bulk.html) format*
-  * `seed.php` &mdash; *script to load seed data*
-* `public/` &mdash; *contains files served by web server*
-  * `css/` &mdash; *contains the Bootstrap CSS file*
-  * `js/` &mdash; *contains the jQuery and this project's Javascript files*
-  * `add.php` &mdash; *script to add a new recipe to Elasticsearch*
-  * `index.php` &mdash; *script to search for recipes in Elasticsearch*
-  * `view.php` &mdash; *script to view a recipe from Elasticsearch*
-* `composer.json` &mdash; *file describing application dependencies, including the [Elasticsearch PHP language client](http://www.elastic.co/guide/en/elasticsearch/client/php-api/current/index.html)*
+7. In IntelliJ Run the file SearchRecipesApp located in sr/main/java/com/elastic/recipe.
+   
+8. Open your web browser and visit [`http://localhost:8080/recipe/recipes.html`](http://localhost:8080/recipe/recipes.html).
