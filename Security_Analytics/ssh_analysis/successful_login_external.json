@@ -68,7 +68,7 @@
       },
       "index": {
         "index": "cef-ssh-watch-results",
-      	 "doc_type": "watch-result"
+      	 "doc_type": "external_login"
       }
     }
   }
