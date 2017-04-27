@@ -1,6 +1,6 @@
 ## Custom Tile Map
 
-This example provides supporting files for the blog post [Operational Analytics at ElasticON 2017 - Part 2]().  This blog post describes the steps for creating a custom tile map for rendering in Kibana e.g. A server room.
+This example provides supporting files for the blog post [Operational Analytics at ElasticON 2017 - Part 2](https://elastic.co/blog/operational-analytics-at-elasticon-2017-part-2).  This blog post describes the steps for creating a custom tile map for rendering in Kibana e.g. A server room.
 
 ### Contents
 
