@@ -1,1 +1,1 @@
-Coming soon
+Each subfolder contains information that will allow you to configure and run an example IT Operations machine learning use case. IT operations use cases detect anomalies associated with errors, slowdowns, and interruptions in the operation of a system or service. Each detected anomaly is assigned a normalized Anomaly Score, and is annotated with values of other fields in the data that have statistical influence on the anomaly, called influencers.
