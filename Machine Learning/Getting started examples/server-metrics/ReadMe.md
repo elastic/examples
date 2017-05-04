@@ -56,9 +56,11 @@ The following assumes the default username and password of "elastic" and "change
 
   **WARNING**: This script  indexes the data into index, `server-metrics`, and creates a Kibana index pattern, `server-*`. If your Elasticsearch instance already has a index or or index pattern with that name, it will be overwritten when you run this script.**
 
-    ```  
+    
+  ```
     sh ingest-data.sh
-    ```
+  ```
+   
 
 5. Check data availability. Once the index is indexed you can check to see if all the data is available in Elasticsearch. You should get a `count` response greater than `905940` when you run the following command (assumes default user).
 
