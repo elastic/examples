@@ -43,12 +43,12 @@ The following assumes the default username and password of "elastic" and "change
 
 1. Download and unpack the dataset.
 
- ```
-  mkdir server_metrics
-  cd server_metrics
-  wget https://download.elasticsearch.org/demos/machine_learning/gettingstarted/server_metrics.tar.gz
-  tar -xvf server_metrics.tar.gz
-  ```
+   ```
+   mkdir server_metrics
+   cd server_metrics
+   wget https://download.elasticsearch.org/demos/machine_learning/gettingstarted/server_metrics.tar.gz
+   tar -xvf server_metrics.tar.gz
+   ```
 
 2. Download `ingest_data.sh` script in this repo, and copy it into the `server_metrics` folder (created in the previous step) <br>
 
@@ -57,9 +57,9 @@ The following assumes the default username and password of "elastic" and "change
   **WARNING**: This script  indexes the data into index, `server-metrics`, and creates a Kibana index pattern, `server-*`. If your Elasticsearch instance already has a index or or index pattern with that name, it will be overwritten when you run this script.**
 
     
-  ```
-    sh ingest-data.sh
-  ```
+   ```
+   sh ingest_data.sh
+   ```
    
 
 5. Check data availability. Once the index is indexed you can check to see if all the data is available in Elasticsearch. You should get a `count` response greater than `905940` when you run the following command (assumes default user).
