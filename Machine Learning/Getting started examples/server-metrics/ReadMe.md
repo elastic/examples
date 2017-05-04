@@ -54,7 +54,7 @@ The following assumes the default username and password of "elastic" and "change
 
 3. Run the `ingest_data.sh` script to index the data into Elasticsearch.  
 
-  **WARNING**: This script  indexes the data into index, `server-metrics`, and creates a Kibana index pattern, `server-*`. If your Elasticsearch instance already has a index or or index pattern with that name, it will be overwritten when you run this script.**
+   **WARNING**: This script  indexes the data into index, `server-metrics`, and creates a Kibana index pattern, `server-*`. If your Elasticsearch instance already has a index or or index pattern with that name, it will be overwritten when you run this script.**
 
     
    ```
@@ -77,6 +77,6 @@ The following assumes the default username and password of "elastic" and "change
 
    At this point, you are all set to follow the steps [Lab 1](https://www.elastic.co/videos/machine-learning-tutorial-creating-a-single-metric-job) and [Lab 2](https://www.elastic.co/videos/machine-learning-tutorial-creating-a-single-metric-job)  on your local installation of Elastic Stack. Enjoy!
 
-   ### Got questions?
+### Got questions?
 
    Have trouble running this example, [file issue on this repo](https://github.com/elastic/examples/issues/new). Got questions or feedback about machine learning, [we would love to hear from you on our discuss forums](https://discuss.elastic.co/c/x-pack).
