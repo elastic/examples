@@ -1,0 +1,11 @@
+{
+  "description": "Adds subdomain and domain fields",
+  "processors": [
+    {
+      "script": {
+        "lang": "painless",
+        "inline": "boolean isValue(def x){ x != null } if (isValue(ctx?.dns?.question?.name) && isValue(ctx?.dns?.question.etld_plus_one)) { def sub_domain = ctx.dns.question.name.replace(ctx.dns.question.etld_plus_one,''); ctx.domain = ctx.dns.question.etld_plus_one; if (sub_domain != 'www.' && sub_domain != ''){ ctx.sub_domain=sub_domain;}}"
+      }
+    }
+  ]
+}

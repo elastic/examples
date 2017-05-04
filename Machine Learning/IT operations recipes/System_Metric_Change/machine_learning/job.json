@@ -1,0 +1,25 @@
+{
+  "job_id": "system_metric_change",
+  "description": "system metric change",
+  "analysis_config": {
+    "bucket_span": "1m",
+    "detectors": [
+      {
+        "detector_description": "high_mean(\"system.core.user.pct\") by \"system.core.core_id\" partitionfield=\"beat.name\"",
+        "function": "high_mean",
+        "field_name": "system.core.user.pct",
+        "by_field_name": "system.core.core_id",
+        "partition_field_name": "beat.name",
+        "detector_rules": []
+      }
+    ],
+    "influencers": [
+      "system.core.core_id",
+      "beat.name"
+    ],
+    "use_per_partition_normalization": false
+  },
+  "data_description": {
+    "time_field": "@timestamp"
+  }
+}

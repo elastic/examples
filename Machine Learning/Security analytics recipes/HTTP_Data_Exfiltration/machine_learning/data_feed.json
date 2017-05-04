@@ -1,0 +1,19 @@
+{
+  "job_id": "http_exfiltration",
+  "indexes": [
+    "packetbeat-*"
+  ],
+  "types": [
+    "http"
+  ],
+  "query": {
+    "term": {
+      "direction": {
+        "value": "out"
+      }
+    }
+  },
+  "scroll_size": 1000,
+  "query_delay": "60s",
+  "frequency": "150s"
+}

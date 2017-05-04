@@ -1,0 +1,16 @@
+packetbeat.interfaces.device: en0
+packetbeat.protocols.dns:
+  ports: [53]
+  include_authorities: true
+  include_additionals: true
+name: test
+output.elasticsearch:
+  # Array of hosts to connect to.
+  hosts: ["localhost:9200"]
+  # Optional protocol and basic auth credentials.
+  #protocol: "https"
+  username: "elastic"
+  password: "changeme"
+  pipeline: "extract_subdomain"
+#logging.level: debug
+logging.selectors: ["*"]

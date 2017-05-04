@@ -1,0 +1,4 @@
+1. Update the image on the README
+2. Review the README format
+3. Maybe a single load script for the ingest pipeline and the job load?
+4. May need to change interface from en0
