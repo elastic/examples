@@ -71,7 +71,7 @@ The following assumes the default username and password of "elastic" and "change
     Click on **Management** app in the left navigation > click **Index Patterns**. You should see `server-*` listed in the index patterns list
 
 
-7. Create machine learning jobs to spot anomalies in `server-*``
+7. Create machine learning jobs to spot anomalies in `server-*`
 
    At this point, you are all set to follow the steps [Lab 1](https://www.elastic.co/videos/machine-learning-tutorial-creating-a-single-metric-job) and [Lab 2](https://www.elastic.co/videos/machine-learning-tutorial-creating-a-single-metric-job)  on your local installation of Elastic Stack. Enjoy!
 
