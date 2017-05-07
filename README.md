@@ -66,6 +66,12 @@ X-Pack lets you set up watches (or rules) to detect and alert on changes in your
 - [Exploring attack vectors in Apache logs using Graph](https://github.com/elastic/examples/tree/master/ElasticStack_graph_apache)
 - [Powering recommendation using Graph](https://github.com/elastic/examples/tree/master/ElasticStack_graph_movielens)
 
+#### Machine learning
+
+- [Getting started tutorials](https://github.com/elastic/examples/tree/master/Machine%20Learning/Getting%20started%20examples)
+- [IT operations recipes](https://github.com/elastic/examples/tree/master/Machine%20Learning/IT%20operations%20recipes)	
+- [Security analytics recipes](https://github.com/elastic/examples/tree/master/Machine%20Learning/Security%20analytics%20recipes)
+
 
 #### Miscellaneous
 - [Setting up Elastic Stack on Docker](https://github.com/elastic/examples/tree/master/ElasticStack_docker_setup/)
