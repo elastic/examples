@@ -45,17 +45,17 @@ The following assumes the default username and password of "elastic" and "change
 
    **NOTE:** The dataset included here is slightly different from the one used in the video, and you might see slightly different results when you follow along the steps in this video. The concepts and steps covered are still applicable.
 
-  ```
-  mkdir user-activity
-  cd user-activity
-  wget https://download.elasticsearch.org/demos/machine_learning/gettingstarted/user-activity.json
-  ```
+   ```
+   mkdir user-activity
+   cd user-activity
+   wget https://download.elasticsearch.org/demos/machine_learning/gettingstarted/user-activity.json
+   ```
 
 2. Download `ingest_data.sh` script in this repo, and copy it into the `user-activity` folder (created in the previous step) <br>
 
 3. Run the `ingest_data.sh` script to index the data into Elasticsearch.  
 
-  **WARNING**: This script  indexes the data into index, `user-activity` and creates a Kibana index pattern, `user-activity`. If your Elasticsearch instance already has a index or a index pattern with that name, it will be overwritten when you run this script.**
+   **WARNING**: This script  indexes the data into index, `user-activity` and creates a Kibana index pattern, `user-activity`. If your Elasticsearch instance already has a index or a index pattern with that name, it will be overwritten when you run this script.**
 
     ```  
     sh ingest-data.sh
@@ -74,8 +74,8 @@ The following assumes the default username and password of "elastic" and "change
 
 7. Create machine learning jobs to spot anomalies in `user-activity`
 
-   At this point, you are all set to follow the steps [Lab 3](www.elastic.co/videos/machine-learning-lab-3-detect-outliers-in-a-population) on your local installation of Elastic Stack. Enjoy!
+   At this point, you are all set to follow the steps [Lab 3](http://www.elastic.co/videos/machine-learning-lab-3-detect-outliers-in-a-population) on your local installation of Elastic Stack. Enjoy!
 
-   ### Got questions?
+### Got questions?
 
    Have trouble running this example, [file issue on this repo](https://github.com/elastic/examples/issues/new). Got questions or feedback about machine learning, [we would love to hear from you on our discuss forums](https://discuss.elastic.co/c/x-pack).
