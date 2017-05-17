@@ -22,15 +22,15 @@ Web proxy logs, firewall logs, or similar data containing logs of HTTP requests 
 
 ## Use Case Recipe
 
-    For:          All outbound HTTP requests (optionally filtered for allowed requests)
-    Model:        Sum of outbound bytes contained in HTTP requests
-    Detect:       Unusually high sum of bytes
-    Compared to:  Population of all host domains in HTTP requests
-    Partition by: source system initiating the HTTP requests
-    Exclude:      domains that occur frequently in the analysis
-    Prep time:    Run analysis on HTTP queries from period of 2 weeks or longer
-    Blend:        Run this EAB use case by itself, or along with other data exfiltration EAB’s
-    Serve Results:Influencer clients are likely sources of HTTP exfiltration activity
+    For:                All outbound HTTP requests (optionally filtered for allowed requests)
+    Model:              Sum of outbound bytes contained in HTTP requests
+    Detect:             Unusually high sum of bytes
+    Compared to:        Population of all host domains in HTTP requests
+    Partition by:       source system initiating the HTTP requests
+    Exclude:            domains that occur frequently in the analysis
+    Duration:           Run analysis on HTTP queries from period of 2 weeks or longer
+    Related recipes:    Run this EAB use case by itself, or along with other data exfiltration EAB’s
+    Results:            Influencer clients are likely sources of HTTP exfiltration activity
 
 ## Input Features and Candidate Influencers
 
@@ -67,9 +67,9 @@ Web proxy logs, firewall logs, or similar data containing logs of HTTP requests 
 
 ## Recipe ID: PXY-EAB11
 
-## Revision:  v0.4
+## Revision:  v0.5
 
-## Last updated: 4/19/2017
+## Last updated: 5/17/2017
 
 ## Example Usage
 
