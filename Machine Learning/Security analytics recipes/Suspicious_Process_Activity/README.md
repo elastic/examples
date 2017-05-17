@@ -55,7 +55,7 @@ Endpoint Detection and Response (EDR) sources such as: Symantec SEP12 logs, RSA 
 
 ## Revision:  v0.5
 
-## Last updated: 5/17/2017
+## Last updated: 17-MAY-2017
 
 ## Example Usage
 
