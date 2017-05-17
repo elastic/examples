@@ -22,15 +22,15 @@ Windows AD logs, or Linux system authentication logs
 
 ## Use Case Recipe
 
-    For:            All relevant authentication log data (filtered as appropriate, possibly including only privileged user accounts, internal IP addresses, etc.)
-    Model:          number of failed login attempts from each client
-    Detect:         Unusually high numbers of failed login attempts
-    Compared to:    Population of all clients
-    Partition by:   targeted server
-    Exclude:        None
-    Prep time:      Run analysis authentication logs from a period of 2 weeks or longer
-    Blend:          Run this EAB use case by itself, or along with other login-related EAB’s
-    Serve Results:  Influencer clients are possible sources of brute force login attacks.  Influencer servers are victims.
+    For:                All relevant authentication log data (filtered as appropriate, possibly including only privileged user accounts, internal IP addresses, etc.)
+    Model:              number of failed login attempts from each client
+    Detect:             Unusually high numbers of failed login attempts
+    Compared to:        Population of all clients
+    Partition by:       targeted server
+    Exclude:            None
+    Duration:           Run analysis authentication logs from a period of 2 weeks or longer
+    Related recipes:    Run this EAB use case by itself, or along with other login-related EAB’s
+    Results:            Influencer clients are possible sources of brute force login attacks.  Influencer servers are victims.
 
 ## Input Features and Candidate Influencers
 
@@ -66,9 +66,9 @@ Windows AD logs, or Linux system authentication logs
 
 ## Recipe ID: WSL-EAB28
 
-## Revision:  v0.3
+## Revision:  v0.4
 
-## Last updated: 4/20/2017
+## Last updated: 5/17/2017
 
 ## Example Usage
 
