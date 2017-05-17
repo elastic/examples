@@ -66,7 +66,7 @@ DNS query logs (from client to DNS Server)
 
 ## Revision:  v0.6
 
-## Last updated: 5/17/2017
+## Last updated: 17-MAY-2017
 
 ## Example Usage
 
