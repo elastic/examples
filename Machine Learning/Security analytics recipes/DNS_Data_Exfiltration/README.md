@@ -28,9 +28,9 @@ DNS query logs (from client to DNS Server)
     Compared to:        Population of all (highest registered) domains in query results
     Partition by:       None
     Exclude:            domains that occur frequently in the analysis
-    Prep time:          Run analysis on DNS queries from period of 2 weeks or longer
-    Blend:              Run this EAB use case by itself, or along with DNS-EAB01 DNS DGA Activity
-    Serve Results:      Influencer hosts are likely sources of DNS Tunneling activity
+    Duration:           Run analysis on DNS queries from period of 2 weeks or longer
+    Related recipes:    Run this EAB use case by itself, or along with DNS-EAB01 DNS DGA Activity
+    Results:            Influencer hosts are likely sources of DNS Tunneling activity
 
 ## Input Features and Candidate Influencers
 
@@ -64,9 +64,9 @@ DNS query logs (from client to DNS Server)
 
 ## Recipe ID: DNS-EAB02
 
-## Revision:  v0.5
+## Revision:  v0.6
 
-## Last updated: 27/3/2017
+## Last updated: 5/17/2017
 
 ## Example Usage
 
