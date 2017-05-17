@@ -69,7 +69,7 @@ Web proxy logs, firewall logs, or similar data containing logs of HTTP requests 
 
 ## Revision:  v0.5
 
-## Last updated: 5/17/2017
+## Last updated: 17-MAY-2017
 
 ## Example Usage
 
