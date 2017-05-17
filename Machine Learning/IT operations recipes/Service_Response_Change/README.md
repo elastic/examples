@@ -21,15 +21,15 @@ IT Operations - This use case detects anomalies associated with errors, slowdown
 Apache Web Logs (containing HTTP response codes)
 
 ## Use Case Recipe
-    For:            Apache web logs (filtered for error codes such as 400, 500)
-    Model:          Count of log messages containing each value of HTTP response code
-    Detect:         Hosts with unusually high counts of messages containing certain error codes
-    Compared to:    Baseline model/history of message counts for that host
-    Partition by:   host
-    Exclude:        None
-    Prep time:      Run analysis over multiple days of data.  Two weeks or more will yield best results.
-    Blend:          Run this OPS use case by itself, or along with other OPS recipes
-    Serve Results:  Unusual hosts may be experiencing an outage
+    For:                Apache web logs (filtered for error codes such as 400, 500)
+    Model:              Count of log messages containing each value of HTTP response code
+    Detect:             Hosts with unusually high counts of messages containing certain error codes
+    Compared to:        Baseline model/history of message counts for that host
+    Partition by:       host
+    Exclude:            None
+    Duration:           Run analysis over multiple days of data.  Two weeks or more will yield best results.
+    Related recipes:    Run this OPS use case by itself, or along with other OPS recipes
+    Results:           Unusual hosts may be experiencing an outage
 
 ## Input Features and Candidate Influencers
 
@@ -61,9 +61,9 @@ Apache Web Logs (containing HTTP response codes)
 
 ## Recipe ID: SVC-OPS01
 
-## Revision: V0.2
+## Revision: v0.3
 
-## Last updated: 28-APR-2017
+## Last updated: 17-MAY-2017
 
 ## Example Usage
 
