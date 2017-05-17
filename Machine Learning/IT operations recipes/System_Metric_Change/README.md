@@ -21,20 +21,18 @@ IT Operations - This use case detects anomalies associated with errors, slowdown
 Metricbeat system logs (containing CPU utilization metrics)
 
 ## Use Case Recipe
-    For:            Metricbeat system logs
-    Model:          Mean value of CPU utilization on each CPU core
-    Detect:         CPU cores with unusually high mean CPU utilization
-    Compared to:    Baseline model/history of CPU utilization for that core
-    Partition by:   Host
-    Exclude:        None
-    Prep time:      Run analysis on Metricbeat logs from period of 2 weeks or longer
-    Blend:          Run this Ops use case by itself, or along with other OPS recipes
-    Serve Results:  Hosts with unusual cores may be experiencing issues
+    For:                Metricbeat system logs
+    Model:              Mean value of CPU utilization on each CPU core
+    Detect:             CPU cores with unusually high mean CPU utilization
+    Compared to:        Baseline model/history of CPU utilization for that core
+    Partition by:       Host
+    Exclude:            None
+    Duration:           Run analysis on Metricbeat logs from period of 2 weeks or longer
+    Related recipes:    Run this Ops use case by itself, or along with other OPS recipes
+    Results:            Hosts with unusual cores may be experiencing issues
 
 
 ## Input Features and Candidate Influencers
-
-
 
     Required field (or similar)     Description                                                     Example
     cpu_core_util                   CPU utilization metric per core                                 0, 50, 99, 100
@@ -64,9 +62,9 @@ Metricbeat system logs (containing CPU utilization metrics)
 
 ## Recipe ID: SYS-OPS01
 
-## Revision: V0.1
+## Revision: V0.2
 
-## Last updated: 03-MAY-2017
+## Last updated: 17-MAY-2017
 
 ## Example Usage
 
