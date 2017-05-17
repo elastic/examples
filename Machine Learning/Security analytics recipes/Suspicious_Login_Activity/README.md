@@ -68,7 +68,7 @@ Windows AD logs, or Linux system authentication logs
 
 ## Revision:  v0.4
 
-## Last updated: 5/17/2017
+## Last updated: 17-MAY-2017
 
 ## Example Usage
 
