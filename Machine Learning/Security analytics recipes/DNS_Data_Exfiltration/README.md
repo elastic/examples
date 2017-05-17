@@ -23,7 +23,7 @@ DNS query logs (from client to DNS Server)
 ## Use Case Recipe
 
     For:                DNS query requests (filtered for questiontypes: A, AAAA, TXT)
-    Model:              Calculated Entropy (Information content) within the subdomain string
+    Model:              Information content within the subdomain string
     Detect:             Unusually high amounts of information content
     Compared to:        Population of all (highest registered) domains in query results
     Partition by:       None
@@ -64,7 +64,7 @@ DNS query logs (from client to DNS Server)
 
 ## Recipe ID: DNS-EAB02
 
-## Revision:  v0.6
+## Revision:  v0.7
 
 ## Last updated: 17-MAY-2017
 
