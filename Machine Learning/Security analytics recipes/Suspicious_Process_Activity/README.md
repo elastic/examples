@@ -17,14 +17,14 @@ Endpoint Detection and Response (EDR) sources such as: Symantec SEP12 logs, RSA 
 
 ## Use Case Recipe
     For:            All relevant endpoint data [filtered as appropriate, to control the number of people in the host population, including only high-value target (HVT) hosts]
-    Model:          Processes started by a host
-    Detect:         Rare process names
-    Compared to:    Baseline model/history for each host
-    Partition by:   None
-    Exclude:        None
-    Prep time:      Run analysis over multiple days of data.  Two weeks or more will yield best results.
-    Blend:          Run this EAB use case by itself, or include in additional security searches
-    Serve Results:  Look for endpoint host names with rare process_names
+    Model:              Processes started by a host
+    Detect:             Rare process names
+    Compared to:        Baseline model/history for each host
+    Partition by:       None
+    Exclude:            None
+    Duration:           Run analysis over multiple days of data.  Two weeks or more will yield best results.
+    Related recipes:    Run this EAB use case by itself, or include in additional security searches
+    Results:            Look for endpoint host names with rare process_names
 
 ## Input Features and Candidate Influencers
 
@@ -53,9 +53,9 @@ Endpoint Detection and Response (EDR) sources such as: Symantec SEP12 logs, RSA 
 
 ## Recipe ID: EDR-EAB09
 
-## Revision:  v0.4
+## Revision:  v0.5
 
-## Last updated: 11/4/2017
+## Last updated: 5/17/2017
 
 ## Example Usage
 
