@@ -16,7 +16,7 @@ Elementary Attack Behavior (EAB) - This use case detects anomalies associated wi
 Endpoint Detection and Response (EDR) sources such as: Symantec SEP12 logs, RSA ECAT, Carbon Black/Bit9 Logs, or similar data, such as auditd logs containing host names and  names of processes started on an endpoint
 
 ## Use Case Recipe
-    For:            All relevant endpoint data [filtered as appropriate, to control the number of people in the host population, including only high-value target (HVT) hosts]
+    For:                All relevant endpoint data [filtered as appropriate, to control the number of people in the host population, including only high-value target (HVT) hosts]
     Model:              Processes started by a host
     Detect:             Rare process names
     Compared to:        Baseline model/history for each host
