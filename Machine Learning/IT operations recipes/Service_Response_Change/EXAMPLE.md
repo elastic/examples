@@ -58,7 +58,7 @@ This example includes:
 * Download the test dataset provided.
 
     ```
-    curl -O https://github.com/elastic/examples/blob/master/Machine%20Learning/IT%20operations%20recipes/Service_Response_Change/data/apache_logs.log
+    curl -O https://raw.githubusercontent.com/elastic/examples/master/Machine%20Learning/IT%20operations%20recipes/Service_Response_Change/data/apache_logs.log
     ```
 
 * [Download and Install Logstash](https://www.elastic.co/guide/en/logstash/current/installing-logstash.html). **Do not start Logstash**.
@@ -66,8 +66,8 @@ This example includes:
 * Download the provided Logstash configuration file and index template into the same folder.
 
     ```
-    curl -O https://github.com/elastic/examples/blob/master/Machine%20Learning/IT%20operations%20recipes/Service_Response_Change/configs/logstash/apache_logstash.conf
-    curl -O https://github.com/elastic/examples/blob/master/Machine%20Learning/IT%20operations%20recipes/Service_Response_Change/configs/logstash/apache_template.json
+    curl -O https://raw.githubusercontent.com/elastic/examples/master/Machine%20Learning/IT%20operations%20recipes/Service_Response_Change/configs/logstash/apache_logstash.conf
+    curl -O https://raw.githubusercontent.com/elastic/examples/master/Machine%20Learning/IT%20operations%20recipes/Service_Response_Change/configs/logstash/apache_template.json
     ```
 
 * Modify the `logstash.conf` file. Change:
