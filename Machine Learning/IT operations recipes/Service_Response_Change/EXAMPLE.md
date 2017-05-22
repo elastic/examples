@@ -104,9 +104,9 @@ The above steps should index a sample set of apache logs into Elasticsearch.  To
 Download the following files to the **same directory**:
 
   ```
-    curl -O https://github.com/elastic/examples/blob/master/Machine%20Learning/IT%20operations%20recipes/Service_Response_Change/machine_learning/data_feed.json
-    curl -O https://github.com/elastic/examples/blob/master/Machine%20Learning/IT%20operations%20recipes/Service_Response_Change/machine_learning/job.json
-    curl -O https://github.com/elastic/examples/blob/master/Machine%20Learning/IT%20operations%20recipes/scripts/reset_job.sh
+    curl -O https://raw.githubusercontent.com/elastic/examples/master/Machine%20Learning/IT%20operations%20recipes/Service_Response_Change/machine_learning/data_feed.json
+    curl -O https://raw.githubusercontent.com/elastic/examples/master/Machine%20Learning/IT%20operations%20recipes/Service_Response_Change/machine_learning/job.json
+    curl -O https://raw.githubusercontent.com/elastic/examples/master/Machine%20Learning/IT%20operations%20recipes/scripts/reset_job.sh
   ```
 
 * Load the Job by running the supplied reset_job.sh script.
