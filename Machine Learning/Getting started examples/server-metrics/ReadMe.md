@@ -50,15 +50,15 @@ The following assumes the default username and password of "elastic" and "change
    tar -xvf server_metrics.tar.gz
    ```
 
-2. Download `ingest_data.sh` script in this repo, and copy it into the `server_metrics` folder (created in the previous step) <br>
+2. Download `ingest-data.sh` script in this repo, and copy it into the `server_metrics` folder (created in the previous step) <br>
 
-3. Run the `ingest_data.sh` script to index the data into Elasticsearch.  
+3. Run the `ingest-data.sh` script to index the data into Elasticsearch.  
 
    **WARNING**: This script  indexes the data into index, `server-metrics`, and creates a Kibana index pattern, `server-*`. If your Elasticsearch instance already has a index or or index pattern with that name, it will be overwritten when you run this script.**
 
     
    ```
-   sh ingest_data.sh
+   sh ingest-data.sh
    ```
    
 
