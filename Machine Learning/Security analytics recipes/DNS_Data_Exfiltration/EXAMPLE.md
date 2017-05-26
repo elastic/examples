@@ -55,7 +55,7 @@ This example includes:
 * Download the provided Packetbeat configuration file.
 
     ```
-    curl -O https://github.com/elastic/examples/blob/master/Machine%20Learning/Security%20analytics%20recipes/DNS_Data_Exfiltration/configs/packetbeat/packetbeat.yml
+    curl -O https://raw.githubusercontent.com/elastic/examples/master/Machine%20Learning/Security%20analytics%20recipes/DNS_Data_Exfiltration/configs/packetbeat/packetbeat.yml
     ```
 
 * Modify the packetbeat.yml file. Consider changing:
