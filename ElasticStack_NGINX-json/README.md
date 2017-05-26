@@ -1,7 +1,9 @@
 ### Getting Started with Elastic Stack for NGINX (JSON) Logs
 This **Getting Started with Elastic Stack** example provides sample files to ingest, analyze & visualize **NGINX access logs** using the Elastic Stack. This example uses JSON formatted version of Nginx logs. The NGINX `log format` entry used to generate these logs is shown in  Download section below.
 
-##### WARNING: NGINX uses \xXX to encode some characters. The resulting "JSON" string is not valid (the JSON standard specifies \u00XX) and in Logstash you will get a json parse error for the invalid JSON string. It only happens when any variables e.g. $http_user_agent contain characters that NGINX will escape e.g. backslash or reverse solidus.
+##### WARNING: Invalid JSON
+By default NGINX uses \xXX to encode some characters. The resulting "JSON" string is not valid (the JSON standard specifies \u00XX) and in Logstash you will get a json parse error for the invalid JSON string. It only happens when any variables e.g. $http_user_agent contain characters that NGINX will escape e.g. backslash or reverse solidus.
+Newer versions of NGINX (>=1.11.8) support `escape=json` as an argument to log_format. See the [ngx_http_log_module documentation](http://nginx.org/en/docs/http/ngx_http_log_module.html#log_format). 
 
 ##### Version
 Example has been tested in following versions:
