@@ -40,4 +40,4 @@ This script accepts the following **optional** parameters:
 
 #### Example
 
-`python generate_random_data.py --es_host localhost:9200 --es_user elastic --es_password changeme --num_centroids 20 -- 0 --max_per_centroid 10000`
+`python generate_random_data.py --es_host localhost:9200 --es_user elastic --es_password changeme --num_centroids 20 --min_per_centroid 10 --max_per_centroid 10000`
