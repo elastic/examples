@@ -6,8 +6,8 @@ This folder is a complementary resource to the examples used in the [Getting Sta
 The tutorial series includes 3 videos:
 
  - [Lab 1 - Detecting anomalies in a single time series](https://www.elastic.co/videos/machine-learning-tutorial-creating-a-single-metric-job) - see [server-metrics](https://github.com/elastic/examples/tree/master/Machine%20Learning/Getting%20started%20examples/server-metrics) for data and instructions
- - [Lab 2 - Detecting anomalies in a multiple time  series](https://www.elastic.co/videos/machine-learning-tutorial-creating-a-single-metric-job) - see [server-metrics](https://github.com/elastic/examples/tree/master/Machine%20Learning/Getting%20started%20examples/server-metrics) for data and instructions
- - [Lab 3 - Detecting anomalies in a population](www.elastic.co/videos/machine-learning-lab-3-detect-outliers-in-a-population) - see [user-activity](https://github.com/elastic/examples/tree/master/Machine%20Learning/Getting%20started%20examples/user-activity) for data and instructions
+ - [Lab 2 - Detecting anomalies in a multiple time  series](https://www.elastic.co/videos/machine-learning-tutorial-creating-a-multi-metric-job) - see [server-metrics](https://github.com/elastic/examples/tree/master/Machine%20Learning/Getting%20started%20examples/server-metrics) for data and instructions
+ - [Lab 3 - Detecting anomalies in a population](https://www.elastic.co/videos/machine-learning-lab-3-detect-outliers-in-a-population) - see [user-activity](https://github.com/elastic/examples/tree/master/Machine%20Learning/Getting%20started%20examples/user-activity) for data and instructions
 
 Once you have the data ingested into Elasticsearch, you are all set to follow along the steps in the video(s) on your local Elastic Stack. Enjoy!
 
