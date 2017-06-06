@@ -26,7 +26,7 @@ Example has been tested in following versions:
 
 ### Download & Ingest Data
 
-You have 2 options to index the data into Elasticsearch. You can either use the Elasticsearch [snapshot and restore](https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-snapshots.html) API to directly restore the `donorschoose` index from a snapshot. OR, you can download the raw data from the DonorsChoose.org website and then use the scripts in the [Scripts-Python](https://github.com/elastic/examples/tree/master/ELK_donorschoose/Scripts-Python) folder to process the raw files and index the data.
+You have 2 options to index the data into Elasticsearch. You can either use the Elasticsearch [snapshot and restore](https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-snapshots.html) API to directly restore the `donorschoose` index from a snapshot. OR, you can download the raw data from the DonorsChoose.org website and then use the scripts in the [Scripts-Python](https://github.com/elastic/examples/tree/master/ElasticStack_donorschoose/Scripts-Python) folder to process the raw files and index the data.
 
 #### Option 1. Load data by restoring index snapshot
 (Learn more about snapshot / restore [here](https://www.elastic.co/guide/en/elasticsearch/reference/5.0/modules-snapshots.html))
@@ -70,9 +70,9 @@ At this point, go make yourself a coffee. When you are done enjoying your cup of
 
 #### Option 2: Process and load data using Python script
 
-The raw DonorsChoose.org data is provided as 5 separate files. In order to do some useful querying of the data in a search engine / NoSQL store like Elasticsearch, you typically have to go through a data modeling process of identifying how to join data from various tables. The files and instructions provided in the [Scripts-Python](https://github.com/elastic/examples/tree/master/ELK_donorschoose/Scripts-Python) folder provide example of processing, modeling and ingesting data into Elasticsearch starting with the raw data.
+The raw DonorsChoose.org data is provided as 5 separate files. In order to do some useful querying of the data in a search engine / NoSQL store like Elasticsearch, you typically have to go through a data modeling process of identifying how to join data from various tables. The files and instructions provided in the [Scripts-Python](https://github.com/elastic/examples/tree/master/ElasticStack_donorschoose/Scripts-Python) folder provide example of processing, modeling and ingesting data into Elasticsearch starting with the raw data.
 
-We are providing this option in case you want to modify how the data is joined, perform additional data cleansing, enrich with additional data, etc. Follow the [ReadMe](https://github.com/elastic/examples/blob/master/ELK_donorschoose/Scripts-Python/README.md) in the [Scripts - Python](https://github.com/elastic/examples/tree/master/ELK_donorschoose/Scripts-Python) folder if you want to try this option.
+We are providing this option in case you want to modify how the data is joined, perform additional data cleansing, enrich with additional data, etc. Follow the [ReadMe](https://github.com/elastic/examples/blob/master/ElasticStack_donorschoose/Scripts-Python/README.md) in the [Scripts - Python](https://github.com/elastic/examples/tree/master/ElasticStack_donorschoose/Scripts-Python) folder if you want to try this option.
 
 #### Check data availability
 Once the index is created using either of the above options, you can check to see if all the data is available in Elasticsearch. If all goes well, you should get a `count` response of approximately `3506071` when you run the following command.
