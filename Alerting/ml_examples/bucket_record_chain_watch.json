@@ -1,0 +1,120 @@
+{
+  "trigger": {
+    "schedule": {
+      "interval": "1m"
+    }
+  },
+  "metadata": {
+    "min_anomaly_score": 75
+  },
+  "input": {
+    "chain": {
+      "inputs": [
+        {
+          "first": {
+            "search": {
+              "request": {
+                "indices": [
+                  ".ml-anomalies-*"
+                ],
+                "body": {
+                  "query": {
+                    "bool": {
+                      "filter": [
+                        {
+                          "range": {
+                            "timestamp": {
+                              "gte": "now-2y"
+                            }
+                          }
+                        },
+                        {
+                          "term": {
+                            "result_type": "bucket"
+                          }
+                        },
+                        {
+                          "term": {
+                            "job_id": "farequote_response"
+                          }
+                        },
+                        {
+                          "range": {
+                            "anomaly_score": {
+                              "gte": "{{ctx.metadata.min_anomaly_score}}"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "second": {
+            "search": {
+              "request": {
+                "indices": [
+                  ".ml-anomalies-*"
+                ],
+                "body": {
+                  "query": {
+                    "bool": {
+                      "filter": [
+                        {
+                          "term": {
+                            "timestamp": "{{ctx.payload.first.hits.hits.0._source.timestamp}}"
+                          }
+                        },
+                        {
+                          "term": {
+                            "job_id": "farequote_response"
+                          }
+                        },
+                        {
+                          "term": {
+                            "result_type": "record"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "collapse": {
+                    "field": "partition_field_value"
+                  },
+                  "sort": [
+                    {
+                      "record_score": {
+                        "order": "desc"
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "condition": {
+    "compare": {
+      "ctx.payload.first.hits.total": {
+        "gt": 0
+      }
+    }
+  },
+  "actions": {
+    "log": {
+      "transform": {
+        "script": "return ['anomaly_score': ctx.payload.first.hits.hits.0._source.anomaly_score, 'bucket_time': Instant.ofEpochMilli(ctx.payload.first.hits.hits.0._source.timestamp).atZone(ZoneId.systemDefault()).format(DateTimeFormatter.ofPattern('yyyy-MM-dd HH:mm:ss')),'anomaly_details':ctx.payload.second.hits.hits.stream().map(p -> ['airline':p._source.partition_field_value,'score':p._source.record_score,'actual':p._source.actual.0,'typical':p._source.typical.0]).collect(Collectors.toList())]"
+      },
+      "logging": {
+        "text": "Anomaly of score={{ctx.payload.anomaly_score}} at {{ctx.payload.bucket_time}} influenced by:\n {{#ctx.payload.anomaly_details}}airline={{airline}}: score={{score}}, responsetime={{actual}}ms (typical={{typical}}ms)\n{{/ctx.payload.anomaly_details}}"
+      }
+    }
+  }
+}
