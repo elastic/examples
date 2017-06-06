@@ -62,5 +62,5 @@ airline=AWE: score=0.00871093, responsetime=19.1644ms (typical=19.9918ms)
 
 The data used in these example watches is the demo "farequote" data set available [here](https://s3.amazonaws.com/prelert_demo/farequote_to_ES_sample.tar.gz).
 
-The ML job for the example data would be `max(responetime) partition_field_name=airline`
+The ML job for the example data would be `max(responsetime) partition_field_name=airline`
 
