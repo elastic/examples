@@ -39,7 +39,7 @@ which will be installed when Logstash is run with the above configuration.
 Example has been tested with the following versions:
 
 - Elasticsearch 5.4
-- Logstash 5.4 with CEF codec
+- Logstash 5.4 with [CEF codec](https://www.elastic.co/guide/en/logstash/current/plugins-codecs-cef.html)
 - Kibana 5.4
 - X-Pack 5.4
 - Python 3.5 with Elasticsearch dependency
@@ -75,7 +75,7 @@ The following assumes the user is using curl. Commands below can be replicated w
 
 Download the following files in this repo to a local directory:
 
-- [`auditd.cef`](TODO).  
+- [`auditd.cef`](https://raw.githubusercontent.com/elastic/examples/master/Security_Analytics/audidt_analysis/auditd.cef).  
 - `auditd_analysis_logstash.conf`
 - `auditd_analysis_kibana.json`
 - `unusual_process.json`
@@ -123,7 +123,7 @@ Wait for Logstash to start, as indicated by the message "Successfully started Lo
 
 #### 2. Ingest data into Elasticsearch using Logstash
 
-* Execute the following command to load sample logs into Elasticsearch in a separate terminal. [Note: It takes a few minutes to ingest the entire file (TODO documents) into Elasticsearch]
+* Execute the following command to load sample logs into Elasticsearch in a separate terminal. [Note: It takes a few seconds to ingest the entire file (10925 documents) into Elasticsearch]
 
 ```shell
 cat auditd.cef | nc localhost 5000
@@ -133,7 +133,7 @@ Once indexing is complete this command will return.
 
 * Verify that data is successfully indexed into Elasticsearch
 
-  Running `curl http://localhost:9200/cef-auditd-*/_count -u elastic:changeme` should return a response a `"count":TODO`.  This command will return a higher count if you have executed either of the watches.
+  Running `curl http://localhost:9200/cef-auditd-*/_count -u elastic:changeme` should return a response a `"count":10925`.  This command will return a higher count if you have executed either of the watches.
 
 The above assumes the default username and password.
 
