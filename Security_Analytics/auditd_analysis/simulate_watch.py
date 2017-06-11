@@ -11,8 +11,8 @@ parser.add_argument("--es_host", default="localhost:9200", help="ES Connection S
 parser.add_argument("--es_user", default="elastic", help="ES User")
 parser.add_argument("--es_password", default="changeme", help="ES Password")
 parser.add_argument("--interval", default=300, help="Interval in Seconds")
-parser.add_argument("--start_time", default="2017-05-26T11:09:00Z", help="Start Time")
-parser.add_argument("--end_time", default="2017-06-08T11:17:01Z", help="End Time")
+parser.add_argument("--start_time", default="2017-06-05T17:06:30Z", help="Start Time")
+parser.add_argument("--end_time", default="2017-06-06T11:12:35Z", help="End Time")
 parser.add_argument("--watch_template", default="unusual_process.inline.json", help="Watch File")
 options = parser.parse_args()
 

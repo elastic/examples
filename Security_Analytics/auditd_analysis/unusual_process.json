@@ -24,7 +24,7 @@
                       "filter": [
                         {
                           "range": {
-                            "rt": {
+                            "deviceReceiptTime": {
                               "gte": "{{ctx.trigger.scheduled_time}}||-{{ctx.metadata.time_period}}",
                               "lt": "{{ctx.trigger.scheduled_time}}"
                             }
@@ -32,7 +32,7 @@
                         },
                         {
                           "term": {
-                            "cat": {
+                            "deviceEventCategory": {
                               "value": "EXECVE"
                             }
                           }
@@ -75,14 +75,14 @@
                         },
                         {
                           "range": {
-                            "rt": {
+                            "deviceReceiptTime": {
                               "lt": "{{ctx.trigger.scheduled_time}}||-{{ctx.metadata.time_period}}"
                             }
                           }
                         },
                         {
                           "term": {
-                            "cat": {
+                            "deviceEventCategory": {
                               "value": "EXECVE"
                             }
                           }

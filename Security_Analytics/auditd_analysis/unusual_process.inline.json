@@ -15,7 +15,7 @@
             "search": {
               "request": {
                 "indices": [
-                  "filebeat-*"
+                  "cef-auditd-*"
                 ],
                 "body": {
                   "query": {
@@ -23,7 +23,7 @@
                       "filter": [
                         {
                           "range": {
-                            "@timestamp": {
+                            "deviceReceiptTime": {
                               "gte": "{{ctx.trigger.scheduled_time}}||-{{ctx.metadata.time_period}}",
                               "lt": "{{ctx.trigger.scheduled_time}}"
                             }
@@ -31,7 +31,7 @@
                         },
                         {
                           "term": {
-                            "auditd.log.record_type": {
+                            "deviceEventCategory": {
                               "value": "EXECVE"
                             }
                           }
@@ -58,7 +58,7 @@
             "search": {
               "request": {
                 "indices": [
-                  "filebeat-*"
+                  "cef-auditd-*"
                 ],
                 "body": {
                   "query": {
@@ -74,14 +74,14 @@
                         },
                         {
                           "range": {
-                            "@timestamp": {
+                            "deviceReceiptTime": {
                               "lt": "{{ctx.trigger.scheduled_time}}||-{{ctx.metadata.time_period}}"
                             }
                           }
                         },
                         {
                           "term": {
-                            "cat": {
+                            "deviceEventCategory": {
                               "value": "EXECVE"
                             }
                           }

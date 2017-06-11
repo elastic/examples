@@ -147,14 +147,15 @@ To simulate the execution over the full dataset, run the following:
 * Execute the following command from the `auditd_analysis` directory to execute a specific watch.  For all dashboards to function, all watches will need to be executed once.
 
 ```shell
-./simulate_watch.py <name of watch> <username> <password>
+./simulate_watch.py <username> <password>
 ```
 `username` and `password` are both optional and default to 'elastic' and 'changeme' respectively.  This script accepts additional parameters to allow execution on your own dataset, including:
 
+* `es_host` - Elasticsearch host and port. Defaults to `localhost:9200`
 * `interval` - Size of the window in seconds. Defaults to 300 or 5m as indicated in the blog.
-* `start_time` - Time at which to start the sliding time. Defaults to `2017-05-26T11:09:00Z` or the earliest time in the dataset provided.
-* `end_time` - Time at which to stop the sliding window. Defaults to `2017-06-08T11:17:01Z` or the oldest time in the dataset provided.
-* `unusual_process.inline.json`- The inline watch file populated for each execution. Defaults to `unusual_process.inline.json`.
+* `start_time` - Time at which to start the sliding time. Defaults to `2017-06-05T17:06:30Z` or the earliest time in the dataset provided.
+* `end_time` - Time at which to stop the sliding window. Defaults to `2017-06-06T11:12:35Z` or the oldest time in the dataset provided.
+* `watch_template`- The inline watch file populated for each execution. Defaults to `unusual_process.inline.json`.
 
 #### 4. Visualize the results in Kibana
 
