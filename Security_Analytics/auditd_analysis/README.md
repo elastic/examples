@@ -168,7 +168,7 @@ To simulate the execution over the full dataset, run the following:
 * Open dashboard
     * Click on **Dashboard** tab and open either `Auditd New Process Dashboard` dashboard
 
-![Kibana Auditd_New Process Screenshot](TODO)
+![Kibana Auditd_New Process Screenshot](https://user-images.githubusercontent.com/12695796/27012292-e7bd5e6e-4ec4-11e7-9d8d-08d90b67cbf3.png)
 
 ### We would love your feedback!
 If you found this example helpful and would like more such Getting Started examples for other standard formats, we would love to hear from you. If you would like to contribute Getting Started examples to this repo, we'd love that too!
