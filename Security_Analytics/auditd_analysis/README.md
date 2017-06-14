@@ -8,7 +8,7 @@ Included are example Watches for proactively monitoring this data for possible s
 
 This example complements the above blog post, providing a means to detect unusual processes starting on servers in the last N minutes. Unusual is defined as "A new process signature that has not occurred on the server historically".
 
-This example relies on the user creating a `process_signature` which acts as a unique identifier for a process. This is an imprecise process, relying on the user selecting fields to concatenate which best represent a unique identifier across server instances when combined.  Too coarse identifier, which fails to encode sufficient properties of the processes characteristics, will result in the alert failing to detect new process effectively. Too granular and all processes will incorrectly be identified as being new.
+This example relies on the user creating a `process_signature` which acts as a unique identifier for a process. This is an imprecise process, relying on the user selecting fields to concatenate which best represent a unique identifier across server instances when combined.  Too coarse an identifier, which fails to encode sufficient properties of the processes characteristics, will result in the alert failing to detect new process effectively. Too granular and all processes will incorrectly be identified as being new.
 
 For auditd CEF encoded data we utilise the following fields, concatenating them to form a single process_signature field with the delimiter “|” using a Logstash filter:
 
@@ -24,7 +24,7 @@ This example includes:
 - `auditd_analysis_kibana.json` - Simple Kibana visualizations and dashboards for the associated blog posts
 - `unusual_process.json` -  A watch that detects new processes starting. REFERENCE ONLY. 
 - `unusual_process.inline.json` - The above watch in an inline execution format so it can be used with the `simulate_watch.py` script and be executed over the full dataset.
-- `simulate_watch.py` - A convenience script to executes the above watch. In order to test this watch against the provided test data set this script which performs a “sliding window” execution of the watch. 
+- `simulate_watch.py` - A convenience script to execute the above watch. In order to test this watch against the provided test data set, this script which performs a “sliding window” execution of the watch. 
 This repeatedly executes the watch, each time adjusting the date filters to target the next 5 minute time range thus simulating the execution against a live stream of several days of data in a few seconds.
 - `requirements.txt` - Python dependencies for pip
 
@@ -171,4 +171,4 @@ To simulate the execution over the full dataset, run the following:
 ![Kibana Auditd_New Process Screenshot](https://user-images.githubusercontent.com/12695796/27012292-e7bd5e6e-4ec4-11e7-9d8d-08d90b67cbf3.png)
 
 ### We would love your feedback!
-If you found this example helpful and would like more such Getting Started examples for other standard formats, we would love to hear from you. If you would like to contribute Getting Started examples to this repo, we'd love that too!
+If you found this example helpful, and would like more such Getting Started examples for other standard formats, we would love to hear from you. If you would like to contribute Getting Started examples to this repo, we'd love that too!
