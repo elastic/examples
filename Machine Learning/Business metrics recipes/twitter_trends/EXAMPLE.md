@@ -23,7 +23,7 @@ This example includes:
  
  * Minimal Filebeat configuration for ingesting tweet data
  * Minimal Logstash configuration for collecting tweets if desired
- * X-Pack Machine Learning job configuration files
+ * X-Pack machine learning job configuration files
  * Utility scripts to help with loading of the job
 
 ## Installation and Setup
@@ -106,6 +106,7 @@ This example includes:
 
 ### Example 2 - Self Collection
 
+If collecting your own twitter data, it is recommend a minimum of 1 week per topic is indexed prior to running any machine learning jobs. This value is subject to the specific topic - some obviously generate more traffic than others.  To take advantage of any seasonal trend detection larger quantities will be required.
 
 * [Download and Install Logstash](https://www.elastic.co/guide/en/logstash/current/installing-logstash.html). **Do not start Logstash**.
 
@@ -178,7 +179,7 @@ This script assumes the default Elasticsearch host, port, user and password. To 
 
 * Access Kibana by going to http://localhost:5601 in a web browser
 
-* Select "Machine Learning" from the left tab. This should list the "Twitter Trends" job e.g.
+* Select "machine learning" from the left tab. This should list the "Twitter Trends" job e.g.
 
 [http://localhost:5601/app/ml#/jobs?_g=()](http://localhost:5601/app/ml#/jobs?_g=())
 
@@ -186,7 +187,7 @@ This script assumes the default Elasticsearch host, port, user and password. To 
 
 ## Run the Recipe
 
-* The Machine Learning job can be started. To start, either:
+To start the machine learning job, either:
 
 1. issue the following command to the ML API
 
