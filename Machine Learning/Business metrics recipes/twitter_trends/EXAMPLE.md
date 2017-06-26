@@ -124,22 +124,22 @@ If collecting your own twitter data, it is recommend a minimum of 1 week per top
 
 * Modify Logstash config file to use your Twitter API credentials
 
-  Modify the `input { twitter { } }` section in the `twitter_logstash.conf` file to use the API keys and Access tokens generated   in the previous step. While at it, feel free to modify the words you want to track in the `keywords` field (in this example,    we are tracking tweets mentioning popular Marvel Comic characters.
-```
-input {
-  twitter {
-    consumer_key       => "INSERT YOUR CONSUMER KEY"
-    consumer_secret    => "INSERT YOUR CONSUMER SECRET"
-    oauth_token        => "INSERT YOUR ACCESS TOKEN"
-    oauth_token_secret => "INSERT YOUR ACCESS TOKEN SECRET"
-    keywords           => [ "thor", "spiderman", "wolverine", "ironman", "hulk"]
-    full_tweet         => true
-    add_field => { "fields.topic" => "super_heroes" }
-  }
-}
-```
+     Modify the `input { twitter { } }` section in the `twitter_logstash.conf` file to use the API keys and Access tokens generated   in the previous step. While at it, feel free to modify the words you want to track in the `keywords` field (in this example, we are tracking tweets mentioning popular Marvel Comic characters.
+    ```
+    input {
+      twitter {
+        consumer_key       => "INSERT YOUR CONSUMER KEY"
+        consumer_secret    => "INSERT YOUR CONSUMER SECRET"
+        oauth_token        => "INSERT YOUR ACCESS TOKEN"
+        oauth_token_secret => "INSERT YOUR ACCESS TOKEN SECRET"
+        keywords           => [ "thor", "spiderman", "wolverine", "ironman", "hulk"]
+        full_tweet         => true
+        add_field => { "fields.topic" => "super_heroes" }
+      }
+    }
+    ```
 
-Note: Notice how above we add the field `topic` to the data.  This configuration effectively proposes a twitter input per topic the user wishes to index.  Filters which add the topic field based on the contents of the tweet maybe preferable in cases of a large number of topics.
+    Note: Notice how above we add the field `topic` to the data.  This configuration effectively proposes a twitter input per topic the user wishes to index.  Filters which add the topic field based on the contents of the tweet maybe preferable in cases of a large number of topics.
 
 * Execute the following command to start ingesting tweets of interest into Elasticsearch. Since this example is a monitoring Twitter in real time, the tweet ingestion volume will depend on the popularity of the words being tracked. When you run the above command, you should see a trail of dots (`...`) in your shell as new tweets are ingested.
 
@@ -156,7 +156,7 @@ Note: Notice how above we add the field `topic` to the data.  This configuration
 
 ## Load the Recipe
 
-Download the following files to the same directory:
+* Download the following files to the same directory:
 
   ```
     curl -O https://github.com/elastic/examples/blob/master/Machine%20Learning/Business%20metrics%20recipes/twitter_trends/machine_learning/data_feed.json
@@ -167,15 +167,15 @@ Download the following files to the same directory:
 
 * Load the Job by running the supplied reset_job.sh script.
 
-```
+    ```
     ./reset_job.sh twitter_trends
-```
+    ```
 
-This script assumes the default Elasticsearch host, port, user and password. To supply alternatives, supply as arguments e.g.
+    This script assumes the default Elasticsearch host, port, user and password. To supply alternatives, supply as arguments e.g.
 
-```
+    ```
     ./reset_job.sh twitter_trends <host_port> <username> <password>
-```
+    ```
 
 * Access Kibana by going to http://localhost:5601 in a web browser
 
@@ -191,9 +191,9 @@ To start the machine learning job, either:
 
 1. issue the following command to the ML API
 
-        ```
-        curl -s -X POST localhost:9200/_xpack/ml/datafeeds/datafeed-twitter_trends/_start -u elastic:changeme
-        ```  
+    ```
+    curl -s -X POST localhost:9200/_xpack/ml/datafeeds/datafeed-twitter_trends/_start -u elastic:changeme
+    ```  
     **OR**
 1. Click the `>` icon for the job in the UI, followed by `Start`.
 
