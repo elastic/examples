@@ -106,7 +106,7 @@ This example includes:
 
 ### Example 2 - Self Collection
 
-If collecting your own twitter data, it is recommend a minimum of 1 week per topic is indexed prior to running any machine learning jobs. This value is subject to the specific topic - some obviously generate more traffic than others.  To take advantage of any seasonal trend detection larger quantities will be required.
+If collecting your own twitter data, it is recommend a minimum of 1 week per topic is indexed prior to running any machine learning jobs. This value is not precise and is subject to the specific topic - some obviously generate more traffic than others.  To take advantage of any seasonal trend detection, however, larger quantities will be required.
 
 * [Download and Install Logstash](https://www.elastic.co/guide/en/logstash/current/installing-logstash.html). **Do not start Logstash**.
 
