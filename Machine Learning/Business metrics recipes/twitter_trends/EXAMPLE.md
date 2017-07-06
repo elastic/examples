@@ -91,6 +91,11 @@ This example includes:
 
 * Start filebeat as described [here](https://www.elastic.co/guide/en/beats/filebeat/5.4/filebeat-starting.html).
 
+    ```
+    cd <path_to_filebeat_installation>
+    ./filebeat -e -c filebeat.yml
+    ```
+
 * Test Filebeat is indexing the data by running the following commands.
 
     ```
@@ -203,4 +208,4 @@ To start the machine learning job, either:
 On completion of the job execution navigate to the explorer results view for the job. Example anomalies are shown below.
 More specifically this shows the spike in #APM activity around the announcment of Elastic's opbeat acquisition. Additional activity highlights the WebRTCSummit summit in Santa Clara. 
 
-![Example Explorer View for Twitter Trends](https://user-images.githubusercontent.com/12695796/27547566-5a5e0dfe-5a8e-11e7-9649-fb9758dd941a.png)
+![Example Explorer View for Twitter Trends](https://user-images.githubusercontent.com/12695796/27926793-8f104b84-6281-11e7-8a74-521613280290.png)
