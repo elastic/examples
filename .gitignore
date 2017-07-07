@@ -27,3 +27,4 @@ node_modules
 /Security_Analytics/firewall-analysis/honeynet_firewall.cef
 
 ElasticStack_earthquakes/ncedc-earthquakes-screenshot.png
+/Security_Analytics/auditd_analysis/replicate_data.py
