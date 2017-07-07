@@ -1,0 +1,19 @@
+{
+  "job_id": "system_metric_change",
+  "indexes": [
+    "metricbeat-*"
+  ],
+  "types": [
+    "metricsets"
+  ],
+  "query": {
+    "term": {
+      "metricset.name": {
+        "value": "core"
+      }
+    }
+  },
+  "scroll_size": 1000,
+  "query_delay": "60s",
+  "frequency": "150s"
+}
