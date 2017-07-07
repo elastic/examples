@@ -1,7 +1,8 @@
 ### Install Elasticsearch, Logstash & Kibana
 
 **Check Versions**
-All examples target 5.0 of the Elastic Stack.
+
+All examples should target 5.x of the Elastic Stack.
 
 **Check Java version**
 

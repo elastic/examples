@@ -70,4 +70,4 @@ DNS query logs (from client to DNS Server)
 
 ## Example Usage
 
-see [EXAMPLE.md](https://github.com/elastic/examples/blob/master/Machine%20Learning/Security%20analytics%20recipes/DNS_Data_Exfiltration/EXAMPLE.md)
+see [EXAMPLE.md](https://github.com/elastic/examples/blob/master/Machine%20Learning/Security%20Analytics%20Recipes/dns_data_exfiltration/EXAMPLE.md)

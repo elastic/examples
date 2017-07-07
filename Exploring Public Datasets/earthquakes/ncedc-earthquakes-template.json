@@ -1,0 +1,96 @@
+{
+  "order": 0,
+  "template": "ncedc-earthquakes",
+  "mappings": {
+    "_default_": {
+      "_all": {
+        "enabled": false
+      },
+      "dynamic_templates": [
+        {
+          "strings": {
+            "match": "*",
+            "match_mapping_type": "string",
+            "mapping": {
+              "type": "keyword"
+            }
+          }
+        }
+      ],
+      "properties": {
+        "@timestamp": {
+          "type": "date",
+          "ignore_malformed": true
+        },
+        "beat": {
+          "properties": {
+            "hostname": {
+              "type": "keyword"
+            },
+            "name": {
+              "type": "keyword"
+            },
+            "version": {
+              "type": "keyword"
+            }
+          }
+        },
+        "depth": {
+          "type": "float",
+          "ignore_malformed": true
+        },
+        "dmin": {
+          "type": "float",
+          "ignore_malformed": true
+        },
+        "event_id": {
+          "type": "keyword"
+        },
+        "gap": {
+          "type": "float",
+          "ignore_malformed": true
+        },
+        "input_type": {
+          "type": "keyword"
+        },
+        "location": {
+          "type": "geo_point",
+          "ignore_malformed": true
+        },
+        "mag": {
+          "type": "float",
+          "ignore_malformed": true
+        },
+        "magType": {
+          "type": "keyword"
+        },
+        "message": {
+          "type": "keyword"
+        },
+        "nst": {
+          "type": "keyword"
+        },
+        "offset": {
+          "type": "long"
+        },
+        "rms": {
+          "type": "float",
+          "ignore_malformed": true
+        },
+        "source": {
+          "type": "keyword"
+        },
+        "type": {
+          "type": "keyword"
+        }
+      }
+    }
+  },
+  "settings": {
+    "index": {
+      "refresh_interval": "10s",
+      "number_of_shards": "1",
+      "number_of_replicas": "0"
+    }
+  }
+}

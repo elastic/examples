@@ -1,0 +1,52 @@
+{
+  "description": "secrepo pipeline",
+  "processors": [
+    {
+      "grok": {
+        "field": "message",
+        "patterns": [
+          "%{IP:src} - - \\[%{HTTPDATE:timestamp}\\] \"%{HTTP_METHOD:http_method} (http://www.secrepo.com)?%{URL_PARTS} %{DATA:http_version}\" %{INT:response_code} %{INT:bytes} \"(%{DATA:referer}|-|)\" \"%{GREEDYDATA:agent}\""],
+        "pattern_definitions" : {
+          "HTTP_METHOD" : "GET|POST|PUT|HEAD|OPTIONS|TRACE|PROPFIND",
+          "HTTP_VERSION" : "HTTP/%{BASE10NUM}",
+          "URL_PARTS":"%{DATA:url}(%{URIPARAM:params})?"
+        },
+        "ignore_failure": true
+      }
+    },
+    {
+      "date": {
+        "field": "timestamp",
+        "formats": ["MMM dd HH:mm:ss","dd/MMM/YYYY:HH:mm:ss Z"],
+        "ignore_failure": true
+      }
+    },
+    {
+      "user_agent": {
+        "field": "agent",
+        "target_field": "user_agent",
+        "ignore_failure": true
+      }
+    },
+    {
+      "geoip": {
+        "field": "src",
+        "target_field": "geoip",
+        "ignore_failure": true
+      }
+    },
+    {
+      "remove": {
+        "field": "timestamp",
+        "ignore_failure": true
+      }
+    },
+    {
+      "remove": {
+        "field": "agent",
+        "ignore_failure": true
+      }
+    }
+
+  ]
+}

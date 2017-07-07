@@ -64,7 +64,7 @@ This example includes:
 * Download the provided Metricbeat configuration file.
 
     ```
-    curl -O https://github.com/elastic/examples/blob/master/Machine%20Learning/IT%20operations%20recipes/System_Metric_Change/configs/metricbeat/metricbeat.yml
+    curl -O https://github.com/elastic/examples/blob/master/Machine%20Learning/IT%20Operations%20Recipes/system_metric_change/configs/metricbeat/metricbeat.yml
     ```
 
 * Modify the metricbeat.yml file. Consider changing:
@@ -80,7 +80,7 @@ This example includes:
 * Download & Install the required ingest processor  
 
   ```
-    curl -O https://github.com/elastic/examples/blob/master/Machine%20Learning/IT%20operations%20recipes/System_Metric_Change/configs/ingest/core_id.json
+    curl -O https://github.com/elastic/examples/blob/master/Machine%20Learning/IT%20Operations%20Recipes/system_metric_change/configs/ingest/core_id.json
     curl -XPUT -H 'Content-Type: application/json' 'localhost:9200/_ingest/pipeline/core_id' -d @core_id.json -u elastic:changeme
   ```
 
@@ -108,9 +108,9 @@ The Machine Learning Recipe can be loaded prior to the complete data capture how
 Download the following files to the same directory:
 
   ```
-    curl -O https://github.com/elastic/examples/blob/master/Machine%20Learning/IT%20operations%20recipes/System_Metric_Change/machine_learning/data_feed.json
-    curl -O https://github.com/elastic/examples/blob/master/Machine%20Learning/IT%20operations%20recipes/System_Metric_Change/machine_learning/job.json
-    curl -O https://github.com/elastic/examples/blob/master/Machine%20Learning/IT%20operations%20recipes/scripts/reset_job.sh
+    curl -O https://github.com/elastic/examples/blob/master/Machine%20Learning/IT%20Operations%20Recipes/system_metric_change/machine_learning/data_feed.json
+    curl -O https://github.com/elastic/examples/blob/master/Machine%20Learning/IT%20Operations%20Recipes/system_metric_change/machine_learning/job.json
+    curl -O https://github.com/elastic/examples/blob/master/Machine%20Learning/IT%20Operations%20Recipes/scripts/reset_job.sh
   ```
 
 * Load the Job by running the supplied reset_job.sh script.

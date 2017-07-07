@@ -1,0 +1,19 @@
+filebeat.prospectors:
+- input_type: log
+  paths:
+    - ./ncedc-earthquakes-dataset/earthquakes.txt
+  document_type: earthquake
+
+- input_type: log
+  paths:
+    - ./ncedc-earthquakes-dataset/blasts.txt
+  document_type: blast
+
+output.elasticsearch:
+  hosts: ["localhost:9200"]
+  index: "ncedc-earthquakes"
+  template.enabled: true
+  template.name: ncedc-earthquakes
+  template.path: "ncedc-earthquakes-template.json"
+  template.overwrite: true
+  pipeline: ncedc-earthquakes

@@ -55,7 +55,7 @@ This example includes:
 * Download the provided Packetbeat configuration file.
 
     ```
-    curl -O https://raw.githubusercontent.com/elastic/examples/master/Machine%20Learning/Security%20analytics%20recipes/DNS_Data_Exfiltration/configs/packetbeat/packetbeat.yml
+    curl -O https://raw.githubusercontent.com/elastic/examples/master/Machine%20Learning/Security%20Analytics%20Recipes/dns_data_exfiltration/configs/packetbeat/packetbeat.yml
     ```
 
 * Modify the packetbeat.yml file. Consider changing:
@@ -71,7 +71,7 @@ This example includes:
 * Download & Install the required ingest processor  
 
   ```
-    curl -O https://raw.githubusercontent.com/elastic/examples/master/Machine%20Learning/Security%20analytics%20recipes/DNS_Data_Exfiltration/configs/ingest/extract_subdomain.json
+    curl -O https://raw.githubusercontent.com/elastic/examples/master/Machine%20Learning/Security%20Analytics%20Recipes/dns_data_exfiltration/configs/ingest/extract_subdomain.json
     curl -XPUT -H 'Content-Type: application/json' 'localhost:9200/_ingest/pipeline/extract_subdomain' -d @extract_subdomain.json -u elastic:changeme
   ```
 
@@ -104,9 +104,9 @@ The Machine Learning Recipe can be loaded prior to the complete datacapture howe
 Download the following files to the same directory:
 
   ```
-    curl -O https://github.com/elastic/examples/blob/master/Machine%20Learning/Security%20analytics%20recipes/DNS_Data_Exfiltration/machine_learning/data_feed.json
-    curl -O https://github.com/elastic/examples/blob/master/Machine%20Learning/Security%20analytics%20recipes/DNS_Data_Exfiltration/machine_learning/job.json
-    curl -O https://github.com/elastic/examples/blob/master/Machine%20Learning/Security%20analytics%20recipes/scripts/reset_job.sh
+    curl -O https://github.com/elastic/examples/blob/master/Machine%20Learning/Security%20Analytics%20Recipes/dns_data_exfiltration/machine_learning/data_feed.json
+    curl -O https://github.com/elastic/examples/blob/master/Machine%20Learning/Security%20Analytics%20Recipes/dns_data_exfiltration/machine_learning/job.json
+    curl -O https://github.com/elastic/examples/blob/master/Machine%20Learning/Security%20Analytics%20Recipes/scripts/reset_job.sh
   ```
 
 * Load the Job by running the supplied reset_job.sh script.
@@ -138,12 +138,12 @@ On collection of a sufficiently sized background DNS dataset a suspicious exfilf
     - OSX
 
       ```
-        https://github.com/elastic/examples/blob/master/Machine%20Learning/Security%20analytics%20recipes/DNS_Data_Exfiltration/scripts/dns_exfil_random_osx.sh
+        https://github.com/elastic/examples/blob/master/Machine%20Learning/Security%20Analytics%20Recipes/dns_data_exfiltration/scripts/dns_exfil_random_osx.sh
       ```
 
     - Linux Based
       ```
-        https://github.com/elastic/examples/blob/master/Machine%20Learning/Security%20analytics%20recipes/DNS_Data_Exfiltration/scripts/dns_exfil_random.sh
+        https://github.com/elastic/examples/blob/master/Machine%20Learning/Security%20Analytics%20Recipes/dns_data_exfiltration/scripts/dns_exfil_random.sh
       ```
 
 * To generate the exfiltration signature, run the appropriate script for your platform for approximately 1 min. The script accepts two parameters - the DNS sever to use and the domain to simulate exfilfration for e.g.

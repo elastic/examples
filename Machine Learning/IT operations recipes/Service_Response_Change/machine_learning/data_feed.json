@@ -2,10 +2,10 @@
   "datafeed_id": "datafeed-service_response_change",
   "job_id": "service_response_change",
   "indexes": [
-    "apache_logs"
+    "filebeat-*"
   ],
   "types": [
-    "logs"
+    "log"
   ],
   "query": {
     "match_all": {}

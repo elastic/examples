@@ -72,4 +72,4 @@ Windows AD logs, or Linux system authentication logs
 
 ## Example Usage
 
-see [EXAMPLE.md](https://github.com/elastic/examples/blob/master/Machine%20Learning/Security%20analytics%20recipes/Suspicious_Login_Activity/EXAMPLE.md)
+see [EXAMPLE.md](https://github.com/elastic/examples/blob/master/Machine%20Learning/Security%20Analytics%20Recipes/suspicious_login_activity/EXAMPLE.md)

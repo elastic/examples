@@ -67,4 +67,4 @@ Apache Web Logs (containing HTTP response codes)
 
 ## Example Usage
 
-see [EXAMPLE.md](https://github.com/elastic/examples/blob/master/Machine%20Learning/IT%20operations%20recipes/Service_Response_Change/EXAMPLE.md)
+see [EXAMPLE.md](https://github.com/elastic/examples/blob/master/Machine%20Learning/IT%20Operations%20Recipes/service_response_change/EXAMPLE.md)

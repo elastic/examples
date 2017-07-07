@@ -53,7 +53,7 @@ else
 fi
 
 printf "\n== Opening job for ${JOB_ID}... "
-api_response=$(curl -s --w "%{http_code}" -X POST ${JOBS}/${JOB_ID}/_open -u $USERNAME:$PASSWORD)
+api_response=$(curl -H 'Content-Type: application/json' -s --w "%{http_code}" -X POST ${JOBS}/${JOB_ID}/_open -u $USERNAME:$PASSWORD)
 if [ 0 -eq $? ] && [[ $api_response  == *"\"opened\":true"* ]] && [[ $api_response  == *"200"* ]]; then
     printf "OK\n"
 else

@@ -7,15 +7,15 @@
       {
         "detector_description": "high_count",
         "function": "high_count",
-        "partition_field_name": "host",
+        "partition_field_name": "beat.hostname",
         "detector_rules": [],
-        "by_field_name": "response"
+        "by_field_name": "apache2.access.response_code"
       }
     ],
     "influencers": [
-      "response",
-      "site_area",
-      "geoip.country_name"
+      "apache2.access.response_code",
+      "apache2.access.site_area",
+      "apache2.access.geoip.country_iso_code"
     ]
   },
   "data_description": {

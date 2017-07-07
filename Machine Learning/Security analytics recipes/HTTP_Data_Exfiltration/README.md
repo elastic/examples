@@ -73,4 +73,4 @@ Web proxy logs, firewall logs, or similar data containing logs of HTTP requests 
 
 ## Example Usage
 
-see [EXAMPLE.md](https://github.com/elastic/examples/blob/master/Machine%20Learning/Security%20analytics%20recipes/HTTP_Data_Exfiltration/EXAMPLE.md)
+see [EXAMPLE.md](https://github.com/elastic/examples/blob/master/Machine%20Learning/Security%20Analytics%20Recipes/http_data_exfiltration/EXAMPLE.md)

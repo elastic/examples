@@ -1,0 +1,149 @@
+[
+  {
+    "_id": "Sample-Dashboard-for-Apache-Logs",
+    "_type": "dashboard",
+    "_source": {
+      "title": "Sample Dashboard for Apache Logs",
+      "hits": 0,
+      "description": "",
+      "panelsJSON": "[{\"col\":1,\"id\":\"Apache-Dashboard\",\"row\":1,\"size_x\":3,\"size_y\":4,\"type\":\"visualization\"},{\"col\":7,\"id\":\"Traffic-by-Country-ampersand-Device\",\"row\":5,\"size_x\":6,\"size_y\":3,\"type\":\"visualization\"},{\"col\":7,\"id\":\"Traffic-by-Country-ampersand-OS\",\"row\":8,\"size_x\":6,\"size_y\":3,\"type\":\"visualization\"},{\"col\":4,\"id\":\"Traffic-vs.-Location\",\"row\":1,\"size_x\":9,\"size_y\":4,\"type\":\"visualization\"},{\"col\":1,\"id\":\"Unique-Visitors\",\"row\":5,\"size_x\":3,\"size_y\":2,\"type\":\"visualization\"},{\"col\":1,\"id\":\"Non-200-Response-Code-vs.-Time\",\"row\":11,\"size_x\":6,\"size_y\":3,\"type\":\"visualization\"},{\"col\":4,\"id\":\"Total-Hits-by-City\",\"row\":7,\"size_x\":3,\"size_y\":4,\"type\":\"visualization\"},{\"col\":1,\"id\":\"Unique-Visits-by-City\",\"row\":7,\"size_x\":3,\"size_y\":4,\"type\":\"visualization\"},{\"col\":4,\"id\":\"Total-Visitors\",\"row\":5,\"size_x\":3,\"size_y\":2,\"type\":\"visualization\"},{\"id\":\"Bytes-vs.-Time\",\"type\":\"visualization\",\"size_x\":6,\"size_y\":3,\"col\":7,\"row\":11}]",
+      "version": 1,
+      "timeRestore": true,
+      "timeTo": "2015-05-25T19:10:56.990Z",
+      "timeFrom": "2015-05-10T19:10:56.990Z",
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[{\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}}}]}"
+      }
+    }
+  },
+  {
+    "_id": "Traffic-vs.-Location",
+    "_type": "visualization",
+    "_source": {
+      "title": "Traffic vs. Location",
+      "visState": "{\"type\":\"tile_map\",\"params\":{\"mapType\":\"Scaled Circle Markers\",\"isDesaturated\":true,\"heatMaxZoom\":16,\"heatMinOpacity\":0.1,\"heatRadius\":25,\"heatBlur\":15,\"heatNormalizeData\":true,\"addTooltip\":true},\"aggs\":[{\"id\":\"1\",\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"type\":\"geohash_grid\",\"schema\":\"segment\",\"params\":{\"field\":\"geoip.location\",\"autoPrecision\":true,\"mapZoom\":2,\"mapCenter\":[11.523087506868514,9.4921875],\"precision\":2}}],\"listeners\":{}}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"apache_elastic_example\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "Apache-Dashboard",
+    "_type": "visualization",
+    "_source": {
+      "title": "Overview",
+      "visState": "{\"type\":\"markdown\",\"params\":{\"markdown\":\"#### Sample Dashboard for Apache logs\\nSimple dashboard for exploring & visualizing web traffic by analyzing Apache logs. This dashboard is included as a part of the [Getting Started with ELK](https://github.com/asawariS/test/tree/master/Apache) repo on Github.\\n\\n**Dashboard includes:**\\n* Number of unique visitors \\n* Map show # of hits by location\\n* Pie chart of traffic by device types \\n* Pie chart of traffic by operating systems\\n\\nFeel free to explore & modify the dashboards to your hearts content. Ask questions, test hypothesis, diagnose issues!\\n\\n**Happy exploration!!!**\"},\"aggs\":[],\"listeners\":{}}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "Non-200-Response-Code-vs.-Time",
+    "_type": "visualization",
+    "_source": {
+      "title": "Non 200 Response Code vs. Time",
+      "visState": "{\"type\":\"histogram\",\"params\":{\"shareYAxis\":true,\"addTooltip\":true,\"addLegend\":true,\"scale\":\"linear\",\"mode\":\"stacked\",\"times\":[],\"addTimeMarker\":false,\"defaultYExtents\":false,\"setYExtents\":false,\"yAxis\":{}},\"aggs\":[{\"id\":\"1\",\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"type\":\"date_histogram\",\"schema\":\"segment\",\"params\":{\"field\":\"@timestamp\",\"interval\":\"d\",\"customInterval\":\"2h\",\"min_doc_count\":1,\"extended_bounds\":{}}},{\"id\":\"3\",\"type\":\"terms\",\"schema\":\"group\",\"params\":{\"field\":\"response\",\"size\":5,\"order\":\"desc\",\"orderBy\":\"1\"}}],\"listeners\":{}}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"apache_elastic_example\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[{\"meta\":{\"index\":\"apache_elastic_example\",\"key\":\"response\",\"value\":\"200\",\"disabled\":false,\"negate\":true,\"apply\":true},\"query\":{\"match\":{\"response\":{\"query\":200,\"type\":\"phrase\"}}}}]}"
+      }
+    }
+  },
+  {
+    "_id": "Traffic-by-Country-ampersand-Device",
+    "_type": "visualization",
+    "_source": {
+      "title": "Traffic by Country & Device",
+      "visState": "{\"type\":\"pie\",\"params\":{\"shareYAxis\":true,\"addTooltip\":true,\"addLegend\":true,\"isDonut\":true},\"aggs\":[{\"id\":\"1\",\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"3\",\"type\":\"terms\",\"schema\":\"split\",\"params\":{\"field\":\"geoip.country_name\",\"size\":5,\"order\":\"desc\",\"orderBy\":\"1\",\"row\":false}},{\"id\":\"2\",\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"useragent.device.raw\",\"size\":5,\"order\":\"desc\",\"orderBy\":\"1\"}}],\"listeners\":{}}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"apache_elastic_example\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[{\"meta\":{\"index\":\"apache_elastic_example\",\"key\":\"useragent.device.raw\",\"value\":\"Other\",\"disabled\":false,\"negate\":true,\"apply\":true},\"query\":{\"match\":{\"useragent.device.raw\":{\"query\":\"Other\",\"type\":\"phrase\"}}}},{\"meta\":{\"index\":\"apache_elastic_example\",\"key\":\"useragent.device.raw\",\"value\":\"Spider\",\"disabled\":false,\"negate\":true,\"apply\":true},\"query\":{\"match\":{\"useragent.device.raw\":{\"query\":\"Spider\",\"type\":\"phrase\"}}}}]}"
+      }
+    }
+  },
+  {
+    "_id": "Traffic-by-Country-ampersand-OS",
+    "_type": "visualization",
+    "_source": {
+      "title": "Traffic by Country & OS",
+      "visState": "{\"type\":\"pie\",\"params\":{\"shareYAxis\":true,\"addTooltip\":true,\"addLegend\":true,\"isDonut\":true},\"aggs\":[{\"id\":\"1\",\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"3\",\"type\":\"terms\",\"schema\":\"split\",\"params\":{\"field\":\"geoip.country_name\",\"size\":5,\"order\":\"desc\",\"orderBy\":\"1\",\"row\":false}},{\"id\":\"2\",\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"useragent.os.raw\",\"size\":5,\"order\":\"desc\",\"orderBy\":\"1\"}}],\"listeners\":{}}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"apache_elastic_example\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[{\"meta\":{\"index\":\"apache_elastic_example\",\"key\":\"useragent.os.raw\",\"value\":\"Other\",\"disabled\":false,\"negate\":true,\"apply\":true},\"query\":{\"match\":{\"useragent.os.raw\":{\"query\":\"Other\",\"type\":\"phrase\"}}}}]}"
+      }
+    }
+  },
+  {
+    "_id": "Unique-Visits-by-City",
+    "_type": "visualization",
+    "_source": {
+      "title": "Unique Visits by City",
+      "visState": "{\"type\":\"table\",\"params\":{\"perPage\":10,\"showPartialRows\":false,\"showMeticsAtAllLevels\":false},\"aggs\":[{\"id\":\"1\",\"type\":\"cardinality\",\"schema\":\"metric\",\"params\":{\"field\":\"clientip.raw\"}},{\"id\":\"2\",\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"geoip.city_name.raw\",\"size\":10,\"order\":\"desc\",\"orderBy\":\"1\"}}],\"listeners\":{}}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"apache_elastic_example\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "Total-Hits-by-City",
+    "_type": "visualization",
+    "_source": {
+      "title": "Total Hits by City",
+      "visState": "{\"type\":\"table\",\"params\":{\"perPage\":10,\"showPartialRows\":false,\"showMeticsAtAllLevels\":false},\"aggs\":[{\"id\":\"1\",\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"geoip.city_name.raw\",\"size\":10,\"order\":\"desc\",\"orderBy\":\"1\"}}],\"listeners\":{}}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"apache_elastic_example\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "Unique-Visitors",
+    "_type": "visualization",
+    "_source": {
+      "title": "Unique Visitors",
+      "visState": "{\"type\":\"metric\",\"params\":{\"fontSize\":\"40\",\"spyPerPage\":10},\"aggs\":[{\"id\":\"2\",\"type\":\"cardinality\",\"schema\":\"metric\",\"params\":{\"field\":\"geoip.ip\"}}],\"listeners\":{}}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"apache_elastic_example\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "Total-Visitors",
+    "_type": "visualization",
+    "_source": {
+      "title": "Total Visitors",
+      "visState": "{\"type\":\"metric\",\"params\":{\"fontSize\":\"40\",\"spyPerPage\":10},\"aggs\":[{\"id\":\"2\",\"type\":\"count\",\"schema\":\"metric\",\"params\":{}}],\"listeners\":{}}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"apache_elastic_example\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "Bytes-vs.-Time",
+    "_type": "visualization",
+    "_source": {
+      "title": "Bytes vs. Time",
+      "visState": "{\"type\":\"line\",\"params\":{\"shareYAxis\":true,\"addTooltip\":true,\"addLegend\":true,\"showCircles\":true,\"smoothLines\":false,\"interpolate\":\"linear\",\"scale\":\"linear\",\"drawLinesBetweenPoints\":true,\"radiusRatio\":9,\"times\":[],\"addTimeMarker\":false,\"defaultYExtents\":false,\"setYExtents\":false,\"yAxis\":{}},\"aggs\":[{\"id\":\"1\",\"type\":\"sum\",\"schema\":\"metric\",\"params\":{\"field\":\"bytes\"}},{\"id\":\"2\",\"type\":\"date_histogram\",\"schema\":\"segment\",\"params\":{\"field\":\"@timestamp\",\"interval\":\"auto\",\"customInterval\":\"2h\",\"min_doc_count\":1,\"extended_bounds\":{}}}],\"listeners\":{}}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"apache_elastic_example\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+      }
+    }
+  }
+]

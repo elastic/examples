@@ -4,7 +4,7 @@ filebeat.modules:
     enabled: false
   auth:
     enabled: true
-    var.paths: ["/opt/demos/ml-recipes/recipes/security/Suspicious_Login_Activity/data/auth.log"]
+    var.paths: ["/opt/demos/ml-recipes/recipes/security/suspicious_login_activity/data/auth.log"]
 name: test
 output.elasticsearch:
   # Array of hosts to connect to.

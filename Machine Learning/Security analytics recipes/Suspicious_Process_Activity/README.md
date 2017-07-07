@@ -59,4 +59,4 @@ Endpoint Detection and Response (EDR) sources such as: Symantec SEP12 logs, RSA 
 
 ## Example Usage
 
-see [EXAMPLE.md](https://github.com/elastic/examples/blob/master/Machine%20Learning/Security%20analytics%20recipes/Suspicious_Process_Activity/EXAMPLE.md)
+see [EXAMPLE.md](https://github.com/elastic/examples/blob/master/Machine%20Learning/Security%20Analytics%20Recipes/suspicious_process_activity/EXAMPLE.md)

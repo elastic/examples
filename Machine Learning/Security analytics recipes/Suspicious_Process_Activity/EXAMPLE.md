@@ -64,7 +64,7 @@ This example includes:
 
 * Download the provided Filebeat configuration file. This configuration utilises the [Auditd filebeat module](https://www.elastic.co/guide/en/beats/filebeat/master/filebeat-module-auditd.html) .
 
-    ```curl -O https://github.com/elastic/examples/blob/master/Machine%20Learning/Security%20analytics%20recipes/Suspicious_Process_Activity/configs/filebeat/filebeat.yml```
+    ```curl -O https://github.com/elastic/examples/blob/master/Machine%20Learning/Security%20Analytics%20Recipes/suspicious_process_activity/configs/filebeat/filebeat.yml```
 
 * Modify the filebeat.yml file. Consider changing:
 
@@ -106,9 +106,9 @@ The Machine Learning Recipe can be loaded prior to the complete data capture how
 Download the following files to the same directory:
 
   ```
-    curl -O https://github.com/elastic/examples/blob/master/Machine%20Learning/Security%20analytics%20recipes/Suspicious_Process_Activity/machine_learning/data_feed.json
-    curl -O https://github.com/elastic/examples/blob/master/Machine%20Learning/Security%20analytics%20recipes/Suspicious_Process_Activity/machine_learning/job.json
-    curl -O https://github.com/elastic/examples/blob/master/Machine%20Learning/Security%20analytics%20recipes/scripts/reset_job.sh
+    curl -O https://github.com/elastic/examples/blob/master/Machine%20Learning/Security%20Analytics%20Recipes/suspicious_process_activity/machine_learning/data_feed.json
+    curl -O https://github.com/elastic/examples/blob/master/Machine%20Learning/Security%20Analytics%20Recipes/suspicious_process_activity/machine_learning/job.json
+    curl -O https://github.com/elastic/examples/blob/master/Machine%20Learning/Security%20Analytics%20Recipes/scripts/reset_job.sh
   ```
 
 * Load the Job by running the supplied reset_job.sh script.
@@ -138,7 +138,7 @@ On collection of a sufficiently sized background Auditd dataset a suspicious pro
 * Download the following script:
 
       ```
-        https://github.com/elastic/examples/blob/master/Machine%20Learning/Security%20analytics%20recipes/Suspicious_Process_Activity/scripts/start_random_process.sh
+        https://github.com/elastic/examples/blob/master/Machine%20Learning/Security%20Analytics%20Recipes/suspicious_process_activity/scripts/start_random_process.sh
       ```
 
 * To generate the process signature, execute the script i.e.

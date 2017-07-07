@@ -1,5 +1,3 @@
 # Force all checkouts to convert to LF line endings
-* text eol=lf
-*.cef eol=crlf
 # Treat these file types as binary
 *.pcap     binary

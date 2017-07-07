@@ -1,0 +1,348 @@
+[
+  {
+    "_id": "Earthquake-Japan",
+    "_type": "dashboard",
+    "_source": {
+      "title": "Earthquake - Japan",
+      "hits": 0,
+      "description": "",
+      "panelsJSON": "[{\"col\":1,\"id\":\"Earthquake-Title\",\"panelIndex\":4,\"row\":1,\"size_x\":3,\"size_y\":6,\"type\":\"visualization\"},{\"col\":4,\"id\":\"Earthquake-Heatmap-High-Precision\",\"panelIndex\":3,\"row\":1,\"size_x\":9,\"size_y\":6,\"type\":\"visualization\"},{\"col\":1,\"id\":\"Earthquake-Count\",\"panelIndex\":5,\"row\":7,\"size_x\":6,\"size_y\":2,\"type\":\"visualization\"},{\"col\":7,\"id\":\"Earthquake-Magnitude-Histogram\",\"panelIndex\":8,\"row\":7,\"size_x\":3,\"size_y\":2,\"type\":\"visualization\"},{\"col\":10,\"id\":\"Earthquake-Types-and-Data-Sources\",\"panelIndex\":7,\"row\":7,\"size_x\":3,\"size_y\":2,\"type\":\"visualization\"},{\"col\":1,\"id\":\"Earthquake-Count-per-Magnitude-Stacked\",\"panelIndex\":6,\"row\":9,\"size_x\":12,\"size_y\":2,\"type\":\"visualization\"},{\"col\":1,\"id\":\"Earthquake-Depth-Timeseries\",\"panelIndex\":2,\"row\":11,\"size_x\":12,\"size_y\":2,\"type\":\"visualization\"}]",
+      "optionsJSON": "{\"darkTheme\":false}",
+      "uiStateJSON": "{\"P-6\":{\"vis\":{\"legendOpen\":false}},\"P-7\":{\"vis\":{\"legendOpen\":false}},\"P-8\":{\"vis\":{\"legendOpen\":false}},\"P-3\":{\"mapZoom\":4,\"mapCenter\":[35.69073380935732,137.955322265625]}}",
+      "version": 1,
+      "timeRestore": true,
+      "timeTo": "Sat Dec 31 2016 23:59:59 GMT+0000",
+      "timeFrom": "Fri Jan 01 2016 00:00:00 GMT+0000",
+      "refreshInterval": {
+        "display": "Off",
+        "pause": false,
+        "value": 0
+      },
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[{\"query\":{\"bool\":{\"must\":[{\"term\":{\"type\":{\"value\":\"earthquake\"}}}],\"filter\":{\"geo_polygon\":{\"location\":{\"points\":[[139.6,45.8],[125.7,32.4],[122.5,22.8],[152.8,22.8],[152.8,46.8]]}}}}},\"$state\":{\"store\":\"appState\"},\"meta\":{\"key\":\"query\",\"value\":\"{\\\"bool\\\":{\\\"must\\\":[{\\\"term\\\":{\\\"type\\\":{\\\"value\\\":\\\"earthquake\\\"}}}],\\\"filter\\\":{\\\"geo_polygon\\\":{\\\"location\\\":{\\\"points\\\":[[139.6,45.8],[125.7,32.4],[122.5,22.8],[152.8,22.8],[152.8,46.8]]}}}}}\",\"disabled\":false,\"negate\":false,\"alias\":\"Japan Territorial Water\"}},{\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}}}],\"highlightAll\":true,\"version\":true}"
+      }
+    }
+  },
+  {
+    "_id": "Earthquake-Mediterranean-Region",
+    "_type": "dashboard",
+    "_source": {
+      "title": "Earthquake - Mediterranean Region",
+      "hits": 0,
+      "description": "",
+      "panelsJSON": "[{\"col\":1,\"id\":\"Earthquake-Title\",\"panelIndex\":4,\"row\":1,\"size_x\":3,\"size_y\":6,\"type\":\"visualization\"},{\"col\":4,\"id\":\"Earthquake-Heatmap-High-Precision\",\"panelIndex\":3,\"row\":1,\"size_x\":9,\"size_y\":6,\"type\":\"visualization\"},{\"col\":1,\"id\":\"Earthquake-Count\",\"panelIndex\":5,\"row\":7,\"size_x\":6,\"size_y\":2,\"type\":\"visualization\"},{\"col\":7,\"id\":\"Earthquake-Magnitude-Histogram\",\"panelIndex\":8,\"row\":7,\"size_x\":3,\"size_y\":2,\"type\":\"visualization\"},{\"col\":10,\"id\":\"Earthquake-Types-and-Data-Sources\",\"panelIndex\":7,\"row\":7,\"size_x\":3,\"size_y\":2,\"type\":\"visualization\"},{\"col\":1,\"id\":\"Earthquake-Count-per-Magnitude-Stacked\",\"panelIndex\":6,\"row\":9,\"size_x\":12,\"size_y\":2,\"type\":\"visualization\"},{\"col\":1,\"id\":\"Earthquake-Depth-Timeseries\",\"panelIndex\":2,\"row\":11,\"size_x\":12,\"size_y\":2,\"type\":\"visualization\"}]",
+      "optionsJSON": "{\"darkTheme\":false}",
+      "uiStateJSON": "{\"P-7\":{\"vis\":{\"legendOpen\":false}},\"P-8\":{\"vis\":{\"legendOpen\":false}},\"P-6\":{\"vis\":{\"legendOpen\":false}},\"P-3\":{\"mapZoom\":4,\"mapCenter\":[39.232253141714885,23.818359375]}}",
+      "version": 1,
+      "timeRestore": true,
+      "timeTo": "Sat Dec 31 2016 23:59:59 GMT+0000",
+      "timeFrom": "Fri Jan 01 2016 00:00:00 GMT+0000",
+      "refreshInterval": {
+        "display": "Off",
+        "pause": false,
+        "value": 0
+      },
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[{\"query\":{\"bool\":{\"must\":{\"term\":{\"type\":{\"value\":\"earthquake\"}}},\"filter\":{\"geo_distance\":{\"distance\":\"2000km\",\"location\":{\"lat\":37.45,\"lon\":23.5}}}}},\"$state\":{\"store\":\"appState\"},\"meta\":{\"key\":\"query\",\"value\":\"{\\\"bool\\\":{\\\"must\\\":{\\\"term\\\":{\\\"type\\\":{\\\"value\\\":\\\"earthquake\\\"}}},\\\"filter\\\":{\\\"geo_distance\\\":{\\\"distance\\\":\\\"2000km\\\",\\\"location\\\":{\\\"lat\\\":37.45,\\\"lon\\\":23.5}}}}}\",\"disabled\":false,\"negate\":false,\"alias\":null}},{\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}}}],\"highlightAll\":true,\"version\":true}"
+      }
+    }
+  },
+  {
+    "_id": "Earthquake-Himalayas",
+    "_type": "dashboard",
+    "_source": {
+      "title": "Earthquake - Himalayas",
+      "hits": 0,
+      "description": "",
+      "panelsJSON": "[{\"col\":1,\"id\":\"Earthquake-Title\",\"panelIndex\":4,\"row\":1,\"size_x\":3,\"size_y\":6,\"type\":\"visualization\"},{\"col\":4,\"id\":\"Earthquake-Heatmap-High-Precision\",\"panelIndex\":3,\"row\":1,\"size_x\":9,\"size_y\":6,\"type\":\"visualization\"},{\"col\":1,\"id\":\"Earthquake-Count\",\"panelIndex\":5,\"row\":7,\"size_x\":6,\"size_y\":2,\"type\":\"visualization\"},{\"col\":7,\"id\":\"Earthquake-Magnitude-Histogram\",\"panelIndex\":8,\"row\":7,\"size_x\":3,\"size_y\":2,\"type\":\"visualization\"},{\"col\":10,\"id\":\"Earthquake-Types-and-Data-Sources\",\"panelIndex\":7,\"row\":7,\"size_x\":3,\"size_y\":2,\"type\":\"visualization\"},{\"col\":1,\"id\":\"Earthquake-Count-per-Magnitude-Stacked\",\"panelIndex\":6,\"row\":9,\"size_x\":12,\"size_y\":2,\"type\":\"visualization\"},{\"col\":1,\"id\":\"Earthquake-Depth-Timeseries\",\"panelIndex\":2,\"row\":11,\"size_x\":12,\"size_y\":2,\"type\":\"visualization\"}]",
+      "optionsJSON": "{\"darkTheme\":false}",
+      "uiStateJSON": "{\"P-7\":{\"vis\":{\"legendOpen\":false}},\"P-8\":{\"vis\":{\"legendOpen\":false}},\"P-6\":{\"vis\":{\"legendOpen\":false}}}",
+      "version": 1,
+      "timeRestore": true,
+      "timeTo": "Sat Dec 31 2016 23:59:59 GMT+0000",
+      "timeFrom": "Fri Jan 01 2016 00:00:00 GMT+0000",
+      "refreshInterval": {
+        "display": "Off",
+        "pause": false,
+        "value": 0
+      },
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[{\"query\":{\"bool\":{\"must\":[{\"term\":{\"type\":{\"value\":\"earthquake\"}}}],\"filter\":{\"geo_bounding_box\":{\"location\":{\"top_left\":{\"lat\":40.97989806962013,\"lon\":42.84667968749999},\"bottom_right\":{\"lat\":4.740675384778373,\"lon\":107.5341796875}}}}}},\"$state\":{\"store\":\"appState\"},\"meta\":{\"key\":\"query\",\"value\":\"{\\\"bool\\\":{\\\"must\\\":[{\\\"term\\\":{\\\"type\\\":{\\\"value\\\":\\\"earthquake\\\"}}}],\\\"filter\\\":{\\\"geo_bounding_box\\\":{\\\"location\\\":{\\\"top_left\\\":{\\\"lat\\\":40.97989806962013,\\\"lon\\\":42.84667968749999},\\\"bottom_right\\\":{\\\"lat\\\":4.740675384778373,\\\"lon\\\":107.5341796875}}}}}}\",\"disabled\":false,\"negate\":false,\"alias\":null}},{\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}}}],\"highlightAll\":true,\"version\":true}"
+      }
+    }
+  },
+  {
+    "_id": "Earthquake-Indonesia",
+    "_type": "dashboard",
+    "_source": {
+      "title": "Earthquake - Indonesia",
+      "hits": 0,
+      "description": "",
+      "panelsJSON": "[{\"col\":1,\"id\":\"Earthquake-Title\",\"panelIndex\":4,\"row\":1,\"size_x\":3,\"size_y\":6,\"type\":\"visualization\"},{\"col\":4,\"id\":\"Earthquake-Heatmap-High-Precision\",\"panelIndex\":3,\"row\":1,\"size_x\":9,\"size_y\":6,\"type\":\"visualization\"},{\"col\":1,\"id\":\"Earthquake-Count\",\"panelIndex\":5,\"row\":7,\"size_x\":6,\"size_y\":2,\"type\":\"visualization\"},{\"col\":7,\"id\":\"Earthquake-Magnitude-Histogram\",\"panelIndex\":8,\"row\":7,\"size_x\":3,\"size_y\":2,\"type\":\"visualization\"},{\"col\":10,\"id\":\"Earthquake-Types-and-Data-Sources\",\"panelIndex\":7,\"row\":7,\"size_x\":3,\"size_y\":2,\"type\":\"visualization\"},{\"col\":1,\"id\":\"Earthquake-Count-per-Magnitude-Stacked\",\"panelIndex\":6,\"row\":9,\"size_x\":12,\"size_y\":2,\"type\":\"visualization\"},{\"col\":1,\"id\":\"Earthquake-Depth-Timeseries\",\"panelIndex\":2,\"row\":11,\"size_x\":12,\"size_y\":2,\"type\":\"visualization\"}]",
+      "optionsJSON": "{\"darkTheme\":false}",
+      "uiStateJSON": "{\"P-7\":{\"vis\":{\"legendOpen\":false}},\"P-8\":{\"vis\":{\"legendOpen\":false}},\"P-6\":{\"vis\":{\"legendOpen\":false}}}",
+      "version": 1,
+      "timeRestore": true,
+      "timeTo": "Sat Dec 31 2016 23:59:59 GMT+0000",
+      "timeFrom": "Fri Jan 01 2016 00:00:00 GMT+0000",
+      "refreshInterval": {
+        "display": "Off",
+        "pause": false,
+        "value": 0
+      },
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[{\"query\":{\"bool\":{\"must\":[{\"term\":{\"type\":{\"value\":\"earthquake\"}}}],\"filter\":{\"geo_bounding_box\":{\"location\":{\"top_left\":{\"lat\":17.308687886770034,\"lon\":84.55078125},\"bottom_right\":{\"lat\":-11.867350911459308,\"lon\":129.90234375}}}}}},\"$state\":{\"store\":\"appState\"},\"meta\":{\"key\":\"query\",\"value\":\"{\\\"bool\\\":{\\\"must\\\":[{\\\"term\\\":{\\\"type\\\":{\\\"value\\\":\\\"earthquake\\\"}}}],\\\"filter\\\":{\\\"geo_bounding_box\\\":{\\\"location\\\":{\\\"top_left\\\":{\\\"lat\\\":17.308687886770034,\\\"lon\\\":84.55078125},\\\"bottom_right\\\":{\\\"lat\\\":-11.867350911459308,\\\"lon\\\":129.90234375}}}}}}\",\"disabled\":false,\"negate\":false,\"alias\":null}},{\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}}}],\"highlightAll\":true,\"version\":true}"
+      }
+    }
+  },
+  {
+    "_id": "Earthquake",
+    "_type": "dashboard",
+    "_source": {
+      "title": "Earthquake",
+      "hits": 0,
+      "description": "",
+      "panelsJSON": "[{\"col\":1,\"id\":\"Earthquake-Title\",\"panelIndex\":4,\"row\":1,\"size_x\":3,\"size_y\":6,\"type\":\"visualization\"},{\"col\":4,\"id\":\"Earthquake-Heatmap\",\"panelIndex\":3,\"row\":1,\"size_x\":9,\"size_y\":6,\"type\":\"visualization\"},{\"col\":1,\"id\":\"Earthquake-Count\",\"panelIndex\":5,\"row\":7,\"size_x\":6,\"size_y\":2,\"type\":\"visualization\"},{\"col\":7,\"id\":\"Earthquake-Magnitude-Histogram\",\"panelIndex\":8,\"row\":7,\"size_x\":3,\"size_y\":2,\"type\":\"visualization\"},{\"col\":10,\"id\":\"Earthquake-Types-and-Data-Sources\",\"panelIndex\":7,\"row\":7,\"size_x\":3,\"size_y\":2,\"type\":\"visualization\"},{\"col\":1,\"id\":\"Earthquake-Count-per-Magnitude-Stacked\",\"panelIndex\":6,\"row\":9,\"size_x\":12,\"size_y\":2,\"type\":\"visualization\"},{\"col\":1,\"id\":\"Earthquake-Depth-Timeseries\",\"panelIndex\":2,\"row\":11,\"size_x\":12,\"size_y\":2,\"type\":\"visualization\"}]",
+      "optionsJSON": "{\"darkTheme\":false}",
+      "uiStateJSON": "{\"P-7\":{\"vis\":{\"legendOpen\":false}},\"P-8\":{\"vis\":{\"legendOpen\":false}},\"P-3\":{\"mapZoom\":2,\"mapCenter\":[0.7031073524364909,0]}}",
+      "version": 1,
+      "timeRestore": true,
+      "timeTo": "Sat Dec 31 2016 23:59:59 GMT+0000",
+      "timeFrom": "Fri Jan 01 2016 00:00:00 GMT+0000",
+      "refreshInterval": {
+        "display": "Off",
+        "pause": false,
+        "value": 0
+      },
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[{\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}}}],\"highlightAll\":true,\"version\":true}"
+      }
+    }
+  },
+  {
+    "_id": "Earthquake-Sumatra",
+    "_type": "dashboard",
+    "_source": {
+      "title": "Earthquake - Sumatra",
+      "hits": 0,
+      "description": "",
+      "panelsJSON": "[{\"col\":1,\"id\":\"Earthquake-Depth-Timeseries\",\"panelIndex\":2,\"row\":11,\"size_x\":12,\"size_y\":2,\"type\":\"visualization\"},{\"col\":4,\"id\":\"Earthquake-Heatmap-High-Precision\",\"panelIndex\":3,\"row\":1,\"size_x\":9,\"size_y\":6,\"type\":\"visualization\"},{\"col\":1,\"id\":\"Earthquake-Title\",\"panelIndex\":4,\"row\":1,\"size_x\":3,\"size_y\":6,\"type\":\"visualization\"},{\"col\":1,\"id\":\"Earthquake-Count\",\"panelIndex\":5,\"row\":7,\"size_x\":6,\"size_y\":2,\"type\":\"visualization\"},{\"col\":1,\"id\":\"Earthquake-Count-per-Magnitude-Stacked\",\"panelIndex\":6,\"row\":9,\"size_x\":12,\"size_y\":2,\"type\":\"visualization\"},{\"col\":10,\"id\":\"Earthquake-Types-and-Data-Sources\",\"panelIndex\":7,\"row\":7,\"size_x\":3,\"size_y\":2,\"type\":\"visualization\"},{\"col\":7,\"id\":\"Earthquake-Magnitude-Histogram\",\"panelIndex\":8,\"row\":7,\"size_x\":3,\"size_y\":2,\"type\":\"visualization\"}]",
+      "optionsJSON": "{\"darkTheme\":false}",
+      "uiStateJSON": "{\"P-7\":{\"vis\":{\"legendOpen\":false}},\"P-8\":{\"vis\":{\"legendOpen\":false}},\"P-6\":{\"vis\":{\"legendOpen\":true}},\"P-3\":{\"mapZoom\":4,\"mapCenter\":[2.6357885741666065,102.12890625]}}",
+      "version": 1,
+      "timeRestore": true,
+      "timeTo": "Sat Dec 31 2016 23:59:59 GMT+0000",
+      "timeFrom": "Fri Jan 01 2016 00:00:00 GMT+0000",
+      "refreshInterval": {
+        "display": "Off",
+        "pause": false,
+        "value": 0
+      },
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[{\"query\":{\"bool\":{\"must\":[{\"term\":{\"type\":{\"value\":\"earthquake\"}}}],\"filter\":{\"geo_bounding_box\":{\"location\":{\"top_left\":{\"lat\":17.308687886770034,\"lon\":84.55078125},\"bottom_right\":{\"lat\":-11.867350911459308,\"lon\":129.90234375}}}}}},\"$state\":{\"store\":\"appState\"},\"meta\":{\"key\":\"query\",\"value\":\"{\\\"bool\\\":{\\\"must\\\":[{\\\"term\\\":{\\\"type\\\":{\\\"value\\\":\\\"earthquake\\\"}}}],\\\"filter\\\":{\\\"geo_bounding_box\\\":{\\\"location\\\":{\\\"top_left\\\":{\\\"lat\\\":17.308687886770034,\\\"lon\\\":84.55078125},\\\"bottom_right\\\":{\\\"lat\\\":-11.867350911459308,\\\"lon\\\":129.90234375}}}}}}\",\"disabled\":false,\"negate\":false,\"alias\":null}},{\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}}}],\"highlightAll\":true,\"version\":true}"
+      }
+    }
+  },
+  {
+    "_id": "Earthquake-West-Coast",
+    "_type": "dashboard",
+    "_source": {
+      "title": "Earthquake - West Coast",
+      "hits": 0,
+      "description": "",
+      "panelsJSON": "[{\"col\":1,\"id\":\"Earthquake-Title\",\"panelIndex\":4,\"row\":1,\"size_x\":3,\"size_y\":6,\"type\":\"visualization\"},{\"col\":4,\"id\":\"Earthquake-Heatmap-High-Precision\",\"panelIndex\":3,\"row\":1,\"size_x\":9,\"size_y\":6,\"type\":\"visualization\"},{\"col\":1,\"id\":\"Earthquake-Count\",\"panelIndex\":5,\"row\":7,\"size_x\":6,\"size_y\":2,\"type\":\"visualization\"},{\"col\":7,\"id\":\"Earthquake-Magnitude-Histogram\",\"panelIndex\":8,\"row\":7,\"size_x\":3,\"size_y\":2,\"type\":\"visualization\"},{\"col\":10,\"id\":\"Earthquake-Types-and-Data-Sources\",\"panelIndex\":7,\"row\":7,\"size_x\":3,\"size_y\":2,\"type\":\"visualization\"},{\"col\":1,\"id\":\"Earthquake-Count-per-Magnitude-Stacked\",\"panelIndex\":6,\"row\":9,\"size_x\":12,\"size_y\":2,\"type\":\"visualization\"},{\"col\":1,\"id\":\"Earthquake-Depth-Timeseries\",\"panelIndex\":2,\"row\":11,\"size_x\":12,\"size_y\":2,\"type\":\"visualization\"}]",
+      "optionsJSON": "{\"darkTheme\":false}",
+      "uiStateJSON": "{\"P-7\":{\"vis\":{\"legendOpen\":false}},\"P-8\":{\"vis\":{\"legendOpen\":false}},\"P-6\":{\"vis\":{\"legendOpen\":false}},\"P-3\":{\"mapZoom\":4,\"mapCenter\":[39.70718665682654,-102.041015625]}}",
+      "version": 1,
+      "timeRestore": true,
+      "timeTo": "Sat Dec 31 2016 23:59:59 GMT+0000",
+      "timeFrom": "Fri Jan 01 2016 00:00:00 GMT+0000",
+      "refreshInterval": {
+        "display": "Off",
+        "pause": false,
+        "value": 0
+      },
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[{\"query\":{\"bool\":{\"must\":[{\"term\":{\"type\":{\"value\":\"earthquake\"}}}],\"filter\":{\"geo_bounding_box\":{\"location\":{\"top_left\":{\"lat\":50.736455137010665,\"lon\":-129.22119140625},\"bottom_right\":{\"lat\":27.68352808378776,\"lon\":-105.05126953124999}}}}}},\"$state\":{\"store\":\"appState\"},\"meta\":{\"key\":\"query\",\"value\":\"{\\\"bool\\\":{\\\"must\\\":[{\\\"term\\\":{\\\"type\\\":{\\\"value\\\":\\\"earthquake\\\"}}}],\\\"filter\\\":{\\\"geo_bounding_box\\\":{\\\"location\\\":{\\\"top_left\\\":{\\\"lat\\\":50.736455137010665,\\\"lon\\\":-129.22119140625},\\\"bottom_right\\\":{\\\"lat\\\":27.68352808378776,\\\"lon\\\":-105.05126953124999}}}}}}\",\"disabled\":false,\"negate\":false,\"alias\":null}},{\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}}}],\"highlightAll\":true,\"version\":true}"
+      }
+    }
+  },
+  {
+    "_id": "Earthquake-vs-Population-slash-Nuclear-Plants",
+    "_type": "dashboard",
+    "_source": {
+      "title": "Earthquake vs Population/Nuclear Plants",
+      "hits": 0,
+      "description": "",
+      "panelsJSON": "[{\"col\":1,\"id\":\"Earthquake-Title\",\"panelIndex\":4,\"row\":1,\"size_x\":3,\"size_y\":6,\"type\":\"visualization\"},{\"id\":\"Earthquake-Heatmap-Population-Count-and-Nuclear-Plants\",\"type\":\"visualization\",\"panelIndex\":9,\"size_x\":9,\"size_y\":6,\"col\":4,\"row\":1},{\"col\":1,\"id\":\"Earthquake-Count\",\"panelIndex\":5,\"row\":7,\"size_x\":6,\"size_y\":2,\"type\":\"visualization\"},{\"col\":7,\"id\":\"Earthquake-Magnitude-Histogram\",\"panelIndex\":8,\"row\":7,\"size_x\":3,\"size_y\":2,\"type\":\"visualization\"},{\"col\":10,\"id\":\"Earthquake-Types-and-Data-Sources\",\"panelIndex\":7,\"row\":7,\"size_x\":3,\"size_y\":2,\"type\":\"visualization\"},{\"col\":1,\"id\":\"Earthquake-Count-per-Magnitude-Stacked\",\"panelIndex\":6,\"row\":9,\"size_x\":12,\"size_y\":2,\"type\":\"visualization\"},{\"col\":1,\"id\":\"Earthquake-Depth-Timeseries\",\"panelIndex\":2,\"row\":11,\"size_x\":12,\"size_y\":2,\"type\":\"visualization\"}]",
+      "optionsJSON": "{\"darkTheme\":false}",
+      "uiStateJSON": "{\"P-7\":{\"vis\":{\"legendOpen\":false}},\"P-8\":{\"vis\":{\"legendOpen\":false}}}",
+      "version": 1,
+      "timeRestore": true,
+      "timeTo": "Sat Dec 31 2016 23:59:59 GMT+0000",
+      "timeFrom": "Fri Jan 01 2016 00:00:00 GMT+0000",
+      "refreshInterval": {
+        "display": "Off",
+        "pause": false,
+        "value": 0
+      },
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[{\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}}}],\"highlightAll\":true,\"version\":true}"
+      }
+    }
+  },
+  {
+    "_id": "Earthquake-Depth-Timeseries",
+    "_type": "visualization",
+    "_source": {
+      "title": "Earthquake - Depth Timeseries",
+      "visState": "{\"title\":\"Earthquake - Depth Timeseries\",\"type\":\"timelion\",\"params\":{\"expression\":\".es(index=ncedc-earthquakes,metric=avg:depth).multiply(-1).points(fill=3)\",\"interval\":\"1w\"},\"aggs\":[],\"listeners\":{}}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "Earthquake-Depth-Heatmap",
+    "_type": "visualization",
+    "_source": {
+      "title": "Earthquake - Depth Heatmap",
+      "visState": "{\"title\":\"Earthquake - Depth Heatmap\",\"type\":\"tile_map\",\"params\":{\"mapType\":\"Shaded Geohash Grid\",\"isDesaturated\":true,\"addTooltip\":true,\"heatMaxZoom\":16,\"heatMinOpacity\":0.1,\"heatRadius\":25,\"heatBlur\":15,\"heatNormalizeData\":true,\"wms\":{\"enabled\":true,\"url\":\"http://www.gebco.net/data_and_products/gebco_web_services/web_map_service/mapserv\",\"options\":{\"version\":\"1.3.0\",\"layers\":\"GEBCO_LATEST\",\"format\":\"image/png\",\"transparent\":true,\"attribution\":\"Imagery reproduced from the GEBCO_2014 Grid, version 20150318, www.gebco.ne\",\"styles\":\"\"}}},\"aggs\":[{\"id\":\"1\",\"type\":\"avg\",\"schema\":\"metric\",\"params\":{\"field\":\"depth\"}},{\"id\":\"2\",\"type\":\"geohash_grid\",\"schema\":\"segment\",\"params\":{\"field\":\"location\",\"autoPrecision\":true,\"mapZoom\":3,\"mapCenter\":[9.88227549342994,89.47265625],\"precision\":2}}],\"listeners\":{}}",
+      "uiStateJSON": "{\n  \"spy\": {\n    \"mode\": {\n      \"name\": null,\n      \"fill\": false\n    }\n  }\n}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"ncedc-earthquakes\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "Earthquake-Magnitude-Histogram",
+    "_type": "visualization",
+    "_source": {
+      "title": "Earthquake - Magnitude Histogram",
+      "visState": "{\"title\":\"Earthquake - Magnitude Histogram\",\"type\":\"histogram\",\"params\":{\"shareYAxis\":true,\"addTooltip\":true,\"addLegend\":true,\"scale\":\"linear\",\"mode\":\"stacked\",\"times\":[],\"addTimeMarker\":false,\"defaultYExtents\":false,\"setYExtents\":false,\"yAxis\":{}},\"aggs\":[{\"id\":\"1\",\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"type\":\"histogram\",\"schema\":\"segment\",\"params\":{\"field\":\"mag\",\"interval\":1,\"extended_bounds\":{}}}],\"listeners\":{}}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"ncedc-earthquakes\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "Earthquake-Title",
+    "_type": "visualization",
+    "_source": {
+      "title": "Earthquake - Title",
+      "visState": "{\"title\":\"Earthquake - Title\",\"type\":\"markdown\",\"params\":{\"markdown\":\"## 🌎 World's Earthquakes\\n\\n### Hot Areas\\n\\n- [Japan](/app/kibana#/dashboard/Earthquake-Japan)\\n- [Indonesia](/app/kibana#/dashboard/Earthquake-Indonesia)\\n- [Himalayas](/app/kibana#/dashboard/Earthquake-Himalayas)\\n- [Mediterranean Region](/app/kibana#/dashboard/Earthquake-Mediterranean-Region)\\n- [West Coast, USA](/app/kibana#/dashboard/Earthquake-West-Coast)\\n\\n###  \\n\\nGo back to [the world map](/app/kibana#/dashboard/Earthquake) or compare with [the world population density and nuclear plant locations](/app/kibana#/dashboard/Earthquake-vs-Population-slash-Nuclear-Plants).\\n\\n**Acknowledgements:**\\nWaveform data, metadata, or data products for this study were accessed through the Northern California Earthquake Data Center (NCEDC), doi:10.7932/NCEDC.\"},\"aggs\":[],\"listeners\":{}}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "Earthquake-Count-per-Magnitude-Stacked",
+    "_type": "visualization",
+    "_source": {
+      "title": "Earthquake - Count per Magnitude Stacked",
+      "visState": "{\"title\":\"Earthquake - Count per Magnitude Stacked\",\"type\":\"histogram\",\"params\":{\"shareYAxis\":true,\"addTooltip\":true,\"addLegend\":true,\"scale\":\"linear\",\"mode\":\"stacked\",\"times\":[],\"addTimeMarker\":false,\"defaultYExtents\":false,\"setYExtents\":false,\"yAxis\":{}},\"aggs\":[{\"id\":\"1\",\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"type\":\"date_histogram\",\"schema\":\"segment\",\"params\":{\"field\":\"@timestamp\",\"interval\":\"auto\",\"customInterval\":\"2h\",\"min_doc_count\":1,\"extended_bounds\":{}}},{\"id\":\"3\",\"type\":\"histogram\",\"schema\":\"group\",\"params\":{\"field\":\"mag\",\"interval\":1,\"extended_bounds\":{},\"customLabel\":\"\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{\n  \"vis\": {\n    \"legendOpen\": false\n  }\n}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"ncedc-earthquakes\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "Earthquake-Count-per-Magnitude",
+    "_type": "visualization",
+    "_source": {
+      "title": "Earthquake - Count per Magnitude",
+      "visState": "{\"title\":\"Earthquake - Count per Magnitude\",\"type\":\"area\",\"params\":{\"shareYAxis\":true,\"addTooltip\":true,\"addLegend\":true,\"smoothLines\":false,\"scale\":\"linear\",\"interpolate\":\"linear\",\"mode\":\"overlap\",\"times\":[],\"addTimeMarker\":false,\"defaultYExtents\":false,\"setYExtents\":false,\"yAxis\":{}},\"aggs\":[{\"id\":\"1\",\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"type\":\"date_histogram\",\"schema\":\"segment\",\"params\":{\"field\":\"@timestamp\",\"interval\":\"auto\",\"customInterval\":\"2h\",\"min_doc_count\":1,\"extended_bounds\":{}}},{\"id\":\"3\",\"type\":\"histogram\",\"schema\":\"group\",\"params\":{\"field\":\"mag\",\"interval\":1,\"extended_bounds\":{}}}],\"listeners\":{}}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"ncedc-earthquakes\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "Earthquake-Count",
+    "_type": "visualization",
+    "_source": {
+      "title": "Earthquake - Count",
+      "visState": "{\"title\":\"Earthquake - Count\",\"type\":\"metric\",\"params\":{\"handleNoResults\":true,\"fontSize\":\"42\"},\"aggs\":[{\"id\":\"1\",\"type\":\"max\",\"schema\":\"metric\",\"params\":{\"field\":\"mag\",\"customLabel\":\"Max Magnitudes\"}},{\"id\":\"2\",\"type\":\"avg\",\"schema\":\"metric\",\"params\":{\"field\":\"depth\",\"customLabel\":\"Average Depth (km)\"}},{\"id\":\"3\",\"type\":\"count\",\"schema\":\"metric\",\"params\":{}}],\"listeners\":{}}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"ncedc-earthquakes\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "Earthquake-Types-and-Data-Sources",
+    "_type": "visualization",
+    "_source": {
+      "title": "Earthquake - Types and Data Sources",
+      "visState": "{\"title\":\"Earthquake - Types and Data Sources\",\"type\":\"pie\",\"params\":{\"shareYAxis\":true,\"addTooltip\":true,\"addLegend\":true,\"isDonut\":true},\"aggs\":[{\"id\":\"1\",\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"type\",\"size\":5,\"order\":\"desc\",\"orderBy\":\"1\"}},{\"id\":\"3\",\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"source\",\"size\":30,\"order\":\"desc\",\"orderBy\":\"1\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"ncedc-earthquakes\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "Earthquake-Heatmap-Population-Count-and-Nuclear-Plants",
+    "_type": "visualization",
+    "_source": {
+      "title": "Earthquake - Heatmap - Population Count and Nuclear Plants",
+      "visState": "{\"title\":\"Earthquake - Heatmap - Population Count and Nuclear Plants\",\"type\":\"tile_map\",\"params\":{\"mapType\":\"Heatmap\",\"isDesaturated\":true,\"addTooltip\":true,\"heatMaxZoom\":\"18\",\"heatMinOpacity\":\"0.2\",\"heatRadius\":\"8\",\"heatBlur\":\"4\",\"heatNormalizeData\":true,\"wms\":{\"enabled\":true,\"url\":\"http://sedac.ciesin.columbia.edu/geoserver/wms\",\"options\":{\"version\":\"1.3.0\",\"layers\":\"gpw-v3:gpw-v3-population-count_2000,energy:energy-pop-exposure-nuclear-plants-locations_plants,gpw-v3:gpw-v3-coastlines\",\"format\":\"image/png\",\"transparent\":true,\"attribution\":\"Maps provided by Socioeconomic Data and Applications Center\",\"styles\":\"\"}}},\"aggs\":[{\"id\":\"1\",\"type\":\"sum\",\"schema\":\"metric\",\"params\":{\"field\":\"mag\"}},{\"id\":\"2\",\"type\":\"geohash_grid\",\"schema\":\"segment\",\"params\":{\"field\":\"location\",\"autoPrecision\":false,\"mapZoom\":2,\"mapCenter\":[20,0],\"precision\":4}}],\"listeners\":{}}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"ncedc-earthquakes\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "Earthquake-Heatmap-High-Precision",
+    "_type": "visualization",
+    "_source": {
+      "title": "Earthquake - Heatmap High Precision",
+      "visState": "{\"title\":\"Earthquake - Heatmap High Precision\",\"type\":\"tile_map\",\"params\":{\"mapType\":\"Heatmap\",\"isDesaturated\":false,\"addTooltip\":true,\"heatMaxZoom\":\"18\",\"heatMinOpacity\":\"0.31\",\"heatRadius\":\"8\",\"heatBlur\":\"4\",\"heatNormalizeData\":true,\"wms\":{\"enabled\":false,\"url\":\"http://www.gebco.net/data_and_products/gebco_web_services/web_map_service/mapserv\",\"options\":{\"version\":\"1.3.0\",\"layers\":\"GEBCO_LATEST\",\"format\":\"image/png\",\"transparent\":true,\"attribution\":\"Imagery reproduced from the GEBCO_2014 Grid, version 20150318, www.gebco.net\",\"styles\":\"\"}},\"mapZoom\":2,\"mapCenter\":[15,5]},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"sum\",\"schema\":\"metric\",\"params\":{\"field\":\"mag\"}},{\"id\":\"2\",\"enabled\":true,\"type\":\"geohash_grid\",\"schema\":\"segment\",\"params\":{\"field\":\"location\",\"autoPrecision\":false,\"mapZoom\":2,\"mapCenter\":[20,0],\"precision\":6}}],\"listeners\":{}}",
+      "uiStateJSON": "{\"mapCenter\":[0,-0.17578125]}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"ncedc-earthquakes\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "Earthquake-Heatmap",
+    "_type": "visualization",
+    "_source": {
+      "title": "Earthquake - Heatmap",
+      "visState": "{\"title\":\"Earthquake - Heatmap\",\"type\":\"tile_map\",\"params\":{\"mapType\":\"Heatmap\",\"isDesaturated\":false,\"addTooltip\":true,\"heatMaxZoom\":\"18\",\"heatMinOpacity\":\"0.31\",\"heatRadius\":\"8\",\"heatBlur\":\"4\",\"heatNormalizeData\":true,\"wms\":{\"enabled\":false,\"url\":\"http://www.gebco.net/data_and_products/gebco_web_services/web_map_service/mapserv\",\"options\":{\"version\":\"1.3.0\",\"layers\":\"GEBCO_LATEST\",\"format\":\"image/png\",\"transparent\":true,\"attribution\":\"Maps provided by USGS\",\"styles\":\"\"}},\"mapZoom\":2,\"mapCenter\":[15,5]},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"sum\",\"schema\":\"metric\",\"params\":{\"field\":\"mag\"}},{\"id\":\"2\",\"enabled\":true,\"type\":\"geohash_grid\",\"schema\":\"segment\",\"params\":{\"field\":\"location\",\"autoPrecision\":false,\"mapZoom\":2,\"mapCenter\":[20,0],\"precision\":4}}],\"listeners\":{}}",
+      "uiStateJSON": "{\"mapCenter\":[0,-0.17578125]}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"ncedc-earthquakes\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+      }
+    }
+  }
+]

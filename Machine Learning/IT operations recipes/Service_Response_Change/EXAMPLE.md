@@ -13,8 +13,10 @@ In order to demonstrate this recipe a dataset is provided in the form of apache 
 
 ## Pre-requisites
 
-- Logstash v5.3 (earlier versions may work but have not been tested)
 - Elasticsearch v5.4
+- Filebeat 5.4
+- Elasticsearch [user agent plugin 5.4](https://www.elastic.co/guide/en/elasticsearch/plugins/5.4/ingest-user-agent.html)
+- Elasticsearch [user geoip plugin 5.4](https://www.elastic.co/guide/en/elasticsearch/plugins/5.4/ingest-geoip.html)
 - X-Pack v5.4 with ML beta
 - curl
 
@@ -22,8 +24,7 @@ In order to demonstrate this recipe a dataset is provided in the form of apache 
 
 This example includes:
 
- * Logstash configuration for indexing apache logs.  The Grok patterns here represent the typical [apache log example](https://github.com/elastic/examples/blob/master/ElasticStack_apache/apache_logstash.conf). An additional pattern has been added which extracts the first level from the accessed url, into a field `site_area`.
- * Index template for the data
+ * Ingestion chain for indexing apache logs.  The Ingest chain here has been adapted from the [Apache2 Filebeat module](https://www.elastic.co/guide/en/beats/filebeat/5.4/filebeat-module-apache2.html). More specifically, an additional pattern has been added which extracts the first level from the accessed url, into a field `site_area`.
  * X-Pack Machine Learning job configuration files
  * Utility script to help with loading of the job
 
@@ -38,6 +39,13 @@ This example includes:
   <path_to_kibana_root_dir>/bin/kibana-plugin install x-pack
   ```
 
+* Install the required plugins
+
+  ```shell
+    <path_to_elasticsearch_root_dir>/bin/elasticsearch-plugin install ingest-user-agent
+    <path_to_elasticsearch_root_dir>/bin/elasticsearch-plugin install ingest-geoip
+    ```
+
 * Run Elasticsearch & Kibana
 
   ```shell
@@ -51,40 +59,38 @@ This example includes:
   - Open `localhost:9200` in web browser -- should return a json message indicating ES is running.
   - Open `localhost:5601` in web browser -- should display Kibana UI.
 
-  **Note:** By default, Elasticsearch runs on port 9200, and Kibana run on ports 5601. If you changed the default ports, change the above calls to use the appropriate ports.  
+   **Note:** By default, Elasticsearch runs on port 9200, and Kibana run on ports 5601. If you changed the default ports, change the above calls to use the appropriate ports.  
 
   The cluster will be secured using basic auth. If changing the default credentials of `elastic` and `changeme` as described [here](https://www.elastic.co/guide/en/x-pack/current/security-getting-started.html), ensure the logstash configuration file is updated.
 
 * Download the test dataset provided.
 
     ```
-    curl -O https://raw.githubusercontent.com/elastic/examples/master/Machine%20Learning/IT%20operations%20recipes/Service_Response_Change/data/apache_logs.log
+    curl -O https://raw.githubusercontent.com/elastic/examples/master/Machine%20Learning/IT%20Operations%20Recipes/service_response_change/data/apache_logs.log
     ```
 
-* [Download and Install Logstash](https://www.elastic.co/guide/en/logstash/current/installing-logstash.html). **Do not start Logstash**.
+* Download and install Filebeat as described [here](https://www.elastic.co/guide/en/beats/filebeat/5.4/filebeat-installation.html). **Do not start Filebeat**
 
-* Download the provided Logstash configuration file and index template into the same folder.
-
-    ```
-    curl -O https://raw.githubusercontent.com/elastic/examples/master/Machine%20Learning/IT%20operations%20recipes/Service_Response_Change/configs/logstash/apache_logstash.conf
-    curl -O https://raw.githubusercontent.com/elastic/examples/master/Machine%20Learning/IT%20operations%20recipes/Service_Response_Change/configs/logstash/apache_template.json
-    ```
-
-* Modify the `logstash.conf` file. Change:
-
-    - The elasticsearch username and password values if these have been modified from the defaults
-
-* Copy the modified filebeat.yml file to the root installation folder of the Filebeat installation, overwriting the default file i.e.
-
-    ```cp filebeat.yml <path_to_filebeat_installation>/filebeat.yml```
-
-* Ingest the data sample provided by running the following command:
+* Download the provided ingest pipeline into the same folder.
 
     ```
-    cat <path_to_data_sample>/apache_logs.log | <logstash_installation_directory>/bin/logstash -f apache_logstash.conf
+    curl -O https://raw.githubusercontent.com/elastic/examples/master/Machine%20Learning/IT%20Operations%20Recipes/service_response_change/configs/filebeat/default.json
     ```
 
-* Once Logstash has completed indexing confirm the data has been successfully indexed, modifying the following command if you have changed the default username and password:
+* Copy the modified `default.json` file into the apache2 module's ingest directory, overwriting the existing file i.e.
+
+    ```
+    cp default.json <path_to_filebeat_installation>/module/apache2/access/ingest/default.json
+    ``
+
+* Start Filebeat to begin ingesting data to Elasticsearch. Notice how we use commmand line parameters to override the path to the sample file above and set the Elasticsearch host, username and password. The latter options are only required if you have changed the defaults.
+
+    ```shell
+    cd <filebeat_installation_dir>
+    ./filebeat -e -modules=apache2 -setup -M "apache2.access.var.paths=[<PATH_TO_DATA_SAMPLE>/apache_logs.log]" -E filebeat.prospectors.0.enabled=false -E output.elasticsearch.username=elastic -E output.elasticsearch.password=changeme -E output.elasticsearch.hosts=["localhost:9200"]
+   ```
+
+* Once Filebeat has completed indexing confirm the data has been successfully indexed, modifying the following command if you have changed the default username and password:
 
     ```
     curl localhost:9200/apache_logs/_refresh -u elastic:changeme
@@ -104,9 +110,9 @@ The above steps should index a sample set of apache logs into Elasticsearch.  To
 Download the following files to the **same directory**:
 
   ```
-    curl -O https://raw.githubusercontent.com/elastic/examples/master/Machine%20Learning/IT%20operations%20recipes/Service_Response_Change/machine_learning/data_feed.json
-    curl -O https://raw.githubusercontent.com/elastic/examples/master/Machine%20Learning/IT%20operations%20recipes/Service_Response_Change/machine_learning/job.json
-    curl -O https://raw.githubusercontent.com/elastic/examples/master/Machine%20Learning/IT%20operations%20recipes/scripts/reset_job.sh
+    curl -O https://raw.githubusercontent.com/elastic/examples/master/Machine%20Learning/IT%20Operations%20Recipes/service_response_change/machine_learning/data_feed.json
+    curl -O https://raw.githubusercontent.com/elastic/examples/master/Machine%20Learning/IT%20Operations%20Recipes/service_response_change/machine_learning/job.json
+    curl -O https://raw.githubusercontent.com/elastic/examples/master/Machine%20Learning/IT%20Operations%20Recipes/scripts/reset_job.sh
   ```
 
 * Load the Job by running the supplied reset_job.sh script.
@@ -144,4 +150,4 @@ This script assumes the default Elasticsearch host, port, user and password. To 
 
 * On completion of the job execution navigate to the explorer results view for the job. The example anomaly is shown below:
 
-![Example Explorer View for Service Response Change](https://cloud.githubusercontent.com/assets/12695796/25525451/e8228306-2c06-11e7-8aa9-3b7004489e1a.png)
+![Example Explorer View for Service Response Change](https://user-images.githubusercontent.com/12695796/27917014-adcc505a-6262-11e7-87c1-be24cb8c05fa.png)

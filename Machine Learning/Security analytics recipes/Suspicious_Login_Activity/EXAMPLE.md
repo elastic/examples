@@ -60,7 +60,7 @@ This example includes:
 * Download the test dataset provided.
 
     ```
-    curl -O https://github.com/elastic/examples/blob/master/Machine%20Learning/Security%20analytics%20recipes/Suspicious_Login_Activity/data/auth.log
+    curl -O https://github.com/elastic/examples/blob/master/Machine%20Learning/Security%20Analytics%20Recipes/suspicious_login_activity/data/auth.log
     ```
 
 
@@ -69,7 +69,7 @@ This example includes:
 * Download the provided Filebeat configuration file.
 
     ```
-    curl -O https://github.com/elastic/examples/blob/master/Machine%20Learning/Security%20analytics%20recipes/Suspicious_Login_Activity/configs/filebeat/filebeat.yml
+    curl -O https://github.com/elastic/examples/blob/master/Machine%20Learning/Security%20Analytics%20Recipes/suspicious_login_activity/configs/filebeat/filebeat.yml
     ```
 
 * Modify the filebeat.yml file. Change:
@@ -105,9 +105,9 @@ The above steps should index a sample set of auth logs into Elasticsearch.  To l
 Download the following files to the **same directory**:
 
   ```
-    curl -O https://github.com/elastic/examples/blob/master/Machine%20Learning/Security%20analytics%20recipes/Suspicious_Login_Activity/machine_learning/data_feed.json
-    curl -O https://github.com/elastic/examples/blob/master/Machine%20Learning/Security%20analytics%20recipes/Suspicious_Login_Activity/machine_learning/job.json
-    curl -O https://github.com/elastic/examples/blob/master/Machine%20Learning/Security%20analytics%20recipes/scripts/reset_job.sh
+    curl -O https://github.com/elastic/examples/blob/master/Machine%20Learning/Security%20Analytics%20Recipes/suspicious_login_activity/machine_learning/data_feed.json
+    curl -O https://github.com/elastic/examples/blob/master/Machine%20Learning/Security%20Analytics%20Recipes/suspicious_login_activity/machine_learning/job.json
+    curl -O https://github.com/elastic/examples/blob/master/Machine%20Learning/Security%20Analytics%20Recipes/scripts/reset_job.sh
   ```
 
 * Load the Job by running the supplied reset_job.sh script.

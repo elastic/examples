@@ -60,7 +60,7 @@ This example includes:
 * Download the provided Packetbeat configuration file.
 
     ```
-    curl -O https://github.com/elastic/examples/blob/master/Machine%20Learning/Security%20analytics%20recipes/DNS_Data_Exfiltration/configs/packetbeat/packetbeat.yml
+    curl -O https://github.com/elastic/examples/blob/master/Machine%20Learning/Security%20Analytics%20Recipes/http_data_exfiltration/configs/packetbeat/packetbeat.yml
     ```
 
 * Modify the packetbeat.yml file. Consider changing:
@@ -102,9 +102,9 @@ The Machine Learning Recipe can be loaded prior to the complete datacapture howe
 Download the following files to the **same directory**:
 
   ```
-    curl -O https://github.com/elastic/examples/blob/master/Machine%20Learning/Security%20analytics%20recipes/HTTP_Data_Exfiltration/machine_learning/data_feed.json
-    curl -O https://github.com/elastic/examples/blob/master/Machine%20Learning/Security%20analytics%20recipes/HTTP_Data_Exfiltration/machine_learning/job.json
-    curl -O https://github.com/elastic/examples/blob/master/Machine%20Learning/Security%20analytics%20recipes/scripts/reset_job.sh
+    curl -O https://github.com/elastic/examples/blob/master/Machine%20Learning/Security%20Analytics%20Recipes/http_data_exfiltration/machine_learning/data_feed.json
+    curl -O https://github.com/elastic/examples/blob/master/Machine%20Learning/Security%20Analytics%20Recipes/http_data_exfiltration/machine_learning/job.json
+    curl -O https://github.com/elastic/examples/blob/master/Machine%20Learning/Security%20Analytics%20Recipes/scripts/reset_job.sh
   ```
 
 * Load the Job by running the supplied reset_job.sh script.
@@ -138,7 +138,7 @@ These scripts produce a large outbound HTTP upload signature. The first script r
 * Download the server script to the machine which will represent the target.
 
 ```
-https://github.com/elastic/examples/blob/master/Machine%20Learning/Security%20analytics%20recipes/HTTP_Data_Exfiltration/scripts/server.sh
+https://github.com/elastic/examples/blob/master/Machine%20Learning/Security%20Analytics%20Recipes/http_data_exfiltration/scripts/server.sh
 ```
 
 * Run the server using the following command.  The port is optional and defaults to 3333. Ensure this is open and accessible from the client machine.
@@ -151,7 +151,7 @@ https://github.com/elastic/examples/blob/master/Machine%20Learning/Security%20an
 * Download the client script to the machine on which you have earlier installed Packetbeat.
 
 ```
-https://github.com/elastic/examples/blob/master/Machine%20Learning/Security%20analytics%20recipes/HTTP_Data_Exfiltration/scripts/client.sh
+https://github.com/elastic/examples/blob/master/Machine%20Learning/Security%20Analytics%20Recipes/http_data_exfiltration/scripts/client.sh
 ```
 
 
