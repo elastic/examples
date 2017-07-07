@@ -73,6 +73,7 @@ X-Pack lets you set up watches (or rules) to detect and alert on changes in your
 - [Getting started tutorials](https://github.com/elastic/examples/tree/master/Machine%20Learning/Getting%20Started%20Examples)
 - [IT operations recipes](https://github.com/elastic/examples/tree/master/Machine%20Learning/IT%20Operations%20Recipes)	
 - [Security analytics recipes](https://github.com/elastic/examples/tree/master/Machine%20Learning/Security%20Analytics%20Recipes)
+- [Business metrics recipes](https://github.com/elastic/examples/tree/master/Machine%20Learning/Business%20Metrics%20Recipes)
 
 #### Search & API Examples
 
