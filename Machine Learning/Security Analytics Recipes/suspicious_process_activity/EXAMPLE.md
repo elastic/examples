@@ -24,7 +24,7 @@ This example includes:
 
 ## Installation and Setup
 
-* Follow the [Installation & Setup Guide](https://github.com/elastic/examples/blob/5.4/Installation%20and%20Setup.md) to install and test the Elastic Stack (*you can skip this step if you have a working installation of the Elastic Stack,*)
+* Follow the [Installation & Setup Guide](https://github.com/elastic/examples/blob/master/Installation%20and%20Setup.md) to install and test the Elastic Stack (*you can skip this step if you have a working installation of the Elastic Stack,*)
 
 * Install the X-Pack in Kibana and Elasticsearch
 
