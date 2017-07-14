@@ -57,9 +57,9 @@ This example includes:
 
   **Note:** By default, Elasticsearch runs on port 9200, and Kibana run on ports 5601. If you changed the default ports, change the above calls to use the appropriate ports.  
 
-  The cluster will be secured using basic auth. If changing the default credentials of `elastic` and `changeme` as described [here](https://www.elastic.co/guide/en/x-pack/current/security-getting-started.html), ensure the logstash configuration file is updated.
+  The cluster will be secured using basic auth. If changing the default credentials of `elastic` and `changeme` as described [here](https://www.elastic.co/guide/en/x-pack/5.4/security-getting-started.html), ensure the logstash configuration file is updated.
 
-* [Download and Install Metricbeat](https://www.elastic.co/guide/en/beats/metricbeat/current/metricbeat-installation.html). **Do not start Metricbeat**.
+* [Download and Install Metricbeat](https://www.elastic.co/guide/en/beats/metricbeat/5.3/metricbeat-installation.html). **Do not start Metricbeat**.
 
 * Download the provided Metricbeat configuration file.
 
@@ -84,7 +84,7 @@ This example includes:
     curl -XPUT -H 'Content-Type: application/json' 'localhost:9200/_ingest/pipeline/core_id' -d @core_id.json -u elastic:changeme
   ```
 
-* Start metricbeat as described [here](https://www.elastic.co/guide/en/beats/metricbeat/current/metricbeat-starting.html).
+* Start metricbeat as described [here](https://www.elastic.co/guide/en/beats/metricbeat/5.3/metricbeat-starting.html).
 
 * Test Metricbeat is capturing Core data by running the following commands.
 
