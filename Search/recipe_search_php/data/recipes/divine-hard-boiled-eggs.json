@@ -1,0 +1,22 @@
+{
+	"title": "Divine Hard-Boiled Eggs",
+	"description": "These hard-boiled eggs are cooked perfectly every time without turning the yolks green.",
+	"ingredients": [
+		"12 eggs"
+	],
+	"directions": [
+		"Place eggs in a pot; pour enough water over the eggs to cover.",
+		"Cover and turn stove to high; bring to a boil; turn off heat and place pot on a cool burner. Let the pot sit with the cover on for 15 minutes.",
+		"Meanwhile, fill a large bowl halfway with cold water; transfer the eggs from the pot to the cold water. Replace the water with cold water as needed to keep cold until the eggs are completely cooled.",
+		"Chill in refrigerator at least 2 hours before peeling."
+	],
+	"prep_time_min": 5,
+	"cook_time_min": 15,
+	"servings": 12,
+	"tags": [ "appetizer", "snack", "breakfast" ],
+	"author": {
+		"name": "Rocky Road",
+		"url": "http://allrecipes.com/cook/13810306/profile.aspx"
+	},
+	"source_url": "http://allrecipes.com/recipe/divine-hard-boiled-eggs/detail.aspx"
+}

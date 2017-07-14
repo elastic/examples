@@ -1,0 +1,33 @@
+{
+  "job_id": "dns_exfiltration",
+  "description": "dns exfiltration",
+  "analysis_config": {
+    "bucket_span": "5m",
+    "latency": "0s",
+    "detectors": [
+      {
+        "detector_description": "high_info_content(sub_domain) over domain",
+        "function": "high_info_content",
+        "field_name": "sub_domain",
+        "over_field_name": "domain",
+        "exclude_frequent": "ALL",
+        "detector_rules": []
+      }
+    ],
+    "influencers": [
+      "beat.name",
+      "domain"
+    ],
+    "use_per_partition_normalization": false
+  },
+  "data_description": {
+    "format": "delimited",
+    "time_field": "@timestamp",
+    "time_format": "epoch",
+    "field_delimiter": "\t",
+    "quote_character": "\""
+  },
+  "model_plot_config": {
+      "enabled" : true
+  }
+}

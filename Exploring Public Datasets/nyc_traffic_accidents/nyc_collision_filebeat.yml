@@ -1,0 +1,14 @@
+filebeat.prospectors:
+- input_type: log
+  paths:
+    - ./nyc_collision/nyc_collision_data.csv
+  document_type: nyc_collision
+
+output.elasticsearch:
+  hosts: ["localhost:9200"]
+  index: nyc_visionzero
+  template.enabled: true
+  template.name: nyc_collision
+  template.path: "nyc_collision_template.json"
+  template.overwrite: true
+  pipeline: nyc_collision

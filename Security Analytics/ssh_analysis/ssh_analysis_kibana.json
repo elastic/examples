@@ -1,0 +1,140 @@
+[
+  {
+    "_id": "CEF-Brute-Force-Dashboard",
+    "_type": "dashboard",
+    "_source": {
+      "title": "CEF Brute Force Dashboard",
+      "hits": 0,
+      "description": "",
+      "panelsJSON": "[{\"col\":1,\"id\":\"SSH-Access-with-Brute-Force\",\"panelIndex\":4,\"row\":6,\"size_x\":12,\"size_y\":5,\"type\":\"visualization\"},{\"col\":11,\"columns\":[\"destinationUserName\"],\"id\":\"Brute-Force-Usernames\",\"panelIndex\":6,\"row\":1,\"size_x\":2,\"size_y\":5,\"sort\":[\"@timestamp\",\"desc\"],\"type\":\"search\"},{\"id\":\"Top-Attempted-Users\",\"type\":\"visualization\",\"panelIndex\":7,\"size_x\":10,\"size_y\":5,\"col\":1,\"row\":1}]",
+      "optionsJSON": "{\"darkTheme\":false}",
+      "uiStateJSON": "{}",
+      "version": 1,
+      "timeRestore": true,
+      "timeTo": "2016-11-30T06:49:31.508Z",
+      "timeFrom": "2016-11-28T16:09:08.044Z",
+      "refreshInterval": {
+        "display": "Off",
+        "pause": false,
+        "value": 0
+      },
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[{\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"default_field\":\"_all\",\"query\":\"*\"}}}]}"
+      }
+    }
+  },
+  {
+    "_id": "CEF-Login-Dashboard",
+    "_type": "dashboard",
+    "_source": {
+      "title": "CEF Login Dashboard",
+      "hits": 0,
+      "description": "",
+      "panelsJSON": "[{\"id\":\"Top-Attempted-Passwords\",\"type\":\"visualization\",\"panelIndex\":1,\"size_x\":6,\"size_y\":4,\"col\":1,\"row\":1},{\"id\":\"Logins\",\"type\":\"visualization\",\"panelIndex\":2,\"size_x\":12,\"size_y\":4,\"col\":1,\"row\":5},{\"id\":\"Failed-vs-Successful-Logins\",\"type\":\"visualization\",\"panelIndex\":3,\"size_x\":6,\"size_y\":4,\"col\":7,\"row\":1}]",
+      "optionsJSON": "{\"darkTheme\":false}",
+      "uiStateJSON": "{\"P-2\":{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}}}",
+      "version": 1,
+      "timeRestore": true,
+      "timeTo": "2016-12-08T16:45:03.557Z",
+      "timeFrom": "2016-11-14T06:30:21.343Z",
+      "refreshInterval": {
+        "display": "Off",
+        "pause": false,
+        "value": 0
+      },
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[{\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true,\"default_field\":\"_all\"}}}]}"
+      }
+    }
+  },
+  {
+    "_id": "Brute-Force-Usernames",
+    "_type": "search",
+    "_source": {
+      "title": "Brute Force Usernames",
+      "description": "",
+      "hits": 0,
+      "columns": [
+        "destinationUserName"
+      ],
+      "sort": [
+        "@timestamp",
+        "desc"
+      ],
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"cef-ssh-watch-results\",\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[],\"highlight\":{\"pre_tags\":[\"@kibana-highlighted-field@\"],\"post_tags\":[\"@/kibana-highlighted-field@\"],\"fields\":{\"*\":{}},\"require_field_match\":false,\"fragment_size\":2147483647}}"
+      }
+    }
+  },
+  {
+    "_id": "SSH-Access-with-Brute-Force",
+    "_type": "visualization",
+    "_source": {
+      "title": "SSH Access with Brute Force",
+      "visState": "{\"type\":\"timelion\",\"title\":\"SSH Access with Brute Force\",\"params\":{\"expression\":\".es(index=\\\"cef-ssh-*\\\",q=\\\"_type:syslog AND categoryBehaviour:cowrie.login.success\\\").label(\\\"success\\\").yaxis(1) .es(index=\\\"cef-ssh-*\\\",q=\\\"_type:syslog AND categoryBehaviour:cowrie.login.failed\\\").label(\\\"failed\\\").yaxis(2) .es(index=\\\"cef-ssh-watch-results\\\",q=\\\"_type:brute_force\\\").label(\\\"brute force\\\").points(fill=10, radius=10).if(eq, 0, null).color(red)\",\"interval\":\"auto\"}}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{}"
+      }
+    }
+  },
+  {
+    "_id": "Top-Attempted-Users",
+    "_type": "visualization",
+    "_source": {
+      "title": "Top Attempted Users",
+      "visState": "{\"aggs\":[{\"enabled\":true,\"id\":\"1\",\"params\":{},\"schema\":\"metric\",\"type\":\"count\"},{\"enabled\":true,\"id\":\"2\",\"params\":{\"field\":\"destinationUserName\",\"order\":\"desc\",\"orderBy\":\"1\",\"size\":25},\"schema\":\"segment\",\"type\":\"terms\"}],\"listeners\":{},\"params\":{\"addLegend\":true,\"addTimeMarker\":false,\"addTooltip\":true,\"defaultYExtents\":false,\"legendPosition\":\"right\",\"mode\":\"stacked\",\"scale\":\"linear\",\"setYExtents\":false,\"shareYAxis\":true,\"times\":[],\"yAxis\":{}},\"title\":\"Top Attempted Users\",\"type\":\"histogram\"}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"cef-ssh-*\",\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"default_field\":\"_all\",\"query\":\"*\"}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "Top-Attempted-Passwords",
+    "_type": "visualization",
+    "_source": {
+      "title": "Top Attempted Passwords",
+      "visState": "{\"title\":\"Top Attempted Passwords\",\"type\":\"histogram\",\"params\":{\"shareYAxis\":true,\"addTooltip\":true,\"addLegend\":true,\"legendPosition\":\"right\",\"scale\":\"linear\",\"mode\":\"stacked\",\"times\":[],\"addTimeMarker\":false,\"defaultYExtents\":false,\"setYExtents\":false,\"yAxis\":{}},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"deviceCustomString3\",\"exclude\":{\"pattern\":\"\"},\"size\":10,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"Attempted Passwords\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"cef-ssh-*\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true,\"default_field\":\"_all\"}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "Logins",
+    "_type": "visualization",
+    "_source": {
+      "title": "Logins",
+      "visState": "{\"title\":\"Logins\",\"type\":\"table\",\"params\":{\"perPage\":10,\"showPartialRows\":false,\"showMeticsAtAllLevels\":false,\"sort\":{\"columnIndex\":null,\"direction\":null},\"showTotal\":false,\"totalFunc\":\"sum\"},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"max\",\"schema\":\"metric\",\"params\":{\"field\":\"@timestamp\",\"customLabel\":\"Latest Event Time\"}},{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"destinationHostName\",\"size\":100,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"Target Server\"}},{\"id\":\"3\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"sourceAddress\",\"size\":100,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"Source IP Address\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{\n  \"vis\": {\n    \"params\": {\n      \"sort\": {\n        \"columnIndex\": null,\n        \"direction\": null\n      }\n    }\n  }\n}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"cef-ssh-watch-results\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true,\"default_field\":\"_all\"}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "Failed-vs-Successful-Logins",
+    "_type": "visualization",
+    "_source": {
+      "title": "Failed vs Successful Logins",
+      "visState": "{\"title\":\"Failed vs Successful Logins\",\"type\":\"timelion\",\"params\":{\"expression\":\".es(q=categoryOutcome:success, timefield=@timestamp,index=cef-ssh-*).label(\\\"successful logins\\\").yaxis(2) .es(q=categoryOutcome:failure, timefield=@timestamp,index=cef-ssh-*).label(\\\"failed logins\\\") .es(index=\\\"cef-ssh-watch-results\\\",q=\\\"_type:external_login\\\").label(\\\"external_login\\\").points(fill=10, radius=10).if(eq, 0, null).color(red).yaxis(3).label(\\\"external login\\\")\",\"interval\":\"auto\"},\"aggs\":[],\"listeners\":{}}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+      }
+    }
+  }
+]

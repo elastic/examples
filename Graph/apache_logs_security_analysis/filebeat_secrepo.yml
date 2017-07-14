@@ -1,0 +1,18 @@
+filebeat.prospectors:
+- input_type: log
+  paths:
+    - ./data/access*
+  document_type: logs
+  harvester_limit: 100
+  close_eof: true
+
+output.elasticsearch:
+  hosts: ["localhost:9200"]
+  index: "secrepo"
+  username: elastic
+  password: changeme
+  template.enabled: true
+  template.name: secrepo
+  template.path: "secrepo.json"
+  template.overwrite: true
+  pipeline: secrepo_pipeline

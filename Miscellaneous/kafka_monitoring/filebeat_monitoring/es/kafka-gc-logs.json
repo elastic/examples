@@ -1,0 +1,95 @@
+{
+  "description": "test",
+  "processors": [
+    {
+      "grok": {
+        "field": "message",
+        "patterns": [
+          "(?m)%{TIMESTAMP_ISO8601:log-timestamp}:.*GC pause.*, %{NUMBER:gc_pause:float}.*Eden: %{MEM:eden.before.used}\\(%{MEM:eden.before.total}\\)->%{MEM:eden.after.used}\\(%{MEM:eden.after.total}\\).*Survivors: %{MEM:survivors.before.used}->%{MEM:survivors.after.used}.*Heap: %{MEM:heap.before.used}\\(%{MEM:heap.before.total}\\)->%{MEM:heap.after.used}\\(%{MEM:heap.after.total}\\).*Times: user=%{NUMBER:time.user.sec:float}.*sys=%{NUMBER:time.sys.sec:float}.*real=%{NUMBER:time.real.sec:float}"
+        ],
+        "pattern_definitions": {
+          "MEM": "%{NUMBER}%{MEM_UNIT}",
+          "MEM_UNIT": "B|K|M|G"
+        }
+      }
+    },
+    {
+      "script": {
+        "lang": "painless",
+        "inline": "def getBytes(def x) {def last = x.length() - 1; def sizes = ['B': 1, 'K': 1024, 'M': 1048576, 'G': 1073741824]; return (Float.parseFloat(x.substring(0, last)) * sizes[x.substring(last)]).longValue();} def toBytes(def c, def field) {c[field] = getBytes(c[field]);} def stToBytes(def c, def subs, def fields) {for (def s : subs) {for (def field : fields) {toBytes(c[s], field);}} return true;} for (def kv : params.fields.entrySet()) { if (ctx.containsKey(kv.getKey())) { stToBytes(ctx[kv.getKey()], ['before', 'after'], kv.getValue()) }}",
+        "on_failure" : [
+          {
+            "set" : {
+              "field" : "error.conv",
+              "value" : "{{ _ingest.on_failure_message }}"
+            }
+          }
+        ],
+        "params": {
+          "fields": {
+            "eden": ["total", "used"],
+            "survivors": ["used"],
+            "heap": ["total", "used"]
+          }
+        }
+      }
+    },
+    {
+      "script": {
+        "lang": "painless",
+        "inline": "for (def kv : params.fields.entrySet()) { if (ctx.containsKey(kv.getKey())) { def d = ctx[kv.getKey()]; d.delta = new HashMap(); for (def k : kv.getValue()) {d.delta[k] = d.before[k] - d.after[k];}}}",
+        "on_failure" : [
+          {
+            "set" : {
+              "field" : "error.delta",
+              "value" : "{{ _ingest.on_failure_message }}"
+            }
+          }
+        ],
+        "params": {
+          "fields": {
+            "eden": ["total", "used"],
+            "heap": ["total", "used"],
+            "survivors": ["used"]
+          }
+        }
+      }
+    },
+    {
+      "script": {
+        "lang": "painless",
+        "on_failure" : [
+          {
+            "set" : {
+              "field" : "error.gc_pause",
+              "value" : "{{ _ingest.on_failure_message }}"
+            }
+          }
+        ],
+        "inline": " if (ctx.containsKey('gc_pause')) { ctx.gc_pause_us = (long)(ctx.gc_pause * 1000000) }"
+      }
+    },
+    {
+      "rename": {
+        "field": "@timestamp",
+        "target_field": "beat.read_time"
+      }
+    },
+    {
+      "date": {
+        "field": "log-timestamp",
+        "target_field": "@timestamp",
+        "formats": ["ISO8601"]
+      }
+    },
+    {"remove": {"field": "message" }},
+    {"remove": {"field": "log-timestamp" }},
+    {"remove": {"field": "gc_pause" }}
+  ],
+  "on_failure" : [{
+    "set" : {
+      "field" : "error.pipeline",
+      "value" : "{{ _ingest.on_failure_message }}"
+    }
+  }]
+}

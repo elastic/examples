@@ -1,0 +1,56 @@
+{
+
+  "template": "nginx_json_elastic_stack_example",
+  "settings": {
+     "index.refresh_interval": "5s"
+  },
+  "mappings": {
+     "_default_": {
+        "dynamic_templates": [
+           {
+              "message_field": {
+                 "mapping": {
+                    "norms": false,
+                    "type": "text"
+                 },
+                 "match_mapping_type": "string",
+                 "match": "message"
+              }
+           },
+           {
+              "string_fields": {
+                 "mapping": {
+                    "type": "text",
+                    "norms": false,
+                    "fields": {
+                       "keyword": {
+                          "type":"keyword",
+                          "ignore_above": 256
+                       }
+                    }
+                 },
+                 "match_mapping_type": "string",
+                 "match": "*"
+              }
+           }
+        ],
+        "properties": {
+           "geoip": {
+              "dynamic": true,
+              "properties": {
+                 "location": {
+                    "type": "geo_point"
+                 }
+              },
+              "type": "object"
+           },
+           "request": {
+              "type":"keyword"
+           }
+        },
+        "_all": {
+           "enabled": true
+        }
+     }
+  }
+}

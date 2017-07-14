@@ -1,0 +1,3 @@
+{
+  "script": "return LocalDateTime.parse(params.current_time.substring(0,19)).plusMinutes(30).format(DateTimeFormatter.ofPattern('HH:mm:ss'))+'Z';"
+}

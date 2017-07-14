@@ -1,0 +1,54 @@
+{
+  "description": "ncedc earthquakes",
+  "processors": [
+    {
+      "grok": {
+        "field": "message",
+        "patterns": [
+          "%{CUSTOM_DATE:timestamp},%{DATA:latitude},%{DATA:longitude},%{DATA:depth},%{DATA:mag},%{DATA:magType},%{DATA:nst},%{DATA:gap},%{DATA:dmin},%{DATA:rms},%{DATA:source},%{GREEDYDATA:event_id}"
+        ],
+        "pattern_definitions": {
+          "CUSTOM_DATE": "%{YEAR}/%{MONTHNUM}/%{MONTHDAY} %{HOUR}:%{MINUTE}:%{SECOND}.%{INT}"
+        },
+         "ignore_failure" : true
+      }
+    },
+    {
+      "set": {
+        "field": "location",
+        "value": "{{latitude}}, {{longitude}}",
+         "ignore_failure" : true
+      }
+    },
+    {
+      "date": {
+        "field": "timestamp",
+        "target_field": "@timestamp",
+        "formats": [
+          "yyyy/MM/dd HH:mm:ss.SS",
+          "ISO8601"
+        ],
+        "timezone": "GMT",
+         "ignore_failure" : true
+      }
+    },
+    {
+      "remove": {
+        "field": "longitude",
+         "ignore_failure" : true
+      }
+    },
+    {
+      "remove": {
+        "field": "latitude",
+         "ignore_failure" : true
+      }
+    },
+    {
+      "remove": {
+        "field": "timestamp",
+         "ignore_failure" : true
+      }
+    }
+  ]
+}

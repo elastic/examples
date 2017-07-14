@@ -24,55 +24,74 @@ See [here](https://github.com/elastic/examples/blob/master/CONTRIBUTING.md)
 
 Below is the list of examples available in this repo:
 
-#### Getting Started with Elastic Stack:
+#### Common Data Formats
 
-- [NGINX - JSON](https://github.com/elastic/examples/tree/master/ElasticStack_NGINX-json)
-- [NGINX - common format](https://github.com/elastic/examples/tree/master/ElasticStack_NGINX)
-- [NGINX Plus - JSON](https://github.com/elastic/examples/tree/master/ElasticStack_NGINX)
-- [Twitter](https://github.com/elastic/examples/tree/master/ElasticStack_twitter)
-- [Apache access logs](https://github.com/elastic/examples/tree/master/ElasticStack_apache)
-- [Simple recipe search app in PHP](https://github.com/elastic/examples/tree/master/elasticsearch_app_php_recipe_search)
+- [Apache Logs](https://github.com/elastic/examples/tree/master/Common%20Data%20Formats/apache_logs)
+- [NGINX Logs](https://github.com/elastic/examples/tree/master/Common%20Data%20Formats/nginx_logs)
+- [NGINX JSON Logs](https://github.com/elastic/examples/tree/master/Common%20Data%20Formats/nginx_json_logs)
+- [NGINX JSON Plus Logs](https://github.com/elastic/examples/tree/master/Common%20Data%20Formats/nginx_json_plus_logs)
+- [Twitter](https://github.com/elastic/examples/tree/master/Common%20Data%20Formats/twitter)
+- [CEF](https://github.com/elastic/examples/tree/master/Common%20Data%20Formats/cef)
 
-#### Analyzing Public Datasets
+#### Exploring Public Datasets
 
 Examples using the Elastic Stack for analyzing public dataset.
-- [DonorsChoose.org donations](https://github.com/elastic/examples/tree/master/ElasticStack_donorschoose)
-- [NCEDC earthquakes data](https://github.com/elastic/examples/tree/master/ElasticStack_earthquakes)
-- [NYC traffic accidents](https://github.com/elastic/examples/tree/master/ElasticStack_nyc_traffic_accidents)
-- [US FEC campaign contributions](https://github.com/elastic/examples/tree/master/ElasticStack_usfec)
-- [CDC health behavior survey](https://github.com/elastic/examples/tree/master/ElasticStack_CDC_nutrition_exercise_patterns)
-- [NYC restaurant health grades](https://github.com/elastic/examples/tree/master/kibana_nyc_restaurants)
 
+- [DonorsChoose.org donations](https://github.com/elastic/examples/tree/master/Exploring%20Public%20Datasets/donorschoose)
+- [NCEDC earthquakes data](https://github.com/elastic/examples/tree/master/Exploring%20Public%20Datasets/earthquakes)
+- [NYC traffic accidents](https://github.com/elastic/examples/tree/master/Exploring%20Public%20Datasets/nyc_traffic_accidents)
+- [US FEC campaign contributions](https://github.com/elastic/examples/tree/master/Exploring%20Public%20Datasets/usfec)
+- [CDC health behavior survey](https://github.com/elastic/examples/tree/master/Exploring%20Public%20Datasets/cdc_nutrition_exercise_patterns)
+- [NYC restaurant health grades](https://github.com/elastic/examples/tree/master/Exploring%20Public%20Datasets/nyc_restaurants)
+- [NHL Match Data](https://github.com/elastic/examples/tree/master/Exploring%20Public%20Datasets/nhl)
+
+#### Getting Started with Graph exploration
+
+- [Exploring attack vectors in Apache logs using Graph](https://github.com/elastic/examples/tree/master/Exploring%20Public%20Datasets/apache_logs_security_analysis)
+- [Powering recommendation using Graph](https://github.com/elastic/examples/tree/master/Exploring%20Public%20Datasets/movie_recommendations)
 
 #### Alerting on Elastic Stack
 
 X-Pack lets you set up watches (or rules) to detect and alert on changes in your Elasticsearch data. Below is a list of examples watches that configured to detect and alert on a few common scenarios:
 
-- [High I/O wait on CPU](https://github.com/elastic/examples/tree/master/Alerting/cpu_iowait_hosts)
-- [Critical error  in logs](https://github.com/elastic/examples/tree/master/Alerting/errors_in_logs)
-- [High filesystem usage](https://github.com/elastic/examples/tree/master/Alerting/filesystem_usage)
-- [Lateral movement in user communication](https://github.com/elastic/examples/tree/master/Alerting/lateral_movement_in_user_comm)
-- [New process started on hosts](https://github.com/elastic/examples/tree/master/Alerting/new_process_started)
-- [Port scan detected](https://github.com/elastic/examples/tree/master/Alerting/port_scan)
-- [Interrupted log flow from hosts](https://github.com/elastic/examples/tree/master/Alerting/system_fails_to_provide_data)
-- [Trending hashtag on twitter](https://github.com/elastic/examples/tree/master/Alerting/twitter_trends)
-- [Unexpected account activity](https://github.com/elastic/examples/tree/master/Alerting/unexpected_account_activity)
-- [Detecting DNS tunnels](https://github.com/elastic/examples/tree/master/packetbeat_dns_tunnel_detection)
-- Watch history dashboard
-
-
-#### Getting Started with Graph exploration
-
-- [Exploring attack vectors in Apache logs using Graph](https://github.com/elastic/examples/tree/master/ElasticStack_graph_apache)
-- [Powering recommendation using Graph](https://github.com/elastic/examples/tree/master/ElasticStack_graph_movielens)
+- [High I/O wait on CPU](https://github.com/elastic/examples/tree/master/Alerting/Sample%20Watches/cpu_iowait_hosts)
+- [Critical error  in logs](https://github.com/elastic/examples/tree/master/Alerting/Sample%20Watches/errors_in_logs)
+- [High filesystem usage](https://github.com/elastic/examples/tree/master/Alerting/Sample%20Watches/filesystem_usage)
+- [Lateral movement in user communication](https://github.com/elastic/examples/tree/master/Alerting/Sample%20Watches/lateral_movement_in_user_comm)
+- [Alerting on Machine Learning](https://github.com/elastic/examples/tree/master/Alerting/Sample%20Watches/ml_examples)
+- [Monitoring Cluster Health](https://github.com/elastic/examples/tree/master/Alerting/Sample%20Watches/monitoring_cluster_health)
+- [Monitoring Free Disk Space](https://github.com/elastic/examples/tree/master/Alerting/Sample%20Watches/monitoring_free_disk_space)
+- [New process started on hosts](https://github.com/elastic/examples/tree/master/Alerting/Sample%20Watches/new_process_started)
+- [Port scan detected](https://github.com/elastic/examples/tree/master/Alerting/Sample%20Watches/port_scan)
+- [Interrupted log flow from hosts](https://github.com/elastic/examples/tree/master/Alerting/Sample%20Watches/system_fails_to_provide_data)
+- [Trending hashtag on twitter](https://github.com/elastic/examples/tree/master/Alerting/Sample%20Watches/twitter_trends)
+- [Unexpected account activity](https://github.com/elastic/examples/tree/master/Alerting/Sample%20Watches/unexpected_account_activity)
+- [Watch history dashboard](https://github.com/elastic/examples/tree/master/Alerting/watcher_dashboard)
 
 #### Machine learning
 
-- [Getting started tutorials](https://github.com/elastic/examples/tree/master/Machine%20Learning/Getting%20started%20examples)
-- [IT operations recipes](https://github.com/elastic/examples/tree/master/Machine%20Learning/IT%20operations%20recipes)	
-- [Security analytics recipes](https://github.com/elastic/examples/tree/master/Machine%20Learning/Security%20analytics%20recipes)
+- [Getting started tutorials](https://github.com/elastic/examples/tree/master/Machine%20Learning/Getting%20Started%20Examples)
+- [IT operations recipes](https://github.com/elastic/examples/tree/master/Machine%20Learning/IT%20Operations%20Recipes)	
+- [Security analytics recipes](https://github.com/elastic/examples/tree/master/Machine%20Learning/Security%20Analytics%20Recipes)
+- [Business metrics recipes](https://github.com/elastic/examples/tree/master/Machine%20Learning/Business%20Metrics%20Recipes)
+
+#### Search & API Examples
+
+- [Recipe Search with Java](https://github.com/elastic/examples/tree/master/Search/recipe_search_java)
+- [Recipe Search with PHP](https://github.com/elastic/examples/tree/master/Search/recipe_search_php)	
+
+#### Security Analytics
+
+- [Audit Analysis](https://github.com/elastic/examples/tree/master/Security%20Analytics/auditd_analysis)
+- [CEF with Kafka](https://github.com/elastic/examples/tree/master/Security%20Analytics/cef_with_kafka)	
+- [DNS Tunnel Detection](https://github.com/elastic/examples/tree/master/Security%20Analytics/dns_tunnel_detection)
+- [Malware Analysis](https://github.com/elastic/examples/tree/master/Security%20Analytics/malware_analysis)	
+- [SSH Analysis](https://github.com/elastic/examples/tree/master/Security%20Analytics/ssh_analysis)
 
 
 #### Miscellaneous
-- [Setting up Elastic Stack on Docker](https://github.com/elastic/examples/tree/master/ElasticStack_docker_setup/)
-- [Creating a custom realm in Shield](https://github.com/elastic/examples/tree/master/shield_custom_realm_example)
+
+- [Custom Tile Maps](https://github.com/elastic/examples/tree/master/Miscellaneous/custom_tile_maps)
+- [Monitoring Kafka](https://github.com/elastic/examples/tree/master/Miscellaneous/kafka_monitoring)
+- [Kibana with Geoserver](https://github.com/elastic/examples/tree/master/Miscellaneous/kibana_geoserver)
+- [The ElasticStack on Docker](https://github.com/elastic/examples/tree/master/Miscellaneous/docker)

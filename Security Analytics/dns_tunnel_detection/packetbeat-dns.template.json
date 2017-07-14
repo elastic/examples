@@ -1,0 +1,56 @@
+{
+   "order": 1,
+   "template": "packetbeat-*",
+   "settings": {
+      "analysis": {
+         "char_filter": {
+            "trailing_dot": {
+               "type": "pattern_replace",
+               "pattern": "(.*)\\.",
+               "replacement": "$1"
+            }
+         },
+         "analyzer": {
+            "domain_name_analyzer": {
+               "filter": "lowercase",
+               "char_filter": [
+                  "trailing_dot"
+               ],
+               "tokenizer": "domain_name_tokenizer",
+               "type": "custom"
+            }
+         },
+         "tokenizer": {
+            "domain_name_tokenizer": {
+               "type": "PathHierarchy",
+               "delimiter": ".",
+               "reverse": true
+            }
+         }
+      }
+   },
+   "mappings": {
+      "dns": {
+         "properties": {
+            "dns": {
+               "properties": {
+                  "question": {
+                     "properties": {
+                        "name": {
+                           "type": "keyword",
+                           "fields": {
+                              "analyzed": {
+                                 "type": "text",
+                                 "analyzer": "domain_name_analyzer",
+                                 "search_analyzer": "keyword"
+                              }
+                           }
+                        }
+                     }
+                  }
+               }
+            }
+         }
+      }
+   }
+}

@@ -1,0 +1,72 @@
+{
+  "template": "twitter_elastic_example",
+  "settings": {
+    "number_of_shards": 1,
+    "number_of_replicas": 0
+  },
+  "mappings": {
+    "_default_": {
+      "_all": {
+        "enabled": true
+      },
+      "properties": {
+        "@timestamp": {
+          "type": "date",
+          "format": "dateOptionalTime"
+        },
+        "text": {
+          "type": "text"
+        },
+        "user": {
+          "type": "object",
+          "properties": {
+            "description": {
+              "type": "text"
+            }
+          }
+        },
+        "coordinates": {
+          "type": "object",
+          "properties": {
+            "coordinates": {
+              "type": "geo_point"
+            }
+          }
+        },
+        "entities": {
+          "type": "object",
+          "properties": {
+            "hashtags": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "type": "text",
+                  "fielddata": true
+                }
+              }
+            }
+          }
+        },
+        "retweeted_status": {
+          "type": "object",
+          "properties": {
+            "text": {
+              "type": "text"
+            }
+          }
+        }
+      },
+      "dynamic_templates": [
+        {
+          "string_template": {
+            "match": "*",
+            "match_mapping_type": "string",
+            "mapping": {
+              "type": "keyword"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

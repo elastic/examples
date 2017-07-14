@@ -1,6 +1,0 @@
-*.tgz
-*.zip
-dns-tunnel-iodine-timeshifted.pcap
-
-elasticsearch/
-packetbeat/

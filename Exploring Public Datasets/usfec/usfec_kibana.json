@@ -1,0 +1,179 @@
+[
+  {
+    "_id": "USFEC:-Overview",
+    "_type": "dashboard",
+    "_source": {
+      "title": "USFEC: Overview",
+      "hits": 0,
+      "description": "",
+      "panelsJSON": "[{\"col\":1,\"id\":\"USFEC:-Contribution-dollars-by-party-over-time\",\"row\":3,\"size_x\":12,\"size_y\":3,\"type\":\"visualization\"},{\"col\":7,\"id\":\"USFEC:-Contribution-dollars-by-party\",\"row\":6,\"size_x\":3,\"size_y\":3,\"type\":\"visualization\"},{\"col\":1,\"id\":\"USFEC:-Transaction-dollars-map\",\"row\":13,\"size_x\":12,\"size_y\":4,\"type\":\"visualization\"},{\"col\":1,\"id\":\"USFEC:-Top-states-by-party\",\"row\":17,\"size_x\":12,\"size_y\":4,\"type\":\"visualization\"},{\"col\":1,\"id\":\"Record-Types\",\"row\":6,\"size_x\":3,\"size_y\":3,\"type\":\"visualization\"},{\"col\":1,\"id\":\"USFEC:-Receiving-PACs\",\"row\":9,\"size_x\":5,\"size_y\":4,\"type\":\"visualization\"},{\"col\":1,\"id\":\"USFEC:-All\",\"row\":21,\"size_x\":12,\"size_y\":4,\"type\":\"search\"},{\"col\":6,\"id\":\"USFEC:-Contributing-PACs\",\"row\":9,\"size_x\":5,\"size_y\":4,\"type\":\"visualization\"},{\"col\":10,\"id\":\"USFEC:-Receiving-PAC-party-affiliation\",\"row\":6,\"size_x\":3,\"size_y\":3,\"type\":\"visualization\"},{\"col\":4,\"id\":\"USFEC:-Transaction-Types\",\"row\":6,\"size_x\":3,\"size_y\":3,\"type\":\"visualization\"},{\"col\":1,\"id\":\"USFEC:-Demo-description\",\"row\":1,\"size_x\":12,\"size_y\":2,\"type\":\"visualization\"}]",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[{\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}}}]}"
+      }
+    }
+  },
+  {
+    "_id": "USFEC:-All",
+    "_type": "search",
+    "_source": {
+      "title": "USFEC: All",
+      "description": "",
+      "hits": 0,
+      "columns": [
+        "_source"
+      ],
+      "sort": [
+        "@timestamp",
+        "desc"
+      ],
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"highlight\":{\"pre_tags\":[\"@kibana-highlighted-field@\"],\"post_tags\":[\"@/kibana-highlighted-field@\"],\"fields\":{\"*\":{}}},\"filter\":[],\"index\":\"usfec*\"}"
+      }
+    }
+  },
+  {
+    "_id": "USFEC:-Receiving-PAC-party-affiliation",
+    "_type": "visualization",
+    "_source": {
+      "title": "USFEC: Receiving PAC party affiliation",
+      "visState": "{\"type\":\"pie\",\"params\":{\"shareYAxis\":true,\"addTooltip\":true,\"addLegend\":true,\"isDonut\":false},\"aggs\":[{\"id\":\"1\",\"type\":\"sum\",\"schema\":\"metric\",\"params\":{\"field\":\"transactionAmount\"}},{\"id\":\"2\",\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"receivingCommittee.committeeParty\",\"exclude\":{\"flags\":[]},\"include\":{\"flags\":[]},\"size\":5,\"order\":\"desc\",\"orderBy\":\"1\"}}],\"listeners\":{}}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"usfec*\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "USFEC:-Contributing-PACs",
+    "_type": "visualization",
+    "_source": {
+      "title": "USFEC: Contributing PACs",
+      "visState": "{\"type\":\"table\",\"params\":{\"perPage\":10,\"showPartialRows\":false,\"showMeticsAtAllLevels\":false},\"aggs\":[{\"id\":\"1\",\"type\":\"sum\",\"schema\":\"metric\",\"params\":{\"field\":\"transactionAmount\"}},{\"id\":\"2\",\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"contributingCommittee.committeeName.raw\",\"exclude\":{\"flags\":[]},\"include\":{\"flags\":[]},\"size\":10,\"order\":\"desc\",\"orderBy\":\"1\"}}],\"listeners\":{}}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"usfec*\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "USFEC:-Receiving-PACs",
+    "_type": "visualization",
+    "_source": {
+      "title": "USFEC: Receiving PACs",
+      "visState": "{\"type\":\"table\",\"params\":{\"perPage\":10,\"showPartialRows\":false,\"showMeticsAtAllLevels\":false},\"aggs\":[{\"id\":\"1\",\"type\":\"sum\",\"schema\":\"metric\",\"params\":{\"field\":\"transactionAmount\"}},{\"id\":\"2\",\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"receivingCommittee.committeeName.raw\",\"exclude\":{\"flags\":[]},\"include\":{\"flags\":[]},\"size\":10,\"order\":\"desc\",\"orderBy\":\"1\"}}],\"listeners\":{}}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"usfec*\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "Demo-description",
+    "_type": "visualization",
+    "_source": {
+      "title": "USFEC: Demo description",
+      "visState": "{\"type\":\"markdown\",\"params\":{\"markdown\":\"This data represents campaign contributions during the 2012-2014 United States political election cycle. With the ELK stack, we can get interesting insights into the vast amounts of money given to political candidates.\"},\"aggs\":[],\"listeners\":{}}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "Record-Types",
+    "_type": "visualization",
+    "_source": {
+      "title": "USFEC: Record Types",
+      "visState": "{\"type\":\"table\",\"params\":{\"perPage\":3,\"showPartialRows\":false,\"showMeticsAtAllLevels\":false},\"aggs\":[{\"id\":\"1\",\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"recordType\",\"exclude\":{\"flags\":[]},\"include\":{\"flags\":[]},\"size\":3,\"order\":\"desc\",\"orderBy\":\"1\"}}],\"listeners\":{}}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"usfec*\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "USFEC:-Contribution-dollars-by-party",
+    "_type": "visualization",
+    "_source": {
+      "title": "USFEC: Receiving candidate party affiliation",
+      "visState": "{\"type\":\"pie\",\"params\":{\"shareYAxis\":true,\"addTooltip\":true,\"addLegend\":true,\"isDonut\":false},\"aggs\":[{\"id\":\"1\",\"type\":\"sum\",\"schema\":\"metric\",\"params\":{\"field\":\"transactionAmount\"}},{\"id\":\"2\",\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"candidate.candidateParty\",\"exclude\":{\"flags\":[]},\"include\":{\"flags\":[]},\"size\":5,\"order\":\"desc\",\"orderBy\":\"1\"}}],\"listeners\":{}}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"usfec*\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "USFEC:-Transaction-Types",
+    "_type": "visualization",
+    "_source": {
+      "title": "USFEC: Transaction Types",
+      "visState": "{\"type\":\"table\",\"params\":{\"perPage\":10,\"showPartialRows\":false,\"showMeticsAtAllLevels\":false},\"aggs\":[{\"id\":\"1\",\"type\":\"sum\",\"schema\":\"metric\",\"params\":{\"field\":\"transactionAmount\"}},{\"id\":\"2\",\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"transactionType\",\"exclude\":{\"flags\":[]},\"include\":{\"flags\":[]},\"size\":20,\"order\":\"desc\",\"orderBy\":\"1\"}}],\"listeners\":{}}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"usfec*\",\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "USFEC:-Top-states-by-party",
+    "_type": "visualization",
+    "_source": {
+      "title": "USFEC: Top states by party",
+      "visState": "{\"type\":\"histogram\",\"params\":{\"shareYAxis\":true,\"addTooltip\":true,\"addLegend\":true,\"mode\":\"stacked\"},\"aggs\":[{\"id\":\"1\",\"type\":\"sum\",\"schema\":\"metric\",\"params\":{\"field\":\"transactionAmount\"}},{\"id\":\"2\",\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"state\",\"exclude\":{\"flags\":[]},\"include\":{\"flags\":[]},\"size\":20,\"order\":\"desc\",\"orderBy\":\"1\"}},{\"id\":\"3\",\"type\":\"terms\",\"schema\":\"group\",\"params\":{\"field\":\"candidate.candidateParty\",\"exclude\":{\"flags\":[]},\"include\":{\"flags\":[]},\"size\":3,\"order\":\"desc\",\"orderBy\":\"1\"}}],\"listeners\":{}}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"usfec*\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "USFEC:-Demo-description",
+    "_type": "visualization",
+    "_source": {
+      "title": "USFEC: Demo description",
+      "visState": "{\"type\":\"markdown\",\"params\":{\"markdown\":\"This data represents campaign contributions during the 2012-2014 United States political election cycle.  The total amount of money spent on political campaigns has increased from $3.1 billion in 2000 to $6.3 billion in 2012. The exorbitant amount of money involved in political campaigns raises serious questions about whether the politicians who represent us are more and more beholden to those who donate most heavily to their campaigns. \\n\\nWith the ELK stack, we can get interesting insights into the vast amounts of money given to political candidates.\\n\\n**If you need to reset the time period, [click here](/#/dashboard/USFEC:-Overview?_g=%28time:%28from:'2012-11-01T16:33:29.911Z',mode:absolute,to:'2015-01-29T17:48:29.911Z'%29%29)**.\"},\"aggs\":[],\"listeners\":{}}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "USFEC:-Contribution-dollars-by-party-over-time",
+    "_type": "visualization",
+    "_source": {
+      "title": "USFEC: Contribution dollars by party over time",
+      "visState": "{\"type\":\"area\",\"params\":{\"shareYAxis\":true,\"addTooltip\":true,\"addLegend\":true,\"mode\":\"overlap\"},\"aggs\":[{\"id\":\"1\",\"type\":\"sum\",\"schema\":\"metric\",\"params\":{\"field\":\"transactionAmount\"}},{\"id\":\"2\",\"type\":\"date_histogram\",\"schema\":\"segment\",\"params\":{\"field\":\"@timestamp\",\"interval\":\"auto\",\"min_doc_count\":1,\"extended_bounds\":{}}},{\"id\":\"3\",\"type\":\"terms\",\"schema\":\"group\",\"params\":{\"field\":\"candidate.candidateParty\",\"exclude\":{\"flags\":[]},\"include\":{\"flags\":[]},\"size\":5,\"order\":\"desc\",\"orderBy\":\"1\"}}],\"listeners\":{}}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"usfec*\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "USFEC:-Transaction-dollars-map",
+    "_type": "visualization",
+    "_source": {
+      "title": "USFEC: Transaction dollars map",
+      "visState": "{\"type\":\"tile_map\",\"params\":{\"mapType\":\"Shaded Circle Markers\",\"isDesaturated\":true,\"spyPerPage\":10},\"aggs\":[{\"id\":\"1\",\"type\":\"sum\",\"schema\":\"metric\",\"params\":{\"field\":\"transactionAmount\"}},{\"id\":\"2\",\"type\":\"geohash_grid\",\"schema\":\"segment\",\"params\":{\"field\":\"coords\",\"precision\":4,\"json\":\"{\\\"size\\\":5000}\"}}],\"listeners\":{}}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"usfec*\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+      }
+    }
+  }
+]

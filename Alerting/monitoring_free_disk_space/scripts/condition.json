@@ -1,3 +1,0 @@
-{
-  "script":"return ctx.payload.aggregations.nodes.buckets.stream().anyMatch(it -> it.free_ratio.value < ctx.metadata.lower_bound);"
-}

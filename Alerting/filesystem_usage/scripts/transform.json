@@ -1,3 +1,0 @@
-{
-  "script": "def threshold_p = ctx.metadata.threshold*100; return [ 'threshold': (int)threshold_p, 'hosts': ctx.payload.aggregations.host.buckets.stream().map(p -> [ 'key': p.key, 'disk_usage': (int) (p.disk_usage.value*100)]).collect(Collectors.toList()) ];"
-}

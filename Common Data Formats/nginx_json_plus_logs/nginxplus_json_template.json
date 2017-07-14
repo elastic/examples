@@ -1,0 +1,47 @@
+{
+
+  "template": "nginxplus_json_elastic_stack_example",
+  "settings": {
+     "index.refresh_interval": "5s"
+  },
+  "mappings": {
+     "_default_": {
+        "dynamic_templates": [
+           {
+              "message_field": {
+                 "mapping": {
+                    "norms": false,
+                    "type": "text"
+                 },
+                 "match_mapping_type": "string",
+                 "match": "message"
+              }
+           },
+           {
+              "string_fields": {
+                 "mapping": {
+                    "norms": false,
+                    "type": "text",
+                    "fields": {
+                       "keyword": {
+                          "ignore_above": 256,
+                          "type": "keyword"
+                       }
+                    }
+                 },
+                 "match_mapping_type": "string",
+                 "match": "*"
+              }
+           }
+        ],
+        "properties": {
+           "@timestamp":{
+              "type": "date"
+          }
+        },
+        "_all": {
+           "enabled": true
+        }
+     }
+  }
+}

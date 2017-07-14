@@ -1,0 +1,239 @@
+[
+  {
+    "_id": "FW-Dashboard",
+    "_type": "dashboard",
+    "_source": {
+      "title": "FW - Dashboard",
+      "hits": 0,
+      "description": "",
+      "panelsJSON": "[{\"col\":1,\"id\":\"FW-Metrics\",\"panelIndex\":7,\"row\":1,\"size_x\":8,\"size_y\":2,\"type\":\"visualization\"},{\"col\":9,\"id\":\"FW-Last-Update\",\"panelIndex\":10,\"row\":1,\"size_x\":4,\"size_y\":2,\"type\":\"visualization\"},{\"col\":1,\"id\":\"FW-Area-by-Outcome\",\"panelIndex\":1,\"row\":3,\"size_x\":4,\"size_y\":3,\"type\":\"visualization\"},{\"col\":5,\"id\":\"FW-Count-by-Source,-Destination-Address-and-Ports\",\"panelIndex\":2,\"row\":3,\"size_x\":4,\"size_y\":3,\"type\":\"visualization\"},{\"col\":9,\"id\":\"FW-Traffic-by-Outcome\",\"panelIndex\":9,\"row\":3,\"size_x\":4,\"size_y\":3,\"type\":\"visualization\"},{\"col\":1,\"id\":\"FW-Device-Vendor-by-Category-Outcome\",\"panelIndex\":4,\"row\":6,\"size_x\":4,\"size_y\":3,\"type\":\"visualization\"},{\"col\":7,\"id\":\"FW-Geo-Traffic-by-Destination-Address\",\"panelIndex\":5,\"row\":9,\"size_x\":6,\"size_y\":4,\"type\":\"visualization\"},{\"col\":1,\"id\":\"FW-Geo-Traffic-by-Source-Address\",\"panelIndex\":6,\"row\":9,\"size_x\":6,\"size_y\":4,\"type\":\"visualization\"},{\"col\":10,\"id\":\"FW-Destination-Country-Data-Table\",\"panelIndex\":3,\"row\":13,\"size_x\":3,\"size_y\":3,\"type\":\"visualization\"},{\"col\":7,\"id\":\"FW-Source-Country-Data-Table\",\"panelIndex\":8,\"row\":13,\"size_x\":3,\"size_y\":3,\"type\":\"visualization\"},{\"id\":\"FW-Destination-Ports-by-Outcome\",\"type\":\"visualization\",\"panelIndex\":12,\"size_x\":4,\"size_y\":3,\"col\":9,\"row\":6},{\"id\":\"FW-Source,-Destination-Address-and-Port-Sunburst\",\"type\":\"visualization\",\"panelIndex\":13,\"size_x\":4,\"size_y\":3,\"col\":5,\"row\":6},{\"id\":\"Firewall-Events\",\"type\":\"search\",\"panelIndex\":14,\"size_x\":6,\"size_y\":3,\"col\":1,\"row\":13,\"columns\":[\"sevCode\",\"name\",\"deviceVendor\",\"deviceProduct\",\"categoryDeviceType\",\"categoryBehavior\",\"categoryOutcome\",\"sourceAddress\",\"sourcePort\",\"sourceHostName\",\"destinationAddress\",\"destinationPort\",\"destinationHostName\",\"sourceUserName\",\"destinationUserName\"],\"sort\":[\"@timestamp\",\"desc\"]}]",
+      "optionsJSON": "{\"darkTheme\":false}",
+      "uiStateJSON": "{\"P-1\":{\"vis\":{\"legendOpen\":true,\"colors\":{\"/Success\":\"#629E51\",\"/Failure\":\"#BF1B00\"}}},\"P-2\":{\"vis\":{\"legendOpen\":true}},\"P-3\":{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}},\"P-4\":{\"vis\":{\"legendOpen\":true,\"colors\":{\"/Success\":\"#629E51\",\"/Failure\":\"#BF1B00\",\"Check Point\":\"#C15C17\",\"CISCO\":\"#EF843C\",\"NetScreen\":\"#F9BA8F\"}}},\"P-5\":{\"mapCenter\":[46.195042108660154,-56.42578125]},\"P-6\":{\"mapCenter\":[15.961329081596647,-0.3515625],\"mapZoom\":1},\"P-8\":{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}},\"P-12\":{\"vis\":{\"legendOpen\":false}}}",
+      "version": 1,
+      "timeRestore": true,
+      "timeTo": "now",
+      "timeFrom": "now-1h",
+      "refreshInterval": {
+        "display": "Off",
+        "pause": false,
+        "value": 0
+      },
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[{\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}}}]}"
+      }
+    }
+  },
+  {
+    "_id": "Firewall-Events",
+    "_type": "search",
+    "_source": {
+      "title": "Firewall Events",
+      "description": "",
+      "hits": 0,
+      "columns": [
+        "sevCode",
+        "name",
+        "deviceVendor",
+        "deviceProduct",
+        "categoryDeviceType",
+        "categoryBehavior",
+        "categoryOutcome",
+        "sourceAddress",
+        "sourcePort",
+        "sourceHostName",
+        "destinationAddress",
+        "destinationPort",
+        "destinationHostName",
+        "sourceUserName",
+        "destinationUserName"
+      ],
+      "sort": [
+        "@timestamp",
+        "desc"
+      ],
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"cef-*\",\"query\":{\"query_string\":{\"query\":\"categoryDeviceType:\\\"Firewall\\\"\",\"analyze_wildcard\":true}},\"filter\":[],\"highlight\":{\"pre_tags\":[\"@kibana-highlighted-field@\"],\"post_tags\":[\"@/kibana-highlighted-field@\"],\"fields\":{\"*\":{}},\"require_field_match\":false,\"fragment_size\":2147483647}}"
+      }
+    }
+  },
+  {
+    "_id": "FW-Area-by-Outcome",
+    "_type": "visualization",
+    "_source": {
+      "title": "FW - Area by Outcome",
+      "visState": "{\"title\":\"FW - Area by Outcome\",\"type\":\"area\",\"params\":{\"shareYAxis\":true,\"addTooltip\":true,\"addLegend\":true,\"legendPosition\":\"top\",\"smoothLines\":true,\"scale\":\"linear\",\"interpolate\":\"linear\",\"mode\":\"overlap\",\"times\":[],\"addTimeMarker\":false,\"defaultYExtents\":false,\"setYExtents\":false,\"yAxis\":{}},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"enabled\":true,\"type\":\"date_histogram\",\"schema\":\"segment\",\"params\":{\"field\":\"@timestamp\",\"interval\":\"auto\",\"customInterval\":\"2h\",\"min_doc_count\":1,\"extended_bounds\":{}}},{\"id\":\"3\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"group\",\"params\":{\"field\":\"categoryOutcome\",\"size\":10,\"order\":\"desc\",\"orderBy\":\"1\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{\"vis\":{\"colors\":{\"/Success\":\"#629E51\",\"/Failure\":\"#BF1B00\"}}}",
+      "description": "",
+      "savedSearchId": "Firewall-Events",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "FW-Destination-Ports-by-Outcome",
+    "_type": "visualization",
+    "_source": {
+      "title": "FW - Destination Ports by Outcome",
+      "visState": "{\"title\":\"FW - Destination Ports by Outcome\",\"type\":\"histogram\",\"params\":{\"shareYAxis\":true,\"addTooltip\":true,\"addLegend\":true,\"legendPosition\":\"right\",\"scale\":\"linear\",\"mode\":\"percentage\",\"times\":[],\"addTimeMarker\":false,\"defaultYExtents\":false,\"setYExtents\":false,\"yAxis\":{}},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"destinationPort\",\"size\":10,\"order\":\"desc\",\"orderBy\":\"1\"}},{\"id\":\"3\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"group\",\"params\":{\"field\":\"categoryOutcome\",\"size\":2,\"order\":\"desc\",\"orderBy\":\"1\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{\"vis\":{\"colors\":{\"/Failure\":\"#BF1B00\",\"/Success\":\"#629E51\"}}}",
+      "description": "",
+      "savedSearchId": "Firewall-Events",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "FW-Traffic-by-Outcome",
+    "_type": "visualization",
+    "_source": {
+      "title": "FW - Traffic by Outcome",
+      "visState": "{\"type\":\"timelion\",\"title\":\"FW - Traffic by Outcome\",\"params\":{\"expression\":\"$i='cef-*', $t='@timestamp', (.es(index=$i,timefield=$t,q='categoryDeviceType:\\\"Firewall\\\" AND categoryOutcome:\\\"/Success\\\"').lines(width=2,fill=2).fit(carry).label(\\\"Accepted Traffic Count\\\"), .es(index=$i,timefield=$t,q='categoryDeviceType:\\\"Firewall\\\" AND categoryOutcome:\\\"/Failure\\\"').lines(width=2,fill=2).fit(carry).label(\\\"Dropped Traffic Count\\\"), .es(index=$i,timefield=$t,q='categoryDeviceType:\\\"Firewall\\\" AND categoryOutcome:\\\"/Success\\\"').mvavg(10).color(green).fit(carry).label(\\\"Mvg Avg - Accepted\\\"), .es(index=$i,timefield=$t,q='categoryDeviceType:\\\"Firewall\\\" AND categoryOutcome:\\\"/Failure\\\"').mvavg(10).color(red).fit(carry).label(\\\"Mvg Avg - Dropped\\\")).title(\\\"Firewall Traffic by Outcome\\\").legend(columns=4)\",\"interval\":\"auto\"}}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{}"
+      }
+    }
+  },
+  {
+    "_id": "FW-Device-Vendor-by-Category-Outcome",
+    "_type": "visualization",
+    "_source": {
+      "title": "FW - Device Vendor by Category Outcome",
+      "visState": "{\"title\":\"FW - Device Vendor by Category Outcome\",\"type\":\"pie\",\"params\":{\"shareYAxis\":true,\"addTooltip\":true,\"addLegend\":true,\"legendPosition\":\"right\",\"isDonut\":true},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"deviceVendor\",\"size\":10,\"order\":\"desc\",\"orderBy\":\"1\"}},{\"id\":\"3\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"categoryOutcome\",\"size\":5,\"order\":\"desc\",\"orderBy\":\"1\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{\"vis\":{\"colors\":{\"/Success\":\"#629E51\",\"/Failure\":\"#BF1B00\",\"Check Point\":\"#C15C17\",\"CISCO\":\"#EF843C\",\"NetScreen\":\"#F9BA8F\"}}}",
+      "description": "",
+      "savedSearchId": "Firewall-Events",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "FW-Destination-Country-Data-Table",
+    "_type": "visualization",
+    "_source": {
+      "title": "FW - Destination Country Data Table",
+      "visState": "{\"title\":\"FW - Destination Country Data Table\",\"type\":\"table\",\"params\":{\"perPage\":10,\"showMeticsAtAllLevels\":false,\"showPartialRows\":false,\"showTotal\":false,\"sort\":{\"columnIndex\":null,\"direction\":null},\"totalFunc\":\"sum\"},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"destination.country_name\",\"size\":10,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"Destination Countries\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}}",
+      "description": "",
+      "savedSearchId": "Firewall-Events",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "FW-Source,-Destination-Address-and-Port-Sunburst",
+    "_type": "visualization",
+    "_source": {
+      "title": "FW - Source, Destination Address and Port - Sunburst",
+      "visState": "{\"title\":\"FW - Source, Destination Address and Port - Sunburst\",\"type\":\"pie\",\"params\":{\"shareYAxis\":true,\"addTooltip\":true,\"addLegend\":true,\"legendPosition\":\"right\",\"isDonut\":true},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"sourceAddress\",\"size\":5,\"order\":\"desc\",\"orderBy\":\"1\"}},{\"id\":\"3\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"destinationAddress\",\"size\":5,\"order\":\"desc\",\"orderBy\":\"1\"}},{\"id\":\"4\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"destinationPort\",\"size\":5,\"order\":\"desc\",\"orderBy\":\"1\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "savedSearchId": "Firewall-Events",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "FW-Geo-Traffic-by-Destination-Address",
+    "_type": "visualization",
+    "_source": {
+      "title": "FW - Geo Traffic by Destination Address",
+      "visState": "{\"title\":\"FW - Geo Traffic by Destination Address\",\"type\":\"tile_map\",\"params\":{\"mapType\":\"Shaded Circle Markers\",\"isDesaturated\":true,\"addTooltip\":true,\"heatMaxZoom\":16,\"heatMinOpacity\":0.1,\"heatRadius\":25,\"heatBlur\":15,\"heatNormalizeData\":true,\"mapZoom\":2,\"mapCenter\":[15,5],\"wms\":{\"enabled\":false,\"url\":\"https://basemap.nationalmap.gov/arcgis/services/USGSTopo/MapServer/WMSServer\",\"options\":{\"version\":\"1.3.0\",\"layers\":\"0\",\"format\":\"image/png\",\"transparent\":true,\"attribution\":\"Maps provided by USGS\",\"styles\":\"\"}}},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"enabled\":true,\"type\":\"geohash_grid\",\"schema\":\"segment\",\"params\":{\"field\":\"destination.location\",\"autoPrecision\":true,\"customLabel\":\"Source Address\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{\"mapCenter\":[14.604847155053898,4.921875]}",
+      "description": "",
+      "savedSearchId": "Firewall-Events",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "FW-Geo-Traffic-by-Source-Address",
+    "_type": "visualization",
+    "_source": {
+      "title": "FW - Geo Traffic by Source Address",
+      "visState": "{\"title\":\"FW - Geo Traffic by Source Address\",\"type\":\"tile_map\",\"params\":{\"mapType\":\"Shaded Circle Markers\",\"isDesaturated\":true,\"addTooltip\":true,\"heatMaxZoom\":16,\"heatMinOpacity\":0.1,\"heatRadius\":25,\"heatBlur\":15,\"heatNormalizeData\":true,\"mapZoom\":2,\"mapCenter\":[15,5],\"wms\":{\"enabled\":false,\"url\":\"https://basemap.nationalmap.gov/arcgis/services/USGSTopo/MapServer/WMSServer\",\"options\":{\"version\":\"1.3.0\",\"layers\":\"0\",\"format\":\"image/png\",\"transparent\":true,\"attribution\":\"Maps provided by USGS\",\"styles\":\"\"}}},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"enabled\":true,\"type\":\"geohash_grid\",\"schema\":\"segment\",\"params\":{\"field\":\"source.location\",\"autoPrecision\":true,\"customLabel\":\"Source Address\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{\"mapCenter\":[14.944784875088372,4.921875]}",
+      "description": "",
+      "savedSearchId": "Firewall-Events",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "FW-Last-Update",
+    "_type": "visualization",
+    "_source": {
+      "title": "FW - Last Update",
+      "visState": "{\"title\":\"FW - Last Update\",\"type\":\"metric\",\"params\":{\"handleNoResults\":true,\"fontSize\":\"20\"},\"aggs\":[{\"id\":\"2\",\"enabled\":true,\"type\":\"min\",\"schema\":\"metric\",\"params\":{\"field\":\"@timestamp\",\"customLabel\":\"Start Time\"}},{\"id\":\"1\",\"enabled\":true,\"type\":\"max\",\"schema\":\"metric\",\"params\":{\"field\":\"@timestamp\",\"customLabel\":\"Latest Log Time\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "savedSearchId": "Firewall-Events",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "FW-Count-by-Source,-Destination-Address-and-Ports",
+    "_type": "visualization",
+    "_source": {
+      "title": "FW - Count by Source, Destination Address and Ports",
+      "visState": "{\"title\":\"FW - Count by Source, Destination Address and Ports\",\"type\":\"line\",\"params\":{\"shareYAxis\":true,\"addTooltip\":true,\"addLegend\":true,\"legendPosition\":\"top\",\"showCircles\":true,\"smoothLines\":true,\"interpolate\":\"linear\",\"scale\":\"square root\",\"drawLinesBetweenPoints\":true,\"radiusRatio\":\"7\",\"times\":[],\"addTimeMarker\":false,\"defaultYExtents\":false,\"setYExtents\":false,\"yAxis\":{}},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{\"customLabel\":\"Overall Count\"}},{\"id\":\"2\",\"enabled\":true,\"type\":\"date_histogram\",\"schema\":\"segment\",\"params\":{\"field\":\"@timestamp\",\"interval\":\"auto\",\"customInterval\":\"2h\",\"min_doc_count\":1,\"extended_bounds\":{}}},{\"id\":\"3\",\"enabled\":true,\"type\":\"count\",\"schema\":\"radius\",\"params\":{}},{\"id\":\"4\",\"enabled\":true,\"type\":\"cardinality\",\"schema\":\"metric\",\"params\":{\"field\":\"sourceAddress\",\"customLabel\":\"Source Address\"}},{\"id\":\"5\",\"enabled\":true,\"type\":\"cardinality\",\"schema\":\"metric\",\"params\":{\"field\":\"destinationAddress\",\"customLabel\":\"Destination Address\"}},{\"id\":\"6\",\"enabled\":true,\"type\":\"cardinality\",\"schema\":\"metric\",\"params\":{\"field\":\"destinationPort\",\"customLabel\":\"Destination / Service Ports\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{\"vis\":{\"colors\":{\"Overall Count\":\"#BF1B00\",\"Source Address\":\"#E0752D\",\"Destination Address\":\"#E5AC0E\",\"Device Address\":\"#447EBC\",\"Service Port\":\"#447EBC\",\"Destination / Service Ports\":\"#447EBC\"}}}",
+      "description": "",
+      "savedSearchId": "Firewall-Events",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "FW-Source-Country-Data-Table",
+    "_type": "visualization",
+    "_source": {
+      "title": "FW - Source Country Data Table",
+      "visState": "{\"title\":\"FW - Source Country Data Table\",\"type\":\"table\",\"params\":{\"perPage\":10,\"showMeticsAtAllLevels\":false,\"showPartialRows\":false,\"showTotal\":false,\"sort\":{\"columnIndex\":null,\"direction\":null},\"totalFunc\":\"sum\"},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"source.country_name\",\"size\":10,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"Source Countries\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}}",
+      "description": "",
+      "savedSearchId": "Firewall-Events",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "FW-Metrics",
+    "_type": "visualization",
+    "_source": {
+      "title": "FW - Metrics",
+      "visState": "{\"title\":\"FW - Metrics\",\"type\":\"metric\",\"params\":{\"handleNoResults\":true,\"fontSize\":60},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"enabled\":true,\"type\":\"cardinality\",\"schema\":\"metric\",\"params\":{\"field\":\"sourceAddress\",\"customLabel\":\"Source IPs\"}},{\"id\":\"3\",\"enabled\":true,\"type\":\"cardinality\",\"schema\":\"metric\",\"params\":{\"field\":\"destinationAddress\",\"customLabel\":\"Destination IPs\"}},{\"id\":\"4\",\"enabled\":true,\"type\":\"cardinality\",\"schema\":\"metric\",\"params\":{\"field\":\"destinationPort\",\"customLabel\":\"Destination Ports / Services\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "savedSearchId": "Firewall-Events",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[]}"
+      }
+    }
+  }
+]

@@ -1,0 +1,25 @@
+{
+  "job_id": "unusual_process",
+  "description": "unusual process",
+  "analysis_config": {
+    "bucket_span": "10m",
+    "influencers": [
+      "auditd.log.a0",
+      "beat.name"
+    ],
+    "detectors": [
+      {
+        "function": "rare",
+        "by_field_name": "auditd.log.a0",
+        "partition_field_name": "beat.name"
+      }
+    ]
+  },
+  "data_description": {
+    "time_field": "@timestamp",
+    "time_format": "epoch_ms"
+  },
+  "model_plot_config": {
+      "enabled" : true
+  }
+}

@@ -1,0 +1,199 @@
+{
+    "description": "nyc collisions",
+    "processors": [
+      {
+        "grok": {
+          "field": "message",
+          "patterns": [
+            "%{CUSTOM_DATE:timestamp},%{DATA:borough},%{DATA:zip_code},%{DATA:latitude},%{DATA:longitude},(\"\\()?%{LOCATION:location}?(\\)\")?,%{DATA:on_street_name},%{DATA:cross_street_name},%{DATA:off_street_name},%{DATA:number_of_persons_injured},%{DATA:number_of_persons_killed},%{DATA:number_of_pedestrians_injured},%{DATA:number_of_pedestrians_killed},%{DATA:number_of_cyclist_injured},%{DATA:number_of_cyclist_killed},%{DATA:number_of_motorist_injured},%{DATA:number_of_motorist_killed},%{DATA:contributing_factor_vehicle},%{DATA:contributing_factor_vehicle_2},%{DATA:contributing_factor_vehicle_3},%{DATA:contributing_factor_vehicle_4},%{DATA:contributing_factor_vehicle_5},%{DATA:unique_key},%{DATA:vehicle_type_code},%{DATA:vehicle_type_code_2},%{DATA:vehicle_type_code_3},%{DATA:vehicle_type_code_4},%{GREEDYDATA:vehicle_type_code_5}"
+          ],
+          "pattern_definitions": {
+            "CUSTOM_DATE": "%{MONTHNUM}/%{MONTHDAY}/%{YEAR},%{CUSTOM_TIME}",
+            "CUSTOM_TIME": "%{HOUR:hour_of_day}:%{MINUTE}",
+            "LOCATION": "%{BASE10NUM},%{SPACE}%{BASE10NUM}"
+          },
+          "ignore_failure": true
+        }
+      },
+      {
+        "trim": {
+          "field": "on_street_name",
+          "ignore_failure": true
+        }
+      },
+      {
+        "trim": {
+          "field": "cross_street_name",
+          "ignore_failure": true
+        }
+      },
+      {
+        "trim": {
+          "field": "off_street_name",
+          "ignore_failure": true
+        }
+      },
+      {
+        "set": {
+          "field": "intersection",
+          "value": "{{on_street_name}}--{{cross_street_name}}",
+          "ignore_failure": true
+        }
+      },
+      {
+        "convert": {
+          "field": "number_of_persons_injured",
+          "type": "integer",
+          "ignore_failure": true
+        }
+      },
+      {
+        "convert": {
+          "field": "number_of_persons_killed",
+          "type": "integer",
+          "ignore_failure": true
+        }
+      },
+      {
+        "convert": {
+          "field": "number_of_pedestrians_injured",
+          "type": "integer",
+          "ignore_failure": true
+        }
+      },
+      {
+        "convert": {
+          "field": "number_of_pedestrians_killed",
+          "type": "integer",
+          "ignore_failure": true
+        }
+      },
+      {
+        "convert": {
+          "field": "number_of_cyclist_injured",
+          "type": "integer",
+          "ignore_failure": true
+        }
+      },
+      {
+        "convert": {
+          "field": "number_of_cyclist_killed",
+          "type": "integer",
+          "ignore_failure": true
+        }
+      },
+      {
+        "convert": {
+          "field": "number_of_motorist_injured",
+          "type": "integer",
+          "ignore_failure": true
+        }
+      },
+      {
+        "convert": {
+          "field": "number_of_motorist_killed",
+          "type": "integer",
+          "ignore_failure": true
+        }
+      },
+      {
+        "convert": {
+          "field": "hour_of_day",
+          "type": "integer",
+          "ignore_failure": true
+        }
+      },
+      {
+        "script": {
+          "lang": "painless",
+          "inline": "if (ctx.number_of_persons_killed == '') { ctx.number_of_persons_killed = 0; } if (ctx.number_of_persons_injured == '') { ctx.number_of_persons_injured = 0;} ctx.number_persons_impacted = ctx.number_of_persons_killed + ctx.number_of_persons_injured;",
+          "ignore_failure": true
+        }
+      },
+      {
+        "date": {
+          "field": "timestamp",
+          "formats": [
+            "MM/dd/YY,HH:mm",
+            "MM/dd/YY,H:mm"
+          ],
+          "timezone": "EST",
+          "ignore_failure": true
+        }
+      },
+      {
+        "script": {
+          "lang": "painless",
+          "inline": "HashSet factors = new HashSet(); factors.add(ctx.contributing_factor_vehicle); factors.add(ctx.contributing_factor_vehicle_2); factors.add(ctx.contributing_factor_vehicle_3); factors.add(ctx.contributing_factor_vehicle_4); factors.add(ctx.contributing_factor_vehicle_5); factors.remove('Unspecified'); factors.remove(''); ctx.contributing_factor_vehicle = new ArrayList(factors);",
+          "ignore_failure": true
+        }
+      },
+      {
+        "script": {
+          "lang": "painless",
+          "inline": "HashSet factors = new HashSet(); factors.add(ctx.vehicle_type_code); factors.add(ctx.vehicle_type_code_2); factors.add(ctx.vehicle_type_code_3); factors.add(ctx.vehicle_type_code_4); factors.add(ctx.vehicle_type_code_5); factors.remove('Unspecified'); factors.remove(''); ctx.vehicle_type = new ArrayList(factors);",
+          "ignore_failure": true
+        }
+      },
+      {
+        "remove": {
+          "field": "timestamp",
+          "ignore_failure": true
+        }
+      },
+      {
+        "remove": {
+          "field": "contributing_factor_vehicle_2",
+          "ignore_failure": true
+        }
+      },
+      {
+        "remove": {
+          "field": "contributing_factor_vehicle_3",
+          "ignore_failure": true
+        }
+      },
+      {
+        "remove": {
+          "field": "contributing_factor_vehicle_4",
+          "ignore_failure": true
+        }
+      },
+      {
+        "remove": {
+          "field": "contributing_factor_vehicle_5",
+          "ignore_failure": true
+        }
+      },
+      {
+        "remove": {
+          "field": "vehicle_type_code",
+          "ignore_failure": true
+        }
+      },
+      {
+        "remove": {
+          "field": "vehicle_type_code_2",
+          "ignore_failure": true
+        }
+      },
+      {
+        "remove": {
+          "field": "vehicle_type_code_3",
+          "ignore_failure": true
+        }
+      },
+      {
+        "remove": {
+          "field": "vehicle_type_code_4",
+          "ignore_failure": true
+        }
+      },
+      {
+        "remove": {
+          "field": "vehicle_type_code_5",
+          "ignore_failure": true
+        }
+      }
+    ]
+}

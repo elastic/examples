@@ -1,0 +1,13 @@
+metricbeat.modules:
+- module: system
+  metricsets:
+    - core
+  enabled: true
+  period: 5s
+  processes: ['.*']
+name: dales 
+output.elasticsearch:
+  hosts: ["10.10.10.112:9200"]
+  username: "elastic"
+  password: "changeme"
+  pipeline: core_id

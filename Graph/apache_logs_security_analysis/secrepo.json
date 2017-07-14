@@ -1,0 +1,83 @@
+{
+  "template": "secrepo",
+  "settings": {
+    "number_of_shards": 1,
+    "number_of_replicas": 1,
+    "index.refresh_interval": "10s",
+    "analysis": {
+      "analyzer": {
+        "path_analyzer": {
+          "tokenizer": "path_hierarchy",
+          "filter": [
+            "lowercase"
+          ]
+        }
+      }
+    }
+  },
+  "mappings": {
+    "_default_": {
+      "dynamic_templates": [
+        {
+          "strings": {
+            "match": "*",
+            "match_mapping_type": "string",
+            "mapping": {
+              "type": "keyword"
+            }
+          }
+        }
+      ],
+      "properties": {
+        "src": {
+          "type": "ip"
+        },
+        "response_code": {
+          "type": "integer"
+        },
+        "minor": {
+          "type": "integer"
+        },
+        "major": {
+          "type": "integer"
+        },
+        "bytes": {
+          "type": "integer"
+        },
+        "params": {
+          "type": "text",
+          "fielddata": true,
+          "fields": {
+            "raw": {
+              "type": "keyword"
+            }
+          }
+        },
+        "message": {
+          "type": "text"
+        },
+        "url": {
+          "type": "keyword",
+          "fields": {
+            "parts": {
+              "type": "text",
+              "analyzer": "path_analyzer",
+              "fielddata": true
+            }
+          }
+        },
+        "geoip": {
+          "type":"object",
+          "properties": {
+            "location": {
+              "type": "geo_point"
+            }
+          }
+        }
+      },
+      "_all": {
+        "enabled": true
+      }
+    }
+  }
+}

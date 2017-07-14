@@ -1,0 +1,504 @@
+{
+    "template" : "usfec_*",
+    "settings" : {
+      "index.refresh_interval" : "5s"
+    },
+    "mappings" : {
+      "_default_" : {
+        "dynamic_templates" : [ {
+          "string_fields" : {
+            "mapping" : {
+			  "type": "keyword",
+			  "doc_values": true
+            },
+            "match_mapping_type" : "string",
+            "match" : "*"
+          }
+        } ],
+        "properties" : {
+          "@timestamp" : {
+            "type" : "date",
+			"doc_values": true
+          },
+          "transactionAmount" : {
+            "type" : "float",
+			"doc_values": true
+          },
+		  "transactionDate": {
+              "type" : "keyword",
+			  "doc_values": true
+		  },
+		  "candidate": {
+		  	  "type": "object",
+			  "properties": {
+				  "candidateName": {
+					  "type": "text",
+					  "fields": {
+						  "raw": {
+							  "type": "keyword",
+							  "doc_values": true
+						  }
+					  }
+				  }
+			  }
+		  },
+		  "name": {
+			  "type": "text",
+			  "fields": {
+				  "raw": {
+					  "type": "keyword",
+					  "doc_values": true
+				  }
+			  }
+		  },
+		  "employer": {
+			  "type": "text",
+			  "fields": {
+				  "raw": {
+					  "type": "keyword",
+					  "doc_values": true
+				  }
+			  }
+		  },
+		  "memo": {
+			  "type": "text",
+			  "fields": {
+				  "raw": {
+					  "type": "keyword",
+					  "doc_values": true
+				  }
+			  }
+		  },
+		  "occupation": {
+			  "type": "text",
+			  "fields": {
+				  "raw": {
+					  "type": "keyword",
+					  "doc_values": true
+				  }
+			  }
+		  },
+          "coords" : {
+            "type" : "geo_point"
+          },
+          "@version" : {
+            "type": "keyword"
+          }
+        },
+        "_all" : {
+          "enabled" : true
+        }
+      },
+	  "indiv_contrib": {
+          "dynamic_templates" : [ {
+            "string_fields" : {
+              "mapping" : {
+  			  "type": "keyword",
+  			  "doc_values": true
+              },
+              "match_mapping_type" : "string",
+              "match" : "*"
+            }
+          } ],
+          "_all" : {
+            "enabled" : true
+          },
+          "properties" : {
+	          "@timestamp" : {
+	            "type" : "date",
+				"doc_values": true
+	          },
+	          "transactionAmount" : {
+	            "type" : "float",
+				"doc_values": true
+	          },
+			  "transactionDate": {
+				  "type": "keyword",
+				  "doc_values": true
+			  },
+			  "candidate": {
+			  	  "type": "object",
+				  "properties": {
+					  "candidateName": {
+						  "type": "text",
+						  "fields": {
+							  "raw": {
+								  "type": "keyword",
+								  "doc_values": true
+							  }
+						  }
+					  }
+				  }
+			  },
+			  "name": {
+				  "type": "text",
+				  "fields": {
+					  "raw": {
+						  "type": "keyword",
+						  "doc_values": true
+					  }
+				  }
+			  },
+			  "employer": {
+				  "type": "text",
+				  "fields": {
+					  "raw": {
+						  "type": "keyword",
+						  "doc_values": true
+					  }
+				  }
+			  },
+			  "memo": {
+				  "type": "text",
+				  "fields": {
+					  "raw": {
+						  "type": "keyword",
+						  "doc_values": true
+					  }
+				  }
+			  },
+			  "occupation": {
+				  "type": "text",
+				  "fields": {
+					  "raw": {
+						  "type": "keyword",
+						  "doc_values": true
+					  }
+				  }
+			  },
+	          "coords" : {
+	            "type" : "geo_point"
+	          },
+	          "@version" : {
+	            "type": "keyword"
+	          },
+	  		  "receivingCommittee": {
+	  		  	  "type": "object",
+	  			  "properties": {
+	  				  "committeeName": {
+	  					  "type": "text",
+	  					  "fields": {
+	  						  "raw": {
+	  							  "type": "keyword",
+	  							  "doc_values": true
+	  						  }
+	  					  }
+	  				  }
+	  			  }
+	  		  }
+          }
+	  },
+	  "comm2cand_contrib": {
+          "dynamic_templates" : [ {
+            "string_fields" : {
+              "mapping" : {
+  			    "type": "keyword",
+  			    "doc_values": true
+              },
+              "match_mapping_type" : "string",
+              "match" : "*"
+            }
+          } ],
+          "_all" : {
+            "enabled" : true
+          },
+          "properties" : {
+	          "@timestamp" : {
+	            "type" : "date",
+				"doc_values": true
+	          },
+	          "transactionAmount" : {
+	            "type" : "float",
+				"doc_values": true
+	          },
+			  "transactionDate": {
+	              "type" : "keyword",
+				  "doc_values": true
+			  },
+			  "candidate": {
+			  	  "type": "object",
+				  "properties": {
+					  "candidateName": {
+						  "type": "text",
+						  "fields": {
+							  "raw": {
+								  "type": "keyword",
+								  "doc_values": true
+							  }
+						  }
+					  }
+				  }
+			  },
+			  "name": {
+				  "type": "text",
+				  "fields": {
+					  "raw": {
+						  "type": "keyword",
+						  "doc_values": true
+					  }
+				  }
+			  },
+			  "employer": {
+				  "type": "text",
+				  "fields": {
+					  "raw": {
+						  "type": "keyword",
+						  "doc_values": true
+					  }
+				  }
+			  },
+			  "memo": {
+				  "type": "text",
+				  "fields": {
+					  "raw": {
+						  "type": "keyword",
+						  "doc_values": true
+					  }
+				  }
+			  },
+			  "occupation": {
+				  "type": "text",
+				  "fields": {
+					  "raw": {
+						  "type": "keyword",
+						  "doc_values": true
+					  }
+				  }
+			  },
+	          "coords" : {
+	            "type" : "geo_point"
+	          },
+	          "@version" : {
+	            "type" : "keyword"
+	          },
+	  		  "contributingCommittee": {
+	  		  	  "type": "object",
+	  			  "properties": {
+	  				  "committeeName": {
+	  					  "type": "text",
+	  					  "fields": {
+	  						  "raw": {
+	  							  "type": "keyword",
+	  							  "doc_values": true
+	  						  }
+	  					  }
+	  				  }
+	  			  }
+	  		  }
+	  	}
+	  },
+	  "comm2comm_contrib": {
+          "dynamic_templates" : [ {
+            "string_fields" : {
+              "mapping" : {
+  			    "type": "keyword",
+  			    "doc_values": true
+              },
+              "match_mapping_type" : "string",
+              "match" : "*"
+            }
+          } ],
+          "_all" : {
+            "enabled" : true
+          },
+          "properties" : {
+	          "@timestamp" : {
+	            "type" : "date",
+				"doc_values": true
+	          },
+	          "transactionAmount" : {
+	            "type" : "float",
+				"doc_values": true
+	          },
+			  "transactionDate": {
+	              "type": "keyword",
+				  "doc_values": true
+			  },
+			  "candidate": {
+			  	  "type": "object",
+				  "properties": {
+					  "candidateName": {
+						  "type": "text",
+						  "fields": {
+							  "raw": {
+								  "type": "keyword",
+								  "doc_values": true
+							  }
+						  }
+					  }
+				  }
+			  },
+			  "name": {
+				  "type": "text",
+				  "fields": {
+					  "raw": {
+						  "type": "keyword",
+						  "doc_values": true
+					  }
+				  }
+			  },
+			  "employer": {
+				  "type": "text",
+				  "fields": {
+					  "raw": {
+						  "type": "keyword",
+						  "doc_values": true
+					  }
+				  }
+			  },
+			  "memo": {
+				  "type": "text",
+				  "fields": {
+					  "raw": {
+						  "type": "keyword",
+						  "doc_values": true
+					  }
+				  }
+			  },
+			  "occupation": {
+				  "type": "text",
+				  "fields": {
+					  "raw": {
+						  "type": "keyword",
+						  "doc_values": true
+					  }
+				  }
+			  },
+	          "coords" : {
+	            "type" : "geo_point"
+	          },
+	          "@version" : {
+	            "type": "keyword"
+	          },
+	  		  "contributingCommittee": {
+	  		  	  "type": "object",
+	  			  "properties": {
+	  				  "committeeName": {
+	  					  "type": "text",
+	  					  "fields": {
+	  						  "raw": {
+	  							  "type": "keyword",
+	  							  "doc_values": true
+	  						  }
+	  					  }
+	  				  }
+	  			  }
+	  		  },
+	  		  "receivingCommittee": {
+	  		  	  "type": "object",
+	  			  "properties": {
+	  				  "committeeName": {
+	  					  "type": "text",
+	  					  "fields": {
+	  						  "raw": {
+	  							  "type": "keyword",
+	  							  "doc_values": true
+	  						  }
+	  					  }
+	  				  }
+	  			  }
+	  		  }
+          }
+	  },
+	  "oppexp": {
+          "dynamic_templates" : [ {
+            "string_fields" : {
+              "mapping" : {
+                "type": "keyword",
+  			    "doc_values": true
+              },
+              "match_mapping_type" : "string",
+              "match" : "*"
+            }
+          } ],
+          "_all" : {
+            "enabled" : true
+          },
+          "properties" : {
+	          "@timestamp" : {
+	            "type" : "date",
+				"doc_values": true
+	          },
+	          "transactionAmount" : {
+	            "type" : "float",
+				"doc_values": true
+	          },
+			  "transactionDate": {
+	              "type": "keyword",
+				  "doc_values": true
+			  },
+			  "candidate": {
+			  	  "type": "object",
+				  "properties": {
+					  "candidateName": {
+						  "type": "text",
+						  "fields": {
+							  "raw": {
+								  "type": "keyword",
+								  "doc_values": true
+							  }
+						  }
+					  }
+				  }
+			  },
+			  "name": {
+				  "type": "text",
+				  "fields": {
+					  "raw": {
+						  "type": "keyword",
+						  "doc_values": true
+					  }
+				  }
+			  },
+			  "employer": {
+				  "type": "text",
+				  "fields": {
+					  "raw": {
+						  "type": "keyword",
+						  "doc_values": true
+					  }
+				  }
+			  },
+			  "memo": {
+				  "type": "text",
+				  "fields": {
+					  "raw": {
+						  "type": "keyword",
+						  "doc_values": true
+					  }
+				  }
+			  },
+			  "occupation": {
+				  "type": "text",
+				  "fields": {
+					  "raw": {
+						  "type": "keyword",
+						  "doc_values": true
+					  }
+				  }
+			  },
+	          "coords" : {
+	            "type" : "geo_point"
+	          },
+	          "@version" : {
+	            "type": "keyword"
+	          },
+	  		  "spendingCommittee": {
+	  		  	  "type": "object",
+	  			  "properties": {
+	  				  "committeeName": {
+	  					  "type": "text",
+	  					  "fields": {
+	  						  "raw": {
+	  							  "type": "keyword",
+	  							  "doc_values": true
+	  						  }
+	  					  }
+	  				  }
+	  			  }
+	  		  }
+          }
+	  }
+    },
+    "aliases" : { }
+}

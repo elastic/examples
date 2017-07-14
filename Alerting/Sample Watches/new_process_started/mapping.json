@@ -1,0 +1,17 @@
+{
+  "mappings": {
+    "log": {
+      "properties": {
+        "@timestamp": {
+          "type": "date"
+        },
+        "process_host": {
+          "type": "keyword"
+        },
+        "event_type": {
+          "type": "keyword"
+        }
+      }
+    }
+  }
+}

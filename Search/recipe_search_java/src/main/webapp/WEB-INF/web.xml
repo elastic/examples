@@ -1,0 +1,45 @@
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         version="2.5">
+    <display-name>Search Recipes</display-name>
+
+    <servlet id="jsp">
+        <servlet-name>uu</servlet-name>
+        <servlet-class>org.apache.jasper.servlet.JspServlet</servlet-class>
+        <init-param>
+            <param-name>logVerbosityLevel</param-name>
+            <param-value>DEBUG</param-value>
+        </init-param>
+        <init-param>
+            <param-name>fork</param-name>
+            <param-value>>false</param-value>
+        </init-param>
+        <init-param>
+            <param-name>keepgenerated</param-name>
+            <param-value>>true</param-value>
+        </init-param>
+        <load-on-startup>0</load-on-startup>
+    </servlet>
+
+    <servlet>
+        <servlet-name>SearchRecipesServlet</servlet-name>
+        <servlet-class>com.elastic.recipe.SearchRecipesServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>SearchRecipesServlet</servlet-name>
+        <url-pattern>/search</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>jsp</servlet-name>
+        <url-pattern>*.jsp</url-pattern>
+        <url-pattern>*.jspf</url-pattern>
+        <url-pattern>*.jspx</url-pattern>
+        <url-pattern>*.xsp</url-pattern>
+        <url-pattern>*.JSP</url-pattern>
+        <url-pattern>*.JSPF</url-pattern>
+        <url-pattern>*.JSPX</url-pattern>
+        <url-pattern>*.XSP</url-pattern>
+    </servlet-mapping>
+</web-app>

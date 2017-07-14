@@ -1,0 +1,66 @@
+{
+  "inspection": {
+    "properties": {
+      "Action": {
+        "type": "keyword"
+      },
+      "Boro": {
+          "type": "keyword"
+      },
+      "Building": {
+          "type": "keyword"
+      },
+      "Camis": {
+        "type": "long"
+      },
+      "Coord": {
+        "type": "geo_point"
+      },
+      "Critical_Flag": {
+        "type": "keyword"
+      },
+      "Cuisine_Description": {
+          "type": "keyword"
+      },
+      "Dba": {
+        "type": "keyword"
+      },
+      "Grade": {
+          "type": "keyword"
+      },
+      "Grade_Date": {
+        "format": "strict_date_optional_time||epoch_millis",
+        "type": "date"
+      },
+      "Inspection_Date": {
+        "format": "strict_date_optional_time||epoch_millis",
+        "type": "date"
+      },
+      "Inspection_Type": {
+          "type": "keyword"
+      },
+      "Phone": {
+          "type": "keyword"
+      },
+      "Record_Date": {
+        "format": "strict_date_optional_time||epoch_millis",
+        "type": "date"
+      },
+      "Score": {
+        "type": "double"
+      },
+      "Street": {
+          "type": "keyword"
+      },
+      "Violation_Code": {
+          "type": "keyword"
+      },
+      "Violation_Description": {
+        "type": "text"
+      },
+      "Zipcode": {
+        "type": "long"
+      }
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+    "description": "nginx json pipeline",
+    "processors": [
+      {
+        "grok": {
+          "field": "request",
+          "patterns": [
+            "%{WORD:request_action} %{DATA:request1} HTTP/%{NUMBER:http_version}"
+          ],
+          "ignore_failure": true
+        }
+      },
+      {
+        "user_agent": {
+          "field": "agent",
+          "target_field": "user_agent"
+        }
+      },
+      {
+        "geoip": {
+          "field": "remote_ip",
+          "target_field": "geoip"
+        }
+      },
+      {
+        "date": {
+          "field": "time",
+          "formats": [
+            "dd/MMM/YYYY:HH:mm:ss Z"
+          ],
+          "target_field": "@timestamp",
+          "locale": "ENGLISH"
+        }
+      }
+    ]
+}

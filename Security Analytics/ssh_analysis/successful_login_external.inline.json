@@ -1,0 +1,70 @@
+{
+  "watch": {
+    "trigger": {
+      "schedule": {
+        "interval": "10s"
+      }
+    },
+    "input": {
+      "search": {
+        "request": {
+          "indices": [
+            "cef-ssh-*"
+          ],
+          "types": [
+            "syslog"
+          ],
+          "body": {
+            "query": {
+              "bool": {
+                "must_not": [
+                  {
+                    "term": {
+                      "sourceAddress": {
+                        "value": "192.168.0.0/16"
+                      }
+                    }
+                  }
+                ],
+                "filter": [
+                  {
+                    "term": {
+                      "categoryBehaviour": "cowrie.login.success"
+                    }
+                  }
+                ]
+              }
+            },
+            "size": 100,
+            "_source": [
+              "destinationHostName",
+              "sourceAddress",
+              "@timestamp"
+            ]
+          }
+        }
+      }
+    },
+    "condition": {
+      "compare": {
+        "ctx.payload.hits.total": {
+          "gt": 0
+        }
+      }
+    },
+    "transform": {
+      "script": "return ctx.payload.hits.hits.stream().map(d -> ['@timestamp':d._source['@timestamp'],'sourceAddress':d._source.sourceAddress,'destinationHostName':d._source.destinationHostName]).collect(Collectors.toList());"
+    },
+    "actions": {
+      "index_payload": {
+        "transform": {
+          "script": "return ['_doc':ctx.payload._value];"
+        },
+        "index": {
+          "index": "cef-ssh-watch-results",
+          "doc_type": "external_login"
+        }
+      }
+    }
+  }
+}

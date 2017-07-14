@@ -1,0 +1,130 @@
+{
+  "watch_name":"twitter_trends",
+  "mapping_file":"./twitter_trends/mapping.json",
+  "index":"twitter",
+  "type":"tweet",
+  "match": true,
+  "watch_file":"./twitter_trends/watch.json",
+  "comments":"Functional test only.  Adds an event every 5 mins for 2hrs, before adding 5 events in the last 5 mins.",
+  "scripts":[{"name":"condition","path":"./twitter_trends/scripts/condition.json"}],
+  "events":[
+  {
+    "offset":-7200,
+    "text":"Elasticsearch is amazing!"
+  },
+  {
+    "offset":-6900,
+    "text":"Elasticsearch is amazing!"
+  },
+  {
+    "offset":-6600,
+    "text":"Elasticsearch is amazing!"
+  },
+  {
+    "offset":-6300,
+    "text":"Elasticsearch is amazing!"
+  },
+  {
+    "offset":-6000,
+    "text":"Elasticsearch is amazing!"
+  },
+  {
+    "offset":-5700,
+    "text":"Elasticsearch is amazing!"
+  },
+  {
+    "offset":-5400,
+    "text":"Elasticsearch is amazing!"
+  },
+  {
+    "offset":-5100,
+    "text":"Elasticsearch is amazing!"
+  },
+  {
+    "offset":-4800,
+    "text":"Elasticsearch is amazing!"
+  },
+  {
+    "offset":-4500,
+    "text":"Elasticsearch is amazing!"
+  },
+  {
+    "offset":-4200,
+    "text":"Elasticsearch is amazing!"
+  },
+  {
+    "offset":-3900,
+    "text":"Elasticsearch is amazing!"
+  },
+  {
+    "offset":-3600,
+    "text":"Elasticsearch is amazing!"
+  },
+  {
+    "offset":-3300,
+    "text":"Elasticsearch is amazing!"
+  },
+  {
+    "offset":-3000,
+    "text":"Elasticsearch is amazing!"
+  },
+  {
+    "offset":-2700,
+    "text":"Elasticsearch is amazing!"
+  },
+  {
+    "offset":-2400,
+    "text":"Elasticsearch is amazing!"
+  },
+  {
+    "offset":-2100,
+    "text":"Elasticsearch is amazing!"
+  },
+  {
+    "offset":-1800,
+    "text":"Elasticsearch is amazing!"
+  },
+  {
+    "offset":-1500,
+    "text":"Elasticsearch is amazing!"
+  },
+  {
+    "offset":-1200,
+    "text":"Elasticsearch is amazing!"
+  },
+  {
+    "offset":-900,
+    "text":"Elasticsearch is amazing!"
+  },
+  {
+    "offset":-10,
+    "text":"Elasticsearch is amazing!"
+  },
+  {
+    "offset":-10,
+    "text":"Elasticsearch is amazing!"
+  },
+  {
+    "offset":-10,
+    "text":"Elasticsearch is amazing!"
+  },
+  {
+    "offset":-10,
+    "text":"Elasticsearch is amazing!"
+  },
+  {
+    "offset":-10,
+    "text":"Elasticsearch is amazing!"
+  },
+  {
+    "offset":-10,
+    "text":"Elasticsearch is amazing!"
+  },
+  {
+    "offset":-10,
+    "text":"Elasticsearch is amazing!"
+  }
+],
+"expected_response":"elasticsearch is getting attention!"
+}
+

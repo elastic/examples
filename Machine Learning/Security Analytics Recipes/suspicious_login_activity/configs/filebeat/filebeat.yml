@@ -1,0 +1,18 @@
+filebeat.modules:
+- module: system
+  syslog:
+    enabled: false
+  auth:
+    enabled: true
+    var.paths: ["/opt/demos/ml-recipes/recipes/security/suspicious_login_activity/data/auth.log"]
+name: test
+output.elasticsearch:
+  # Array of hosts to connect to.
+  hosts: ["localhost:9200"]
+  # Optional protocol and basic auth credentials.
+  #protocol: "https"
+  username: "elastic"
+  password: "changeme"
+  index: "filebeat"
+logging.level: debug
+logging.selectors: ["publish"]
