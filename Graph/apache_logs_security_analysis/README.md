@@ -34,6 +34,7 @@ Example has been tested in following versions:
 * [filebeat_secrepo.yml](https://github.com/elastic/examples/blob/master/Graph/apache_logs_security_analysis/filebeat_secrepo.yml) - Filebeat configuration file
 
 
+
 ##### Legacy Files:
 
 * [secrepo_logstash.conf](https://github.com/elastic/examples/blob/master/Graph/apache_logs_security_analysis/logstash/secrepo_logstash.conf) - Logstash configuration. REFERENCE ONLY.
