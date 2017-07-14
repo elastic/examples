@@ -33,6 +33,7 @@ Example has been tested in following versions:
 * [secrepo_pipeline.json](https://github.com/elastic/examples/blob/master/Graph/apache_logs_security_analysis/secrepo_pipeline.json) - ES Ingestion Pipeline
 * [filebeat_secrepo.yml](https://github.com/elastic/examples/blob/master/Graph/apache_logs_security_analysis/filebeat_secrepo.yml) - Filebeat configuration file
 
+
 ##### Legacy Files:
 
 * [secrepo_logstash.conf](https://github.com/elastic/examples/blob/master/Graph/apache_logs_security_analysis/logstash/secrepo_logstash.conf) - Logstash configuration. REFERENCE ONLY.
@@ -63,7 +64,7 @@ Example has been tested in following versions:
   <path_to_kibana_root_dir>/bin/kibana
   ```
 
-The following assumes the default username and password of "elastic" and "changeme".  These can be changed as detailed [here](https://www.elastic.co/guide/en/shield/current/native-realm.html).  If changed, ensure the Logstash.conf file is updated accordingly to permit ingestion.
+The following assumes the default username and password of "elastic" and "changeme".  These can be changed as detailed [here](https://www.elastic.co/guide/en/x-pack/5.4/security-getting-started.html).  If changed, ensure the Logstash.conf file is updated accordingly to permit ingestion.
 
 * Check that Elasticsearch and Kibana are up and running.
   - Open `localhost:9200` in web browser and authenticate with "elastic" and "changeme" -- should return status code 200
