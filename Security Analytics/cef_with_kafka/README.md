@@ -33,17 +33,17 @@ Example has been tested in following versions:
 
 ### Elastic Stack - Docker Installation & Setup
 
-A [docker-compose.yml](https://github.com/elastic/examples/master/Security%20Analytics/cef_with_kafka/docker-compose.yml) file is provided to recreate in instance of the Elastic Stack (Elasticsearch and Kibana). This assumes:
+A [docker-compose.yml](https://github.com/elastic/examples/blob/master/Security%20Analytics/cef_with_kafka/docker-compose.yml) file is provided to recreate in instance of the Elastic Stack (Elasticsearch and Kibana). This assumes:
 
 * You have [Docker Engine](https://docs.docker.com/engine/installation/) installed.
 * Your host meets the [prerequisites](https://www.elastic.co/guide/en/elasticsearch/reference/5.1/docker.html#docker-cli-run-prod-mode).
 * If you are on Linux, that [docker-compose](https://github.com/docker/compose/releases/latest) is installed.
 
-Additionally a [docker file](https://github.com/elastic/examples/master/Security%20Analytics/cef/logstash/Dockerfile) is provided for ingestion of CEF data with Logstash.  This Logstash instance reads data from Kafka.
+Additionally a [docker file](https://github.com/elastic/examples/blob/master/Security%20Analytics/cef_with_kafka/logstash/Dockerfile) is provided for ingestion of CEF data with Logstash.  This Logstash instance reads data from Kafka.
 
 ### Kafka - Installation & Setup
 
-The following assumes you have a working [Kafka Installation](https://kafka.apache.org/quickstart). For those using docker a Dockerfile for Kafka is provided as part of the example [here](https://github.com/elastic/examples/master/Security%20Analytics/cef_with_kafka/). 
+The following assumes you have a working [Kafka Installation](https://kafka.apache.org/quickstart). For those using docker a Dockerfile for Kafka is provided as part of the example [here](https://github.com/elastic/examples/tree/master/Security%20Analytics/cef_with_kafka/). 
 
 
 ### Configure & Start Logstash
@@ -52,8 +52,8 @@ If using the docker file described above, the following can be ignored.
 
 Download the following files to the **root installation** directory of Logstash:
 
-- [logstash/pipeline/logstash.conf](https://github.com/elastic/examples/master/Security%20Analytics/cef_with_kafka/logstash/pipeline/logstash.conf) - Logstash config for ingesting CEF data into Elasticsearch
-- [logstash/pipeline/cef_template.json](https://github.com/elastic/examples/master/Security%20Analytics/cef_with_kafka/logstash/pipeline/cef_template.json)` - CEF template for custom mapping of fields
+- [logstash/pipeline/logstash.conf](https://github.com/elastic/examples/blob/master/Security%20Analytics/cef_with_kafka/logstash/pipeline/logstash.conf) - Logstash config for ingesting CEF data into Elasticsearch
+- [logstash/pipeline/cef_template.json](https://github.com/elastic/examples/blob/master/Security%20Analytics/cef_with_kafka/logstash/pipeline/cef_template.json)` - CEF template for custom mapping of fields
 
 Unfortunately, Github does not provide a convenient one-click option to download entire contents of a subfolder in a repo. Use sample code provided below to download the required files to a local directory:
 
@@ -76,7 +76,7 @@ Start Logstash from the commnad line as described [here](https://www.elastic.co/
 
 ### Visualize data in Kibana
 
-Download the [dashboard.json](https://github.com/elastic/examples/master/Security%20Analytics/cef_with_kafka/dashboard.json) file provided e.g.
+Download the [dashboard.json](https://github.com/elastic/examples/blob/master/Security%20Analytics/cef_with_kafka/dashboard.json) file provided e.g.
 
 ```
 wget https://raw.githubusercontent.com/elastic/examples/master/Security%20Analytics/cef_with_kafka/dashboard.json
