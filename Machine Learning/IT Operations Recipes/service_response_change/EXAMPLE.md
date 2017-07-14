@@ -13,18 +13,18 @@ In order to demonstrate this recipe a dataset is provided in the form of apache 
 
 ## Pre-requisites
 
-- Elasticsearch v5.4
-- Filebeat 5.4
-- Elasticsearch [user agent plugin 5.4](https://www.elastic.co/guide/en/elasticsearch/plugins/5.4/ingest-user-agent.html)
-- Elasticsearch [user geoip plugin 5.4](https://www.elastic.co/guide/en/elasticsearch/plugins/5.4/ingest-geoip.html)
-- X-Pack v5.4 with ML beta
+- Elasticsearch v5.4 or later
+- Filebeat 5.4 or later
+- Elasticsearch [user agent plugin 5.4](https://www.elastic.co/guide/en/elasticsearch/plugins/current/ingest-user-agent.html)
+- Elasticsearch [user geoip plugin 5.4](https://www.elastic.co/guide/en/elasticsearch/plugins/current/ingest-geoip.html)
+- X-Pack v5.4 or later with Machine Learning
 - curl
 
 ## Recipe Components
 
 This example includes:
 
- * Ingestion chain for indexing apache logs.  The Ingest chain here has been adapted from the [Apache2 Filebeat module](https://www.elastic.co/guide/en/beats/filebeat/5.4/filebeat-module-apache2.html). More specifically, an additional pattern has been added which extracts the first level from the accessed url, into a field `site_area`.
+ * Ingestion chain for indexing apache logs.  The Ingest chain here has been adapted from the [Apache2 Filebeat module](https://www.elastic.co/guide/en/beats/filebeat/current/filebeat-module-apache2.html). More specifically, an additional pattern has been added which extracts the first level from the accessed url, into a field `site_area`.
  * X-Pack Machine Learning job configuration files
  * Utility script to help with loading of the job
 
@@ -69,7 +69,7 @@ This example includes:
     curl -O https://raw.githubusercontent.com/elastic/examples/master/Machine%20Learning/IT%20Operations%20Recipes/service_response_change/data/apache_logs.log
     ```
 
-* Download and install Filebeat as described [here](https://www.elastic.co/guide/en/beats/filebeat/5.4/filebeat-installation.html). **Do not start Filebeat**
+* Download and install Filebeat as described [here](https://www.elastic.co/guide/en/beats/filebeat/current/filebeat-installation.html). **Do not start Filebeat**
 
 * Download the provided ingest pipeline into the same folder.
 
