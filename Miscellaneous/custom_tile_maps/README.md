@@ -6,11 +6,11 @@ This example provides supporting files for the blog post [Operational Analytics 
 
 The files including in this folder include:
 
-* [elastic{ON}_simplified.svg](https://github.com/elastic/examples/blob/master/Advanced%20Use%20Cases/custom_tile_maps/elastic%7BON%7D_simplified.svg) - A simplified svg for the Elastic{ON} floor plan. This svg is used in the blog post.
-* [styles](https://github.com/elastic/examples/tree/master/Advanced%20Use%20Cases/custom_tile_maps/styles) - A folder of styles for the sample layers created in the blog post.
-* [shape_files](https://github.com/elastic/examples/tree/master/Advanced%20Use%20Cases/custom_tile_maps/shape_files) - A folder of shape files representing the layers created in the blog post. Allows the reader to skip step 1.
-* [generate_random_data.py](https://github.com/elastic/examples/blob/master/Advanced%20Use%20Cases/custom_tile_maps/generate_random_data.py) - A script to generate random data for the floor plan. See below for further details.
-* [elastic{ON}_full_floor_plan.pdf](https://github.com/elastic/examples/blob/master/Advanced%20Use%20Cases/custom_tile_maps/elastic%7BON%7D_full_floor_plan.pdf) - A full pdf of the Elastic{ON} floor plan. This can be used to reproduce the demo at Elastic{ON}. This includes a style tablet.
+* [elastic{ON}_simplified.svg](https://github.com/elastic/examples/blob/master/Miscellaneous/custom_tile_maps/elastic%7BON%7D_simplified.svg) - A simplified svg for the Elastic{ON} floor plan. This svg is used in the blog post.
+* [styles](https://github.com/elastic/examples/tree/master/Miscellaneous/custom_tile_maps/styles) - A folder of styles for the sample layers created in the blog post.
+* [shape_files](https://github.com/elastic/examples/tree/master/Miscellaneous/custom_tile_maps/shape_files) - A folder of shape files representing the layers created in the blog post. Allows the reader to skip step 1.
+* [generate_random_data.py](https://github.com/elastic/examples/blob/master/Miscellaneous/custom_tile_maps/generate_random_data.py) - A script to generate random data for the floor plan. See below for further details.
+* [elastic{ON}_full_floor_plan.pdf](https://github.com/elastic/examples/blob/master/Miscellaneous/custom_tile_maps/elastic%7BON%7D_full_floor_plan.pdf) - A full pdf of the Elastic{ON} floor plan. This can be used to reproduce the demo at Elastic{ON}. This includes a style tablet.
 
 ### Data Generator
 
