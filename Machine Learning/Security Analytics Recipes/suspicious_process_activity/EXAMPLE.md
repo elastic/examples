@@ -24,7 +24,7 @@ This example includes:
 
 ## Installation and Setup
 
-* Follow the [Installation & Setup Guide](https://github.com/elastic/examples/blob/master/Installation%20and%20Setup.md) to install and test the Elastic Stack (*you can skip this step if you have a working installation of the Elastic Stack,*)
+* Follow the [Installation & Setup Guide](https://github.com/elastic/examples/blob/5.4/Installation%20and%20Setup.md) to install and test the Elastic Stack (*you can skip this step if you have a working installation of the Elastic Stack,*)
 
 * Install the X-Pack in Kibana and Elasticsearch
 
@@ -62,7 +62,7 @@ This example includes:
 
 * [Download and Install Filebeat](https://www.elastic.co/guide/en/beats/filebeat/5.4/filebeat-installation.html). **Do not start Filebeat**.
 
-* Download the provided Filebeat configuration file. This configuration utilises the [Auditd filebeat module](https://www.elastic.co/guide/en/beats/filebeat/master/filebeat-module-auditd.html) .
+* Download the provided Filebeat configuration file. This configuration utilises the [Auditd filebeat module](https://www.elastic.co/guide/en/beats/filebeat/5.4/filebeat-module-auditd.html) .
 
     ```curl -O https://github.com/elastic/examples/blob/master/Machine%20Learning/Security%20Analytics%20Recipes/suspicious_process_activity/configs/filebeat/filebeat.yml```
 
