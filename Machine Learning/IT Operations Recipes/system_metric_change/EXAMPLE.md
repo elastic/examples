@@ -10,9 +10,9 @@ This example represents the simple case of detecitng a high system metric. In pr
 
 ## Pre-requisites
 
-- Metricbeat v5.3 (earlier versions may work but not tested)
-- Elasticsearch v5.4
-- X-Pack v5.4 with ML beta
+- Metricbeat v5.3 or later (earlier versions may work but not tested)
+- Elasticsearch v5.4 or later
+- X-Pack v5.4 or later with Machine Learning
 - curl
 - taskset - linux tool for process affinity. Distributed by default with most distributions.
 - [stress](https://people.seas.harvard.edu/~apw/stress/). This can be installed on linux using most both yum and apt-get e.g. `apt-get install stress.`.
