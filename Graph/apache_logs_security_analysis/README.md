@@ -89,11 +89,11 @@ The following assumes the default username and password of "elastic" and "change
     - `filebeat_secrepo.yml` - Filebeat configuration
     
         ```shell
-        wget https://raw.githubusercontent.com/elastic/examples/master/Common%20Data%20Formats/apache_logs_security_analysis/download_data.py
-        wget https://raw.githubusercontent.com/elastic/examples/master/Common%20Data%20Formats/apache_logs_security_analysis/requirements.txt
-        wget https://raw.githubusercontent.com/elastic/examples/master/Common%20Data%20Formats/apache_logs_security_analysis/secrepo.json
-        wget https://raw.githubusercontent.com/elastic/examples/master/Common%20Data%20Formats/apache_logs_security_analysis/secrepo_pipeline.json
-        wget https://raw.githubusercontent.com/elastic/examples/master/Common%20Data%20Formats/apache_logs_security_analysis/filebeat_secrepo.yml
+        wget https://raw.githubusercontent.com/elastic/examples/master/apache_logs_security_analysis/download_data.py
+        wget https://raw.githubusercontent.com/elastic/examples/master/apache_logs_security_analysis/requirements.txt
+        wget https://raw.githubusercontent.com/elastic/examples/master/apache_logs_security_analysis/secrepo.json
+        wget https://raw.githubusercontent.com/elastic/examples/master/apache_logs_security_analysis/secrepo_pipeline.json
+        wget https://raw.githubusercontent.com/elastic/examples/master/apache_logs_security_analysis/filebeat_secrepo.yml
         ```
     
 1. Setup Python environment
