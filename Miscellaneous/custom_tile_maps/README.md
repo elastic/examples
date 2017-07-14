@@ -14,7 +14,7 @@ The files including in this folder include:
 
 ### Data Generator
 
-The script [generate_random_data.py](https://github.com/elastic/examples/blob/master/Advanced%20Use%20Cases/custom_tile_maps/generate_random_data.py) allows random data to be generated for the floor plan. By creating document clusters, with a random number of documents, the script aims to produce a range of data clusters for the tile map. Improvements welcome.
+The script [generate_random_data.py](https://github.com/elastic/examples/blob/master/Miscellaneous/custom_tile_maps/generate_random_data.py) allows random data to be generated for the floor plan. By creating document clusters, with a random number of documents, the script aims to produce a range of data clusters for the tile map. Improvements welcome.
 
 #### Version Requirements
 
@@ -25,7 +25,7 @@ The example has been tested in the following versions (earlier versions may work
 
 #### Python dependencies
 
-See [requirements.txt](https://github.com/elastic/examples/blob/master/Advanced%20Use%20Cases/custom_tile_maps/requirements.txt). Install via pip e.g. `pip install -r requirements.txt`
+See [requirements.txt](https://github.com/elastic/examples/blob/master/Miscellaneous/custom_tile_maps/requirements.txt). Install via pip e.g. `pip install -r requirements.txt`
 
 #### Script options
 
