@@ -8,10 +8,10 @@ This ML recipe and Filebeat configuration can be applied to any linux system wit
 
 ## Pre-requisites
 
-- Filebeat v5.4
-- Elasticsearch v5.4
+- Filebeat v5.4 or later
+- Elasticsearch v5.4 or later
 - [ingest-geoip plugin](https://www.elastic.co/guide/en/elasticsearch/plugins/master/ingest-geoip.html)
-- X-Pack v5.4 with ML beta
+- X-Pack v5.4 or ater with Machine Learning
 - curl
 
 ## Recipe Components
