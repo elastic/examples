@@ -19,7 +19,7 @@ For auditd CEF encoded data we utilise the following fields, concatenating them 
 
 This example includes:
 
-- [`auditd.cef`](https://raw.githubusercontent.com/elastic/examples/master/Security%20Analytics/audidt_analysis/audit.cef) - Sample Auditd logs in CEF format used in the above blog post.
+- [`auditd.cef`](https://github.com/elastic/examples/blob/master/Security%20Analytics/auditd_analysis/auditd.cef) - Sample Auditd logs in CEF format used in the above blog post.
 - `auditd_analysis_logstash.conf` - An appropriate Logstash configuration for indexing the above CEF data and creating a `process_signature` field.
 - `auditd_analysis_kibana.json` - Simple Kibana visualizations and dashboards for the associated blog posts
 - `unusual_process.json` -  A watch that detects new processes starting. REFERENCE ONLY. 
