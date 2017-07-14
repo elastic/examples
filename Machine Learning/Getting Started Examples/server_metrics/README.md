@@ -1,6 +1,6 @@
 ## Getting started with machine learning - creating a single metric job
 
-This is a complementary resource to the examples shown in [Lab 1 - Create a single metric job](https://www.elastic.co/videos/machine-learning-tutorial-creating-a-single-metric-job) and [Lab 2 - Create a multi metric job](https://www.elastic.co/videos/machine-learning-tutorial-creating-a-single-metric-job) video in the Getting Started with Machine Learning tutorial series.
+This is a complementary resource to the examples shown in [Lab 1 - Create a single metric job](https://www.elastic.co/videos/machine-learning-tutorial-creating-a-single-metric-job) and [Lab 2 - Create a multi metric job](https://www.elastic.co/videos/machine-learning-tutorial-creating-a-multi-metric-job) video in the Getting Started with Machine Learning tutorial series.
 
   In this ReadMe, we will provide the instructions for (a) installing Elastic Stack & X-Pack, and (b) indexing the dataset used in the getting started videos into Elasticsearch. Once you have the data indexed, you can follow along the steps shown in the video to setup machine learning jobs on this dataset.   
 
