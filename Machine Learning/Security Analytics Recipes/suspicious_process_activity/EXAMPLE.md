@@ -8,9 +8,9 @@ In order to test and evaluate this recipe, a background dataset is required in a
 
 ## Pre-requisites
 
-- Filebeat v5.4
-- Elasticsearch v5.4
-- X-Pack v5.4 with ML beta
+- Filebeat v5.4 or later
+- Elasticsearch v5.4 or later
+- X-Pack v5.4 or later with Machine Learning
 - Auditd
 
 ## Recipe Components
