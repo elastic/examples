@@ -15,7 +15,7 @@ In order to demonstrate this recipe a dataset is provided in the form of apache 
 
 - Elasticsearch v5.4
 - Filebeat v5.4
-- Elasticsearch [user agent plugin](https://www.elastic.co/guide/en/elasticsearch/plugins/V5.4/ingest-user-agent.html)
+- Elasticsearch [user agent plugin](https://www.elastic.co/guide/en/elasticsearch/plugins/5.4/ingest-user-agent.html)
 - Elasticsearch [user geoip plugin](https://www.elastic.co/guide/en/elasticsearch/plugins/5.4/ingest-geoip.html)
 - X-Pack v5.4 with Machine Learning
 - curl
@@ -24,7 +24,7 @@ In order to demonstrate this recipe a dataset is provided in the form of apache 
 
 This example includes:
 
- * Ingestion chain for indexing apache logs.  The Ingest chain here has been adapted from the [Apache2 Filebeat module](https://www.elastic.co/guide/en/beats/filebeat/V5.4/filebeat-module-apache2.html). More specifically, an additional pattern has been added which extracts the first level from the accessed url, into a field `site_area`.
+ * Ingestion chain for indexing apache logs.  The Ingest chain here has been adapted from the [Apache2 Filebeat module](https://www.elastic.co/guide/en/beats/filebeat/5.4/filebeat-module-apache2.html). More specifically, an additional pattern has been added which extracts the first level from the accessed url, into a field `site_area`.
  * X-Pack Machine Learning job configuration files
  * Utility script to help with loading of the job
 
@@ -61,7 +61,7 @@ This example includes:
 
    **Note:** By default, Elasticsearch runs on port 9200, and Kibana run on ports 5601. If you changed the default ports, change the above calls to use the appropriate ports.  
 
-  The cluster will be secured using basic auth. If changing the default credentials of `elastic` and `changeme` as described [here](https://www.elastic.co/guide/en/x-pack/V5.4/security-getting-started.html), ensure the logstash configuration file is updated.
+  The cluster will be secured using basic auth. If changing the default credentials of `elastic` and `changeme` as described [here](https://www.elastic.co/guide/en/x-pack/5.4/security-getting-started.html), ensure the logstash configuration file is updated.
 
 * Download the test dataset provided.
 
@@ -69,7 +69,7 @@ This example includes:
     curl -O https://raw.githubusercontent.com/elastic/examples/master/Machine%20Learning/IT%20Operations%20Recipes/service_response_change/data/apache_logs.log
     ```
 
-* Download and install Filebeat as described [here](https://www.elastic.co/guide/en/beats/filebeat/V5.4/filebeat-installation.html). **Do not start Filebeat**
+* Download and install Filebeat as described [here](https://www.elastic.co/guide/en/beats/filebeat/5.4/filebeat-installation.html). **Do not start Filebeat**
 
 * Download the provided ingest pipeline into the same folder.
 
