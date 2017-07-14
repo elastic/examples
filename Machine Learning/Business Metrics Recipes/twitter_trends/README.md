@@ -39,7 +39,6 @@ The recipe assumes the structure as delivered by the Twitter API.
     Compared to:        Baseline model/history of tweets for that topic
     Partition by:       topic
     Exclude:            None
-    Influencers:        topic, retweeted.user, retweeted.hashtags, user_mentions.name, user.location
     Duration:           Run analysis on tweets for a period of 1 week or longer
     Related recipes:    Run this Business KPI use case by itself, or in conjunction with other Business Metrics/OPS recipes
     Results:            Periods of unusually high activity for a twitter topic with an indication of causality through influencers
@@ -81,11 +80,11 @@ The user may wish to adapt the above influencers depending on requirements.
 
     Detector(s): high_non_zero_count partitionfield=topic
     Bucketspan: 10m
-    Influencer(s): topic, entities.hashtags.text, entities.user_mentions.name, retweeted_status.entities.user_mentions.name, user.name, user.location, entities.urls.display_url, retweeted_status.entities.hashtags.text, retweeted_status.entities.urls.display_url
+    Influencers: topic, retweeted.user, retweeted.hashtags, user_mentions.name, user.location
     
 ## Recipe ID: TWT-BUS01
 
-## Revision: v0.3
+## Revision: v0.4
 
 ## Last updated: 14-JUL-2017
 
