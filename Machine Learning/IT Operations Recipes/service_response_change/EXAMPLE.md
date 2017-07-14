@@ -14,9 +14,9 @@ In order to demonstrate this recipe a dataset is provided in the form of apache 
 ## Pre-requisites
 
 - Elasticsearch v5.4 or later
-- Filebeat 5.4 or later
-- Elasticsearch [user agent plugin 5.4](https://www.elastic.co/guide/en/elasticsearch/plugins/current/ingest-user-agent.html)
-- Elasticsearch [user geoip plugin 5.4](https://www.elastic.co/guide/en/elasticsearch/plugins/current/ingest-geoip.html)
+- Filebeat v5.4 or later
+- Elasticsearch [user agent plugin](https://www.elastic.co/guide/en/elasticsearch/plugins/current/ingest-user-agent.html)
+- Elasticsearch [user geoip plugin](https://www.elastic.co/guide/en/elasticsearch/plugins/current/ingest-geoip.html)
 - X-Pack v5.4 or later with Machine Learning
 - curl
 
