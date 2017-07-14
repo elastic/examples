@@ -8,10 +8,11 @@ The aim here is to begin exploration of the data from a security vulnerability t
 
 These above steps can be repeated as the graph and 'threat space' is explored.
 
-The data analyzed in this example is from the [Secrep.com](http://www.secrepo.com/) and represents the sites apache logs.
+The data analyzed in this example is from the [secrepo.com](http://www.secrepo.com/) and represents the sites apache logs.
 This data, published by Mike Sconzo, is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/) .
 
 This example historically used Logstash for ingestion. These configurations have been retained for reference only. Per recommended best practices, this example uses the Filebeat.
+
 ### Versions and Pre-requisites
 
 Example has been tested in following versions:
@@ -26,16 +27,16 @@ Example has been tested in following versions:
 
 ### Example Contents
 
-* [download_data.py](https://github.com/elastic/examples/blob/master/Common%20Data%20Formats/Graph/apache_logs_security_analysis/download_data.py) - Python script to download secrepo logs
-* [requirements.txt](https://github.com/elastic/examples/blob/master/Common%20Data%20Formats/apache_logs_security_analysis/requirements.txt) - Pip python dependencies file
-* [secrepo.json](https://github.com/elastic/examples/blob/master/Common%20Data%20Formats/Graph/apache_logs_security_analysis/secrepo.json) - ES Index Template
-* [secrepo_pipeline.json](https://github.com/elastic/examples/blob/master/Common%20Data%20Formats/Graph/apache_logs_security_analysis/secrepo_pipeline.json) - ES Ingestion Pipeline
-* [filebeat_secrepo.yml](https://github.com/elastic/examples/blob/master/Common%20Data%20Formats/Graph/apache_logs_security_analysis/filebeat.yml) - Filebeat configuration file
+* [download_data.py](https://github.com/elastic/examples/blob/master/Graph/apache_logs_security_analysis/download_data.py) - Python script to download secrepo logs
+* [requirements.txt](https://github.com/elastic/examples/blob/master/Graph/apache_logs_security_analysis/requirements.txt) - Pip python dependencies file
+* [secrepo.json](https://github.com/elastic/examples/blob/master/Graph/apache_logs_security_analysis/secrepo.json) - ES Index Template
+* [secrepo_pipeline.json](https://github.com/elastic/examples/blob/master/Graph/apache_logs_security_analysis/secrepo_pipeline.json) - ES Ingestion Pipeline
+* [filebeat_secrepo.yml](https://github.com/elastic/examples/blob/master/Graph/apache_logs_security_analysis/filebeat_secrepo.yml) - Filebeat configuration file
 
-#####Legacy Files:
+##### Legacy Files:
 
-* [secrepo_logstash.conf](https://github.com/elastic/examples/blob/master/Common%20Data%20Formats/Graph/apache_logs_security_analysis/logstash/secrepo_logstash.conf) - Logstash configuration. REFERENCE ONLY.
-* [patterns](https://github.com/elastic/examples/blob/master/Common%20Data%20Formats/Graph/apache_logs_security_analysis/logstash/patterns) - Custom logstash patterns
+* [secrepo_logstash.conf](https://github.com/elastic/examples/blob/master/Graph/apache_logs_security_analysis/logstash/secrepo_logstash.conf) - Logstash configuration. REFERENCE ONLY.
+* [patterns](https://github.com/elastic/examples/blob/master/Graph/apache_logs_security_analysis/logstash/patterns) - Custom logstash patterns
 
 ### Installation & Setup
 
