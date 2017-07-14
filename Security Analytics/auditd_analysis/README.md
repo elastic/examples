@@ -4,7 +4,7 @@ This **Getting Started with Elastic Stack** example provides sample files to ing
 
 Included are example Watches for proactively monitoring this data for possible security incidents.  These examples support the Security Analytics blog post series, specifically:
  
-[Integrating Elasticsearch with ArcSight SIEM - Part 5](https://elastic.co/blog/integrating-elastic-stack-with-arcsight-siem-part-5).
+[Integrating Elasticsearch with ArcSight SIEM - Part 5](https://www.elastic.co/blog/integrating-elasticsearch-with-arcsight-siem-part-5).
 
 This example complements the above blog post, providing a means to detect unusual processes starting on servers in the last N minutes. Unusual is defined as "A new process signature that has not occurred on the server historically".
 
