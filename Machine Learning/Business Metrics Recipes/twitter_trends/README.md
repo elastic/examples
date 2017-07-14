@@ -39,7 +39,7 @@ The recipe assumes the structure as delivered by the Twitter API.
     Compared to:        Baseline model/history of tweets for that topic
     Partition by:       topic
     Exclude:            None
-    Common Influencers: topic, retweeted.user, retweeted.hashtags, user_mentions.name, user.location
+    Influencers:        topic, retweeted.user, retweeted.hashtags, user_mentions.name, user.location
     Duration:           Run analysis on tweets for a period of 1 week or longer
     Related recipes:    Run this Business KPI use case by itself, or in conjunction with other Business Metrics/OPS recipes
     Results:            Periods of unusually high activity for a twitter topic with an indication of causality through influencers
