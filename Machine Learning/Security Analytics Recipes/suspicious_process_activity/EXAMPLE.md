@@ -8,9 +8,9 @@ In order to test and evaluate this recipe, a background dataset is required in a
 
 ## Pre-requisites
 
-- Filebeat v5.4 or later
-- Elasticsearch v5.4 or later
-- X-Pack v5.4 or later with Machine Learning
+- Filebeat v5.4
+- Elasticsearch v5.4
+- X-Pack v5.4 with Machine Learning
 - Auditd
 
 ## Recipe Components
@@ -48,7 +48,7 @@ This example includes:
 
   **Note:** By default, Elasticsearch runs on port 9200, and Kibana run on ports 5601. If you changed the default ports, change the above calls to use the appropriate ports.  
 
-  The cluster will be secured using basic auth. If changing the default credentials of `elastic` and `changeme` as described [here](https://www.elastic.co/guide/en/x-pack/current/security-getting-started.html), ensure the logstash configuration file is updated.
+  The cluster will be secured using basic auth. If changing the default credentials of `elastic` and `changeme` as described [here](https://www.elastic.co/guide/en/x-pack/5.4/security-getting-started.html), ensure the logstash configuration file is updated.
 
 * Ensure [auditd](https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Security_Guide/chap-system_auditing.html) is installed
 
@@ -60,7 +60,7 @@ This example includes:
 
     To ensure these rules are permitted between restarts add via `/etc/audit/audit.rules`
 
-* [Download and Install Filebeat](https://www.elastic.co/guide/en/beats/filebeat/current/filebeat-installation.html). **Do not start Filebeat**.
+* [Download and Install Filebeat](https://www.elastic.co/guide/en/beats/filebeat/5.4/filebeat-installation.html). **Do not start Filebeat**.
 
 * Download the provided Filebeat configuration file. This configuration utilises the [Auditd filebeat module](https://www.elastic.co/guide/en/beats/filebeat/master/filebeat-module-auditd.html) .
 
@@ -79,7 +79,7 @@ This example includes:
 
     ```./filebeat -e -modules=auditd -setup```
 
-* Start Filebeat as described [here](https://www.elastic.co/guide/en/beats/filebeat/current/filebeat-starting.html).
+* Start Filebeat as described [here](https://www.elastic.co/guide/en/beats/filebeat/5.4/filebeat-starting.html).
 
 * Test Filebeat is capturing Auditd log data by running the following commands.
 
