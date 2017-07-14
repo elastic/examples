@@ -8,10 +8,10 @@ This ML recipe and Filebeat configuration can be applied to any linux system wit
 
 ## Pre-requisites
 
-- Filebeat v5.4 or later
-- Elasticsearch v5.4 or later
+- Filebeat v5.4
+- Elasticsearch v5.4
 - [ingest-geoip plugin](https://www.elastic.co/guide/en/elasticsearch/plugins/master/ingest-geoip.html)
-- X-Pack v5.4 or ater with Machine Learning
+- X-Pack v5.4 with Machine Learning
 - curl
 
 ## Recipe Components
@@ -48,7 +48,7 @@ This example includes:
 
   **Note:** By default, Elasticsearch runs on port 9200, and Kibana run on ports 5601. If you changed the default ports, change the above calls to use the appropriate ports.  
 
-  The cluster will be secured using basic auth. If changing the default credentials of `elastic` and `changeme` as described [here](https://www.elastic.co/guide/en/x-pack/current/security-getting-started.html), ensure the logstash configuration file is updated.
+  The cluster will be secured using basic auth. If changing the default credentials of `elastic` and `changeme` as described [here](https://www.elastic.co/guide/en/x-pack/5.4/security-getting-started.html), ensure the logstash configuration file is updated.
 
 * Install the ingest-geoip plugin for Elasticsearch. This is pre-requisite for the filebeat auth module.
 
@@ -64,7 +64,7 @@ This example includes:
     ```
 
 
-* [Download and Install Filebeat](https://www.elastic.co/guide/en/beats/filebeat/current/filebeat-installation.html). **Do not start Filebeat**.
+* [Download and Install Filebeat](https://www.elastic.co/guide/en/beats/filebeat/5.4/filebeat-installation.html). **Do not start Filebeat**.
 
 * Download the provided Filebeat configuration file.
 
@@ -82,7 +82,7 @@ This example includes:
 
     ```cp filebeat.yml <path_to_filebeat_installation>/filebeat.yml```
 
-* Start filebeat as described [here](https://www.elastic.co/guide/en/beats/filebeat/current/filebeat-starting.html).
+* Start filebeat as described [here](https://www.elastic.co/guide/en/beats/filebeat/5.4/filebeat-starting.html).
 
 * Wait several minutes before confirming the data has been indexed.
 
