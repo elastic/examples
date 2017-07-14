@@ -2,13 +2,13 @@
 
 ## Theory
 
-Increases in twitter activity in a series of hashtags or search keywords may indicate a brand or topic is trending, with the potential to impact a organizations business decisions. Rapidly identifying the change in tweet volume whilst easily attributing the activity to underlying influencers, allow businesses to be informed prior to initiating a response.
+Increases in twitter activity in a series of hashtags or search keywords may indicate a brand or topic is trending, with the potential to impact a organization's business decisions. Rapidly identifying the change in tweet volume whilst easily attributing the activity to underlying influencers, allows businesses to be informed prior to initiating a response.
 
 ## Description
 
-This use case recipe identifies a rise in twitter activity, assuming the user has collected tweets pertaining to specific hashtags or search keywords.  The recipe in turn identifies the responsible influencers for this rise in activity such as a user, url, hashtag or location.
+This use case recipe identifies an increase in twitter activity, assuming the user has collected tweets pertaining to specific hashtags or search keywords.  The recipe in turn identifies the responsible influencers for this increase in activity such as user, url, hashtag or location.
 
-This recipe assumes the user has created a field indicating the "topic" of the tweet.  In its simplest form this may represent a hashtag or set of search terms. For more advanced use cases, users may wish to use classification techniques to identify the topic beyond the scope of this recipe.
+This recipe assumes the user has created a field indicating the "topic" of the tweet.  In its simplest form, this may represent a hashtag or set of search terms. More advanced use cases, in which users may wish to use classification techniques to identify the topic, are beyond the scope of this recipe.
 
 ## Effectiveness
 
@@ -16,11 +16,11 @@ This use case recipe is provided as a basic example of how automated anomaly det
 
 For the purposes of this example, we look for high message counts with location, hashtags, urls and user mentions as potential influencers. Other influencers may be more appropriate for specific topics.
 
-Users are encouraged to collect tweets for topics of interest over a significant period in order to allow Elastic's Machine Learning to identify any periodic trends. Whilst one week is sufficient to to identify short daily spikes, larger datsets are recommended.
+Users are encouraged to collect tweets for topics of interest over a significant time period, in order to allow Elastic's Machine Learning to identify any periodic trends. Whilst one week is sufficient to identify short daily spikes, larger datasets (e.g., greater than three weeks) are recommended.
 
 ## Use Case Type
 
-Business KPI - This use case detects anomalies in key performance indicators (KPIs) that are directly associated with or impact business performance. Each detected anomaly is assigned a normalized Anomaly Score, and is annotated with values of other fields in the data that have statistical influence on the anomaly, called influencers.
+Business KPI - This use case detects anomalies in key performance indicators (KPIs) that are directly associated with, or impact, business performance. Each detected anomaly is assigned a normalized Anomaly Score, and is annotated with values of other fields in the data that have statistical influence on the anomaly, called influencers.
 
 ## Use Case Data Source
 
@@ -34,16 +34,14 @@ The recipe assumes the structure as delivered by the Twitter API.
 ## Use Case Recipe
 
     For:                Tweets
-    Model:              High Count of tweets parition by topic
-    Detect:             High count  low count of page views for a specific topic
-    Compared to:        Baseline model/history of page views for that topic
-    Partition by:       topic, entities.hashtags.text, user.name, user.location, entities.user_mentions.name, entities.urls.display_url, 
-    retweeted_status.user.location, retweeted_status.entities.user_mentions.name, retweeted_status.entities.hashtags.text, retweeted_status.entities.urls.display_url
-     
+    Model:              Count of tweets relating to each topic
+    Detect:             Topics with an unusually high number of tweets
+    Compared to:        Baseline model/history of tweets for that topic
+    Partition by:       topic
     Exclude:            None
     Common Influencers: topic, retweeted.user, retweeted.hashtags, user_mentions.name, user.location
     Duration:           Run analysis on tweets for a period of 1 week or longer
-    Related recipes:    Run this Business KPI use case by itself, or in conjunction with other Business Metrics/OP recipes
+    Related recipes:    Run this Business KPI use case by itself, or in conjunction with other Business Metrics/OPS recipes
     Results:            Periods of unusually high activity for a twitter topic with an indication of causality through influencers
 
 ## Input Features and Candidate Influencers
@@ -84,3 +82,13 @@ The user may wish to adapt the above influencers depending on requirements.
     Detector(s): high_non_zero_count partitionfield=topic
     Bucketspan: 10m
     Influencer(s): topic, entities.hashtags.text, entities.user_mentions.name, retweeted_status.entities.user_mentions.name, user.name, user.location, entities.urls.display_url, retweeted_status.entities.hashtags.text, retweeted_status.entities.urls.display_url
+    
+## Recipe ID: TWT-BUS01
+
+## Revision: v0.3
+
+## Last updated: 14-JUL-2017
+
+## Example Usage
+
+see [EXAMPLE.md](https://github.com/elastic/examples/blob/master/Machine%20Learning/Business%20Metrics%20Recipes/twitter_trends/EXAMPLE.md)
