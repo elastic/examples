@@ -20,7 +20,7 @@ Example has been tested in following versions:
 
 * [apache_logs](https://github.com/elastic/examples/blob/master/Common%20Data%20Formats/apache_logs/apache_logs) - Sample apache log files
 
-#####Legacy Files:
+##### Legacy Files:
 
 * [apache_logstash.conf](https://github.com/elastic/examples/blob/master/Common%20Data%20Formats/apache_logs/logstash/apache_logstash.conf) -  Logstash configuration. REFERENCE ONLY.
 * [apache_kibana.json](https://github.com/elastic/examples/blob/master/Common%20Data%20Formats/apache_logs/logstash/apache_kibana.json) - Custom Kibana dashboard associated with Logstash configuration. REFERENCE ONLY.
