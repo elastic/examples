@@ -1,6 +1,6 @@
 ### Getting Started with Elastic Stack for Apache Logs
 
-This **Getting Started with Elastic Stack** example provides sample files to ingest, analyze & visualize **Apache Access Logs** using the Elastic Stack, i.e. Elasticsearch, Filebeat and Kibana. The sample logs in this example are in the default apache combined log format.
+This example provides sample files to ingest, analyze & visualize **Apache Access Logs** using the Elastic Stack, i.e. Elasticsearch, Filebeat and Kibana. The sample logs in this example are in the default apache combined log format.
 
 In order to achieve this we use the Filebeat [Apache2 module](https://www.elastic.co/guide/en/beats/filebeat/5.4/filebeat-module-apache2.html) per Elastic Stack best practices.
 
