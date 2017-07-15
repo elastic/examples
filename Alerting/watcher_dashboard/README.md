@@ -10,7 +10,7 @@ For more information about Watcher, see the
 information about Kibana, see the 
 [Kibana User Guide](https://www.elastic.co/guide/en/kibana/current/index.html).
 
-#Loading the Dashboard
+# Loading the Dashboard
 
 To load the dashboard into Kibana:
 
