@@ -21,7 +21,7 @@ Example has been tested in following versions:
 
 This example includes:
 
-#####Legacy Files:
+##### Legacy Files:
 
 * [nginx_logstash.conf](https://github.com/elastic/examples/blob/master/Common%20Data%20Formats/nginx_logs/logstash/nginx_logstash.conf) -  Logstash configuration. REFERENCE ONLY.
 * [nginx_kibana.json](https://github.com/elastic/examples/blob/master/Common%20Data%20Formats/nginx_logs/logstash/nginx_kibana.json) - Custom Kibana dashboard associated with Logstash configuration. REFERENCE ONLY.
