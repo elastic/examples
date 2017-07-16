@@ -22,7 +22,7 @@ Example has been tested in following versions:
 ### Example Contents
 
 * [nginx_json_logs](https://github.com/elastic/examples/blob/master/Common%20Data%20Formats/nginx_json_logs/nginx_json_logs) - Sample JSON Nginx log files
-* [ngix_json_filebeat.yml](https://github.com/elastic/examples/blob/master/Common%20Data%20Formats/nginx_json_logs/nginx_json_filebeat.yml - Filebeat configuration for ingesting JSON files.
+* [ngix_json_filebeat.yml](https://github.com/elastic/examples/blob/master/Common%20Data%20Formats/nginx_json_logs/nginx_json_filebeat.yml) - Filebeat configuration for ingesting JSON files.
 * [nginx_json_kibana.json](https://github.com/elastic/examples/blob/master/Common%20Data%20Formats/nginx_json_logs/nginx_json_kibana.json) - Custom Kibana dashboard.
 * [nginx_json_template.json](https://github.com/elastic/examples/blob/master/Common%20Data%20Formats/nginx_json_logs/nginx_json_template.json) - ES Template for ingestion.
 * [nginx_json_pipeline.json](https://github.com/elastic/examples/blob/master/Common%20Data%20Formats/nginx_json_logs/nginx_json_pipeline.json) - ES Pipeline for ingestion.
