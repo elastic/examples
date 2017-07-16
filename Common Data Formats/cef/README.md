@@ -1,6 +1,6 @@
 ### Getting Started with Elastic Stack for CEF Data
 
-This **Getting Started with Elastic Stack** example provides sample files to ingest, analyze & visualize **CEF data** using the Elastic Stack, i.e. Elasticsearch, Logstash and Kibana.
+This example provides sample files to ingest, analyze & visualize **CEF data** using the Elastic Stack, i.e. Elasticsearch, Logstash and Kibana.
 
 This example provides the supporting material to blog post [Integrating the Elastic Stack with ArcSight SIEM - Part 1](https://www.elastic.co/blog/integrating-elastic-stack-with-arcsight-siem-part-1)
 
@@ -31,7 +31,7 @@ Example has been tested in following versions:
 
 ### Docker Installation & Setup
 
-A [docker-compose.yml](https://github.com/elastic/examples/master/Common%20Data%20Formats/cef/docker-compose.yml) file is provided to recreate in instance of the Elastic Stack (Elasticsearch and Kibana). This assumes:
+A [docker-compose.yml](https://github.com/elastic/examples/tree/master/Common%20Data%20Formats/cef/docker-compose.yml) file is provided to recreate in instance of the Elastic Stack (Elasticsearch and Kibana). This assumes:
 
 * You have [Docker Engine](https://docs.docker.com/engine/installation/) installed.
 * Your host meets the [prerequisites](https://www.elastic.co/guide/en/elasticsearch/reference/5.1/docker.html#docker-cli-run-prod-mode).
@@ -46,8 +46,8 @@ If using the docker file described above, the following can be ignored.
 
 Download the following files to the **root installation** directory of Logstash:
 
-- [logstash/pipeline/logstash.conf](https://github.com/elastic/examples/master/Common%20Data%20Formats/cef/logstash/pipeline/logstash.conf) - Logstash config for ingesting CEF data into Elasticsearch
-- [logstash/pipeline/cef_template.json](https://github.com/elastic/examples/master/Common%20Data%20Formats/cef/logstash/pipeline/cef_template.json)` - CEF template for custom mapping of fields
+- [logstash/pipeline/logstash.conf](https://github.com/elastic/examples/tree/master/Common%20Data%20Formats/cef/logstash/pipeline/logstash.conf) - Logstash config for ingesting CEF data into Elasticsearch
+- [logstash/pipeline/cef_template.json](https://github.com/elastic/examples/tree/master/Common%20Data%20Formats/cef/logstash/pipeline/cef_template.json)` - CEF template for custom mapping of fields
 
 Unfortunately, Github does not provide a convenient one-click option to download entire contents of a subfolder in a repo. Use sample code provided below to download the required files to a local directory:
 
