@@ -49,8 +49,8 @@ Once the index is created, data will available in Elasticsearch. If all goes wel
 * Open dashboard(s)
     * Click on **Dashboard** tab and open either the `BRFSS: Nutrition` or `BRFSS: Fitness` dashboard. Voila! You should see one of the following dashboards. Happy Data Exploration!
 
-![Kibana Dashboard Screenshot](https://github.com/elastic/examples/tree/master/Exploring%20Public%20Datasets/cdc_nutrition_exercise_patterns/kibana_exercise_dashboard.jpg?raw=true)
-![Kibana Dashboard Screenshot](https://github.com/elastic/examples/tree/master/Exploring%20Public%20Datasets/cdc_nutrition_exercise_patterns/kibana_nutrition_dashboard.jpg?raw=true)
+![Kibana Dashboard Screenshot](https://user-images.githubusercontent.com/5269751/28243536-d18cea8c-6982-11e7-9073-6747c81399b5.jpg)
+![Kibana Dashboard Screenshot](https://user-images.githubusercontent.com/5269751/28243535-d18cdda8-6982-11e7-901d-d60db62ec478.jpg)
 
 ### We would love to hear from you!
 If you run into issues running this example or have suggestions to improve it, please use Github issues to let us know. Have an easy fix? Submit a pull request. We will try our best to respond in a timely manner!
