@@ -2,7 +2,7 @@
 
 Supporting example for the blog post [Kibana and a Custom Tile Server for NHL Data](https://www.elastic.co/blog/kibana-and-a-custom-tile-server-for-nhl-data).
 
-This examples downloads data from live.nhl.com.  E.g http://live.nhl.com/GameData/20142015/2014021136/PlayByPlay.json, indexing it into Elasticsearch. Prepared dashboards are provided with the example, along with [instructions](https://github.com/elastic/examples/tree/master/Exploring%20Public%20Datasets/nhl/geo_arena/README.md) on geo-referencing the TIFF image described in the blog post.
+This examples downloads data from live.nhl.com.  E.g http://live.nhl.com/GameData/20142015/2014021136/PlayByPlay.json, indexing it into Elasticsearch. Prepared dashboards are provided with the example, along with [instructions](https://github.com/elastic/examples/blob/master/Exploring%20Public%20Datasets/nhl/geo-arena/README.md) on geo-referencing the TIFF image described in the blog post.
 
 ## Version Requirements
 
