@@ -1,0 +1,33 @@
+{
+  "job_id": "unusual_process",
+  "description": "unusual process",
+  "analysis_config": {
+    "bucket_span": "10m",
+    "influencers": [
+      "ad.a0",
+      "agentHost"
+    ],
+    "detectors": [
+      {
+        "function": "rare",
+        "by_field_name": "ad.a0",
+        "partition_field_name": "agentHost"
+      }
+    ]
+  },
+  "data_description": {
+    "time_field": "deviceReceiptTime",
+    "time_format": "epoch_ms"
+  },
+  "custom_settings": {
+    "custom_urls": [
+      {
+        "url_name": "Explore Process on Server",
+        "url_value": "http://localhost:5601/app/kibana#/discover?_g=(refreshInterval:(display:Off,pause:!f,value:0),time:(from:'$earliest$',mode:absolute,to:'$latest$'))&_a=(columns:!(_source),index:'cef-auditd-*',interval:auto,query:(query_string:(analyze_wildcard:!t,query:'ad.a0:$ad.a0$ AND agentHost:$agentHost$')),sort:!('@timestamp',desc))"
+      }
+    ]
+  },
+  "model_plot_config": {
+      "enabled" : true
+  }
+}

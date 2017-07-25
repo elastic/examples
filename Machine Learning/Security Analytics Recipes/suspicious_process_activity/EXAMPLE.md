@@ -125,7 +125,7 @@ This script assumes the default Elasticsearch host, port, user and password. To 
 
 * Access Kibana by going to http://localhost:5601 in a web browser
 
-* Select "Machine Learning" from the left tab. This should list the "DNS Exfilfration" job e.g.
+* Select "Machine Learning" from the left tab. This should list the "Unusual Process" job e.g.
 
 [http://localhost:5601/app/ml#/jobs?_g=()](http://localhost:5601/app/ml#/jobs?_g=())
 

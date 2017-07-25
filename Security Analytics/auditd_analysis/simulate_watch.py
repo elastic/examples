@@ -13,7 +13,7 @@ parser.add_argument("--es_password", default="changeme", help="ES Password")
 parser.add_argument("--interval", default=300, help="Interval in Seconds")
 parser.add_argument("--start_time", default="2017-06-05T17:06:30Z", help="Start Time")
 parser.add_argument("--end_time", default="2017-06-06T11:12:35Z", help="End Time")
-parser.add_argument("--watch_template", default="unusual_process.inline.json", help="Watch File")
+parser.add_argument("--watch_template", help="Watch File")
 options = parser.parse_args()
 
 start_time = datetime.strptime(options.start_time, '%Y-%m-%dT%H:%M:%SZ')
