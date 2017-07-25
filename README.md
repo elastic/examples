@@ -47,8 +47,8 @@ Examples using the Elastic Stack for analyzing public dataset.
 
 #### Getting Started with Graph exploration
 
-- [Exploring attack vectors in Apache logs using Graph](https://github.com/elastic/examples/tree/master/Exploring%20Public%20Datasets/apache_logs_security_analysis)
-- [Powering recommendation using Graph](https://github.com/elastic/examples/tree/master/Exploring%20Public%20Datasets/movie_recommendations)
+- [Exploring attack vectors in Apache logs using Graph](https://github.com/elastic/examples/tree/master/Graph/apache_logs_security_analysis)
+- [Powering recommendation using Graph](https://github.com/elastic/examples/tree/master/Graph/movie_recommendations)
 
 #### Alerting on Elastic Stack
 
