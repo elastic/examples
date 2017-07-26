@@ -1,0 +1,225 @@
+{
+  "trigger": {
+    "schedule": {
+      "interval": "5m"
+    }
+  },
+  "metadata": {
+    "min_anomaly_score": 75,
+    "time_period":"20m"
+  },
+  "input": {
+    "search": {
+      "request": {
+        "search_type": "query_then_fetch",
+        "indices": [
+          ".ml-anomalies-*"
+        ],
+        "types": [],
+        "body": {
+          "size": 0,
+          "query": {
+            "bool": {
+              "filter": [
+                {
+                  "term": {
+                    "job_id": "unusual_process"
+                  }
+                },
+                {
+                  "range": {
+                    "timestamp": {
+                      "gte": "{{ctx.trigger.scheduled_time}}||-{{ctx.metadata.time_period}}",
+                      "lt": "{{ctx.trigger.scheduled_time}}"
+                    }
+                  }
+                },
+                {
+                  "terms": {
+                    "result_type": [
+                      "bucket",
+                      "record",
+                      "influencer"
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          "aggs": {
+            "bucket_results": {
+              "filter": {
+                "range": {
+                  "anomaly_score": {
+                    "gte": 75
+                  }
+                }
+              },
+              "aggs": {
+                "top_bucket_hits": {
+                  "top_hits": {
+                    "sort": [
+                      {
+                        "anomaly_score": {
+                          "order": "desc"
+                        }
+                      }
+                    ],
+                    "_source": {
+                      "includes": [
+                        "job_id",
+                        "result_type",
+                        "timestamp",
+                        "anomaly_score",
+                        "is_interim"
+                      ]
+                    },
+                    "size": 1,
+                    "script_fields": {
+                      "start": {
+                        "script": {
+                          "lang": "painless",
+                          "inline": "new Date(doc[\"timestamp\"].date.getMillis()-doc[\"bucket_span\"].value * 1000 * params.padding)",
+                          "params": {
+                            "padding": 10
+                          }
+                        }
+                      },
+                      "end": {
+                        "script": {
+                          "lang": "painless",
+                          "inline": "new Date(doc[\"timestamp\"].date.getMillis()+doc[\"bucket_span\"].value * 1000 * params.padding)",
+                          "params": {
+                            "padding": 10
+                          }
+                        }
+                      },
+                      "timestamp_epoch": {
+                        "script": {
+                          "lang": "painless",
+                          "inline": "doc[\"timestamp\"].date.getMillis()/1000"
+                        }
+                      },
+                      "timestamp_iso8601": {
+                        "script": {
+                          "lang": "painless",
+                          "inline": "doc[\"timestamp\"].date"
+                        }
+                      },
+                      "score": {
+                        "script": {
+                          "lang": "painless",
+                          "inline": "Math.round(doc[\"anomaly_score\"].value)"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "influencer_results": {
+              "filter": {
+                "range": {
+                  "influencer_score": {
+                    "gte": 3
+                  }
+                }
+              },
+              "aggs": {
+                "top_influencer_hits": {
+                  "top_hits": {
+                    "sort": [
+                      {
+                        "influencer_score": {
+                          "order": "desc"
+                        }
+                      }
+                    ],
+                    "_source": {
+                      "includes": [
+                        "result_type",
+                        "timestamp",
+                        "influencer_field_name",
+                        "influencer_field_value",
+                        "influencer_score",
+                        "isInterim"
+                      ]
+                    },
+                    "size": 3,
+                    "script_fields": {
+                      "score": {
+                        "script": {
+                          "lang": "painless",
+                          "inline": "Math.round(doc[\"influencer_score\"].value)"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "record_results": {
+              "filter": {
+                "range": {
+                  "record_score": {
+                    "gte": 3
+                  }
+                }
+              },
+              "aggs": {
+                "top_record_hits": {
+                  "top_hits": {
+                    "sort": [
+                      {
+                        "record_score": {
+                          "order": "desc"
+                        }
+                      }
+                    ],
+                    "_source": {
+                      "includes": [
+                        "result_type",
+                        "timestamp",
+                        "record_score",
+                        "is_interim",
+                        "function",
+                        "field_name",
+                        "by_field_value",
+                        "over_field_value",
+                        "partition_field_value"
+                      ]
+                    },
+                    "size": 3,
+                    "script_fields": {
+                      "score": {
+                        "script": {
+                          "lang": "painless",
+                          "inline": "Math.round(doc[\"record_score\"].value)"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "condition": {
+    "compare": {
+      "ctx.payload.aggregations.bucket_results.doc_count": {
+        "gt": 0
+      }
+    }
+  },
+  "actions": {
+    "log": {
+      "logging": {
+        "level": "info",
+        "text": "Alert for job [{{ctx.payload.aggregations.bucket_results.top_bucket_hits.hits.hits.0._source.job_id}}] at [{{ctx.payload.aggregations.bucket_results.top_bucket_hits.hits.hits.0.fields.timestamp_iso8601.0}}] score [{{ctx.payload.aggregations.bucket_results.top_bucket_hits.hits.hits.0.fields.score.0}}]"
+      }
+    }
+  }
+}

@@ -29,4 +29,3 @@ node_modules
 ElasticStack_earthquakes/ncedc-earthquakes-screenshot.png
 /Security_Analytics/auditd_analysis/replicate_data.py
 /Security Analytics/auditd_analysis/generate_auditd.py
-/Security Analytics/auditd_analysis/example_2/auditd.cef.*

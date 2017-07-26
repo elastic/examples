@@ -87,12 +87,14 @@ To simulate the execution over the full dataset, run the following:
 * Execute the following command from the `auditd_analysis` directory to execute a specific watch.  For all dashboards to function, all watches will need to be executed once.
 
 ```shell
-python simulate_watch.py --watch_template new_process.inline.json --es_user <username> --es_password <password>
+python simulate_watch.py --watch_template new_process.inline.json --start_time 2017-06-05T17:06:30Z --end_time 2017-06-27T09:06:34Z
 ```
 
 `es_user` and `es_password` are both optional and default to 'elastic' and 'changeme' respectively.  This script accepts additional parameters to allow execution on your own dataset, including:
 
 * `watch_template`- The inline watch file populated for each execution. **Required**
+* `start_time` - Time at which to start the sliding time. Defaults to `2017-06-05T17:06:30Z` or the earliest time in the dataset provided.  **Required**
+* `end_time` - Time at which to stop the sliding window. Defaults to `2017-06-06T11:12:35Z` or the oldest time in the dataset provided.  **Required**
 * `es_host` - Elasticsearch host and port. Defaults to `localhost:9200`
 * `interval` - Size of the window in seconds. Defaults to 300 or 5m as indicated in the blog.
 * `start_time` - Time at which to start the sliding time. Defaults to `2017-06-05T17:06:30Z` or the earliest time in the dataset provided.

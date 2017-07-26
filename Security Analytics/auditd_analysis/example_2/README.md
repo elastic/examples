@@ -11,7 +11,6 @@ This example adapts the machine learning recipe described here.
 This example utilises:
 
 - [auditd.cef.tar.gz](https://github.com/elastic/examples/blob/master/Security%20Analytics/auditd_analysis/example_2/auditd.cef.tar.gz) - Sample Auditd logs in CEF format used in the above blog post.
-- [auditd_analysis_kibana.json](https://github.com/elastic/examples/blob/master/Security%20Analytics/auditd_analysis/example_2/auditd_analysis_kibana.json) - Simple Kibana visualizations and dashboards for the associated blog post.
 - [unusual_process.json](https://github.com/elastic/examples/blob/master/Security%20Analytics/auditd_analysis/example_2/unusual_process.json) -  A watch that alerts on anamolies detected by X-Pack Machine Learning. REFERENCE ONLY. 
 - [unusual_process.inline.json](https://github.com/elastic/examples/blob/master/Security%20Analytics/auditd_analysis/example_2/unusual_process.inline.json) - The above watch in an inline execution format so it can be used with the `simulate_watch.py` script and be executed over the full dataset.
 - [simulate_watch.py](https://github.com/elastic/examples/blob/master/Security%20Analytics/auditd_analysis/simulate_watch.py) - A convenience script to execute the above watch. In order to test this watch against the provided test data set, this script which performs a “sliding window” execution of the watch. 
@@ -32,7 +31,6 @@ Download the above files in this repo to a local directory.  Unfortunately, Gith
 mkdir auditd_analysis
 cd auditd_analysis
 curl -O https://raw.githubusercontent.com/elastic/examples/master/Security%20Analytics/auditd_analysis/auditd_analysis_logstash.conf
-curl -O https://raw.githubusercontent.com/elastic/examples/master/Security%20Analytics/audidt_analysis/example_2/auditd_analysis_kibana.json
 curl -O https://raw.githubusercontent.com/elastic/examples/master/Security%20Analytics/audidt_analysis/example_2/unusual_process.inline.json
 curl -O https://raw.githubusercontent.com/elastic/examples/master/Security%20Analytics/audidt_analysis/example_2/unusual_process.json
 curl -O https://raw.githubusercontent.com/elastic/examples/master/Security%20Analytics/auditd_analysis/simulate_watch.py
@@ -45,7 +43,6 @@ curl -O https://raw.githubusercontent.com/elastic/examples/master/Security%20Ana
 ## Run Example
 
 ### 1. Start Logstash with the appropriate configuration
-
 
 **Note:** Included `auditd_analysis_logstash.conf` configuration file assumes that you are running Elasticsearch on the same host as Logstash and have not changed the defaults. Modify the `host` and `cluster` settings in the `output { elasticsearch { ... } }`   section of apache_logstash.conf, if needed. 
 Furthermore, it assumes the default X-Pack security username/password of elastic/changeme - [change as required](https://github.com/elastic/examples/blob/master/Security%20Analytics/auditd_analysis/auditd_analysis_logstash.conf#L40-L41) .
@@ -139,13 +136,14 @@ To simulate the execution over the full dataset, run the following:
 * Execute the following command from the `auditd_analysis` directory to execute a specific watch.  For all dashboards to function, all watches will need to be executed once.
 
 ```shell
-python simulate_watch.py --es_user <username> --es_password <password> --watch_template new_process.inline.json
+python simulate_watch.py --interval 1200 --start_time 2017-06-05T17:06:30Z --end_time 2017-06-27T09:06:34Z --watch_template unusual_process.inline.json
 ```
+
 
 `es_user` and `es_password` are both optional and default to 'elastic' and 'changeme' respectively.  This script accepts additional parameters to allow execution on your own dataset, including:
 
 * `watch_template`- The inline watch file populated for each execution. **Required**
+* `start_time` - Time at which to start the sliding time. Defaults to `2017-06-05T17:06:30Z` or the earliest time in the dataset provided.  **Required**
+* `end_time` - Time at which to stop the sliding window. Defaults to `2017-06-06T11:12:35Z` or the oldest time in the dataset provided.  **Required**
 * `es_host` - Elasticsearch host and port. Defaults to `localhost:9200`
 * `interval` - Size of the window in seconds. Defaults to 300 or 5m as indicated in the blog.
-* `start_time` - Time at which to start the sliding time. Defaults to `2017-06-05T17:06:30Z` or the earliest time in the dataset provided.
-* `end_time` - Time at which to stop the sliding window. Defaults to `2017-06-06T11:12:35Z` or the oldest time in the dataset provided.
