@@ -10,7 +10,7 @@ This example adapts the machine learning recipe described here.
 
 This example utilises:
 
-- [auditd.cef](https://github.com/elastic/examples/blob/master/Security%20Analytics/auditd_analysis/example_2/auditd.cef) - Sample Auditd logs in CEF format used in the above blog post.
+- [auditd.cef.tar.gz](https://github.com/elastic/examples/blob/master/Security%20Analytics/auditd_analysis/example_2/auditd.cef.tar.gz) - Sample Auditd logs in CEF format used in the above blog post.
 - [auditd_analysis_kibana.json](https://github.com/elastic/examples/blob/master/Security%20Analytics/auditd_analysis/example_2/auditd_analysis_kibana.json) - Simple Kibana visualizations and dashboards for the associated blog post.
 - [unusual_process.json](https://github.com/elastic/examples/blob/master/Security%20Analytics/auditd_analysis/example_2/unusual_process.json) -  A watch that alerts on anamolies detected by X-Pack Machine Learning. REFERENCE ONLY. 
 - [unusual_process.inline.json](https://github.com/elastic/examples/blob/master/Security%20Analytics/auditd_analysis/example_2/unusual_process.inline.json) - The above watch in an inline execution format so it can be used with the `simulate_watch.py` script and be executed over the full dataset.
@@ -19,7 +19,7 @@ This repeatedly executes the watch, each time adjusting the date filters to targ
 - [requirements.txt](https://github.com/elastic/examples/blob/master/Security%20Analytics/auditd_analysis/requirements.txt) - Python dependencies for pip
 - [auditd_analysis_logstash.conf](https://github.com/elastic/examples/blob/master/Security%20Analytics/auditd_analysis/auditd_analysis_logstash.conf) - An appropriate Logstash configuration for indexing the above CEF data.
 - [cef_template.json](https://github.com/elastic/examples/blob/master/Common%20Data%20Formats/cef/logstash/pipeline/cef_template.json) -  This will be installed when Logstash is run with the above configuration.
-- [job_config.json](https://github.com/elastic/examples/blob/master/Security%20Analytics/auditd_analysis/example_2/job_config.json) - Machine Learning Job configuration for rare processes.
+- [job.json](https://github.com/elastic/examples/blob/master/Security%20Analytics/auditd_analysis/example_2/job.json) - Machine Learning Job configuration for rare processes.
 - [data_feed.json](https://github.com/elastic/examples/blob/master/Security%20Analytics/auditd_analysis/example_2/data_feed.json) - Machine Learning Datafeed configuration for rare processes.
 
 ## Download Example Files
@@ -36,13 +36,16 @@ curl -O https://raw.githubusercontent.com/elastic/examples/master/Security%20Ana
 curl -O https://raw.githubusercontent.com/elastic/examples/master/Security%20Analytics/audidt_analysis/example_2/unusual_process.inline.json
 curl -O https://raw.githubusercontent.com/elastic/examples/master/Security%20Analytics/audidt_analysis/example_2/unusual_process.json
 curl -O https://raw.githubusercontent.com/elastic/examples/master/Security%20Analytics/auditd_analysis/simulate_watch.py
-curl -O https://raw.githubusercontent.com/elastic/examples/master/Security%20Analytics/auditd_analysis/example_2/auditd.cef
+curl -O https://raw.githubusercontent.com/elastic/examples/master/Security%20Analytics/auditd_analysis/example_2/auditd.cef.tar.gz
 curl -O https://raw.githubusercontent.com/elastic/examples/master/Common%20Data%20Formats/cef/logstash/pipeline/cef_template.json
-curl -O https://raw.githubusercontent.com/elastic/examples/master/Security%20Analytics/auditd_analysis/example_2/job_config.json
+curl -O https://raw.githubusercontent.com/elastic/examples/master/Security%20Analytics/auditd_analysis/example_2/job.json
 curl -O https://raw.githubusercontent.com/elastic/examples/master/Security%20Analytics/auditd_analysis/example_2/data_feed.json
 ```
 
 ## Run Example
+
+### 1. Start Logstash with the appropriate configuration
+
 
 **Note:** Included `auditd_analysis_logstash.conf` configuration file assumes that you are running Elasticsearch on the same host as Logstash and have not changed the defaults. Modify the `host` and `cluster` settings in the `output { elasticsearch { ... } }`   section of apache_logstash.conf, if needed. 
 Furthermore, it assumes the default X-Pack security username/password of elastic/changeme - [change as required](https://github.com/elastic/examples/blob/master/Security%20Analytics/auditd_analysis/auditd_analysis_logstash.conf#L40-L41) .
@@ -53,7 +56,15 @@ Furthermore, it assumes the default X-Pack security username/password of elastic
 
 Wait for Logstash to start, as indicated by the message "Successfully started Logstash API endpoint"
 
-### 2. Ingest data into Elasticsearch using Logstash
+### 2. Extract CEF data
+
+Extract the auditd.cef.tar.gz` file.
+
+```shell
+tar -xvf auditd.cef.tar.gz
+```
+
+### 3. Ingest data into Elasticsearch using Logstash
 
 * Execute the following command to load sample logs into Elasticsearch in a separate terminal. 
 
@@ -75,7 +86,7 @@ curl localhost:9200/cef-auditd-*/_refresh -u elastic:changeme
 
 The above assumes the default username and password.
 
-### 3. Install the Machine Learning Job
+### 4. Install the Machine Learning Job
 
 The Machine Learning Recipe can be loaded prior to the complete data capture however for exploration purposes.
 
@@ -99,7 +110,7 @@ This script assumes the default Elasticsearch host, port, user and password. To 
 
 ![ML Job Listing Screenshot](https://cloud.githubusercontent.com/assets/12695796/25095014/a384c664-2391-11e7-8b25-e4026fa370c0.png)
 
-### 4. Run the Machine Learning Job
+### 5. Run the Machine Learning Job
 
 * The Machine Learning job can be started. To start, either:
 
@@ -112,13 +123,13 @@ This script assumes the default Elasticsearch host, port, user and password. To 
 
     - Click the `>` icon for the job in the UI, followed by `Start`.
 
-### 5. Visualize the Machine Learning Result in Kibana
+### 6. Visualize the Machine Learning Result in Kibana
 
 * On completion of the job execution navigate to the explorer results view for the job. An example anomaly is shown below:
 
 ![Example Explorer View for Suspicious Process Activity](https://cloud.githubusercontent.com/assets/12695796/25095074/e9ca1660-2391-11e7-8a1d-6063b75f3e6b.png)
 
-### 6. Execute the Watch
+### 7. Execute the Watch
 
 **The watch must be executed over the full dataset, rather than just the previous N minutes, as the data is historical.**
 **The provided python script utilises the inline version of the watch, executing the watch as a sliding window over the data - thus reproducing a "live" exeuction of several days in a few seconds.**
