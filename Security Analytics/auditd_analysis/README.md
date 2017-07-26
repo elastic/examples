@@ -4,8 +4,8 @@ This **Getting Started with Elastic Stack** example provides sample files to ing
 
 Included are example Watches for proactively monitoring this data for possible security incidents.  These examples support the Security Analytics blog post series, specifically:
  
-[Integrating Elasticsearch with ArcSight SIEM - Part 5](https://www.elastic.co/blog/integrating-elasticsearch-with-arcsight-siem-part-5).
-[Integrating Elasticsearch with ArcSight SIEM - Using Machine Learning - Part 6](https://www.elastic.co/blog/integrating-elasticsearch-with-arcsight-siem-part-6).
+* [Integrating Elasticsearch with ArcSight SIEM - Part 5](https://www.elastic.co/blog/integrating-elasticsearch-with-arcsight-siem-part-5).
+* [Integrating Elasticsearch with ArcSight SIEM - Using Machine Learning - Part 6](https://www.elastic.co/blog/integrating-elasticsearch-with-arcsight-siem-part-6).
 
 The examples complement the above blog posts, providing a means to:
 

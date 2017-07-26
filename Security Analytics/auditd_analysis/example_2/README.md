@@ -147,3 +147,7 @@ python simulate_watch.py --interval 1200 --start_time 2017-06-05T17:06:30Z --end
 * `end_time` - Time at which to stop the sliding window. Defaults to `2017-06-06T11:12:35Z` or the oldest time in the dataset provided.  **Required**
 * `es_host` - Elasticsearch host and port. Defaults to `localhost:9200`
 * `interval` - Size of the window in seconds. Defaults to 300 or 5m as indicated in the blog.
+
+The watch uses a log action to record the alert.  The dataset contains only a single critical anamoly. During execution the user should therefore see a message similar to the following in the Elasticsearch logs:
+
+ `Alert for job [unusual_process] at [2017-06-12T07:30:00.000Z] score [78]`
