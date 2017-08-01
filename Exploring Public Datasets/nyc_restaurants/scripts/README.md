@@ -12,13 +12,13 @@ files follow the instructions below:
 
 Requires Python 3.
 Install Dependencies using pip i.e. 
-```console
+```shell
 pip install -r requirements.txt
 ```
 
 Note that MacOS users may need to `brew install python3`, 
 which would change the pip command to 
-```console
+```shell
 pip3 install -r requirements.txt
 ```
 #### 3. Optionally, configure the Python script for SSL
@@ -57,13 +57,13 @@ NOTE:
 
 Check to see if all the data is available in Elasticsearch. If all goes well, you should get a `count` response of `473039` when you run the following command.
 
-  ```shell
-  curl -H "Content-Type: application/json" -XGET localhost:9200/nyc_restaurants/_count -d '{
-  	"query": {
-  		"match_all": {}
-  	}
-  }'
-  ```
+```shell
+curl -H "Content-Type: application/json" -XGET localhost:9200/nyc_restaurants/_count -d '{
+"query": {
+	"match_all": {}
+}
+}'
+```
 
-note that if you are using https you will likely need to also use the
-`--user username:password` with your curl command
+(note that if you are using https you will likely need to also use the
+`--user username:password` with your curl command)
