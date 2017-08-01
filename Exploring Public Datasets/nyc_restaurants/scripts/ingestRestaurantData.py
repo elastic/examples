@@ -6,8 +6,17 @@ import pandas as pd
 import elasticsearch
 import json
 import re
+import certifi
 
-es = elasticsearch.Elasticsearch()
+# If you are using the Elastic cloud, or need https/ssl, toggle the below 
+# commented sections.  Note that the Elastic cloud may be using port 9243
+# 
+es = elasticsearch.Elasticsearch(
+#     ['host1'],
+#     http_auth=('myuser', 'mypassword'),
+#     port=443,
+#     use_ssl=True
+)
 
 # In this example, we use the [Google geocoding API](https://developers.google.com/maps/documentation/geocoding/) to translate addresses into geo-coordinates. Google imposes usages limits on the API. If you are using this script to index data, you many need to sign up for an API key to overcome limits.
 
