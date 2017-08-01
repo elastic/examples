@@ -68,5 +68,6 @@ curl -H "Content-Type: application/json" -XGET localhost:9200/nyc_restaurants/_c
 ```
 
 NOTE:
+
 If you are using https you will likely need to also use the
-`--user username:password` with your curl command
+`--user username:password` option with your curl command
