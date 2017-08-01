@@ -46,9 +46,11 @@ see the Elasticsearch Python Client documentation
 
 Run `ingestRestaurantData.py` (requires Python 3). When the script is done
 running, you will have a `nyc_restaurants` index in your Elasticsearch instance
+
 ```
-  python3 ingestRestaurantData.py
+python3 ingestRestaurantData.py
 ```
+
 NOTE:
 - The script makes a call to Google geocoding API to get the lat/lon information for restaurants addresses. (a) You might need to sign up for a API key to avoid hitting usage limits. (b) Depending on your internet connection and the size of the inspection dataset, this step might take a 30 minutes to a few hours to complete.
 - We have also included a iPython Notebook version of the script `ingestRestaurantData.ipynb` in case you prefer running in a cell-by-cell mode.
@@ -65,5 +67,6 @@ curl -H "Content-Type: application/json" -XGET localhost:9200/nyc_restaurants/_c
 }'
 ```
 
-(note that if you are using https you will likely need to also use the
-`--user username:password` with your curl command)
+NOTE:
+note that if you are using https you will likely need to also use the
+`--user username:password` with your curl command
