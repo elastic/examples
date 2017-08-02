@@ -23,7 +23,7 @@ All Contributions should be contained with a folder that describes the content o
 * **Story** <br>
     If your example revolves around an analysis of a real-world dataset, try to include some color commentary to describe analysis in narrative form. How is data being used to solve a problem? What interesting insights were mined from this data? You can include this information in the README, or provide links to external blog / video, or perhaps document the narrative with markdown widgets in the Kibana dashboard.
 
-##Other Considerations:
+## Other Considerations:
 
 * Consider the license for any datasets.  Please specify the license on any pull request if known.  If license cannot be determined please state.
 * Consider adding a .gitignore file describing file exclusions e.g. generated files.
