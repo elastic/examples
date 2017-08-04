@@ -1,0 +1,20 @@
+{
+  "datafeed_id": "datafeed-unusual_process",
+  "job_id": "unusual_process",
+  "query": {
+    "term": {
+      "deviceEventCategory": {
+        "value": "EXECVE"
+      }
+    }
+  },
+  "query_delay": "60s",
+  "frequency": "300s",
+  "scroll_size": 1000,
+  "indexes": [
+    "cef-auditd-*"
+  ],
+  "types": [
+    "doc"
+  ]
+}

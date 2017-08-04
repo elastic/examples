@@ -1,0 +1,62 @@
+[
+  {
+    "_id": "e963d640-4eb9-11e7-8cfc-3199f0274e26",
+    "_type": "dashboard",
+    "_source": {
+      "title": "Unusual Process Dashboard",
+      "hits": 0,
+      "description": "",
+      "panelsJSON": "[{\"col\":1,\"id\":\"a8b3c740-4eb9-11e7-8cfc-3199f0274e26\",\"panelIndex\":1,\"row\":1,\"size_x\":12,\"size_y\":4,\"type\":\"visualization\"},{\"col\":1,\"columns\":[\"@timestamp\",\"host_name\",\"process_name\"],\"id\":\"b7793620-4eb9-11e7-8cfc-3199f0274e26\",\"panelIndex\":2,\"row\":5,\"size_x\":12,\"size_y\":5,\"sort\":[\"@timestamp\",\"desc\"],\"type\":\"search\"}]",
+      "optionsJSON": "{\"darkTheme\":false}",
+      "uiStateJSON": "{\"P-1\":{\"vis\":{\"defaultColors\":{\"0 - 55\":\"rgb(255,255,204)\",\"55 - 110\":\"rgb(254,217,118)\",\"110 - 165\":\"rgb(253,141,60)\",\"165 - 220\":\"rgb(227,27,28)\"}}}}",
+      "version": 1,
+      "timeRestore": true,
+      "timeTo": "Tue Jun 06 2017 18:38:12 GMT+0100",
+      "timeFrom": "Mon Jun 05 2017 12:04:01 GMT+0100",
+      "refreshInterval": {
+        "display": "Off",
+        "pause": false,
+        "value": 0
+      },
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[{\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}}}],\"highlightAll\":true,\"version\":true}"
+      }
+    }
+  },
+  {
+    "_id": "b7793620-4eb9-11e7-8cfc-3199f0274e26",
+    "_type": "search",
+    "_source": {
+      "title": "Unusual Process Results",
+      "description": "",
+      "hits": 0,
+      "columns": [
+        "@timestamp",
+        "host_name",
+        "process_name"
+      ],
+      "sort": [
+        "@timestamp",
+        "desc"
+      ],
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"cef-auditd-watch-results\",\"highlightAll\":true,\"version\":true,\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "a8b3c740-4eb9-11e7-8cfc-3199f0274e26",
+    "_type": "visualization",
+    "_source": {
+      "title": "Unusual Processes",
+      "visState": "{\"title\":\"Unusual Processes\",\"type\":\"heatmap\",\"params\":{\"addTooltip\":true,\"addLegend\":true,\"enableHover\":false,\"legendPosition\":\"right\",\"times\":[],\"colorsNumber\":4,\"colorSchema\":\"Yellow to Red\",\"setColorRange\":false,\"colorsRange\":[],\"invertColors\":false,\"percentageMode\":false,\"valueAxes\":[{\"show\":false,\"id\":\"ValueAxis-1\",\"type\":\"value\",\"scale\":{\"type\":\"linear\",\"defaultYExtents\":false},\"labels\":{\"show\":false,\"rotate\":0,\"color\":\"#555\"}}]},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"enabled\":true,\"type\":\"date_histogram\",\"schema\":\"segment\",\"params\":{\"field\":\"@timestamp\",\"interval\":\"auto\",\"customInterval\":\"2h\",\"min_doc_count\":1,\"extended_bounds\":{},\"customLabel\":\"Time Period\"}},{\"id\":\"3\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"group\",\"params\":{\"field\":\"host_name\",\"size\":5,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"Hostname\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{\"vis\":{\"defaultColors\":{\"0 - 55\":\"rgb(255,255,204)\",\"55 - 110\":\"rgb(254,217,118)\",\"110 - 165\":\"rgb(253,141,60)\",\"165 - 220\":\"rgb(227,27,28)\"}}}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"cef-auditd-watch-results\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+      }
+    }
+  }
+]
