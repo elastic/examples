@@ -101,7 +101,7 @@ python simulate_watch.py --watch_template new_process.inline.json --start_time 2
 * `end_time` - Time at which to stop the sliding window. Defaults to `2017-06-06T11:12:35Z` or the oldest time in the dataset provided.
 
 
-#### 4. Visualize the results in Kibana
+### 4. Visualize the results in Kibana
 
 * Access Kibana by going to `http://localhost:5601` in a web browser
 * Connect Kibana to the `cef-auditd-*` and `cef-auditd-watch-results` indices in Elasticsearch (autocreated in step 1)
