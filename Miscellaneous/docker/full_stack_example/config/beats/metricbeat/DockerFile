@@ -1,0 +1,4 @@
+ARG ELASTIC_VERSION
+FROM docker.elastic.co/beats/metricbeat:$ELASTIC_VERSION
+RUN echo "Build number: $ELASTIC_VERSION"
+USER root

@@ -1,0 +1,17 @@
+filebeat.registry_file: /usr/share/filebeat/data/registry
+filebeat.modules:
+- module: system
+  syslog:
+    var.paths: ["/var/log/host/system.log*"]
+- module: nginx
+  access:
+    var.paths: ["/var/log/nginx/access.log*"]
+  error:
+    var.paths: ["/var/log/nginx/error.log*"]
+- module: apache2
+  access:
+    var.paths: ["/var/log/apache2/access.log*"]
+  error:
+    var.paths: ["/var/log/apache2/error.log*"]
+output.elasticsearch:
+  hosts: ["elasticsearch:9200"]

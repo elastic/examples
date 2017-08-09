@@ -29,3 +29,7 @@ node_modules
 ElasticStack_earthquakes/ncedc-earthquakes-screenshot.png
 /Security_Analytics/auditd_analysis/replicate_data.py
 /Security Analytics/auditd_analysis/generate_auditd.py
+/Miscellaneous/docker/CHANGES.md
+CHANGES.md
+TODO.md
+/Miscellaneous/docker/full_stack_example/logs/
