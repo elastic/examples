@@ -7,7 +7,7 @@ from elasticsearch import helpers
 es = elasticsearch.Elasticsearch(http_auth=('elastic', 'changeme'))
 movies_file = "./data/ml-20m/movies.csv"
 ratings_file = "./data/ml-20m/ratings.csv"
-mapping_file = "movie_recommendations.json"
+mapping_file = "movie_lens.json"
 
 
 def read_movies(filename):
