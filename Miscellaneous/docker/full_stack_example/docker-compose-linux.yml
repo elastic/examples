@@ -66,9 +66,10 @@ services:
     image: "docker.elastic.co/beats/filebeat:${ELASTIC_VERSION}"
     volumes:
       - ./config/beats/filebeat/filebeat.yml:/usr/share/filebeat/filebeat.yml
-      - ./logs/nginx/:/mnt/log/nginx/:ro
-      - ./logs/apache2/:/mnt/log/apache2/:ro
-      - /var/log/:/var/log/host/:ro
+      - ./logs/nginx/:/var/log/nginx/
+      - ./logs/apache2/:/var/log/apache2/
+      - ./logs/mysql/:/var/log/mysql/
+      - /private/var/log/:/var/log/host/:ro
       - fbdata:/usr/share/filebeat/data/
     networks: ['stack']
     command: filebeat -e -E output.elasticsearch.username=elastic -E output.elasticsearch.password=${ES_PASSWORD}
@@ -89,6 +90,8 @@ services:
     command: metricbeat -e -system.hostfs=/hostfs -setup -E output.elasticsearch.username=elastic -E output.elasticsearch.password=${ES_PASSWORD}
     networks: ['stack']
     restart: on-failure
+    environment:
+      - "MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}"
     depends_on:
       elasticsearch:  { condition: service_healthy }
       nginx: { condition: service_started }
@@ -135,6 +138,16 @@ services:
     ports: ['127.0.0.1:8000:80']
     volumes:
       - ./logs/apache2/:/var/log/apache2/
+  mysql:
+    container_name: mqsql
+    hostname: mysql
+    build: ${PWD}/config/mysql
+    environment:
+      - "MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}"
+    networks: ['stack']
+    volumes:
+      - mysqldata:/var/lib/mysql/
+      - ./logs/mysql:/var/log/mysql/
   configure_stack:
     container_name: configure_stack
     image: docker.elastic.co/beats/metricbeat:${ELASTIC_VERSION}
@@ -144,6 +157,8 @@ services:
     environment: ['ELASTIC_VERSION=${ELASTIC_VERSION}','ES_PASSWORD=${ES_PASSWORD}','DEFAULT_INDEX_PATTERN=${DEFAULT_INDEX_PATTERN}']
     depends_on: ['elasticsearch','kibana']
 volumes:
+  mysqldata:
+    driver: local
   esdata:
     driver: local
   fbdata:
