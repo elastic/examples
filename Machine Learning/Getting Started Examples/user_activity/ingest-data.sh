@@ -39,7 +39,7 @@ curl -s  -u ${USERNAME}:${PASSWORD} -X PUT -H 'Content-Type: application/json' $
 }'
 
 printf "\n== Bulk uploading data to index... \n"
-curl -s -u ${USERNAME}:${PASSWORD} -X POST -H "Content-Type: application/json" ${URL}/${INDEX_NAME}/_bulk --data-binary "@user-activity.json"
+curl -s -u ${USERNAME}:${PASSWORD} -X POST -H "Content-Type: application/json" ${URL}/${INDEX_NAME}/_bulk --data-binary "@user-activity.json"  > user-activity.out 2>&1
 printf "\nUser activity loaded"
 
 printf "Adding index-pattern server-*"
