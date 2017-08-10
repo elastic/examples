@@ -38,6 +38,11 @@ metricbeat.modules:
   period: 10s
   hosts: ["http://apache2"]
   server_status_path: "server-status"
+- module: mysql
+  metricsets: ["status"]
+  enabled: true
+  period: 10s
+  hosts: ["root:${MYSQL_ROOT_PASSWORD:changeme}@tcp(mysql:3306)/"]
 output.elasticsearch:
   hosts: ["elasticsearch:9200"]
 logging.to_files: false
