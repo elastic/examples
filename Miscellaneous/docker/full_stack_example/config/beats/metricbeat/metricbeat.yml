@@ -8,7 +8,6 @@ metricbeat.modules:
     - core
     - cpu
     - load
-    - core
     - diskio
     - filesystem
     - fsstat

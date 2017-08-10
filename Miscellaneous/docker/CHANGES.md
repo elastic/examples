@@ -11,3 +11,4 @@ Questions
 1. Configuration style - Full, Minimal, Halfway
 1. static content in ngninx and apache? Maybe elastic hello pages???
 1. Processors in beats? worth it?
+1. ML or watches

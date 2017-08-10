@@ -115,6 +115,7 @@ services:
     volumes:
       - ./config/logstash/logstash.conf:/usr/share/logstash/pipeline/logstash.conf
       - ./config/logstash/apache_template.json:/usr/share/logstash/apache_template.json
+      - ./config/logstash/logstash.yml:/usr/share/logstash/config/logstash.yml
     networks: ['stack']
     ports: ['127.0.0.1:5000:5000']
     environment:

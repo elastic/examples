@@ -58,6 +58,18 @@ heartbeat.monitors:
     method: "GET"
   check.response:
     status: 200
+- type: http
+  enabled: true
+  schedule: '@every 5s'
+  urls: ["http://logstash:9600"]
+  ipv4: true
+  ipv6: true
+  mode: any
+  timeout: 5s
+  check.request:
+    method: "GET"
+  check.response:
+    status: 200
 output.elasticsearch:
   hosts: ["elasticsearch:9200"]
 logging.to_files: false

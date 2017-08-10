@@ -86,6 +86,7 @@ services:
       - ./config/beats/metricbeat/metricbeat.yml:/usr/share/metricbeat/metricbeat.yml
       - /proc:/hostfs/proc:ro
       - /sys/fs/cgroup:/hostfs/sys/fs/cgroup:ro
+      - /var/run/docker.sock:/var/run/docker.sock
       - /:/hostfs:ro
     command: metricbeat -e -system.hostfs=/hostfs -setup -E output.elasticsearch.username=elastic -E output.elasticsearch.password=${ES_PASSWORD}
     networks: ['stack']
@@ -115,6 +116,7 @@ services:
     volumes:
       - ./config/logstash/logstash.conf:/usr/share/logstash/pipeline/logstash.conf
       - ./config/logstash/apache_template.json:/usr/share/logstash/apache_template.json
+      - ./config/logstash/logstash.yml:/usr/share/logstash/config/logstash.yml
     networks: ['stack']
     ports: ['127.0.0.1:5000:5000']
     environment:
