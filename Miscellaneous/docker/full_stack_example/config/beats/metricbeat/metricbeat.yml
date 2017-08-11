@@ -1,47 +1,7 @@
 metricbeat.config.modules:
-  path: ${path.config}/conf.d/*.yml
+  path: ${path.config}/modules.d/*.yml
   reload.period: 10s
   reload.enabled: true
-metricbeat.modules:
-- module: system
-  metricsets:
-    - core
-    - cpu
-    - load
-    - diskio
-    - filesystem
-    - fsstat
-    - memory
-    - network
-    - process
-    - socket
-  enabled: true
-  period: 10s
-  processes: ['.*']
-  cpu_ticks: true
-  process.cgroups.enabled: true
-- module: docker
-  metricsets: ["container", "cpu", "diskio", "healthcheck", "info", "memory", "network"]
-  hosts: ["unix:///var/run/docker.sock"]
-  enabled: true
-  period: 10s
-- module: nginx
-  metricsets: ["stubstatus"]
-  enabled: true
-  period: 10s
-  hosts: ["http://nginx"]
-  server_status_path: "server-status"
-- module: apache
-  metricsets: ["status"]
-  enabled: true
-  period: 10s
-  hosts: ["http://apache2"]
-  server_status_path: "server-status"
-- module: mysql
-  metricsets: ["status"]
-  enabled: true
-  period: 10s
-  hosts: ["root:${MYSQL_ROOT_PASSWORD:changeme}@tcp(mysql:3306)/"]
 output.elasticsearch:
   hosts: ["elasticsearch:9200"]
 logging.to_files: false

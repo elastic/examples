@@ -1,0 +1,3 @@
+- module: system
+  syslog:
+    var.paths: ["/var/log/host/system.log*"]

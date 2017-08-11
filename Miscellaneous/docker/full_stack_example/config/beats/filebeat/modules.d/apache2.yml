@@ -1,0 +1,5 @@
+- module: apache2
+  access:
+    var.paths: ["/var/log/apache2/access.log*"]
+  error:
+    var.paths: ["/var/log/apache2/error.log*"]

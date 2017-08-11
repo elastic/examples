@@ -1,0 +1,8 @@
+- input_type: log
+  paths:
+    - /hostfs/var/lib/docker/containers/*/*.log
+  json.keys_under_root: true
+  json.overwrite_keys: true
+  close_inactive: 24h
+  close_renamed: true
+  pipeline: docker-logs

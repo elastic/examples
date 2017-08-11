@@ -66,6 +66,8 @@ services:
     image: "docker.elastic.co/beats/filebeat:${ELASTIC_VERSION}"
     volumes:
       - ./config/beats/filebeat/filebeat.yml:/usr/share/filebeat/filebeat.yml
+      - ./config/beats/filebeat/modules.d/:/usr/share/filebeat/modules.d/
+      - ./config/beats/filebeat/prospectors.d/:/usr/share/filebeat/prospectors.d/
       - ./logs/nginx/:/var/log/nginx/
       - ./logs/apache2/:/var/log/apache2/
       - ./logs/mysql/:/var/log/mysql/
@@ -85,6 +87,7 @@ services:
     image: "docker.elastic.co/beats/metricbeat:${ELASTIC_VERSION}"
     volumes:
       - ./config/beats/metricbeat/metricbeat.yml:/usr/share/metricbeat/metricbeat.yml
+      - ./config/beats/metricbeat/modules.d/:/usr/share/metricbeat/modules.d/
       - /proc:/hostfs/proc:ro
       - /sys/fs/cgroup:/hostfs/sys/fs/cgroup:ro
       - /var/run/docker.sock:/var/run/docker.sock
