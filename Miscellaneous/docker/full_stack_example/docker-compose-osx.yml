@@ -21,8 +21,8 @@ services:
       - http.host=0.0.0.0
       - transport.host=127.0.0.1
       - bootstrap.memory_lock=true
-      - "ES_JAVA_OPTS=-Xms1024m -Xmx1024m"
-    mem_limit: 2g
+      - "ES_JAVA_OPTS=-Xms${ES_JVM_HEAP} -Xmx${ES_JVM_HEAP}"
+    mem_limit: ${ES_MEM_LIMIT}
     ulimits:
       memlock:
         soft: -1
@@ -88,7 +88,7 @@ services:
     image: docker.elastic.co/beats/metricbeat:${ELASTIC_VERSION}
     volumes:
       - ./config/beats/metricbeat/metricbeat.yml:/usr/share/metricbeat/metricbeat.yml
-        - ./config/beats/metricbeat/modules.d/:/usr/share/metricbeat/modules.d/
+      - ./config/beats/metricbeat/modules.d/:/usr/share/metricbeat/modules.d/
       - /var/run/docker.sock:/var/run/docker.sock
     command: metricbeat -e -E output.elasticsearch.username=elastic -E output.elasticsearch.password=${ES_PASSWORD}
     networks: ['stack']

@@ -1,7 +1,7 @@
 heartbeat.monitors:
 - type: icmp
   schedule: '*/5 * * * * * *'
-  hosts: ["filebeat","metricbeat","packetbeat","elasticsearch","kibana","logstash","apache2","nginx"]
+  hosts: ["filebeat","metricbeat","packetbeat","elasticsearch","kibana","logstash","apache2","nginx","mysql"]
   ipv4: true
   ipv6: true
   mode: any
@@ -15,7 +15,6 @@ heartbeat.monitors:
   ipv6: true
   mode: any
   timeout: 5s
-  # Optional Authentication Credentials
   username: '${ES_USERNAME:elastic}'
   password: '${ES_PASSWORD:changeme}'
   check.request:

@@ -66,12 +66,11 @@ services:
     image: "docker.elastic.co/beats/filebeat:${ELASTIC_VERSION}"
     volumes:
       - ./config/beats/filebeat/filebeat.yml:/usr/share/filebeat/filebeat.yml
-      - ./config/beats/filebeat/modules.d/:/usr/share/filebeat/modules.d/
       - ./config/beats/filebeat/prospectors.d/:/usr/share/filebeat/prospectors.d/
       - ./logs/nginx/:/var/log/nginx/
       - ./logs/apache2/:/var/log/apache2/
       - ./logs/mysql/:/var/log/mysql/
-      - /private/var/log/:/var/log/host/:ro
+      - /var/log/:/var/log/host/:ro
       - fbdata:/usr/share/filebeat/data/
     networks: ['stack']
     command: filebeat -e -E output.elasticsearch.username=elastic -E output.elasticsearch.password=${ES_PASSWORD}

@@ -7,7 +7,7 @@ until curl -u elastic:changeme -s http://elasticsearch:9200/_cat/health -o /dev/
     sleep 1
 done
 echo "Setting password to ${ES_PASSWORD}"
-curl -XPUT -u elastic:changeme 'elasticsearch:9200/_xpack/security/user/elastic/_password' -H "Content-Type: application/json" -d "{
+curl -s -XPUT -u elastic:changeme 'elasticsearch:9200/_xpack/security/user/elastic/_password' -H "Content-Type: application/json" -d "{
   \"password\" : \"${ES_PASSWORD}\"
 }"
 

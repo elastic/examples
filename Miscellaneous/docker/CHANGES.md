@@ -2,7 +2,11 @@
 TODO
 
 1. Document what we collect - check each exists
-1. Moved to .modulesd folders and dynamic reload
+
+
+
+1. What does windows do with the /var/log entry? use the VMS
+
 
 
 Questions
