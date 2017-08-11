@@ -1,0 +1,70 @@
+{
+  "description": "Pipeline for processing docker logs",
+  "processors": [
+    {
+      "date": {
+        "field": "time",
+        "target_field": "@timestamp",
+        "formats": [
+          "yyyy-MM-dd'T'hh:mm:ss.SSSSSSSSSZ"
+        ],
+        "ignore_failure" : true
+      }
+    },
+    {
+      "remove": {
+        "field": "time"
+      }
+    },
+    {
+      "set": {
+        "field": "docker.message",
+        "value": "{{_source.log}}"
+      }
+    },
+    {
+      "set": {
+        "field": "type",
+        "value": "docker"
+      }
+    },
+    {
+      "remove": {
+        "field": "log"
+      }
+    },
+    {
+      "grok": {
+        "field": "source",
+        "patterns": [
+          "%{GREEDYDATA}/%{DATA:docker.full_container_id}-json.log"
+        ],
+        "ignore_failure" : true
+      }
+    },
+    {
+      "script": {
+        "lang": "painless",
+        "inline": "ctx.docker.container_id = ctx.docker.full_container_id.substring(0,12);",
+        "ignore_failure" : true
+      }
+    },
+    {
+      "grok": {
+        "field": "docker.message",
+        "patterns": ["%{DATA}%{LEVEL:docker.level}%{DATA}"],
+        "pattern_definitions": {
+          "LEVEL": "INFO|WARNING|ERROR|FATAL|DEBUG|TRACE"
+        },
+        "ignore_failure" : true
+      }
+    },
+    {
+      "date_index_name": {
+        "field": "@timestamp",
+        "index_name_prefix": "docker-logs-",
+        "date_rounding": "M"
+      }
+    }
+  ]
+}

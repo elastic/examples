@@ -19,6 +19,8 @@ packetbeat.protocols.http:
   send_request: false
   send_response: false
   transaction_timeout: 10s
+packetbeat.protocols.mysql:
+  ports: [3306]
 output.elasticsearch:
   hosts: ["localhost:9200"]
 logging.to_files: false

@@ -1,0 +1,60 @@
+{
+  "template": "docker-logs-*",
+  "settings": {
+    "index": {
+      "number_of_shards": "1",
+      "mapper": {
+        "dynamic": "true"
+      }
+    }
+  },
+  "mappings": {
+    "_default_": {
+      "_all": {
+        "enabled": false
+      },
+      "properties": {
+          "@timestamp": {
+            "type": "date"
+          },
+          "docker": {
+            "properties": {
+              "container_id": {
+                "type": "keyword"
+              },
+              "full_container_id": {
+                "type": "keyword"
+              },
+              "level": {
+                "type": "keyword"
+              },
+              "message": {
+                "type": "text"
+              }
+            }
+          },
+          "source": {
+            "type": "keyword"
+          },
+          "stream": {
+            "type": "keyword"
+          },
+          "hostname": {
+            "type": "keyword"
+          },
+          "name": {
+            "type": "keyword"
+          },
+          "version":{
+            "type": "keyword"
+          },
+          "type":{
+            "type": "keyword"
+          },
+          "input_type":{
+            "type": "keyword"
+          }
+        }
+    }
+  }
+}

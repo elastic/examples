@@ -81,6 +81,7 @@ services:
   metricbeat:
     container_name: metricbeat
     hostname: metricbeat
+    user: root
     image: "docker.elastic.co/beats/metricbeat:${ELASTIC_VERSION}"
     volumes:
       - ./config/beats/metricbeat/metricbeat.yml:/usr/share/metricbeat/metricbeat.yml
@@ -88,6 +89,7 @@ services:
       - /sys/fs/cgroup:/hostfs/sys/fs/cgroup:ro
       - /var/run/docker.sock:/var/run/docker.sock
       - /:/hostfs:ro
+      - /var/lib/docker/containers:/hostfs/var/lib/docker/containers
     command: metricbeat -e -system.hostfs=/hostfs -setup -E output.elasticsearch.username=elastic -E output.elasticsearch.password=${ES_PASSWORD}
     networks: ['stack']
     restart: on-failure
@@ -153,7 +155,7 @@ services:
   configure_stack:
     container_name: configure_stack
     image: docker.elastic.co/beats/metricbeat:${ELASTIC_VERSION}
-    volumes: ['./scripts/configure-stack.sh:/usr/local/bin/configure-stack.sh:ro']
+    volumes: ['./init/configure-stack.sh:/usr/local/bin/configure-stack.sh:ro','./init/pipelines/:/usr/local/bin/pipelines/','./init/templates/:/usr/local/bin/templates/']
     command: ['/bin/bash', '-c', 'cat /usr/local/bin/configure-stack.sh | tr -d "\r" | bash']
     networks: ['stack']
     environment: ['ELASTIC_VERSION=${ELASTIC_VERSION}','ES_PASSWORD=${ES_PASSWORD}','DEFAULT_INDEX_PATTERN=${DEFAULT_INDEX_PATTERN}']

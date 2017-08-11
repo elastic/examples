@@ -63,6 +63,7 @@ services:
   filebeat:
     container_name: filebeat
     hostname: filebeat
+    user: root
     image: "docker.elastic.co/beats/filebeat:${ELASTIC_VERSION}"
     volumes:
       - ./config/beats/filebeat/filebeat.yml:/usr/share/filebeat/filebeat.yml
@@ -70,6 +71,7 @@ services:
       - ./logs/apache2/:/var/log/apache2/
       - ./logs/mysql/:/var/log/mysql/
       - /private/var/log/:/var/log/host/:ro
+      - /var/lib/docker/containers:/hostfs/var/lib/docker/containers
       - fbdata:/usr/share/filebeat/data/
     networks: ['stack']
     command: filebeat -e -E output.elasticsearch.username=elastic -E output.elasticsearch.password=${ES_PASSWORD}
@@ -81,9 +83,8 @@ services:
   metricbeat:
     container_name: metricbeat
     hostname: metricbeat
-    build:
-      context: ${PWD}/config/beats/metricbeat
-      args: ["ELASTIC_VERSION=${ELASTIC_VERSION}"]
+    user: root
+    image: docker.elastic.co/beats/metricbeat:${ELASTIC_VERSION}
     volumes:
       - ./config/beats/metricbeat/metricbeat.yml:/usr/share/metricbeat/metricbeat.yml
       - /var/run/docker.sock:/var/run/docker.sock
@@ -152,7 +153,7 @@ services:
   configure_stack:
     container_name: configure_stack
     image: docker.elastic.co/beats/metricbeat:${ELASTIC_VERSION}
-    volumes: ['./scripts/configure-stack.sh:/usr/local/bin/configure-stack.sh:ro']
+    volumes: ['./init/configure-stack.sh:/usr/local/bin/configure-stack.sh:ro','./init/pipelines/:/usr/local/bin/pipelines/','./init/templates/:/usr/local/bin/templates/']
     command: ['/bin/bash', '-c', 'cat /usr/local/bin/configure-stack.sh | tr -d "\r" | bash']
     networks: ['stack']
     environment: ['ELASTIC_VERSION=${ELASTIC_VERSION}','ES_PASSWORD=${ES_PASSWORD}','DEFAULT_INDEX_PATTERN=${DEFAULT_INDEX_PATTERN}']

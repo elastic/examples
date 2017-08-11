@@ -70,6 +70,10 @@ heartbeat.monitors:
     method: "GET"
   check.response:
     status: 200
+- type: tcp
+  enabled: true
+  schedule: '@every 5s'
+  hosts: ["tcp://mysql:3306"]
 output.elasticsearch:
   hosts: ["elasticsearch:9200"]
 logging.to_files: false
