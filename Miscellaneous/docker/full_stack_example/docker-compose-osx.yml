@@ -147,6 +147,7 @@ services:
     environment:
       - "MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}"
     networks: ['stack']
+    ports: ['127.0.0.1:3306:3306']
     volumes:
       - mysqldata:/var/lib/mysql/
       - ./logs/mysql:/var/log/mysql/

@@ -1,10 +1,8 @@
 
 TODO
 
-1. Packetbeat on sql - Note wont work on 
 1. Document what we collect - check each exists
 1. Moved to .modulesd folders and dynamic reload
-1. Check system logs
 
 
 Questions

@@ -146,6 +146,7 @@ services:
     container_name: mqsql
     hostname: mysql
     build: ${PWD}/config/mysql
+    ports: ['127.0.0.1:3306:3306']
     environment:
       - "MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}"
     networks: ['stack']
