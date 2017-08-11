@@ -89,8 +89,11 @@ services:
     volumes:
       - ./config/beats/metricbeat/metricbeat.yml:/usr/share/metricbeat/metricbeat.yml
       - ./config/beats/metricbeat/modules.d/:/usr/share/metricbeat/modules.d/
+      - /proc:/hostfs/proc:ro
+      - /sys/fs/cgroup:/hostfs/sys/fs/cgroup:ro
       - /var/run/docker.sock:/var/run/docker.sock
-    command: metricbeat -e -E output.elasticsearch.username=elastic -E output.elasticsearch.password=${ES_PASSWORD}
+      - /:/hostfs:ro
+    command: metricbeat -e -system.hostfs=/hostfs -E output.elasticsearch.username=elastic -E output.elasticsearch.password=${ES_PASSWORD}
     networks: ['stack']
     restart: on-failure
     environment:

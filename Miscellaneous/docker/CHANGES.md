@@ -1,11 +1,12 @@
 
 TODO
 
-1. Document what we collect - check each exists
-
-
-
+1. Static content?
+1. MEtricbeat reports its host for system modeul as "metricbeat" - change to X?
+1. Docker-logs, apache dashboards?
+1. Dynamic loading of config - beats and LS.
 1. What does windows do with the /var/log entry? use the VMS
+1. 5.6?
 
 
 
