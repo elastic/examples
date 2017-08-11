@@ -2,9 +2,24 @@ filebeat.registry_file: /usr/share/filebeat/data/registry
 filebeat.config.prospectors:
   path: ${path.config}/prospectors.d/*.yml
   reload.enabled: false
-filebeat.config.modules:
-  path: ${path.config}/modules.d/*.yml
-  reload.period: 10s
-  reload.enabled: true
+filebeat.modules:
+- module: system
+  syslog:
+    var.paths: ["/var/log/host/system.log*"]
+- module: nginx
+  access:
+    var.paths: ["/var/log/nginx/access.log*"]
+  error:
+    var.paths: ["/var/log/nginx/error.log*"]
+- module: apache2
+  access:
+    var.paths: ["/var/log/apache2/access.log*"]
+  error:
+    var.paths: ["/var/log/apache2/error.log*"]
+- module: mysql
+  error:
+    var.paths: ["/var/log/mysql/error.log*"]
+  slowlog:
+    var.paths: ["/var/log/mysql/mysql-slow.log*"]
 output.elasticsearch:
   hosts: ["elasticsearch:9200"]

@@ -1,5 +1,0 @@
-- module: mysql
-  error:
-    var.paths: ["/var/log/mysql/error.log*"]
-  slowlog:
-    var.paths: ["/var/log/mysql/mysql-slow.log*"]
