@@ -149,18 +149,38 @@ The following Beat and Logstash modules are utilised in this stack example to pr
     
     Whilst the container ids will be unique, other details should be similar. Note the `configure_stack` container will have exited on completion of the configuration of stack.  This occurs before the beat containers start.  Other containers should be "Up".
 
-1. On confirming the stack is started, navigate to kibana at http://localhost:5601.  Assuming you haven't changed the default password, see [Customising the Stack](TODO), the default credentials of `elastic` and `changeme` should appear.
+1. On confirming the stack is started, navigate to kibana at http://localhost:5601.  Assuming you haven't changed the default password, see [Customising the Stack](TODO), the default credentials of `elastic` and `changeme` should apply.
+
+1. Navigate to the dashboard view. Open any of the dashboards listed as having data below. The following shows the Metricbeat-Docker dashboard.
+
+![Metricbeat Docker Dashboard](https://user-images.githubusercontent.com/12695796/29227415-a3413aec-7ecd-11e7-8824-cfc48982b124.png)
 
 ## Dashboards with data
 
 The following dashboards are accessible and populated. Other dashboards, whilst loaded, will not have data due to the absence of an appropriate container e.g. Packetbeat Cassandra.
 
 * CPU/Memory per container
-*
-*
-*
-*
-*
+* DNS
+* Filebeat Apache2 Dashboard
+* Filebeat MySQL Dashboard
+* Filebeat Nginx Dashboard
+* Filebeat syslog dashboard
+* Heartbeat HTTP monitoring
+* Metricbeat - Apache HTTPD server status
+* Metricbeat Docker
+* Metricbeat MySQL
+* Metricbeat filesystem per Host
+* Metricbeat system overview
+* Metricbeat-cpu
+* Metricbeat-filesystem
+* Metricbeat-memory
+* Metricbeat-network
+* Metricbeat-overview
+* Metricbeat-processes
+* Packetbeat Dashboard (limited)
+* Packetbeat Flows
+* Packetbeat HTTP
+* Packetbeat MySQL performance
 
 ## Technical notes
 
@@ -201,8 +221,30 @@ TODO
 ```
 
 
+## Generating data
+
+The majority of the dashboards will simply populate due to inherent “noise” caused by the images.  However, we do expose a few additional ports for interaction to allow unique generation.  These include:
+
+* MySQL - port 3306 is exposed allowing the user to connect. Any subsequent Mysql traffic will in turn be visible in the dashboards “Filebeat MySQL Dashboard”, “Metricbeat MySQL” and “Packetbeat MySQL performance”.
+* Nginx - port 80. Currently we don’t host any content in Nginx so requests will result in 404s.  However, content can easily be added as described here.
+* Apache2 - port 8000. Other than the default Apache2 “It works” pages the stack doesn’t host any content.  Again easily changed. 
+* Docker Logs - Any activity to the docker containers, including requests to Kibana, are logged.  These logs are captured in JSON form and indexed into a index “docker-logs-<yyyy.mm.dd>”.
+
 ## Customising the Stack
 
+With respect to the current example, we have provided a few simple entry points for customisation:
+
+1. The example includes an .env file listing environment variables which alter the behaviour of the stack.  These environment variables allow the user to change:
+    * `ELASTIC_VERSION` - the Elastic Stack version (default 5.5.1) 
+    * `ES_PASSWORD` - the password used for authentication with the elastic user. This password is applied for all system users i.e. kibana and logstash_system. Defaults to “changeme”.
+    * `MYSQL_ROOT_PASSWORD` - the password used for the root mysql user. Defaults to “changeme”.
+    * `DEFAULT_INDEX_PATTERN` - The index pattern used as the default in Kibana. Defaults to “metricbeat-*”.
+    * `ES_MEM_LIMIT` - The memory limit used for the Elasticsearch container. Defaults to 2g. Consider reducing for smaller machines.
+    * `ES_JVM_HEAP` - The Elasticsearch JVM heap size. Defaults to 1024m and should be set to half of the ES_MEM_LIMIT.
+1. Modules and Configuration - All configuration to the containers is provided through a mounted “./config” directory.  Where possible, this exploits the dynamic configuration loading capabilities of both Logstash and Beats. For example, an additional module could be added by simply adding a file to the directory “./config/beats/metricbeat/modules.d/” in the required format. Likewise modifying the Logstash configuration in “./config/logstash/logstash.conf” should cause it to be reloaded.
+1. Pipelines and templates - we provide the ability to add custom ingest pipelines and templates to Elasticsearch when the stack is first deployed. Further details here.
+1. Add another container!
 
 ## We would love your feedback!
+
 If you found this example helpful and would like to see more such Getting Started examples for other standard formats, we would love to hear from you. If you would like to contribute examples to this repo, we'd love that too!
