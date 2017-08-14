@@ -1,0 +1,174 @@
+---
+version: "2.1"
+services:
+  # The environment variable "ELASTIC_VERSION" is used throughout this file to
+  # specify the version of the images to run. The default is set in the
+  # '.env' file in this folder. It can be overridden with any normal
+  # technique for setting environment variables, for example:
+  #
+  #   ELASTIC_VERSION=5.5.1 docker-compose up
+  #
+  # Additionally, the user can control the memory assigned to the ES instance through the varible "ES_JVM_SIZE", for example:
+  #   ES_JVM_SIZE=1024m
+  #
+  # REF: https://docs.docker.com/compose/compose-file/#variable-substitution
+  #
+  elasticsearch:
+    container_name: elasticsearch
+    hostname: elasticsearch
+    image: "docker.elastic.co/elasticsearch/elasticsearch:${ELASTIC_VERSION}"
+    environment:
+      - http.host=0.0.0.0
+      - transport.host=127.0.0.1
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms${ES_JVM_HEAP} -Xmx${ES_JVM_HEAP}"
+    mem_limit: ${ES_MEM_LIMIT}
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - ./config/elasticsearch/elasticsearch.yml:/usr/share/elasticsearch/elasticsearch.yml
+      - esdata:/usr/share/elasticsearch/data
+    ports: ['127.0.0.1:9200:9200']
+    healthcheck:
+      test: ["CMD", "curl","-s" ,"-f", "-u", "elastic:${ES_PASSWORD}", "http://localhost:9200/_cat/health"]
+    networks: ['stack']
+  kibana:
+    container_name: kibana
+    hostname: kibana
+    image: "docker.elastic.co/kibana/kibana:${ELASTIC_VERSION}"
+    volumes:
+      - ./config/kibana/kibana.yml:/usr/share/kibana/kibana.yml
+    ports: ['127.0.0.1:5601:5601']
+    networks: ['stack']
+    depends_on: ['elasticsearch']
+    environment:
+      - "ELASTICSEARCH_PASSWORD=${ES_PASSWORD}"
+    healthcheck:
+      test: ["CMD", "curl", "-s", "-f", "http://localhost:5601/login"]
+      retries: 6
+  heartbeat:
+    container_name: heartbeat
+    hostname: heartbeat
+    image: "docker.elastic.co/beats/heartbeat:${ELASTIC_VERSION}"
+    volumes:
+      - ./config/beats/heartbeat/heartbeat.yml:/usr/share/heartbeat/heartbeat.yml
+    networks: ['stack']
+    depends_on:
+      elasticsearch:  { condition: service_healthy }
+    environment:
+      - "ES_PASSWORD=${ES_PASSWORD}"
+    command: heartbeat -e -E output.elasticsearch.username=elastic -E output.elasticsearch.password=${ES_PASSWORD}
+  filebeat:
+    container_name: filebeat
+    hostname: filebeat
+    user: root
+    image: "docker.elastic.co/beats/filebeat:${ELASTIC_VERSION}"
+    volumes:
+      - ./config/beats/filebeat/filebeat.yml:/usr/share/filebeat/filebeat.yml
+      - ./config/beats/filebeat/prospectors.d/:/usr/share/filebeat/prospectors.d/
+      - ./logs/nginx/:/var/log/nginx/
+      - ./logs/apache2/:/var/log/apache2/
+      - ./logs/mysql/:/var/log/mysql/
+      - /private/var/log/:/var/log/host/:ro
+      - /var/lib/docker/containers:/hostfs/var/lib/docker/containers
+      - fbdata:/usr/share/filebeat/data/
+    networks: ['stack']
+    command: filebeat -e -E output.elasticsearch.username=elastic -E output.elasticsearch.password=${ES_PASSWORD}
+    restart: on-failure
+    depends_on:
+      elasticsearch:  { condition: service_healthy }
+      nginx: { condition: service_started }
+      apache2: { condition: service_started }
+  metricbeat:
+    container_name: metricbeat
+    hostname: metricbeat
+    user: root
+    image: docker.elastic.co/beats/metricbeat:${ELASTIC_VERSION}
+    volumes:
+      - ./config/beats/metricbeat/metricbeat.yml:/usr/share/metricbeat/metricbeat.yml
+      - ./config/beats/metricbeat/modules.d/:/usr/share/metricbeat/modules.d/
+      - /proc:/hostfs/proc:ro
+      - /sys/fs/cgroup:/hostfs/sys/fs/cgroup:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /:/hostfs:ro
+    command: metricbeat -e -system.hostfs=/hostfs -E output.elasticsearch.username=elastic -E output.elasticsearch.password=${ES_PASSWORD}
+    networks: ['stack']
+    restart: on-failure
+    environment:
+      - "MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}"
+    depends_on:
+      elasticsearch:  { condition: service_healthy }
+      nginx: { condition: service_started }
+      apache2: { condition: service_started }
+  packetbeat:
+    container_name: packetbeat
+    hostname: packetbeat
+    image: "docker.elastic.co/beats/packetbeat:${ELASTIC_VERSION}"
+    volumes:
+      - ./config/beats/packetbeat/packetbeat.yml:/usr/share/packetbeat/packetbeat.yml
+    cap_add: ['NET_RAW', 'NET_ADMIN']
+    network_mode: host
+    command: packetbeat -e -E output.elasticsearch.hosts='["localhost:9200"]' -E output.elasticsearch.username=elastic -E output.elasticsearch.password=${ES_PASSWORD}
+    depends_on:
+      elasticsearch:  { condition: service_healthy }
+  logstash:
+    container_name: logstash
+    hostname: logstash
+    image: "docker.elastic.co/logstash/logstash:${ELASTIC_VERSION}"
+    # Provide a simple pipeline configuration for Logstash with a bind-mounted file.
+    volumes:
+      - ./config/logstash/logstash.conf:/usr/share/logstash/pipeline/logstash.conf
+      - ./config/logstash/apache_template.json:/usr/share/logstash/apache_template.json
+      - ./config/logstash/logstash.yml:/usr/share/logstash/config/logstash.yml
+    networks: ['stack']
+    ports: ['127.0.0.1:5000:5000']
+    environment:
+      - "ES_PASSWORD=${ES_PASSWORD}"
+    depends_on:
+      elasticsearch:  { condition: service_healthy }
+  nginx:
+    container_name: nginx
+    hostname: nginx
+    build: ${PWD}/config/nginx
+    networks: ['stack']
+    ports: ['127.0.0.1:80:80']
+    command: nginx -g 'daemon off;'
+    volumes:
+      - ./logs/nginx/:/var/log/nginx/
+  apache2:
+    container_name: apache2
+    hostname: apache2
+    build: ${PWD}/config/apache2
+    networks: ['stack']
+    ports: ['127.0.0.1:8000:80']
+    volumes:
+      - ./logs/apache2/:/var/log/apache2/
+  mysql:
+    container_name: mqsql
+    hostname: mysql
+    build: ${PWD}/config/mysql
+    environment:
+      - "MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}"
+    networks: ['stack']
+    ports: ['127.0.0.1:3306:3306']
+    volumes:
+      - mysqldata:/var/lib/mysql/
+      - ./logs/mysql:/var/log/mysql/
+  configure_stack:
+    container_name: configure_stack
+    image: docker.elastic.co/beats/metricbeat:${ELASTIC_VERSION}
+    volumes: ['./init/configure-stack.sh:/usr/local/bin/configure-stack.sh:ro','./init/pipelines/:/usr/local/bin/pipelines/','./init/templates/:/usr/local/bin/templates/']
+    command: ['/bin/bash', '-c', 'cat /usr/local/bin/configure-stack.sh | tr -d "\r" | bash']
+    networks: ['stack']
+    environment: ['ELASTIC_VERSION=${ELASTIC_VERSION}','ES_PASSWORD=${ES_PASSWORD}','DEFAULT_INDEX_PATTERN=${DEFAULT_INDEX_PATTERN}']
+    depends_on: ['elasticsearch','kibana']
+volumes:
+  mysqldata:
+    driver: local
+  esdata:
+    driver: local
+  fbdata:
+    driver: local
+networks: {stack: {}}
