@@ -21,8 +21,8 @@ services:
       - http.host=0.0.0.0
       - transport.host=127.0.0.1
       - bootstrap.memory_lock=true
-      - "ES_JAVA_OPTS=-Xms1024m -Xmx1024m"
-    mem_limit: 2g
+      - "ES_JAVA_OPTS=-Xms${ES_JVM_HEAP} -Xmx${ES_JVM_HEAP}"
+    mem_limit: ${ES_MEM_LIMIT}
     ulimits:
       memlock:
         soft: -1
@@ -63,6 +63,7 @@ services:
   filebeat:
     container_name: filebeat
     hostname: filebeat
+    user: root
     image: "docker.elastic.co/beats/filebeat:${ELASTIC_VERSION}"
     volumes:
       - ./config/beats/filebeat/filebeat.yml:/usr/share/filebeat/filebeat.yml
@@ -71,8 +72,8 @@ services:
       - ./logs/apache2/:/var/log/apache2/
       - ./logs/mysql/:/var/log/mysql/
       - /var/log/:/var/log/host/:ro
-      - fbdata:/usr/share/filebeat/data/
       - /var/lib/docker/containers:/hostfs/var/lib/docker/containers
+      - fbdata:/usr/share/filebeat/data/
     networks: ['stack']
     command: filebeat -e -E output.elasticsearch.username=elastic -E output.elasticsearch.password=${ES_PASSWORD}
     restart: on-failure
@@ -84,7 +85,7 @@ services:
     container_name: metricbeat
     hostname: metricbeat
     user: root
-    image: "docker.elastic.co/beats/metricbeat:${ELASTIC_VERSION}"
+    image: docker.elastic.co/beats/metricbeat:${ELASTIC_VERSION}
     volumes:
       - ./config/beats/metricbeat/metricbeat.yml:/usr/share/metricbeat/metricbeat.yml
       - ./config/beats/metricbeat/modules.d/:/usr/share/metricbeat/modules.d/
@@ -92,7 +93,7 @@ services:
       - /sys/fs/cgroup:/hostfs/sys/fs/cgroup:ro
       - /var/run/docker.sock:/var/run/docker.sock
       - /:/hostfs:ro
-    command: metricbeat -e -system.hostfs=/hostfs -setup -E output.elasticsearch.username=elastic -E output.elasticsearch.password=${ES_PASSWORD}
+    command: metricbeat -e -system.hostfs=/hostfs -E output.elasticsearch.username=elastic -E output.elasticsearch.password=${ES_PASSWORD}
     networks: ['stack']
     restart: on-failure
     environment:
@@ -148,10 +149,10 @@ services:
     container_name: mqsql
     hostname: mysql
     build: ${PWD}/config/mysql
-    ports: ['127.0.0.1:3306:3306']
     environment:
       - "MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}"
     networks: ['stack']
+    ports: ['127.0.0.1:3306:3306']	
     volumes:
       - mysqldata:/var/lib/mysql/
       - ./logs/mysql:/var/log/mysql/

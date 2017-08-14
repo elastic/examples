@@ -28,7 +28,7 @@ services:
         soft: -1
         hard: -1
     volumes:
-      - ./config/elasticsearch/elasticsearch.yml:/usr/share/elasticsearch/elasticsearch.yml
+      - .\config\elasticsearch\elasticsearch.yml:/usr/share/elasticsearch/elasticsearch.yml
       - esdata:/usr/share/elasticsearch/data
     ports: ['127.0.0.1:9200:9200']
     healthcheck:
@@ -39,7 +39,7 @@ services:
     hostname: kibana
     image: "docker.elastic.co/kibana/kibana:${ELASTIC_VERSION}"
     volumes:
-      - ./config/kibana/kibana.yml:/usr/share/kibana/kibana.yml
+      - .\config\kibana\kibana.yml:/usr/share/kibana/kibana.yml
     ports: ['127.0.0.1:5601:5601']
     networks: ['stack']
     depends_on: ['elasticsearch']
@@ -53,7 +53,7 @@ services:
     hostname: heartbeat
     image: "docker.elastic.co/beats/heartbeat:${ELASTIC_VERSION}"
     volumes:
-      - ./config/beats/heartbeat/heartbeat.yml:/usr/share/heartbeat/heartbeat.yml
+      - .\config\beats\heartbeat\heartbeat.yml:/usr/share/heartbeat/heartbeat.yml
     networks: ['stack']
     depends_on:
       elasticsearch:  { condition: service_healthy }
@@ -66,12 +66,12 @@ services:
     user: root
     image: "docker.elastic.co/beats/filebeat:${ELASTIC_VERSION}"
     volumes:
-      - ./config/beats/filebeat/filebeat.yml:/usr/share/filebeat/filebeat.yml
-      - ./config/beats/filebeat/prospectors.d/:/usr/share/filebeat/prospectors.d/
-      - ./logs/nginx/:/var/log/nginx/
-      - ./logs/apache2/:/var/log/apache2/
-      - ./logs/mysql/:/var/log/mysql/
-      - /private/var/log/:/var/log/host/:ro
+      - .\config\beats\filebeat\filebeat.yml:/usr/share/filebeat/filebeat.yml
+      - .\config\beats\filebeat\prospectors.d\:/usr/share/filebeat/prospectors.d/
+      - .\logs\nginx\:/var/log/nginx/
+      - .\logs\apache2\:/var/log/apache2/
+      - .\logs\mysql\:/var/log/mysql/
+      - /var/log/:/var/log/host/:ro
       - /var/lib/docker/containers:/hostfs/var/lib/docker/containers
       - fbdata:/usr/share/filebeat/data/
     networks: ['stack']
@@ -87,8 +87,8 @@ services:
     user: root
     image: docker.elastic.co/beats/metricbeat:${ELASTIC_VERSION}
     volumes:
-      - ./config/beats/metricbeat/metricbeat.yml:/usr/share/metricbeat/metricbeat.yml
-      - ./config/beats/metricbeat/modules.d/:/usr/share/metricbeat/modules.d/
+      - .\config\beats\metricbeat\metricbeat.yml:/usr/share/metricbeat/metricbeat.yml
+      - .\config\beats\metricbeat\modules.d\:/usr/share/metricbeat/modules.d/
       - /proc:/hostfs/proc:ro
       - /sys/fs/cgroup:/hostfs/sys/fs/cgroup:ro
       - /var/run/docker.sock:/var/run/docker.sock
@@ -107,7 +107,7 @@ services:
     hostname: packetbeat
     image: "docker.elastic.co/beats/packetbeat:${ELASTIC_VERSION}"
     volumes:
-      - ./config/beats/packetbeat/packetbeat.yml:/usr/share/packetbeat/packetbeat.yml
+      - .\config\beats\packetbeat\packetbeat.yml:/usr/share/packetbeat/packetbeat.yml
     cap_add: ['NET_RAW', 'NET_ADMIN']
     network_mode: host
     command: packetbeat -e -E output.elasticsearch.hosts='["localhost:9200"]' -E output.elasticsearch.username=elastic -E output.elasticsearch.password=${ES_PASSWORD}
@@ -119,9 +119,9 @@ services:
     image: "docker.elastic.co/logstash/logstash:${ELASTIC_VERSION}"
     # Provide a simple pipeline configuration for Logstash with a bind-mounted file.
     volumes:
-      - ./config/logstash/logstash.conf:/usr/share/logstash/pipeline/logstash.conf
-      - ./config/logstash/apache_template.json:/usr/share/logstash/apache_template.json
-      - ./config/logstash/logstash.yml:/usr/share/logstash/config/logstash.yml
+      - .\config\logstash\logstash.conf:/usr/share/logstash/pipeline/logstash.conf
+      - .\config\logstash\apache_template.json:/usr/share/logstash/apache_template.json
+      - .\config\logstash\logstash.yml:/usr/share/logstash/config/logstash.yml
     networks: ['stack']
     ports: ['127.0.0.1:5000:5000']
     environment:
@@ -136,7 +136,7 @@ services:
     ports: ['127.0.0.1:80:80']
     command: nginx -g 'daemon off;'
     volumes:
-      - ./logs/nginx/:/var/log/nginx/
+      - .\logs\nginx\:/var/log/nginx/
   apache2:
     container_name: apache2
     hostname: apache2
@@ -144,7 +144,7 @@ services:
     networks: ['stack']
     ports: ['127.0.0.1:8000:80']
     volumes:
-      - ./logs/apache2/:/var/log/apache2/
+      - .\logs\apache2\:/var/log/apache2/
   mysql:
     container_name: mqsql
     hostname: mysql
@@ -155,11 +155,11 @@ services:
     ports: ['127.0.0.1:3306:3306']
     volumes:
       - mysqldata:/var/lib/mysql/
-      - ./logs/mysql:/var/log/mysql/
+      - .\logs\mysql:/var/log/mysql/
   configure_stack:
     container_name: configure_stack
     image: docker.elastic.co/beats/metricbeat:${ELASTIC_VERSION}
-    volumes: ['./init/configure-stack.sh:/usr/local/bin/configure-stack.sh:ro','./init/pipelines/:/usr/local/bin/pipelines/','./init/templates/:/usr/local/bin/templates/']
+    volumes: ['.\init\configure-stack.sh:/usr/local/bin/configure-stack.sh:ro','.\init\pipelines\:/usr/local/bin/pipelines/','.\init\templates\:/usr/local/bin/templates/']
     command: ['/bin/bash', '-c', 'cat /usr/local/bin/configure-stack.sh | tr -d "\r" | bash']
     networks: ['stack']
     environment: ['ELASTIC_VERSION=${ELASTIC_VERSION}','ES_PASSWORD=${ES_PASSWORD}','DEFAULT_INDEX_PATTERN=${DEFAULT_INDEX_PATTERN}']
