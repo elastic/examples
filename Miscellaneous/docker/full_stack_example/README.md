@@ -107,19 +107,19 @@ The following Beat and Logstash modules are utilised in this stack example to pr
     For osx
     
     ```shell
-    docker-compose -f docker-compose-osx.yml
+    docker-compose -f docker-compose-osx.yml up
     ```
     
     For windows
     
     ```shell
-    docker-compose -f docker-compose-windows.yml
+    docker-compose -f docker-compose-windows.yml up
     ```
     
     For linux
     
     ```shell
-    docker-compose -f docker-compose-linux.yml
+    docker-compose -f docker-compose-linux.yml up
     ```
 
 **The above command may take some time if you don't have the base centos7 images**
@@ -244,6 +244,20 @@ With respect to the current example, we have provided a few simple entry points 
 1. Modules and Configuration - All configuration to the containers is provided through a mounted “./config” directory.  Where possible, this exploits the dynamic configuration loading capabilities of both Logstash and Beats. For example, an additional module could be added by simply adding a file to the directory “./config/beats/metricbeat/modules.d/” in the required format. Likewise modifying the Logstash configuration in “./config/logstash/logstash.conf” should cause it to be reloaded.
 1. Pipelines and templates - we provide the ability to add custom ingest pipelines and templates to Elasticsearch when the stack is first deployed. Further details here.
 1. Add another container!
+
+## Shutting down the stack
+
+`Ctrl-C` will exit the containers and ensure they are shut down gracefully. To remove all containers, including their mounted named volumes:
+
+
+```shell
+docker-compose -f docker-compose-<os>.yml down -v
+
+e.g.
+
+docker-compose -f docker-compose-linux.yml down -v
+```
+
 
 ## We would love your feedback!
 

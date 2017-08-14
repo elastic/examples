@@ -1,0 +1,18 @@
+---
+version: "2.1"
+services:
+  mysql:
+    container_name: mqsql
+    hostname: mysql
+    build: ${PWD}/config/mysql
+    environment:
+      - "MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}"
+    networks: ['stack']
+    ports: ['127.0.0.1:3306:3306']
+    volumes:
+      - mysqldata:/var/lib/mysql/
+      - ./logs/mysql:/var/log/mysql/
+volumes:
+  mysqldata:
+    driver: local
+networks: {stack: {}}

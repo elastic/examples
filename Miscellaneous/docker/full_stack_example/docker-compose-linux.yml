@@ -152,7 +152,8 @@ services:
     environment:
       - "MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}"
     networks: ['stack']
-    ports: ['127.0.0.1:3306:3306']	
+    ports: ['127.0.0.1:3306:3306']
+    command: bash -c "chown -R mysql:mysql /var/log/mysql && exec /entrypoint.sh mysqld"
     volumes:
       - mysqldata:/var/lib/mysql/
       - ./logs/mysql:/var/log/mysql/
