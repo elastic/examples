@@ -81,13 +81,22 @@ The following Beat and Logstash modules are utilised in this stack example to pr
 
 ## Step by Step Instructions - Deploying the Stack
 
-1. Download the `full_stack_example.tar.gz` file for the package here.  This is provided as there is no easy way to download a sub folder of this repository.  This represents the folders within this directory zipped.
+1. Download the `full_stack_example.tar.gz` (OSX/Linux) or `full_stack_example.zip` file.  This is provided as there is no easy way to download a sub folder of this repository.  This represents the folders within this directory compressed.
+   
+    For linux/OSX:
     
     ```shell
-    curl -O https://raw.githubusercontent.com/elastic/examples/master/Miscellaneous/docker/full_stack_example/full_stack_example.tar.gz
+    wget https://raw.githubusercontent.com/elastic/examples/master/Miscellaneous/docker/full_stack_example/full_stack_example.tar.gz
     ```
-
+   
+   For Windows (powershell):
+   ```shell
+   wget https://github.com/gingerwizard/examples/raw/master/Miscellaneous/docker/full_stack_example/full_stack_example.zip -outfile "full_stack_example.zip"
+   ```
+   
 1. Extract the directory
+    
+    For linux/OSX:
     
     ```shell
     tar -xvf full_stack_example.tar.gz
@@ -98,7 +107,7 @@ The following Beat and Logstash modules are utilised in this stack example to pr
     * [Windows](https://docs.docker.com/docker-for-windows/#shared-drives)
     * [OSX](https://docs.docker.com/docker-for-mac/#file-sharing)
 
-1. Navigate into the full_stack_example folder and issue the following command, adjusting for your host operating system as shown.
+1. Navigate into the full_stack_example folder from a terminal or powershell, and issue the following command. Adjust for your host operating system as shown.
 
     ```shell
     cd full_stack_example.tar.gz
@@ -242,7 +251,9 @@ With respect to the current example, we have provided a few simple entry points 
     * `ES_MEM_LIMIT` - The memory limit used for the Elasticsearch container. Defaults to 2g. Consider reducing for smaller machines.
     * `ES_JVM_HEAP` - The Elasticsearch JVM heap size. Defaults to 1024m and should be set to half of the ES_MEM_LIMIT.
 1. Modules and Configuration - All configuration to the containers is provided through a mounted “./config” directory.  Where possible, this exploits the dynamic configuration loading capabilities of both Logstash and Beats. For example, an additional module could be added by simply adding a file to the directory “./config/beats/metricbeat/modules.d/” in the required format. Likewise modifying the Logstash configuration in “./config/logstash/logstash.conf” should cause it to be reloaded.
-1. Pipelines and templates - we provide the ability to add custom ingest pipelines and templates to Elasticsearch when the stack is first deployed. Further details here.
+1. Pipelines and templates - we provide the ability to add custom ingest pipelines and templates to Elasticsearch when the stack is first deployed. More specifically: `
+    * Ingest templates should be added under `./init/templates/`.  These will be added on startup of the stack, with an id equal to the filename. For example, `docker-logs.json` will be added as a template with id `docker-logs`.
+    * Pipelines should be added under `./init/pipelines/`. These will be added on startup of the stack, with an id equal to the filename. For example, `docker-logs.json` will be added as a pipeline with id `docker-logs`.
 1. Add another container!
 
 ## Shutting down the stack
