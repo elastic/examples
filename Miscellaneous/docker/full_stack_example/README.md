@@ -17,6 +17,9 @@ This architecture utilises Logstash and Beat modules for data sources, populatin
     - `3306` (Mysql)
     - `5000`, `6000` (Logstash)
     
+1. Atleast 4Gb of available RAM
+1. wget - This is not a native tool on windows but readily available e.g. through [chocolatey](https://chocolatey.org/packages/Wget)
+    
 The example file uses docker-compose v2 syntax.
 
 **We assume prior knowledge of docker**
@@ -106,6 +109,11 @@ The following Beat and Logstash modules are utilised in this stack example to pr
 
     * [Windows](https://docs.docker.com/docker-for-windows/#shared-drives)
     * [OSX](https://docs.docker.com/docker-for-mac/#file-sharing)
+
+1. If using OSX or Windows, ensure the VM used to host docker is allocated a minimum of 4GB. Further instructions on achieving this:
+
+    * [Windows](https://docs.docker.com/docker-for-windows/#advanced)
+    * [OSX](https://docs.docker.com/docker-for-mac/#advanced)
 
 1. Navigate into the full_stack_example folder from a terminal or powershell, and issue the following command. Adjust for your host operating system as shown.
 
