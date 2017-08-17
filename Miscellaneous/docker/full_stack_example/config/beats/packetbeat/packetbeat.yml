@@ -1,3 +1,4 @@
+#We monitor any devices on the host OS. For windows and OSX this is the VM hosting docker.
 packetbeat.interfaces.device: any
 packetbeat.flows:
   enabled: true
@@ -10,6 +11,7 @@ packetbeat.protocols.dns:
   ports: [53]
   include_authorities: true
   include_additionals: true
+#We monitor any traffic to kibana, apache, ngnix and ES
 packetbeat.protocols.http:
   enabled: true
   ports: [9200, 80, 8080, 8000, 5000, 8002, 5601]

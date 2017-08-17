@@ -1,7 +1,9 @@
 metricbeat.config.modules:
+#Modules are enabled by reading the .modules.d sub directory. Changes to these will automatically be detected and reflected.
   path: ${path.config}/modules.d/*.yml
   reload.period: 10s
   reload.enabled: true
+#All data indexed to Elasticsearch
 output.elasticsearch:
   hosts: ["elasticsearch:9200"]
 logging.to_files: false

@@ -1,4 +1,5 @@
 heartbeat.monitors:
+#Monitor all containers using an icmp ping
 - type: icmp
   schedule: '*/5 * * * * * *'
   hosts: ["filebeat","metricbeat","packetbeat","elasticsearch","kibana","apache2","nginx","mysql"]
@@ -7,6 +8,7 @@ heartbeat.monitors:
   mode: any
   timeout: 16s
   wait: 1s
+#Monitor the ES instance over http with a GET to the /  - checking for a 200 response
 - type: http
   enabled: true
   schedule: '@every 5s'
@@ -21,6 +23,7 @@ heartbeat.monitors:
     method: "GET"
   check.response:
     status: 200
+#Monitor the Kibana instance with a http GET to / - checking for a 200 response code
 - type: http
   enabled: true
   schedule: '@every 5s'
@@ -33,6 +36,7 @@ heartbeat.monitors:
     method: "GET"
   check.response:
     status: 200
+#Monitor the Nginx instance with a http GET to /server-status - checking for a 200 response code
 - type: http
   enabled: true
   schedule: '@every 5s'
@@ -45,6 +49,7 @@ heartbeat.monitors:
     method: "GET"
   check.response:
     status: 200
+#Monitor the Apache2 instance with a http GET to /server-status - checking for a 200 response code
 - type: http
   enabled: true
   schedule: '@every 5s'
@@ -57,10 +62,12 @@ heartbeat.monitors:
     method: "GET"
   check.response:
     status: 200
+#Monitor the Mysql instance by attempting a tcp connect on port 3306
 - type: tcp
   enabled: true
   schedule: '@every 5s'
   hosts: ["tcp://mysql:3306"]
+#Index any heartbeat data to our ES instance
 output.elasticsearch:
   hosts: ["elasticsearch:9200"]
 logging.to_files: false

@@ -31,7 +31,7 @@ All Elastic Stack components are version 5.5.1
 
 The following illustrates the architecture deployed by the compose file.  All components are deployed to a single machine.
 
-![Architecture Diagram](https://user-images.githubusercontent.com/12695796/29225431-2a3a7a2a-7ec6-11e7-9215-769063681e10.png)
+![Architecture Diagram](https://user-images.githubusercontent.com/12695796/29414720-93d0e67c-8358-11e7-8e8c-58e6573cfebb.png)
 
 Summarising the above, the following containers are deployed:
 
