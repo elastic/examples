@@ -35,9 +35,6 @@ done
   -pass ${ES_PASSWORD}
 
 
-curl -s -XPUT http://elastic:${ES_PASSWORD}@elasticsearch:9200/.kibana/index-pattern/logstash-* \
-     -d '{"title" : "logstash-*",  "timeFieldName": "@timestamp"}'
-
 # Set the default index pattern.
 curl -s -XPUT http://elastic:${ES_PASSWORD}@elasticsearch:9200/.kibana/config/${ELASTIC_VERSION} \
      -d "{\"defaultIndex\" : \"${DEFAULT_INDEX_PATTERN}\"}"

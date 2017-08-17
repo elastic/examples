@@ -1,7 +1,7 @@
 heartbeat.monitors:
 - type: icmp
   schedule: '*/5 * * * * * *'
-  hosts: ["filebeat","metricbeat","packetbeat","elasticsearch","kibana","logstash","apache2","nginx","mysql"]
+  hosts: ["filebeat","metricbeat","packetbeat","elasticsearch","kibana","apache2","nginx","mysql"]
   ipv4: true
   ipv6: true
   mode: any
@@ -49,18 +49,6 @@ heartbeat.monitors:
   enabled: true
   schedule: '@every 5s'
   urls: ["http://apache2/server-status"]
-  ipv4: true
-  ipv6: true
-  mode: any
-  timeout: 5s
-  check.request:
-    method: "GET"
-  check.response:
-    status: 200
-- type: http
-  enabled: true
-  schedule: '@every 5s'
-  urls: ["http://logstash:9600"]
   ipv4: true
   ipv6: true
   mode: any

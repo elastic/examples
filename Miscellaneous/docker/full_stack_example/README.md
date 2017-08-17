@@ -1,7 +1,7 @@
 # Full Stack Example
 
 This example complements the blog post ["A full stack in one command"](TODO), providing the docker compose files responsible for deploying an example architecture of the Elastic Stack.  
-This architecture utilises Logstash and Beat modules for data sources, populating a wide range of dashboards to provide a simple experience for new users to the Elastic Stack.
+This architecture utilises Beat modules for data sources, populating a wide range of dashboards to provide a simple experience for new users to the Elastic Stack.
  
 ## Pre-requisites
 
@@ -15,7 +15,6 @@ This architecture utilises Logstash and Beat modules for data sources, populatin
     - `5601` (Kibana)
     - `9200` (Elasticsearch)
     - `3306` (Mysql)
-    - `5000`, `6000` (Logstash)
     
 1. Atleast 4Gb of available RAM
 1. wget - This is not a native tool on windows but readily available e.g. through [chocolatey](https://chocolatey.org/packages/Wget)
@@ -38,10 +37,9 @@ Summarising the above, the following containers are deployed:
 
 * `Elasticsearch`
 * `Kibana`
-* `Logstash` - configured for netflow module as well as a pipeline for sample apache logs. Sample data included.
 * `Filebeat` - Collecting logs from the apache2, nginx and mysql containers. Also responsible for indexing the host's system and docker logs.
 * `Packetbeat` - Monitoring communication between all containers with respect to http, flows, dns and mysql.
-* `Heartbeat` - Pinging all other containers over icmp. Additionally monitoring Logstash, Elasticsearch, Kibana, Nginx and Apache over http. Monitors mysql over TCP.
+* `Heartbeat` - Pinging all other containers over icmp. Additionally monitoring Elasticsearch, Kibana, Nginx and Apache over http. Monitors mysql over TCP.
 * `Metricbeat` - Monitors nginx, apache2 and mysql containers using status check interfaces. Additionally, used to monitor the host system with respect cpu, disk, memory and network. Monitors the hosts docker statistics with respect to disk, cpu, health checks, memory and network.
 * `Nginx` - Supporting container for Filebeat (access+error logs) and Metricbeat (server-status)
 * `Apache2` - Supporting container for Filebeat (access+error logs) and Metricbeat (server-status)
@@ -51,14 +49,13 @@ In addition to the above containers, a `configure_stack` container is deployed a
 
 * Setting the Elasticsearch passwords
 * Importing any dashboards
-* Creating a Logstash pattern in Kibana for the netflow and apache logs
 * Ìnserting any custom templates and ingest pipelines
 
 This container uses the Metricbeat images as it contains the required dashboards.
 
 ## Modules & Data
 
-The following Beat and Logstash modules are utilised in this stack example to provide data and dashboards:
+The following Beats modules are utilised in this stack example to provide data and dashboards:
 
 1. Packetbeat, capturing traffic on all interfaces:
     - `dns` - port `53`
@@ -66,16 +63,19 @@ The following Beat and Logstash modules are utilised in this stack example to pr
     - `icmp`
     - `flows`
     - `mysql` - port `3306`
+    
 1. Metricbeat
     - `apache` module with `status` metricset
     - `docker` module with `container`, `cpu`, `diskio`, `healthcheck`, `info`, `memory` and `network` metricsets 
     - `mysql` module with `status` metricset
     - `nginx` module with `stubstatus` metricset
     - `system` module with `core`,`cpu`,`load`,`diskio`,`filesystem`,`fsstat`,`memory`,`network`,`process`,`socket`
+    
 1. Heartbeat
-    - `http` - monitoring Logstash (9600), Elasticsearch (9200), Kibana (5601), Nginx (80)
+    - `http` - monitoring Elasticsearch (9200), Kibana (5601), Nginx (80), Apache(80)
     - `tcp` - monitoring Mysql (3306)
     - `icmp` - monitoring all containers
+    
 1. Filebeat
     - `system` module with `syslog` metricset
     - `mysql` module with `access` and `slowlog` `metricsets`
@@ -155,7 +155,6 @@ The following Beat and Logstash modules are utilised in this stack example to pr
     d35f1b864980        docker.elastic.co/beats/packetbeat:5.5.1              "packetbeat -e -E ..."   4 minutes ago       Up 4 minutes                                                              packetbeat
     8a569ed62837        docker.elastic.co/beats/heartbeat:5.5.1               "heartbeat -e -E o..."   4 minutes ago       Up 4 minutes                                                              heartbeat
     076e40495ef8        docker.elastic.co/beats/metricbeat:5.5.1              "metricbeat -e -E ..."   4 minutes ago       Up 4 minutes                                                              metricbeat
-    89e13314c279        docker.elastic.co/logstash/logstash:5.5.1             "/usr/local/bin/do..."   4 minutes ago       Up 4 minutes               5044/tcp, 127.0.0.1:5000->5000/tcp, 9600/tcp   logstash
     946a5034e37a        docker.elastic.co/beats/metricbeat:5.5.1              "/bin/bash -c 'cat..."   5 minutes ago       Exited (0) 4 minutes ago                                                  configure_stack
     c6173ed51209        docker.elastic.co/kibana/kibana:5.5.1                 "/bin/sh -c /usr/l..."   5 minutes ago       Up 5 minutes (healthy)     127.0.0.1:5601->5601/tcp                       kibana
     7ee2b178416e        fullstackexample_nginx                                "nginx -g 'daemon ..."   5 minutes ago       Up 5 minutes (healthy)     127.0.0.1:80->80/tcp, 443/tcp                  nginx
@@ -215,28 +214,10 @@ The following summarises some important technical considerations:
 1. The Filebeat registry file is persisted to the named volume `fbdata`, thus avoiding data duplication during restarts
 1. In order to collect docker statistics, Metricbeat mounts the hosts `/var/run/docker.sock` directory.  For windows and osx, this directory exists on the VM hosting docker.
 1. Packetbeat is configured to use the hosts network, in order to capture traffic on the host system rather than that between the containers.
-1. Logstash exposes ports `5000` and `6000` for data ingestion. See [Adding Logstash Data](TODO)
 1. For data persistence between restarts the `mysql` container uses a named volume `mysqldata`.
 1. The nginx, msql and apache containers expose ports 80, 8000 and 3306 respectively on the host. **Ensure these ports are free prior to starting**
 1. The Metricbeat container mounts both `/proc` and `/sys/fs/cgroup` on linux.  This allows Metricbeat to use the `system` module report on disk, memory, network and cpu of the host.  **This is only performed on linux.  For windows and osx the stats of the VM hosting docker will be reported.**
 1. In for Filebeat to index the docker logs it mounts `/var/lib/docker/containers`. These JSON logs are ingested into the index `docker-logs-<yyyy-MM-dd>`
-
-## Adding Logstash Data
-
-The examples includes a few simple Logstash pipelines to allow ingestion of Netflow data (using the module) and a sample getting started Apache log file. To ingest these simply run the following commands:
-
-***For Apache data***
-
-```shell
-cat sample_data/apache | nc localhost 5000
-```
-
-***For Netflow***
-
-```shell
-TODO
-```
-
 
 ## Generating data
 
@@ -258,7 +239,7 @@ With respect to the current example, we have provided a few simple entry points 
     * `DEFAULT_INDEX_PATTERN` - The index pattern used as the default in Kibana. Defaults to “metricbeat-*”.
     * `ES_MEM_LIMIT` - The memory limit used for the Elasticsearch container. Defaults to 2g. Consider reducing for smaller machines.
     * `ES_JVM_HEAP` - The Elasticsearch JVM heap size. Defaults to 1024m and should be set to half of the ES_MEM_LIMIT.
-1. Modules and Configuration - All configuration to the containers is provided through a mounted “./config” directory.  Where possible, this exploits the dynamic configuration loading capabilities of both Logstash and Beats. For example, an additional module could be added by simply adding a file to the directory “./config/beats/metricbeat/modules.d/” in the required format. Likewise modifying the Logstash configuration in “./config/logstash/logstash.conf” should cause it to be reloaded.
+1. Modules and Configuration - All configuration to the containers is provided through a mounted “./config” directory.  Where possible, this exploits the dynamic configuration loading capabilities of Beats. For example, an additional module could be added by simply adding a file to the directory “./config/beats/metricbeat/modules.d/” in the required format.
 1. Pipelines and templates - we provide the ability to add custom ingest pipelines and templates to Elasticsearch when the stack is first deployed. More specifically: `
     * Ingest templates should be added under `./init/templates/`.  These will be added on startup of the stack, with an id equal to the filename. For example, `docker-logs.json` will be added as a template with id `docker-logs`.
     * Pipelines should be added under `./init/pipelines/`. These will be added on startup of the stack, with an id equal to the filename. For example, `docker-logs.json` will be added as a pipeline with id `docker-logs`.
