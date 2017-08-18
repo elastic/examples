@@ -5,7 +5,8 @@ This architecture utilises Beat modules for data sources, populating a wide rang
  
 ## Pre-requisites
 
-1. Docker for Mac, Linux or OSX
+1. Docker for Windows (Linux Mode), Linux or OSX. 
+1. Whilst Docker Toolbox for Windows has been tested, Docker Toolbox on OSX has **not** been tested.
 1. Docker version > v17.07.0 (Earlier versions may work but have not been tested)
 1. Docker-Compose > 1.15.0
 1. Ensuring the following ports are free on the host, as they are mounted by the containers:
