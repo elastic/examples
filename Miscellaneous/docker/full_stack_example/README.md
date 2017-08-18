@@ -18,7 +18,8 @@ This architecture utilises Beat modules for data sources, populating a wide rang
     
 1. Atleast 4Gb of available RAM
 1. wget - This is not a native tool on windows but readily available e.g. through [chocolatey](https://chocolatey.org/packages/Wget)
-    
+1. If using a version of Docker for Windows that utilises a VM e.g. docker toolbox, ensure the [Windows Loopback adapter](https://technet.microsoft.com/en-gb/library/cc708322(v=ws.10).aspx) is installed.
+
 The example file uses docker-compose v2 syntax.
 
 **We assume prior knowledge of docker**
@@ -109,11 +110,19 @@ The following Beats modules are utilised in this stack example to provide data a
 
     * [Windows](https://docs.docker.com/docker-for-windows/#shared-drives)
     * [OSX](https://docs.docker.com/docker-for-mac/#file-sharing)
+    
+    Note: This step can be skipped if you extract the stack example into a subdirectory of `/Users` on OSX or C:\Users` on Windows.` These directories are bind mounted by default.
 
 1. If using OSX or Windows, ensure the VM used to host docker is allocated a minimum of 4GB. Further instructions on achieving this:
 
     * [Windows](https://docs.docker.com/docker-for-windows/#advanced)
     * [OSX](https://docs.docker.com/docker-for-mac/#advanced)
+
+1. For those using the older version of the Docker implementation for Windows i.e. Docker Toolbox, that utilises a Virtualbox VM, this currently [does not support mapping ports to localhost](https://github.com/docker/for-win/issues/204). After installing the loopback adapter, map the following the ports for the docker VM using the network settings in the VirtualBox interface as shown below:
+
+
+![Configure Port Mapping](https://user-images.githubusercontent.com/12695796/29459741-0d016854-841d-11e7-9bc5-23d360de0b51.png)
+
 
 1. Navigate into the full_stack_example folder from a terminal or powershell, and issue the following command. Adjust for your host operating system as shown.
 
@@ -180,7 +189,7 @@ The following dashboards are accessible and populated. Other dashboards, whilst 
 * Filebeat Apache2 Dashboard
 * Filebeat MySQL Dashboard
 * Filebeat Nginx Dashboard
-* Filebeat syslog dashboard
+* Filebeat syslog dashboard - Not available on Windows
 * Heartbeat HTTP monitoring
 * Metricbeat - Apache HTTPD server status
 * Metricbeat Docker
@@ -216,8 +225,9 @@ The following summarises some important technical considerations:
 1. Packetbeat is configured to use the hosts network, in order to capture traffic on the host system rather than that between the containers.
 1. For data persistence between restarts the `mysql` container uses a named volume `mysqldata`.
 1. The nginx, msql and apache containers expose ports 80, 8000 and 3306 respectively on the host. **Ensure these ports are free prior to starting**
-1. The Metricbeat container mounts both `/proc` and `/sys/fs/cgroup` on linux.  This allows Metricbeat to use the `system` module report on disk, memory, network and cpu of the host.  **This is only performed on linux.  For windows and osx the stats of the VM hosting docker will be reported.**
+1. The Metricbeat container mounts both `/proc` and `/sys/fs/cgroup` on linux.  This allows Metricbeat to use the `system` module report on disk, memory, network and cpu of the host.  **This is only performed on linux.  For windows and osx the stats of the VM hosting docker will be reported.  The module detects virtual disks will be result in confusing statistics.  This is pending improvement**
 1. In for Filebeat to index the docker logs it mounts `/var/lib/docker/containers`. These JSON logs are ingested into the index `docker-logs-<yyyy-MM-dd>`
+1. On systems with POSIX file permissions, all Beats configuration files are subject to ownership and file permission checks. The purpose of these checks is to prevent unauthorized users from providing or modifying configurations that are run by the Beat.  The owner of the configuration file must be either root or the user who is executing the Beat process. The permissions on the file must disallow writes by anyone other than the owner.  As we mount our configurations from the host, where the user is likely different than that used to run the container and the beat process, we disable this check for all beats with  -strict.perms=false.
 
 ## Generating data
 
@@ -243,7 +253,7 @@ With respect to the current example, we have provided a few simple entry points 
 1. Pipelines and templates - we provide the ability to add custom ingest pipelines and templates to Elasticsearch when the stack is first deployed. More specifically: `
     * Ingest templates should be added under `./init/templates/`.  These will be added on startup of the stack, with an id equal to the filename. For example, `docker-logs.json` will be added as a template with id `docker-logs`.
     * Pipelines should be added under `./init/pipelines/`. These will be added on startup of the stack, with an id equal to the filename. For example, `docker-logs.json` will be added as a pipeline with id `docker-logs`.
-1. Add another container!
+
 
 ## Shutting down the stack
 

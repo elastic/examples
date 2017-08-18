@@ -16,7 +16,6 @@ services:
   #   * the default index pattern used in kibana via the var DEFAULT_INDEX_PATTERN
   #   * the ES heap size through tt
   # REF: https://docs.docker.com/compose/compose-file/#variable-substitution
-  #
 
   #Elasticsearch container
   elasticsearch:
@@ -36,8 +35,8 @@ services:
     volumes:
       - ./config/elasticsearch/elasticsearch.yml:/usr/share/elasticsearch/elasticsearch.yml
       - esdata:/usr/share/elasticsearch/data
-    #Port 9200 is available on the host
-    ports: ['127.0.0.1:9200:9200']
+    #Port 9200 is available on the host. Need to for user to access as well as Packetbeat
+    ports: ['9200:9200']
     #Healthcheck to confirm availability of ES. Other containers wait on this.
     healthcheck:
       test: ["CMD", "curl","-s" ,"-f", "-u", "elastic:${ES_PASSWORD}", "http://localhost:9200/_cat/health"]
@@ -52,7 +51,7 @@ services:
     volumes:
       - ./config/kibana/kibana.yml:/usr/share/kibana/kibana.yml
     #Port 5601 accessible on the host
-    ports: ['127.0.0.1:5601:5601']
+    ports: ['5601:5601']
     networks: ['stack']
     #We don't start Kibana until the ES instance is ready
     depends_on: ['elasticsearch']
@@ -75,7 +74,7 @@ services:
       elasticsearch:  { condition: service_healthy }
     environment:
       - "ES_PASSWORD=${ES_PASSWORD}"
-    command: heartbeat -e -E output.elasticsearch.username=elastic -E output.elasticsearch.password=${ES_PASSWORD}
+    command: heartbeat -e -E output.elasticsearch.username=elastic -E output.elasticsearch.password=${ES_PASSWORD} -strict.perms=false
     networks: ['stack']
     restart: on-failure
 
@@ -103,7 +102,7 @@ services:
       #Named volume fsdata. This is used to persist the registry file between restarts, so to avoid data duplication
       - fbdata:/usr/share/filebeat/data/
     networks: ['stack']
-    command: filebeat -e -E output.elasticsearch.username=elastic -E output.elasticsearch.password=${ES_PASSWORD}
+    command: filebeat -e -E output.elasticsearch.username=elastic -E output.elasticsearch.password=${ES_PASSWORD} -strict.perms=false
     restart: on-failure
     depends_on:
       #wait for the these services to come up. This ensures the logs are available and ES exists for indexing
@@ -129,7 +128,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       #We mount the host filesystem so we can report on disk usage with the system module
       - /:/hostfs:ro
-    command: metricbeat -e -system.hostfs=/hostfs -E output.elasticsearch.username=elastic -E output.elasticsearch.password=${ES_PASSWORD}
+    command: metricbeat -e -system.hostfs=/hostfs -E output.elasticsearch.username=elastic -E output.elasticsearch.password=${ES_PASSWORD} -strict.perms=false
     networks: ['stack']
     restart: on-failure
     environment:
@@ -155,7 +154,7 @@ services:
     # the real network interface on the host, rather than being isolated to the
     # container's virtual interface.
     network_mode: host
-    command: packetbeat -e -E output.elasticsearch.hosts='["localhost:9200"]' -E output.elasticsearch.username=elastic -E output.elasticsearch.password=${ES_PASSWORD}
+    command: packetbeat -e -E output.elasticsearch.hosts='["localhost:9200"]' -E output.elasticsearch.username=elastic -E output.elasticsearch.password=${ES_PASSWORD} -strict.perms=false
     #Wait for ES to be up before we start collecting
     depends_on:
       elasticsearch:  { condition: service_healthy }
@@ -167,7 +166,7 @@ services:
     build: ${PWD}/config/nginx
     networks: ['stack']
     #Expose port 80 to allow users to hit content and generate data for filebeat and packetbeat
-    ports: ['127.0.0.1:80:80']
+    ports: ['80:80']
     command: nginx -g 'daemon off;'
     volumes:
       #Logs are mounted to a relative path. These are also accessed by Filebeat and consumed by the Nginx module
@@ -180,7 +179,7 @@ services:
     build: ${PWD}/config/apache2
     networks: ['stack']
     #Expose port 80 as port 800 to allow users to hit content and generate data for filebeat and packetbeat
-    ports: ['127.0.0.1:8000:80']
+    ports: ['8000:80']
     volumes:
       #Logs are mounted to a relative path. These are also accessed by Filebeat and consumed by the Apache module
       - ./logs/apache2/:/var/log/apache2/
@@ -194,7 +193,7 @@ services:
       - "MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}"
     networks: ['stack']
     #Expose port 3306 to allow users to connect and perform operations. These will be picked up by Packetbeat, Filebeat and Metricbeat
-    ports: ['127.0.0.1:3306:3306']
+    ports: ['3306:3306']
     volumes:
       #Use named volume so mysql data is persisted across restart
       - mysqldata:/var/lib/mysql/

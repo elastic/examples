@@ -16,8 +16,7 @@ services:
   #   * the default index pattern used in kibana via the var DEFAULT_INDEX_PATTERN
   #   * the ES heap size through tt
   # REF: https://docs.docker.com/compose/compose-file/#variable-substitution
-
-  #Elasticsearch container
+  #
   elasticsearch:
     container_name: elasticsearch
     hostname: elasticsearch
@@ -32,19 +31,16 @@ services:
       memlock:
         soft: -1
         hard: -1
-    #Mount the ES configuration so users can make edit. A named volumed means data is persisted across restarts.
     volumes:
-      - .\config\elasticsearch\elasticsearch.yml:/usr/share/elasticsearch/elasticsearch.yml
+      - ./config/elasticsearch/elasticsearch.yml:/usr/share/elasticsearch/elasticsearch.yml
       - esdata:/usr/share/elasticsearch/data
     #Port 9200 is available on the host
-    ports: ['127.0.0.1:9200:9200']
+    ports: ['9200:9200']
     #Healthcheck to confirm availability of ES. Other containers wait on this.
     healthcheck:
       test: ["CMD", "curl","-s" ,"-f", "-u", "elastic:${ES_PASSWORD}", "http://localhost:9200/_cat/health"]
     #Internal network for the containers
     networks: ['stack']
-
-  #Kibana container
   kibana:
     container_name: kibana
     hostname: kibana
@@ -52,7 +48,7 @@ services:
     volumes:
       - .\config\kibana\kibana.yml:/usr/share/kibana/kibana.yml
     #Port 5601 accessible on the host
-    ports: ['127.0.0.1:5601:5601']
+    ports: ['5601:5601']
     networks: ['stack']
     #We don't start Kibana until the ES instance is ready
     depends_on: ['elasticsearch']
@@ -61,7 +57,6 @@ services:
     healthcheck:
       test: ["CMD", "curl", "-s", "-f", "http://localhost:5601/login"]
       retries: 6
-
   #Heartbeat container
   heartbeat:
     container_name: heartbeat
@@ -74,10 +69,47 @@ services:
       elasticsearch:  { condition: service_healthy }
     environment:
       - "ES_PASSWORD=${ES_PASSWORD}"
-    command: heartbeat -e -E output.elasticsearch.username=elastic -E output.elasticsearch.password=${ES_PASSWORD}
+    command: heartbeat -e -E output.elasticsearch.username=elastic -E output.elasticsearch.password=${ES_PASSWORD} -strict.perms=false
     networks: ['stack']
     restart: on-failure
-
+  #Nginx container
+  nginx:
+    container_name: nginx
+    hostname: nginx
+    build: ./config/nginx
+    networks: ['stack']
+    #Expose port 80 to allow users to hit content and generate data for filebeat and packetbeat
+    ports: ['80:80']
+    command: nginx -g 'daemon off;'
+    volumes:
+      #Logs are mounted to a relative path. These are also accessed by Filebeat and consumed by the Nginx module
+      - .\logs\nginx\:/var/log/nginx/
+  #Apache2 container
+  apache2:
+    container_name: apache2
+    hostname: apache2
+    build: ./config/apache2
+    networks: ['stack']
+    #Expose port 80 as port 800 to allow users to hit content and generate data for filebeat and packetbeat
+    ports: ['8000:80']
+    volumes:
+      #Logs are mounted to a relative path. These are also accessed by Filebeat and consumed by the Apache module
+      - .\logs\apache2\:/var/log/apache2/
+  #Mysql container
+  mysql:
+    container_name: mqsql
+    hostname: mysql
+    build: ./config/mysql
+    environment:
+      - "MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}"
+    networks: ['stack']
+    #Expose port 3306 to allow users to connect and perform operations. These will be picked up by Packetbeat, Filebeat and Metricbeat
+    ports: ['3306:3306']
+    volumes:
+      #Use named volume so mysql data is persisted across restart
+      - mysqldata:/var/lib/mysql/
+      #Logs are mounted to a relative path. These are also accessed by Filebeat and consumed by the Mysql module
+      - .\logs\mysql:/var/log/mysql/
   #Filebeat container
   filebeat:
     container_name: filebeat
@@ -95,20 +127,45 @@ services:
       - .\logs\apache2\:/var/log/apache2/
       #Mount the mysql logs into the filebeat container so we can access and and index them using the filebeat mysql module
       - .\logs\mysql\:/var/log/mysql/
-      #Mount the hosts system log directory. This represents the logs of the VM hosting docker. Consumed by the filebeat system module.
-      - /var/log/:/var/log/host/:ro
       #Mount the docker logs for indexing by the custom prospector ./config/filebeat/prospectors.d
       - /var/lib/docker/containers:/hostfs/var/lib/docker/containers
       #Named volume fsdata. This is used to persist the registry file between restarts, so to avoid data duplication
       - fbdata:/usr/share/filebeat/data/
     networks: ['stack']
-    command: filebeat -e -E output.elasticsearch.username=elastic -E output.elasticsearch.password=${ES_PASSWORD}
+    command: filebeat -e -E output.elasticsearch.username=elastic -E output.elasticsearch.password=${ES_PASSWORD} -strict.perms=false
     restart: on-failure
     depends_on:
       #wait for the these services to come up. This ensures the logs are available and ES exists for indexing
       elasticsearch:  { condition: service_healthy }
       nginx: { condition: service_started }
       apache2: { condition: service_started }
+  #Configure Stack container. This short lived container configures the stack once Kibana and Elasticsearch are available. More specifically, using a script it sets passwords, import dashboards, sets a default index pattern, loads templates and pipelines
+  configure_stack:
+    container_name: configure_stack
+    image: docker.elastic.co/beats/metricbeat:${ELASTIC_VERSION}
+    volumes: ['.\init\configure-stack.sh:/usr/local/bin/configure-stack.sh:ro','.\init\pipelines\:/usr/local/bin/pipelines/','.\init\templates\:/usr/local/bin/templates/']
+    command: ['/bin/bash', '-c', 'cat /usr/local/bin/configure-stack.sh | tr -d "\r" | bash']
+    networks: ['stack']
+    environment: ['ELASTIC_VERSION=${ELASTIC_VERSION}','ES_PASSWORD=${ES_PASSWORD}','DEFAULT_INDEX_PATTERN=${DEFAULT_INDEX_PATTERN}']
+    depends_on: ['elasticsearch','kibana']
+  #Packetbeat container
+  packetbeat:
+    container_name: packetbeat
+    hostname: packetbeat
+    image: "docker.elastic.co/beats/packetbeat:${ELASTIC_VERSION}"
+    volumes:
+      - .\config\beats\packetbeat\packetbeat.yml:/usr/share/packetbeat/packetbeat.yml
+    # Packetbeat needs some elevated privileges to capture network traffic.
+    # We'll grant them with POSIX capabilities.
+    cap_add: ['NET_RAW', 'NET_ADMIN']
+    # Use "host mode" networking to allow Packetbeat to capture traffic from
+    # the real network interface on the host, rather than being isolated to the
+    # container's virtual interface.
+    network_mode: host
+    command: packetbeat -e -E output.elasticsearch.hosts='["localhost:9200"]' -E output.elasticsearch.username=elastic -E output.elasticsearch.password=${ES_PASSWORD} -strict.perms=false
+    #Wait for ES to be up before we start collectingc
+    depends_on:
+      elasticsearch:  { condition: service_healthy }
 
   #Metricbeat container
   metricbeat:
@@ -128,7 +185,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       #We mount the host filesystem so we can report on disk usage with the system module
       - /:/hostfs:ro
-    command: metricbeat -e -system.hostfs=/hostfs -E output.elasticsearch.username=elastic -E output.elasticsearch.password=${ES_PASSWORD}
+    command: metricbeat -e -system.hostfs=/hostfs -E output.elasticsearch.username=elastic -E output.elasticsearch.password=${ES_PASSWORD} -strict.perms=false
     networks: ['stack']
     restart: on-failure
     environment:
@@ -138,76 +195,6 @@ services:
       elasticsearch:  { condition: service_healthy }
       nginx: { condition: service_started }
       apache2: { condition: service_started }
-
-  #Packetbeat container
-  packetbeat:
-    container_name: packetbeat
-    hostname: packetbeat
-    image: "docker.elastic.co/beats/packetbeat:${ELASTIC_VERSION}"
-    volumes:
-      - .\config\beats\packetbeat\packetbeat.yml:/usr/share/packetbeat/packetbeat.yml
-    # Packetbeat needs some elevated privileges to capture network traffic.
-    # We'll grant them with POSIX capabilities.
-    cap_add: ['NET_RAW', 'NET_ADMIN']
-    # Use "host mode" networking to allow Packetbeat to capture traffic from
-    # the real network interface on the host, rather than being isolated to the
-    # container's virtual interface.
-    network_mode: host
-    command: packetbeat -e -E output.elasticsearch.hosts='["localhost:9200"]' -E output.elasticsearch.username=elastic -E output.elasticsearch.password=${ES_PASSWORD}
-    #Wait for ES to be up before we start collectingc
-    depends_on:
-      elasticsearch:  { condition: service_healthy }
-
-  #Nginx container
-  nginx:
-    container_name: nginx
-    hostname: nginx
-    build: ./config/nginx
-    networks: ['stack']
-    #Expose port 80 to allow users to hit content and generate data for filebeat and packetbeat
-    ports: ['127.0.0.1:80:80']
-    command: nginx -g 'daemon off;'
-    volumes:
-      #Logs are mounted to a relative path. These are also accessed by Filebeat and consumed by the Nginx module
-      - .\logs\nginx\:/var/log/nginx/
-
-  #Apache2 container
-  apache2:
-    container_name: apache2
-    hostname: apache2
-    build: ./config/apache2
-    networks: ['stack']
-    #Expose port 80 as port 800 to allow users to hit content and generate data for filebeat and packetbeat
-    ports: ['127.0.0.1:8000:80']
-    volumes:
-      #Logs are mounted to a relative path. These are also accessed by Filebeat and consumed by the Apache module
-      - .\logs\apache2\:/var/log/apache2/
-
-  #Mysql container
-  mysql:
-    container_name: mqsql
-    hostname: mysql
-    build: ./config/mysql
-    environment:
-      - "MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}"
-    networks: ['stack']
-    #Expose port 3306 to allow users to connect and perform operations. These will be picked up by Packetbeat, Filebeat and Metricbeat
-    ports: ['127.0.0.1:3306:3306']
-    volumes:
-      #Use named volume so mysql data is persisted across restart
-      - mysqldata:/var/lib/mysql/
-      #Logs are mounted to a relative path. These are also accessed by Filebeat and consumed by the Mysql module
-      - .\logs\mysql:/var/log/mysql/
-
-  #Configure Stack container. This short lived container configures the stack once Kibana and Elasticsearch are available. More specifically, using a script it sets passwords, import dashboards, sets a default index pattern, loads templates and pipelines
-  configure_stack:
-    container_name: configure_stack
-    image: docker.elastic.co/beats/metricbeat:${ELASTIC_VERSION}
-    volumes: ['.\init\configure-stack.sh:/usr/local/bin/configure-stack.sh:ro','.\init\pipelines\:/usr/local/bin/pipelines/','.\init\templates\:/usr/local/bin/templates/']
-    command: ['/bin/bash', '-c', 'cat /usr/local/bin/configure-stack.sh | tr -d "\r" | bash']
-    networks: ['stack']
-    environment: ['ELASTIC_VERSION=${ELASTIC_VERSION}','ES_PASSWORD=${ES_PASSWORD}','DEFAULT_INDEX_PATTERN=${DEFAULT_INDEX_PATTERN}']
-    depends_on: ['elasticsearch','kibana']
 
 volumes:
   #Mysql data
