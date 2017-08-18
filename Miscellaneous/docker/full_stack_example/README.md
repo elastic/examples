@@ -3,12 +3,15 @@
 This example complements the blog post ["A full stack in one command"](TODO), providing the docker compose files responsible for deploying an example architecture of the Elastic Stack.  
 This architecture utilises Beat modules for data sources, populating a wide range of dashboards to provide a simple experience for new users to the Elastic Stack.
  
-## Pre-requisites
+## Pre-requisites and Supported Versions
 
-1. Docker for Windows (Linux Mode), Linux or OSX. 
-1. Whilst Docker Toolbox for Windows has been tested, Docker Toolbox on OSX has **not** been tested.
-1. Docker version > v17.07.0 (Earlier versions may work but have not been tested)
-1. Docker-Compose > 1.15.0
+
+1. Docker-Compose >= 1.13.0
+1. Docker for Windows (Linux mode) Windows 10, 2012. Docker version >= v17.06.0
+1. Docker for OSX. Docker version >= v17.06.0.
+1. Docker Toolbox for Windows. Docker version >=v17.06.0
+1. Docker for Linux. Docker version >=v17.06.0
+
 1. Ensuring the following ports are free on the host, as they are mounted by the containers:
 
     - `80` (Nginx)
@@ -19,7 +22,7 @@ This architecture utilises Beat modules for data sources, populating a wide rang
     
 1. Atleast 4Gb of available RAM
 1. wget - This is not a native tool on windows but readily available e.g. through [chocolatey](https://chocolatey.org/packages/Wget)
-1. If using a version of Docker for Windows that utilises a VM e.g. docker toolbox, ensure the [Windows Loopback adapter](https://technet.microsoft.com/en-gb/library/cc708322(v=ws.10).aspx) is installed.
+1. If using a version of Docker for Windows that utilises a Virtualbox VM e.g. docker toolbox, ensure the [Windows Loopback adapter](https://technet.microsoft.com/en-gb/library/cc708322(v=ws.10).aspx) is installed.
 
 The example file uses docker-compose v2 syntax.
 
@@ -176,7 +179,7 @@ Further details [here](https://www.howtogeek.com/122641/how-to-forward-ports-to-
     
     Whilst the container ids will be unique, other details should be similar. Note the `configure_stack` container will have exited on completion of the configuration of stack.  This occurs before the beat containers start.  Other containers should be "Up".
 
-1. On confirming the stack is started, navigate to kibana at http://localhost:5601.  Assuming you haven't changed the default password, see [Customising the Stack](TODO), the default credentials of `elastic` and `changeme` should apply.
+1. On confirming the stack is started, navigate to kibana at http://localhost:5601 (OSX and Linux) or http://docker.for.win.localhost:5601/ (Windows).  Assuming you haven't changed the default password, see [Customising the Stack](https://github.com/elastic/examples/tree/master/Miscellaneous/docker/full_stack_example#customising-the-stack), the default credentials of `elastic` and `changeme` should apply.
 
 1. Navigate to the dashboard view. Open any of the dashboards listed as having data below. The following shows the Metricbeat-Docker dashboard.
 
@@ -221,7 +224,7 @@ The following summarises some important technical considerations:
 1. All configuration files can be found in the extracted folder `./config`.
 1. In order for the containers `nginx`, `apache2` and `mysql` to share their logs with the Filebeat container, they mount the folder `./logs` relative to the extracted directory. Filebeat additionally mounts this directory to read the logs.
 1. The Filebeat container mounts the host directories `/private/var/log` (osx) and `/var/log` (linux) in order to read the host's system logs. **This feature is not available in Windows**
-1. The Filebeat container mounts the host directory `/var/lib/docker/containers` in order to access the container logs.  These are ingested using a custom [prospector](TODO) and processed by an ingest pipeline loaded by the container `configure_stack`.
+1. The Filebeat container mounts the host directory `/var/lib/docker/containers` in order to access the container logs.  These are ingested using a custom [prospector](https://github.com/elastic/examples/tree/master/Miscellaneous/docker/full_stack_example/config/beats/filebeat/prospectors.d) and processed by an ingest pipeline loaded by the container `configure_stack`.
 1. The Filebeat registry file is persisted to the named volume `fbdata`, thus avoiding data duplication during restarts
 1. In order to collect docker statistics, Metricbeat mounts the hosts `/var/run/docker.sock` directory.  For windows and osx, this directory exists on the VM hosting docker.
 1. Packetbeat is configured to use the hosts network, in order to capture traffic on the host system rather than that between the containers.
