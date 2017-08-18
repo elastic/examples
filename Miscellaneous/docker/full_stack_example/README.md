@@ -123,6 +123,7 @@ The following Beats modules are utilised in this stack example to provide data a
 
 ![Configure Port Mapping](https://user-images.githubusercontent.com/12695796/29459741-0d016854-841d-11e7-9bc5-23d360de0b51.png)
 
+Further details [here](https://www.howtogeek.com/122641/how-to-forward-ports-to-a-virtual-machine-and-use-it-as-a-server/)
 
 1. Navigate into the full_stack_example folder from a terminal or powershell, and issue the following command. Adjust for your host operating system as shown.
 
