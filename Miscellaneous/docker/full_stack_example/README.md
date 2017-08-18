@@ -22,7 +22,7 @@ This architecture utilises Beat modules for data sources, populating a wide rang
     
 1. Atleast 4Gb of available RAM
 1. wget - This is not a native tool on windows but readily available e.g. through [chocolatey](https://chocolatey.org/packages/Wget)
-1. If using a version of Docker for Windows that utilises a Virtualbox VM e.g. docker toolbox, ensure the [Windows Loopback adapter](https://technet.microsoft.com/en-gb/library/cc708322(v=ws.10).aspx) is installed.
+1. If using a version of Docker for Windows that utilises a Virtualbox VM e.g. docker toolbox, ensure the [Windows Loopback adapter](https://technet.microsoft.com/en-gb/library/cc708322(v=ws.10).aspx) is installed.  This is not necessary if you are using Docker for Windows.
 
 The example file uses docker-compose v2 syntax.
 
@@ -179,7 +179,7 @@ Further details [here](https://www.howtogeek.com/122641/how-to-forward-ports-to-
     
     Whilst the container ids will be unique, other details should be similar. Note the `configure_stack` container will have exited on completion of the configuration of stack.  This occurs before the beat containers start.  Other containers should be "Up".
 
-1. On confirming the stack is started, navigate to kibana at http://localhost:5601 (OSX and Linux) or http://docker.for.win.localhost:5601/ (Windows).  Assuming you haven't changed the default password, see [Customising the Stack](https://github.com/elastic/examples/tree/master/Miscellaneous/docker/full_stack_example#customising-the-stack), the default credentials of `elastic` and `changeme` should apply.
+1. On confirming the stack is started, navigate to kibana at http://localhost:5601 (OSX, Linux and Docker Toolbox for Windows) or http://docker.for.win.localhost:5601/ (Docker for Windows).  Assuming you haven't changed the default password, see [Customising the Stack](https://github.com/elastic/examples/tree/master/Miscellaneous/docker/full_stack_example#customising-the-stack), the default credentials of `elastic` and `changeme` should apply.
 
 1. Navigate to the dashboard view. Open any of the dashboards listed as having data below. The following shows the Metricbeat-Docker dashboard.
 
