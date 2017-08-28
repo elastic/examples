@@ -1,0 +1,17 @@
+- module: system
+  metricsets:
+    - core
+    - cpu
+    - load
+    - diskio
+    - filesystem
+    - fsstat
+    - memory
+    - network
+    - process
+    - socket
+  enabled: true
+  period: 10s
+  processes: ['.*']
+  cpu_ticks: true
+  process.cgroups.enabled: true

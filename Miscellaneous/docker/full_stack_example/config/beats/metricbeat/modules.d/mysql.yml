@@ -1,0 +1,5 @@
+- module: mysql
+  metricsets: ["status"]
+  enabled: true
+  period: 10s
+  hosts: ["root:${MYSQL_ROOT_PASSWORD:changeme}@tcp(mysql:3306)/"]
