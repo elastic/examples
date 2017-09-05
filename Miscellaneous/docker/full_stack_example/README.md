@@ -1,6 +1,6 @@
 # Full Stack Example
 
-This example complements the blog post ["A full stack in one command"](TODO), providing the docker compose files responsible for deploying an example architecture of the Elastic Stack.  
+This example complements the blog post ["A full stack in one command"](https://www.elastic.co/blog/a-full-stack-in-one-command), providing the docker compose files responsible for deploying an example architecture of the Elastic Stack.  
 This architecture utilises Beat modules for data sources, populating a wide range of dashboards to provide a simple experience for new users to the Elastic Stack.
  
 ## Pre-requisites and Supported Versions
