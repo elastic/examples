@@ -11,6 +11,7 @@ stop: ## Stop the demo stack
 	docker-compose -f docker-compose-dev.yml down
 
 proxy: ## Start ngrok proxy
+	ngrok http 9292 
 
 stress: ## Stress the application
 
