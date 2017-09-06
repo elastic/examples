@@ -1,0 +1,10 @@
+version: '3'
+services:
+  game:
+    ports:
+      - 9292:9292
+    build:
+      context: game
+      dockerfile: Dockerfile.game
+      args:
+        git_sha1: ${GIT_SHA1}
