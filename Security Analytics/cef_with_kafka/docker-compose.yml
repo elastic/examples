@@ -1,14 +1,14 @@
 version: '2'
 services:
   kibana:
-    image: docker.elastic.co/kibana/kibana:5.1.1
+    image: docker.elastic.co/kibana/kibana:5.6.0
     links:
       - elasticsearch
     ports:
       - 5601:5601
 
   elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:5.1.1
+    image: docker.elastic.co/elasticsearch/elasticsearch:5.6.0
     cap_add:
       - IPC_LOCK
     volumes:
@@ -21,6 +21,7 @@ services:
     links:
       - elasticsearch
       - kafka
+      - kibana
     ports:
       - 9600:9600
       
@@ -35,9 +36,9 @@ services:
     links:
       - zookeeper
     environment:
-      KAFKA_ADVERTISED_HOST_NAME: 192.168.0.6
+      KAFKA_ADVERTISED_HOST_NAME: 192.168.0.13
       KAFKA_ADVERTISED_PORT: 9092
-      KAFKA_CREATE_TOPICS: "cef:1:1"
+      KAFKA_CREATE_TOPICS: "eb-cef:1:1"
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
     volumes:
         - /var/run/docker.sock:/var/run/docker.sock

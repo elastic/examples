@@ -1,7 +1,5 @@
-FROM docker.elastic.co/logstash/logstash:5.1.1
-RUN /usr/share/logstash/bin/logstash-plugin install logstash-input-kafka
+FROM docker.elastic.co/logstash/logstash:5.6.0
 RUN rm -f /usr/share/logstash/pipeline/logstash.conf
-
-ADD pipeline/logstash.conf /usr/share/logstash/pipeline/logstash.conf
-
-ADD pipeline/cef_template.json /usr/share/logstash/cef_template.json
+RUN rm -f /usr/share/logstash/config/logstash.yml
+ADD config/logstash.yml /usr/share/logstash/config/logstash.yml
+CMD /usr/share/logstash/bin/logstash --modules arcsight --setup

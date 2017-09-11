@@ -1,0 +1,13 @@
+modules:
+  - name: arcsight
+    var.input.eventbroker.bootstrap_servers: "kafka:9092"
+    var.input.eventbroker.topics: "eb-cef"
+    var.elasticsearch.hosts: "elasticsearch:9200"
+    var.elasticsearch.username: "elastic"
+    var.elasticsearch.password: "changeme"
+    var.kibana.host: "kibana:5601"
+    var.kibana.username: "elastic"
+    var.kibana.password: "changeme"
+
+xpack.monitoring.elasticsearch.url: "http://elasticsearch:9200"
+

@@ -8,9 +8,9 @@ This provides a working example of scaling an ArcSight-Elasticsearch architectur
 
 Example has been tested in following versions:
 
-- Elasticsearch 5.1
-- Logstash 5.1
-- Kibana 5.1
+- Elasticsearch 5.6
+- Logstash 5.6
+- Kibana 5.6
 - Kafka 0.10.1.0
 
 ### Elastic Stack - Manual Installation & Setup
