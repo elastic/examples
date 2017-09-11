@@ -1,0 +1,15 @@
+modules:
+  - name: arcsight
+    var.inputs: "smartconnector"
+    var.input.smartconnector.port: "5000"
+    var.elasticsearch.hosts: "elasticsearch:9200"
+    var.elasticsearch.username: "elastic"
+    var.elasticsearch.password: "changeme"
+    var.kibana.host: "kibana:5601"
+    var.kibana.username: "elastic"
+    var.kibana.password: "changeme"
+
+
+
+xpack.monitoring.elasticsearch.url: "http://elasticsearch:9200"
+

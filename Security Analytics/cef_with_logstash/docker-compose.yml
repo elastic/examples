@@ -1,14 +1,14 @@
 version: '2'
 services:
   kibana:
-    image: docker.elastic.co/kibana/kibana:5.1.1
+    image: docker.elastic.co/kibana/kibana:5.6.0
     links:
       - elasticsearch
     ports:
       - 5601:5601
 
   elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:5.1.1
+    image: docker.elastic.co/elasticsearch/elasticsearch:5.6.0
     cap_add:
       - IPC_LOCK
     volumes:
@@ -20,6 +20,7 @@ services:
     build: logstash
     links:
       - elasticsearch
+      - kibana
     ports:
       - 5000:5000
       - 9600:9600
