@@ -6,6 +6,7 @@ WORKDIR /app
 ENV RACK_ENV production
 ENV GIT_SHA1 $git_sha1
 
+RUN apk update && apk add ruby-json
 ADD Gemfile /app/
 ADD Gemfile.lock /app/
 RUN bundle install
