@@ -46,6 +46,9 @@ This docker-based stack is compose with these components:
 
 2 - Open your kibana
 
+If you use the docker compose file a configured container with kibana can be
+find at this URL [http://localhost:5601/](http://localhost:5601/)
+
 3 - Stress your application
 
 4 - Create cool dashboards!

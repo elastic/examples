@@ -8,3 +8,13 @@ services:
       dockerfile: Dockerfile.game
       args:
         git_sha1: ${GIT_SHA1}
+  elasticsearch:
+    image: elasticsearch
+    command: elasticsearch -Des.network.host=0.0.0.0
+  kibana:
+    image: kibana
+    links:
+      - elasticsearch
+    ports:
+      - "5601:5601"
+
