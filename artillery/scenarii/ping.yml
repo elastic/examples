@@ -1,0 +1,16 @@
+config:
+  environments:
+    dev:
+      target: 'http://localhost:9292/'
+      defaults:
+        headers:
+          Accept: "application/json"
+          Content-type: "application/json"
+  phases:
+    - duration: 5
+      arrivalRate: 3
+scenarios:
+  - name: "Just ping the API"
+    flow:
+      - get:
+          url: "/"
