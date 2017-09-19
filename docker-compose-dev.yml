@@ -19,6 +19,10 @@ services:
       - ./config/kibana.yml:/usr/share/kibana/config/kibana.yml
     ports:
       - 5601:5601
+  filebeat:
+    image: docker.elastic.co/beats/filebeat:5.6.1
+    volumes:
+      - ./config/filebeat.yml:/usr/share/filebeat/filebeat.yml
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:5.6.1
     volumes:

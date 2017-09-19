@@ -17,6 +17,9 @@ Dependencies
 - ngrok (optional)
 - your brain (not optional)
 
+### Supported Docker versions
+The images have been tested on Docker 17.09.0-ce-rc1 and docker-compose 1.16.1
+
 Installation
 ------------
 
@@ -101,6 +104,7 @@ Sources
 
 - [Configuring Kibana on Docker](https://www.elastic.co/guide/en/kibana/current/_configuring_kibana_on_docker.html)
 - [Install Elasticsearch with Docker](https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html)
+- [Official Beats Docker images](https://github.com/elastic/beats-docker)
 
 Contributing
 ------------
