@@ -53,6 +53,29 @@ find at this URL [http://localhost:5601/](http://localhost:5601/)
 
 4 - Create cool dashboards!
 
+About the elastic stack
+-----------------------
+[Elastic](https://www.elastic.co/about) is the company behind the elastic stack, a product portfolio of popular open source
+projects:
+
+- [Kibana](https://www.elastic.co/products/kibana)
+- [ElasticSearch](https://www.elastic.co/products/elasticsearch)
+- [Logstash](https://www.elastic.co/products/logstash)
+- [Beats](https://www.elastic.co/products/beats)
+- [X-Pack](https://www.elastic.co/products/x-pack)
+
+Elasticsearch is the heart of the elastic stack, it is a server using [Lucene](https://lucene.apache.org/core/) an ultra fast search library for indexing and retrieving data. It provides a distributed, multi-entity search engine through a REST interface. It is a free software written in Java and published in open source under Apache license.
+
+It is associated with other free products, Kibana, Logstash, and now Beats which are respectively a data viewer and ETLs.
+
+Elasticsearch is a solution built to be distributed and to use JSON via HTTP
+requests, which makes the search engine usable with any programming language and also has **facet** and **percolation** search capabilities. If you want to know more about facet search, take a look at the very first implementation of facet with the berkeley [Flamenco project](http://flamenco.berkeley.edu/).
+
+Sources
+-------
+
+- [Configuring Kibana on Docker](https://www.elastic.co/guide/en/kibana/current/_configuring_kibana_on_docker.html)
+
 Contributing
 ------------
 
