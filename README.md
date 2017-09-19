@@ -57,6 +57,10 @@ If you want to learn how to start an elasticsearch cluster with Docker, take a l
 this [page](https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html). The [docker-compose-dev.yml](docker-compose-dev.yml) file start Elasticsearch
  as single node mode and without Xpack activation.
 
+Filebeat will ship your logs to this Elasticsearch container, to know Filebeat
+works and how to configire your `harvesters` and `prospectors` take a look at
+this [page](https://www.elastic.co/guide/en/beats/filebeat/current/how-filebeat-works.html)
+
 2 - Open your kibana
 
 If you use the docker compose file a configured container with kibana can be
@@ -105,6 +109,7 @@ Sources
 - [Configuring Kibana on Docker](https://www.elastic.co/guide/en/kibana/current/_configuring_kibana_on_docker.html)
 - [Install Elasticsearch with Docker](https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html)
 - [Official Beats Docker images](https://github.com/elastic/beats-docker)
+- [How Filebeat works](https://www.elastic.co/guide/en/beats/filebeat/current/how-filebeat-works.html)
 
 Contributing
 ------------
