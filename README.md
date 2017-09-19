@@ -48,7 +48,7 @@ This docker-based stack is compose with these components:
 So, the ruby rack based application can be reach with curl and give a random
 arrays of fruits!
 
-![screen](screen.png)
+![screen](screens/screen-rack-app.png)
 
 2 - Open your kibana
 
@@ -64,6 +64,8 @@ cd artillery
 make build # generate an artillery container
 make ping # start a very minimal ping scenario
 ```
+
+![stress](screens/screen-stress.png)
 
 More infos in the [README](artillery/README.md) and commands in the `Makefile`
 
