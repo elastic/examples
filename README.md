@@ -13,10 +13,11 @@ This project is the workshop part of the [Kibana training](https://git.renault-d
 Dependencies
 ------------
 
-- docker, docker-compose
-- make
-- ngrok (optional)
-- your brain (not optional)
+- [docker](https://docs.docker.com/engine/installation/)
+- [docker-compose](https://docs.docker.com/compose/install/)
+- [make](https://en.wikipedia.org/wiki/Make_(software))
+- [ngrok](https://ngrok.com/download) (optional)
+- [your brain](https://imgur.com/gallery/tX8UN) (not optional)
 
 ### Supported Docker versions
 The images have been tested on Docker 17.09.0-ce-rc1 and docker-compose 1.16.1
