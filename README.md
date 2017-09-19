@@ -15,6 +15,7 @@ Dependencies
 - docker, docker-compose
 - make
 - ngrok (optional)
+- your brain (not optional)
 
 Installation
 ------------
