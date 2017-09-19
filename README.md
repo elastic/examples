@@ -110,6 +110,7 @@ Sources
 - [Install Elasticsearch with Docker](https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html)
 - [Official Beats Docker images](https://github.com/elastic/beats-docker)
 - [How Filebeat works](https://www.elastic.co/guide/en/beats/filebeat/current/how-filebeat-works.html)
+- [Running Logstash on docker](https://www.elastic.co/guide/en/logstash/current/docker.html)
 
 Contributing
 ------------
