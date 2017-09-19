@@ -51,6 +51,16 @@ find at this URL [http://localhost:5601/](http://localhost:5601/)
 
 3 - Stress your application
 
+To generate logs and stress the ruby sample application, I use [artillery](https://artillery.io/). It's a modern load testing toolkit written in nodejs. It's easy to define scenarii with the `yaml` syntax. If you’re new to Artillery, [Getting Started](https://artillery.io/docs/getting-started) is a good place to start, followed by an overview of [how Artillery works](https://artillery.io/docs/basic-concepts). I wrap all the things you need to run the load tests in Docker containers.
+
+```
+cd artillery
+make build # generate an artillery container
+make ping # start a very minimal ping scenario
+```
+
+More infos in the [README](artillery/README.md) and commands in the `Makefile`
+
 4 - Create cool dashboards!
 
 About the elastic stack
