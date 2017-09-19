@@ -4,7 +4,9 @@ class ArmedBandit
   FRUITS = %w{apple coconut banana avocado cherry fig lime mango pear pomelo}
 
   def call(env)
-    Rack::Response.new "Kibana armed bandit! #{activate!}"
+    fruits = activate!
+    @@logger.info(fruits)
+    Rack::Response.new "Kibana armed bandit! #{fruits}"
   end
 
   def activate!

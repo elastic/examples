@@ -11,6 +11,8 @@ services:
       dockerfile: Dockerfile.game
       args:
         git_sha1: ${GIT_SHA1}
+    volumes:
+      - ./log:/tmp/log
   kibana:
     image: docker.elastic.co/kibana/kibana:5.6.1
     links:
