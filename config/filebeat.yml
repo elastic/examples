@@ -1,12 +1,14 @@
-filebeat.prospectors:
-- input_type: log
-  paths:
-    - /mnt/log/*.log
+filebeat:
+  prospectors:
+    -
+      paths:
+        - "/var/log/bandit.log"
 
 processors:
 - add_cloud_metadata:
 
-output.elasticsearch:
-  hosts: ['elasticsearch:9200']
-  username: elastic
-  password: changeme
+output:
+  elasticsearch:
+    hosts: ['elasticsearch:9200']
+    username: elastic
+    password: changeme
