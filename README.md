@@ -51,13 +51,16 @@ arrays of fruits!
 ![screen](screens/screen-rack-app.png)
 
 If you want to learn how to start an elasticsearch cluster with Docker, take a look at
-this [file](https://git.renault-digital.com/arthur.clement/dockerstack-efk/blob/master/docker-compose.yml). The [docker-compose-dev.yml](docker-compose-dev.yml) file start Elasticsearch
+this [page](https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html). The [docker-compose-dev.yml](docker-compose-dev.yml) file start Elasticsearch
  as single node mode and without Xpack activation.
 
 2 - Open your kibana
 
 If you use the docker compose file a configured container with kibana can be
 find at this URL [http://localhost:5601/](http://localhost:5601/)
+
+You can give optionnaly a internet acces to your local kibana with the [ngrok](https://ngrok.com/).
+If ngrok is installed on your laptop and you want to share dashboard, just run `make proxy-kibana`.
 
 3 - Stress your application
 

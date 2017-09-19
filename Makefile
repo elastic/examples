@@ -10,9 +10,13 @@ start: ## Start the demo stack
 stop: ## Stop the demo stack
 	docker-compose -f docker-compose-dev.yml down
 
-proxy: ## Start ngrok proxy
+proxy: ## Start an ngrok proxy to the bandit server
 	ngrok http 9292 
 
-stress: ## Stress the application
+proxy-kibana: ## Start an ngrok proxy to the kibana UI.
+	ngrok http 5601
 
-.PHONY: help proxy stress start stop
+stress: ## Stress the application
+	cd artillery && make ping
+
+.PHONY: help proxy proxy-kibana stress start stop
