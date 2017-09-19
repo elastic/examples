@@ -46,9 +46,9 @@ system commands run `make help`
 
 This docker-based stack is compose with these components:
 
-- simple ruby application
+- simple ruby application (rack webserver)
 - elasticsearch as a single node
-- logs shipper
+- filebeat (logs shiper)
 - kibana
 
 > Hum... I have to just run `make start` ?
