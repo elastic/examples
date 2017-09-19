@@ -19,4 +19,7 @@ proxy-kibana: ## Start an ngrok proxy to the kibana UI.
 stress: ## Stress the application
 	cd artillery && make ping
 
+clean: ## Remove logs and other files
+	rm log/*.log 2> /dev/null 
+
 .PHONY: help proxy proxy-kibana stress start stop
