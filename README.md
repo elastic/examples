@@ -44,6 +44,11 @@ This docker-based stack is compose with these components:
 > Hum... I have to just run `make start` ?
 >> Yeah!
 
+So, the ruby rack based application can be reach with curl and give a random
+arrays of fruits!
+
+![screen](screen.png)
+
 2 - Open your kibana
 
 If you use the docker compose file a configured container with kibana can be
