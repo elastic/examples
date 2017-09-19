@@ -1,4 +1,7 @@
 version: '3'
+volumes:
+  esdata:
+    driver: local
 services:
   game:
     ports:
@@ -8,13 +11,29 @@ services:
       dockerfile: Dockerfile.game
       args:
         git_sha1: ${GIT_SHA1}
-  elasticsearch:
-    image: elasticsearch
-    command: elasticsearch -Des.network.host=0.0.0.0
   kibana:
-    image: kibana
+    image: docker.elastic.co/kibana/kibana:5.6.1
     links:
       - elasticsearch
+    volumes:
+      - ./config/kibana.yml:/usr/share/kibana/config/kibana.yml
     ports:
-      - "5601:5601"
+      - 5601:5601
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:5.6.1
+    volumes:
+      - esdata:/usr/share/elasticsearch/data
+    environment:
+      - discovery.type=single-node
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - xpack.security.enabled=false
+    ipc: shareable
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    ports:
+      - 9200:9200/tcp
+      - 9300:9300/tcp
 

@@ -38,7 +38,7 @@ system commands run `make help`
 This docker-based stack is compose with these components:
 
 - simple ruby application
-- elasticsearch container(s)
+- elasticsearch as a single node
 - logs shipper
 - kibana
 
@@ -49,6 +49,10 @@ So, the ruby rack based application can be reach with curl and give a random
 arrays of fruits!
 
 ![screen](screens/screen-rack-app.png)
+
+If you want to learn how to start an elasticsearch cluster with Docker, take a look at
+this [file](https://git.renault-digital.com/arthur.clement/dockerstack-efk/blob/master/docker-compose.yml). The [docker-compose-dev.yml](docker-compose-dev.yml) file start Elasticsearch
+ as single node mode and without Xpack activation.
 
 2 - Open your kibana
 
@@ -93,6 +97,7 @@ Sources
 -------
 
 - [Configuring Kibana on Docker](https://www.elastic.co/guide/en/kibana/current/_configuring_kibana_on_docker.html)
+- [Install Elasticsearch with Docker](https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html)
 
 Contributing
 ------------
