@@ -12,3 +12,4 @@ output:
     hosts: ['elasticsearch:9200']
     username: elastic
     password: changeme
+    index: bandit
