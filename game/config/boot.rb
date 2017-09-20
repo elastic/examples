@@ -2,12 +2,9 @@ require 'bundler'
 Bundler.setup
 Bundler.require
 
-require 'logger'
+require 'ougai'
 require './lib/logs_middleware.rb'
-@@logger = Logger.new('/tmp/bandit.log')
-@@logger.formatter = proc do |severity, datetime, prog, message|
-  %Q|{timestamp: "#{datetime.to_s}", message: "#{message}"}\n|
-end
+@@logger = Ougai::Logger.new('/tmp/bandit.log')
 
 require './app/app.rb'
 
