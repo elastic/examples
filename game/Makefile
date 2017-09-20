@@ -5,7 +5,7 @@ bundle-check:
 
 serve: bundle-check
 	@echo 'start rack'
-	rackup --port 9393
+	bundle exec rackup --port 9393
 
 test:
 	bundle exec rspec
