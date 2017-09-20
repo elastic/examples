@@ -44,7 +44,7 @@ system commands run `make help`
 
 1 - Start the testing stack
 
-This docker-based [stack](docker-compose-stack.yml) is composed by the following components:
+This docker-based [stack](docker-compose-dev.yml) is composed by the following components:
 
 - simple ruby application (rack webserver)
 - Elasticsearch as a single node
