@@ -136,6 +136,7 @@ Must-Read Sources
 - [Running Logstash on docker](https://www.elastic.co/guide/en/logstash/current/docker.html)
 - [Rack, the ruby webserver interface](https://rack.github.io/)
 - [Ruby an elegant and dynamic language](https://www.ruby-lang.org/en/)
+- [Ougai a JSON log formatter for ruby](https://github.com/tilfin/ougai)
 
 Contributing
 ------------

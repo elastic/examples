@@ -5,7 +5,9 @@ filebeat:
         - "/var/log/bandit.log"
 
 processors:
-- add_cloud_metadata:
+  - add_cloud_metadata:
+  - decode_json_fields:
+      fields: ['name', 'hostname', 'pid', 'msg', 'fruits']
 
 output:
   elasticsearch:
