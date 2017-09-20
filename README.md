@@ -2,11 +2,11 @@ Kibana Armed Bandit
 ===================
 
 **Logging** is key in every setup: having useful logs from the components in your
-environment is your best tool in diagnosing issues and keeping track of
-the health of your applications.
+environment is your best tool in order to diagnosis issues and keep track of
+your applications health.
 
-Docker-based deployments are no exception of this rule. In this training we will
-evaluate kibana features, upon reaching an **E*K** stack.
+Docker-based deployments are no exception to the rule. In this training we will
+evaluate Kibana features, upon reaching an **E*K** stack.
 
 This project is the workshop part of the [Kibana training](https://git.renault-digital.com/common/training/tree/master/kibana)
 
@@ -29,32 +29,32 @@ Installation
 lightweight, portable, "build once, configure once and run anywhere" functionalities.
 
 To run this project on your computer you only need Docker, you probably already
-know this technology but in case you don't we have written a training
-[here](https://git.renault-digital.com/common/training/blob/master/docker/docker-intro-part1.md)
-and you can find the documentation about how to install the docker engine
-[here](https://docs.docker.com/engine/installation/) in the docker official website.
+know this technology. In case you don't we have written a training
+[here](https://git.renault-digital.com/common/training/blob/master/docker/docker-intro-part1.md).
+You can find the documentation about how to install the docker engine
+[here](https://docs.docker.com/engine/installation/) on the docker official website.
 
 Everything Ok...? Let's start!
 
 Usage
 -----
 
-**Makefiles** are a simple way to organize commands, to see this project usefull
+**Makefiles** are a simple way to organize commands, to see this project useful
 system commands run `make help`
 
 1 - Start the testing stack
 
-This docker-based [stack](docker-compose-stack.yml) is compose with these components:
+This docker-based [stack](docker-compose-stack.yml) is composed by the following components:
 
 - simple ruby application (rack webserver)
-- elasticsearch as a single node
-- filebeat (logs shiper)
-- kibana
+- Elasticsearch as a single node
+- Filebeat (logs shipper)
+- Kibana
 
 > Hum... I have to just run `make start` ?
 >> Yeah!
 
-So, the ruby rack based application can be reach with curl and give a random
+So, the ruby rack based application can be reached by curl and should return a random
 arrays of fruits!
 
 ![screen](screens/screen-rack-app.png)
@@ -62,29 +62,29 @@ arrays of fruits!
 If you want to learn how to start an **Elasticsearch** cluster with Docker, take a look at
 this [page](https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html).
 The [docker-compose-dev.yml](docker-compose-dev.yml) file start Elasticsearch
-as single node mode and without Xpack activation.
+as single node mode. Xpack activation is not included.
 
-**Filebeat** will ship your logs to this Elasticsearch container, to know Filebeat
-works and how to configire your `harvesters` and `prospectors` take a look at
+**Filebeat** will ship your logs to this Elasticsearch container. To learn more on how Filebeat
+works and how to configure your `harvesters` and `prospectors` take a look at
 this [page](https://www.elastic.co/guide/en/beats/filebeat/current/how-filebeat-works.html)
 
-2 - Open your kibana
+2 - Open your Kibana
 
-If you use the docker compose [file](docker-compose-dev.yml) a configured container with kibana can be
+If you use the docker compose [file](docker-compose-dev.yml) a configured container with Kibana can be
 find at this URL [http://localhost:5601/](http://localhost:5601/)
 
-You can give optionnaly a internet access to your local kibana with the [ngrok](https://ngrok.com/).
-If **ngrok** is installed on your laptop and you want to share dashboard, just run `make proxy-kibana`.
+You can optionally give an internet access to your local Kibana by using [Ngrok](https://ngrok.com/).
+If **ngrok** is installed on your laptop and you want to share a dashboard, just run `make proxy-kibana`.
 
 3 - Stress your application
 
 > Now, it's time to generate traffic :)
 
 To generate logs and stress the ruby sample application, I use [artillery](https://artillery.io/).
-It's a modern load testing toolkit written in nodejs. It's easy to define
+It's a modern load testing toolkit written in Node.js. It's easy to define
 **scenarii** with the `yaml` syntax. If you’re new to Artillery, [Getting Started](https://artillery.io/docs/getting-started)
 is a good place to start, followed by an overview of [how Artillery works](https://artillery.io/docs/basic-concepts).
-I wrap all the things you need to run the load tests in Docker containers.
+I wrapped all the things you need to run the load tests in the Docker containers.
 
 ```
 cd artillery
@@ -100,8 +100,8 @@ More infos in the [README](artillery/README.md) and commands in the `Makefile`
 
 About the Elastic Stack
 -----------------------
-[Elastic](https://www.elastic.co/about) is the company behind the elastic stack,
-a product portfolio of popular open source projects:
+[Elastic](https://www.elastic.co/about) is the company behind the elastic stack.
+It is a product portfolio of popular open source projects:
 
 - [Kibana](https://www.elastic.co/products/kibana)
 - [ElasticSearch](https://www.elastic.co/products/elasticsearch)
@@ -119,10 +119,10 @@ It is associated with other free products, Kibana, Logstash, and now Beats which
 are respectively a data viewer and **ETLs**.
 
 Elasticsearch is a solution built to be distributed and to use **JSON** via **HTTP**
-requests, which makes the search engine usable with any programming language
-and also has **facet** and **percolation** search capabilities. If you want to
+requests. This makes the search engine usable with any programming language.
+It also has **facet** and **percolation** search capabilities. If you want to
 know more about facet search, take a look at the very first implementation of
-facet with the berkeley [Flamenco project](http://flamenco.berkeley.edu/).
+facet with the Berkeley's [Flamenco project](http://flamenco.berkeley.edu/).
 
 ![stack](screens/screen-es-stack.png)
 
@@ -141,11 +141,10 @@ Contributing
 ------------
 
 This project is a part of a collection of resources for people who want to learn
-how to run and contribute to improve projects **quality** at renault-digital.
+how to run and contribute to improve projects **quality** at Renault-Digital.
 
-If you find bugs or want to improve the documention, please feel free to
+If you find bugs or want to improve the documentation, please feel free to
 contribute!
 
 Happy coding!
-
 
