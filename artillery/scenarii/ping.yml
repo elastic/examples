@@ -7,8 +7,8 @@ config:
           Accept: "application/json"
           Content-type: "application/json"
   phases:
-    - duration: 100
-      arrivalRate: 3000
+    - duration: 10
+      arrivalRate: 30
 scenarios:
   - name: "Just ping the API"
     flow:
