@@ -62,7 +62,7 @@ arrays of fruits!
 If you want to learn how to start an **Elasticsearch** cluster with Docker, take a look at
 this [page](https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html).
 The [docker-compose-dev.yml](docker-compose-dev.yml) file start Elasticsearch
-as single node mode. Xpack activation is not included.
+as single node mode. Xpack security extension activation is not included.
 
 **Filebeat** will ship your logs to this Elasticsearch container. To learn more on how Filebeat
 works and how to configure your `harvesters` and `prospectors` take a look at
@@ -75,6 +75,9 @@ find at this URL [http://localhost:5601/](http://localhost:5601/)
 
 You can optionally give an internet access to your local Kibana by using [Ngrok](https://ngrok.com/).
 If **ngrok** is installed on your laptop and you want to share a dashboard, just run `make proxy-kibana`.
+
+/!\ As you can see you create an index... So run `script/create-index` and fill the
+form with `bandit` as index name.
 
 3 - Stress your application
 
