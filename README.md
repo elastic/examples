@@ -133,10 +133,15 @@ Must-Read Sources
 -----------------
 
 - [Configuring Kibana on Docker](https://www.elastic.co/guide/en/kibana/current/_configuring_kibana_on_docker.html)
+- [Getting started with Kibana](https://www.elastic.co/webinars/getting-started-kibana)
 - [Install Elasticsearch with Docker](https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html)
 - [Official Beats Docker images](https://github.com/elastic/beats-docker)
+- [Getting started with Filebeat](https://www.elastic.co/videos/getting-started-with-filebeat)
 - [How Filebeat works](https://www.elastic.co/guide/en/beats/filebeat/current/how-filebeat-works.html)
 - [Running Logstash on docker](https://www.elastic.co/guide/en/logstash/current/docker.html)
+
+And if you want to learn more about ruby `<3`
+
 - [Rack, the ruby webserver interface](https://rack.github.io/)
 - [Ruby an elegant and dynamic language](https://www.ruby-lang.org/en/)
 - [Ougai a JSON log formatter for ruby](https://github.com/tilfin/ougai)
