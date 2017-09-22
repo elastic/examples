@@ -122,6 +122,11 @@ The app generate logs in `log/bandit.log` file.
 
 4 - Create cool dashboards!
 
+First you need to declare the `bandit` index, then on the Discover menu you can
+find your fruits!
+
+![fruits](screens/fruits.png)
+
 About the Elastic Stack
 -----------------------
 [Elastic](https://www.elastic.co/about) is the company behind the elastic stack.
