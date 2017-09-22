@@ -7,8 +7,8 @@ start: ## Start the demo stack
 	@echo build a new docker image with GIT_SHA1 ${sha1}
 	GIT_SHA1=${sha1} docker-compose -f docker-compose-dev.yml up --build -d 
 
-stop: ## Stop the demo stack
-	docker-compose -f docker-compose-dev.yml down
+stop: ## Stop the demo stack and remove the Elasticsearch volume
+	docker-compose -f docker-compose-dev.yml down -v
 
 proxy: ## Start an ngrok proxy to the bandit server
 	ngrok http 9292 
