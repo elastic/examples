@@ -22,4 +22,7 @@ stress: ## Stress the application
 clean: ## Remove logs and other files
 	rm log/*.log 2> /dev/null 
 
-.PHONY: help proxy proxy-kibana stress start stop
+count: ## Count log lines
+	wc -l log/bandit.log
+
+.PHONY: help proxy proxy-kibana stress start stop count
