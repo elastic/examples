@@ -13,9 +13,9 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--es_host", default="localhost:9200", help="ES Connection String")
 parser.add_argument("--es_user", default="elastic", help="ES User")
 parser.add_argument("--es_password", default="changeme", help="ES Password")
-parser.add_argument("--num_centroids", default=10, help="Number of Centroids")
-parser.add_argument("--min_per_centroid", default=10, help="Min doc per centroid")
-parser.add_argument("--max_per_centroid", default=5000, help="Max doc per centroid")
+parser.add_argument("--num_centroids", default=10, type=int, help="Number of Centroids")
+parser.add_argument("--min_per_centroid", default=10, type=int, help="Min doc per centroid")
+parser.add_argument("--max_per_centroid", default=5000, type=int, help="Max doc per centroid")
 
 options = parser.parse_args()
 
