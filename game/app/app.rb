@@ -3,7 +3,7 @@
 class ArmedBandit
   FRUITS = %w{apple coconut banana avocado cherry fig lime mango pear pomelo}
 
-  def call(env)
+  def call(_env)
     fruits = activate!
     message = fruits.uniq.length == 1 ? 'Bingo' : 'Try again'
     @@logger.info(message, fruits: fruits)
