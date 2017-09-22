@@ -1,3 +1,4 @@
+```
 PUT _xpack/watcher/watch/my-watch1
 {
   "trigger": {
@@ -40,6 +41,7 @@ PUT _xpack/watcher/watch/my-watch1
     }
   }
 }
-
+```
+```
 POST _xpack/watcher/watch/my-watch1/_execute
-Raw
+```
