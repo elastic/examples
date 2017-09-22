@@ -5,7 +5,8 @@ class ArmedBandit
 
   def call(env)
     fruits = activate!
-    @@logger.info(fruits: fruits)
+    message = fruits.uniq.length == 1 ? 'Bingo' : 'Try again'
+    @@logger.info(message, fruits: fruits)
     Rack::Response.new "Kibana armed bandit! #{fruits}"
   end
 
