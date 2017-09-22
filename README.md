@@ -34,6 +34,11 @@ know this technology. In case you don't we have written a training
 You can find the documentation about how to install the docker engine
 [here](https://docs.docker.com/engine/installation/) on the docker official website.
 
+You don't like Docker, huh?
+Downloads the Elastic stack without Docker just here:
+
+- [https://www.elastic.co/downloads](https://www.elastic.co/downloads)
+
 Everything Ok...? Let's start!
 
 Usage
@@ -50,6 +55,7 @@ This docker-based [stack](docker-compose-dev.yml) is composed by the following c
 - Elasticsearch as a single node
 - Filebeat (logs shipper)
 - Kibana
+
 
 > Hum... I have to just run `make start` ?
 >> Yeah!
@@ -96,6 +102,21 @@ make ping # start a very minimal ping scenario
 ```
 
 ![stress](screens/screen-stress.png)
+
+The app generate logs in `log/bandit.log` file.
+
+```
+{"name":"rackup","hostname":"1b44bda82cb3","pid":5,"level":30,"time":"2017-09-22T05:24:30.307+00:00","v":0,"msg":"No message","fruits":["pomelo","cherry","coconut"]}
+{"name":"rackup","hostname":"1b44bda82cb3","pid":5,"level":30,"time":"2017-09-22T05:24:30.318+00:00","v":0,"msg":"No message","fruits":["apple","pear","apple"]}
+{"name":"rackup","hostname":"1b44bda82cb3","pid":5,"level":30,"time":"2017-09-22T05:24:30.319+00:00","v":0,"msg":"No message","fruits":["fig","avocado","fig"]}
+{"name":"rackup","hostname":"1b44bda82cb3","pid":5,"level":30,"time":"2017-09-22T05:24:30.375+00:00","v":0,"msg":"No message","fruits":["lime","banana","fig"]}
+{"name":"rackup","hostname":"1b44bda82cb3","pid":5,"level":30,"time":"2017-09-22T05:24:30.404+00:00","v":0,"msg":"No message","fruits":["lime","pear","apple"]}
+{"name":"rackup","hostname":"1b44bda82cb3","pid":5,"level":30,"time":"2017-09-22T05:24:30.427+00:00","v":0,"msg":"No message","fruits":["fig","cherry","pomelo"]}
+{"name":"rackup","hostname":"1b44bda82cb3","pid":5,"level":30,"time":"2017-09-22T05:24:30.449+00:00","v":0,"msg":"No message","fruits":["apple","fig","cherry"]}
+{"name":"rackup","hostname":"1b44bda82cb3","pid":5,"level":30,"time":"2017-09-22T05:24:30.475+00:00","v":0,"msg":"No message","fruits":["cherry","pomelo","pear"]}
+{"name":"rackup","hostname":"1b44bda82cb3","pid":5,"level":30,"time":"2017-09-22T05:24:30.507+00:00","v":0,"msg":"No message","fruits":["mango","pear","pomelo"]}
+{"name":"rackup","hostname":"1b44bda82cb3","pid":5,"level":30,"time":"2017-09-22T05:24:30.547+00:00","v":0,"msg":"No message","fruits":["lime","cherry","coconut"]}
+```
 
 More infos in the [README](artillery/README.md) and commands in the `Makefile`
 

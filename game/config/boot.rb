@@ -3,8 +3,7 @@ Bundler.setup
 Bundler.require
 
 require 'ougai'
-require './lib/logs_middleware.rb'
-@@logger = Ougai::Logger.new('/tmp/bandit.log')
+@@logger = Ougai::Logger.new('/tmp/log/bandit.log')
 
 require './app/app.rb'
 

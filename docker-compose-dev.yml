@@ -12,7 +12,7 @@ services:
       args:
         git_sha1: ${GIT_SHA1}
     volumes:
-      - ./log:/tmp
+      - ./log:/tmp/log
     healthcheck:
       test: ['CMD', 'curl', '-f', 'http://localhost:9292']
   kibana:
