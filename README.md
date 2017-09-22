@@ -104,7 +104,7 @@ More infos about the artillery in the [README](artillery/README.md) and commands
 
 ![stress](screens/screen-stress.png)
 
-The app generate logs in `log/bandit.log` file.
+The app generate logs in JSON format`log/bandit.log`.
 
 ```
 {"name":"rackup","hostname":"1b44bda82cb3","pid":5,"level":30,"time":"2017-09-22T05:24:30.307+00:00","v":0,"msg":"No message","fruits":["pomelo","cherry","coconut"]}
@@ -119,6 +119,7 @@ The app generate logs in `log/bandit.log` file.
 {"name":"rackup","hostname":"1b44bda82cb3","pid":5,"level":30,"time":"2017-09-22T05:24:30.547+00:00","v":0,"msg":"No message","fruits":["lime","cherry","coconut"]}
 ```
 
+The Filebeat [configuration](config/filebeat.yml) is here to parse the JSON format and send the data to Elasticsearch.
 
 4 - Create cool dashboards!
 
