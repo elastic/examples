@@ -100,6 +100,7 @@ cd artillery
 make build # generate an artillery container
 make ping # start a very minimal ping scenario
 ```
+More infos about the artillery in the [README](artillery/README.md) and commands in the `Makefile`
 
 ![stress](screens/screen-stress.png)
 
@@ -118,7 +119,6 @@ The app generate logs in `log/bandit.log` file.
 {"name":"rackup","hostname":"1b44bda82cb3","pid":5,"level":30,"time":"2017-09-22T05:24:30.547+00:00","v":0,"msg":"No message","fruits":["lime","cherry","coconut"]}
 ```
 
-More infos in the [README](artillery/README.md) and commands in the `Makefile`
 
 4 - Create cool dashboards!
 
