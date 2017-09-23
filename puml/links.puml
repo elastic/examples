@@ -1,0 +1,9 @@
+skinparam componentStyle uml2
+[elasticsearch]
+[filebeat]
+[game]
+[kibana]
+[kibana] --> [elasticsearch]
+[filebeat] ..> [elasticsearch] : depends on
+[filebeat] ..> [kibana] : depends on
+[kibana] ..> [elasticsearch] : depends on

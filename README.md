@@ -6,12 +6,12 @@ environment is your best tool in order to diagnosis issues and keep track of
 your applications health.
 
 Docker-based deployments are no exception to the rule. In this training we will
-evaluate Kibana features, upon reaching an **E*K** stack.
+evaluate Kibana features, upon reaching an **Elastic** stack.
 
 This project is the workshop part of the [Kibana training](https://git.renault-digital.com/common/training/tree/master/kibana)
 
-Dependencies
-------------
+Dependencies & Pre-requisites
+-----------------------------
 
 - [docker](https://docs.docker.com/engine/installation/)
 - [docker-compose](https://docs.docker.com/compose/install/)
@@ -19,8 +19,25 @@ Dependencies
 - [ngrok](https://ngrok.com/download) (optional)
 - [your brain](https://imgur.com/gallery/tX8UN) (not optional)
 
-### Supported Docker versions
+
+Ensuring the following ports are free on the host, as they are mounted by the containers:
+
+    - `5601` (Kibana)
+    - `9200,9300` (Elasticsearch)
+    - `9292` (Bandit application)
+
+### Supported versions
+
 The images have been tested on Docker 17.09.0-ce-rc1 and docker-compose 1.16.1
+The docker-compose file uses docker-compose v2.1 syntax.
+All Elastic Stack components are version 5.6.1, see `.env` file.
+
+Architecture
+------------
+
+The following illustrates the architecture deployed by the compose file. All components are deployed to a single machine.
+
+![stack](screens/stack.png)
 
 Installation
 ------------
@@ -51,11 +68,12 @@ system commands run `make help`
 
 This docker-based [stack](docker-compose-dev.yml) is composed by the following components:
 
-- simple ruby application (rack webserver)
+- ruby application aka bandit game
 - Elasticsearch as a single node
 - Filebeat (logs shipper)
 - Kibana
 
+![links](screens/links.png)
 
 > Hum... I have to just run `make start` ?
 >> Yeah!
@@ -156,6 +174,18 @@ facet with the Berkeley's [Flamenco project](http://flamenco.berkeley.edu/).
 
 ![stack](screens/screen-es-stack.png)
 
+Technical notes
+---------------
+
+The following summarises some important technical considerations:
+
+- The Elasticsearch instances uses a named volume `esdata` for data persistence between restarts. It exposes HTTP port 9200 for communication with other containers.
+- Environment variable defaults can be found in the file `.env`
+- The Elasticsearch container has its memory limited to 2g. This can be adjusted using the environment parameter `ES_MEM_LIMIT`. Elasticsearch has a heap size of 1g. This can be adjusted through the environment variable `ES_JVM_HEAP` and should be set to 50% of the `ES_MEM_LIMIT`.  **Users may wish to adjust this value on smaller machines**.
+- The Kibana container exposes the port 5601.
+- All configuration files can be found in the extracted folder `./config`.
+- In order for the container `game` to share logs with the Filebeat container, he mount the folder `./logs` relative to the extracted directory. Filebeat additionally mounts this directory to read the logs.
+
 Must-Read Sources
 -----------------
 
@@ -183,4 +213,3 @@ If you find bugs or want to improve the documentation, please feel free to
 contribute!
 
 Happy coding!
-

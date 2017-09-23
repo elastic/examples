@@ -1,0 +1,15 @@
+skinparam componentStyle uml2
+cloud system {
+  [elasticsearch]
+  [filebeat]
+  [game]
+  [kibana]
+}
+database esdata {
+  [/usr/share/elasticsearch/data] as volume_1
+}
+[elasticsearch] --> 9200 : 9200tcp
+[elasticsearch] --> 9300 : 9300tcp
+[game] --> 9292 : 9292
+[kibana] --> 5601 : 5601
+[elasticsearch] --> volume_1
