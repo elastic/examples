@@ -8,8 +8,6 @@ your applications health.
 Docker-based deployments are no exception to the rule. In this training we will
 evaluate Kibana features, upon reaching an **Elastic** stack.
 
-This project is the workshop part of the [Kibana training](https://git.renault-digital.com/common/training/tree/master/kibana)
-
 Dependencies & Pre-requisites
 -----------------------------
 
@@ -205,9 +203,6 @@ And if you want to learn more about ruby `<3`
 
 Contributing
 ------------
-
-This project is a part of a collection of resources for people who want to learn
-how to run and contribute to improve projects **quality** at Renault-Digital.
 
 If you find bugs or want to improve the documentation, please feel free to
 contribute!
