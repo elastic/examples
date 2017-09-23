@@ -1,3 +1,5 @@
+include .env
+export $(shell sed 's/=.*//' .env)
 sha1=`git rev-parse --verify HEAD`
 
 help: ## Show this help.
