@@ -17,8 +17,9 @@ To load the dashboard into Kibana:
 1. Download the `watch_history_dashboard.json` file.
 2. In Kibana, configure an index pattern for the watch history indices:
     1. Go to *Management > Index Patterns*.
-    2. Enter the index pattern `.watcher-history-*`.
-    3. Select `trigger_event.triggered_time` as the time field.
-    4. Click *Create*.
+    2. Enter the index pattern `.watcher-history-*`. 
+    3. For 5.6.x and newer, click *advanced options*, enter `.watcher-history-*` as the `Index pattern ID` 
+    4. Select `trigger_event.triggered_time` as the time field.
+    5. Click *Create*.
 3. Go to *Management > Saved Objects*.
 4. Click *Import* and select the downloaded dashboard file.
