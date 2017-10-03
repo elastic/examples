@@ -132,7 +132,7 @@ Further details [here](https://www.howtogeek.com/122641/how-to-forward-ports-to-
 1. Navigate into the full_stack_example folder from a terminal or powershell, and issue the following command. Adjust for your host operating system as shown.
 
     ```shell
-    cd full_stack_example.tar.gz
+    cd full_stack_example
     ```
     
     For osx
