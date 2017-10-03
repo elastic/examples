@@ -29,7 +29,7 @@ This example includes:
 
 ### Installation & Setup
 
-* Follow the [Installation & Setup Guide](https://github.com/elastic/examples/blob/master/Installation%20and%20Setup.md) to install and test the Elastic Stack (*you can skip this step if you have a working installation of the Elastic Stack,*)
+* Follow the [Installation & Setup Guide](https://github.com/elastic/examples/blob/master/Installation%20and%20Setup.md) to install and test the Elastic Stack (*you can skip this step if you have a working installation of the Elastic Stack*)
 
 * Run Elasticsearch & Kibana
   ```shell
@@ -79,7 +79,7 @@ wget https://raw.githubusercontent.com/elastic/examples/master/Common%20Data%20F
 
 ```shell
 cd <path_to_filebeat_root_dir>
-./filebeat -e -modules=nginx -setup  -M "nginx.access.var.paths=[<PATH_TO_NGINIX_LOGS_FILE>]" -E filebeat.prospectors.0.enabled=false
+./filebeat -e -modules=nginx -setup  -M "nginx.access.var.paths=[<PATH_TO_NGINX_LOGS_FILE>]" -E filebeat.prospectors.0.enabled=false
 ```
 
 Note: The `-E filebeat.prospectors.0.enabled=false` is required to disable the default file collector enabled in the filebeat.yml file that is distributed with the base install. 
