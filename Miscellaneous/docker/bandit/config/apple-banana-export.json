@@ -1,0 +1,22 @@
+[
+  {
+    "_id": "AV6oUd0TxPxTc46n6hcV",
+    "_type": "search",
+    "_source": {
+      "title": "apple & banana",
+      "description": "",
+      "hits": 0,
+      "columns": [
+        "msg"
+      ],
+      "sort": [
+        "@timestamp",
+        "desc"
+      ],
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"AV6oReOExPxTc46n6hMY\",\"highlightAll\":true,\"version\":true,\"query\":{\"query_string\":{\"query\":\"apple\",\"analyze_wildcard\":true}},\"filter\":[{\"meta\":{\"negate\":false,\"index\":\"AV6oReOExPxTc46n6hMY\",\"type\":\"phrase\",\"key\":\"fruits\",\"value\":\"apple\",\"disabled\":false,\"alias\":null},\"query\":{\"match\":{\"fruits\":{\"query\":\"apple\",\"type\":\"phrase\"}}},\"$state\":{\"store\":\"appState\"}},{\"meta\":{\"negate\":false,\"index\":\"AV6oReOExPxTc46n6hMY\",\"type\":\"phrase\",\"key\":\"fruits\",\"value\":\"banana\",\"disabled\":false,\"alias\":null},\"query\":{\"match\":{\"fruits\":{\"query\":\"banana\",\"type\":\"phrase\"}}},\"$state\":{\"store\":\"appState\"}}]}"
+      }
+    }
+  }
+]

@@ -1,0 +1,8 @@
+version: '3'
+services:
+  artillery:
+    build:
+      context: .
+    volumes:
+        - .:/code
+    network_mode: host

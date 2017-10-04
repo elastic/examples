@@ -1,0 +1,71 @@
+version: '2.1'
+# The environment variable "ELASTIC_VERSION" is used throughout this file to
+# specify the version of the images to run. The default is set in the
+# '.env' file in this folder. It can be overridden with any normal
+# technique for setting environment variables, for example:
+#
+#   ELASTIC_VERSION=5.6.1 docker-compose -f docker-compose-dev.yml up
+#
+# Additionally, the user can control:
+#   * the total memory assigned to the ES container through the variable ES_MEM_LIMIT e.g. ES_MEM_LIMIT=2g
+#   * the memory assigned to the ES JVM through the variable ES_JVM_HEAP e.g. ES_JVM_SIZE=1024m
+# REF: https://docs.docker.com/compose/compose-file/#variable-substitution
+volumes:
+  esdata:
+    driver: local
+services:
+  game:
+    ports:
+      - 9292:9292
+    build:
+      context: game
+      dockerfile: Dockerfile.game
+      args:
+        git_sha1: ${GIT_SHA1}
+    volumes:
+      - ./log:/tmp/log
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://localhost:9292']
+  kibana:
+    image: docker.elastic.co/kibana/kibana:${ELASTIC_VERSION}
+    links:
+      - elasticsearch
+    volumes:
+      - ./config/kibana.yml:/usr/share/kibana/config/kibana.yml
+    ports:
+      - 5601:5601
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://localhost:5601']
+  filebeat:
+    image: docker.elastic.co/beats/filebeat:${ELASTIC_VERSION}
+    volumes:
+      - ./config/filebeat.yml:/usr/share/filebeat/filebeat.yml
+      - ./log:/var/log
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+      kibana:
+        condition: service_healthy
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:${ELASTIC_VERSION}
+    volumes:
+      - esdata:/usr/share/elasticsearch/data
+    environment:
+      - discovery.type=single-node
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms${ES_JVM_HEAP} -Xmx${ES_JVM_HEAP}"
+      - xpack.security.enabled=false
+    mem_limit: ${ES_MEM_LIMIT}
+    ipc: shareable
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    ports:
+      - 9200:9200/tcp
+      - 9300:9300/tcp
+    healthcheck:
+      test: ['CMD', 'curl', '-f', '-u', 'elastic:changeme', 'http://localhost:9200']
