@@ -144,6 +144,9 @@ find your fruits!
 
 ![fruits](screens/fruits.png)
 
+The `make import-dashboards` command will help you to import custom dashboard
+in kibana, you will find all the definitions in the [kibana](kibana) folder
+
 About the Elastic Stack
 -----------------------
 [Elastic](https://www.elastic.co/about) is the company behind the elastic stack.

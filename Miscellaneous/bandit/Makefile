@@ -27,4 +27,8 @@ clean: ## Remove logs and other files
 count: ## Count log lines
 	wc -l log/bandit.log
 
-.PHONY: help proxy proxy-kibana stress start stop count
+import-dashboards: ## Import dashboards in kibana
+	script/import_dashboards -es http://localhost:9200 -dir ./kibana
+
+.PHONY: help proxy proxy-kibana stress start stop count import-dashboards
+
