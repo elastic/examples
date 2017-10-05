@@ -71,21 +71,21 @@ X-Pack lets you set up watches (or rules) to detect and alert on changes in your
 #### Machine learning
 
 - [Getting started tutorials](https://github.com/elastic/examples/tree/master/Machine%20Learning/Getting%20Started%20Examples)
-- [IT operations recipes](https://github.com/elastic/examples/tree/master/Machine%20Learning/IT%20Operations%20Recipes)	
+- [IT operations recipes](https://github.com/elastic/examples/tree/master/Machine%20Learning/IT%20Operations%20Recipes)
 - [Security analytics recipes](https://github.com/elastic/examples/tree/master/Machine%20Learning/Security%20Analytics%20Recipes)
 - [Business metrics recipes](https://github.com/elastic/examples/tree/master/Machine%20Learning/Business%20Metrics%20Recipes)
 
 #### Search & API Examples
 
 - [Recipe Search with Java](https://github.com/elastic/examples/tree/master/Search/recipe_search_java)
-- [Recipe Search with PHP](https://github.com/elastic/examples/tree/master/Search/recipe_search_php)	
+- [Recipe Search with PHP](https://github.com/elastic/examples/tree/master/Search/recipe_search_php)
 
 #### Security Analytics
 
 - [Audit Analysis](https://github.com/elastic/examples/tree/master/Security%20Analytics/auditd_analysis)
-- [CEF with Kafka](https://github.com/elastic/examples/tree/master/Security%20Analytics/cef_with_kafka)	
+- [CEF with Kafka](https://github.com/elastic/examples/tree/master/Security%20Analytics/cef_with_kafka)
 - [DNS Tunnel Detection](https://github.com/elastic/examples/tree/master/Security%20Analytics/dns_tunnel_detection)
-- [Malware Analysis](https://github.com/elastic/examples/tree/master/Security%20Analytics/malware_analysis)	
+- [Malware Analysis](https://github.com/elastic/examples/tree/master/Security%20Analytics/malware_analysis)
 - [SSH Analysis](https://github.com/elastic/examples/tree/master/Security%20Analytics/ssh_analysis)
 
 
@@ -95,3 +95,4 @@ X-Pack lets you set up watches (or rules) to detect and alert on changes in your
 - [Monitoring Kafka](https://github.com/elastic/examples/tree/master/Miscellaneous/kafka_monitoring)
 - [Kibana with Geoserver](https://github.com/elastic/examples/tree/master/Miscellaneous/kibana_geoserver)
 - [The ElasticStack on Docker](https://github.com/elastic/examples/tree/master/Miscellaneous/docker)
+- [Kibana one-armed bandit logs on Docker](https://github.com/elastic/examples/tree/master/Miscellaneous/bandit)
