@@ -66,7 +66,7 @@ Open a new shell window and run Kibana.
 ```Shell
 <path_to_kibana_root_dir>/bin/kibana 
 ```
-Kibana should now be running on port 5601. To test, point your web browser at port 5601 (`localhost:5601`). You should see the Kibana UI.
+Kibana should now be running on port 5601. To test, point your web browser at port 5601 (`http://localhost:5601`). You should see the Kibana UI.
 
 
 
