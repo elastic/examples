@@ -1,3 +1,6 @@
+*** This watcher sample allows you to access content in first 5 hits.
+
+```
 {
   "trigger": {
     "schedule": {
@@ -37,3 +40,4 @@
     }
   }
 }
+```
