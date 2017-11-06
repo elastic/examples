@@ -1,45 +1,39 @@
+#!/usr/bin/env bash
+set -o pipefail -o errexit
+
 if [ -z "$1" ]; then
-echo "Specify watch name e.g. run_test.sh <foldername>"
+  echo "Specify watch name e.g. run_test.sh <foldername>"
 fi
 
-username=elastic
-if [ "$2" ] ; then
-  username=$2
+run_test_args=()
+if [ -n "${2:-}" ]; then
+  run_test_args+=(--username "$2")
 fi
-
-password=changeme
-if [ "$3" ] ; then
-  password=$3
+if [ -n "${3:-}" ]; then
+  run_test_args+=(--password "$3")
 fi
-
-protocol=http
-if [ "$4" ] ; then
-  protocol=$4
+if [ -n "${4:-}" ]; then
+  run_test_args+=(--protocol "$4")
 fi
 
 num_tests=0
 pass=0
 fails=0
 echo "--------------------------------------------------"
-for test in `ls $1/tests/*.json`; do
-echo "Running test $test"
-python3 run_test.py --test_file $test --user $username --password $password --protocol $protocol
-if [ $? -eq 0 ]; then
-let pass=pass+1
-else
-let fails=fails+1
-fi
-let num_tests=num_tests+1
-echo "--------------------------------------------------"
-done;
+for test in ./$1/tests/*.*; do
+  echo "Running test $test"
+  if python3 run_test.py --test_file "$test" "${run_test_args[@]}"; then
+    let pass=pass+1
+  else
+    let fails=fails+1
+  fi
+  let num_tests=num_tests+1
+  echo "--------------------------------------------------"
+done
 
 echo "$num_tests tests run: $pass passed. $fails failed."
 if [ $fails -eq 0 ]; then
-exit 0
+  exit 0
 else
-exit 1
+  exit 1
 fi
-
-
-
-
