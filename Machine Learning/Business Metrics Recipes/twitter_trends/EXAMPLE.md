@@ -58,9 +58,9 @@ This example includes:
 ### Example 1 - Static Dataset
 
 * Download the test dataset provided.
-
-    ```
-curl -O https://raw.githubusercontent.com/elastic/examples/master/Machine%20Learning/Business%20Metrics%20Recipes/twitter_trends/data/tweets.csv    ```
+  ```
+  curl -O https://raw.githubusercontent.com/elastic/examples/master/Machine%20Learning/Business%20Metrics%20Recipes/twitter_trends/data/tweets.csv    
+  ```
 
 * [Download and Install Filebeat](https://www.elastic.co/guide/en/beats/filebeat/5.4/filebeat-installation.html). **Do not start Filebeat**.
 
