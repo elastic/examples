@@ -6,8 +6,8 @@ In this example, we will analyze the 2013 [Behavioral Risk Factor Surveillance S
 
 ##### Version
 Example has been tested in following versions:
-- Elasticsearch 5.0
-- Kibana 5.0
+- Elasticsearch 5.6.3
+- Kibana 5.6.3
 
 ### Installation & Setup
 * Follow the [Installation & Setup Guide](https://github.com/elastic/examples/blob/master/Installation%20and%20Setup.md) to install and test the Elastic Stack (*you can skip this step if you already have a working installation of the Elastic Stack*)
