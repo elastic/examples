@@ -38,6 +38,12 @@ if __name__ == '__main__':
     parser.add_argument('--password', help='password')
     parser.add_argument('--protocol', help='protocol')
     parser.add_argument('--test_file', help='test file')
+    parser.add_argument(
+        '--keep-index',
+        help='Keep the index where test documents have been loaded to after the test',
+        action='store_true',
+        default=False,
+    )
 
     parser.set_defaults(host='localhost', port="9200", protocol="http", test_file='data.json', user='elastic', password='changeme')
     args = parser.parse_args()
@@ -82,6 +88,14 @@ if __name__ == '__main__':
     watcher = XPackClient(es).watcher
     watcher.put_watch(id=test["watch_name"], body=watch)
     response = watcher.execute_watch(test["watch_name"])
+
+    # Cleanup after the test to not pollute the environment for other tests.
+    if not args.keep_index:
+        try:
+            es.indices.delete(test['index'])
+        except Exception as err:
+            print("Unable to delete current dataset")
+            pass
 
     # Confirm Matches
     match = test['match'] if 'match' in test else True
