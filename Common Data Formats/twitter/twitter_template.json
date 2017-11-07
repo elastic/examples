@@ -1,14 +1,16 @@
 {
-  "template": "twitter_elastic_example",
+  "index_patterns": "twitter_elastic_example",
   "settings": {
     "number_of_shards": 1,
-    "number_of_replicas": 0
+    "number_of_replicas": 0,
+    "mapping": {
+      "total_fields": {
+        "limit": "10000"
+      }
+    }
   },
   "mappings": {
-    "_default_": {
-      "_all": {
-        "enabled": true
-      },
+    "tweets": {
       "properties": {
         "@timestamp": {
           "type": "date",
