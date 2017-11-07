@@ -44,8 +44,8 @@ Installation
 lightweight, portable, "build once, configure once and run anywhere" functionalities.
 
 To run this project on your computer you only need Docker, you probably already
-know this technology. In case you don't we have written a training
-[here](https://git.renault-digital.com/common/training/blob/master/docker/docker-intro-part1.md).
+know this technology. In case you don't, you can find a training
+[here](http://training.play-with-docker.com/#beginner)
 You can find the documentation about how to install the docker engine
 [here](https://docs.docker.com/engine/installation/) on the docker official website.
 
@@ -76,10 +76,13 @@ This docker-based [stack](docker-compose-dev.yml) is composed by the following c
 > Hum... I have to just run `make start` ?
 >> Yeah!
 
-So, the ruby rack based application can be reached by curl and should return a random
+So, now the ruby rack based application can be reached by `curl` and should return a random
 arrays of fruits!
 
 ![screen](screens/screen-rack-app.png)
+
+> Next step after the `curl http://localhost:9292`?
+>> Just open the Kibana, but...
 
 If you want to learn how to start an **Elasticsearch** cluster with Docker, take a look at
 this [page](https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html).
@@ -97,9 +100,10 @@ find at this URL [http://localhost:5601/](http://localhost:5601/)
 
 You can optionally give an internet access to your local Kibana by using [Ngrok](https://ngrok.com/).
 If **ngrok** is installed on your laptop and you want to share a dashboard, just run `make proxy-kibana`.
+It's an easy way to share your local Kibana with some people if you need it.
 
-/!\ As you can see you create an index... So run `script/create-index` and fill the
-form with `bandit` as index name.
+/!\ As you can see in the Kibana UI, you must create an index... So run `script/create-index`
+and fill the form on your favorite web browser with `bandit` as index name.
 
 3 - Stress your application
 
@@ -112,15 +116,13 @@ is a good place to start, followed by an overview of [how Artillery works](https
 I wrapped all the things you need to run the load tests in the Docker containers.
 
 ```
-cd artillery
-make build # generate an artillery container
-make ping # start a very minimal ping scenario
+make stress
 ```
 More infos about the artillery in the [README](artillery/README.md) and commands in the `Makefile`
 
 ![stress](screens/screen-stress.png)
 
-The app generate logs in JSON format`log/bandit.log`.
+The app generate logs in JSON format`cat log/bandit.log | head`.
 
 ```
 {"name":"rackup","hostname":"1b44bda82cb3","pid":5,"level":30,"time":"2017-09-22T05:24:30.307+00:00","v":0,"msg":"No message","fruits":["pomelo","cherry","coconut"]}
@@ -135,17 +137,30 @@ The app generate logs in JSON format`log/bandit.log`.
 {"name":"rackup","hostname":"1b44bda82cb3","pid":5,"level":30,"time":"2017-09-22T05:24:30.547+00:00","v":0,"msg":"No message","fruits":["lime","cherry","coconut"]}
 ```
 
-The Filebeat [configuration](config/filebeat.yml) is here to parse the JSON format and send the data to Elasticsearch.
+Please take a look at the Filebeat [configuration](config/filebeat.yml).
+It's parse the JSON format and send the data to Elasticsearch.
+
+And finally if you want to see the generated traffic beetween the containers of
+this stack, I recommend [ctop](https://github.com/bcicen/ctop), an amazing tool!
 
 4 - Create cool dashboards!
 
-First you need to declare the `bandit` index, then on the Discover menu you can
-find your fruits!
+If you have not already added the index, first you need to declare the `bandit` index.
+Then on the **Discover** menu you can find your generated fruits!
 
 ![fruits](screens/fruits.png)
 
 The `make import-dashboards` command will help you to import custom dashboard
 in kibana, you will find all the definitions in the [kibana](kibana) folder
+
+5 - Experiment as you want
+
+Now you can create beautiful dashboards too with your data, and/or stress again
+the bandit application.
+
+> Ah ?
+>> You can do it :)! Feel free to  contribute to improve this exemple if you want.
+--------
 
 About the Elastic Stack
 -----------------------

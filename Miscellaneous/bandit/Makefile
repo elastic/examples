@@ -19,7 +19,7 @@ proxy-kibana: ## Start an ngrok proxy to the kibana UI.
 	ngrok http 5601
 
 stress: ## Stress the application
-	cd artillery && make ping
+	@make -C artillery ping
 
 clean: ## Remove logs and other files
 	rm log/*.log 2> /dev/null
