@@ -84,7 +84,7 @@
     "_type": "visualization",
     "_source": {
       "title": "Twitter Dashboard",
-      "visState": "{\"type\":\"markdown\",\"params\":{\"markdown\":\"### Sample Dashboard for Twitter stream\\nSimple dashboard for exploring & visualizing tweets tracking a topics of interest. This dashboard is included as a part of the [Getting Started with ELK](https://github.com/asawariS/test/tree/master/twitter) repo on Github.\\n\\nThis is just a starting point. There's oh so much more to explore in this dataset. Create new visualizations, customize the dashboard, find new insights.\\n\\n**Happy exploration!!!**\"},\"aggs\":[],\"listeners\":{},\"title\":\"Twitter Dashboard\"}",
+      "visState": "{\"type\":\"markdown\",\"params\":{\"markdown\":\"### Sample Dashboard for Twitter stream\\nSimple dashboard for exploring & visualizing tweets tracking a topics of interest. This dashboard is included as a part of the [Getting Started with the Elastic Stack](https://github.com/asawariS/test/tree/master/twitter) repo on Github.\\n\\nThis is just a starting point. There's oh so much more to explore in this dataset. Create new visualizations, customize the dashboard, find new insights.\\n\\n**Happy exploration!!!**\"},\"aggs\":[],\"listeners\":{},\"title\":\"Twitter Dashboard\"}",
       "uiStateJSON": "{}",
       "description": "",
       "version": 1,

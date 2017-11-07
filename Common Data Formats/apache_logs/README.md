@@ -89,13 +89,14 @@ Further details on the apache2 module configuration can be found [here](https://
 ##### 2. Visualize data in Kibana
 
 * Access Kibana by going to `http://localhost:5601` in a web browser
+* You may be asked to select a default index pattern, if this is a clean Kibana/ES install. If so, select the "filebeat-*" index pattern and click the star button in the upper right.
 * Open dashboard
     * Click on **Dashboard** tab and open `[Filebeat Apache2] Access and error logs` dashboard
 * Change the time period
     * From the time range selector in the top right, select the time period `2015-05-17 00:00:00.000` to `2015-05-21 12:00:00.000` and click `Go`
 Voila! You should see the following dashboard. Happy Data Exploration!
 
-![Kibana Dashboard Screenshot](https://github.com/elastic/examples/blob/master/Common%20Data%20Formats/apache_logs/apache_dashboard.jpg?raw=true)
+![Kibana Dashboard Screenshot](https://user-images.githubusercontent.com/12695796/32498856-c61c75c8-c3c8-11e7-85ab-515a337bd83d.png)
 
 ### We would love your feedback!
 If you found this example helpful and would like more such Getting Started examples for other standard formats, we would love to hear from you. If you would like to contribute Getting Started examples to this repo, we'd love that too!
