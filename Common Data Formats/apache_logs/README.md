@@ -2,7 +2,7 @@
 
 This example provides sample files to ingest, analyze & visualize **Apache Access Logs** using the Elastic Stack, i.e. Elasticsearch, Filebeat and Kibana. The sample logs in this example are in the default apache combined log format.
 
-In order to achieve this we use the Filebeat [Apache2 module](https://www.elastic.co/guide/en/beats/filebeat/5.4/filebeat-module-apache2.html) per Elastic Stack best practices.
+In order to achieve this we use the Filebeat [Apache2 module](https://www.elastic.co/guide/en/beats/filebeat/6.0/filebeat-module-apache2.html) per Elastic Stack best practices.
 
 Historically this example used Logstash. This configuration is provided for reference only.
 
@@ -10,11 +10,11 @@ Historically this example used Logstash. This configuration is provided for refe
 
 Example has been tested in following versions:
 
-- Elasticsearch 5.4
-- Elasticsearch [user agent plugin 5.4](https://www.elastic.co/guide/en/elasticsearch/plugins/5.4/ingest-user-agent.html)
-- Elasticsearch [user geoip plugin 5.4](https://www.elastic.co/guide/en/elasticsearch/plugins/5.4/ingest-geoip.html)
-- Filebeat 5.4
-- Kibana 5.4
+- Elasticsearch 6.0
+- Elasticsearch [user agent plugin 6.0](https://www.elastic.co/guide/en/elasticsearch/plugins/6.0/ingest-user-agent.html)
+- Elasticsearch [user geoip plugin 6.0](https://www.elastic.co/guide/en/elasticsearch/plugins/6.0/ingest-geoip.html)
+- Filebeat 6.0
+- Kibana 6.0
 
 ### Example Contents
 
@@ -49,7 +49,7 @@ Example has been tested in following versions:
 
   **Note:** By default, Elasticsearch runs on port 9200, and Kibana run on ports 5601. If you changed the default ports, change   the above calls to use appropriate ports.
 
-* Download and install Filebeat as described [here](https://www.elastic.co/guide/en/beats/filebeat/5.4/filebeat-installation.html). **Do not start Filebeat**
+* Download and install Filebeat as described [here](https://www.elastic.co/guide/en/beats/filebeat/6.0/filebeat-installation.html). **Do not start Filebeat**
 
 
 ### Download Example Files
@@ -65,18 +65,18 @@ wget https://raw.githubusercontent.com/elastic/examples/master/Common%20Data%20F
 ```
 
 ### Run Example
+
 ##### 1. Ingest data into Elasticsearch using Filebeat Module
+
 
 * From the Filebeat installation directory setup the apache2 module and ingest the sample provided. Modify the following command to include the location to the above sample data file.
 
 ```shell
 cd <path_to_filebeat_root_dir>
-./filebeat -e -modules=apache2 -setup  -M "apache2.access.var.paths=[<PATH_TO_APACHE_LOGS_FILE>]" -E filebeat.prospectors.0.enabled=false
+./filebeat -e --modules=apache2 --setup -M "apache2.access.var.paths=[<PATH_TO_APACHE_LOGS_FILE>]"
 ```
 
-Note: The `-E filebeat.prospectors.0.enabled=false` is required to disable the default file collector enabled in the filebeat.yml file that is distributed with the base install. 
-
-Further details on module configuration can be found [here](https://www.elastic.co/guide/en/beats/filebeat/current/_tutorial.html).
+Further details on the apache2 module configuration can be found [here](https://www.elastic.co/guide/en/beats/filebeat/6.0/filebeat-module-apache2.html).
 
 * Verify that data is succesfully indexed into Elasticsearch
 
@@ -90,7 +90,7 @@ Further details on module configuration can be found [here](https://www.elastic.
 
 * Access Kibana by going to `http://localhost:5601` in a web browser
 * Open dashboard
-    * Click on **Dashboard** tab and open `Filebeat Apache2 Dashboard` dashboard
+    * Click on **Dashboard** tab and open `[Filebeat Apache2] Access and error logs` dashboard
 * Change the time period
     * From the time range selector in the top right, select the time period `2015-05-17 00:00:00.000` to `2015-05-21 12:00:00.000` and click `Go`
 Voila! You should see the following dashboard. Happy Data Exploration!
