@@ -5,9 +5,10 @@ This example provides supplementary material to the Movember Data Dives - see [b
 In this example, we will analyze the 2013 [Behavioral Risk Factor Surveillance System] (http://www.cdc.gov/brfss/annual_data/annual_2013.html) data using the Elastic stack. Every year, the Centers for Disease Control and Prevention (CDC) conducts approximately 500,000 telephone surveys to collect data on a variety of personal health-related topics, such as nutrition, drinking habits, physical activity and health history. We analyzed this data to explore exercise and nutrition patterns for male respondents as a part of our Movember Data Dive. For additional commentary on the analysis and unearthed insights, refer to the accompanying blogs [here](https://www.elastic.co/blog/movember-data-dive-part-1) (for analysis of physical activity and exercise patterns) and [here](https://www.elastic.co/blog/movember-data-dive-part-2) (for analysis of eating and drinking patterns).
 
 ##### Version
+
 Example has been tested in following versions:
-- Elasticsearch 5.6.3
-- Kibana 5.6.3
+- Elasticsearch 6.0
+- Kibana 6.0
 
 ### Installation & Setup
 * Follow the [Installation & Setup Guide](https://github.com/elastic/examples/blob/master/Installation%20and%20Setup.md) to install and test the Elastic Stack (*you can skip this step if you already have a working installation of the Elastic Stack*)
@@ -41,16 +42,19 @@ Once the index is created, data will available in Elasticsearch. If all goes wel
   ```
 
 #### Visualize Data in Kibana
+
 * Access Kibana by going to `http://localhost:5601` in a web browser
 * Connect Kibana to the `brfss` index in Elasticsearch
-    * Click the **Management** tab >> **Index Patterns** tab >> **Add New**. Specify `brfss` as the index pattern name, select `Interview_Date` as the **Time-field name**, and click **Create** to define the index pattern. (Leave the **Use event times to create index names** box unchecked)
+    * Click the **Management** tab >> **Index Patterns** tab >> **Add New**. Specify `brfss` as the index pattern name, select `Interview_Date` as the **Time-field name**, and click **Create** to define the index pattern.
+        * If this is the only index pattern declared, you will also need to select the star in the top upper right to ensure a default is defined. 
 * Load sample dashboard into Kibana
     * Click the **Management** tab >> **Saved Objects** tab >> **Import**, and select `brfss_kibana_dashboard.json`
+    * On import you will be asked to overwrite existing objects - select "Yes, overwrite all". Additionally, select the index pattern "brfss" when asked to specify a index pattern for the dashboards.
 * Open dashboard(s)
     * Click on **Dashboard** tab and open either the `BRFSS: Nutrition` or `BRFSS: Fitness` dashboard. Voila! You should see one of the following dashboards. Happy Data Exploration!
 
-![Kibana Dashboard Screenshot](https://user-images.githubusercontent.com/5269751/28243536-d18cea8c-6982-11e7-9073-6747c81399b5.jpg)
-![Kibana Dashboard Screenshot](https://user-images.githubusercontent.com/5269751/28243535-d18cdda8-6982-11e7-901d-d60db62ec478.jpg)
+![Kibana Dashboard Screenshot](https://user-images.githubusercontent.com/12695796/32561592-87e37220-c4a4-11e7-8e7c-1d374ed302e9.png)
+![Kibana Dashboard Screenshot](https://user-images.githubusercontent.com/12695796/32561625-9c12ad74-c4a4-11e7-9fd3-88ca82613300.png)
 
 ### We would love to hear from you!
 If you run into issues running this example or have suggestions to improve it, please use Github issues to let us know. Have an easy fix? Submit a pull request. We will try our best to respond in a timely manner!
