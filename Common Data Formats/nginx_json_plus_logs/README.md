@@ -13,21 +13,21 @@ This example historically used Logstash for ingestion. Per recommended best prac
 ### Versions:
 
 Example has been tested with following versions:
-- Elasticsearch 5.4
-- Filebeat 5.4
-- Kibana 5.4
+- Elasticsearch 6.0
+- Filebeat 6.0
+- Kibana 6.0
 
 
 ### Example Contents
 
 * [nginxplus_json_logs](https://github.com/elastic/examples/blob/master/Common%20Data%20Formats/nginx_json_plus_logs/nginxplus_json_logs) - Sample JSON Nginx Plus log files
-* [ngix_json_plus_filebeat.yml](https://github.com/elastic/examples/blob/master/Common%20Data%20Formats/nginx_json_plus_logs/ngix_json_plus_filebeat.yml) - Filebeat configuration for ingesting JSON files.
+* [nginxplus_filebeat.yml](https://github.com/elastic/examples/blob/master/Common%20Data%20Formats/nginx_json_plus_logs/nginxplus_filebeat.yml) - Filebeat configuration for ingesting JSON files.
 * [nginxplus_json_kibana.json](https://github.com/elastic/examples/blob/master/Common%20Data%20Formats/nginx_json_plus_logs/nginxplus_json_kibana.json) - Custom Kibana dashboard.
 * [nginxplus_json_template.json](https://github.com/elastic/examples/blob/master/Common%20Data%20Formats/nginx_json_plus_logs/nginxplus_json_template.json) - ES Template for ingestion.
 * [nginxplus_json_pipeline.json](https://github.com/elastic/examples/blob/master/Common%20Data%20Formats/nginx_json_plus_logs/nginxplus_json_pipeline.json) - ES Pipeline for ingestion.
 
 
-#####Legacy Files:
+##### Legacy Files:
 
 * [nginx_json_logstash.conf](https://github.com/elastic/examples/blob/master/Common%20Data%20Formats/nginx_json_plus_logs/logstash/nginxplus_json_logstash.conf) -  Logstash configuration. REFERENCE ONLY.
 
@@ -56,7 +56,7 @@ Example has been tested with following versions:
 Download the following files in this repo to a local directory:
 
 - `nginxplus_json_logs` - sample JSON formatted Nginx Plus logs from its status API
-- `ngix_json_plus_filebeat.yml` - Filebeat config for ingesting data into Elasticsearch
+- `nginxplus_filebeat.yml` - Filebeat config for ingesting data into Elasticsearch
 - `nginxplus_json_template.json` - template for custom mapping of fields
 - `nginxplus_json_kibana.json` - config file to load prebuilt Kibana dashboard
 - `nginxplus_json_pipeline.json` - Ingestion pipeline
@@ -64,7 +64,7 @@ Download the following files in this repo to a local directory:
 Unfortunately, Github does not provide a convenient one-click option to download entire contents of a subfolder in a repo. Use sample code provided below to download the required files to a local directory:
 
 ```
-wget https://raw.githubusercontent.com/elastic/examples/master/Common%20Data%20Formats/nginx_json_plus_logs/ngix_json_plus_filebeat.yml
+wget https://raw.githubusercontent.com/elastic/examples/master/Common%20Data%20Formats/nginx_json_plus_logs/nginxplus_filebeat.yml
 wget https://raw.githubusercontent.com/elastic/examples/master/Common%20Data%20Formats/nginx_json_plus_logs/nginxplus_json_kibana.json
 wget https://raw.githubusercontent.com/elastic/examples/master/Common%20Data%20Formats/nginx_json_plus_logs/nginxplus_json_template.json
 wget https://raw.githubusercontent.com/elastic/examples/master/Common%20Data%20Formats/nginx_json_plus_logs/nginxplus_json_pipeline.json
@@ -77,21 +77,10 @@ wget https://raw.githubusercontent.com/elastic/examples/master/Common%20Data%20F
 
 ##### 1. Ingest data into Elasticsearch using Filebeat
 
-* Modify the filebeat configuration file `ngix_json_plus_filebeat.yml`. Specifically:
-
-    - The parameter `hosts: ["localhost:9200"]` in case your are not running Elasticsearch node on your local host
-    - The path to the example data file downloaded above.
-    
-        ```shell
-        paths:
-          - ./nginxplus_json_logs
-        ```
-
-* Move the files `nginx_json_template.json` and `nginx_json_filebeat.yml` to the Filebeat installation directory i.e.
+* Move the file `nginx_json_filebeat.yml` to the Filebeat installation directory i.e.
     
      ```shell
-    mv nginxplus_json_template.json <filebeat_installation_dir>/nginxplus_json_template.json
-    mv ngix_json_plus_filebeat.yml <filebeat_installation_dir>/ngix_json_plus_filebeat.yml
+    mv nginxplus_filebeat.yml <filebeat_installation_dir>/nginxplus_filebeat.yml
     ```
     
 * Install the ingest pipeline
@@ -100,25 +89,34 @@ wget https://raw.githubusercontent.com/elastic/examples/master/Common%20Data%20F
     curl -XPUT -H 'Content-Type: application/json' 'localhost:9200/_ingest/pipeline/nginxplus_json_pipeline' -d @nginxplus_json_pipeline.json
     ```
 
-* Start Filebeat to begin ingesting data to Elasticsearch. Ingestion should take around a min.
+* Install the Elasticsearch template
+
+    ```shell
+    curl -XPUT -H 'Content-Type: application/json' 'localhost:9200/_template/nginxplus_json' -d @nginxplus_json_template.json
+    ```
+
+* Start Filebeat to begin ingesting data to Elasticsearch, modifying the command below to point to your Elasticsearch instance and the sample log file `nginxplus_json_logs`. Ingestion should take around a few seconds.
 
     ```shell
     cd <filebeat_installation_dir>
-    ./filebeat -e -c ngix_json_plus_filebeat.yml
+    ./filebeat -e -c nginxplus_filebeat.yml -E "output.elasticsearch.hosts=["localhost:9200"]" -E "filebeat.prospectors.0.paths=["<path to nginxplus_json_logs>"]"
+    ``
 
  * Verify that data is successfully indexed into Elasticsearch
 
-  Running `http://localhost:9200/nginxplus_json_elastic_stack_example/_count` should return a response a `"count":500`
+  Running `http://localhost:9200/nginxplus_json/_count` should return a response a `"count":500`
 
 ##### 2. Visualize data in Kibana
 
 * Access Kibana by going to `http://localhost:5601` in a web browser
-* Connect Kibana to the `nginxplus_json_elastic_stack_example` index in Elasticsearch (auto-created in step 1)
-    * Click the **Management** tab >> **Index Patterns** tab >> **Add New**. Specify `nginxplus_json_elastic_stack_example` as the index pattern name and click **Create** to define the index pattern, using the @timestamp field as the Time-Field.
+* Connect Kibana to the `nginxplus_json` index in Elasticsearch (auto-created in step 1)
+    * Click the **Management** tab >> **Index Patterns** tab >> **Add New**. Specify `nginxplus_json` as the index pattern name and click **Create** to define the index pattern, using the @timestamp field as the Time-Field.
+    * If this is the only index pattern declared, you will also need to select the star in the top upper right to ensure a default is defined. 
 * Load sample dashboard into Kibana
     * Click the **Settings** tab >> **Saved Objects** tab >> **Import**, and select `nginxplus_json_kibana.json`
+    * On import you will be asked to overwrite existing objects - select "Yes, overwrite all". Additionally, select the index pattern "nginxplus_json" when asked to specify a index pattern for the dashboards.
 * Open dashboard
     * Click on **Dashboard** tab and open `NginxPlus: Sample Dashboard` dashboard
 
 Voila! You should see the following dashboard. Enjoy!
-![Kibana Dashboard Screenshot](https://github.com/elastic/examples/blob/master/Common%20Data%20Formats/nginx_json_plus_logs/nginx_plus_json_dashboard.jpg?raw=true)
+![Kibana Dashboard Screenshot](https://user-images.githubusercontent.com/12695796/32549960-3a056e08-c483-11e7-9c6c-be7e50018cd5.png)
