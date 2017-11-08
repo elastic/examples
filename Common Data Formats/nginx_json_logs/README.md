@@ -13,11 +13,11 @@ Newer versions of NGINX (>=1.11.8) support `escape=json` as an argument to log_f
 
 Example has been tested in following versions:
 
-- Elasticsearch 5.4
-- Elasticsearch [user agent plugin 5.4](https://www.elastic.co/guide/en/elasticsearch/plugins/5.4/ingest-user-agent.html)
-- Elasticsearch [user geoip plugin 5.4](https://www.elastic.co/guide/en/elasticsearch/plugins/5.4/ingest-geoip.html)
-- Filebeat 5.4
-- Kibana 5.4
+- Elasticsearch 6.0
+- Elasticsearch [user agent plugin 6.0](https://www.elastic.co/guide/en/elasticsearch/plugins/6.0/ingest-user-agent.html)
+- Elasticsearch [user geoip plugin 6.0](https://www.elastic.co/guide/en/elasticsearch/plugins/6.0/ingest-geoip.html)
+- Filebeat 6.0
+- Kibana 6.0
 
 ### Example Contents
 
@@ -93,20 +93,10 @@ log_format json_logstash '{ "time": "$time_local", '
 
 ##### 1. Ingest data into Elasticsearch using Filebeat
 
-* Modify the filebeat configuration file `nginx_json_filebeat.yml`. Specifically:
 
-    - The parameter `hosts: ["localhost:9200"]` in case your are not running Elasticsearch node on your local host
-    - The path to the example data file downloaded above.
-    
-        ```shell
-        paths:
-          - ./nginx_json_logs
-        ```
-
-* Move the files `nginx_json_template.json` and `nginx_json_filebeat.yml` to the Filebeat installation directory i.e.
+* Move the file `nginx_json_filebeat.yml` to the Filebeat installation directory i.e.
     
      ```shell
-    mv nginx_json_template.json <filebeat_installation_dir>/nginx_json_template.json
     mv nginx_json_filebeat.yml <filebeat_installation_dir>/nginx_json_filebeat.yml
     ```
     
@@ -115,31 +105,38 @@ log_format json_logstash '{ "time": "$time_local", '
     ```shell
     curl -XPUT -H 'Content-Type: application/json' 'localhost:9200/_ingest/pipeline/nginx_json_pipeline' -d @nginx_json_pipeline.json
     ```
+    
+* Install the Elasticsearch template
 
-* Start Filebeat to begin ingesting data to Elasticsearch. Ingestion should take around a min.
+    ```shell
+    curl -XPUT -H 'Content-Type: application/json' 'localhost:9200/_template/nginx_json' -d @nginx_json_template.json
+    ```
+
+* Start Filebeat to begin ingesting data to Elasticsearch, modifying the command below to point to your Elasticsearch instance and the sample log file `nginx_json_logs`. Ingestion should take around a few seconds. Ingestion should take around a min.
 
     ```shell
     cd <filebeat_installation_dir>
-    ./filebeat -e -c nginx_json_filebeat.yml
+    ./filebeat -e -c nginx_json_filebeat.yml -E "output.elasticsearch.hosts=["localhost:9200"]" -E "filebeat.prospectors.0.paths=["<path to nginx_json_logs>"]"
 
 * Verify that data is successfully indexed into Elasticsearch.
 
-  Running `http://localhost:9200/nginx_json_elastic_stack_example/_count` should return a response a `"count":51462`
+  Running `http://localhost:9200/nginx_json_elastic/_count` should return a response a `"count":51462`
 
 
 ##### 2. Visualize data in Kibana
 
 * Access Kibana by going to `http://localhost:5601` in a web browser
-* Connect Kibana to the `nginx_json_elastic_stack_example` index in Elasticsearch (auto-created in step 1)
-    * Click the **Management** tab >> **Index Patterns** tab >> **Add New**. Specify `nginx_json_elastic_stack_example` as the index pattern name, selecting @timestamp as the time field, and click **Create** to define the index pattern.
+* Connect Kibana to the `nginx_json_elastic` index in Elasticsearch (auto-created in step 1)
+    * Click the **Management** tab >> **Index Patterns** tab >> **Add New**. Specify `nginx_json_elastic` as the index pattern name, selecting @timestamp as the time field, and click **Create** to define the index pattern.
+    * If this is the only index pattern declared, you will also need to select the star in the top upper right to ensure a default is defined. 
 * Load sample dashboard into Kibana
     * Click the **Management** tab >> **Saved Objects** tab >> **Import**, and select `nginx_json_kibana.json`
-<<<<<<< HEAD
+    * On import you will be asked to overwrite existing objects - select "Yes, overwrite all". Additionally, select the index pattern "nginx_json_elastic" when asked to specify a index pattern for the dashboards.
 * Open dashboard
     * Click on **Dashboard** tab and open `Sample Dashboard for Nginx Logs` dashboard
 
 Voila! You should see the following dashboards. Enjoy!
-![Kibana Dashboard Screenshot](https://github.com/elastic/examples/blob/master/Common%20Data%20Formats/nginx_json_logs/nginx_json_dashboard.jpg?raw=true)
+![Kibana Dashboard Screenshot](https://user-images.githubusercontent.com/12695796/32549960-3a056e08-c483-11e7-9c6c-be7e50018cd5.png)
 
 ### We would love your feedback!
 If you found this example helpful and would like to see more such Getting Started examples for other standard formats, we would love would to hear from you. If you would like to contribute examples to this repo, we'd love that too!
