@@ -13,6 +13,7 @@ This example historically used Logstash for ingestion. Per recommended best prac
 ### Versions:
 
 Example has been tested with following versions:
+
 - Elasticsearch 6.0
 - Filebeat 6.0
 - Kibana 6.0

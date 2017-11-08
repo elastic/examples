@@ -7,9 +7,7 @@ filebeat.prospectors:
 
 output.elasticsearch:
   hosts: ["localhost:9200"]
-  index: "nginx_json_elastic_stack_example"
-  template.enabled: true
-  template.name: nginx_json
-  template.path: "nginx_json_template.json"
-  template.overwrite: true
+  index: "nginx_json_elastic"
   pipeline: nginx_json_pipeline
+
+setup.template.enabled: false
