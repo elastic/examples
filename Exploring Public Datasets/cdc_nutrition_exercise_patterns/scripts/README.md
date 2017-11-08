@@ -18,10 +18,13 @@ Requires Python 3
 Run `pip install -r requirements.txt`
 
 ###### 4. Run Python script to process and index data<br>
+
   Run `process_brfss_data.py`. When the script is done running, you will have a `brfss` index in your Elasticsearch instance
+  
 ```
   python3 process_brfss_data.py
 ```
+
 NOTE:
 - It might take ~ 30-60 minutes for this step (depending on your machine)
 - We have also included a iPython Notebook version of the script `process_brfss_data.ipynb` in case you prefer running in a cell-by-cell mode.
