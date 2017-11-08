@@ -1,0 +1,13 @@
+filebeat.prospectors:
+- input_type: log
+  paths:
+    - nginxplus_json_logs
+  json.keys_under_root: true
+  document_type: logs
+
+output.elasticsearch:
+  hosts: ["localhost:9200"]
+  index: "nginxplus_json"
+  pipeline: nginxplus_json_pipeline
+
+setup.template.enabled: false
