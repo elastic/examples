@@ -12,7 +12,7 @@ This is a collection of examples to help you get familiar with the Elastic Stack
 
 You have a few options to get started with the examples:
 
-- If you want to try them all, you can [download the entire repo ](https://github.com/elastic/examples/archive/master.zip). Or, if you are familiar with Git, you can [clone the repo](https://github.com/elastic/examples.git). Then, simply follow the instructions in the individual README of the examples you're interested in to get started.
+- If you want to try them all, you can [download the entire repo](https://github.com/elastic/examples/archive/master.zip). Or, if you are familiar with Git, you can [clone the repo](https://github.com/elastic/examples.git). Then, simply follow the instructions in the individual README of the examples you're interested in to get started.
 
 - If you are only interested in a specific example or two, you can download the contents of just those examples - follow instructions in the individual READMEs OR you can use some of the [options mentioned here](http://stackoverflow.com/questions/7106012/download-a-single-folder-or-directory-from-a-github-repo).
 
@@ -35,7 +35,7 @@ Below is the list of examples available in this repo:
 
 #### Exploring Public Datasets
 
-Examples using the Elastic Stack for analyzing public dataset.
+Examples using the Elastic Stack for analyzing public datasets.
 
 - [DonorsChoose.org donations](https://github.com/elastic/examples/tree/master/Exploring%20Public%20Datasets/donorschoose)
 - [NCEDC earthquakes data](https://github.com/elastic/examples/tree/master/Exploring%20Public%20Datasets/earthquakes)
@@ -52,7 +52,7 @@ Examples using the Elastic Stack for analyzing public dataset.
 
 #### Alerting on Elastic Stack
 
-X-Pack lets you set up watches (or rules) to detect and alert on changes in your Elasticsearch data. Below is a list of examples watches that configured to detect and alert on a few common scenarios:
+X-Pack lets you set up watches (or rules) to detect and alert on changes in your Elasticsearch data. Below is a list of examples watches that can be configured to detect and alert on a few common scenarios:
 
 - [High I/O wait on CPU](https://github.com/elastic/examples/tree/master/Alerting/Sample%20Watches/cpu_iowait_hosts)
 - [Critical error  in logs](https://github.com/elastic/examples/tree/master/Alerting/Sample%20Watches/errors_in_logs)
@@ -71,21 +71,21 @@ X-Pack lets you set up watches (or rules) to detect and alert on changes in your
 #### Machine learning
 
 - [Getting started tutorials](https://github.com/elastic/examples/tree/master/Machine%20Learning/Getting%20Started%20Examples)
-- [IT operations recipes](https://github.com/elastic/examples/tree/master/Machine%20Learning/IT%20Operations%20Recipes)	
+- [IT operations recipes](https://github.com/elastic/examples/tree/master/Machine%20Learning/IT%20Operations%20Recipes)
 - [Security analytics recipes](https://github.com/elastic/examples/tree/master/Machine%20Learning/Security%20Analytics%20Recipes)
 - [Business metrics recipes](https://github.com/elastic/examples/tree/master/Machine%20Learning/Business%20Metrics%20Recipes)
 
 #### Search & API Examples
 
 - [Recipe Search with Java](https://github.com/elastic/examples/tree/master/Search/recipe_search_java)
-- [Recipe Search with PHP](https://github.com/elastic/examples/tree/master/Search/recipe_search_php)	
+- [Recipe Search with PHP](https://github.com/elastic/examples/tree/master/Search/recipe_search_php)
 
 #### Security Analytics
 
 - [Audit Analysis](https://github.com/elastic/examples/tree/master/Security%20Analytics/auditd_analysis)
-- [CEF with Kafka](https://github.com/elastic/examples/tree/master/Security%20Analytics/cef_with_kafka)	
+- [CEF with Kafka](https://github.com/elastic/examples/tree/master/Security%20Analytics/cef_with_kafka)
 - [DNS Tunnel Detection](https://github.com/elastic/examples/tree/master/Security%20Analytics/dns_tunnel_detection)
-- [Malware Analysis](https://github.com/elastic/examples/tree/master/Security%20Analytics/malware_analysis)	
+- [Malware Analysis](https://github.com/elastic/examples/tree/master/Security%20Analytics/malware_analysis)
 - [SSH Analysis](https://github.com/elastic/examples/tree/master/Security%20Analytics/ssh_analysis)
 
 

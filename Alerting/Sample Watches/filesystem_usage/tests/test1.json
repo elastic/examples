@@ -1,32 +1,36 @@
 {
-  "watch_name":"filesystem_usage",
-  "mapping_file":"./filesystem_usage/mapping.json",
-  "index":"logs",
-  "type":"filesystem",
-  "watch_file":"./filesystem_usage/watch.json",
-  "comments":"Tests filesystem being above 0.9. Server 1 & 4 should alert as within 60 seconds. Server 2 should not (10 mins). 3rd server should not alert as < 0.9.",
-  "scripts":[{"name":"transform","path":"./filesystem_usage/scripts/transform.json"}],
-  "events":[
-  {
-    "hostname": "test_server1",
-    "used_p": 0.99,
-    "offset":"-60"
-  },
-  {
-    "hostname": "test_server2",
-    "used_p": 0.98,
-    "offset":"-600"
-  },
-  {
-    "hostname": "test_server3",
-    "used_p": 0.89,
-    "offset":"-60"
-  },
-  {
-    "hostname": "test_server4",
-    "used_p": 0.95
-  }
+  "watch_name": "filesystem_usage",
+  "mapping_file": "./filesystem_usage/mapping.json",
+  "index": "logs",
+  "type": "filesystem",
+  "watch_file": "./filesystem_usage/watch.json",
+  "comments": "Tests filesystem being above 0.9. Server 1 & 4 should alert as within 60 seconds. Server 2 should not (10 mins). 3rd server should not alert as < 0.9.",
+  "scripts": [
+    {
+      "name": "transform",
+      "path": "./filesystem_usage/scripts/transform.json"
+    }
   ],
-  "expected_response":"Some hosts are over 90% utilized:99%-test_server1:95%-test_server4:"
+  "events": [
+    {
+      "hostname": "test_server1",
+      "used_p": 0.99,
+      "offset": "-60"
+    },
+    {
+      "hostname": "test_server2",
+      "used_p": 0.98,
+      "offset": "-600"
+    },
+    {
+      "hostname": "test_server3",
+      "used_p": 0.89,
+      "offset": "-60"
+    },
+    {
+      "hostname": "test_server4",
+      "used_p": 0.95
+    }
+  ],
+  "expected_response": "Some hosts are over 90% utilized:99%-test_server1:95%-test_server4:"
 }
-

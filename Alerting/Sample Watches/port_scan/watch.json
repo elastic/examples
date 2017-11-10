@@ -70,7 +70,6 @@
       }
     }
   },
-  "throttle_period": "1m",
   "condition": {
     "script": {
       "id": "condition"
