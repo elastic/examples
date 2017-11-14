@@ -5,14 +5,31 @@ This examples provides supplementary material to the blog post on [Hacking Educa
 In this example, we will be analyzing the historical donations and projects data provided by [DonorsChoose.org](http://data.donorschoose.org/open-data/overview/) using Elasticsearch and Kibana. DonorsChoose.org is an online charity that connect individuals with schools and teachers in need of resources. For additional background on this dataset, please refer to the accompanying [blog post](https://www.elastic.co/blog/hacking-education-with-the-elastic-stack)
 
 ##### Version
+
 Example has been tested in following versions:
-- Elasticsearch 5.0
-- Kibana 5.0
+- Elasticsearch 6.0
+- Kibana 6.0
+
+**We recommend atleast 8GB of availble RAM for this example**. The dataset continues to grow and thus the counts indicated might no longer be accurate as of the time of writing - 11/2017.
 
 ### Installation & Setup
+
 * Follow the [Installation & Setup Guide](https://github.com/elastic/examples/blob/master/Installation%20and%20Setup.md) to install and test the Elastic Stack (*you can skip this step if you already have a working installation of the Elastic Stack*)
 
+* Update the Elasticsearch default heap size. Modify by editing the file `<elasticsearch root>/config/jvm.options`, updating the following values to 4g:
+
+```
+# Xms represents the initial size of total heap space
+# Xmx represents the maximum size of total heap space
+
+-Xms4g
+-Xmx4g
+```
+
+Note: The above assumes you have 8GB of available RAM, setting the Elasticsearch to half of available RAM per recommended best practices.
+
 * Run Elasticsearch & Kibana
+
   ```shell
   <path_to_elasticsearch_root_dir>/bin/elasticsearch
   <path_to_kibana_root_dir>/bin/kibana
@@ -90,13 +107,19 @@ Once the index is created using either of the above options, you can check to se
 
 * Access Kibana by going to `http://localhost:5601` in a web browser
 * Connect Kibana to the `donorschoose` index in Elasticsearch
-    * Click the **Settings** tab >> **Indices** tab >> **Create New**. Specify `donorschoose` as the index pattern name, select `donation_timestamp` as the **Time-field name**, and click **Create** to define the index pattern. (Leave the **Use event times to create index names** box unchecked)
+    * Click the **Settings** tab >> **Indices** tab >> **Create New**. Specify `donorschoose` as the index pattern name, select `donation_timestamp` as the **Time-field name**, and click **Create** to define the index pattern.
+    * If this is the only index pattern declared, you will also need to select the star in the top upper right to ensure a default is defined. 
 * Load sample dashboard into Kibana
     * Click the **Settings** tab >> **Objects** tab >> **Import**, and select `donorschoose_kibana.json`
+    * On import you will be asked to overwrite existing objects - select "Yes, overwrite all". Additionally, select the index pattern "donorschoose" when asked to specify a index pattern for the dashboards.
 * Open dashboard
     * Click on **Dashboard** tab and open `Donors Choose` dashboard. Voila! You should see the following dashboard. Happy Data Exploration!
 
-![Kibana Dashboard Screenshot](https://user-images.githubusercontent.com/5269751/28243545-367f211c-6983-11e7-8196-56adf0ccd52a.jpg)
+![Kibana Dashboard Screenshot-1](https://user-images.githubusercontent.com/12695796/32787527-a1d3b98e-c94e-11e7-98e5-60a97bc6544f.png)
+
+![Kibana Dashboard Screenshot-2](https://user-images.githubusercontent.com/12695796/32787564-bb1698f8-c94e-11e7-9db6-a9a6df8c88c9.png)
+
+![Kibana Dashboard Screenshot-3](https://user-images.githubusercontent.com/12695796/32787597-d2fa3dc6-c94e-11e7-8840-2661ab7c0ccd.png)
 
 ### We would love to hear from you!
 If you run into issues running this example or have suggestions to improve it, please use Github issues to let us know. Have an easy fix? Submit a pull request. We will try our best to respond in a timely manner!

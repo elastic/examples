@@ -1,221 +1,221 @@
 {
-     "donation": {
-        "properties": {
-           "cartid": {
-              "type": "keyword"
-           },
-           "donor_acctid": {
-              "type": "keyword"
-           },
-           "projectid": {
-              "type": "keyword"
-           },
-           "dollar_amount": {
-              "type": "keyword"
-           },
-           "donation_included_optional_support": {
-              "type": "keyword"
-           },
-           "donation_message": {
-              "type": "text"
-           },
-           "donation_optional_support": {
-              "type": "double"
-           },
-           "donation_timestamp": {
-              "type": "date",
-              "format": "dateOptionalTime"
-           },
-           "donation_to_project": {
-              "type": "double"
-           },
-           "donation_total": {
-              "type": "double"
-           },
-           "donor_city": {
-              "type": "keyword"
-           },
-           "donor_state": {
-              "type": "keyword"
-           },
-           "donor_zip": {
-              "type": "keyword"
-           },
-           "for_honoree": {
-              "type": "keyword"
-           },
-           "is_teacher_acct": {
-              "type": "keyword"
-           },
-           "payment_included_acct_credit": {
-              "type": "keyword"
-           },
-           "payment_included_campaign_gift_card": {
-              "type": "keyword"
-           },
-           "payment_included_web_purchased_gift_card": {
-              "type": "keyword"
-           },
-           "payment_method": {
-              "type": "keyword"
-           },
-           "payment_was_promo_matched": {
-              "type": "keyword"
-           },
-           "resourceid": {
-              "type": "text"
-           },
-           "resource_item_name": {
-              "type": "keyword"
-           },
-           "resource_item_number": {
-              "type": "text"
-           },
-           "resource_item_quantity": {
-              "type": "float"
-            },
-            "resource_item_unit_price": {
-                "type": "float"
-            },
-            "resource_vendor_name": {
-                "type": "keyword"
-            },
-            "resource_vendorid": {
-                "type": "text"
-            },
-             "project_schoolid": {
-                "type": "keyword"
-             },
-             "project_teacher_acctid": {
-                "type": "keyword"
-             },
-             "project_date_completed": {
-               "type": "date",
-               "format": "dateOptionalTime"
-             },
-             "project_date_expiration": {
-                "type": "date",
-                "format": "dateOptionalTime"
-             },
-             "project_date_posted": {
-                "type": "date",
-                "format": "dateOptionalTime"
-             },
-             "project_date_thank_you_packet_mailed": {
-               "type": "date",
-               "format": "dateOptionalTime"
-             },
-             "project_eligible_almost_home_match": {
-                "type": "keyword"
-             },
-             "project_eligible_double_your_impact_match": {
-                "type": "keyword"
-             },
-             "project_fulfillment_labor_materials": {
-                "type": "double"
-             },
-             "project_funding_status": {
-                "type": "text"
-             },
-             "project_grade_level": {
-                "type": "keyword"
-             },
-             "project_location": {
-                "type": "geo_point"
-             },
-             "project_num_donors": {
-                "type": "long"
-             },
-             "project_payment_processing_charges": {
-                "type": "double"
-             },
-             "project_poverty_level": {
-                "type": "keyword"
-             },
-             "project_primary_focus_area": {
-                "type": "keyword"
-             },
-             "project_primary_focus_subject": {
-                "type": "keyword"
-             },
-             "project_resource_type": {
-                "type": "keyword"
-             },
-             "project_sales_tax": {
-                "type": "double"
-             },
-             "project_school_charter": {
-                "type": "text"
-             },
-             "project_school_charter_ready_promise": {
-                "type": "text"
-             },
-             "project_school_city": {
-                "type": "keyword"
-             },
-             "project_school_county": {
-                "type": "keyword"
-             },
-             "project_school_district": {
-                "type": "keyword"
-             },
-             "project_school_kipp": {
-                "type": "keyword"
-             },
-             "project_school_magnet": {
-                "type": "text"
-             },
-             "project_school_metro": {
-                "type": "keyword"
-             },
-             "project_school_ncesid": {
-                "type": "double"
-             },
-             "project_school_nlns": {
-                "type": "text"
-             },
-             "project_school_state": {
-                "type": "keyword"
-             },
-             "project_school_year_round": {
-                "type": "text"
-             },
-             "project_school_zip": {
-                "type": "double"
-             },
-             "project_secondary_focus_area": {
-                "type": "keyword"
-             },
-             "project_secondary_focus_subject": {
-                "type": "keyword"
-             },
-             "project_students_reached": {
-                "type": "double"
-             },
-             "project_teacher_ny_teaching_fellow": {
-                "type": "keyword"
-             },
-             "project_teacher_prefix": {
-                "type": "keyword"
-             },
-             "project_teacher_teach_for_america": {
-                "type": "keyword"
-             },
-             "project_total_donations": {
-                "type": "double"
-             },
-             "project_total_price_excluding_optional_support": {
-                "type": "double"
-             },
-             "project_total_price_including_optional_support": {
-                "type": "double"
-             },
-             "project_vendor_shipping_charges": {
-                "type": "double"
-           },
-            "via_giving_page": {
-              "type": "keyword"
-           }
-        }
-     }
-   }
+ "donation": {
+    "properties": {
+       "cartid": {
+          "type": "keyword"
+       },
+       "donor_acctid": {
+          "type": "keyword"
+       },
+       "projectid": {
+          "type": "keyword"
+       },
+       "dollar_amount": {
+          "type": "keyword"
+       },
+       "donation_included_optional_support": {
+          "type": "keyword"
+       },
+       "donation_message": {
+          "type": "text"
+       },
+       "donation_optional_support": {
+          "type": "double"
+       },
+       "donation_timestamp": {
+          "type": "date",
+          "format": "dateOptionalTime"
+       },
+       "donation_to_project": {
+          "type": "double"
+       },
+       "donation_total": {
+          "type": "double"
+       },
+       "donor_city": {
+          "type": "keyword"
+       },
+       "donor_state": {
+          "type": "keyword"
+       },
+       "donor_zip": {
+          "type": "keyword"
+       },
+       "for_honoree": {
+          "type": "keyword"
+       },
+       "is_teacher_acct": {
+          "type": "keyword"
+       },
+       "payment_included_acct_credit": {
+          "type": "keyword"
+       },
+       "payment_included_campaign_gift_card": {
+          "type": "keyword"
+       },
+       "payment_included_web_purchased_gift_card": {
+          "type": "keyword"
+       },
+       "payment_method": {
+          "type": "keyword"
+       },
+       "payment_was_promo_matched": {
+          "type": "keyword"
+       },
+       "resourceid": {
+          "type": "text"
+       },
+       "resource_item_name": {
+          "type": "keyword"
+       },
+       "resource_item_number": {
+          "type": "text"
+       },
+       "resource_item_quantity": {
+          "type": "float"
+        },
+        "resource_item_unit_price": {
+            "type": "float"
+        },
+        "resource_vendor_name": {
+            "type": "keyword"
+        },
+        "resource_vendorid": {
+            "type": "text"
+        },
+         "project_schoolid": {
+            "type": "keyword"
+         },
+         "project_teacher_acctid": {
+            "type": "keyword"
+         },
+         "project_date_completed": {
+           "type": "date",
+           "format": "dateOptionalTime"
+         },
+         "project_date_expiration": {
+            "type": "date",
+            "format": "dateOptionalTime"
+         },
+         "project_date_posted": {
+            "type": "date",
+            "format": "dateOptionalTime"
+         },
+         "project_date_thank_you_packet_mailed": {
+           "type": "date",
+           "format": "dateOptionalTime"
+         },
+         "project_eligible_almost_home_match": {
+            "type": "keyword"
+         },
+         "project_eligible_double_your_impact_match": {
+            "type": "keyword"
+         },
+         "project_fulfillment_labor_materials": {
+            "type": "double"
+         },
+         "project_funding_status": {
+            "type": "text"
+         },
+         "project_grade_level": {
+            "type": "keyword"
+         },
+         "project_location": {
+            "type": "geo_point"
+         },
+         "project_num_donors": {
+            "type": "long"
+         },
+         "project_payment_processing_charges": {
+            "type": "double"
+         },
+         "project_poverty_level": {
+            "type": "keyword"
+         },
+         "project_primary_focus_area": {
+            "type": "keyword"
+         },
+         "project_primary_focus_subject": {
+            "type": "keyword"
+         },
+         "project_resource_type": {
+            "type": "keyword"
+         },
+         "project_sales_tax": {
+            "type": "double"
+         },
+         "project_school_charter": {
+            "type": "text"
+         },
+         "project_school_charter_ready_promise": {
+            "type": "text"
+         },
+         "project_school_city": {
+            "type": "keyword"
+         },
+         "project_school_county": {
+            "type": "keyword"
+         },
+         "project_school_district": {
+            "type": "keyword"
+         },
+         "project_school_kipp": {
+            "type": "keyword"
+         },
+         "project_school_magnet": {
+            "type": "text"
+         },
+         "project_school_metro": {
+            "type": "keyword"
+         },
+         "project_school_ncesid": {
+            "type": "double"
+         },
+         "project_school_nlns": {
+            "type": "text"
+         },
+         "project_school_state": {
+            "type": "keyword"
+         },
+         "project_school_year_round": {
+            "type": "text"
+         },
+         "project_school_zip": {
+            "type": "double"
+         },
+         "project_secondary_focus_area": {
+            "type": "keyword"
+         },
+         "project_secondary_focus_subject": {
+            "type": "keyword"
+         },
+         "project_students_reached": {
+            "type": "double"
+         },
+         "project_teacher_ny_teaching_fellow": {
+            "type": "keyword"
+         },
+         "project_teacher_prefix": {
+            "type": "keyword"
+         },
+         "project_teacher_teach_for_america": {
+            "type": "keyword"
+         },
+         "project_total_donations": {
+            "type": "double"
+         },
+         "project_total_price_excluding_optional_support": {
+            "type": "double"
+         },
+         "project_total_price_including_optional_support": {
+            "type": "double"
+         },
+         "project_vendor_shipping_charges": {
+            "type": "double"
+       },
+        "via_giving_page": {
+          "type": "keyword"
+       }
+    }
+ }
+}
