@@ -2,15 +2,15 @@
 
 This example provides sample files to ingest, analyze and visualize **earthquake data** using the Elastic Stack. You may refer to [Earthquake data with the Elastic Stack](https://www.elastic.co/blog/earthquake-data-with-the-elastic-stack) blog post to find out your own story behind the data.
 
-Since its initial publishing, this example has been modified to use Filebeat+Ingest Node instead of Logstash for data ingestion. Logstash configuration files are provided for reference.  The data distributed with this example is for 2016. More recent data can be obtained from the links below.
+Since its initial publishing, this example has been modified to use Filebeat+Ingest Node instead of Logstash for data ingestion.  The data distributed with this example is for 2016. More recent data can be obtained from the links below.
 
 ## Version Requirements
 
 The example has been tested in the following versions:
 
-- Elasticsearch 5.4.0
-- Filebeat 5.4.0
-- Kibana 5.4.0
+- Elasticsearch 6.0
+- Filebeat 6.0
+- Kibana 6.0
 
 ## Datasets
 
@@ -54,8 +54,9 @@ Size: 222 lines (17837 bytes)
 ### Download Example Files
 
 Download the following files in this repo to a local directory:
+
 - `ncedc-earthquakes-dataset.tar.gz` - sample data (in csv format)
-- `ncedc-earthquakes-filebeat.yml` - Logstash config for ingesting data into Elasticsearch
+- `ncedc-earthquakes-filebeat.yml` - Filebeat config for ingesting data into Elasticsearch
 - `ncedc-earthquakes-template.json` - template for custom mapping of fields
 - `ncedc-earthquakes-pipeline.json` - ingest pipeline for processing documents produced by Filebeat
 - `ncedc-earthquakes-dashboards.json` - config file to load prebuilt creating Kibana dashboard
@@ -80,6 +81,12 @@ wget https://raw.githubusercontent.com/elastic/examples/master/Exploring%20Publi
     curl -XPUT -H 'Content-Type: application/json' 'localhost:9200/_ingest/pipeline/ncedc-earthquakes' -d @ncedc-earthquakes-pipeline.json
     ```
 
+1. Install the index template i.e.
+
+    ```shell
+    curl -XPUT -H 'Content-Type: application/json' 'localhost:9200/_template/ncedc-earthquakes' -d @ncedc-earthquakes-template.json
+    ```
+
 1. Modify the `ncedc-earthquakes-filebeat.conf` file as follows:
 
     * The parameter `hosts: ["localhost:9200"]` in case your are not running Elasticsearch node on your local host
@@ -97,10 +104,9 @@ wget https://raw.githubusercontent.com/elastic/examples/master/Exploring%20Publi
             - ./ncedc-earthquakes-dataset/blasts.txt
         ```    
     
-1. Move the files `ncedc-earthquakes-template.json` and `ncedc-earthquakes-filebeat.yml` to the Filebeat installation directory i.e.
+1. Move the file `ncedc-earthquakes-filebeat.yml` to the Filebeat installation directory i.e.
     
      ```shell
-    mv ncedc-earthquakes-template.json <filebeat_installation_dir>/ncedc-earthquakes-template.json
     mv ncedc-earthquakes-filebeat.yml <filebeat_installation_dir>/ncedc-earthquakes-filebeat.yml
     ```
 
@@ -117,21 +123,23 @@ wget https://raw.githubusercontent.com/elastic/examples/master/Exploring%20Publi
     
     This simply represents the csv headers not conforming to the required field types. These documents are not required and the above can be safely ignored.
 
-1. After several minutes repeat the following commands until a count of 38316 is returned:
+1. After several minutes repeat the following commands until a count of 38315 is returned:
 
     ```shell
-    curl http://localhost:9200/ncedc-earthquakes/_refresh
-    curl http://localhost:9200/ncedc-earthquakes/_count
+    curl http://localhost:9200/ncedc-earthquakes-*/_refresh
+    curl http://localhost:9200/ncedc-earthquakes-*/_count
     ```
 
 ### Importing Kibana Visuals and Dashboards
 
 * Access Kibana by going to `http://localhost:5601` in a web browser
-* Connect Kibana to the `ncedc-earthquakes` indices in Elasticsearch (autocreated in step 1)
-    * Click the **Management** tab >> **Index Patterns** tab >> **Create New**. Specify `ncedc-earthquakes` as the index pattern name and click **Create** to define the index pattern. (Leave the **Use event times to create index names** box unchecked and use @timestamp as the Time Field)
+* Connect Kibana to the `ncedc-earthquakes-*` indices in Elasticsearch (autocreated in step 1)
+    * Click the **Management** tab >> **Index Patterns** tab >> **Create New**. Specify `ncedc-earthquakes-*` as the index pattern name and click **Create** to define the index pattern. (Leave the **Use event times to create index names** box unchecked and use @timestamp as the Time Field)
+    * If this is the only index pattern declared, you will also need to select the star in the top upper right to ensure a default is defined. 
 * Load sample dashboard into Kibana
     * Click the **Management** tab >> **Saved Objects** tab >> **Import**, and select `ncedc-earthquakes-dashboard.json`. 
+    * On import you will be asked to overwrite existing objects - select "Yes, overwrite all". Additionally, select the index pattern "ncedc-earthquakes-*" when asked to specify a index pattern for the dashboards.
 * Open dashboard
     * Click on **Dashboard** tab and open the `Earthquake` dashboard
 
-![Dashboard Screenshot](ncedc-earthquakes-screenshot.png?raw=true)
+![Dashboard Screenshot](https://user-images.githubusercontent.com/12695796/32793826-f29e4a22-c95e-11e7-9e86-cd19685c3df5.png)
