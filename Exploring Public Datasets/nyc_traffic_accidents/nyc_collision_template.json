@@ -1,114 +1,113 @@
 {
-    "template" : "nyc_visionzero",
-    "settings" : {
-      "index.refresh_interval" : "5s"
-    },
-    "mappings" : {
-      "_default_" : {
-        "dynamic_templates" : [ {
-          "string_fields" : {
-            "mapping" : {
-              "type" : "text",
-              "omit_norms" : true,
-              "fields" : {
-                "keyword" : {
-                  "type" : "keyword",
-                  "ignore_above" : 256
+  "index_patterns": "nyc_visionzero",
+  "settings": {
+    "index.refresh_interval": "5s"
+  },
+  "mappings": {
+    "doc": {
+      "dynamic_templates": [
+        {
+          "string_fields": {
+            "mapping": {
+              "type": "text",
+              "omit_norms": true,
+              "fields": {
+                "keyword": {
+                  "type": "keyword",
+                  "ignore_above": 256
                 }
               }
             },
-            "match_mapping_type" : "string",
-            "match" : "*"
+            "match_mapping_type": "string",
+            "match": "*"
           }
-        } ],
-        "properties" : {
-          "location" : {
-            "type" : "geo_point",
-            "ignore_malformed": true
-          },
-          "@version" : {
-            "type" : "keyword"
-          },
-          "borough": {
-          	"type" : "keyword"
-          },
-          "zip_code": {
-          	"type" : "keyword"
-          },
-          "unique_key": {
-          	"type" : "keyword"
-          },
-          "cross_street_name" :{
-          	"type" : "keyword"
-          },
-          "off_street_name":{
-          	"type" : "keyword"
-          },
-          "on_street_name":{
-          	"type" : "keyword"
-          },
-          "contributing_factor_vehicle":{
-          	"type" : "keyword"
-          },
-          "vehicle_type":{
-          	"type" : "keyword"
-          },
-          "intersection":{
-            "type" : "keyword"
-          },
-          "hour_of_day": {
-            "type" : "integer",
-            "ignore_malformed": true
-          },
-          "number_of_motorist_injured":{
-            "type" : "integer",
-            "ignore_malformed": true
-          },
-          "number_of_cyclist_killed":{
-            "type" : "integer",
-            "ignore_malformed": true
-          },
-          "number_of_persons_killed":{
-            "type" : "integer",
-            "ignore_malformed": true
-          },
-          "number_persons_impacted":{
-            "type" : "integer",
-            "ignore_malformed": true
-          },
-          "number_of_pedestrians_killed":{
-            "type" : "integer",
-            "ignore_malformed": true
-          },
-          "number_of_motorist_killed":{
-            "type" : "integer",
-            "ignore_malformed": true
-          },
-          "number_of_cyclist_injured":{
-            "type" : "integer",
-            "ignore_malformed": true
-          },
-          "number_of_pedestrians_injured":{
-            "type" : "integer",
-            "ignore_malformed": true
-          },
-          "number_of_persons_injured":{
-            "type" : "integer",
-            "ignore_malformed": true
-          },
-          "latitude":{
-            "type" : "float",
-            "ignore_malformed": true
-          },
-          "longitude":{
-            "type" : "float",
-            "ignore_malformed": true
-          }
+        }
+      ],
+      "properties": {
+        "location": {
+          "type": "geo_point",
+          "ignore_malformed": true
         },
-        "_all" : {
-          "enabled" : true
+        "@version": {
+          "type": "keyword"
+        },
+        "borough": {
+          "type": "keyword"
+        },
+        "zip_code": {
+          "type": "keyword"
+        },
+        "unique_key": {
+          "type": "keyword"
+        },
+        "cross_street_name": {
+          "type": "keyword"
+        },
+        "off_street_name": {
+          "type": "keyword"
+        },
+        "on_street_name": {
+          "type": "keyword"
+        },
+        "contributing_factor_vehicle": {
+          "type": "keyword"
+        },
+        "vehicle_type": {
+          "type": "keyword"
+        },
+        "intersection": {
+          "type": "keyword"
+        },
+        "hour_of_day": {
+          "type": "integer",
+          "ignore_malformed": true
+        },
+        "number_of_motorist_injured": {
+          "type": "integer",
+          "ignore_malformed": true
+        },
+        "number_of_cyclist_killed": {
+          "type": "integer",
+          "ignore_malformed": true
+        },
+        "number_of_persons_killed": {
+          "type": "integer",
+          "ignore_malformed": true
+        },
+        "number_persons_impacted": {
+          "type": "integer",
+          "ignore_malformed": true
+        },
+        "number_of_pedestrians_killed": {
+          "type": "integer",
+          "ignore_malformed": true
+        },
+        "number_of_motorist_killed": {
+          "type": "integer",
+          "ignore_malformed": true
+        },
+        "number_of_cyclist_injured": {
+          "type": "integer",
+          "ignore_malformed": true
+        },
+        "number_of_pedestrians_injured": {
+          "type": "integer",
+          "ignore_malformed": true
+        },
+        "number_of_persons_injured": {
+          "type": "integer",
+          "ignore_malformed": true
+        },
+        "latitude": {
+          "type": "float",
+          "ignore_malformed": true
+        },
+        "longitude": {
+          "type": "float",
+          "ignore_malformed": true
         }
       }
-    },
-    "aliases" : { }
+    }
+  },
+  "aliases": {}
 }
