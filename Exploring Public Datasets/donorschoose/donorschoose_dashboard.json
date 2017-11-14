@@ -6,30 +6,24 @@
       "title": "Donors Choose",
       "hits": 0,
       "description": "",
-      "panelsJSON": "[{\"col\":1,\"id\":\"Total-Donation-Map\",\"row\":7,\"size_x\":8,\"size_y\":6,\"type\":\"visualization\"},{\"col\":1,\"id\":\"Average-weekly-donation\",\"row\":13,\"size_x\":12,\"size_y\":6,\"type\":\"visualization\"},{\"col\":1,\"id\":\"Donation-by-State-by-Time\",\"row\":31,\"size_x\":6,\"size_y\":6,\"type\":\"visualization\"},{\"col\":7,\"id\":\"Donor-State-vs.-School-State\",\"row\":31,\"size_x\":6,\"size_y\":6,\"type\":\"visualization\"},{\"col\":7,\"id\":\"Number-of-Donations\",\"row\":5,\"size_x\":2,\"size_y\":2,\"type\":\"visualization\"},{\"col\":11,\"id\":\"Projects-Served\",\"row\":1,\"size_x\":2,\"size_y\":2,\"type\":\"visualization\"},{\"col\":1,\"id\":\"Projects-per-Year\",\"row\":4,\"size_x\":6,\"size_y\":3,\"type\":\"visualization\"},{\"col\":5,\"id\":\"Donation-($$)-by-Focus-Area\",\"row\":19,\"size_x\":4,\"size_y\":3,\"type\":\"visualization\"},{\"col\":5,\"id\":\"Donation-($$)-by-Grade-Level\",\"row\":22,\"size_x\":4,\"size_y\":3,\"type\":\"visualization\"},{\"col\":5,\"id\":\"Donation-($$)-by-Resource-Type\",\"row\":28,\"size_x\":4,\"size_y\":3,\"type\":\"visualization\"},{\"col\":1,\"id\":\"Projects-(#)-by-Focus-Area\",\"row\":19,\"size_x\":4,\"size_y\":3,\"type\":\"visualization\"},{\"col\":1,\"id\":\"Projects-(#)-by-Grade-Level\",\"row\":22,\"size_x\":4,\"size_y\":3,\"type\":\"visualization\"},{\"col\":1,\"id\":\"Projects-(#)-by-Poverty-Level\",\"row\":25,\"size_x\":4,\"size_y\":3,\"type\":\"visualization\"},{\"col\":1,\"id\":\"Projects-(#)-by-Resource-Type\",\"row\":28,\"size_x\":4,\"size_y\":3,\"type\":\"visualization\"},{\"col\":5,\"id\":\"Donations-($$)-by-Poverty-Level\",\"row\":25,\"size_x\":4,\"size_y\":3,\"type\":\"visualization\"},{\"col\":9,\"id\":\"$$-by-Poverty-Level\",\"row\":19,\"size_x\":4,\"size_y\":3,\"type\":\"visualization\"},{\"col\":9,\"id\":\"$$-by-Grade-Level\",\"row\":22,\"size_x\":4,\"size_y\":3,\"type\":\"visualization\"},{\"col\":9,\"id\":\"$$-by-Resource-Type\",\"row\":25,\"size_x\":4,\"size_y\":3,\"type\":\"visualization\"},{\"col\":11,\"id\":\"Schools-Reached\",\"row\":3,\"size_x\":2,\"size_y\":2,\"type\":\"visualization\"},{\"col\":7,\"id\":\"$$$-Raised\",\"row\":1,\"size_x\":4,\"size_y\":4,\"type\":\"visualization\"},{\"col\":11,\"id\":\"Teachers-Helped\",\"row\":5,\"size_x\":2,\"size_y\":2,\"type\":\"visualization\"},{\"col\":1,\"id\":\"Donations-($$)-per-Year\",\"row\":1,\"size_x\":6,\"size_y\":3,\"type\":\"visualization\"},{\"col\":9,\"id\":\"$$-by-Project-Type\",\"row\":28,\"size_x\":4,\"size_y\":3,\"type\":\"visualization\"},{\"col\":9,\"id\":\"Project-slash-Donations-by-School-City\",\"row\":7,\"size_x\":4,\"size_y\":6,\"type\":\"visualization\"},{\"col\":9,\"id\":\"#-of-Donors\",\"row\":5,\"size_x\":2,\"size_y\":2,\"type\":\"visualization\"},{\"col\":9,\"id\":\"Donation-by-Dollar-Amount\",\"row\":37,\"size_x\":4,\"size_y\":5,\"type\":\"visualization\"},{\"id\":\"Donor-State-vs.-Donation-Amount\",\"type\":\"visualization\",\"size_x\":8,\"size_y\":5,\"col\":1,\"row\":37}]",
+      "panelsJSON": "[{\"col\":1,\"id\":\"Total-Donation-Map\",\"panelIndex\":1,\"row\":7,\"size_x\":8,\"size_y\":6,\"type\":\"visualization\"},{\"col\":1,\"id\":\"Average-weekly-donation\",\"panelIndex\":2,\"row\":13,\"size_x\":12,\"size_y\":6,\"type\":\"visualization\"},{\"col\":1,\"id\":\"Donation-by-State-by-Time\",\"panelIndex\":3,\"row\":31,\"size_x\":6,\"size_y\":6,\"type\":\"visualization\"},{\"col\":7,\"id\":\"Donor-State-vs.-School-State\",\"panelIndex\":4,\"row\":31,\"size_x\":6,\"size_y\":6,\"type\":\"visualization\"},{\"col\":7,\"id\":\"Number-of-Donations\",\"panelIndex\":5,\"row\":5,\"size_x\":2,\"size_y\":2,\"type\":\"visualization\"},{\"col\":11,\"id\":\"Projects-Served\",\"panelIndex\":6,\"row\":1,\"size_x\":2,\"size_y\":2,\"type\":\"visualization\"},{\"col\":1,\"id\":\"Projects-per-Year\",\"panelIndex\":7,\"row\":4,\"size_x\":6,\"size_y\":3,\"type\":\"visualization\"},{\"col\":5,\"id\":\"Donation-($$)-by-Focus-Area\",\"panelIndex\":8,\"row\":19,\"size_x\":4,\"size_y\":3,\"type\":\"visualization\"},{\"col\":5,\"id\":\"Donation-($$)-by-Grade-Level\",\"panelIndex\":9,\"row\":22,\"size_x\":4,\"size_y\":3,\"type\":\"visualization\"},{\"col\":5,\"id\":\"Donation-($$)-by-Resource-Type\",\"panelIndex\":10,\"row\":28,\"size_x\":4,\"size_y\":3,\"type\":\"visualization\"},{\"col\":1,\"id\":\"Projects-(#)-by-Focus-Area\",\"panelIndex\":11,\"row\":19,\"size_x\":4,\"size_y\":3,\"type\":\"visualization\"},{\"col\":1,\"id\":\"Projects-(#)-by-Grade-Level\",\"panelIndex\":12,\"row\":22,\"size_x\":4,\"size_y\":3,\"type\":\"visualization\"},{\"col\":1,\"id\":\"Projects-(#)-by-Poverty-Level\",\"panelIndex\":13,\"row\":25,\"size_x\":4,\"size_y\":3,\"type\":\"visualization\"},{\"col\":1,\"id\":\"Projects-(#)-by-Resource-Type\",\"panelIndex\":14,\"row\":28,\"size_x\":4,\"size_y\":3,\"type\":\"visualization\"},{\"col\":5,\"id\":\"Donations-($$)-by-Poverty-Level\",\"panelIndex\":15,\"row\":25,\"size_x\":4,\"size_y\":3,\"type\":\"visualization\"},{\"col\":9,\"id\":\"$$-by-Poverty-Level\",\"panelIndex\":16,\"row\":19,\"size_x\":4,\"size_y\":3,\"type\":\"visualization\"},{\"col\":9,\"id\":\"$$-by-Grade-Level\",\"panelIndex\":17,\"row\":22,\"size_x\":4,\"size_y\":3,\"type\":\"visualization\"},{\"col\":9,\"id\":\"$$-by-Resource-Type\",\"panelIndex\":18,\"row\":25,\"size_x\":4,\"size_y\":3,\"type\":\"visualization\"},{\"col\":11,\"id\":\"Schools-Reached\",\"panelIndex\":19,\"row\":3,\"size_x\":2,\"size_y\":2,\"type\":\"visualization\"},{\"col\":7,\"id\":\"$$$-Raised\",\"panelIndex\":20,\"row\":1,\"size_x\":4,\"size_y\":4,\"type\":\"visualization\"},{\"col\":11,\"id\":\"Teachers-Helped\",\"panelIndex\":21,\"row\":5,\"size_x\":2,\"size_y\":2,\"type\":\"visualization\"},{\"col\":1,\"id\":\"Donations-($$)-per-Year\",\"panelIndex\":22,\"row\":1,\"size_x\":6,\"size_y\":3,\"type\":\"visualization\"},{\"col\":9,\"id\":\"$$-by-Project-Type\",\"panelIndex\":23,\"row\":28,\"size_x\":4,\"size_y\":3,\"type\":\"visualization\"},{\"col\":9,\"id\":\"Project-slash-Donations-by-School-City\",\"panelIndex\":24,\"row\":7,\"size_x\":4,\"size_y\":6,\"type\":\"visualization\"},{\"col\":9,\"id\":\"#-of-Donors\",\"panelIndex\":25,\"row\":5,\"size_x\":2,\"size_y\":2,\"type\":\"visualization\"},{\"col\":9,\"id\":\"Donation-by-Dollar-Amount\",\"panelIndex\":26,\"row\":37,\"size_x\":4,\"size_y\":5,\"type\":\"visualization\"},{\"col\":1,\"id\":\"Donor-State-vs.-Donation-Amount\",\"panelIndex\":27,\"row\":37,\"size_x\":8,\"size_y\":5,\"type\":\"visualization\"}]",
       "optionsJSON": "{\"darkTheme\":false}",
-      "uiStateJSON": "{}",
+      "uiStateJSON": "{\"P-1\":{\"mapZoom\":3},\"P-19\":{\"vis\":{\"defaultColors\":{\"0 - 100\":\"rgb(0,104,55)\"}}},\"P-20\":{\"vis\":{\"defaultColors\":{\"0 - 100\":\"rgb(0,104,55)\"}}},\"P-21\":{\"vis\":{\"defaultColors\":{\"0 - 100\":\"rgb(0,104,55)\"}}},\"P-24\":{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}},\"P-25\":{\"vis\":{\"defaultColors\":{\"0 - 100\":\"rgb(0,104,55)\"}}},\"P-26\":{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}},\"P-5\":{\"vis\":{\"defaultColors\":{\"0 - 100\":\"rgb(0,104,55)\"}}},\"P-6\":{\"vis\":{\"defaultColors\":{\"0 - 100\":\"rgb(0,104,55)\"}}}}",
       "version": 1,
       "timeRestore": true,
       "timeTo": "now",
       "timeFrom": "now-17y",
+      "refreshInterval": {
+        "display": "Off",
+        "pause": false,
+        "value": 0
+      },
       "kibanaSavedObjectMeta": {
-        "searchSourceJSON": "{\"filter\":[{\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}}}]}"
+        "searchSourceJSON": "{\"filter\":[],\"query\":{\"language\":\"lucene\",\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"default_field\":\"*\",\"query\":\"*\"}}},\"highlightAll\":true,\"version\":true}"
       }
-    }
-  },
-  {
-    "_id": "Total-Donation",
-    "_type": "visualization",
-    "_source": {
-      "title": "Total Donation",
-      "visState": "{\"type\":\"metric\",\"params\":{\"fontSize\":\"50\"},\"aggs\":[{\"id\":\"1\",\"type\":\"sum\",\"schema\":\"metric\",\"params\":{\"field\":\"donation_to_project\"}},{\"id\":\"2\",\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"4\",\"type\":\"cardinality\",\"schema\":\"metric\",\"params\":{\"field\":\"project_teacher_acctid\"}},{\"id\":\"3\",\"type\":\"cardinality\",\"schema\":\"metric\",\"params\":{\"field\":\"project_schoolid\"}}],\"listeners\":{},\"title\":\"Total Donation\"}",
-      "uiStateJSON": "{}",
-      "description": "",
-      "version": 1,
-      "kibanaSavedObjectMeta": {
-        "searchSourceJSON": "{\"index\":\"donorschoose\",\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[]}"
-      }
+    },
+    "_meta": {
+      "savedObjectVersion": 2
     }
   },
   {
@@ -42,22 +36,28 @@
       "description": "",
       "version": 1,
       "kibanaSavedObjectMeta": {
-        "searchSourceJSON": "{\"index\":\"donorschoose\",\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[]}"
+        "searchSourceJSON": "{\"index\":\"55cfbf50-c585-11e7-b3a8-f7f1b94b313c\",\"query\":{\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"language\":\"lucene\"},\"filter\":[]}"
       }
+    },
+    "_meta": {
+      "savedObjectVersion": 2
     }
   },
   {
-    "_id": "Donations-($$)-per-Year",
+    "_id": "Total-Donation",
     "_type": "visualization",
     "_source": {
-      "title": "Donations ($$) per Year",
-      "visState": "{\"type\":\"histogram\",\"params\":{\"addLegend\":true,\"addTimeMarker\":false,\"addTooltip\":true,\"defaultYExtents\":false,\"mode\":\"stacked\",\"scale\":\"linear\",\"setYExtents\":false,\"shareYAxis\":true,\"times\":[],\"yAxis\":{}},\"aggs\":[{\"id\":\"1\",\"type\":\"sum\",\"schema\":\"metric\",\"params\":{\"field\":\"donation_total\"}},{\"id\":\"2\",\"type\":\"date_histogram\",\"schema\":\"segment\",\"params\":{\"field\":\"project_date_posted\",\"interval\":\"y\",\"customInterval\":\"2h\",\"min_doc_count\":1,\"extended_bounds\":{}}},{\"id\":\"3\",\"type\":\"filters\",\"schema\":\"group\",\"params\":{\"filters\":[{\"input\":{\"query\":{\"query_string\":{\"query\":\"project_funding_status =  completed\",\"analyze_wildcard\":true}}}}]}}],\"listeners\":{},\"title\":\"Donations ($$) per Year\"}",
+      "title": "Total Donation",
+      "visState": "{\"type\":\"metric\",\"params\":{\"fontSize\":\"50\"},\"aggs\":[{\"id\":\"1\",\"type\":\"sum\",\"schema\":\"metric\",\"params\":{\"field\":\"donation_to_project\"}},{\"id\":\"2\",\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"4\",\"type\":\"cardinality\",\"schema\":\"metric\",\"params\":{\"field\":\"project_teacher_acctid\"}},{\"id\":\"3\",\"type\":\"cardinality\",\"schema\":\"metric\",\"params\":{\"field\":\"project_schoolid\"}}],\"listeners\":{},\"title\":\"Total Donation\"}",
       "uiStateJSON": "{}",
       "description": "",
       "version": 1,
       "kibanaSavedObjectMeta": {
-        "searchSourceJSON": "{\"index\":\"donorschoose\",\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[]}"
+        "searchSourceJSON": "{\"index\":\"55cfbf50-c585-11e7-b3a8-f7f1b94b313c\",\"query\":{\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"language\":\"lucene\"},\"filter\":[]}"
       }
+    },
+    "_meta": {
+      "savedObjectVersion": 2
     }
   },
   {
@@ -70,22 +70,11 @@
       "description": "Total weekly $$ increased. Average Weekly $$ decreased",
       "version": 1,
       "kibanaSavedObjectMeta": {
-        "searchSourceJSON": "{\"index\":\"donorschoose\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+        "searchSourceJSON": "{\"index\":\"55cfbf50-c585-11e7-b3a8-f7f1b94b313c\",\"query\":{\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"language\":\"lucene\"},\"filter\":[]}"
       }
-    }
-  },
-  {
-    "_id": "Average-weekly-donation",
-    "_type": "visualization",
-    "_source": {
-      "title": "Monthly Donation",
-      "visState": "{\"type\":\"line\",\"params\":{\"shareYAxis\":true,\"addTooltip\":true,\"addLegend\":true,\"showCircles\":true,\"smoothLines\":false,\"interpolate\":\"linear\",\"scale\":\"log\",\"drawLinesBetweenPoints\":false,\"radiusRatio\":\"39\",\"times\":[],\"addTimeMarker\":false,\"defaultYExtents\":true,\"setYExtents\":false,\"yAxis\":{\"max\":1000,\"min\":0}},\"aggs\":[{\"id\":\"1\",\"type\":\"sum\",\"schema\":\"metric\",\"params\":{\"field\":\"donation_total\"}},{\"id\":\"2\",\"type\":\"date_histogram\",\"schema\":\"segment\",\"params\":{\"field\":\"donation_timestamp\",\"interval\":\"w\",\"customInterval\":\"2h\",\"min_doc_count\":1,\"extended_bounds\":{}}},{\"id\":\"3\",\"type\":\"avg\",\"schema\":\"radius\",\"params\":{\"field\":\"donation_total\"}}],\"listeners\":{},\"title\":\"Monthly Donation\"}",
-      "uiStateJSON": "{}",
-      "description": "Total weekly $$ increased. Average Weekly $$ decreased",
-      "version": 1,
-      "kibanaSavedObjectMeta": {
-        "searchSourceJSON": "{\"index\":\"donorschoose\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
-      }
+    },
+    "_meta": {
+      "savedObjectVersion": 2
     }
   },
   {
@@ -98,22 +87,28 @@
       "description": "",
       "version": 1,
       "kibanaSavedObjectMeta": {
-        "searchSourceJSON": "{\"index\":\"donorschoose\",\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[]}"
+        "searchSourceJSON": "{\"index\":\"55cfbf50-c585-11e7-b3a8-f7f1b94b313c\",\"query\":{\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"language\":\"lucene\"},\"filter\":[]}"
       }
+    },
+    "_meta": {
+      "savedObjectVersion": 2
     }
   },
   {
-    "_id": "Projects-per-Year",
+    "_id": "Average-weekly-donation",
     "_type": "visualization",
     "_source": {
-      "title": "Projects per Year",
-      "visState": "{\"type\":\"histogram\",\"params\":{\"addLegend\":true,\"addTimeMarker\":false,\"addTooltip\":true,\"defaultYExtents\":false,\"mode\":\"stacked\",\"scale\":\"linear\",\"setYExtents\":false,\"shareYAxis\":true,\"times\":[],\"yAxis\":{}},\"aggs\":[{\"id\":\"1\",\"type\":\"cardinality\",\"schema\":\"metric\",\"params\":{\"field\":\"projectid\"}},{\"id\":\"2\",\"type\":\"date_histogram\",\"schema\":\"segment\",\"params\":{\"field\":\"project_date_posted\",\"interval\":\"y\",\"customInterval\":\"2h\",\"min_doc_count\":1,\"extended_bounds\":{}}},{\"id\":\"3\",\"type\":\"filters\",\"schema\":\"group\",\"params\":{\"filters\":[{\"input\":{\"query\":{\"query_string\":{\"query\":\"project_funding_status =  completed\",\"analyze_wildcard\":true}}}}]}}],\"listeners\":{},\"title\":\"Projects per Year\"}",
+      "title": "Monthly Donation",
+      "visState": "{\"type\":\"line\",\"params\":{\"shareYAxis\":true,\"addTooltip\":true,\"addLegend\":true,\"showCircles\":true,\"smoothLines\":false,\"interpolate\":\"linear\",\"scale\":\"log\",\"drawLinesBetweenPoints\":false,\"radiusRatio\":\"39\",\"times\":[],\"addTimeMarker\":false,\"defaultYExtents\":true,\"setYExtents\":false,\"yAxis\":{\"max\":1000,\"min\":0}},\"aggs\":[{\"id\":\"1\",\"type\":\"sum\",\"schema\":\"metric\",\"params\":{\"field\":\"donation_total\"}},{\"id\":\"2\",\"type\":\"date_histogram\",\"schema\":\"segment\",\"params\":{\"field\":\"donation_timestamp\",\"interval\":\"w\",\"customInterval\":\"2h\",\"min_doc_count\":1,\"extended_bounds\":{}}},{\"id\":\"3\",\"type\":\"avg\",\"schema\":\"radius\",\"params\":{\"field\":\"donation_total\"}}],\"listeners\":{},\"title\":\"Monthly Donation\"}",
       "uiStateJSON": "{}",
-      "description": "",
+      "description": "Total weekly $$ increased. Average Weekly $$ decreased",
       "version": 1,
       "kibanaSavedObjectMeta": {
-        "searchSourceJSON": "{\"index\":\"donorschoose\",\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[]}"
+        "searchSourceJSON": "{\"index\":\"55cfbf50-c585-11e7-b3a8-f7f1b94b313c\",\"query\":{\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"language\":\"lucene\"},\"filter\":[]}"
       }
+    },
+    "_meta": {
+      "savedObjectVersion": 2
     }
   },
   {
@@ -126,8 +121,11 @@
       "description": "",
       "version": 1,
       "kibanaSavedObjectMeta": {
-        "searchSourceJSON": "{\"index\":\"donorschoose\",\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[]}"
+        "searchSourceJSON": "{\"index\":\"55cfbf50-c585-11e7-b3a8-f7f1b94b313c\",\"query\":{\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"language\":\"lucene\"},\"filter\":[]}"
       }
+    },
+    "_meta": {
+      "savedObjectVersion": 2
     }
   },
   {
@@ -140,8 +138,11 @@
       "description": "",
       "version": 1,
       "kibanaSavedObjectMeta": {
-        "searchSourceJSON": "{\"index\":\"donorschoose\",\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[]}"
+        "searchSourceJSON": "{\"index\":\"55cfbf50-c585-11e7-b3a8-f7f1b94b313c\",\"query\":{\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"language\":\"lucene\"},\"filter\":[]}"
       }
+    },
+    "_meta": {
+      "savedObjectVersion": 2
     }
   },
   {
@@ -154,8 +155,11 @@
       "description": "",
       "version": 1,
       "kibanaSavedObjectMeta": {
-        "searchSourceJSON": "{\"index\":\"donorschoose\",\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[]}"
+        "searchSourceJSON": "{\"index\":\"55cfbf50-c585-11e7-b3a8-f7f1b94b313c\",\"query\":{\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"language\":\"lucene\"},\"filter\":[]}"
       }
+    },
+    "_meta": {
+      "savedObjectVersion": 2
     }
   },
   {
@@ -168,8 +172,11 @@
       "description": "",
       "version": 1,
       "kibanaSavedObjectMeta": {
-        "searchSourceJSON": "{\"index\":\"donorschoose\",\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[]}"
+        "searchSourceJSON": "{\"index\":\"55cfbf50-c585-11e7-b3a8-f7f1b94b313c\",\"query\":{\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"language\":\"lucene\"},\"filter\":[]}"
       }
+    },
+    "_meta": {
+      "savedObjectVersion": 2
     }
   },
   {
@@ -182,8 +189,11 @@
       "description": "",
       "version": 1,
       "kibanaSavedObjectMeta": {
-        "searchSourceJSON": "{\"index\":\"donorschoose\",\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[]}"
+        "searchSourceJSON": "{\"index\":\"55cfbf50-c585-11e7-b3a8-f7f1b94b313c\",\"query\":{\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"language\":\"lucene\"},\"filter\":[]}"
       }
+    },
+    "_meta": {
+      "savedObjectVersion": 2
     }
   },
   {
@@ -196,8 +206,11 @@
       "description": "",
       "version": 1,
       "kibanaSavedObjectMeta": {
-        "searchSourceJSON": "{\"index\":\"donorschoose\",\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[]}"
+        "searchSourceJSON": "{\"index\":\"55cfbf50-c585-11e7-b3a8-f7f1b94b313c\",\"query\":{\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"language\":\"lucene\"},\"filter\":[]}"
       }
+    },
+    "_meta": {
+      "savedObjectVersion": 2
     }
   },
   {
@@ -210,8 +223,11 @@
       "description": "",
       "version": 1,
       "kibanaSavedObjectMeta": {
-        "searchSourceJSON": "{\"index\":\"donorschoose\",\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[]}"
+        "searchSourceJSON": "{\"index\":\"55cfbf50-c585-11e7-b3a8-f7f1b94b313c\",\"query\":{\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"language\":\"lucene\"},\"filter\":[]}"
       }
+    },
+    "_meta": {
+      "savedObjectVersion": 2
     }
   },
   {
@@ -224,22 +240,11 @@
       "description": "",
       "version": 1,
       "kibanaSavedObjectMeta": {
-        "searchSourceJSON": "{\"index\":\"donorschoose\",\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[]}"
+        "searchSourceJSON": "{\"index\":\"55cfbf50-c585-11e7-b3a8-f7f1b94b313c\",\"query\":{\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"language\":\"lucene\"},\"filter\":[]}"
       }
-    }
-  },
-  {
-    "_id": "Total-Donation-Map",
-    "_type": "visualization",
-    "_source": {
-      "title": "Where are the Donation ($$) Going??",
-      "visState": "{\"type\":\"tile_map\",\"params\":{\"addTooltip\":true,\"heatBlur\":\"25\",\"heatMaxZoom\":\"10\",\"heatMinOpacity\":\"0.37\",\"heatNormalizeData\":true,\"heatRadius\":\"18\",\"isDesaturated\":true,\"mapType\":\"Heatmap\"},\"aggs\":[{\"id\":\"1\",\"type\":\"sum\",\"schema\":\"metric\",\"params\":{\"field\":\"donation_total\"}},{\"id\":\"2\",\"type\":\"geohash_grid\",\"schema\":\"segment\",\"params\":{\"field\":\"project_location\",\"autoPrecision\":false,\"mapZoom\":5,\"mapCenter\":[36.89719446989036,-99.95361328125],\"precision\":4}}],\"listeners\":{},\"title\":\"Where are the Donation ($$) Going??\"}",
-      "uiStateJSON": "{}",
-      "description": "",
-      "version": 1,
-      "kibanaSavedObjectMeta": {
-        "searchSourceJSON": "{\"index\":\"donorschoose\",\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[]}"
-      }
+    },
+    "_meta": {
+      "savedObjectVersion": 2
     }
   },
   {
@@ -252,8 +257,11 @@
       "description": "",
       "version": 1,
       "kibanaSavedObjectMeta": {
-        "searchSourceJSON": "{\"index\":\"donorschoose\",\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[]}"
+        "searchSourceJSON": "{\"index\":\"55cfbf50-c585-11e7-b3a8-f7f1b94b313c\",\"query\":{\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"language\":\"lucene\"},\"filter\":[]}"
       }
+    },
+    "_meta": {
+      "savedObjectVersion": 2
     }
   },
   {
@@ -266,8 +274,11 @@
       "description": "",
       "version": 1,
       "kibanaSavedObjectMeta": {
-        "searchSourceJSON": "{\"index\":\"donorschoose\",\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[]}"
+        "searchSourceJSON": "{\"index\":\"55cfbf50-c585-11e7-b3a8-f7f1b94b313c\",\"query\":{\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"language\":\"lucene\"},\"filter\":[]}"
       }
+    },
+    "_meta": {
+      "savedObjectVersion": 2
     }
   },
   {
@@ -280,8 +291,11 @@
       "description": "",
       "version": 1,
       "kibanaSavedObjectMeta": {
-        "searchSourceJSON": "{\"index\":\"donorschoose\",\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[]}"
+        "searchSourceJSON": "{\"index\":\"55cfbf50-c585-11e7-b3a8-f7f1b94b313c\",\"query\":{\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"language\":\"lucene\"},\"filter\":[]}"
       }
+    },
+    "_meta": {
+      "savedObjectVersion": 2
     }
   },
   {
@@ -294,8 +308,11 @@
       "description": "",
       "version": 1,
       "kibanaSavedObjectMeta": {
-        "searchSourceJSON": "{\"index\":\"donorschoose\",\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[]}"
+        "searchSourceJSON": "{\"index\":\"55cfbf50-c585-11e7-b3a8-f7f1b94b313c\",\"query\":{\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"language\":\"lucene\"},\"filter\":[]}"
       }
+    },
+    "_meta": {
+      "savedObjectVersion": 2
     }
   },
   {
@@ -308,8 +325,11 @@
       "description": "",
       "version": 1,
       "kibanaSavedObjectMeta": {
-        "searchSourceJSON": "{\"index\":\"donorschoose\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+        "searchSourceJSON": "{\"index\":\"55cfbf50-c585-11e7-b3a8-f7f1b94b313c\",\"query\":{\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"language\":\"lucene\"},\"filter\":[]}"
       }
+    },
+    "_meta": {
+      "savedObjectVersion": 2
     }
   },
   {
@@ -322,8 +342,11 @@
       "description": "",
       "version": 1,
       "kibanaSavedObjectMeta": {
-        "searchSourceJSON": "{\"index\":\"donorschoose\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+        "searchSourceJSON": "{\"index\":\"55cfbf50-c585-11e7-b3a8-f7f1b94b313c\",\"query\":{\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"language\":\"lucene\"},\"filter\":[]}"
       }
+    },
+    "_meta": {
+      "savedObjectVersion": 2
     }
   },
   {
@@ -336,8 +359,11 @@
       "description": "",
       "version": 1,
       "kibanaSavedObjectMeta": {
-        "searchSourceJSON": "{\"index\":\"donorschoose\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+        "searchSourceJSON": "{\"index\":\"55cfbf50-c585-11e7-b3a8-f7f1b94b313c\",\"query\":{\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"language\":\"lucene\"},\"filter\":[]}"
       }
+    },
+    "_meta": {
+      "savedObjectVersion": 2
     }
   },
   {
@@ -350,8 +376,11 @@
       "description": "",
       "version": 1,
       "kibanaSavedObjectMeta": {
-        "searchSourceJSON": "{\"index\":\"donorschoose\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+        "searchSourceJSON": "{\"index\":\"55cfbf50-c585-11e7-b3a8-f7f1b94b313c\",\"query\":{\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"language\":\"lucene\"},\"filter\":[]}"
       }
+    },
+    "_meta": {
+      "savedObjectVersion": 2
     }
   },
   {
@@ -364,8 +393,11 @@
       "description": "",
       "version": 1,
       "kibanaSavedObjectMeta": {
-        "searchSourceJSON": "{\"index\":\"donorschoose\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+        "searchSourceJSON": "{\"index\":\"55cfbf50-c585-11e7-b3a8-f7f1b94b313c\",\"query\":{\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"language\":\"lucene\"},\"filter\":[]}"
       }
+    },
+    "_meta": {
+      "savedObjectVersion": 2
     }
   },
   {
@@ -378,8 +410,11 @@
       "description": "",
       "version": 1,
       "kibanaSavedObjectMeta": {
-        "searchSourceJSON": "{\"index\":\"donorschoose\",\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[]}"
+        "searchSourceJSON": "{\"index\":\"55cfbf50-c585-11e7-b3a8-f7f1b94b313c\",\"query\":{\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"language\":\"lucene\"},\"filter\":[]}"
       }
+    },
+    "_meta": {
+      "savedObjectVersion": 2
     }
   },
   {
@@ -392,8 +427,11 @@
       "description": "",
       "version": 1,
       "kibanaSavedObjectMeta": {
-        "searchSourceJSON": "{\"index\":\"donorschoose\",\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[{\"meta\":{\"index\":\"donorschoose\",\"key\":\"donor_state\",\"value\":\"  \",\"disabled\":false,\"negate\":true,\"apply\":true},\"query\":{\"match\":{\"donor_state\":{\"query\":\"  \",\"type\":\"phrase\"}}}},{\"meta\":{\"index\":\"donorschoose\",\"key\":\"donor_state\",\"value\":\"\",\"disabled\":false,\"negate\":true,\"apply\":true},\"query\":{\"match\":{\"donor_state\":{\"query\":\"\",\"type\":\"phrase\"}}}}]}"
+        "searchSourceJSON": "{\"index\":\"55cfbf50-c585-11e7-b3a8-f7f1b94b313c\",\"query\":{\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"language\":\"lucene\"},\"filter\":[{\"meta\":{\"index\":\"donorschoose\",\"key\":\"donor_state\",\"value\":\"  \",\"disabled\":false,\"negate\":true,\"apply\":true},\"query\":{\"match\":{\"donor_state\":{\"query\":\"  \",\"type\":\"phrase\"}}}},{\"meta\":{\"index\":\"donorschoose\",\"key\":\"donor_state\",\"value\":\"\",\"disabled\":false,\"negate\":true,\"apply\":true},\"query\":{\"match\":{\"donor_state\":{\"query\":\"\",\"type\":\"phrase\"}}}}]}"
       }
+    },
+    "_meta": {
+      "savedObjectVersion": 2
     }
   },
   {
@@ -406,8 +444,11 @@
       "description": "",
       "version": 1,
       "kibanaSavedObjectMeta": {
-        "searchSourceJSON": "{\"index\":\"donorschoose\",\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[{\"meta\":{\"index\":\"donorschoose\",\"key\":\"donor_state\",\"value\":\"  \",\"disabled\":false,\"negate\":true,\"apply\":true},\"query\":{\"match\":{\"donor_state\":{\"query\":\"  \",\"type\":\"phrase\"}}}},{\"meta\":{\"index\":\"donorschoose\",\"key\":\"donor_state\",\"value\":\"\",\"disabled\":false,\"negate\":true,\"apply\":true},\"query\":{\"match\":{\"donor_state\":{\"query\":\"\",\"type\":\"phrase\"}}}}]}"
+        "searchSourceJSON": "{\"index\":\"55cfbf50-c585-11e7-b3a8-f7f1b94b313c\",\"query\":{\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"language\":\"lucene\"},\"filter\":[{\"meta\":{\"index\":\"donorschoose\",\"key\":\"donor_state\",\"value\":\"  \",\"disabled\":false,\"negate\":true,\"apply\":true},\"query\":{\"match\":{\"donor_state\":{\"query\":\"  \",\"type\":\"phrase\"}}}},{\"meta\":{\"index\":\"donorschoose\",\"key\":\"donor_state\",\"value\":\"\",\"disabled\":false,\"negate\":true,\"apply\":true},\"query\":{\"match\":{\"donor_state\":{\"query\":\"\",\"type\":\"phrase\"}}}}]}"
       }
+    },
+    "_meta": {
+      "savedObjectVersion": 2
     }
   },
   {
@@ -420,8 +461,62 @@
       "description": "",
       "version": 1,
       "kibanaSavedObjectMeta": {
-        "searchSourceJSON": "{\"index\":\"donorschoose\",\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[]}"
+        "searchSourceJSON": "{\"index\":\"55cfbf50-c585-11e7-b3a8-f7f1b94b313c\",\"query\":{\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"language\":\"lucene\"},\"filter\":[]}"
       }
+    },
+    "_meta": {
+      "savedObjectVersion": 2
+    }
+  },
+  {
+    "_id": "Total-Donation-Map",
+    "_type": "visualization",
+    "_source": {
+      "title": "Where are the Donation ($$) Going??",
+      "visState": "{\"title\":\"Where are the Donation ($$) Going??\",\"type\":\"tile_map\",\"params\":{\"addTooltip\":true,\"heatBlur\":\"25\",\"heatMaxZoom\":\"10\",\"heatMinOpacity\":\"0.37\",\"heatNormalizeData\":true,\"heatRadius\":\"18\",\"isDesaturated\":true,\"mapType\":\"Heatmap\",\"heatClusterSize\":1.5,\"legendPosition\":\"bottomright\",\"mapZoom\":2,\"mapCenter\":[0,0],\"wms\":{\"enabled\":false,\"options\":{\"format\":\"image/png\",\"transparent\":true}}},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"sum\",\"schema\":\"metric\",\"params\":{\"field\":\"donation_total\"}},{\"id\":\"2\",\"enabled\":true,\"type\":\"geohash_grid\",\"schema\":\"segment\",\"params\":{\"field\":\"project_location\",\"autoPrecision\":false,\"isFilteredByCollar\":true,\"useGeocentroid\":true,\"mapZoom\":5,\"mapCenter\":[36.89719446989036,-99.95361328125],\"precision\":3}}]}",
+      "uiStateJSON": "{\"mapZoom\":4,\"mapCenter\":[45.521743896993634,-88.8134765625]}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"55cfbf50-c585-11e7-b3a8-f7f1b94b313c\",\"query\":{\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\",\"default_field\":\"*\"}},\"language\":\"lucene\"},\"filter\":[]}"
+      }
+    },
+    "_meta": {
+      "savedObjectVersion": 2
+    }
+  },
+  {
+    "_id": "Donations-($$)-per-Year",
+    "_type": "visualization",
+    "_source": {
+      "title": "Donations ($$) per Year",
+      "visState": "{\"title\":\"Donations ($$) per Year\",\"type\":\"histogram\",\"params\":{\"addLegend\":true,\"addTimeMarker\":false,\"addTooltip\":true,\"defaultYExtents\":false,\"mode\":\"stacked\",\"scale\":\"linear\",\"setYExtents\":false,\"shareYAxis\":true,\"times\":[],\"yAxis\":{},\"type\":\"histogram\",\"grid\":{\"categoryLines\":false,\"style\":{\"color\":\"#eee\"}},\"categoryAxes\":[{\"id\":\"CategoryAxis-1\",\"type\":\"category\",\"position\":\"bottom\",\"show\":true,\"style\":{},\"scale\":{\"type\":\"linear\"},\"labels\":{\"show\":true,\"truncate\":100},\"title\":{}}],\"valueAxes\":[{\"id\":\"ValueAxis-1\",\"name\":\"LeftAxis-1\",\"type\":\"value\",\"position\":\"left\",\"show\":true,\"style\":{},\"scale\":{\"type\":\"linear\",\"mode\":\"normal\",\"setYExtents\":false,\"defaultYExtents\":false},\"labels\":{\"show\":true,\"rotate\":0,\"filter\":false,\"truncate\":100},\"title\":{\"text\":\"Sum of donation_total\"}}],\"seriesParams\":[{\"show\":\"true\",\"type\":\"histogram\",\"mode\":\"stacked\",\"data\":{\"label\":\"Sum of donation_total\",\"id\":\"1\"},\"valueAxis\":\"ValueAxis-1\"}],\"legendPosition\":\"right\"},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"sum\",\"schema\":\"metric\",\"params\":{\"field\":\"donation_total\"}},{\"id\":\"2\",\"enabled\":true,\"type\":\"date_histogram\",\"schema\":\"segment\",\"params\":{\"field\":\"project_date_posted\",\"interval\":\"y\",\"customInterval\":\"2h\",\"min_doc_count\":1,\"extended_bounds\":{}}},{\"id\":\"3\",\"enabled\":true,\"type\":\"filters\",\"schema\":\"group\",\"params\":{\"filters\":[{\"input\":{\"query\":\"project_funding_status: completed\"}}]}}]}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"55cfbf50-c585-11e7-b3a8-f7f1b94b313c\",\"query\":{\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\",\"default_field\":\"*\"}},\"language\":\"lucene\"},\"filter\":[]}"
+      }
+    },
+    "_meta": {
+      "savedObjectVersion": 2
+    }
+  },
+  {
+    "_id": "Projects-per-Year",
+    "_type": "visualization",
+    "_source": {
+      "title": "Projects per Year",
+      "visState": "{\"title\":\"Projects per Year\",\"type\":\"histogram\",\"params\":{\"addLegend\":true,\"addTimeMarker\":false,\"addTooltip\":true,\"defaultYExtents\":false,\"mode\":\"stacked\",\"scale\":\"linear\",\"setYExtents\":false,\"shareYAxis\":true,\"times\":[],\"yAxis\":{},\"type\":\"histogram\",\"grid\":{\"categoryLines\":false,\"style\":{\"color\":\"#eee\"}},\"categoryAxes\":[{\"id\":\"CategoryAxis-1\",\"type\":\"category\",\"position\":\"bottom\",\"show\":true,\"style\":{},\"scale\":{\"type\":\"linear\"},\"labels\":{\"show\":true,\"truncate\":100},\"title\":{}}],\"valueAxes\":[{\"id\":\"ValueAxis-1\",\"name\":\"LeftAxis-1\",\"type\":\"value\",\"position\":\"left\",\"show\":true,\"style\":{},\"scale\":{\"type\":\"linear\",\"mode\":\"normal\",\"setYExtents\":false,\"defaultYExtents\":false},\"labels\":{\"show\":true,\"rotate\":0,\"filter\":false,\"truncate\":100},\"title\":{\"text\":\"Unique count of projectid\"}}],\"seriesParams\":[{\"show\":\"true\",\"type\":\"histogram\",\"mode\":\"stacked\",\"data\":{\"label\":\"Unique count of projectid\",\"id\":\"1\"},\"valueAxis\":\"ValueAxis-1\"}],\"legendPosition\":\"right\"},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"cardinality\",\"schema\":\"metric\",\"params\":{\"field\":\"projectid\"}},{\"id\":\"2\",\"enabled\":true,\"type\":\"date_histogram\",\"schema\":\"segment\",\"params\":{\"field\":\"project_date_posted\",\"interval\":\"y\",\"customInterval\":\"2h\",\"min_doc_count\":1,\"extended_bounds\":{}}},{\"id\":\"3\",\"enabled\":true,\"type\":\"filters\",\"schema\":\"group\",\"params\":{\"filters\":[{\"input\":{\"query\":\"project_funding_status: completed\"}}]}}]}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"55cfbf50-c585-11e7-b3a8-f7f1b94b313c\",\"query\":{\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\",\"default_field\":\"*\"}},\"language\":\"lucene\"},\"filter\":[]}"
+      }
+    },
+    "_meta": {
+      "savedObjectVersion": 2
     }
   }
 ]
