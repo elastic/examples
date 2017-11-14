@@ -1,11 +1,8 @@
 {
   "order": 0,
-  "template": "ncedc-earthquakes",
+  "index_patterns": "ncedc-earthquakes-*",
   "mappings": {
-    "_default_": {
-      "_all": {
-        "enabled": false
-      },
+    "doc": {
       "dynamic_templates": [
         {
           "strings": {
