@@ -8,9 +8,9 @@ Since its initial publishing, this example has been modified to use Filebeat+Ing
 
 The example has been tested in the following versions:
 
-- Elasticsearch 5.4.0
-- Filebeat 5.4.0
-- Kibana 5.4.0
+- Elasticsearch 6.0
+- Filebeat 6.0
+- Kibana 6.0
 
 ## Datasets
 
@@ -54,6 +54,7 @@ Size: 222 lines (17837 bytes)
 ### Download Example Files
 
 Download the following files in this repo to a local directory:
+
 - `ncedc-earthquakes-dataset.tar.gz` - sample data (in csv format)
 - `ncedc-earthquakes-filebeat.yml` - Logstash config for ingesting data into Elasticsearch
 - `ncedc-earthquakes-template.json` - template for custom mapping of fields
