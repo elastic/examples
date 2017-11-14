@@ -1,4 +1,5 @@
 ## Using Elastic Stack to Analyze NYPD Motor Vehicle Collision Data
+
 This example demonstrates how to analyze & visualize New York City traffic incident data using the Elastic Stack, i.e. Elasticsearch, Logstash and Kibana. The [NYPD Motor Vehicle Collision data](https://data.cityofnewyork.us/Public-Safety/NYPD-Motor-Vehicle-Collisions/h9gi-nx95?) analyzed in this example is from the [NYC Open Data](https://data.cityofnewyork.us/) initiative.
 
 Feel free to read the [#byodemos: New York city traffic incidents](https://www.elastic.co/blog/byodemos-new-york-city-traffic-incidents) blog post for additional commentary on this analysis. A couple of notes on the blog. The screenshots in the blog post were created with an older version of Kibana. So, don't be alarmed if your Kibana UI looks a little different. Secondly, the good folks at [NYC Open Data](https://data.cityofnewyork.us/) are great at updating their dataset with latest information. So the visualization and metrics that you see might not match the ones highlighted in the blog post. But, that is the fun part of exploring a living & dynamic dataset, isn't it? 
@@ -8,9 +9,9 @@ This example originally used Logstash for data ingestion. Per Elastic best pract
 ##### Version
 
 Example has been tested in following versions:
-- Elasticsearch 5.4.0
-- Filebeat 5.4.0
-- Kibana 5.4.0
+- Elasticsearch 6.0
+- Filebeat 6.0
+- Kibana 6.0
 
 
 ### Installation & Setup
@@ -68,6 +69,12 @@ Example has been tested in following versions:
     curl -XPUT -H 'Content-Type: application/json' 'localhost:9200/_ingest/pipeline/nyc_collision' -d @nyc_collision_pipeline.json
     ```
 
+* Install the nyc_collision index template i.e.
+
+    ```shell
+    curl -XPUT -H 'Content-Type: application/json' 'localhost:9200/_template/nyc_collision' -d @nyc_collision_template.json
+    ```
+
 *  Modify the `nyc_collision_filebeat.yml` file as follows:
 
     * The parameter `hosts: ["localhost:9200"]` in case your are not running Elasticsearch node on your local host
@@ -78,10 +85,9 @@ Example has been tested in following versions:
             - ./nyc_collision/nyc_collision_data.csv
         ```
 
-* Move the files `nyc_collision_template.json` and `nyc_collision_filebeat.yml` to the Filebeat installation directory i.e.
+* Move the file `nyc_collision_filebeat.yml` to the Filebeat installation directory i.e.
     
      ```shell
-    mv nyc_collision_template.json <filebeat_installation_dir>/nyc_collision_template.json
     mv nyc_collision_filebeat.yml <filebeat_installation_dir>/nyc_collision_filebeat.yml
     ```
        
@@ -92,7 +98,7 @@ Example has been tested in following versions:
     ./filebeat -e -c nyc_collision_filebeat.yml
     ```
     
-* After several minutes repeat the following commands until a count of X is returned:
+* After several minutes repeat the following commands until a count of around 115,0000 is returned (subject to change as the data is volatile):
 
     ```shell
     curl http://localhost:9200/nyc_visionzero/_refresh
@@ -103,15 +109,17 @@ Example has been tested in following versions:
 ##### 2. Visualize data in Kibana
 
 * Access Kibana by going to `http://localhost:5601` in a web browser
-* Connect Kibana to the `nyc_visionzero` index in Elasticsearch (autocreated in step 1)
+* Connect Kibana to the `nyc_visionzero` index in Elasticsearch (autocreated in step 1)`
     * Click the **Management** tab >> **Index Patterns** tab >> **Create New**. Specify `nyc_visionzero` as the index pattern name and click **Create** to define the index pattern. (Leave the **Use event times to create index names** box unchecked and the Time Field as @timestamp)
-* Load sample dashboard into Kibana
+    * If this is the only index pattern declared, you will also need to select the star in the top upper right to ensure a default is defined. 
+* Load sample dashboard into Kibana`
     * Click the **Management** tab >> **Saved Objects** tab >> **Import**, and select `nyc_collision_kibana.json`
+    * On import you will be asked to overwrite existing objects - select "Yes, overwrite all". Additionally, select the index pattern `nyc_visionzero` when asked to specify a index pattern for the dashboards.
 * Open dashboard
     * Click on **Dashboard** tab and open `NYC Motor Vehicles Collision` dashboard
 
 Voila! You should see the following dashboard. Happy Data Exploration!
-![Kibana Dashboard Screenshot](https://github.com/elastic/examples/blob/master/Exploring%20Public%20Datasets/nyc_traffic_accidents/nyc_collision_dashboard.jpg?raw=true)
+![Kibana Dashboard Screenshot](https://user-images.githubusercontent.com/12695796/32798531-e3477838-c96c-11e7-8e4b-22ce3c608997.png)
 
 ### We would love to hear from you!
 If you run into issues running this example or have suggestions to improve it, please use Github issues to let us know. Have an easy fix, submit a pull request. We will try our best to respond in a timely manner!
