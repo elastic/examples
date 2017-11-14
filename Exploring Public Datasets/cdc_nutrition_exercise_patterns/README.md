@@ -46,7 +46,7 @@ Once the index is created, data will available in Elasticsearch. If all goes wel
 * Access Kibana by going to `http://localhost:5601` in a web browser
 * Connect Kibana to the `brfss` index in Elasticsearch
     * Click the **Management** tab >> **Index Patterns** tab >> **Add New**. Specify `brfss` as the index pattern name, select `Interview_Date` as the **Time-field name**, and click **Create** to define the index pattern.
-        * If this is the only index pattern declared, you will also need to select the star in the top upper right to ensure a default is defined. 
+    * If this is the only index pattern declared, you will also need to select the star in the top upper right to ensure a default is defined. 
 * Load sample dashboard into Kibana
     * Click the **Management** tab >> **Saved Objects** tab >> **Import**, and select `brfss_kibana_dashboard.json`
     * On import you will be asked to overwrite existing objects - select "Yes, overwrite all". Additionally, select the index pattern "brfss" when asked to specify a index pattern for the dashboards.

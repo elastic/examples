@@ -5,11 +5,13 @@ This examples provides supplementary material to the blog post on [Hacking Educa
 In this example, we will be analyzing the historical donations and projects data provided by [DonorsChoose.org](http://data.donorschoose.org/open-data/overview/) using Elasticsearch and Kibana. DonorsChoose.org is an online charity that connect individuals with schools and teachers in need of resources. For additional background on this dataset, please refer to the accompanying [blog post](https://www.elastic.co/blog/hacking-education-with-the-elastic-stack)
 
 ##### Version
+
 Example has been tested in following versions:
-- Elasticsearch 5.0
-- Kibana 5.0
+- Elasticsearch 6.0
+- Kibana 6.0
 
 ### Installation & Setup
+
 * Follow the [Installation & Setup Guide](https://github.com/elastic/examples/blob/master/Installation%20and%20Setup.md) to install and test the Elastic Stack (*you can skip this step if you already have a working installation of the Elastic Stack*)
 
 * Run Elasticsearch & Kibana
@@ -90,9 +92,11 @@ Once the index is created using either of the above options, you can check to se
 
 * Access Kibana by going to `http://localhost:5601` in a web browser
 * Connect Kibana to the `donorschoose` index in Elasticsearch
-    * Click the **Settings** tab >> **Indices** tab >> **Create New**. Specify `donorschoose` as the index pattern name, select `donation_timestamp` as the **Time-field name**, and click **Create** to define the index pattern. (Leave the **Use event times to create index names** box unchecked)
+    * Click the **Settings** tab >> **Indices** tab >> **Create New**. Specify `donorschoose` as the index pattern name, select `donation_timestamp` as the **Time-field name**, and click **Create** to define the index pattern.
+    * If this is the only index pattern declared, you will also need to select the star in the top upper right to ensure a default is defined. 
 * Load sample dashboard into Kibana
     * Click the **Settings** tab >> **Objects** tab >> **Import**, and select `donorschoose_kibana.json`
+    * On import you will be asked to overwrite existing objects - select "Yes, overwrite all". Additionally, select the index pattern "donorschoose" when asked to specify a index pattern for the dashboards.
 * Open dashboard
     * Click on **Dashboard** tab and open `Donors Choose` dashboard. Voila! You should see the following dashboard. Happy Data Exploration!
 
