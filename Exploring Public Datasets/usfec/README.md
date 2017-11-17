@@ -3,13 +3,13 @@
 This example demonstrates how to analyze & visualize US Federal Election Commission (FEC) campaign contribution data from the 2013-2014 election cycle data using Elasticsearch and Kibana. The [data](http://www.fec.gov/finance/disclosure/ftpdet.shtml#a2013_2014) analyzed in this example is taken from the [Federal Election Commission](http://www.fec.gov/finance/disclosure/ftpdet.shtml) site.
 
 For some background information for this demo, please see the blog post here:
-[Kibana 4 for investigating PACs, Super PACs, and who your neighbor might be voting for](http://elastic.co/blog/kibana-4-for-investigating-pacs-super-pacs-and-your-neighbors/). Note that the screenshots in the blog were created with Kibana 4.0 - your dashboard may look a little different depending on the Kibana version you are using.
+[Kibana 4 for investigating PACs, Super PACs, and who your neighbor might be voting for](http://elastic.co/blog/kibana-4-for-investigating-pacs-super-pacs-and-your-neighbors/). Note that the screenshots in the blog were created with Kibana 4.0 - your dashboard may look a little different depending on the Kibana version you are using.  This example has been updated to version 6.0 since the blog post was released.
 
 ##### Version
 Example has been tested in following versions:
-- Elasticsearch 5.0
-- Logstash 5.0
-- Kibana 5.0
+- Elasticsearch 6.0
+- Logstash 6.0
+- Kibana 6.0
 
 ### Installation & Setup
 * Follow the [Installation & Setup Guide](https://github.com/elastic/examples/blob/master/Installation%20and%20Setup.md) to install and test the Elastic Stack (*you can skip this step if you already have a working installation of the Elastic Stack*)
@@ -33,7 +33,7 @@ You have 2 options to index the data into Elasticsearch. You can either use the 
 
 
 #### Option 1. Load data by restoring index snapshot
-(Learn more about snapshot / restore [here](https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-snapshots.html))
+(Learn more about snapshot / restore [here](https://www.elastic.co/guide/en/elasticsearch/reference/6.0/modules-snapshots.html))
 
 Using this option involves 4 easy steps:
 
@@ -44,11 +44,11 @@ Using this option involves 4 easy steps:
   mkdir ./elastic_usfec
   cd elastic_usfec
   # Download index snapshot to your new snapshots directory
-  wget http://download.elasticsearch.org/demos/usfec/snapshot_demo_usfec_5_0.tar.gz .
+  wget http://download.elasticsearch.org/demos/usfec/snapshot_demo_usfec_6_0.tar.gz .
   # Uncompress snapshot file (uncompressed to usfec subfolder)
-  tar -xf snapshot_demo_usfec_5_0.tar.gz
+  tar -xf snapshot_demo_usfec_6_0.tar.gz
   ```
-  * Add the location of the uncompressed snapshot dir to `path.repo` variable in the `elasticsearch.yml` in the `path_to_elasticsearch_root_dir/config/` folder. See example [here](https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-snapshots.html#_shared_file_system_repository). You will need to restart Elasticsearch for the settings to take effect. 
+  * Add the location of the uncompressed snapshot dir to `path.repo` variable in the `elasticsearch.yml` in the `path_to_elasticsearch_root_dir/config/` folder. See example [here](https://www.elastic.co/guide/en/elasticsearch/reference/6.0/modules-snapshots.html#_shared_file_system_repository). You will need to restart Elasticsearch for the settings to take effect. 
 
   * Register a file system repository for the snapshot *(change the value of the “location” parameter below to the location of your uncompressed snapshot directory)*
   ```shell
@@ -89,18 +89,21 @@ Once the index is created using either of the above options, you can check to se
   ```
 
 #### Visualize Data in Kibana
+
 * Access Kibana by going to `http://localhost:5601` in a web browser
 * Download `usfec_kibana.json` 
 * Connect Kibana to the `usfec*` index in Elasticsearch
-    * Click the **Management** tab >> **Index Patterns** tab >> **Create New**. Specify `usfec*` as the index pattern name and click **Create** to define the index pattern using the @timestamp field as the Time-field. (Leave the **Use event times to create index names** box unchecked)
+    * Click the **Management** tab >> **Index Patterns** tab >> **Create New**. Specify `usfec_*` as the index pattern name and click **Create** to define the index pattern using the @timestamp field as the Time-field.
+    * If this is the only index pattern declared, you will also need to select the star in the top upper right to ensure a default is defined. 
 * Load sample dashboard into Kibana
     * Click the **Management** tab >> **Saved Objects** tab >> **Import**, and select `usfec_kibana.json`
+    * On import you will be asked to overwrite existing objects - select "Yes, overwrite all". Additionally, select the index pattern `usfec_*` when asked to specify a index pattern for the dashboards.
 * Open dashboard
     * Click on **Dashboard** tab and open `USFEC: Overview` dashboard
 
     Voila! You should see the following dashboard. Happy Data Exploration!
 
-    ![Kibana Dashboard Screenshot](https://github.com/elastic/examples/blob/master/Exploring%20Public%20Datasets/usfec/usfec_dashboard.jpg?raw=true)
+    ![Kibana Dashboard Screenshot](https://user-images.githubusercontent.com/12695796/32962668-30287f1c-cbc5-11e7-801f-3f7a248e26db.png)
 
 ### We would love to hear from you!
 If you run into issues running this example or have suggestions to improve it, please use Github issues to let us know. Have an easy fix? Submit a pull request. We will try our best to respond in a timely manner!
