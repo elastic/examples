@@ -1,4 +1,5 @@
 ## Using the Elastic Stack to Analyze NYC Restaurant Inspection Data
+
 This example demonstrates how to analyze & visualize New York City restaurant inspection data using Kibana. The [NYC Restaurant Inspection data](https://data.cityofnewyork.us/Health/DOHMH-New-York-City-Restaurant-Inspection-Results/43nn-pn8j) analyzed in this example is from the [NYC Open Data](https://data.cityofnewyork.us/) initiative.
 
 This example was used as a part of the [Kibana 101: Getting Started with Visualization webinar](https://www.elastic.co/webinars/kibana-101-get-started-with-visualizations). Please check out the webinar for more context on the data and the story.

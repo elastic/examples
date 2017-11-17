@@ -4,6 +4,7 @@ If you want to ingest data into Elasticsearch starting with the raw data files f
 
 
 ##### 1. Download the contents of this folder  <br>
+
 - `usfec_process_data.py` - Python script to process and join raw files
 - `US.txt` and `zip_codes.csv` files - zip code to lat/long mapping files which the Python script uses to enrich zip codes in the raw data with a lat/long that Elasticsearch can use for geo queries.
 - `usfec_template.json` contains mapping for Elasticsearch index
@@ -13,16 +14,21 @@ If you want to ingest data into Elasticsearch starting with the raw data files f
 
 Download and unzip all 7 .zip file in [2013-2014](http://www.fec.gov/finance/disclosure/ftpdet.shtml#a2013_2014) section of the US FEC data portal. Once you unzip the files, you should have the following .txt files: `cm.txt`, `ccl.txt`, `cn.txt`, `itcont.txt`, `itpas2.txt`, `itoth.txt` and `oppexp.txt`. Make sure that unzipped data files are in the same directory used in Step. 1
 
+Note: The file `itcont.txt` will need to be copied out of a subfolder `indiv14`, generated as part of the extraction process. This file should be placed in the same directory as those files listed above.
+
 ##### 3. Setup Python
 
 Requires Python 3.
 
 ##### 4. Run Python script to process and join data <br>
+
 Run `usfec_process_data.py`. When the script is done running, you will have a `data` subfolder with 4 `.json` files containing the processed data
 ```shell
   python3 usfec_process_data.py
 ```
+
 ##### 5. Index data into Elasticsearch using Logstash
+
   Run the following command to index data from `.json` files (created in step 3) into your Elasticsearch instance.
 
   ```
@@ -31,6 +37,7 @@ Run `usfec_process_data.py`. When the script is done running, you will have a `d
   ```
 
 ##### 6. Check if data is available in Elasticsearch
+
 Check to see if all the data is available in Elasticsearch. If all goes well, you should get a `count` response of ~4250251 when you run the following command.
 
   ```shell
