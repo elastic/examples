@@ -101,7 +101,9 @@ if __name__ == '__main__':
     match = test['match'] if 'match' in test else True
     print("Expected: Watch Condition: %s" % match)
     if 'condition' not in response['watch_record']['result']:
-        print("Condition not evaluated due to watch error")
+        print("Condition not evaluated due to watch error: {}".format(
+            json.dumps(response['watch_record']['result'], indent=2)
+        ))
         print("TEST FAIL")
         sys.exit(1)
     met = response['watch_record']['result']['condition']['met']
@@ -122,6 +124,10 @@ if __name__ == '__main__':
                 sys.exit(1)
 
             logging_action = next((action for action in response['watch_record']['result']['actions'] if action["type"] == "logging"), None)
+            if logging_action is None:
+                print("No logging actions was taken. This test framework uses the logging action for comparison so you might need enable this action.")
+                print("TEST FAIL")
+                sys.exit(1)
             if logging_action.get('transform', {}).get('status', 'success') != 'success':
                 print("Logging transform script failed: {}".format(
                     logging_action.get('transform', {}).get('reason', 'unknown'),
