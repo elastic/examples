@@ -1,0 +1,7 @@
+# See variables.tf for descriptions
+
+project = "YOUR-CLOUD-PROJECT"
+
+trusted_network = "YOUR-IP/32"
+
+name = "YOUR-NAME"
