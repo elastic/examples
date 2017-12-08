@@ -8,8 +8,8 @@ PUBLIC_KEY="$(echo var.public_key | terraform console)"
 PRIVATE_KEY="$(dirname "${PUBLIC_KEY}")/$(basename -s .pub "${PUBLIC_KEY}")"
 REMOTE_USER="$(echo var.remote_user | terraform console)"
 
-SSH_OPTIONS="-o LogLevel=quiet -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"
-SSH_AUTHENTICATION="-i ${PRIVATE_KEY} -o User=${REMOTE_USER}"
+SSH_OPTIONS=(-o "LogLevel=quiet" -o "StrictHostKeyChecking=no" -o "UserKnownHostsFile=/dev/null")
+SSH_AUTHENTICATION=(-i "${PRIVATE_KEY}" -o "User=${REMOTE_USER}")
 
 COORDINATOR="$(echo aws_instance.server.0.public_ip | terraform console)"
 COORDINATOR_IP="$(echo aws_instance.server.0.private_ip | terraform console)"
@@ -23,13 +23,14 @@ ece_install() {
   local zone="${2}"
   local options="${3:-}"
 
-  ssh -t ${SSH_OPTIONS} ${SSH_AUTHENTICATION} "${host}" \
+  # shellcheck disable=SC2029
+  ssh -t "${SSH_OPTIONS[@]}" "${SSH_AUTHENTICATION[@]}" "${host}" \
     "${INSTALL_COMMAND} --availability-zone ${zone} ${options}"
 }
 
 ece_install "${COORDINATOR}" ece-region-1a
 
-scp ${SSH_OPTIONS} ${SSH_AUTHENTICATION} "${COORDINATOR}":/mnt/data/elastic/bootstrap-state/bootstrap-secrets.json .
+scp "${SSH_OPTIONS[@]}" "${SSH_AUTHENTICATION[@]}" "${COORDINATOR}":/mnt/data/elastic/bootstrap-state/bootstrap-secrets.json .
 ROLES_TOKEN="$(jq -r .bootstrap_runner_roles_token bootstrap-secrets.json)"
 ROOT_PASSWORD="$(jq -r .adminconsole_root_password bootstrap-secrets.json)"
 
@@ -49,6 +50,6 @@ You can log into your installation at (note that certificate is auto-generated/s
 
 If you would like to SSH into a host, please feel free to do so using:
 
-    ssh ${SSH_OPTIONS} ${SSH_AUTHENTICATION} ${COORDINATOR}
+    ssh ${SSH_OPTIONS[@]} ${SSH_AUTHENTICATION[@]} ${COORDINATOR}
 
 TXT
