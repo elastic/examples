@@ -1,0 +1,4 @@
+.terraform
+*.tfstate*
+terraform.tfvars
+bootstrap-secrets.json

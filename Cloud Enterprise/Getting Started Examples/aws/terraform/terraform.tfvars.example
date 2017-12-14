@@ -1,0 +1,7 @@
+# See variables.tf for descriptions
+
+profile = "YOUR-AWS-PROFILE"
+
+trusted_network = "YOUR-IP/32"
+
+name = "YOUR-NAME"
