@@ -104,9 +104,9 @@ The Machine Learning Recipe can be loaded prior to the complete datacapture howe
 Download the following files to the same directory:
 
   ```
-    curl -O https://github.com/elastic/examples/blob/master/Machine%20Learning/Security%20Analytics%20Recipes/dns_data_exfiltration/machine_learning/data_feed.json
-    curl -O https://github.com/elastic/examples/blob/master/Machine%20Learning/Security%20Analytics%20Recipes/dns_data_exfiltration/machine_learning/job.json
-    curl -O https://github.com/elastic/examples/blob/master/Machine%20Learning/Security%20Analytics%20Recipes/scripts/reset_job.sh
+    curl -O https://raw.githubusercontent.com/elastic/examples/master/Machine%20Learning/Security%20Analytics%20Recipes/dns_data_exfiltration/machine_learning/data_feed.json
+    curl -O https://raw.githubusercontent.com/elastic/examples/master/Machine%20Learning/Security%20Analytics%20Recipes/dns_data_exfiltration/machine_learning/job.json
+    curl -O https://raw.githubusercontent.com/elastic/examples/master/Machine%20Learning/Security%20Analytics%20Recipes/scripts/reset_job.sh
   ```
 
 * Load the Job by running the supplied reset_job.sh script.
