@@ -22,8 +22,8 @@ You can then paste in `POST /elasticoffee/_search` and execute that to see that 
 
 Still in Kibana, navigate to the Canvas app (it looks like a little easel).  Click on the "workpads" on the bottom, which will pop up the workpad selector.  Here we see a tip: 
 
-> Tip: Drag and drop a `JSON` exported workpad into this dialog to load new workpad from a file
-> If you already have a workpad it will look like this ![existing workpad](./images/existing-workpads.png =300)
+Tip: Drag and drop a `JSON` exported workpad into this dialog to load new workpad from a file
+If you already have a workpad it will look like this ![Canvas with existing workpads](/images/existing-workpad?raw=true)
 
 So simply drag and drop the `canvas-workpad-CafeCanvas.json` onto the pane, and it will upload.  Select the new workpad and the data should appear!
 
