@@ -1,0 +1,2 @@
+quad_button_handler: '/home/homeassistant/elasticon-home-assistant/coffeePressHandler.sh "{{ entity_id }}"  "{{ scene_id }}" "{{ scene_data }}"'
+

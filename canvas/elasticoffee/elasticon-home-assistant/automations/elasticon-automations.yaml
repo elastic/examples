@@ -1,0 +1,15 @@
+- id: bulk_quad_detector
+  alias: Bulk Quad Detector
+#  hide_entity: true
+  trigger:
+    platform: event
+    event_type: zwave.scene_activated
+    # event_data:
+    #   entity_id: zwave.quad1
+  action:
+    - service: shell_command.quad_button_handler
+      data_template:
+        scene_id: "{{ trigger.event.data.scene_id }}"
+        scene_data: "{{ trigger.event.data.scene_data }}"
+        entity_id: "{{ trigger.event.data.entity_id }}"
+  
