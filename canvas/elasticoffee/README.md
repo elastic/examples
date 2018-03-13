@@ -26,11 +26,11 @@ Still in Kibana, navigate to the Canvas app (it looks like a little easel).  Cli
 
 If you already have a workpad it will look like this: 
 
-![Canvas with existing workpads](images/existing-workpads.png "existing workpads")
+> ![Canvas with existing workpads](images/existing-workpads.png "existing workpads")
 
 If starting from scratch, like this: 
 
-![From Scratch](images/no-workpads.png "From Scratch")
+> ![From Scratch](images/no-workpads.png "From Scratch")
 
 So simply drag and drop the `canvas-workpad-CafeCanvas.json` onto the pane, and it will upload.  Select the new workpad and the data should appear!
 
