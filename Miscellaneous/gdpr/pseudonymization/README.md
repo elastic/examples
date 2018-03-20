@@ -60,39 +60,36 @@ The included compose file starts both Logstash and Elasticsearch. The former is 
 
 1. Ensure the directory containing the downloaded files is shared with docker - for OSX and Windows see [here](https://docs.docker.com/docker-for-mac/#file-sharing-tab) and [here](https://docs.docker.com/docker-for-windows/#shared-drives) respectively.
 
-1. Navigate to the directory containing the downloaded files and execute the following command: 
+2. Navigate to the directory containing the downloaded files and execute the following command: 
     
     `ELASTIC_PASSWORD=changeme TAG=6.2.2 docker-compose up`. 
     
     Feel free to change the value of ES_PASSWORD.
 
-2. The following log line should indicate when Logstash has started and is ready to accept data
+3. The following log line should indicate when Logstash has started and is ready to accept data
 
     `logstash_1       | [2018-03-20T12:40:33,638][INFO ][logstash.agent           ] Pipelines running {:count=>2, :pipelines=>["fingerprint_filter", "ruby_filter"]}`
 
 
 #### Fingerprint Filter Approach
 
-3. To utilise the first approach, based on the FingerPrint Filter execute the following command:
+4. To utilise the first approach, based on the FingerPrint Filter execute the following command:
 
     `cat sample_docs | nc localhost 5000`
     
     This should also take a few seconds to execute and index the 100 documents from the sample file.
-    
-
 
 #### Ruby Script File Approach
     
-4. To utilise the second approach, based on the Ruby File Script execute the following command:
+5. To utilise the second approach, based on the Ruby File Script execute the following command:
 
     `cat sample_docs | nc localhost 6000`
    
    This should also take a few seconds to execute and index the 100 documents from the sample file.
 
-
 #### Inspecting and using the data
 
-5. Pseudonymized Documents will be indexed to an `events` index.  These can be accessed through the following query:
+6. Pseudonymized Documents will be indexed to an `events` index.  These can be accessed through the following query:
 
     `curl "http://localhost:9200/events/_search" -u elastic:changeme | jq`
     
@@ -148,11 +145,8 @@ The included compose file starts both Logstash and Elasticsearch. The former is 
       } 
       ```
     
-    The data produced by both examples is identical. If running both examples once, you will end up with a duplicate of each document in the `events` index - total 200, and 100 thereafter for each execution.
+    The data produced by both examples is identical - with the exception of the `source` field which indicates the pipeline used. If running both examples once, you will end up with a duplicate of each document in the `events` index - total 200, and 100 thereafter for each execution.  The `pseudonyms` index should always contain 200 documents no matter how many times you index the data - a document for each unique field value of `username` and `ip`.
     
-    The `pseudonyms` index should always contain 200 documents no matter how many times you index the data - a document for each unique field value of username` and `ip`.
-    
-    All indexed documents contain a field `source` indicating their originating pipeline.
     
     In order to lookup a pseudonymized value, the user can simply do a lookup by id on the `pseudonyms` index. For example, if needing the original value for `6efda88d5338599ef1cc29df5dad8da681984580dc1f7f495dcf17ebcf7191f8` simply execute:
     
