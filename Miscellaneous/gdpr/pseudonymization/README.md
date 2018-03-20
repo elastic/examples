@@ -1,13 +1,13 @@
 # GDPR Pseudonymization Examples
 
-This example provides a supporting example to the blog post [Pseudonymization and the Elastic Stack - Part 1](http://elastic.co/blog/X), focusing on the pseudonymization of data using the [Logstash Fingerprint](https://www.elastic.co/guide/en/logstash/current/plugins-filters-fingerprint.html) filter and Ruby Filter.
+This example provides a supporting example to the blog post [Pseudonymization and the Elastic Stack - Part 1](http://elastic.co/blog/X), focusing on the pseudonymization of data using the [Logstash Fingerprint](https://www.elastic.co/guide/en/logstash/current/plugins-filters-fingerprint.html) filter and [Ruby Filter](https://www.elastic.co/guide/en/logstash/current/plugins-filters-ruby.html#_using_a_ruby_script_file).
 
 In order to provide a convenient means to execute the example we utilise a dockerised approach. This example includes two approaches to pseudonymizing field data:
 
 1. The first approach demonstrates pseudonymization using purely logstash configuration and the existing Logstash Fingerprint filter.
 2. The second approach, as discussed in the blog, aims to simplify the configuration using a generic file Ruby based script.
 
-These two approaches are deployed as separate Logstash pipelines, both accepting data through a tcp input on different ports. For both examples we pseudonymize the fields username` and `ip`, although this could be reconfigured by the user.
+These two approaches are deployed as separate Logstash pipelines, both accepting data through a tcp input on different ports. For both examples we pseudonymize the fields `username` and `ip`, although this could be reconfigured by the user.
 
 #### Versions
 
@@ -22,7 +22,7 @@ This example has been tested in following versions:
 #### Important Notes
 
 * The second example utilises a file based script. This script is vulnerable to a [bug identified](https://github.com/logstash-plugins/logstash-filter-ruby/issues/41) in the filter, due for resolution in 6.3. We therefore distribute a custom Dockerfile for Logstash which extends the 6.2.2 distribution with a fix for the filter.  This will be removed on release of 6.3.
-* The second scripted approach in no way represents a final solution - the script is missing tests, doesn’t handle complex data structures and only supports SHA256!. It does, however, highlight one possible approach and provides a starting point for those needing to pseudonymize their data.   The use of a script here allows the user to potentially explore other hashing algorithms not exposed in the fingerprint filter, or even do many hash rotations to add additional complexity and resilience to attack.
+* The second scripted approach in no way represents a final solution - the script is missing tests, doesn’t handle complex data structures and only supports SHA256! It does, however, highlight one possible approach and provides a starting point for those needing to pseudonymize their data.   The use of a script here allows the user to potentially explore other hashing algorithms not exposed in the fingerprint filter, or even do many hash rotations to add additional complexity and resilience to attack.
 * The compose file is no way a production ready Elasticsearch configuration. Memory and cluster configuration settings are minimal and are applicable to an example only. See [here](https://www.elastic.co/guide/en/elasticsearch/reference/current/important-settings.html) for further details.
 * The approaches represent examples only. All data is indexed using the `elastic` user - this does not represent realistic access controls in a production environment.
 * The hash key is currently passed as a environment variable. In a production environment we would recommend storing this value in the [Logstash secret store](https://www.elastic.co/guide/en/logstash/current/keystore.html).  This could be rotated without restarting Logstash by adding a new key and modifying configurations - assuming [automatic reload is enabled](https://www.elastic.co/guide/en/logstash/current/reloading-config.html). 
@@ -60,39 +60,36 @@ The included compose file starts both Logstash and Elasticsearch. The former is 
 
 1. Ensure the directory containing the downloaded files is shared with docker - for OSX and Windows see [here](https://docs.docker.com/docker-for-mac/#file-sharing-tab) and [here](https://docs.docker.com/docker-for-windows/#shared-drives) respectively.
 
-1. Navigate to the directory containing the downloaded files and execute the following command: 
+2. Navigate to the directory containing the downloaded files and execute the following command: 
     
     `ELASTIC_PASSWORD=changeme TAG=6.2.2 docker-compose up`. 
     
     Feel free to change the value of ES_PASSWORD.
 
-2. The following log line should indicate when Logstash has started and is ready to accept data
+3. The following log line should indicate when Logstash has started and is ready to accept data
 
     `logstash_1       | [2018-03-20T12:40:33,638][INFO ][logstash.agent           ] Pipelines running {:count=>2, :pipelines=>["fingerprint_filter", "ruby_filter"]}`
 
 
 #### Fingerprint Filter Approach
 
-3. To utilise the first approach, based on the FingerPrint Filter execute the following command:
+4. To utilise the first approach, based on the FingerPrint Filter execute the following command:
 
     `cat sample_docs | nc localhost 5000`
     
     This should also take a few seconds to execute and index the 100 documents from the sample file.
-    
-
 
 #### Ruby Script File Approach
     
-4. To utilise the second approach, based on the Ruby File Script execute the following command:
+5. To utilise the second approach, based on the Ruby File Script execute the following command:
 
     `cat sample_docs | nc localhost 6000`
    
    This should also take a few seconds to execute and index the 100 documents from the sample file.
 
-
 #### Inspecting and using the data
 
-5. Pseudonymized Documents will be indexed to an `events` index.  These can be accessed through the following query:
+6. Pseudonymized Documents will be indexed to an `events` index.  These can be accessed through the following query:
 
     `curl "http://localhost:9200/events/_search" -u elastic:changeme | jq`
     
@@ -147,16 +144,18 @@ The included compose file starts both Logstash and Elasticsearch. The former is 
         }
       } 
       ```
+
+#### Data Notes
+
+
+   * The data produced by both examples is identical. If running both examples once, you will end up with a duplicate of each document in the `events` index - total 200, and 100 thereafter for each execution.
+   * The `identities` index should always contain 200 documents no matter how many times you index the data - a document for each unique field value of username` and `ip`.
+   * The data produced by both examples is identical - with the exception of the `source` field which indicates the pipeline used. If running both examples once, you will end up with a duplicate of each document in the `events` index - total 200, and 100 thereafter for each execution.  The `pseudonyms` index should always contain 200 documents no matter how many times you index the data - a document for each unique field value of `username` and `ip`.
+   * In order to lookup a pseudonymized value, the user can simply do a lookup by id on the `identities` index. For example, if needing the original value for `6efda88d5338599ef1cc29df5dad8da681984580dc1f7f495dcf17ebcf7191f8` simply execute:
     
-    The data produced by both examples is identical. If running both examples once, you will end up with a duplicate of each document in the `events` index - total 200, and 100 thereafter for each execution.
-    
-    The `identities` index should always contain 200 documents no matter how many times you index the data - a document for each unique field value of username` and `ip`.
-    
-    All indexed documents contain a field `source` indicating their originating pipeline.
-    
-    In order to lookup a pseudonymized value, the user can simply do a lookup by id on the `identities` index. For example, if needing the original value for `6efda88d5338599ef1cc29df5dad8da681984580dc1f7f495dcf17ebcf7191f8` simply execute:
-    
-    `curl "http://localhost:9200/identities/doc/6efda88d5338599ef1cc29df5dad8da681984580dc1f7f495dcf17ebcf7191f8" -u elastic:changeme | jq`
+```shell
+    curl "http://localhost:9200/identities/doc/6efda88d5338599ef1cc29df5dad8da681984580dc1f7f495dcf17ebcf7191f8" -u elastic:changeme | jq
+```
     
 
 #### Shutdown
