@@ -1,0 +1,27 @@
+---
+version: '3'
+services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch-platinum:${TAG}
+    environment: ['cluster.name=gdpr_pseudonymization','discovery.type=single-node', 'http.host=0.0.0.0', 'transport.host=127.0.0.1', 'ELASTIC_PASSWORD=${ELASTIC_PASSWORD:-changeme}']
+    ports: ['127.0.0.1:9200:9200']
+    networks: ['stack']
+
+  logstash:
+    build:
+      context: .
+      args:
+        TAG: ${TAG}
+    environment:
+      - ELASTIC_PASSWORD=${ELASTIC_PASSWORD:-changeme}
+      - FINGERPRINT_KEY=elastic_random_salt_to_change
+    networks: ['stack']
+    ports: ['127.0.0.1:5000:5000','127.0.0.1:6000:6000']
+    volumes:
+      - ./logstash_fingerprint.conf:/usr/share/logstash/pipeline/logstash_fingerprint.conf
+      - ./logstash_script_fingerprint.conf:/usr/share/logstash/pipeline/logstash_script_fingerprint.conf
+      - ./pipelines.yml:/usr/share/logstash/config/pipelines.yml
+      - ./pseudonymise.rb:/usr/share/logstash/pseudonymise.rb
+    depends_on: ['elasticsearch']
+
+networks: {stack: {}}

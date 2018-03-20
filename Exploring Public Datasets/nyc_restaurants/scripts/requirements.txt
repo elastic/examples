@@ -1,4 +1,4 @@
-elasticsearch==5.0
+elasticsearch==6.0
 cython==0.26
 geopy==1.11.0
 numpy==1.11.2
