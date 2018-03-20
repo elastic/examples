@@ -123,15 +123,15 @@ The included compose file starts both Logstash and Elasticsearch. The former is 
          }
     ```
     
-    "Identity documents" (effectively key-value pair lookups), are indexed into a `pseudonyms` index.  These can be accessed through the following query:
+    "Identity documents" (effectively key-value pair lookups), are indexed into a `identities` index.  These can be accessed through the following query:
     
-    `curl "http://localhost:9200/pseudonyms/_search" -u elastic:changeme | jq`
+    `curl "http://localhost:9200/identities/_search" -u elastic:changeme | jq`
     
     Again we assume jq is available for display of results.
     
     ```shell
       {
-        "_index": "pseudonyms",
+        "_index": "identities",
         "_type": "doc",
         "_id": "1924d02bd98a46c795cb2a925b98a22ae59c563e0de49f4ba4aa49e6cab072ad",
         "_score": 1,
@@ -139,7 +139,7 @@ The included compose file starts both Logstash and Elasticsearch. The former is 
           "key": "1924d02bd98a46c795cb2a925b98a22ae59c563e0de49f4ba4aa49e6cab072ad",
           "value": "174.145.248.21",
           "tags": [
-            "pseudonyms"
+            "identities"
           ],
           "@timestamp": "2018-03-20T13:39:59.957Z",
           "@version": "1",
@@ -150,13 +150,13 @@ The included compose file starts both Logstash and Elasticsearch. The former is 
     
     The data produced by both examples is identical. If running both examples once, you will end up with a duplicate of each document in the `events` index - total 200, and 100 thereafter for each execution.
     
-    The `pseudonyms` index should always contain 200 documents no matter how many times you index the data - a document for each unique field value of username` and `ip`.
+    The `identities` index should always contain 200 documents no matter how many times you index the data - a document for each unique field value of username` and `ip`.
     
     All indexed documents contain a field `source` indicating their originating pipeline.
     
-    In order to lookup a pseudonymized value, the user can simply do a lookup by id on the `pseudonyms` index. For example, if needing the original value for `6efda88d5338599ef1cc29df5dad8da681984580dc1f7f495dcf17ebcf7191f8` simply execute:
+    In order to lookup a pseudonymized value, the user can simply do a lookup by id on the `identities` index. For example, if needing the original value for `6efda88d5338599ef1cc29df5dad8da681984580dc1f7f495dcf17ebcf7191f8` simply execute:
     
-    `curl "http://localhost:9200/pseudonyms/doc/6efda88d5338599ef1cc29df5dad8da681984580dc1f7f495dcf17ebcf7191f8" -u elastic:changeme | jq`
+    `curl "http://localhost:9200/identities/doc/6efda88d5338599ef1cc29df5dad8da681984580dc1f7f495dcf17ebcf7191f8" -u elastic:changeme | jq`
     
 
 #### Shutdown
