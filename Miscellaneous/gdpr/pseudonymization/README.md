@@ -7,7 +7,7 @@ In order to provide a convenient means to execute the example we utilise a docke
 1. The first approach demonstrates pseudonymization using purely logstash configuration and the existing Logstash Fingerprint filter.
 2. The second approach, as discussed in the blog, aims to simplify the configuration using a generic file Ruby based script.
 
-These two approaches are deployed as separate Logstash pipelines, both accepting data through a tcp input on different ports. For both examples we pseudonymize the fields username` and `ip`, although this could be reconfigured by the user.
+These two approaches are deployed as separate Logstash pipelines, both accepting data through a tcp input on different ports. For both examples we pseudonymize the fields `username` and `ip`, although this could be reconfigured by the user.
 
 #### Versions
 
