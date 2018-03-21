@@ -17,7 +17,6 @@ This example has been tested in following versions:
 - Docker Compose 1.18.0
 - netcat
 - curl
-- jq (preferred)
 
 #### Important Notes
 
@@ -91,7 +90,7 @@ The included compose file starts both Logstash and Elasticsearch. The former is 
 
 6. Pseudonymized Documents will be indexed to an `events` index.  These can be accessed through the following query:
 
-    `curl "http://localhost:9200/events/_search" -u elastic:changeme | jq`
+    `curl "http://localhost:9200/events/_search?pretty" -u elastic:changeme`
     
     Example pseudonymized document below:
     
@@ -122,10 +121,8 @@ The included compose file starts both Logstash and Elasticsearch. The former is 
     
     "Identity documents" (effectively key-value pair lookups), are indexed into a `identities` index.  These can be accessed through the following query:
     
-    `curl "http://localhost:9200/identities/_search" -u elastic:changeme | jq`
-    
-    Again we assume jq is available for display of results.
-    
+    `curl "http://localhost:9200/identities/_search?pretty" -u elastic:changeme`
+        
     ```shell
       {
         "_index": "identities",
@@ -148,13 +145,12 @@ The included compose file starts both Logstash and Elasticsearch. The former is 
 #### Data Notes
 
 
-   * The data produced by both examples is identical. If running both examples once, you will end up with a duplicate of each document in the `events` index - total 200, and 100 thereafter for each execution.
-   * The `identities` index should always contain 200 documents no matter how many times you index the data - a document for each unique field value of username` and `ip`.
-   * The data produced by both examples is identical - with the exception of the `source` field which indicates the pipeline used. If running both examples once, you will end up with a duplicate of each document in the `events` index - total 200, and 100 thereafter for each execution.  The `pseudonyms` index should always contain 200 documents no matter how many times you index the data - a document for each unique field value of `username` and `ip`.
+   * The data produced by both examples is identical - with the exception of the `source` field which indicates the pipeline used. If running both examples once, you will end up with a duplicate of each document in the `events` index - total 200, and 100 thereafter for each execution.
+   * The `pseudonyms` index should always contain 200 documents no matter how many times you index the data - a document for each unique field value of `username` and `ip`.
    * In order to lookup a pseudonymized value, the user can simply do a lookup by id on the `identities` index. For example, if needing the original value for `6efda88d5338599ef1cc29df5dad8da681984580dc1f7f495dcf17ebcf7191f8` simply execute:
     
 ```shell
-    curl "http://localhost:9200/identities/doc/6efda88d5338599ef1cc29df5dad8da681984580dc1f7f495dcf17ebcf7191f8" -u elastic:changeme | jq
+    curl "http://localhost:9200/identities/doc/6efda88d5338599ef1cc29df5dad8da681984580dc1f7f495dcf17ebcf7191f8?pretty" -u elastic:changeme
 ```
     
 
