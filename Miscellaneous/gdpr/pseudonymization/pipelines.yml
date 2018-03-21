@@ -1,0 +1,6 @@
+- pipeline.id: fingerprint_filter
+  path.config: "/usr/share/logstash/pipeline/logstash_fingerprint.conf"
+  pipeline.workers: 1
+- pipeline.id: ruby_filter
+  path.config: "/usr/share/logstash/pipeline/logstash_script_fingerprint.conf"
+  pipeline.workers: 1
