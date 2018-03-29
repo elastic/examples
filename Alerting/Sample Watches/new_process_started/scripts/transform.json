@@ -1,3 +1,6 @@
 {
-  "script": "def history=ctx.payload.history_started_processes.aggregations.process_hosts.buckets.stream().map(p -> p.key).collect(Collectors.toList()); def new_starts=ctx.payload.started_processes.aggregations.process_hosts.buckets.stream().map(e -> e.key).filter(p -> !history.contains(p)); return new_starts.map(p -> p.replace('-',' on server ')).collect(Collectors.toList());"
+  "script": {
+    "lang": "painless",
+    "source": "def history=ctx.payload.history_started_processes.aggregations.process_hosts.buckets.stream().map(p -> p.key).collect(Collectors.toList()); def new_starts=ctx.payload.started_processes.aggregations.process_hosts.buckets.stream().map(e -> e.key).filter(p -> !history.contains(p)); return new_starts.map(p -> p.replace('-',' on server ')).collect(Collectors.toList());"
+  }
 }

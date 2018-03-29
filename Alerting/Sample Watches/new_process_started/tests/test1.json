@@ -2,7 +2,7 @@
   "watch_name":"new_process_started",
   "mapping_file":"./new_process_started/mapping.json",
   "index":"log",
-  "type":"log",
+  "type":"doc",
   "match": true,
   "watch_file":"./new_process_started/watch.json",
   "scripts":[{"name":"transform","path":"./new_process_started/scripts/transform.json"},{"name":"condition","path":"./new_process_started/scripts/condition.json"}],

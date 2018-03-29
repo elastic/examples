@@ -31,7 +31,7 @@ CPU pct statistics configured as scaled_float (with doc values) as produced by M
 ## Data Assumptions
 
 The Watch assumes each document represents the CPU state for a specific host at any moment in time.
-The watch assumes data is indexed into an index prefixed by "metricbeat" with type "metricsets".
+The watch assumes data is indexed into an index prefixed by "metricbeat" with type "doc".
 
 ## Other Assumptions
 
