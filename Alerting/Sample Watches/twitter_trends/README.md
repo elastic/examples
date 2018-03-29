@@ -13,7 +13,7 @@ A template is provided in template.json.  As a minimum tweets must include:
 
 ## Data Assumptions
 
-The watch assumes each document in Elasticsearch represents a tweet.  All tweets should be indexed into an index starting with "twitter" and use the type "tweet".
+The watch assumes each document in Elasticsearch represents a tweet.  All tweets should be indexed into an index starting with "twitter" and use the type "doc".
 
 ## Other Assumptions
 
