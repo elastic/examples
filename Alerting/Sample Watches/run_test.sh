@@ -12,13 +12,18 @@ if [ "$3" ] ; then
   password=$3
 fi
 
+protocol=http
+if [ "$4" ] ; then
+  protocol=$4
+fi
+
 num_tests=0
 pass=0
 fails=0
 echo "--------------------------------------------------"
 for test in `ls $1/tests/*.json`; do
 echo "Running test $test"
-python run_test.py --test_file $test --user $username --password $password
+python3 run_test.py --test_file $test --user $username --password $password --protocol $protocol
 if [ $? -eq 0 ]; then
 let pass=pass+1
 else
