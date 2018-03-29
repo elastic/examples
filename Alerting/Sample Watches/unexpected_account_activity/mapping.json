@@ -1,6 +1,6 @@
 {
   "mappings": {
-    "login": {
+    "doc": {
       "properties": {
         "event_type": {
           "type": "keyword"

@@ -23,7 +23,7 @@ The watch assumes each document in Elasticsearch represents a communication betw
 
 ## Other Assumptions
 
-* All events are index "connection" and type "connection".
+* All events are index "connection" and type "doc".
 
 ### How it works
 

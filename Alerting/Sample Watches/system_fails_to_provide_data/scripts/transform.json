@@ -1,3 +1,6 @@
 {
-  "script": "def last_period=ctx.payload.aggregations.periods.buckets.last_period.hosts.buckets.stream().map(e -> e.key).collect(Collectors.toList()); return ctx.payload.aggregations.periods.buckets.history.hosts.buckets.stream().map(e -> e.key).filter(p -> !last_period.contains(p)).collect(Collectors.toList());"
+  "script": {
+    "lang": "painless",
+    "source": "def last_period=ctx.payload.aggregations.periods.buckets.last_period.hosts.buckets.stream().map(e -> e.key).collect(Collectors.toList()); return ctx.payload.aggregations.periods.buckets.history.hosts.buckets.stream().map(e -> e.key).filter(p -> !last_period.contains(p)).collect(Collectors.toList());"
+  }
 }

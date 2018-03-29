@@ -2,7 +2,7 @@
   "watch_name":"errors_in_logs",
   "mapping_file":"./errors_in_logs/mapping.json",
   "index":"logs",
-  "type":"log",
+  "type":"doc",
   "match": true,
   "watch_file":"./errors_in_logs/watch.json",
   "events":[

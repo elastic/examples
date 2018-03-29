@@ -12,7 +12,7 @@
     "search": {
       "request": {
         "indices": "log",
-        "types": "log",
+        "types": "doc",
         "body": {
           "query": {
             "range": {

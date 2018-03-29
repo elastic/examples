@@ -2,7 +2,7 @@
   "watch_name":"unexpected_account_activity",
   "mapping_file":"./unexpected_account_activity/mapping.json",
   "index":"logins",
-  "type":"login",
+  "type":"doc",
   "match": true,
   "watch_file":"./unexpected_account_activity/watch.json",
   "scripts":[{"name":"transform","path":"./unexpected_account_activity/scripts/transform.json"},{"name":"condition","path":"./unexpected_account_activity/scripts/condition.json"}],

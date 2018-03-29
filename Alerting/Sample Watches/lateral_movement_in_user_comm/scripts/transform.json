@@ -1,3 +1,6 @@
 {
-  "script": "def history = ctx.payload.new_user_server_logons.aggregations.user_server.buckets.stream().map(p -> p.key).collect(Collectors.toList()); def response=[:]; response['lower_time']=ctx.payload.get_time_period.hits.hits[0].fields.lower_time[0]; response['upper_time']=ctx.payload.get_time_period.hits.hits[0].fields.upper_time[0]; response['new_starts']=ctx.payload.user_server_logons.aggregations.user_server.buckets.stream().map(p -> p.key).filter(p -> !history.contains(p)).map(p -> p.replace('_',' on server ')).collect(Collectors.toList());  return response;"
+  "script": {
+    "lang": "painless",
+    "source": "def history = ctx.payload.new_user_server_logons.aggregations.user_server.buckets.stream().map(p -> p.key).collect(Collectors.toList()); def response=[:]; response['lower_time']=ctx.payload.get_time_period.hits.hits[0].fields.lower_time[0]; response['upper_time']=ctx.payload.get_time_period.hits.hits[0].fields.upper_time[0]; response['new_starts']=ctx.payload.user_server_logons.aggregations.user_server.buckets.stream().map(p -> p.key).filter(p -> !history.contains(p)).map(p -> p.replace('_',' on server ')).collect(Collectors.toList());  return response;"
+  }
 }

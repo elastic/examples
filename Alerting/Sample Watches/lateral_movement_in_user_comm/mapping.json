@@ -1,6 +1,6 @@
 {
   "mappings": {
-    "log": {
+    "doc": {
       "properties": {
         "user_server": {
           "type": "keyword"

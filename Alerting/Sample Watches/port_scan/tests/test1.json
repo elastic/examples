@@ -2,7 +2,7 @@
   "watch_name":"port_scan",
   "mapping_file":"./port_scan/mapping.json",
   "index":"connection",
-  "type":"connection",
+  "type":"doc",
   "match": true,
   "watch_file":"./port_scan/watch.json",
   "scripts":[{"name":"log_transform","path":"./port_scan/scripts/log_transform.json"},{"name":"index_transform","path":"./port_scan/scripts/index_transform.json"},{"name":"condition","path":"./port_scan/scripts/condition.json"}],

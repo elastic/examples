@@ -1,3 +1,6 @@
 {
-  "script": "def sensitivity = ctx.metadata.sensitivity; if (ctx.payload.aggregations.source_dest.buckets.size() == 0) return false; return ctx.payload.aggregations.source_dest.buckets.stream().anyMatch(p -> p.port_stats.std_deviation > 0 && (p.series.buckets[p.series.buckets.length-1].num_ports.value > ((sensitivity * p.port_stats.std_deviation)+p.median_ports.values['50.0'])));"
+  "script": {
+    "lang": "painless",
+    "source": "def sensitivity = ctx.metadata.sensitivity; if (ctx.payload.aggregations.source_dest.buckets.size() == 0) return false; return ctx.payload.aggregations.source_dest.buckets.stream().anyMatch(p -> p.port_stats.std_deviation > 0 && (p.series.buckets[p.series.buckets.length-1].num_ports.value > ((sensitivity * p.port_stats.std_deviation)+p.median_ports.values['50.0'])));"
+  }
 }

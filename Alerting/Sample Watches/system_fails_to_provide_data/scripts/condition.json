@@ -1,3 +1,6 @@
 {
-  "script": "return ctx.payload.aggregations.periods.buckets.history.hosts.buckets.size() > ctx.payload.aggregations.periods.buckets.last_period.hosts.buckets.size();"
+  "script": {
+    "lang": "painless",
+    "source": "return ctx.payload.aggregations.periods.buckets.history.hosts.buckets.size() > ctx.payload.aggregations.periods.buckets.last_period.hosts.buckets.size();"
+  }
 }

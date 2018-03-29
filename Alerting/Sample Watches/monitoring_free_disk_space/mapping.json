@@ -1,11 +1,14 @@
 {
   "mappings": {
-    "node_stats": {
+    "doc": {
       "_all": {
         "enabled": false
       },
       "date_detection": false,
       "properties": {
+        "type": {
+          "type": "keyword"
+        },
         "cluster_uuid": {
           "type": "keyword"
         },

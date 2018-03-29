@@ -13,7 +13,7 @@
     "search": {
       "request": {
         "indices": ".monitoring-es-test",
-        "types": "cluster_state",
+        "types": "doc",
         "body": {
           "query": {
             "bool": {
@@ -25,6 +25,11 @@
                         "timestamp": {
                           "gte": "now-{{ctx.metadata.not_green_secs}}s"
                         }
+                      }
+                    },
+                    {
+                      "term": {
+                        "type" : "cluster_state"
                       }
                     }
                   ]

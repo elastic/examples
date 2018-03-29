@@ -1,3 +1,6 @@
 {
-  "script":"ctx.payload.aggregations.nodes.buckets.stream().filter(it -> it.free_ratio.value < ctx.metadata.lower_bound).map(it -> ['node_name':it.key,'available_in_gb':Math.round((it.available_in_bytes.value/1073741824) * 100)/100,'total_in_gb':Math.round((it.total_in_bytes.value/1073741824)* 100)/100]).collect(Collectors.toList());"
+  "script": {
+    "lang": "painless",
+    "source": "ctx.payload.aggregations.nodes.buckets.stream().filter(it -> it.free_ratio.value < ctx.metadata.lower_bound).map(it -> ['node_name':it.key,'available_in_gb':Math.round((it.available_in_bytes.value/1073741824) * 100)/100,'total_in_gb':Math.round((it.total_in_bytes.value/1073741824)* 100)/100]).collect(Collectors.toList());"
+  }
 }

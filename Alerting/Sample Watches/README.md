@@ -6,7 +6,7 @@ This package provides a collection of example  watches.  These watches have been
 
 # Generic Assumptions
 
-* Elasticsearch 5.0 + x-pack
+* Elasticsearch 6.2 + x-pack
 * All watches use the log output for purposes of testing. Replace with output e.g. email, as required.
 * Painless scripts, located within the "scripts" folder of each watch, must be indexed first.  
 * All watches assume Watcher is running in the same cluster as that in which the relevant data is hosted.  They all therefore use the search input.  In a production deployment this is subject to change i.e. a http input maybe required.

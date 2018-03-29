@@ -11,7 +11,7 @@
     "search": {
       "request": {
         "indices": ".monitoring-es-test",
-        "types": "node_stats",
+        "types": "doc",
         "body": {
           "query": {
             "bool": {
@@ -21,6 +21,11 @@
                     "timestamp": {
                       "gte": "{{ctx.trigger.scheduled_time}}||-5m"
                     }
+                  }
+                },
+                {
+                  "term": {
+                    "type" : "node_stats"
                   }
                 }
               ]

@@ -16,7 +16,7 @@ A mapping is provided in mapping.json.  Watches require data producing the follo
 
 ## Data Assumptions
 
-The Watch assumes each log message is represented by an Elasticsearch document. The watch assumes data is indexed in a "logs" index and "log" type.
+The Watch assumes each log message is represented by an Elasticsearch document. The watch assumes data is indexed in a "logs" index and "doc" type.
 
 ## Other Assumptions
 

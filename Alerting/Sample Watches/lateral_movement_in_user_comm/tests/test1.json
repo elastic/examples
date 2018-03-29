@@ -2,7 +2,7 @@
   "watch_name":"lateral_movement_in_user_comm",
   "mapping_file":"./lateral_movement_in_user_comm/mapping.json",
   "index":"log",
-  "type":"log",
+  "type":"doc",
   "ingest_pipeline_file":"./lateral_movement_in_user_comm/ingest.json",
   "watch_file":"./lateral_movement_in_user_comm/watch.json",
   "comments":"Functional test only.  Tests when a new user logins into a server (UserB), when a user logs into a server at a new time period (UserA). UserC should not alert",

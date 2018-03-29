@@ -1,9 +1,6 @@
 {
   "mappings": {
-    "cluster_state": {
-      "_all": {
-        "enabled": false
-      },
+    "doc": {
       "date_detection": false,
       "properties": {
         "cluster_state": {
@@ -35,6 +32,9 @@
         "timestamp": {
           "type": "date",
           "format": "date_time"
+        },
+        "type": {
+          "type": "keyword"
         }
       }
     }
