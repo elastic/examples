@@ -1,0 +1,267 @@
+######################################
+# all pattern for -XX:+PrintGCDetails, -XX:+PrintGCDateStamps, -XX:+PrintGCTimeStamps
+######################################
+
+# 498329.015:
+GC_JVM_UPTIME                   (((\d+\.\d+)):)
+
+GC_REASON %{GC_JVM_UPTIME}(\s+\[(?<gc_action>(\w+\s+\w+))\s+\((?<gc_reason>(\w+\s+\w+\s+\w+))\)\s+\((?<gc_pool>(\w+))\)(,\s+(?<gc_duration>(\d+\.\d+))\s+secs\]\n))
+# , 0.1904911 secs]
+# , 0.1904911 secs] [Times: user=0.36 sys=0.00, real=0.19 secs]
+# [Times: user=0.12 sys=0.00, real=0.01 secs]
+GC_DURATION                     (,\s+(?<gc_duration>(\d+\.\d+))\s+secs\]\n?)
+GC_USER_DURATION                (\s+\[Times:\s+user=(?<gc_user_duration>(\d+\.\d+)))
+GC_SYS_DURATION                 (\s+sys=(?<gc_sys_duration>(\d+\.\d+)),)
+GC_REAL_DURATION                (\s+real=(?<gc_real_duration>(\d+\.\d+))\s+secs\])
+GC_PART_DURATION                %{GC_USER_DURATION}%{GC_SYS_DURATION}%{GC_REAL_DURATION}
+
+# 402M->65M(8192M) 
+GC_HEAP_USAGE                   (\s+(?<heap_used_before_gc>(\d+))(?<heap_used_before_gc_unit>(M|K|B))->(?<heap_used_after_gc>(\d+))(?<heap_used_after_gc_unit>(M|K|B))\((?<heap_total_after_gc>(\d+))(?<heap_total_after_unit>(M|K|B))\))
+                                
+# [Eden: 288.0M(356.0M)->0.0B(408.0M) Survivors: 52.0M->0.0B Heap: 402.0M(8192.0M)->65.5M(8192.0M)]
+GC_EDEN_USAGE                   (\s?\[Eden:\s+(?<eden_used_before_gc>(\d+\.\d+))(?<eden_used_before_gc_unit>(M|K|B))\((?<eden_total_before_gc>(\d+\.\d+))(?<eden_total_before_gc_unit>(M|K|B))\)->(?<eden_used_after_gc>(\d+\.\d+))(?<eden_used_after_gc_unit>(M|K|B))\((?<eden_total_after_gc>(\d+\.\d+))(?<eden_total_after_gc_unit>(M|K|B))\))
+GC_SURVIVOR_USAGE               (\s?Survivors:\s+(?<survivor_used_before_gc>(\d+\.\d+))(?<survivor_used_before_gc_unit>(M|K|B))->(?<survivor_used_after_gc>(\d+\.\d+))(?<survivor_used_after_gc_unit>(M|K|B)))
+GC_HEAP_USAGE_EXTEND            (\s?Heap:\s+(?<heap_used_before_gc>(\d+\.\d+))(M|K)\((?<heap_total_before_gc>(\d+\.\d+))(M|K)\)->(?<heap_used_after_gc>(\d+\.\d+))(M|K)\((?<heap_total_after_gc>(\d+\.\d+))(M|K)\)\])
+
+# [Metaspace: 20879K->20875K(1069056K)]
+GC_METASPACE_USAGE              (\[Metaspace:\s+(?<meta_used_before_gc>(\d+))(M|K)->(?<meta_used_after_gc>(\d+))(M|K)\((?<meta_total_after_gc>(\d+))(M|K)\)\])
+
+# G1 parallel Threads Young and Mixed GC
+######################################
+# 498329.015: [GC pause (GCLocker Initiated GC) (young)
+# 659451.728: [GC pause (GCLocker Initiated GC) (young) (initial-mark)
+G1_GC_REASON                    %{GC_JVM_UPTIME}(\s+\[(?<gc_action>(\w+\s+\w+))\s+\((?<gc_reason>(\w+\s+\w+\s+\w+))\)\s+\((?<gc_pool>(\w+))\)(\s+\((?<gc_action2>(\w+-\w+))\))?\n?)
+
+# [Parallel Time: 21.8 ms, GC Workers: 10]
+#    [GC Worker Start (ms): Min: 506620870.6, Avg: 506620870.7, Max: 506620870.7, Diff: 0.1]
+#    [Ext Root Scanning (ms): Min: 0.6, Avg: 0.8, Max: 1.7, Diff: 1.1, Sum: 8.3]
+#    [SATB Filtering (ms): Min: 0.0, Avg: 0.1, Max: 1.3, Diff: 1.3, Sum: 1.3]
+#    [Code Root Marking (ms): Min: 0.0, Avg: 2.7, Max: 8.0, Diff: 7.9, Sum: 27.4]
+#    [Update RS (ms): Min: 5.5, Avg: 6.5, Max: 6.9, Diff: 1.4, Sum: 65.3]
+#        [Processed Buffers: Min: 35, Avg: 50.9, Max: 87, Diff: 52, Sum: 509]
+#    [Scan RS (ms): Min: 0.1, Avg: 0.3, Max: 0.3, Diff: 0.3, Sum: 2.8]
+#    [Code Root Scanning (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.1]
+#    [Object Copy (ms): Min: 18.2, Avg: 18.5, Max: 18.6, Diff: 0.4, Sum: 184.8]
+#    [Termination (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.0]
+#    [GC Worker Other (ms): Min: 0.0, Avg: 0.1, Max: 0.1, Diff: 0.1, Sum: 0.5]
+#    [GC Worker Total (ms): Min: 26.1, Avg: 26.2, Max: 26.2, Diff: 0.1, Sum: 261.6]
+#    [GC Worker End (ms): Min: 599288913.6, Avg: 599288913.6, Max: 599288913.6, Diff: 0.1]
+G1_WORKER_STATS                 (\s+\[Parallel\s+Time:\s+(?<gc_parallel_time>(\d+\.\d+))\s+ms,\s+GC\s+Workers:\s+(?<g1_workers>(\d+))\]\n)
+G1_WORKER_START_STATS (\s+\[GC\s+Worker\s+Start\s+\(ms\):\s+Min:\s+(?<g1_worker_start.min>(\d+\.\d+)),\s+Avg:\s+(?<g1_worker_start.avg>(\d+\.\d+)),\s+Max:\s+(?<g1_worker_start.max>(\d+\.\d+)),\s+Diff:\s+(?<g1_worker_start.diff>(\d+\.\d+))\]\n)
+G1_EXT_ROOT_SCAN_STATS          (\s+\[Ext\s+Root\s+Scanning\s+\(ms\):\s+Min:\s+(?<g1_ext_root_scan.min>(\d+\.\d+)),\s+Avg:\s+(?<g1_ext_root_scan.avg>(\d+\.\d+)),\s+Max:\s+(?<g1_ext_root_scan.max>(\d+\.\d+)),\s+Diff:\s+(?<g1_ext_root_scan.diff>(\d+\.\d+)),\s+Sum:\s+(?<g1_ext_root_scan.sum>(\d+\.\d+))\]\n)
+G1_EXT_ROOT_MARK_STATS          (\s+\[Code\s+Root\s+Marking\s+\(ms\):\s+Min:\s+(?<g1_ext_root_mark.min>(\d+\.\d+)),\s+Avg:\s+(?<g1_ext_root_mark.avg>(\d+\.\d+)),\s+Max:\s+(?<g1_ext_root_mark.max>(\d+\.\d+)),\s+Diff:\s+(?<g1_ext_root_mark.diff>(\d+\.\d+)),\s+Sum:\s+(?<g1_ext_root_mark.sum>(\d+\.\d+))\]\n)
+G1_SATB_FILTER_STATS            (\s+\[SATB\s+Filtering\s+\(ms\):\s+Min:\s+(?<g1_satb_filter.min>(\d+\.\d+)),\s+Avg:\s+(?<g1_satb_filter.avg>(\d+\.\d+)),\s+Max:\s+(?<g1_satb_filter.max>(\d+\.\d+)),\s+Diff:\s+(?<g1_satb_filter.diff>(\d+\.\d+)),\s+Sum:\s+(?<g1_satb_filter.sum>(\d+\.\d+))\]\n)
+G1_UPDATE_RS_STATS              (\s+\[Update\s+RS\s+\(ms\):\s+Min:\s+(?<g1_update_rs.min>(\d+\.\d+)),\s+Avg:\s+(?<g1_update_rs.avg>(\d+\.\d+)),\s+Max:\s+(?<g1_update_rs.max>(\d+\.\d+)),\s+Diff:\s+(?<g1_update_rs.diff>(\d+\.\d+)),\s+Sum:\s+(?<g1_update_rs.sum>(\d+\.\d+))\]\n)
+G1_PROCESS_BUFFER_STATS         (\s+\[Processed\s+Buffers:\s+Min:\s+(?<g1_update_rs.updated_process_buffer.min>(\d+)),\s+Avg:\s+(?<g1_update_rs.updated_process_buffer.avg>(\d+\.\d+)),\s+Max:\s+(?<g1_update_rs.updated_process_buffer.max>(\d+)),\s+Diff:\s+(?<g1_update_rs.updated_process_buffer.diff>(\d+)),\s+Sum:\s+(?<g1_update_rs.updated_process_buffer.sum>(\d+))\]\n)
+G1_SCAN_RS_STATS                (\s+\[Scan\s+RS\s+\(ms\):\s+Min:\s+(?<g1_scan_rs.min>(\d+\.\d+)),\s+Avg:\s+(?<g1_scan_rs.avg>(\d+\.\d+)),\s+Max:\s+(?<g1_scan_rs.max>(\d+\.\d+)),\s+Diff:\s+(?<g1_scan_rs.diff>(\d+\.\d+)),\s+Sum:\s+(?<g1_scan_rs.sum>(\d+\.\d+))\]\n)
+G1_CODE_ROOT_SCAN_STATS         (\s+\[Code\s+Root\s+Scanning\s+\(ms\):\s+Min:\s+(?<g1_code_root_scan.min>(\d+\.\d+)),\s+Avg:\s+(?<g1_code_root_scan.avg>(\d+\.\d+)),\s+Max:\s+(?<g1_code_root_scan.max>(\d+\.\d+)),\s+Diff:\s+(?<g1_code_root_scan.diff>(\d+\.\d+)),\s+Sum:\s+(?<g1_code_root_scan.sum>(\d+\.\d+))\]\n)
+G1_OBJECT_COPY_STATS            (\s+\[Object\s+Copy\s+\(ms\):\s+Min:\s+(?<g1_object_copy.min>(\d+\.\d+)),\s+Avg:\s+(?<g1_object_copy.avg>(\d+\.\d+)),\s+Max:\s+(?<g1_object_copy.max>(\d+\.\d+)),\s+Diff:\s+(?<g1_object_copy.diff>(\d+\.\d+)),\s+Sum:\s+(?<g1_object_copy.sum>(\d+\.\d+))\]\n)
+G1_TERMINATION_STATS            (\s+\[Termination\s+\(ms\):\s+Min:\s+(?<g1_termination.min>(\d+\.\d+)),\s+Avg:\s+(?<g1_termination.avg>(\d+\.\d+)),\s+Max:\s+(?<g1_termination.max>(\d+\.\d+)),\s+Diff:\s+(?<g1_termination.diff>(\d+\.\d+)),\s+Sum:\s+(?<g1_termination.sum>(\d+\.\d+))\]\n)
+G1_TERMINATION_ATTEMPT_STATS (\s+\[Termination\s+Attempts:\s+Min:\s+(?<g1_termination_att.min>(\d+)),\s+Avg:\s+(?<g1_termination_att.avg>(\d+\.\d+)),\s+Max:\s+(?<g1_termination_att.max>(\d)),\s+Diff:\s+(?<g1_termination_att.diff>(\d)),\s+Sum:\s+(?<g1_termination_att.sum>(\d+\d+))\]\n)
+G1_WORKER_OTHER_STATS           (\s+\[GC\s+Worker\s+Other\s+\(ms\):\s+Min:\s+(?<g1_worker_other.min>(\d+\.\d+)),\s+Avg:\s+(?<g1_worker_other.avg>(\d+\.\d+)),\s+Max:\s+(?<g1_worker_other.max>(\d+\.\d+)),\s+Diff:\s+(?<g1_worker_other.diff>(\d+\.\d+)),\s+Sum:\s+(?<g1_worker_other.sum>(\d+\.\d+))\]\n)
+G1_WORKER_TOTAL_STATS           (\s+\[GC\s+Worker\s+Total\s+\(ms\):\s+Min:\s+(?<g1_worker_total.min>(\d+\.\d+)),\s+Avg:\s+(?<g1_worker_total.avg>(\d+\.\d+)),\s+Max:\s+(?<g1_worker_total.max>(\d+\.\d+)),\s+Diff:\s+(?<g1_worker_total.diff>(\d+\.\d+)),\s+Sum:\s+(?<g1_worker_total.sum>(\d+\.\d+))\]\n)
+G1_WORKER_END_STATS             (\s+\[GC\s+Worker\s+End\s+\(ms\):\s+Min:\s+(?<g1_worker_end.min>(\d+\.\d+)),\s+Avg:\s+(?<g1_worker_end.avg>(\d+\.\d+)),\s+Max:\s+(?<g1_worker_end.max>(\d+\.\d+)),\s+Diff:\s+(?<g1_worker_end.diff>(\d+\.\d+))\]\n)
+G1_PARALLEL_THREADS_STATS       %{G1_WORKER_STATS}%{G1_WORKER_START_STATS}%{G1_EXT_ROOT_SCAN_STATS}%{G1_EXT_ROOT_MARK_STATS}?%{G1_SATB_FILTER_STATS}?%{G1_UPDATE_RS_STATS}%{G1_PROCESS_BUFFER_STATS}%{G1_SCAN_RS_STATS}%{G1_CODE_ROOT_SCAN_STATS}%{G1_OBJECT_COPY_STATS}%{G1_TERMINATION_STATS}%{G1_WORKER_OTHER_STATS}%{G1_WORKER_TOTAL_STATS}%{G1_WORKER_END_STATS}
+
+# G1 sequentiell Threads Young and Mixed GC
+######################################
+#    [Code Root Fixup: 0.2 ms]
+#    [Code Root Migration: 0.1 ms]
+#    [Code Root Purge: 0.0 ms]
+#    [Clear CT: 0.6 ms]
+#    [Other: 1.7 ms]
+#        [Choose CSet: 0.0 ms]
+#        [Ref Proc: 0.2 ms]
+#        [Ref Enq: 0.0 ms]
+#        [Redirty Cards: 0.2 ms]
+#        [Free CSet: 0.8 ms]
+G1_CODE_ROOT_FIXUP              (\s+\[Code\s+Root\s+Fixup:\s+(?<g1_code_root_fixup>(\d+\.\d+))\s+ms\]\n)
+G1_CODE_ROOT_MIGRATION          (\s+\[Code\s+Root\s+Migration:\s+(?<g1_code_root_migration>(\d+\.\d+))\s+ms\]\n)
+G1_CODE_ROOT_PURGE              (\s+\[Code\s+Root\s+Purge:\s+(?<g1_code_root_purge>(\d+\.\d+))\s+ms\]\n)
+G1_CODE_ROOT_STATS              %{G1_CODE_ROOT_FIXUP}%{G1_CODE_ROOT_MIGRATION}%{G1_CODE_ROOT_PURGE}
+G1_CLEAR_CT                     (\s+\[Clear\s+CT:\s+(?<g1_clear_ct>(\d+\.\d+))\s+ms\]\n)
+G1_OTHER                        (\s+\[Other:\s+(?<g1_other_duration>(\d+\.\d+))\s+ms\]\n)
+G1_CHOOS_CSET                   (\s+\[Choose\s+CSet:\s+(?<g1_choose_cset>(\d+\.\d+))\s+ms\]\n)
+G1_REF_PROC                     (\s+\[Ref\s+Proc:\s+(?<g1_ref_proc>(\d+\.\d+))\s+ms\]\n)
+G1_REF_ENQ                      (\s+\[Ref\s+Enq:\s+(?<g1_ref_enq>(\d+\.\d+))\s+ms\]\n)
+G1_REDIRTY_CARDS                (\s+\[Redirty\s+Cards:\s+(?<g1_redirty_cards>(\d+\.\d+))\s+ms\]\n)
+G1_FREE_CSET                    (\s+\[Free\s+CSet:\s+(?<g1_free_cset>(\d+\.\d+))\s+ms\]\n)
+G1_OTHER_STATS                  %{G1_OTHER}%{G1_CHOOS_CSET}%{G1_REF_PROC}%{G1_REF_ENQ}%{G1_REDIRTY_CARDS}%{G1_FREE_CSET}
+G1_SEQUENTIELL_THREADS_STATS    %{G1_CODE_ROOT_STATS}%{G1_CLEAR_CT}%{G1_OTHER_STATS}
+
+#  [Eden: 4332.0M(4332.0M)->0.0B(4356.0M) Survivors: 80.0M->68.0M Heap: 7285.1M(8192.0M)->2943.4M(8192.0M)]
+G1_HEAP_POOLS_AFTER_GC          (\s+)%{GC_EDEN_USAGE}\s+%{GC_SURVIVOR_USAGE}%{GC_HEAP_USAGE_EXTEND}\n
+                                
+# G1 Concurrent Remark
+######################################
+# 659452.214: [GC cleanup
+# 659452.214: [GC concurrent-root-region-scan-start]
+# 816418.197: [GC concurrent-cleanup-end, 0.0005591 secs]
+G1_CM_STAGE                     %{GC_JVM_UPTIME}(\s+\[(?<g1_gc_stage>((\w+\s+\w+))(\-\w+)*))
+G1_CM_STAGE_WITH_DURATION       %{GC_JVM_UPTIME}(\s+\[(?<g1_gc_stage>((\w+\s+\w+))(\-\w+)*))%{GC_DURATION}
+
+# 659452.214: [GC cleanup 3875M->3679M(8192M), 0.0117895 secs] [Times: user=0.12 sys=0.00, real=0.01 secs]
+G1_CM_CLEANUP_STATS             %{G1_CM_STAGE}%{GC_HEAP_USAGE}%{GC_DURATION}%{GC_PART_DURATION}
+
+# 757537.567: [GC remark 757537.568: [GC ref-proc, 0.0034009 secs], 0.0067587 secs] [Times: user=0.04 sys=0.00, real=0.01 secs] 
+G1_CM_REMARK_STATS              %{G1_CM_STAGE}(\s+\d+\.\d+:\s+\[GC\s+ref-proc,\s+(?<g1_ref_proc>(\d+\.\d+))\s+secs\],\s+(?<g1_remark>(\d+\.\d+))\s+secs\]\n)%{GC_PART_DURATION}
+
+# 2015-08-28T11:09:28.970+0200: 5.099: [Full GC (Metadata GC Threshold)  402M->65M(8192M), 0.2181915 secs]
+#   [Eden: 288.0M(356.0M)->0.0B(408.0M) Survivors: 52.0M->0.0B Heap: 402.0M(8192.0M)->65.5M(8192.0M)], [Metaspace: 20879K->20875K(1069056K)]
+# [Times: user=0.30 sys=0.01, real=0.22 secs]
+G1_FULL_GC                      %{GC_JVM_UPTIME}(\s+\[Full\s+GC\s+\((?<g1_full_gc_reason>((\w+){1}(\s+\w+){,2}))\))%{GC_HEAP_USAGE}%{GC_DURATION}\s+%{GC_EDEN_USAGE}\s+%{GC_SURVIVOR_USAGE}%{GC_HEAP_USAGE_EXTEND}(,\s+)%{GC_METASPACE_USAGE}\n%{G1_HEAP_AFTER_GC}?%{GC_PART_DURATION}
+
+# CMS Minor GC
+######################################
+# 346044,442: [GC (Allocation Failure) Before GC:
+CMS_GC_REASON                   ((?<=\[).+(?= Before GC:))
+
+# Total Free Space: 5994430\nMax Chunk Size: 5725055\nNumber of Blocks: 34\nAv. Block Size: 176306\nTree Height: 11\n
+OLD_GEN_FRAG_STATS_BEFORE_GC    (.+\n.+\n.+\nTotal\s+Free\s+Space:\s+(?<old_gen_free_frag_before_gc>(\d+))\nMax\s+Chunk Size:\s+(?<old_gen_max_chunk_before_gc>(\d+))\nNumber\s+of\s+Blocks:\s+(?<old_gen_block_numbers_before_gc>(\d+))\nAv\.\s+Block\s+Size:\s+(?<old_gen_avg_block_size_before_gc>(\d+))\nTree\s+Height:\s+(?<old_gen_tree_height_before_gc>(\d+))\n)
+OLD_GEN_FRAG_STATS_AFTER_GC     (.+\n.+\n.+\n.+:\s+(?<old_gen_free_frag_after_gc>(\d+))\nMax\s+Chunk Size:\s+(?<old_gen_max_chunk_after_gc>(\d+))\nNumber\s+of\s+Blocks:\s+(?<old_gen_block_numbers_after_gc>(\d+))\nAv\.\s+Block\s+Size:\s+(?<old_gen_avg_block_size_after_gc>(\d+))\nTree\s+Height:\s+(?<old_gen_tree_height_after_gc>(\d+))\n)
+
+# : 332506K->40960K(368640K), 0.0816023 secs] 1032579K->750284K(2031616K)
+CMS_NEW_GEN_STATS               (:\s+(?<new_gen_used_before_gc>(\d+))K\->(?<new_gen_used_after_gc1>(\d+))K\((?<new_gen_total_after_gc1>(\d+))K\),\s+(?<minor_gc_cpu_duration>(\d+\.\d+)))
+
+# 1032579K->750284K(2031616K)
+CMS_HEAP_STATS                  (.+\])%{GC_HEAP_USAGE}
+
+# CMS Major GC
+######################################
+CMS_STAGE                       (((?<=\[CMS\-)(\w+\-{1}\w+)(\-{1}\w+)*)|((?<=\[GC \(CMS )\w+\s+\w+))
+CMS_DURATION                    (:\s+(?<cms_cpu_duration>(\d+\.\d+))\/(?<gc_duration>(\d+\.\d+))\s+secs\])
+CMS_INI_MARK_DURATION           (.+(?<gc_duration>(\d+\.\d+))\s+secs\])
+CMS_OLD_GEN                     (.+CMS\-initial\-mark:\s+(?<old_gen_used_before_gc>(\d+))K\((?<old_gen_total_before_gc>(\d+))K\))
+CMS_NEW_GEN                     (.+YG\s+occupancy:\s+(?<new_gen_used_after_gc>(\d+))\s+K\s+\((?<new_gen_total_after_gc>(\d+))\s+K\))
+CMS_INITIAL_MARK                %{CMS_STAGE:cms_stage}%{CMS_OLD_GEN}%{CMS_INI_MARK_DURATION}%{GC_PART_DURATION}
+CMS_FINAL_REMARK                %{CMS_STAGE:cms_stage}%{CMS_NEW_GEN}%{GC_PART_DURATION}
+CMS_STAGE_WITH_DURATION         %{CMS_STAGE:cms_stage}%{CMS_DURATION}%{GC_PART_DURATION}
+
+######################################
+# all pattern for +PrintGCApplicationStoppedTime
+######################################
+
+# Total time for which application threads were stopped: 0,0013089 seconds
+GC_APPLI_STOPPED_SEC            ((?<= Total time for which application threads were stopped:) \d+\.\d+)
+
+######################################
+# all pattern for +PrintGCApplicationConcurrentTime
+######################################
+
+# Application time: 1,0350815 seconds
+GC_APPLI_CONCUR_SEC             ((?<= Application time:) \d+\.\d+)
+
+######################################
+# all pattern for +PrintTenuringDistribution
+######################################
+
+# Desired survivor size 308281344 bytes, new threshold 15 (max 15) - age 1: 1990184 bytes, 1990184 total ......
+# if survivor space empty, no threshold stats are available
+CMS_SURVIVOR_STATS              (.+\nDesired\s+survivor\s+size\s+(?<desired_survivor_size>(\d+))\s+bytes,\s+new\s+threshold\s+(?<cur_threshold_size>(\d+))\s+\(max\s+(?<max_threshold_size>(\d+))\)\n(?<survivor_stats>(\-\s+age\s+\d+:\s+\d+\s+bytes,\s+\d+\s+total\n)+))
+G1_SURVIVOR_STATS               (Desired\s+survivor\s+size\s+(?<desired_survivor_size>(\d+))\s+bytes,\s+new\s+threshold\s+(?<cur_threshold_size>(\d+))\s+\(max\s+(?<max_threshold_size>(\d+))\)\n(?<survivor_stats>(\-\s+age\s+\d+:\s+\d+\s+bytes,\s+\d+\s+total\n)+)?)
+
+######################################
+# all pattern for +PrintHeapAtGC
+######################################
+
+# Heap before GC invocations=307
+# Heap after GC invocations=20009 (full 1):
+GC_NUMBER                       (.+(invocations=)(?<gc_number>(\d+))\s+\(full\s+(?<gc_full_gc_number>(\d+))\):\n)
+
+# CMS
+# par new generation total 235968K, used 221084K [0x00000000c0000000, 0x00000000d0000000, 0x00000000d0000000)
+CMS_NEW_GEN_BEFORE_GC           (\s+(par\s+new\s+generation\s+total)\s+(?<new_gen_total_before_gc>(\d+))(K, used )(?<new_gen_used_before_gc>(\d+))K.+\n)
+CMS_NEW_GEN_AFTER_GC            (.+\n\s+(par\s+new\s+generation\s+total)\s+(?<new_gen_total_after_gc>(\d+))(K, used )(?<new_gen_used_after_gc>(\d+))K.+\n)
+
+# G1
+#  garbage-first heap   total 8388608K, used 7452338K [0x00000005c0000000, 0x00000007c0000000, 0x00000007c0000000)
+G1_HEAP_SIZE_GC                 (\s+garbage-first\s+heap\s+total\s+(?<heap_total_after_gc>(\d+))K,\s+used\s+(?<heap_used_before_gc>(\d+))K.+\n)
+
+# CMS
+# eden space 209792K, 100% used [0x00000000c0000000, 0x00000000ccce0000, 0x00000000ccce0000)
+CMS_EDEN_SPACE_BEFORE_GC        (\s+(eden\s+space)\s+(?<eden_total_before_gc>(\d+))(K,\s+)(?<eden_used_before_gc>(\d+))%.+\n)
+CMS_EDEN_SPACE_AFTER_GC         (\s+(eden\s+space)\s+(?<eden_total_after_gc>(\d+))(K,\s+)(?<eden_used_after_gc>(\d+))%.+\n)
+
+# G1
+#   region size 4096K, 963 young (3944448K), 22 survivors (90112K)
+G1_REGION_SIZE_BEFORE_GC        (\s+region\s+size\s+(?<region_size_before_gc>(\d+))K,\s+(?<new_gen_region_count_before_gc>(\d+))\s+young\s+\((?<new_gen_region_size_before_gc>(\d+))K\),\s+(?<survivor_region_count_before_gc>(\d+))\s+survivors\s+\((?<survivor_region_size_before_gc>(\d+))K\)\n)
+G1_REGION_SIZE_AFTER_GC         (\s+region\s+size\s+(?<region_size_after_gc>(\d+))K,\s+(?<new_gen_region_count_after_gc>(\d+))\s+young\s+\((?<new_gen_region_size_after_gc>(\d+))K\),\s+(?<survivor_region_count_after_gc>(\d+))\s+survivors\s+\((?<survivor_region_size_after_gc>(\d+))K\)\n)
+
+# CMS
+# from space 26176K, 43% used [0x00000000ce670000, 0x00000000cf177228, 0x00000000d0000000)
+CMS_ACTIVE_SURVIVOR_BEFORE_GC   (\s+(from\s+space)\s+(?<act_survivor_total_before_gc>(\d+))(K,\s+)(?<act_survivor_used_before_gc>(\d+))%.+\n)
+CMS_ACTIVE_SURVIVOR_AFTER_GC    (\s+(from\s+space)\s+(?<act_survivor_total_after_gc>(\d+))(K,\s+)(?<act_survivor_used_after_gc>(\d+))%.+\n)
+
+# CMS
+# to space 26176K, 0% used [0x00000000ccce0000, 0x00000000ccce0000, 0x00000000ce670000)
+CMS_INACTIVE_SURVIVOR_BEFORE_GC (\s+(to\s+space)\s+(?<inact_survivor_total_before_gc>(\d+))(K,\s+)(?<inact_survivor_used_before_gc>(\d+))%.+\n)
+CMS_INACTIVE_SURVIVOR_AFTER_GC  (\s+(to\s+space)\s+(?<inact_survivor_total_after_gc>(\d+))(K,\s+)(?<inact_survivor_used_after_gc>(\d+))%.+\n)
+
+# CMS
+# concurrent mark-sweep generation total 786432K, used 449940K [0x00000000d0000000, 0x0000000100000000, 0x0000000100000000)
+CMS_OLD_GEN_BEFORE_GC           (\s+(concurrent mark-sweep generation total)\s+(?<old_gen_total_before_gc>(\d+))(K,\s+used\s+)(?<old_gen_used_before_gc>(\d+))K.+\n)
+CMS_OLD_GEN_AFTER_GC            (\s+(concurrent mark-sweep generation total)\s+(?<old_gen_total_after_gc>(\d+))(K,\s+used\s+)(?<old_gen_used_after_gc>(\d+))K.+\n)
+
+# CMS and G1
+# Metaspace used 30259K, capacity 30884K, committed 31104K, reserved 1077248K
+GC_METASPACE_BEFORE_GC          (\s+(Metaspace\s+used)\s+(?<meta_used_before_gc>(\d+))(K,\s+capacity\s+)(?<meta_capacity_before_gc>(\d+))(K,\s+committed\s+)(?<meta_committed_before_gc>(\d+))(K,\s+reserved\s+)(?<meta_reserved_before_gc>(\d+))K\n)
+GC_METASPACE_AFTER_GC           (\s+(Metaspace\s+used)\s+(?<meta_used_after_gc>(\d+))(K,\s+capacity\s+)(?<meta_capacity_after_gc>(\d+))(K,\s+committed\s+)(?<meta_committed_after_gc>(\d+))(K,\s+reserved\s+)(?<meta_reserved_after_gc>(\d+))K\n)
+
+# CMS and G1
+# class space used 3243K, capacity 3364K, committed 3456K, reserved 1048576K
+GC_CLASS_SPACE_BEFORE_GC        (\s+(class\s+space\s+used)\s+(?<class_used_before_gc>(\d+))(K,\s+capacity\s+)(?<class_capacity_before_gc>(\d+))(K,\s+committed\s+)(?<class_committed_before_gc>(\d+))(K,\s+reserved\s+)(?<class_reserved_before_gc>(\d+))K)
+GC_CLASS_SPACE_AFTER_GC         (\s+(class\s+space\s+used)\s+(?<class_used_after_gc>(\d+))(K,\s+capacity\s+)(?<class_capacity_after_gc>(\d+))(K,\s+committed\s+)(?<class_committed_after_gc>(\d+))(K,\s+reserved\s+)(?<class_reserved_after_gc>(\d+))K)
+
+CMS_HEAP_BEFORE_GC              %{GC_APPLI_CONCUR_SEC:appli_concurrent_sec}(\s+seconds\n)%{GC_NUMBER}%{CMS_NEW_GEN_BEFORE_GC}%{CMS_EDEN_SPACE_BEFORE_GC}%{CMS_ACTIVE_SURVIVOR_BEFORE_GC}%{CMS_INACTIVE_SURVIVOR_BEFORE_GC}%{CMS_OLD_GEN_BEFORE_GC}%{GC_METASPACE_BEFORE_GC}%{GC_CLASS_SPACE_BEFORE_GC}
+G1_HEAP_BEFORE_GC               %{GC_APPLI_CONCUR_SEC:appli_concurrent_sec}(\s+seconds\n)%{G1_REQU_CYCLE_INITIATION}?(%{G1_HEAP_EXPANSION_ATTEMPT_1}%{G1_HEAP_EXPANSION}%{G1_NO_HEAP_EXPANSION})?%{GC_NUMBER}%{G1_HEAP_SIZE_GC}%{G1_REGION_SIZE_BEFORE_GC}%{GC_METASPACE_BEFORE_GC}%{GC_CLASS_SPACE_BEFORE_GC}\n?%{G1_CYCLE_INITIATION}?
+
+CMS_HEAP_AFTER_GC               %{CMS_NEW_GEN_AFTER_GC}%{CMS_EDEN_SPACE_AFTER_GC}%{CMS_ACTIVE_SURVIVOR_AFTER_GC}%{CMS_INACTIVE_SURVIVOR_AFTER_GC}%{CMS_OLD_GEN_AFTER_GC}%{GC_METASPACE_AFTER_GC}%{GC_CLASS_SPACE_AFTER_GC}
+G1_HEAP_AFTER_GC				%{GC_NUMBER}%{G1_HEAP_SIZE_GC}%{G1_REGION_SIZE_AFTER_GC}%{GC_METASPACE_AFTER_GC}%{GC_CLASS_SPACE_AFTER_GC}(\n}\n)
+
+###################
+# all pattern for G1 -XX:+PrintAdaptiveSizePolicy
+###################
+
+#   1025.906: [G1Ergonomics (CSet Construction) start choosing CSet, _pending_cards: 46580, predicted base time: 19.44 ms, remaining time: 180.56 ms, target pause time: 200.00 ms]
+#   1025.906: [G1Ergonomics (CSet Construction) add young regions to CSet, eden: 1199 regions, survivors: 30 regions, predicted young region time: 29.87 ms]
+#  56867.660: [G1Ergonomics (CSet Construction) finish adding old regions to CSet, reason: reclaimable percentage not over threshold, old: 48 regions, max: 205 regions, reclaimable: 856486152 bytes (9.97 %), threshold: 10.00 %]
+#  56803.094: [G1Ergonomics (CSet Construction) finish adding old regions to CSet, reason: old CSet region num reached max, old: 205 regions, max: 205 regions]
+#   1025.906: [G1Ergonomics (CSet Construction) finish choosing CSet, eden: 1199 regions, survivors: 30 regions, old: 0 regions, predicted pause time: 49.31 ms, target pause time: 200.00 ms]
+# 621417.648: [G1Ergonomics (Concurrent Cycles) initiate concurrent cycle, reason: concurrent cycle initiation requested]
+#  61953.961: [G1Ergonomics (Concurrent Cycles) request concurrent cycle initiation, reason: occupancy higher than threshold, occupancy: 3867148288 bytes, allocation request: 0 bytes, threshold: 3865470525 bytes (45.00 %), source: end of GC]
+# 621417.648: [G1Ergonomics (Concurrent Cycles) request concurrent cycle initiation, reason: requested by GC cause, GC cause: G1 Humongous Allocation]
+# 638747.745: [G1Ergonomics (Concurrent Cycles) request concurrent cycle initiation, reason: occupancy higher than threshold, occupancy: 3867148288 bytes, allocation request: 3613304 bytes, threshold: 3865470525 bytes (45.00 %), source: concurrent humongous allocation]
+# 576876.182: [G1Ergonomics (Concurrent Cycles) do not request concurrent cycle initiation, reason: concurrent cycle already in progress, GC cause: G1 Humongous Allocation]
+#  47981.933: [G1Ergonomics (Mixed GCs) start mixed GCs, reason: candidate old regions available, candidate old regions: 341 regions, reclaimable: 1035999432 bytes (12.06 %), threshold: 10.00 %]
+#  56867.730: [G1Ergonomics (Mixed GCs) do not continue mixed GCs, reason: reclaimable percentage not over threshold, candidate old regions: 255 regions, reclaimable: 856486152 bytes (9.97 %), threshold: 10.00 %]
+#  56803.224: [G1Ergonomics (Mixed GCs) continue mixed GCs, reason: candidate old regions available, candidate old regions: 303 regions, reclaimable: 1036762360 bytes (12.07 %), threshold: 10.00 %]
+#  90116.134: [G1Ergonomics (Heap Sizing) attempt heap expansion, reason: recent GC overhead higher than threshold after GC, recent GC overhead: 10.59 %, threshold: 10.00 %, uncommitted: 0 bytes, calculated expansion amount: 0 bytes (20.00 %)]
+# 120454.541: [G1Ergonomics (Heap Sizing) attempt heap expansion, reason: region allocation request failed, allocation request: 8208 bytes]
+# 120326.749: [G1Ergonomics (Heap Sizing) did not expand the heap, reason: heap already fully expanded]
+# 120326.749: [G1Ergonomics (Heap Sizing) expand the heap, requested expansion amount: 443192 bytes, attempted expansion amount: 4194304 bytes]
+G1_ERGONOMICS                   (\s?)%{GC_JVM_UPTIME}(\s+\[G1Ergonomics\s+\((?<g1_ergonomics_action>((CSet\s+Construction)|(Mixed\s+GCs)|(Concurrent\s+Cycles)|(Heap\s+Sizing)))\))
+G1_CHOOS_CSET_START             %{G1_ERGONOMICS}(\s+start\s+choosing\s+CSet,\s+_pending_cards:\s+(?<g1_choos_cset.pending_cards>(\d+)),\s+predicted\s+base\s+time:\s+(?<g1_choos_cset.predict_base_time>(\d+\.\d+))\s+ms,\s+remaining\s+time:\s+(?<g1_choos_cset.remain_time>(\d+\.\d+))\s+ms,\s+target\s+pause\s+time:\s+(?<g1_choos_cset.start_target_time>(\d+\.\d+))\s+ms\]\n)
+G1_ADD_Y_REGIONS_TO_CSET        %{G1_ERGONOMICS}(\s+add\s+young\s+regions\s+to\s+CSet,\s+eden:\s+(?<g1_choos_cset.add_eden_regions>(\d+))\s+regions,\s+survivors:\s+(?<g1_choos_cset.add_survivor_regions>(\d+))\s+regions,\s+predicted\s+young\s+region\s+time:\s+(?<g1_choos_cset.predict_young_time>(\d+\.\d+))\s+ms\]\n)
+G1_ADD_O_REGIONS_TO_CSET        %{G1_ERGONOMICS}(\s+finish\s+adding\s+old\s+regions\s+to\s+CSet,\s+reason:\s+(?<g1_choos_cset.finish_add_old_regions_reason>((\w+){1}(\s+\w+){4,5})),\s+old:\s+(?<g1_choos_cset.add_old_regions>(\d+))\s+regions,\s+max:\s+(?<g1_choos_cset.max_old_regions>(\d+))\s+regions(,\s+reclaimable:\s+(?<g1_choos_cset.reclaimable_bytes>(\d+))\s+bytes\s+\((?<g1_choos_cset.reclaimable_percent>(\d+\.\d+))\s+%\),\s+threshold:\s+(?<g1_choos_cset.reclaimable_threshold>(\d+\.\d+))\s+%)?\]\n)
+G1_CHOOS_CSET_END               %{G1_ERGONOMICS}(\s+finish\s+choosing\s+CSet,\s+eden:\s+(?<g1_choos_cset.added_eden_regions>(\d+))\s+regions,\s+survivors:\s+(?<g1_choos_cset.added_survivor_regions>(\d+))\s+regions,\s+old:\s+(?<g1_choos_cset.added_old_regions>(\d+))\s+regions,\s+predicted\s+pause\s+time:\s+(?<g1_choos_cset.predict_pause_time>(\d+\.\d+))\s+ms,\s+target\s+pause\s+time:\s+(?<g1_choos_cset.end_target_time>(\d+\.\d+))\s+ms\]\n)
+G1_CYCLE_INITIATION             %{G1_ERGONOMICS}(\s+initiate\s+concurrent\s+cycle,\s+reason:\s+(?<g1_initiat_concur_cycle_reason>((\w+){1}(\s+\w+){3}))\])
+G1_REQU_CYCLE_INITIATION        %{G1_ERGONOMICS}(\s+(do\s+not\s+)?request\s+concurrent\s+cycle\s+initiation,\s+reason:\s+(?<g1_concurrent_cycle_reason>((\w+){1}(\s+\w+){,4})),\s+((occupancy:\s+(?<g1_occupancy>(\d+))\s+bytes,\s+allocation\s+request:\s+(?<g1_allocation_request>(\d+))\s+bytes,\s+threshold:\s+(?<g1_occupancy_threshold>(\d+))\s+bytes\s+\((?<g1_occupancy_threshold_percent>(\d+\.\d+))\s+%\),\s+source:\s+(?<g1_source>((\w+){1}(\s+\w+){,2})))|(GC\s+cause:\s+(?<g1_gc_cause>((\w+){1}(\s+\w+){2}))))\]\n)
+G1_CONTINUE_MIXED_GC            %{G1_ERGONOMICS}(\s+(do\s+not\s+)?(continue|start)\s+mixed\s+GCs,\s+reason:\s+(?<g1_mixed_gc_reason>((\w+){1}(\s+\w+){3,4})),\s+candidate\s+old\s+regions:\s+(?<g1_reclaimable_old_regions>(\d+))\s+regions,\s+reclaimable:\s+(?<g1_reclaimable_bytes>(\d+))\s+bytes\s+\((?<g1_reclaimable_percent>(\d+\.\d+))\s+%\),\s+threshold:\s+(?<g1_reclaimable_threshold>(\d+\.\d+))\s+%\]\n)
+G1_HEAP_EXPANSION_ATTEMPT_1     %{G1_ERGONOMICS}(\s+attempt\s+heap\s+expansion,\s+reason:\s+(?<g1_attempt_heap_expansion_reason1>((\w+){1}(\s+\w+){,3})),\s+allocation\s+request:\s+(?<g1_allocation_request>(\d+))\s+bytes\]\n)
+G1_HEAP_EXPANSION_ATTEMPT_2     %{G1_ERGONOMICS}(\s+attempt\s+heap\s+expansion,\s+reason:\s+(?<g1_attempt_heap_expansion_reason2>((\w+){1}(\s+\w+){,7})),\s+recent\s+GC\s+overhead:\s+(?<g1_recent_overhead>(\d+\.\d+))\s+%,\s+threshold:\s+(?<g1_overhead_threshold>(\d+\.\d+))\s+%,\s+uncommitted:\s+(?<g1_uncommitted>(\d+))\s+bytes,\s+calculated\s+expansion\s+amount:\s+(?<g1_calcu_expansion_amount>(\d+))\s+bytes\s+\((?<g1_calcu_expansion_percent>(\d+\.\d+))\s+%\)\]\n)
+G1_HEAP_EXPANSION               %{G1_ERGONOMICS}(\s+expand\s+the\s+heap,\s+requested\s+expansion\s+amount:\s+(?<g1_request_heap_expansion>(\d+))\s+bytes,\s+attempted\s+expansion\s+amount:\s+(?<g1_attempt_heap_expansion>(\d+))\s+bytes\]\n)
+G1_NO_HEAP_EXPANSION            %{G1_ERGONOMICS}(\s+did\s+not\s+expand\s+the\s+heap,\s+reason:\s+(?<g1_no_heap_expansion_reason>((\w+){1}(\s+\w+){3}))\]\n)
+G1_ERGONOMICS_STATS             %{G1_CHOOS_CSET_START}%{G1_ADD_Y_REGIONS_TO_CSET}%{G1_ADD_O_REGIONS_TO_CSET}?%{G1_CHOOS_CSET_END}(%{G1_HEAP_EXPANSION_ATTEMPT_1}|%{G1_HEAP_EXPANSION_ATTEMPT_2})?(%{G1_HEAP_EXPANSION}%{G1_NO_HEAP_EXPANSION})?%{G1_HEAP_EXPANSION_ATTEMPT_2}?%{G1_REQU_CYCLE_INITIATION}?%{G1_CONTINUE_MIXED_GC}?
+
+# 2015-09-01T02:09:55.704+0200: 638746.447: Total time for which application threads were stopped: 0.0927887 seconds
+# 638747.745: [G1Ergonomics (Concurrent Cycles) request concurrent cycle initiation, reason: occupancy higher than threshold, occupancy: 3867148288 bytes, allocation request: 3613304 bytes, threshold: 3865470525 bytes (45.00 %), source: concurrent humongous allocation]
+G1_REQU_CYCLE_INITIATION_TIME   ((%{GC_APPLI_STOPPED_SEC:appli_stopped_sec}|%{GC_APPLI_CONCUR_SEC:appli_concurrent_sec})\n)?%{G1_REQU_CYCLE_INITIATION}
+
+###################
+# aggregate all patterns for -XX:+PrintGCDetails, -XX:+PrintGCDateStamps, -XX:+PrintGCTimeStamps
+###################
+# CMS and G1
+CMS_STATS                       %{CMS_GC_REASON:gc_reason} %{OLD_GEN_FRAG_STATS_BEFORE_GC}%{CMS_SURVIVOR_STATS}%{CMS_NEW_GEN_STATS}%{CMS_HEAP_STATS}%{OLD_GEN_FRAG_STATS_AFTER_GC}%{GC_DURATION}%{GC_PART_DURATION}%{CMS_HEAP_AFTER_GC}
+G1_GC_STATS                     %{G1_GC_REASON}%{G1_SURVIVOR_STATS}?%{G1_ERGONOMICS_STATS}?%{GC_DURATION}%{G1_PARALLEL_THREADS_STATS}%{G1_SEQUENTIELL_THREADS_STATS}%{G1_HEAP_POOLS_AFTER_GC}%{G1_HEAP_AFTER_GC}?%{GC_PART_DURATION}
+G1_Humon1 (\s+\[Humongous\s+Register:\s+(?<g1_ref_enq>(\d+\.\d+))\s+ms\]\n)
+G1_Humon2 (\s+\[Humongous\s+Reclaim:\s+(?<g1_ref_enq>(\d+\.\d+))\s+ms\]\n)
