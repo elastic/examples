@@ -1,3 +1,6 @@
 {
-  "script":"def is_not_green=ctx.payload.aggregations.clusters.buckets.stream().anyMatch(t -> (t.latest_state.hits.hits[0]._source.cluster_state.status== 'yellow' || t.latest_state.hits.hits[0]._source.cluster_state.status == 'red')); if (is_not_green) { def required_periods = (ctx.metadata.not_green_secs-ctx.metadata.monitoring_update_interval)/ctx.metadata.monitoring_update_interval; return ctx.payload.aggregations.clusters.buckets.stream().anyMatch(t -> ((t.cluster_state.buckets.red.doc_count + t.cluster_state.buckets.yellow.doc_count) >= required_periods ));}  return false;"
+  "script": {
+    "lang": "painless",
+    "source": "def is_not_green=ctx.payload.aggregations.clusters.buckets.stream().anyMatch(t -> (t.latest_state.hits.hits[0]._source.cluster_state.status== 'yellow' || t.latest_state.hits.hits[0]._source.cluster_state.status == 'red')); if (is_not_green) { def required_periods = (ctx.metadata.not_green_secs-ctx.metadata.monitoring_update_interval)/ctx.metadata.monitoring_update_interval; return ctx.payload.aggregations.clusters.buckets.stream().anyMatch(t -> ((t.cluster_state.buckets.red.doc_count + t.cluster_state.buckets.yellow.doc_count) >= required_periods ));}  return false;"
+  }
 }

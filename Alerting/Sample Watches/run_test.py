@@ -13,11 +13,12 @@ parser.add_argument('--host',help='host name')
 parser.add_argument('--port',help='port')
 parser.add_argument('--user',help='user')
 parser.add_argument('--password',help='password')
+parser.add_argument('--protocol',help='protocol')
 parser.add_argument('--test_file',help='test file')
 
-parser.set_defaults(host='localhost',port="9200",test_file='data.json',user='elastic',password='changeme')
+parser.set_defaults(host='localhost',port="9200",protocol="http",test_file='data.json',user='elastic',password='changeme')
 args = parser.parse_args()
-es = Elasticsearch([args.host+":"+args.port],http_auth=(args.user, args.password))
+es = Elasticsearch([args.protocol+"://"+args.host+":"+args.port],http_auth=(args.user, args.password))
 
 def find_item(list, key):
     for item in list:
@@ -56,7 +57,7 @@ with open(args.test_file,'r') as test_file:
     if 'scripts' in test:
         for script in test['scripts']:
             with open(script['path'], 'r') as script_file:
-                es.index(index="_scripts",doc_type="painless",id=script["name"],body=json.loads(script_file.read()))
+                es.put_script(id=script["name"],body=json.loads(script_file.read()))
 
     #Load Watch and Execute
     watcher = XPackClient(es).watcher

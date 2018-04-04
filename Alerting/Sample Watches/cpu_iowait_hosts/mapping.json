@@ -1,6 +1,6 @@
 {
   "mappings": {
-    "metricsets":{
+    "doc":{
       "properties": {
         "beat":{
           "properties": {

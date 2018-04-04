@@ -21,7 +21,7 @@ The watch assumes each document in Elasticsearch represents a process event on a
 
 ## Other Assumptions
 
-* All events are index "log" and type "log".
+* All events are index "log" and type "doc".
 
 # Configuration
 

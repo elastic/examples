@@ -18,7 +18,7 @@ The watch assumes each document in Elasticsearch represents a log entry.
 
 ## Other Assumptions
 
-* All events are index "log" and type "log".
+* All events are index "log" and type "doc".
 
 # Configuration
 

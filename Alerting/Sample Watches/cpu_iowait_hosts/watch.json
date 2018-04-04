@@ -17,7 +17,7 @@
                     "metricbeat-*"
                 ],
                 "types": [
-                    "metricsets"
+                    "doc"
                 ],
                 "body": {
                   "size": 0,
@@ -79,9 +79,9 @@
                     "id":"transform"
                 }
             },
-	    "logging": {
-		  "text": "The following hosts iowait cpu usage has increased dramatically over the last {{ctx.metadata.interval}}: {{#ctx.payload._value}}{{key}}:{{value}}% iowait change:{{/ctx.payload._value}}"
-	      }
+	          "logging": {
+		            "text": "The following hosts iowait cpu usage has increased dramatically over the last {{ctx.metadata.interval}}: {{#ctx.payload._value}}{{key}}:{{value}}% iowait change:{{/ctx.payload._value}}"
+	          }
         }
     }
 }

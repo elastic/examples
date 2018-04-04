@@ -2,7 +2,7 @@
   "watch_name":"twitter_trends",
   "mapping_file":"./twitter_trends/mapping.json",
   "index":"twitter",
-  "type":"tweet",
+  "type":"doc",
   "match": true,
   "watch_file":"./twitter_trends/watch.json",
   "comments":"Functional test only.  Adds an event every 5 mins for 2hrs, before adding 5 events in the last 5 mins.",

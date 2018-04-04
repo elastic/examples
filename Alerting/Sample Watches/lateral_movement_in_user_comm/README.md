@@ -22,7 +22,7 @@ The watch assumes each document in Elasticsearch represents a logon to a server 
 
 ## Other Assumptions
 
-* All events are index "log" and type "log".
+* All events are index "log" and type "doc".
 * The watch assumes no more than 1000 user logons occur within the time period i.e. by default the last 30s.  This value can be adjusted, with consideration for scaling, for larger environments.
 
 # Configuration

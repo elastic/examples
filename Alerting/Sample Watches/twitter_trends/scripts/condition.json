@@ -1,3 +1,6 @@
 {
-  "script": "return ctx.payload.aggregations.date_buckets.buckets[ctx.payload.aggregations.date_buckets.buckets.length-1].doc_count > (ctx.payload.aggregations.percentiles.values['90.0']+(ctx.payload.aggregations.stats.std_deviation*3));"
+  "script": {
+    "lang": "painless",
+    "source": "return ctx.payload.aggregations.date_buckets.buckets[ctx.payload.aggregations.date_buckets.buckets.length-1].doc_count > (ctx.payload.aggregations.percentiles.values['90.0']+(ctx.payload.aggregations.stats.std_deviation*3));"
+  }
 }

@@ -1,8 +1,8 @@
 if [ -z "$1" ] ; then
-  echo "USAGE: load_watch.sh <watch_name> <optional_username> <optional_password> <optional_endpoint>:<optional_port>"
-  echo "eg: ./load_watch.sh port_scan elastic changeme my_remote_cluster.mydomain:9200"
+  echo "USAGE: load_watch.sh <watch_name> <optional_username> <optional_password> <optional_endpoint>:<optional_port> <optional_protocol>"
+  echo "eg: ./load_watch.sh port_scan elastic changeme my_remote_cluster.mydomain:9200 https"
   echo -e
-  echo "Defaults: elastic changeme localhost:9200"
+  echo "Defaults: elastic changeme localhost:9200 http"
   exit 1
 fi
 
@@ -31,6 +31,12 @@ if [ "$4" ] ; then
   fi
 fi
 
+if [ "$5" ] ; then
+  protocol="$5://"
+else
+  protocol="http://"
+fi
+
 # test if provided watch name is correct/exists
 if [ ! -d "$1" ]; then
   echo "Watch scripts dir $1 doesn't appear to exist in $PWD"
@@ -45,7 +51,7 @@ do
     filename=$(basename "$script")
     scriptname="${filename%.*}"
     echo $scriptname
-    es_response=$(curl -H "Content-Type: application/json"  -s -X POST $endpoint:$port/_scripts/painless/$scriptname -u $username:$password -d @$script)
+    es_response=$(curl -H "Content-Type: application/json" -s -X POST $protocol$endpoint:$port/_scripts/$scriptname -u $username:$password -d @$script)
     if [ 0 -eq $? ] && [ $es_response = '{"acknowledged":true}' ]; then
         echo "Loading $scriptname script...OK"
     else
@@ -57,7 +63,7 @@ done
 echo "Loading $1 watch "
 
 curl -H "Content-Type: application/json" -s -o /dev/null -X DELETE $endpoint:$port/_xpack/watcher/watch/$1 -u $username:$password
-es_response=$(curl -H "Content-Type: application/json" --w "%{http_code}" -s -o /dev/null -X PUT $endpoint:$port/_xpack/watcher/watch/$1 -u $username:$password -d @$1/watch.json)
+es_response=$(curl -H "Content-Type: application/json" --w "%{http_code}" -s -o /dev/null -X PUT $protocol$endpoint:$port/_xpack/watcher/watch/$1 -u $username:$password -d @$1/watch.json)
 if [ 0 -eq $? ] && [ $es_response = "201" ]; then
   echo "Loading $2 watch...OK"
   exit 0
@@ -65,4 +71,3 @@ else
   echo "Loading $2 watch...FAILED"
   exit 1
 fi
-

@@ -1,3 +1,6 @@
 {
-  "script": "return ctx.payload.started_processes.aggregations.process_hosts.buckets.size() != ctx.payload.history_started_processes.aggregations.process_hosts.buckets.size();"
+  "script": {
+    "lang": "painless",
+    "source": "return ctx.payload.started_processes.aggregations.process_hosts.buckets.size() != ctx.payload.history_started_processes.aggregations.process_hosts.buckets.size();"
+  }
 }

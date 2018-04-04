@@ -1,3 +1,6 @@
 {
-  "script": "(doc['system.cpu.iowait.pct'].value\/(doc['system.cpu.user.pct'].value + doc['system.cpu.nice.pct'].value + doc['system.cpu.system.pct'].value + doc['system.cpu.idle.pct'].value + doc['system.cpu.iowait.pct'].value + doc['system.cpu.irq.pct'].value + doc['system.cpu.softirq.pct'].value + doc['system.cpu.steal.pct'].value))*100"
+  "script": {
+    "lang": "painless",
+    "source": "(doc['system.cpu.iowait.pct'].value\/(doc['system.cpu.user.pct'].value + doc['system.cpu.nice.pct'].value + doc['system.cpu.system.pct'].value + doc['system.cpu.idle.pct'].value + doc['system.cpu.iowait.pct'].value + doc['system.cpu.irq.pct'].value + doc['system.cpu.softirq.pct'].value + doc['system.cpu.steal.pct'].value))*100"
+  }
 }

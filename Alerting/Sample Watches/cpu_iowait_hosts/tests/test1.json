@@ -2,7 +2,7 @@
   "watch_name":"cpu_iowait_hosts",
   "mapping_file":"./cpu_iowait_hosts/mapping.json",
   "index":"metricbeat-test",
-  "type":"metricsets",
+  "type":"doc",
   "match": true,
   "comments":"Functional test only",
   "watch_file":"./cpu_iowait_hosts/watch.json",

@@ -18,7 +18,7 @@ The watch assumes each document in Elasticsearch represents an Active Directory 
 
 ## Other Assumptions
 
-* All events are in an index "logins" and type "login".
+* All events are in an index "logins" and type "doc".
 * Watch assumes upto a maximum of 1000 users are monitored concurrently.
 
 # Configuration

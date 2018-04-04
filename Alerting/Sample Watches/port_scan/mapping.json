@@ -1,6 +1,6 @@
 {
   "mappings": {
-    "connection": {
+    "doc": {
       "properties": {
         "source_dest": {
           "type": "keyword"

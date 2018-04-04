@@ -1,3 +1,6 @@
 {
-  "script": "return ctx.payload.user_server_logons.aggregations.user_server.buckets.size() != ctx.payload.new_user_server_logons.aggregations.user_server.buckets.size();"
+  "script": {
+    "lang": "painless",
+    "source": "return ctx.payload.user_server_logons.aggregations.user_server.buckets.size() != ctx.payload.new_user_server_logons.aggregations.user_server.buckets.size();"
+  }
 }
