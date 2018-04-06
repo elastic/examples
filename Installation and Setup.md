@@ -2,7 +2,7 @@
 
 **Check Versions**
 
-All examples should target 5.x of the Elastic Stack.
+We are in the process of updated these examples to target the current 6.x version of the Elastic Stack.  If you stumble upon one for which the instructions have not been migrated please try with the current stack rather than the 5.x
 
 **Check Java version**
 
