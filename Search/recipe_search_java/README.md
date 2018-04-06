@@ -34,10 +34,10 @@ Uses an IntelliJ developer environment to assist with getting familiar with Elas
 
 4. Clone the elastic/examples repo.
 
-5. Start IntelliJ and Import project elastic/examples/elasticsearch_app_java_recipe_search and select all defaults (hit next).
+5. Start IntelliJ and Import project `examples/Search/recipe_search_java`, select "import from external model", choose "Maven" then hit next.  Continue hitting next until the project is open (along the way you may have to select a Java SDK).
 
-6. Seed Elasticsearch index with initial recipe data. In IntelliJ Run the file IndexRecipesApp located in srs/main/java/com/elastic/recipe.
+6. Seed Elasticsearch index with initial recipe data. In IntelliJ Run the file `IndexRecipesApp` located in `src/main/java/com/elastic/recipe`.
 
-7. In IntelliJ Run the file SearchRecipesApp located in sr/main/java/com/elastic/recipe.
+7. In IntelliJ Run the file `SearchRecipesApp` located in `src/main/java/com/elastic/recipe`.
    
 8. Open your web browser and visit [`http://localhost:8080/recipe/recipes.html`](http://localhost:8080/recipe/recipes.html).

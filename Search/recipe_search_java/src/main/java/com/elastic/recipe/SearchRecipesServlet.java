@@ -10,7 +10,7 @@ import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.action.search.SearchType;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.settings.Settings;
-import org.elasticsearch.common.transport.InetSocketTransportAddress;
+import org.elasticsearch.common.transport.TransportAddress;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.SearchHits;
@@ -44,7 +44,7 @@ public class SearchRecipesServlet extends HttpServlet {
         TransportClient client = null;
         try {
             client = new PreBuiltTransportClient(Settings.EMPTY);
-            client.addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName("localhost"), 9300));
+            client.addTransportAddress(new TransportAddress(InetAddress.getByName("localhost"), 9300));
         } catch (UnknownHostException e) {
             e.printStackTrace();
         }
@@ -70,7 +70,7 @@ public class SearchRecipesServlet extends HttpServlet {
 
         // build elasticsearch search request
         SearchRequestBuilder builder = client.prepareSearch("recipes");
-        builder.setTypes("recipe");
+        builder.setTypes("doc");
         builder.setSearchType(SearchType.DFS_QUERY_THEN_FETCH);
         builder.setFrom(offset);
         builder.setSize(limit);
