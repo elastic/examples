@@ -23,7 +23,12 @@
     </build>
 
     <dependencies>
-        <!--Jetty dependencies start here -->
+	    <dependency>
+		    <groupId>com.google.code.gson</groupId>
+		    <artifactId>gson</artifactId>
+		    <version>2.1</version>
+	    </dependency>
+            <!--Jetty dependencies start here -->
         <dependency>
             <groupId>org.eclipse.jetty</groupId>
             <artifactId>jetty-server</artifactId>
@@ -71,7 +76,7 @@
         <dependency>
             <groupId>org.elasticsearch.client</groupId>
             <artifactId>transport</artifactId>
-            <version>5.2.1</version>
+            <version>6.2.3</version>
         </dependency>
 
         <dependency>
