@@ -1,0 +1,10 @@
+Index: packetbeat-*
+
+When max() of Responsetime
+Over all docs
+Is above 900
+During the last 1 minute
+
+Slack
+
+The maximum {{ctx.metadata.name}} was {{ctx.payload.result}}ms over the last minute.  This exceeded the threshold.

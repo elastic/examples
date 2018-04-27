@@ -1,0 +1,186 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: filebeat-dynamic-config
+  namespace: kube-system
+  labels:
+    k8s-app: filebeat-dynamic
+    kubernetes.io/cluster-service: "true"
+data:
+  filebeat.yml: |-
+    setup.dashboards.enabled: true
+    setup.template.enabled: true
+
+    setup.template.settings:
+      index.number_of_shards: 1
+
+    filebeat.autodiscover:
+      providers:
+        - type: kubernetes
+          templates:
+            - condition.contains:
+                kubernetes.labels.app: redis
+              config:
+                - module: redis
+                  log:
+                    prospector:
+                      type: docker
+                      containers.ids:
+                        - ${data.kubernetes.container.id}
+                  slowlog:
+                    enabled: true
+                    var.hosts: ["${data.host}:${data.port}"]
+            - condition.contains:
+                kubernetes.labels.tier: frontend
+              config:
+                - module: apache2
+                  access:
+                    prospector:
+                      type: docker
+                      containers.ids:
+                        - ${data.kubernetes.container.id}
+                  error:
+                    prospector:
+                      type: docker
+                      containers.ids:
+                        - ${data.kubernetes.container.id}
+            - condition.equals:
+                kubernetes.labels.app: mysql
+              config:
+                - module: mysql
+                  error:
+                    prospector:
+                      type: docker
+                      containers.ids:
+                        - ${data.kubernetes.container.id}
+                  slowlog:
+                    prospector:
+                      type: docker
+                      containers.ids:
+                        - ${data.kubernetes.container.id}
+
+    processors:
+      - drop_event:
+          when.or:
+              - and:
+                  - regexp:
+                      message: '^\d+\.\d+\.\d+\.\d+ '
+                  - equals:
+                      fileset.name: error
+              - and:
+                  - not:
+                      regexp:
+                          message: '^\d+\.\d+\.\d+\.\d+ '
+                  - equals:
+                      fileset.name: access
+      - add_cloud_metadata:
+      - add_kubernetes_metadata:
+      - add_docker_metadata:
+
+    cloud.auth: elastic:${ELASTIC_PASSWORD}
+    cloud.id: ${CLOUD_ID}
+
+    output.elasticsearch:
+    
+---
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  name: filebeat-dynamic
+  namespace: kube-system
+  labels:
+    k8s-app: filebeat-dynamic
+    kubernetes.io/cluster-service: "true"
+spec:
+  template:
+    metadata:
+      labels:
+        k8s-app: filebeat-dynamic
+        kubernetes.io/cluster-service: "true"
+    spec:
+      serviceAccountName: filebeat-dynamic
+      terminationGracePeriodSeconds: 30
+      containers:
+      - name: filebeat-dynamic
+        image: docker.elastic.co/beats/filebeat:6.2.3
+        imagePullPolicy: Always
+        args: [
+          "-c", "/etc/filebeat.yml",
+          "-e",
+        ]
+        env:
+        - name: CLOUD_ID
+          valueFrom:
+            secretKeyRef:
+              name: dynamic-logging
+              key: CLOUD_ID
+        - name: ELASTIC_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: dynamic-logging
+              key: ELASTIC_PASSWORD
+        securityContext:
+          runAsUser: 0
+        volumeMounts:
+        - name: config
+          mountPath: /etc/filebeat.yml
+          readOnly: true
+          subPath: filebeat.yml
+        - name: data
+          mountPath: /usr/share/filebeat/data
+        - name: varlibdockercontainers
+          mountPath: /var/lib/docker/containers
+          readOnly: true
+        - name: dockersock
+          mountPath: /var/run/docker.sock
+      volumes:
+      - name: config
+        configMap:
+          defaultMode: 0600
+          name: filebeat-dynamic-config
+      - name: varlibdockercontainers
+        hostPath:
+          path: /var/lib/docker/containers
+      - name: dockersock
+        hostPath:
+          path: /var/run/docker.sock
+      - name: data
+        emptyDir: {}
+---
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRoleBinding
+metadata:
+  name: filebeat-dynamic
+subjects:
+- kind: ServiceAccount
+  name: filebeat-dynamic
+  namespace: kube-system
+roleRef:
+  kind: ClusterRole
+  name: filebeat-dynamic
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRole
+metadata:
+  name: filebeat-dynamic
+  labels:
+    k8s-app: filebeat-dynamic
+rules:
+- apiGroups: [""] # "" indicates the core API group
+  resources:
+  - namespaces
+  - pods
+  verbs:
+  - get
+  - watch
+  - list
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: filebeat-dynamic
+  namespace: kube-system
+  labels:
+    k8s-app: filebeat-dynamic
