@@ -19,9 +19,20 @@ kubectl create clusterrolebinding cluster-admin-binding \
 ```
 
 ### Clone the YAML files
+Either clone the entire Elastic examples repo or use the wget commands in download.txt:
+
 ```
-git clone https://github.com/DanRoscigno/GuestbookExample.git
-cd GuestbookExample
+mkdir MonitoringKubernetes
+cd MonitoringKubernetes
+wget https://raw.githubusercontent.com/elastic/examples/master/MonitoringKubernetes/download.txt
+sh download.txt
+```
+
+OR
+
+```
+git clone https://github.com/elastic/examples.git
+cd examples/MonitoringKubernetes
 ```
 ### Set the credentials
 Set these with the values from the http://cloud.elastic.co deployment
