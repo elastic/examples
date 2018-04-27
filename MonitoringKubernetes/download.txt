@@ -1,0 +1,8 @@
+wget https://raw.githubusercontent.com/elastic/examples/master/MonitoringKubernetes/CLOUD_ID
+wget https://raw.githubusercontent.com/elastic/examples/master/MonitoringKubernetes/ELASTIC_PASSWORD
+wget https://raw.githubusercontent.com/elastic/examples/master/MonitoringKubernetes/elasticsearch.yaml
+wget https://raw.githubusercontent.com/elastic/examples/master/MonitoringKubernetes/filebeat-kubernetes.yaml
+wget https://raw.githubusercontent.com/elastic/examples/master/MonitoringKubernetes/guestbook.yaml
+wget https://raw.githubusercontent.com/elastic/examples/master/MonitoringKubernetes/metricbeat-kubernetes.yaml
+wget https://raw.githubusercontent.com/elastic/examples/master/MonitoringKubernetes/packetbeat-kubernetes.yaml
+wget https://raw.githubusercontent.com/elastic/examples/master/MonitoringKubernetes/watch.txt
