@@ -83,9 +83,9 @@ data:
                           message: '^\d+\.\d+\.\d+\.\d+ '
                   - equals:
                       fileset.name: access
-      #- add_cloud_metadata:
-      #- add_kubernetes_metadata:
-      #- add_docker_metadata:
+      - add_cloud_metadata:
+      - add_kubernetes_metadata:
+      - add_docker_metadata:
 
     cloud.auth: elastic:${ELASTIC_PASSWORD}
     cloud.id: ${CLOUD_ID}
