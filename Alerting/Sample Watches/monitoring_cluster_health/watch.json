@@ -93,7 +93,7 @@
   "actions": {
     "log": {
       "logging": {
-        "text": "Clusters that have not NOT been green for more than {{ctx.metadata.not_green_secs}}s: {{#ctx.payload._value}}{{cluster_id}}-{{cluster_state}}{{/ctx.payload._value}}:"
+        "text": "Clusters that have NOT been green for more than {{ctx.metadata.not_green_secs}}s: {{#ctx.payload._value}}{{cluster_id}}-{{cluster_state}}{{/ctx.payload._value}}:"
       }
     }
   }
