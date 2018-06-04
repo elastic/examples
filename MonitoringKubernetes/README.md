@@ -76,6 +76,8 @@ Verify the external IP is assigned
 ```
 kubectl get service frontend -w
 ```
+Once the external IP address is assigned you can type CTRL-C to stop watching for changes and get the command prompt back (the -w is "watch for changes")
+
 ### Deploy the Elastic Beats
 ```
 kubectl create -f filebeat-kubernetes.yaml 
