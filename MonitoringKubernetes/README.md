@@ -1,4 +1,4 @@
-#### Note: These instructions have been tested in Google Cloud Platform Kubernetes Engine and IBM Cloud Container service.  I hope that they work everywhere else, and I will test them in other places as I am able.
+#### Note: These instructions have been tested in Google Cloud Platform Kubernetes Engine and IBM Cloud Kubernetes Service.  I hope that they work everywhere else, and I will test them in other places as I am able.
 
 ### Create an Elastic Cloud deployment
 You can use Elastic Cloud ( http://cloud.elastic.co ), or a local deployment, or deploy containers from https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html
