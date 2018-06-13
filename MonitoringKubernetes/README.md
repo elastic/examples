@@ -88,3 +88,29 @@ kubectl create -f packetbeat-kubernetes.yaml
 ### View in Kibana
 
 Open your Kibana URL and look under the Dashboard link, verify that the Apache and Redis dashboards are populating.
+
+### Scale your deployments and see new pods being monitored
+List the existing deployments:
+```
+kubectl get deployments
+
+NAME           DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
+frontend       3         3         3            3           3m
+redis-master   1         1         1            1           3m
+redis-slave    2         2         2            2           3m
+```
+
+Scale the frontend down to two pods
+```
+kubectl scale --replicas=2 deployment/frontend
+
+deployment "frontend" scaled
+```
+
+Check the frontend deployment:
+```
+kubectl get deployment frontend
+
+NAME       DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
+frontend   2         2         2            2           5m
+```
