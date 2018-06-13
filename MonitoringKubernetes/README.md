@@ -100,7 +100,7 @@ redis-master   1         1         1            1           3m
 redis-slave    2         2         2            2           3m
 ```
 
-Scale the frontend down to two pods
+Scale the frontend down to two pods:
 ```
 kubectl scale --replicas=2 deployment/frontend
 
@@ -114,3 +114,5 @@ kubectl get deployment frontend
 NAME       DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
 frontend   2         2         2            2           5m
 ```
+
+### View the changes in Kibana
