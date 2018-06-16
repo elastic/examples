@@ -68,4 +68,4 @@ Metricbeat system logs (containing CPU utilization metrics)
 
 ## Example Usage
 
-see [EXAMPLE.md](https://github.com/elastic/examples/blob/master/Machine%20Learning/IT%20Operations%20Recipes/service_response_change/EXAMPLE.md)
+see [EXAMPLE.md](https://github.com/elastic/examples/blob/master/Machine%20Learning/IT%20Operations%20Recipes/system_metric_change/EXAMPLE.md)
