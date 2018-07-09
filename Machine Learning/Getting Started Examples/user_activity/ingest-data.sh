@@ -20,7 +20,7 @@ curl -s  -u ${USERNAME}:${PASSWORD} -X PUT -H 'Content-Type: application/json' $
       "number_of_replicas":0
    },
    "mappings":{
-      "log":{
+      "doc":{
         "properties": {
           "@timestamp": {
             "type": "date",
