@@ -1,6 +1,6 @@
 # GDPR Pseudonymization Examples
 
-This example provides a supporting example to the blog post [Pseudonymization and the Elastic Stack - Part 1](http://elastic.co/blog/X), focusing on the pseudonymization of data using the [Logstash Fingerprint](https://www.elastic.co/guide/en/logstash/current/plugins-filters-fingerprint.html) filter and [Ruby Filter](https://www.elastic.co/guide/en/logstash/current/plugins-filters-ruby.html#_using_a_ruby_script_file).
+This example provides a supporting example to the blog post [Pseudonymization and the Elastic Stack - Part 1](https://elastic.co/blog/gdpr-personal-data-pseudonymization-part-1), focusing on the pseudonymization of data using the [Logstash Fingerprint](https://www.elastic.co/guide/en/logstash/current/plugins-filters-fingerprint.html) filter and [Ruby Filter](https://www.elastic.co/guide/en/logstash/current/plugins-filters-ruby.html#_using_a_ruby_script_file).
 
 In order to provide a convenient means to execute the example we utilise a dockerised approach. This example includes two approaches to pseudonymizing field data:
 
