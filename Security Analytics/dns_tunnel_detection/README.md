@@ -8,7 +8,7 @@ For a detailed walk-through of the watch and the aggregations used here, see the
 Elastic blog post titled [_Detecting DNS Tunnels with Packetbeat and
 Watcher_](https://www.elastic.co/blog/detecting_dns_tunnels_with_packetbeat_and_watcher).
 
-This sample has been updated to reflect Elastic 5.0 and thus uses X-Pack with
+This sample has been updated to reflect Elastic 6.0 and thus uses X-Pack with
 Alerting, rather than Watcher. Principles are configuration remain largely the
 same. Key Changes include:
 
@@ -21,7 +21,7 @@ same. Key Changes include:
 1. Download and extract  [Packetbeat](https://www.elastic.co/downloads/beats/packetbeat).
 
     ```sh
-    # Use the appropriate download link for your OS and architecture.  Assumes use of 5.x.
+    # Use the appropriate download link for your OS and architecture.  Assumes use of 6.0.
     $ curl -O https://artifacts.elastic.co/downloads/beats/packetbeat/packetbeat-<version>-<os>-<arch>.tar.gz
     $ tar xf packetbeat-*.tar.gz
     $ mv packetbeat-<version>-<os>-<arch> packetbeat
@@ -48,16 +48,6 @@ via:
     ```sh
     $ echo 'xpack.security.enabled: false' >> elasticsearch/config/elasticsearch.yml
     ```
-
-1. Install the Painless scripts
-
-    ```sh
-    $ mkdir elasticsearch/config/scripts
-    $ cp *.painless elasticsearch/config/scripts/
-    ```
-
-    The watch uses both and inline and file based scripts.
-
 1. Start Elasticsearch
 
     ```sh
@@ -82,7 +72,7 @@ by the watch, but may be useful in exploring your data.
    # last packet is 1282356664 seconds since epoch.
    $ offset=$(($(date +"%s") - 1282356664))
    $ editcap -t +${offset} dns-tunnel-iodine.pcap dns-tunnel-iodine-timeshifted.pcap
-   $ ./packetbeat/packetbeat -e -v -waitstop 10 -t -I dns-tunnel-iodine-timeshifted.pcap
+   $ ./packetbeat/packetbeat -e -v -I dns-tunnel-iodine-timeshifted.pcap
    # Verify that data was indexed:
    $ curl http://localhost:9200/packetbeat-*/_count?pretty
    ```
