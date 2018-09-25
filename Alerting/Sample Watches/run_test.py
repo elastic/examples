@@ -8,6 +8,7 @@ __author__ = 'dalem@elastic.co'
 import datetime
 import json
 import yaml
+import subprocess
 
 from elasticsearch import Elasticsearch
 from elasticsearch_xpack import XPackClient
@@ -33,6 +34,7 @@ if __name__ == '__main__':
     parser.add_argument('--protocol', help='protocol')
     parser.add_argument('--test_file', help='test file')
     parser.add_argument('--keep-index', help='Keep the index where test documents have been loaded to after the test', action='store_true')
+    parser.add_argument('--metadata-git-commit', help='Include the git commit hash in the metadata field of the watcher', action='store_true')
     parser.add_argument('--modify-watch-by-eval', help='Python code to modify the watch before loading it into Elastic')
     parser.add_argument(
         '--no-test-index',
@@ -83,12 +85,16 @@ if __name__ == '__main__':
         for script in test['scripts']:
             es.put_script(id=script["name"], body=load_file(script['path']))
 
-
     # Load Watch and Execute
     watch = load_file(test['watch_file'])
 
     if args.modify_watch_by_eval:
         eval(compile(args.modify_watch_by_eval, '<string>', 'exec'))
+
+    if args.metadata_git_commit:
+        watch.setdefault('metadata', {})
+        watch['metadata']['git_commit_hash'] = subprocess.check_output(['git', 'rev-parse', 'HEAD']).strip()
+        watch['metadata']['git_uncommitted_changes'] = True if len(subprocess.check_output(['git', 'status', '--porcelain']).strip()) > 0 else False
 
     watcher = XPackClient(es).watcher
     watcher.put_watch(id=test["watch_name"], body=watch)
