@@ -33,6 +33,7 @@ if __name__ == '__main__':
     parser.add_argument('--protocol', help='protocol')
     parser.add_argument('--test_file', help='test file')
     parser.add_argument('--keep-index', help='Keep the index where test documents have been loaded to after the test', action='store_true')
+    parser.add_argument('--modify-watch-by-eval', help='Python code to modify the watch before loading it into Elastic')
     parser.add_argument(
         '--no-execute-watch',
         help='Do not force watch execution. This can be useful when you use this script to deploy the watch.',
@@ -79,6 +80,10 @@ if __name__ == '__main__':
 
     # Load Watch and Execute
     watch = load_file(test['watch_file'])
+
+    if args.modify_watch_by_eval:
+        eval(compile(args.modify_watch_by_eval, '<string>', 'exec'))
+
     watcher = XPackClient(es).watcher
     watcher.put_watch(id=test["watch_name"], body=watch)
 
