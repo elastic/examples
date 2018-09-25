@@ -32,6 +32,7 @@ if __name__ == '__main__':
     parser.add_argument('--user', help='user')
     parser.add_argument('--password', help='password')
     parser.add_argument('--protocol', help='protocol')
+    parser.add_argument('--cacert', help='CA certificate to trust for HTTPS')
     parser.add_argument('--test_file', help='test file')
     parser.add_argument('--keep-index', help='Keep the index where test documents have been loaded to after the test', action='store_true')
     parser.add_argument('--metadata-git-commit', help='Include the git commit hash in the metadata field of the watcher', action='store_true')
@@ -49,7 +50,7 @@ if __name__ == '__main__':
 
     parser.set_defaults(host='localhost', port="9200", protocol="http", test_file='data.json', user='elastic', password='changeme')
     args = parser.parse_args()
-    es = Elasticsearch([args.protocol+"://"+args.host+":"+args.port], http_auth=(args.user, args.password))
+    es = Elasticsearch([args.protocol+"://"+args.host+":"+args.port], http_auth=(args.user, args.password), ca_certs=args.cacert)
 
     test = load_file(args.test_file)
 
