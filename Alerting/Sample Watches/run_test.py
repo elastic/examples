@@ -6,10 +6,11 @@ import sys
 __author__ = 'dalem@elastic.co'
 
 import datetime
-from elasticsearch import Elasticsearch
-from elasticsearch_xpack import XPackClient
 import json
 import yaml
+
+from elasticsearch import Elasticsearch
+from elasticsearch_xpack import XPackClient
 
 
 def load_file(serialized_file):
@@ -19,13 +20,6 @@ def load_file(serialized_file):
         elif serialized_file.endswith('.yml') or serialized_file.endswith('.yaml'):
             decoded_object = yaml.safe_load(serialized_file_fh)
     return decoded_object
-
-
-def find_item(list, key):
-    for item in list:
-        if key in item:
-            return item
-    return None
 
 
 if __name__ == '__main__':
@@ -38,12 +32,7 @@ if __name__ == '__main__':
     parser.add_argument('--password', help='password')
     parser.add_argument('--protocol', help='protocol')
     parser.add_argument('--test_file', help='test file')
-    parser.add_argument(
-        '--keep-index',
-        help='Keep the index where test documents have been loaded to after the test',
-        action='store_true',
-        default=False,
-    )
+    parser.add_argument('--keep-index', help='Keep the index where test documents have been loaded to after the test', action='store_true')
 
     parser.set_defaults(host='localhost', port="9200", protocol="http", test_file='data.json', user='elastic', password='changeme')
     args = parser.parse_args()
@@ -85,8 +74,10 @@ if __name__ == '__main__':
 
     # Load Watch and Execute
     watch = load_file(test['watch_file'])
+
     watcher = XPackClient(es).watcher
     watcher.put_watch(id=test["watch_name"], body=watch)
+
     response = watcher.execute_watch(test["watch_name"])
 
     # Cleanup after the test to not pollute the environment for other tests.
