@@ -35,6 +35,11 @@ if __name__ == '__main__':
     parser.add_argument('--keep-index', help='Keep the index where test documents have been loaded to after the test', action='store_true')
     parser.add_argument('--modify-watch-by-eval', help='Python code to modify the watch before loading it into Elastic')
     parser.add_argument(
+        '--no-test-index',
+        help='Don’t put the test data into an index.',
+        action='store_false',
+        dest='test_index')
+    parser.add_argument(
         '--no-execute-watch',
         help='Do not force watch execution. This can be useful when you use this script to deploy the watch.',
         action='store_false',
@@ -46,31 +51,32 @@ if __name__ == '__main__':
 
     test = load_file(args.test_file)
 
-    # Load Mapping
-    try:
-        es.indices.delete(test['index'])
-    except Exception as err:
-        print("Unable to delete current dataset")
-        pass
-    es.indices.create(index=test["index"], body=load_file(test['mapping_file']))
+    if args.test_index:
+        # Load Mapping
+        try:
+            es.indices.delete(test['index'])
+        except Exception as err:
+            print("Unable to delete current dataset")
+            pass
+        es.indices.create(index=test["index"], body=load_file(test['mapping_file']))
 
-    # Load pipeline if its declared
-    params = {}
-    if "ingest_pipeline_file" in test:
-        es.index(index="_ingest", doc_type="pipeline", id=test["watch_name"], body=load_file(test['ingest_pipeline_file']))
-        params["pipeline"] = test["watch_name"]
+        # Load pipeline if its declared
+        params = {}
+        if "ingest_pipeline_file" in test:
+            es.index(index="_ingest", doc_type="pipeline", id=test["watch_name"], body=load_file(test['ingest_pipeline_file']))
+            params["pipeline"] = test["watch_name"]
 
-    # Index data
-    current_data = last_time = datetime.datetime.utcnow()
-    i = 0
-    time_field = test["time_field"] if "time_field" in test else "@timestamp"
-    for event in test['events']:
-        # All offsets are in seconds.
-        event_time = current_data+datetime.timedelta(seconds=int(event['offset'] if 'offset' in event else 0))
-        event[time_field] = event_time.strftime('%Y-%m-%dT%H:%M:%S.%fZ') if time_field not in event else event[time_field]
-        es.index(index=test['index'], doc_type=test['type'], body=event, id=event['id'] if "id" in event else i, params=params)
-        i += 1
-    es.indices.refresh(index=test["index"])
+        # Index data
+        current_data = last_time = datetime.datetime.utcnow()
+        i = 0
+        time_field = test["time_field"] if "time_field" in test else "@timestamp"
+        for event in test['events']:
+            # All offsets are in seconds.
+            event_time = current_data+datetime.timedelta(seconds=int(event['offset'] if 'offset' in event else 0))
+            event[time_field] = event_time.strftime('%Y-%m-%dT%H:%M:%S.%fZ') if time_field not in event else event[time_field]
+            es.index(index=test['index'], doc_type=test['type'], body=event, id=event['id'] if "id" in event else i, params=params)
+            i += 1
+        es.indices.refresh(index=test["index"])
 
     # Load Scripts
     if 'scripts' in test:
