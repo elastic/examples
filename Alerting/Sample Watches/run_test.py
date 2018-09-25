@@ -69,8 +69,7 @@ if __name__ == '__main__':
     # Load Scripts
     if 'scripts' in test:
         for script in test['scripts']:
-            script_body = load_file(script['path'])
-            es.put_script(id=script["name"], body=script_body)
+            es.put_script(id=script["name"], body=load_file(script['path']))
 
     # Load Watch and Execute
     watch = load_file(test['watch_file'])
