@@ -1,0 +1,28 @@
+---
+
+# yamllint disable rule:line-length
+
+## This test is mainly here to have something which can be run against
+## production without polluting anything.
+
+watch_name: aggregated_issues_in_logs_staging
+mapping_file: ./aggregated_issues_in_logs/mapping.json
+index: log_network-switch__v1_1984-05-23
+type: doc
+match: false
+watch_file: ./aggregated_issues_in_logs/watch.yaml
+scripts:
+  - name: 'aggregated_issues_in_logs-index_transform'
+    path: './aggregated_issues_in_logs/scripts/aggregated_issues_in_logs-index_transform.yaml'
+  - name: 'aggregated_issues_in_logs-deterministic_log'
+    path: './aggregated_issues_in_logs/scripts/aggregated_issues_in_logs-deterministic_log.yaml'
+
+events:
+
+  ## Watcher would fail if it does not find any document/indexes with a @timestamp field:
+  ## "SearchPhaseExecutionException[all shards failed]; nested:
+  ## QueryShardException[No mapping found for [@timestamp] in order to sort on];
+  - id: 1
+    offset: 0
+
+expected_response: |-

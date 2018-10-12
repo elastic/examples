@@ -1,0 +1,31 @@
+---
+
+# yamllint disable rule:line-length rule:comments-indentation
+
+watch_name: aggregated_issues_in_logs
+mapping_file: ./aggregated_issues_in_logs/mapping.json
+index: log_network-switch__v1_1984-05-23
+type: doc
+match: false
+watch_file: ./aggregated_issues_in_logs/watch.yaml
+scripts:
+  - name: 'aggregated_issues_in_logs-index_transform'
+    path: './aggregated_issues_in_logs/scripts/aggregated_issues_in_logs-index_transform.yaml'
+  - name: 'aggregated_issues_in_logs-deterministic_log'
+    path: './aggregated_issues_in_logs/scripts/aggregated_issues_in_logs-deterministic_log.yaml'
+
+events:
+
+  - id: 1
+    offset: -9000
+    msg: 'Events in the past should not trigger. PS: Over 9000!'
+    severity: 2
+    '#source': test
+    host: gnu.example.org
+
+  - id: 2
+    offset: -1800
+    msg: Events in the future should not trigger.
+    severity: 2
+    '#source': test
+    host: gnu.example.org

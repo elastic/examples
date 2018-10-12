@@ -1,0 +1,38 @@
+---
+
+# yamllint disable rule:line-length rule:comments-indentation
+
+size: 10
+
+_source:
+  ## Calculated using the offset property by the test framework.
+  # - '@timestamp'
+
+  ## Leave out if possible to avoid the need to censor them if making datasets public.
+  - 'host'
+
+  - 'msg'
+  - 'severity'
+  - '#source'
+
+  # - 'logdesc'
+
+query:
+  query_string:
+    query: 'msg:"handshake"'
+
+
+# aggregations:
+#   host:
+#     sum:
+#       script:
+#         source: 'doc.data[""]'
+
+#     aggregations:
+#       severity:
+#         terms:
+#           field: 'severity'
+#         aggregations:
+#           msg:
+#             terms:
+#               field: '_uid'
