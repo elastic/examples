@@ -35,7 +35,3 @@ A mapping is provided in mapping.json.  Watches require data producing the follo
 * The watch is by default scheduled to trigger every 30 mins. This can be changed in the `trigger` block of the watch.  
 * The window of time (in seconds) to evaluate the number of master nodes can be configured in the `metadata` under `window_secs`. The default is 1800 seconds/ 30 minutes.
 * The number of master nodes threshold can be configured in the `metadata` under `number_of_master_nodes_threshold`. The default is 1.
-
-## Warning
-
-If the threshold is set to greater than 2. This watch is susceptible to the scenario where the master elected node keeps changing but keeps getting assigned to the same 2 nodes. In this case, the watch will never trigger since we need a unique node count to be greater than 2.
