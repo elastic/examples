@@ -1,0 +1,31 @@
+{
+	"title": "Four Cheese Margherita Pizza",
+	"description": "This is a fantastic version of an Italian classic. The feta cheese adds a rich flavor that brings this dish to life. Incredibly easy and incredibly delicious!",
+	"ingredients": [
+		"1/4 cup olive oil",
+		"1 tablespoon minced garlic",
+		"1/2 teaspoon sea salt",
+		"8 Roma tomatoes, sliced",
+		"2 (12 inch) pre-baked pizza crusts",
+		"8 ounces shredded Mozzarella cheese",
+		"4 ounces shredded Fontina cheese",
+		"10 fresh basil leaves, washed, dried",
+		"1/2 cup freshly grated Parmesan cheese",
+		"1/2 cup crumbled feta cheese"
+	],
+	"directions": [
+		"Stir together olive oil, garlic, and salt; toss with tomatoes, and allow to stand for 15 minutes.",
+		"Preheat oven to 400 degrees F (200 degrees C).",
+		"Brush each pizza crust with some of the tomato marinade. Sprinkle the pizzas evenly with Mozzarella and Fontina cheeses. Arrange tomatoes overtop, then sprinkle with shredded basil, Parmesan, and feta cheese.",
+		"Bake in preheated oven until the cheese is bubbly and golden brown, about 10 minutes."
+	],
+	"prep_time_min": 15,
+	"cook_time_min": 10,
+	"servings": 8,
+	"tags": [ "main dish" ],
+	"author": {
+		"name": "Michelle",
+		"url": "http://allrecipes.com/cook/18668259/profile.aspx"
+	},
+	"source_url": "http://allrecipes.com/recipe/four-cheese-margherita-pizza"
+}

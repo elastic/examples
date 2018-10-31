@@ -1,0 +1,19 @@
+{
+  "name": "receipe_indexer",
+  "version": "1.0.0",
+  "description": "Indexes recipes into Elasticsearch running on localhost",
+  "main": "indexer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start" : "node indexer.js"
+  },
+  "keywords": [
+    "recipes",
+    "elasticsearch"
+  ],
+  "author": "Josh Biol",
+  "license": "MIT",
+  "dependencies": {
+    "elasticsearch": "^15.2.0"
+  }
+}
