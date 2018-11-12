@@ -56,10 +56,8 @@ kubectl get pods --namespace=kube-system | grep kube-state
 and create it if needed (by default it will not be there)
 
 ```
-go get k8s.io/kube-state-metrics
-cd ${USER}/gopath/src/k8s.io/kube-state-metrics # Note: you may not have a gopath dir, it may be ${USER}/go/ instead, or ?
-make container
-kubectl create -f kubernetes
+git clone https://github.com/kubernetes/kube-state-metrics.git kube-state-metrics
+kubectl create -f kube-state-metrics/kubernetes
 kubectl get pods --namespace=kube-system | grep kube-state 
 ```
 
