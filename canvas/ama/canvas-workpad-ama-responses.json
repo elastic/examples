@@ -90,7 +90,7 @@
             "width": 1292,
             "angle": 0
           },
-          "expression": "filters \n| timelion q=\".es(index='responses')\" from=\"2018-02-27 14:00:00\" to=\"2018-03-01 20:00:00\"\n| pointseries x=\"@timestamp\" y=\"value\"\n| plot defaultStyle={seriesStyle points=\"0\" bars=\"10\" lines=\"0\" color=\"#263746\"} legend=false yaxis=false \n| render css=\"\n.canvas_element {\n    overflow: hidden;\n}\n.flot-x-axis .flot-tick-label {transform: translateY(-20px); margin:0px;}\n\" containerStyle={containerStyle border=\"-2px normal normal\"}\n",
+          "expression": "filters \n| timelion q=\".es(index='amaresponses')\" from=\"2018-02-27 14:00:00\" to=\"2018-03-01 20:00:00\"\n| pointseries x=\"@timestamp\" y=\"value\"\n| plot defaultStyle={seriesStyle points=\"0\" bars=\"10\" lines=\"0\" color=\"#263746\"} legend=false yaxis=false \n| render css=\"\n.canvas_element {\n    overflow: hidden;\n}\n.flot-x-axis .flot-tick-label {transform: translateY(-20px); margin:0px;}\n\" containerStyle={containerStyle border=\"-2px normal normal\"}\n",
           "filter": null
         },
         {
@@ -161,7 +161,7 @@
         },
         {
           "id": "element-156a0237-7a58-473d-b8b5-3f98f2c41691",
-          "expression": "filters | markdown {escount index=\"responses\" q=\"Elasticsearch\"} font={font family=\"Open Sans, Helvetica, Arial, sans-serif\" size=35 align=\"center\" color=\"#444444\" weight=\"bold\" underline=false italic=true} | render",
+          "expression": "filters | markdown {escount index=\"amaresponses\" q=\"Elasticsearch\"} font={font family=\"Open Sans, Helvetica, Arial, sans-serif\" size=35 align=\"center\" color=\"#444444\" weight=\"bold\" underline=false italic=true} | render",
           "position": {
             "top": 159,
             "left": 1090,
@@ -172,7 +172,7 @@
         },
         {
           "id": "element-7af96cc5-faa2-45c2-92d9-89e661e804b5",
-          "expression": "filters | markdown {escount index=\"responses\" q=\"Kibana\"} font={font family=\"Open Sans, Helvetica, Arial, sans-serif\" size=35 align=\"center\" color=\"#444444\" weight=\"bold\" underline=false italic=true} | render",
+          "expression": "filters | markdown {escount index=\"amaresponses\" q=\"Kibana\"} font={font family=\"Open Sans, Helvetica, Arial, sans-serif\" size=35 align=\"center\" color=\"#444444\" weight=\"bold\" underline=false italic=true} | render",
           "position": {
             "top": 162,
             "left": 1291,
@@ -183,7 +183,7 @@
         },
         {
           "id": "element-f5c9ea7a-266a-4134-b106-59182e7e9723",
-          "expression": "filters | markdown {escount index=\"responses\" q=\"topic:\\*Filebeat OR Packetbeat OR Auditbeat OR Filebeat OR Winlogbeat OR Heartbeat\"} font={font family=\"Open Sans, Helvetica, Arial, sans-serif\" size=35 align=\"center\" color=\"#444444\" weight=\"bold\" underline=false italic=true} | render",
+          "expression": "filters | markdown {escount index=\"amaresponses\" q=\"topic:\\*Filebeat OR Packetbeat OR Auditbeat OR Filebeat OR Winlogbeat OR Heartbeat\"} font={font family=\"Open Sans, Helvetica, Arial, sans-serif\" size=35 align=\"center\" color=\"#444444\" weight=\"bold\" underline=false italic=true} | render",
           "position": {
             "top": 162,
             "left": 1697,
@@ -194,7 +194,7 @@
         },
         {
           "id": "element-e9f35ff1-8de7-4466-a54e-af67a4f7dd7e",
-          "expression": "filters | markdown {escount index=\"responses\" q=\"X-Pack\"} font={font family=\"Open Sans, Helvetica, Arial, sans-serif\" size=35 align=\"center\" color=\"#444444\" weight=\"bold\" underline=false italic=true} | render",
+          "expression": "filters | markdown {escount index=\"amaresponses\" q=\"X-Pack\"} font={font family=\"Open Sans, Helvetica, Arial, sans-serif\" size=35 align=\"center\" color=\"#444444\" weight=\"bold\" underline=false italic=true} | render",
           "position": {
             "top": 362,
             "left": 1489,
@@ -205,7 +205,7 @@
         },
         {
           "id": "element-ad774115-aa1e-47bd-86d6-9b89a92dd42c",
-          "expression": "markdown {escount index=\"responses\" q=\"topics:\\\"Elastic Cloud Enterprise\\\"\"} font={font family=\"Open Sans, Helvetica, Arial, sans-serif\" size=35 align=\"center\" color=\"#444444\" weight=\"bold\" underline=false italic=true} | render",
+          "expression": "markdown {escount index=\"amaresponses\" q=\"topics:\\\"Elastic Cloud Enterprise\\\"\"} font={font family=\"Open Sans, Helvetica, Arial, sans-serif\" size=35 align=\"center\" color=\"#444444\" weight=\"bold\" underline=false italic=true} | render",
           "position": {
             "top": 368,
             "left": 1676,
@@ -216,7 +216,7 @@
         },
         {
           "id": "element-1ea7b598-0fe4-4d8b-8af3-494bcae20a03",
-          "expression": "filters | markdown {escount index=\"responses\" q=\"Swiftype\"} font={font family=\"Open Sans, Helvetica, Arial, sans-serif\" size=35 align=\"center\" color=\"#444444\" weight=\"bold\" underline=false italic=true} | render",
+          "expression": "filters | markdown {escount index=\"amaresponses\" q=\"Swiftype\"} font={font family=\"Open Sans, Helvetica, Arial, sans-serif\" size=35 align=\"center\" color=\"#444444\" weight=\"bold\" underline=false italic=true} | render",
           "position": {
             "top": 362,
             "left": 1290,
@@ -227,7 +227,7 @@
         },
         {
           "id": "element-956e5fa8-bd67-4d96-ae9f-5ec155aa9b3b",
-          "expression": "markdown {escount index=\"responses\" q=\"topics:\\\"Elastic Cloud\\\"\"} font={font family=\"Open Sans, Helvetica, Arial, sans-serif\" size=35 align=\"center\" color=\"#444444\" weight=\"bold\" underline=false italic=true} | render",
+          "expression": "markdown {escount index=\"amaresponses\" q=\"topics:\\\"Elastic Cloud\\\"\"} font={font family=\"Open Sans, Helvetica, Arial, sans-serif\" size=35 align=\"center\" color=\"#444444\" weight=\"bold\" underline=false italic=true} | render",
           "position": {
             "top": 362,
             "left": 1091,
@@ -245,7 +245,7 @@
             "width": 87,
             "angle": 0
           },
-          "expression": "filters \n| escount index=\"responses\" q=\"topics:\\\"Elasticsearch\\\"\" \n| math \"value / 800\" \n| if {compare \"gt\" to=1} then=1 else={context} \n| revealImage origin=\"bottom\" image={asset \"asset-d8aad426-206b-4ae9-9340-9f4b1f740386\"} emptyImage={asset \"asset-7aeb2f8e-27af-4cf8-98b1-b4b6c3d80a74\"} \n| render\n"
+          "expression": "filters \n| escount index=\"amaresponses\" q=\"topics:\\\"Elasticsearch\\\"\" \n| math \"value / 800\" \n| if {compare \"gt\" to=1} then=1 else={context} \n| revealImage origin=\"bottom\" image={asset \"asset-d8aad426-206b-4ae9-9340-9f4b1f740386\"} emptyImage={asset \"asset-7aeb2f8e-27af-4cf8-98b1-b4b6c3d80a74\"} \n| render\n"
         },
         {
           "id": "element-c0ae4671-d055-45e9-b220-9868aa043533",
@@ -268,7 +268,7 @@
             "width": 85,
             "angle": 0
           },
-          "expression": "filters | escount index=\"responses\" q=\"topics:\\\"Elastic Cloud\\\"\" | math \"value / 200\" | if {compare \"gt\" to=1} then=1 else={context} | revealImage origin=\"bottom\" image={asset \"asset-d8aad426-206b-4ae9-9340-9f4b1f740386\"} emptyImage={asset \"asset-7aeb2f8e-27af-4cf8-98b1-b4b6c3d80a74\"} | render",
+          "expression": "filters | escount index=\"amaresponses\" q=\"topics:\\\"Elastic Cloud\\\"\" | math \"value / 200\" | if {compare \"gt\" to=1} then=1 else={context} | revealImage origin=\"bottom\" image={asset \"asset-d8aad426-206b-4ae9-9340-9f4b1f740386\"} emptyImage={asset \"asset-7aeb2f8e-27af-4cf8-98b1-b4b6c3d80a74\"} | render",
           "filter": null
         },
         {
@@ -280,7 +280,7 @@
             "width": 85,
             "angle": 0
           },
-          "expression": "filters | escount index=\"responses\" q=\"topics:\\\"Kibana\\\"\" | math \"value / 200\" | if {compare \"gt\" to=1} then=1 else={context} | revealImage origin=\"bottom\" image={asset \"asset-d8aad426-206b-4ae9-9340-9f4b1f740386\"} emptyImage={asset \"asset-7aeb2f8e-27af-4cf8-98b1-b4b6c3d80a74\"} | render",
+          "expression": "filters | escount index=\"amaresponses\" q=\"topics:\\\"Kibana\\\"\" | math \"value / 200\" | if {compare \"gt\" to=1} then=1 else={context} | revealImage origin=\"bottom\" image={asset \"asset-d8aad426-206b-4ae9-9340-9f4b1f740386\"} emptyImage={asset \"asset-7aeb2f8e-27af-4cf8-98b1-b4b6c3d80a74\"} | render",
           "filter": null
         },
         {
@@ -292,7 +292,7 @@
             "width": 85,
             "angle": 0
           },
-          "expression": "filters | escount index=\"responses\" q=\"topics:\\\"Logstash\\\"\" | math \"value / 200\" | if {compare \"gt\" to=1} then=1 else={context} | revealImage origin=\"bottom\" image={asset \"asset-d8aad426-206b-4ae9-9340-9f4b1f740386\"} emptyImage={asset \"asset-7aeb2f8e-27af-4cf8-98b1-b4b6c3d80a74\"} | render",
+          "expression": "filters | escount index=\"amaresponses\" q=\"topics:\\\"Logstash\\\"\" | math \"value / 200\" | if {compare \"gt\" to=1} then=1 else={context} | revealImage origin=\"bottom\" image={asset \"asset-d8aad426-206b-4ae9-9340-9f4b1f740386\"} emptyImage={asset \"asset-7aeb2f8e-27af-4cf8-98b1-b4b6c3d80a74\"} | render",
           "filter": null
         },
         {
@@ -316,7 +316,7 @@
             "width": 85,
             "angle": 0
           },
-          "expression": "filters | escount index=\"responses\" q=\"topic:\\*Filebeat OR Packetbeat OR Auditbeat OR Filebeat OR Winlogbeat OR Heartbeat\" | math \"value / 200\" | if {compare \"gt\" to=1} then=1 else={context} | revealImage origin=\"bottom\" image={asset \"asset-d8aad426-206b-4ae9-9340-9f4b1f740386\"} emptyImage={asset \"asset-7aeb2f8e-27af-4cf8-98b1-b4b6c3d80a74\"} | render",
+          "expression": "filters | escount index=\"amaresponses\" q=\"topic:\\*Filebeat OR Packetbeat OR Auditbeat OR Filebeat OR Winlogbeat OR Heartbeat\" | math \"value / 200\" | if {compare \"gt\" to=1} then=1 else={context} | revealImage origin=\"bottom\" image={asset \"asset-d8aad426-206b-4ae9-9340-9f4b1f740386\"} emptyImage={asset \"asset-7aeb2f8e-27af-4cf8-98b1-b4b6c3d80a74\"} | render",
           "filter": null
         },
         {
@@ -328,7 +328,7 @@
             "width": 85,
             "angle": 0
           },
-          "expression": "filters | escount index=\"responses\" q=\"topics:\\\"Swiftype\\\"\" | math \"value / 200\" | if {compare \"gt\" to=1} then=1 else={context} | revealImage origin=\"bottom\" image={asset \"asset-d8aad426-206b-4ae9-9340-9f4b1f740386\"} emptyImage={asset \"asset-7aeb2f8e-27af-4cf8-98b1-b4b6c3d80a74\"} | render",
+          "expression": "filters | escount index=\"amaresponses\" q=\"topics:\\\"Swiftype\\\"\" | math \"value / 200\" | if {compare \"gt\" to=1} then=1 else={context} | revealImage origin=\"bottom\" image={asset \"asset-d8aad426-206b-4ae9-9340-9f4b1f740386\"} emptyImage={asset \"asset-7aeb2f8e-27af-4cf8-98b1-b4b6c3d80a74\"} | render",
           "filter": null
         },
         {
@@ -340,7 +340,7 @@
             "width": 85,
             "angle": 0
           },
-          "expression": "filters | escount index=\"responses\" q=\"topics:X-Pack\" | math \"value / 200\" | if {compare \"gt\" to=1} then=1 else={context} | revealImage origin=\"bottom\" image={asset \"asset-d8aad426-206b-4ae9-9340-9f4b1f740386\"} emptyImage={asset \"asset-7aeb2f8e-27af-4cf8-98b1-b4b6c3d80a74\"} | render",
+          "expression": "filters | escount index=\"amaresponses\" q=\"topics:X-Pack\" | math \"value / 200\" | if {compare \"gt\" to=1} then=1 else={context} | revealImage origin=\"bottom\" image={asset \"asset-d8aad426-206b-4ae9-9340-9f4b1f740386\"} emptyImage={asset \"asset-7aeb2f8e-27af-4cf8-98b1-b4b6c3d80a74\"} | render",
           "filter": null
         },
         {
@@ -369,7 +369,7 @@
         },
         {
           "id": "element-6b40c924-bce7-40e0-b779-e9a97782174a",
-          "expression": "filters | markdown {escount index=\"responses\" q=\"Logstash\"} font={font family=\"Open Sans, Helvetica, Arial, sans-serif\" size=35 align=\"center\" color=\"#444444\" weight=\"bold\" underline=false italic=true} | render\n\n",
+          "expression": "filters | markdown {escount index=\"amaresponses\" q=\"Logstash\"} font={font family=\"Open Sans, Helvetica, Arial, sans-serif\" size=35 align=\"center\" color=\"#444444\" weight=\"bold\" underline=false italic=true} | render\n\n",
           "position": {
             "top": 160,
             "left": 1503,
@@ -508,7 +508,7 @@
         },
         {
           "id": "element-2f3812d6-bc66-4d1d-a8c2-4877c2c60711",
-          "expression": "filters | markdown {escount index=\"responses\" q=\"business_group:Engineering\"} font={font family=\"Open Sans, Helvetica, Arial, sans-serif\" size=24 align=\"center\" color=\"#FFFFFF\" weight=\"bold\" underline=false italic=false} | render ",
+          "expression": "filters | markdown {escount index=\"amaresponses\" q=\"business_group:Engineering\"} font={font family=\"Open Sans, Helvetica, Arial, sans-serif\" size=24 align=\"center\" color=\"#FFFFFF\" weight=\"bold\" underline=false italic=false} | render ",
           "position": {
             "top": 256,
             "left": 50,
@@ -543,7 +543,7 @@
         },
         {
           "id": "element-50c6acf4-e276-4146-b052-d108dc4d8297",
-          "expression": "filters | markdown {escount index=\"responses\" q=\"business_group:Consulting\"} font={font family=\"Open Sans, Helvetica, Arial, sans-serif\" size=24 align=\"center\" color=\"#FFFFFF\" weight=\"bold\" underline=false italic=false} | render",
+          "expression": "filters | markdown {escount index=\"amaresponses\" q=\"business_group:Consulting\"} font={font family=\"Open Sans, Helvetica, Arial, sans-serif\" size=24 align=\"center\" color=\"#FFFFFF\" weight=\"bold\" underline=false italic=false} | render",
           "position": {
             "top": 454,
             "left": 50,
@@ -649,7 +649,7 @@
         },
         {
           "id": "element-22b6384a-30b1-422f-9792-a44f4bf263d5",
-          "expression": "filters | markdown {escount index=\"responses\" q=\"business_group:Product\"}  font={font family=\"Open Sans, Helvetica, Arial, sans-serif\" size=24 align=\"center\" color=\"#FFFFFF\" weight=\"bold\" underline=false italic=false} | render ",
+          "expression": "filters | markdown {escount index=\"amaresponses\" q=\"business_group:Product\"}  font={font family=\"Open Sans, Helvetica, Arial, sans-serif\" size=24 align=\"center\" color=\"#FFFFFF\" weight=\"bold\" underline=false italic=false} | render ",
           "position": {
             "top": 254,
             "left": 266,
@@ -671,7 +671,7 @@
         },
         {
           "id": "element-2cc28b3f-12ed-4f68-b989-130a0997239e",
-          "expression": "filters | markdown {escount index=\"responses\" q=\"business_group:SA\"} font={font family=\"Open Sans, Helvetica, Arial, sans-serif\" size=24 align=\"center\" color=\"#FFFFFF\" weight=\"bold\" underline=false italic=false} | render ",
+          "expression": "filters | markdown {escount index=\"amaresponses\" q=\"business_group:SA\"} font={font family=\"Open Sans, Helvetica, Arial, sans-serif\" size=24 align=\"center\" color=\"#FFFFFF\" weight=\"bold\" underline=false italic=false} | render ",
           "position": {
             "top": 256,
             "left": 500,
@@ -729,7 +729,7 @@
         },
         {
           "id": "element-f05f5efb-87cc-4a30-8171-96ef23160bde",
-          "expression": "filters | markdown {escount index=\"responses\" q=\"business_group:\\\"Dev Rel\\\"\"}  font={font family=\"Open Sans, Helvetica, Arial, sans-serif\" size=24 align=\"center\" color=\"#FFFFFF\" weight=\"bold\" underline=false italic=false} | render ",
+          "expression": "filters | markdown {escount index=\"amaresponses\" q=\"business_group:\\\"Dev Rel\\\"\"}  font={font family=\"Open Sans, Helvetica, Arial, sans-serif\" size=24 align=\"center\" color=\"#FFFFFF\" weight=\"bold\" underline=false italic=false} | render ",
           "position": {
             "top": 458,
             "left": 266,
@@ -762,7 +762,7 @@
         },
         {
           "id": "element-9f161e57-0c70-43cd-83e6-da5e066e280a",
-          "expression": "filters | markdown {escount index=\"responses\" q=\"business_group:Training\"}  font={font family=\"Open Sans, Helvetica, Arial, sans-serif\" size=24 align=\"center\" color=\"#FFFFFF\" weight=\"bold\" underline=false italic=false} | render ",
+          "expression": "filters | markdown {escount index=\"amaresponses\" q=\"business_group:Training\"}  font={font family=\"Open Sans, Helvetica, Arial, sans-serif\" size=24 align=\"center\" color=\"#FFFFFF\" weight=\"bold\" underline=false italic=false} | render ",
           "position": {
             "top": 456,
             "left": 500,
@@ -773,7 +773,7 @@
         },
         {
           "id": "element-5f150465-db68-4c62-bd10-99b71aca76d1",
-          "expression": "filters | markdown {escount index=\"responses\" q=\"business_group:Other\"} font={font family=\"Open Sans, Helvetica, Arial, sans-serif\" size=24 align=\"center\" color=\"#FFFFFF\" weight=\"bold\" underline=false italic=false} | render ",
+          "expression": "filters | markdown {escount index=\"amaresponses\" q=\"business_group:Other\"} font={font family=\"Open Sans, Helvetica, Arial, sans-serif\" size=24 align=\"center\" color=\"#FFFFFF\" weight=\"bold\" underline=false italic=false} | render ",
           "position": {
             "top": 458,
             "left": 722,
@@ -784,7 +784,7 @@
         },
         {
           "id": "element-2499e653-58cb-4cca-8c9d-bb916a05bb9a",
-          "expression": "filters | markdown {escount index=\"responses\" q=\"business_group:Support\"} font={font family=\"Open Sans, Helvetica, Arial, sans-serif\" size=24 align=\"center\" color=\"#FFFFFF\" weight=\"bold\" underline=false italic=false} | render ",
+          "expression": "filters | markdown {escount index=\"amaresponses\" q=\"business_group:Support\"} font={font family=\"Open Sans, Helvetica, Arial, sans-serif\" size=24 align=\"center\" color=\"#FFFFFF\" weight=\"bold\" underline=false italic=false} | render ",
           "position": {
             "top": 258,
             "left": 720,
@@ -874,7 +874,7 @@
             "width": 85,
             "angle": 0
           },
-          "expression": "filters | escount index=\"responses\" q=\"topics:\\\"Elastic Cloud Enterprise\\\"\" | math \"value / 200\" | if {compare \"gt\" to=1} then=1 else={context} | revealImage origin=\"bottom\" image={asset \"asset-d8aad426-206b-4ae9-9340-9f4b1f740386\"} emptyImage={asset \"asset-7aeb2f8e-27af-4cf8-98b1-b4b6c3d80a74\"} | render",
+          "expression": "filters | escount index=\"amaresponses\" q=\"topics:\\\"Elastic Cloud Enterprise\\\"\" | math \"value / 200\" | if {compare \"gt\" to=1} then=1 else={context} | revealImage origin=\"bottom\" image={asset \"asset-d8aad426-206b-4ae9-9340-9f4b1f740386\"} emptyImage={asset \"asset-7aeb2f8e-27af-4cf8-98b1-b4b6c3d80a74\"} | render",
           "filter": null
         },
         {
@@ -886,7 +886,7 @@
             "width": 1250,
             "angle": 359.9
           },
-          "expression": "filters \n| timelion query=\".es(index=responses, split=use_case:10).label('$1', '.*>.*:(.*)>.*')\" interval=\"9999d\" \n| pointseries x=\"value\" y=\"label\" \n| plot font={font family=\"'Open Sans', Helvetica, Arial, sans-serif\" size=15 align=\"left\" color=\"#000000\" weight=\"bold\" underline=false italic=false}\n       legend=false \n       xaxis=false \n       yaxis={axisConfig position=\"right\"} \n       defaultStyle={seriesStyle points=\"0\" bars=\".8\" color=\"#f5cc5d\" lines=\"0\" horizontalBars=true}\n| render css=\"                                                                                                                                  \n.flot-x-axis {                                                                                                                                  \n    z-index: 1;                                                                                                                                 \n}                                                                                                                                               \n.flot-y-axis .flot-tick-label {                                                                                                                 \ntransform: translate(-1025px,-3px);                                                                                                              \n    max-width: fit-content !important;\n    white-space: nowrap;                                                                                                                                                                                                                  \n}                                                                                                                                               \n\"",
+          "expression": "filters \n| timelion query=\".es(index=amaresponses, split=use_case:10).label('$1', '.*>.*:(.*)>.*')\" interval=\"9999d\" \n| pointseries x=\"value\" y=\"label\" \n| plot font={font family=\"'Open Sans', Helvetica, Arial, sans-serif\" size=15 align=\"left\" color=\"#000000\" weight=\"bold\" underline=false italic=false}\n       legend=false \n       xaxis=false \n       yaxis={axisConfig position=\"right\"} \n       defaultStyle={seriesStyle points=\"0\" bars=\".8\" color=\"#f5cc5d\" lines=\"0\" horizontalBars=true}\n| render css=\"                                                                                                                                  \n.flot-x-axis {                                                                                                                                  \n    z-index: 1;                                                                                                                                 \n}                                                                                                                                               \n.flot-y-axis .flot-tick-label {                                                                                                                 \ntransform: translate(-1025px,-3px);                                                                                                              \n    max-width: fit-content !important;\n    white-space: nowrap;                                                                                                                                                                                                                  \n}                                                                                                                                               \n\"",
           "filter": null
         },
         {
@@ -898,7 +898,7 @@
             "width": 347.9912687765651,
             "angle": 0.1
           },
-          "expression": "filters \n| esdocs index=\"responses\" \n| ply by=\"time_spent\" expression={rowCount | as \"count\"} \n| pointseries color=\"time_spent\" size=\"count\" \n| pie font={font family=\"'Open Sans', Helvetica, Arial, sans-serif\" size=14 align=\"left\" color=\"#000000\" weight=\"bold\" underline=false italic=false} palette={palette \"#00A8E1\" \"#00556F\" gradient=true} labelRadius=70\n| render css=\"\n.pieLabel {\n  background-color: #fff;\n  border-radius: 5px;\n  border: 1px solid #ddd;\n  padding: 3px;\n  box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.2);\n}\n\"\n",
+          "expression": "filters \n| esdocs index=\"amaresponses\" \n| ply by=\"time_spent\" expression={rowCount | as \"count\"} \n| pointseries color=\"time_spent\" size=\"count\" \n| pie font={font family=\"'Open Sans', Helvetica, Arial, sans-serif\" size=14 align=\"left\" color=\"#000000\" weight=\"bold\" underline=false italic=false} palette={palette \"#00A8E1\" \"#00556F\" gradient=true} labelRadius=70\n| render css=\"\n.pieLabel {\n  background-color: #fff;\n  border-radius: 5px;\n  border: 1px solid #ddd;\n  padding: 3px;\n  box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.2);\n}\n\"\n",
           "filter": null
         },
         {
@@ -921,7 +921,7 @@
             "width": 65,
             "angle": 0
           },
-          "expression": "filters \n| escount index=\"responses\" q=\"topics:\\\"Elasticsearch\\\"\" \n| math \"value / 50\" \n| repeatImage emptyImage={asset \"asset-2ad47327-52ca-43ff-b287-dc688a51942a\"} image={asset \"asset-5c698545-3156-40ec-96da-939da0f41955\"} size=20 max=500 \n| render\n",
+          "expression": "filters \n| escount index=\"amaresponses\" q=\"topics:\\\"Elasticsearch\\\"\" \n| math \"value / 50\" \n| repeatImage emptyImage={asset \"asset-2ad47327-52ca-43ff-b287-dc688a51942a\"} image={asset \"asset-5c698545-3156-40ec-96da-939da0f41955\"} size=20 max=500 \n| render\n",
           "filter": null
         },
         {
