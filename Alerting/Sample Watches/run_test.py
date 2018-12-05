@@ -128,7 +128,7 @@ if __name__ == '__main__':
                 if len(response['watch_record']['result']['actions']) == 0:
                     if response['watch_record']['result']['transform']['status'] == 'failure':
                         print("No actions where taken because transform failed: {}".format(
-                            response['watch_record']['result']['transform']['reason']
+                            json.dumps(response['watch_record']['result']['transform'], sort_keys=True, indent=2)
                         ))
                     else:
                         print("No actions where taken: {}".format(
