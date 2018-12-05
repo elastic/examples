@@ -94,7 +94,7 @@ if __name__ == '__main__':
 
     if args.metadata_git_commit:
         watch.setdefault('metadata', {})
-        watch['metadata']['git_commit_hash'] = subprocess.check_output(['git', 'rev-parse', 'HEAD']).strip()
+        watch['metadata']['git_commit_hash'] = subprocess.check_output(['git', 'rev-parse', '--short', 'HEAD']).strip()
         watch['metadata']['git_uncommitted_changes'] = True if len(subprocess.check_output(['git', 'status', '--porcelain']).strip()) > 0 else False
 
     watcher = XPackClient(es).watcher
