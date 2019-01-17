@@ -34,6 +34,12 @@ if __name__ == '__main__':
     parser.add_argument('--protocol', help='protocol')
     parser.add_argument('--cacert', help='CA certificate to trust for HTTPS')
     parser.add_argument('--test_file', help='test file')
+    parser.add_argument(
+        '--minify-scripts',
+        help='Minify script source code as workaround for' +
+        ' "Scripts may be no longer than 16384 characters." for ES > 6.6.',
+        action='store_true')
+    # Ref: https://github.com/elastic/elasticsearch/pull/35184
     parser.add_argument('--keep-index', help='Keep the index where test documents have been loaded to after the test', action='store_true')
     parser.add_argument('--metadata-git-commit', help='Include the git commit hash in the metadata field of the watcher', action='store_true')
     parser.add_argument('--modify-watch-by-eval', help='Python code to modify the watch before loading it into Elastic')
@@ -84,7 +90,12 @@ if __name__ == '__main__':
     # Load Scripts
     if 'scripts' in test:
         for script in test['scripts']:
-            es.put_script(id=script["name"], body=load_file(script['path']))
+            script_content = load_file(script['path'])
+            if args.minify_scripts:
+                # https://stackoverflow.com/questions/30795954/how-to-uglify-or-minify-c-code
+                p = subprocess.Popen(['gcc', '-fpreprocessed', '-dD', '-E', '-P', '-'], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+                script_content['script']['source'] = p.communicate(input=script_content['script']['source'].encode('utf-8'))[0].decode('utf-8')
+            es.put_script(id=script["name"], body=script_content)
 
     # Load Watch and Execute
     watch = load_file(test['watch_file'])
