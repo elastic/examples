@@ -37,7 +37,7 @@ if __name__ == '__main__':
     parser.add_argument(
         '--minify-scripts',
         help='Minify script source code as workaround for' +
-        ' "Scripts may be no longer than 16384 characters." for ES > 6.6.',
+        ' "Scripts may be no longer than 16384 characters." in ES < v6.6.',
         action='store_true')
     # Ref: https://github.com/elastic/elasticsearch/pull/35184
     parser.add_argument('--keep-index', help='Keep the index where test documents have been loaded to after the test', action='store_true')
