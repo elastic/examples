@@ -68,7 +68,7 @@ spec:
       hostNetwork: true
       containers:
       - name: packetbeat-dynamic
-        image: docker.elastic.co/beats/packetbeat:6.4.2
+        image: docker.elastic.co/beats/packetbeat:6.6.0
         imagePullPolicy: Always
         args: [
           "-c", "/etc/packetbeat.yml",
