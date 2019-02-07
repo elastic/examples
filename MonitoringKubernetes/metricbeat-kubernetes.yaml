@@ -2,6 +2,84 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
+  name: metricbeat-setup-config
+  namespace: kube-system
+  labels:
+    k8s-app: metricbeat
+    kubernetes.io/cluster-service: "true"
+data:
+  metricbeat.yml: |-
+    metricbeat.config.modules:
+      path: ${path.config}/modules.d/*.yml
+      reload.enabled: false
+
+    setup.template.settings:
+      index.number_of_shards: 1
+      index.codec: best_compression
+
+    cloud.auth: elastic:${ELASTIC_PASSWORD}
+    cloud.id: ${CLOUD_ID}
+    
+    output.elasticsearch:
+
+    setup.kibana:
+---
+# Run metricbeat setup
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: metricbeat-setup
+  namespace: kube-system
+spec:
+  activeDeadlineSeconds: 300
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: metricbeat-setup
+        #imagePullPolicy: Always
+        image: docker.elastic.co/beats/metricbeat:6.6.0
+        args: [
+          "-c", "/etc/metricbeat.yml",
+          "-e",
+          "setup",
+        ]
+        env:
+        - name: NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        - name: CLOUD_ID
+          valueFrom:
+            secretKeyRef:
+              name: dynamic-logging
+              key: CLOUD_ID
+        - name: ELASTIC_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: dynamic-logging
+              key: ELASTIC_PASSWORD
+        securityContext:
+          runAsUser: 0
+        volumeMounts:
+        - name: config
+          mountPath: /etc/metricbeat.yml
+          readOnly: true
+          subPath: metricbeat.yml
+        - name: dockersock
+          mountPath: /var/run/docker.sock
+      volumes:
+      - name: dockersock
+        hostPath:
+          path: /var/run/docker.sock
+      - name: config
+        configMap:
+          defaultMode: 0600
+          name: metricbeat-setup-config
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
   name: metricbeat-daemonset-config
   namespace: kube-system
   labels:
