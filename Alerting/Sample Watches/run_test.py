@@ -67,7 +67,10 @@ if __name__ == '__main__':
         except Exception as err:
             print("Unable to delete current dataset")
             pass
-        es.indices.create(index=test["index"], body=load_file(test['mapping_file']))
+        index_template = load_file(test['mapping_file'])
+        for unneeded_keys in ['order', 'version', 'index_patterns']:
+            index_template.pop(unneeded_keys)
+        es.indices.create(index=test["index"], body=index_template)
 
         # Load pipeline if its declared
         params = {}
