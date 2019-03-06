@@ -30,9 +30,9 @@
       }
    },
    "mappings": {
-      "dns": {
+      "doc": {
          "properties": {
-            "dns": {
+            "doc": {
                "properties": {
                   "question": {
                      "properties": {
