@@ -168,27 +168,42 @@ Open Kibana
 1. Select Visual Builder
 ![1](https://github.com/elastic/examples/blob/master/scraping-prometheus-k8s-with-metricbeat/images/008-kibana.png)
 
-1. Set the Y-axis to the max of prometheus.metrics.redis_instantaneous_ops_per_sec (paste it in, or type instantaneous and select the metric)
+1. Set the Aggregation to the Average of prometheus.metrics.redis_instantaneous_ops_per_sec (paste it in, or type instantaneous and select the metric)
 ![1](https://github.com/elastic/examples/blob/master/scraping-prometheus-k8s-with-metricbeat/images/009-kibana.png)
-1. Set the X-axis to a Date Histogram
+
+1. The above shows the average of the metric across all Redis pods, to show the individual pods group by `Terms` `kubernetes.pod.name`
 ![1](https://github.com/elastic/examples/blob/master/scraping-prometheus-k8s-with-metricbeat/images/010-kibana.png)
-1. Split the series on the term kubernetes.pod.name
+
+1. Let's tweak some things in the visualization, open Options
 ![1](https://github.com/elastic/examples/blob/master/scraping-prometheus-k8s-with-metricbeat/images/011-kibana.png)
-1. Hit apply
+
+1. Name the time series, and if you want to change the number format you can type a format in.  There is a link to the format string details just under the format box.  If there are pods in the list that you do not want, you can filter using the k8s metadata, in the screenshot we are filtering by k8s label `app`
 ![1](https://github.com/elastic/examples/blob/master/scraping-prometheus-k8s-with-metricbeat/images/012-kibana.png)
-1. Follow
-![1](https://github.com/elastic/examples/blob/master/scraping-prometheus-k8s-with-metricbeat/images/013-kibana.png)
-1. Follow
-![1](https://github.com/elastic/examples/blob/master/scraping-prometheus-k8s-with-metricbeat/images/014-kibana.png)
-1. Follow
+
+1. At this point the time series is done, but let's kick it up a notch.  Why not add some event data as an annotation?  This could be a specific log message that might be a clue to a performance change.  In this example we will use a message that tells us the Redis deployment has scaled.  You might choose to use a crash loop backoff, or a log message that indicates a config change.  
+
+Open Discover in a new tab, and filter on kubernetes.event.reason:
 ![1](https://github.com/elastic/examples/blob/master/scraping-prometheus-k8s-with-metricbeat/images/015-kibana.png)
-1. Split the series on the term kubernetes.pod.name
+
+1. Click on `exists in any form` and press enter
 ![1](https://github.com/elastic/examples/blob/master/scraping-prometheus-k8s-with-metricbeat/images/016-kibana.png)
-1. Hit apply
+
+1. Open a record and add the fields `kubernetes.event.message`, `kubernetes.event.reason`, and `kubernetes.event.involved_object_name` to the tabular view.
 ![1](https://github.com/elastic/examples/blob/master/scraping-prometheus-k8s-with-metricbeat/images/017-kibana.png)
+
+1. If you do not have any `kubernetes.event.reason` `ScalingReplicaSet` records you can scale the `redis-slave` deployment (`kubectl scale --replicas=1 deployment/redis-slave`) and then click on refresh in Discover to see them.
+
+1. Switch browser tabs to the Visual Builder and click on the Annotations tab:
+![1](https://github.com/elastic/examples/blob/master/scraping-prometheus-k8s-with-metricbeat/images/013-kibana.png)
+
+1. Add a data source for the annotation.  This can be any index pattern in your system.  In the example we will be using events from k8s, and we grab those form kube-state-metrics via Metricbeat.
+![1](https://github.com/elastic/examples/blob/master/scraping-prometheus-k8s-with-metricbeat/images/014-kibana.png)
+
 1. Follow
 ![1](https://github.com/elastic/examples/blob/master/scraping-prometheus-k8s-with-metricbeat/images/018-kibana.png)
+
 1. Follow
 ![1](https://github.com/elastic/examples/blob/master/scraping-prometheus-k8s-with-metricbeat/images/019-kibana.png)
+
 1. Follow
 ![1](https://github.com/elastic/examples/blob/master/scraping-prometheus-k8s-with-metricbeat/images/020-kibana.png)
