@@ -138,15 +138,15 @@ If you are not familiar with the Prometheus autodiscover configuration, here is 
 
 Please see the video from the blog "[Elasticsearch Observability: Embracing Prometheus and OpenMetrics standards for metrics](https://elastic.co/blog/elasticsearch-observability-embracing-prometheus-and-openmetrics-standards-for-metrics)" for step by step instructions to build a visualization with the Redis metrics collected through Prometheus and the kube-state-metrics collected directly by Metricbeat.
 
-1 Open Kibana
-1 Open the Discover application
-1 In the search bar start typing in the name of a metric.  I chose instantaneous ops per second as I feel that this is an important performance metric for Redis.
-1 Add columns to the Discover view for the metric name and the pod name.  I always do this when I am going to create a visualization so that I have all of the Elasticsearch fields that I will use in the visualization handy.
-1 Copy the name of the metric (prometheus.metrics.redis_instantaneous_ops_per_sec)
-1 Open the Kibana Visualization application
-1 Add a new "Visual Builder" visualization
-1 Select the metricbeat-* index, as this points to where the metric data is stored
-1 Set the Y-axis to the max of prometheus.metrics.redis_instantaneous_ops_per_sec (paste it in, or type instantaneous and select the metric)
-1 Set the X-axis to a Date Histogram
-1 Split the series on the term kubernetes.pod.name
-1 Hit apply
+1. Open Kibana
+1. Open the Discover application
+1. In the search bar start typing in the name of a metric.  I chose instantaneous ops per second as I feel that this is an important performance metric for Redis.
+1. Add columns to the Discover view for the metric name and the pod name.  I always do this when I am going to create a visualization so that I have all of the Elasticsearch fields that I will use in the visualization handy.
+1. Copy the name of the metric (prometheus.metrics.redis_instantaneous_ops_per_sec)
+1. Open the Kibana Visualization application
+1. Add a new "Visual Builder" visualization
+1. Select the metricbeat-* index, as this points to where the metric data is stored
+1. Set the Y-axis to the max of prometheus.metrics.redis_instantaneous_ops_per_sec (paste it in, or type instantaneous and select the metric)
+1. Set the X-axis to a Date Histogram
+1. Split the series on the term kubernetes.pod.name
+1. Hit apply
