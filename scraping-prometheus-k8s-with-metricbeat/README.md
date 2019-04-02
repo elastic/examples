@@ -144,19 +144,19 @@ Open Kibana
 1. Start typing the name of the metric `instantaneous_ops`
 1. When Kibana offers you the list, choose `prometheus.metrics.redis_instantaneous_ops_per_sec`
 ![1](https://github.com/elastic/examples/blob/master/scraping-prometheus-k8s-with-metricbeat/images/001-kibana.png)
-1. Open the Discover application
+1. Choose `exists in any form` and press Enter
 ![1](https://github.com/elastic/examples/blob/master/scraping-prometheus-k8s-with-metricbeat/images/002-kibana.png)
-1. In the search bar start typing in the name of a metric.  I chose instantaneous ops per second as I feel that this is an important performance metric for Redis.
+1. Expand one record
 ![1](https://github.com/elastic/examples/blob/master/scraping-prometheus-k8s-with-metricbeat/images/003-kibana.png)
 1. Add columns to the Discover view for the metric name and the pod name.  I always do this when I am going to create a visualization so that I have all of the Elasticsearch fields that I will use in the visualization handy.
 ![1](https://github.com/elastic/examples/blob/master/scraping-prometheus-k8s-with-metricbeat/images/004-kibana.png)
-1. Copy the name of the metric (prometheus.metrics.redis_instantaneous_ops_per_sec)
+1. This is what the view will look like, the full records are available by expanding them with the `>`, and the columns make it easier to scan through the data visually. Copy the name of the metric (`prometheus.metrics.redis_instantaneous_ops_per_sec`) to paste into the visualization builder.
 ![1](https://github.com/elastic/examples/blob/master/scraping-prometheus-k8s-with-metricbeat/images/005-kibana.png)
 1. Open the Kibana Visualization application
 ![1](https://github.com/elastic/examples/blob/master/scraping-prometheus-k8s-with-metricbeat/images/006-kibana.png)
-1. Add a new "Visual Builder" visualization
+1. Add a new visualization
 ![1](https://github.com/elastic/examples/blob/master/scraping-prometheus-k8s-with-metricbeat/images/007-kibana.png)
-1. Select the metricbeat-* index, as this points to where the metric data is stored
+1. Select Visual Builder
 ![1](https://github.com/elastic/examples/blob/master/scraping-prometheus-k8s-with-metricbeat/images/008-kibana.png)
 1. Set the Y-axis to the max of prometheus.metrics.redis_instantaneous_ops_per_sec (paste it in, or type instantaneous and select the metric)
 ![1](https://github.com/elastic/examples/blob/master/scraping-prometheus-k8s-with-metricbeat/images/009-kibana.png)
