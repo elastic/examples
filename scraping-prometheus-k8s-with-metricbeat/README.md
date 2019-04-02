@@ -1,3 +1,9 @@
+# This example walks you through integrating with Prometheus in a Kubernetes environment
+## Assumptions:
+ - You have a Kubernetes environment
+ - You have a Prometheus server deployed in that Kubernetes environment (if you want one, see the caveat below)
+### Caveat: If you do not have a Prometheus Server, you can use the Prometheus Redis exporter that gets deployed with the sample application and it will get picked up by the Metricbeat autodiscover feature.
+
 ### Create an Elasticsearch Service deployment in Elastic Cloud
 You can use Elastic Cloud ( http://cloud.elastic.co ), or a local deployment.  Whichever you choose, https://elastic.co/start will get you started.
 
@@ -15,7 +21,7 @@ kubectl create clusterrolebinding cluster-admin-binding \
 ```
 
 ### Clone the YAML files
-Either clone the entire Elastic examples repo or use the wget commands in download.txt:
+Either clone the entire Elastic examples repo or use the wget commands in download.txt (wget is required, if you do not have it just clone the repo):
 
 ```
 mkdir scraping-prometheus-k8s-with-metricbeat
@@ -128,35 +134,4 @@ If you are not familiar with the Prometheus autodiscover configuration, here is 
 
 ### View in Kibana
 
-#### Open discover
-Look at instantaneous ops per second and ScalingReplicaSet
-
-### Scale your deployments and see new pods being monitored
-List the existing deployments:
-```
-kubectl get deployments
-
-NAME           DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
-frontend       3         3         3            3           3m
-redis-master   1         1         1            1           3m
-redis-slave    2         2         2            2           3m
-```
-
-Scale the frontend down to one pod:
-```
-kubectl scale --replicas=1 deployment/redis-slave
-
-deployment "slave" scaled
-```
-
-Check the slave deployment:
-```
-kubectl get slave frontend
-
-NAME       DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
-slave       1         1         1            1           1m
-```
-
-### View the changes in Kibana
-See the screenshot, add the indicated filters and then add the columns to the view.  You can see the ScalingReplicaSet entry that is marked, following from there to the top of the list of events shows the image being pulled, the volumes mounted, the pod starting, etc.
-![Kibana Discover](https://raw.githubusercontent.com/elastic/examples/master/MonitoringKubernetes/scaling-discover.png)
+Please see the video from the blog "[Elasticsearch Observability: Embracing Prometheus and OpenMetrics standards for metrics](https://elastic.co/blog/elasticsearch-observability-embracing-prometheus-and-openmetrics-standards-for-metrics)" for step by step instructions to build a visualization with the Redis metrics collected through Prometheus and the kube-state-metrics collected directly by Metricbeat.
