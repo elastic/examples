@@ -199,11 +199,15 @@ Open Discover in a new tab, and filter on kubernetes.event.reason:
 1. Add a data source for the annotation.  This can be any index pattern in your system.  In the example we will be using events from k8s, and we grab those form kube-state-metrics via Metricbeat.
 ![1](https://github.com/elastic/examples/blob/master/scraping-prometheus-k8s-with-metricbeat/images/014-kibana.png)
 
-1. Follow
+1. Set the annotation up as shown. All of the details come from the Discover window which is open in another tab.  Numbers 3 - 6 below deserve a little detail:
+
+3, 4: This is a list of all fields used in the annotation message.
+
+5, 6: This is a JSON formatted string that will be displayed on hover over.  Put field names in `{{ }}` and add other text as needed.  When you add the row template the annotations will pop up, hover over them to verify.
 ![1](https://github.com/elastic/examples/blob/master/scraping-prometheus-k8s-with-metricbeat/images/018-kibana.png)
 
-1. Follow
+1. Save the visualization
 ![1](https://github.com/elastic/examples/blob/master/scraping-prometheus-k8s-with-metricbeat/images/019-kibana.png)
 
-1. Follow
+1. Give it a name
 ![1](https://github.com/elastic/examples/blob/master/scraping-prometheus-k8s-with-metricbeat/images/020-kibana.png)
