@@ -4,15 +4,15 @@
  - You have a Prometheus server deployed in that Kubernetes environment (if you want one, see the caveat below)
 ### Caveat: If you do not have a Prometheus Server, you can use the Prometheus Redis exporter that gets deployed with the sample application and it will get picked up by the Metricbeat autodiscover feature.
 
-### Create an Elasticsearch Service deployment in Elastic Cloud
+## Create an Elasticsearch Service deployment in Elastic Cloud
 You can use Elastic Cloud ( http://cloud.elastic.co ), or a local deployment.  Whichever you choose, https://elastic.co/start will get you started.
 
 If this is your first experience with the Elastic Stack I would recommend Elastic Cloud; and don't worry, you do not need a credit card.
 
 Make sure that you take note of the CLOUD ID and Elastic Password if you use Elastic Cloud or Elastic Cloud Enterprise.
 
-### Configure your Kubernetes environment
-#### Authorization
+## Configure your Kubernetes environment
+### Authorization
 Create a cluster level role binding so that you can manipulate the system level namespace (this is where DaemonSets go)
 
 ```
@@ -69,7 +69,7 @@ kubectl create -f kube-state-metrics/kubernetes
 kubectl get pods --namespace=kube-system | grep kube-state
 ```
 
-### Deploy the Guestbook example
+## Deploy the Guestbook example
 Note: This is mostly the default Guestbook example from https://github.com/kubernetes/examples/blob/master/guestbook/all-in-one/guestbook-all-in-one.yaml
 
 Changes:
@@ -94,10 +94,10 @@ kubectl get service frontend -w
 ```
 Once the external IP address is assigned you can type CTRL-C to stop watching for changes and get the command prompt back (the -w is "watch for changes")
 
-### Deploy Metricbeat
+## Deploy Metricbeat
 Normally deploying Metricbeat would be a single command, but the goal of this example is to show multiple ways of pulling metrics from Prometheus, so we will do things step by step.
 
-#### Pull metrics from a Prometheus server and kube-state-metrics
+### Pull metrics from a Prometheus server and kube-state-metrics
 In this example we will pull:
  - self-monitoring metrics from the Prometheus server (using the /metrics endpoint)
  - all of the metrics that Prometheus collects from the various systems being monitored (using the /federate endpoint)
@@ -132,6 +132,6 @@ If you are not familiar with the Prometheus autodiscover configuration, here is 
 ![Promethus autodiscover](https://github.com/DanRoscigno/scraping-prometheus-k8s-with-metricbeat/blob/master/images/prometheus-autodiscover-snippet.png)
 
 
-### View in Kibana
+## Visualize your data in Kibana
 
 Please see the video from the blog "[Elasticsearch Observability: Embracing Prometheus and OpenMetrics standards for metrics](https://elastic.co/blog/elasticsearch-observability-embracing-prometheus-and-openmetrics-standards-for-metrics)" for step by step instructions to build a visualization with the Redis metrics collected through Prometheus and the kube-state-metrics collected directly by Metricbeat.
