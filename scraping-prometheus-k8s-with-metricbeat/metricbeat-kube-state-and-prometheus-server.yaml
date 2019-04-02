@@ -49,7 +49,7 @@ data:
 
     - module: prometheus
       period: 10s
-      host: ${NODE_NAME}
+      #host: ${NODE_NAME}
       hosts: ["prometheus-service.monitoring.svc.cluster.local:9090"]
       metrics_path: /metrics
 
