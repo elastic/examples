@@ -182,7 +182,7 @@ Open Kibana
 
 1. At this point the time series is done, but let's kick it up a notch.  Why not add some event data as an annotation?  This could be a specific log message that might be a clue to a performance change.  In this example we will use a message that tells us the Redis deployment has scaled.  You might choose to use a crash loop backoff, or a log message that indicates a config change.  
 
-Open Discover in a new tab, and filter on kubernetes.event.reason:
+1. Open Discover in a new tab, and filter on kubernetes.event.reason:
 ![1](https://github.com/elastic/examples/blob/master/scraping-prometheus-k8s-with-metricbeat/images/015-kibana.png)
 
 1. Click on `exists in any form` and press enter
