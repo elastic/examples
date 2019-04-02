@@ -139,6 +139,9 @@ If you are not familiar with the Prometheus autodiscover configuration, here is 
 Please see the video from the blog "[Elasticsearch Observability: Embracing Prometheus and OpenMetrics standards for metrics](https://elastic.co/blog/elasticsearch-observability-embracing-prometheus-and-openmetrics-standards-for-metrics)" for step by step instructions to build a visualization with the Redis metrics collected through Prometheus and the kube-state-metrics collected directly by Metricbeat.
 
 1. Open Kibana
+1. Open discover
+1. Start typing the name of the metric `instantaneous_ops`
+1. When Kibana offers you the list, choose `prometheus.metrics.redis_instantaneous_ops_per_sec`
 ![1](https://github.com/elastic/examples/blob/master/scraping-prometheus-k8s-with-metricbeat/images/001-kibana.png)
 1. Open the Discover application
 ![1](https://github.com/elastic/examples/blob/master/scraping-prometheus-k8s-with-metricbeat/images/002-kibana.png)
