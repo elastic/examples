@@ -107,7 +107,7 @@ In this example we will pull:
 kubectl create -f metricbeat-kube-state-and-prometheus-server.yaml
 ```
 Here is the YAML to connect Metricbeat to the Prometheus server /metrics endpoint (self-monitoring):
-![scrape server /metrics endpoint](https://github.com/DanRoscigno/scraping-prometheus-k8s-with-metricbeat/blob/master/images/prometheus-selfmon.png)
+![scrape server /metrics endpoint](https://github.com/elastic/examples/blob/master/scraping-prometheus-k8s-with-metricbeat/images/prometheus-selfmon.png)
 
 Here is the YAML to connect Metricbeat to the Prometheus server /federate endpoint:
 ![scrape server /federate endpoint](https://github.com/DanRoscigno/scraping-prometheus-k8s-with-metricbeat/blob/master/images/prometheus-federate.png)
