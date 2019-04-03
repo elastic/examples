@@ -180,7 +180,9 @@ Open Kibana
 1. Name the time series, and if you want to change the number format you can type a format in.  There is a link to the format string details just under the format box.  If there are pods in the list that you do not want, you can filter using the k8s metadata, in the screenshot we are filtering by k8s label `app`
 ![1](https://github.com/elastic/examples/blob/master/scraping-prometheus-k8s-with-metricbeat/images/012-kibana.png)
 
-1. At this point the time series is done, but let's kick it up a notch.  Why not add some event data as an annotation?  This could be a specific log message that might be a clue to a performance change.  In this example we will use a message that tells us the Redis deployment has scaled.  You might choose to use a crash loop backoff, or a log message that indicates a config change.  
+1. At this point the time series is done, but let's kick it up a notch.  Why not add some event data as an annotation?  This could be a specific log message that might be a clue to a performance change.  In this example we will use a message that tells us the Redis deployment has scaled.  You might choose to use a crash loop backoff, or a log message that indicates a config change.  Scale a deployment to make sure you have some of the relevant events (`kubectl scale --replicas=1 deployment/redis-slave`) 
+
+1. Switch browser tabs to the Visual Builder and click on the Annotations tab:
 
 1. Open Discover in a new tab, and filter on kubernetes.event.reason:
 ![1](https://github.com/elastic/examples/blob/master/scraping-prometheus-k8s-with-metricbeat/images/015-kibana.png)
