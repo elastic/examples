@@ -33,7 +33,7 @@ data:
               config:
                 - module: redis
                   log:
-                    prospector:
+                    input:
                       type: docker
                       containers.ids:
                         - ${data.kubernetes.container.id}
@@ -45,12 +45,12 @@ data:
               config:
                 - module: apache2
                   access:
-                    prospector:
+                    input:
                       type: docker
                       containers.ids:
                         - ${data.kubernetes.container.id}
                   error:
-                    prospector:
+                    input:
                       type: docker
                       containers.ids:
                         - ${data.kubernetes.container.id}
@@ -59,12 +59,12 @@ data:
               config:
                 - module: mysql
                   error:
-                    prospector:
+                    input:
                       type: docker
                       containers.ids:
                         - ${data.kubernetes.container.id}
                   slowlog:
-                    prospector:
+                    input:
                       type: docker
                       containers.ids:
                         - ${data.kubernetes.container.id}
@@ -112,7 +112,7 @@ spec:
       terminationGracePeriodSeconds: 30
       containers:
       - name: filebeat-dynamic
-        image: docker.elastic.co/beats/filebeat:6.6.0
+        image: docker.elastic.co/beats/filebeat:7.0.0-rc2
         imagePullPolicy: Always
         args: [
           "-c", "/etc/filebeat.yml",

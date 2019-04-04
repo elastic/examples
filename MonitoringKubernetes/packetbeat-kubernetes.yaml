@@ -32,6 +32,10 @@ data:
     - type: redis
       ports: [6379]
 
+    packetbeat.flows:
+      timeout: 30s
+      period: 10s
+
     processors:
       - add_cloud_metadata:
       - add_kubernetes_metadata:
@@ -68,7 +72,7 @@ spec:
       hostNetwork: true
       containers:
       - name: packetbeat-dynamic
-        image: docker.elastic.co/beats/packetbeat:6.6.0
+        image: docker.elastic.co/beats/packetbeat:7.0.0-rc2
         imagePullPolicy: Always
         args: [
           "-c", "/etc/packetbeat.yml",
