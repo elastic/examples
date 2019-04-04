@@ -134,9 +134,7 @@ If you are not familiar with the Prometheus autodiscover configuration, here is 
 
 ## Visualize your data in Kibana
 
-### Note: the link in the next line is not live yet, skip to the step by step if you happen to find this page before it goes live on April 3rd 2019.
-
-Please see the video from the blog "[Elasticsearch Observability: Embracing Prometheus and OpenMetrics standards for metrics](https://elastic.co/blog/elasticsearch-observability-embracing-prometheus-and-openmetrics-standards-for-metrics)" for step by step instructions to build a visualization with the Redis metrics collected through Prometheus and the kube-state-metrics collected directly by Metricbeat.
+Please either see the video from the blog "[Elasticsearch Observability: Embracing Prometheus and OpenMetrics standards for metrics](https://elastic.co/blog/elasticsearch-observability-embracing-prometheus-and-openmetrics-standards-for-metrics)", or follow along below for step by step instructions to build a visualization with the Redis metrics collected through Prometheus and the kube-state-metrics collected directly by Metricbeat.  Substitute your own metrics if you did not deploy the Guestbook app.
 
 Open Kibana
 
