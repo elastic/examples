@@ -1,0 +1,75 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: filebeat-setup-config
+  namespace: kube-system
+  labels:
+    k8s-app: filebeat
+    kubernetes.io/cluster-service: "true"
+data:
+  filebeat.yml: |-
+    filebeat.config.modules:
+      path: ${path.config}/modules.d/*.yml
+      reload.enabled: false
+
+    setup.template.settings:
+      index.number_of_shards: 1
+      index.codec: best_compression
+
+    output.elasticsearch:
+      hosts: ${ELASTICSEARCH_HOSTS}
+
+    setup.kibana:
+      host: ${KIBANA_HOST}
+---
+# Run filebeat setup
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: filebeat-setup
+  namespace: kube-system
+spec:
+  activeDeadlineSeconds: 300
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: filebeat-setup
+        #imagePullPolicy: Always
+        image: docker.elastic.co/beats/filebeat:6.7.0
+        args: [
+          "-c", "/etc/filebeat.yml",
+          "-e",
+          "setup",
+          "--ilm-policy",
+        ]
+        env:
+        - name: ELASTICSEARCH_HOSTS
+          valueFrom:
+            secretKeyRef:
+              name: elastic-stack
+              key: elasticsearch-hosts-ports
+        - name: KIBANA_HOST
+          valueFrom:
+            secretKeyRef:
+              name: elastic-stack
+              key: kibana-host-port
+        securityContext:
+          runAsUser: 0
+        volumeMounts:
+        - name: config
+          mountPath: /etc/filebeat.yml
+          readOnly: true
+          subPath: filebeat.yml
+        - name: dockersock
+          mountPath: /var/run/docker.sock
+      volumes:
+      - name: dockersock
+        hostPath:
+          path: /var/run/docker.sock
+      - name: config
+        configMap:
+          defaultMode: 0600
+          name: filebeat-setup-config
+---

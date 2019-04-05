@@ -1,0 +1,141 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: journalbeat-dynamic-config
+  namespace: kube-system
+  labels:
+    k8s-app: journalbeat-dynamic
+    kubernetes.io/cluster-service: "true"
+data:
+  journalbeat.yml: |-
+    journalbeat.inputs:
+    - paths: ["/var/log/journal"]
+      seek: cursor
+
+    processors:
+    - add_cloud_metadata: ~
+    - add_kubernetes_metadata:
+        in_cluster: true
+        default_indexers.enabled: false
+        default_matchers.enabled: false
+        indexers:
+          - container:
+        matchers:
+          - fields:
+              lookup_fields: ["container.id"]
+
+    output.elasticsearch:
+      hosts: ${ELASTICSEARCH_HOSTS}
+      ilm.enabled: true
+    
+---
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  name: journalbeat-dynamic
+  namespace: kube-system
+  labels:
+    k8s-app: journalbeat-dynamic
+    kubernetes.io/cluster-service: "true"
+spec:
+  template:
+    metadata:
+      labels:
+        k8s-app: journalbeat-dynamic
+        kubernetes.io/cluster-service: "true"
+    spec:
+      serviceAccountName: journalbeat-dynamic
+      terminationGracePeriodSeconds: 30
+      containers:
+      - name: journalbeat-dynamic
+        image: docker.elastic.co/beats/journalbeat:6.7.0
+        imagePullPolicy: Always
+        args: [
+          "-c", "/etc/journalbeat.yml",
+          "-e",
+        ]
+        env:
+        - name: ELASTICSEARCH_HOSTS
+          valueFrom:
+            secretKeyRef:
+              name: elastic-stack
+              key: elasticsearch-hosts-ports
+        securityContext:
+          runAsUser: 0
+        volumeMounts:
+        - name: config
+          mountPath: /etc/journalbeat.yml
+          readOnly: true
+          subPath: journalbeat.yml
+        - name: data
+          mountPath: /usr/share/journalbeat/data
+        - name: varlogjournal
+          mountPath: /var/log/journal
+          readOnly: true
+        - name: machineid
+          mountPath: /etc/machineid
+          readOnly: true
+        - name: systemd
+          mountPath: /run/systemd
+          readOnly: true
+        - name: hostname
+          mountPath: /etc/hostname
+          readOnly: true
+      volumes:
+      - name: config
+        configMap:
+          defaultMode: 0600
+          name: journalbeat-dynamic-config
+      - name: varlogjournal
+        hostPath:
+          path: /var/log/journal
+      - name: machineid
+        hostPath:
+          path: /etc/machine-id
+      - name: systemd
+        hostPath:
+          path: /run/systemd
+      - name: hostname
+        hostPath:
+          path: /etc/hostname
+      - name: data
+        emptyDir: {}
+
+---
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRoleBinding
+metadata:
+  name: journalbeat-dynamic
+subjects:
+- kind: ServiceAccount
+  name: journalbeat-dynamic
+  namespace: kube-system
+roleRef:
+  kind: ClusterRole
+  name: journalbeat-dynamic
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRole
+metadata:
+  name: journalbeat-dynamic
+  labels:
+    k8s-app: journalbeat-dynamic
+rules:
+- apiGroups: [""] # "" indicates the core API group
+  resources:
+  - namespaces
+  - pods
+  verbs:
+  - get
+  - watch
+  - list
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: journalbeat-dynamic
+  namespace: kube-system
+  labels:
+    k8s-app: journalbeat-dynamic
