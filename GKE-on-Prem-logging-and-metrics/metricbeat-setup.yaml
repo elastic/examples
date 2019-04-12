@@ -37,8 +37,7 @@ spec:
       restartPolicy: Never
       containers:
       - name: metricbeat-setup
-        #imagePullPolicy: Always
-        image: docker.elastic.co/beats/metricbeat:6.7.0
+        image: docker.elastic.co/beats/metricbeat:7.0.0
         args: [
           "-c", "/etc/metricbeat.yml",
           "-e",

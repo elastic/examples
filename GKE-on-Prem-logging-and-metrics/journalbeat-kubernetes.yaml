@@ -49,8 +49,7 @@ spec:
       terminationGracePeriodSeconds: 30
       containers:
       - name: journalbeat-dynamic
-        image: docker.elastic.co/beats/journalbeat:6.7.0
-        imagePullPolicy: Always
+        image: docker.elastic.co/beats/journalbeat:7.0.0
         args: [
           "-c", "/etc/journalbeat.yml",
           "-e",
