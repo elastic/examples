@@ -1,0 +1,181 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: packetbeat-dynamic-config
+  namespace: kube-system
+  labels:
+    k8s-app: packetbeat-dynamic
+    kubernetes.io/cluster-service: "true"
+data:
+  packetbeat.yml: |-
+    setup.dashboards.enabled: true
+    setup.template.enabled: true
+
+    setup.template.settings:
+      index.number_of_shards: 2
+
+    packetbeat.interfaces.device: any
+
+    packetbeat.protocols:
+    - type: dns
+      ports: [53]
+      include_authorities: true
+      include_additionals: true
+
+    - type: http
+      ports: [80, 8000, 8080, 9200]
+
+    - type: mysql
+      ports: [3306]
+
+    - type: redis
+      ports: [6379]
+
+    packetbeat.flows:
+      timeout: 30s
+      period: 10s
+
+    processors:
+      - add_cloud_metadata:
+      - add_kubernetes_metadata:
+          host: ${HOSTNAME}
+          indexers:
+          - ip_port:
+          matchers:
+          - field_format:
+              format: '%{[ip]}:%{[port]}'
+              # with version 7 of Packetbeat use the following line instead of the one above.
+              #format: '%{[destination.ip]}:%{[destination.port]}'
+
+    cloud.auth: ${ELASTIC_CLOUD_AUTH}
+    cloud.id: ${ELASTIC_CLOUD_ID}
+
+    output.elasticsearch:
+      hosts: ${ELASTICSEARCH_HOSTS}
+      username: ${ELASTICSEARCH_USERNAME}
+      password: ${ELASTICSEARCH_PASSWORD}
+    setup.kibana:
+      host: ${KIBANA_HOST}
+
+---
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  name: packetbeat-dynamic
+  namespace: kube-system
+  labels:
+    k8s-app: packetbeat-dynamic
+    kubernetes.io/cluster-service: "true"
+spec:
+  template:
+    metadata:
+      labels:
+        k8s-app: packetbeat-dynamic
+        kubernetes.io/cluster-service: "true"
+    spec:
+      serviceAccountName: packetbeat-dynamic
+      terminationGracePeriodSeconds: 30
+      hostNetwork: true
+      dnsPolicy: ClusterFirstWithHostNet
+      containers:
+      - name: packetbeat-dynamic
+        image: docker.elastic.co/beats/packetbeat:6.7.1
+        imagePullPolicy: Always
+        args: [
+          "-c", "/etc/packetbeat.yml",
+          "-e",
+        ]
+        securityContext:
+          runAsUser: 0
+          capabilities:
+            add:
+            - NET_ADMIN
+        env:
+        - name: ELASTIC_CLOUD_ID
+          valueFrom:
+            secretKeyRef:
+              name: dynamic-logging
+              key: ELASTIC_CLOUD_ID
+              optional: true
+        - name: ELASTIC_CLOUD_AUTH
+          valueFrom:
+            secretKeyRef:
+              name: dynamic-logging
+              key: ELASTIC_CLOUD_AUTH
+              optional: true
+        - name: ELASTICSEARCH_HOSTS
+          valueFrom:
+            secretKeyRef:
+              name: dynamic-logging
+              key: ELASTICSEARCH_HOSTS
+              optional: true
+        - name: KIBANA_HOST
+          valueFrom:
+            secretKeyRef:
+              name: dynamic-logging
+              key: KIBANA_HOST
+              optional: true
+        - name: ELASTICSEARCH_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: dynamic-logging
+              key: ELASTICSEARCH_USERNAME
+              optional: true
+        - name: ELASTICSEARCH_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: dynamic-logging
+              key: ELASTICSEARCH_PASSWORD
+              optional: true
+        volumeMounts:
+        - name: config
+          mountPath: /etc/packetbeat.yml
+          readOnly: true
+          subPath: packetbeat.yml
+        - name: data
+          mountPath: /usr/share/packetbeat/data
+      volumes:
+      - name: config
+        configMap:
+          defaultMode: 0600
+          name: packetbeat-dynamic-config
+      - name: data
+        emptyDir: {}
+---
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRoleBinding
+metadata:
+  name: packetbeat-dynamic
+subjects:
+- kind: ServiceAccount
+  name: packetbeat-dynamic
+  namespace: kube-system
+roleRef:
+  kind: ClusterRole
+  name: packetbeat-dynamic
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRole
+metadata:
+  name: packetbeat-dynamic
+  labels:
+    k8s-app: packetbeat-dynamic
+rules:
+- apiGroups: [""] # "" indicates the core API group
+  resources:
+  - namespaces
+  - pods
+  verbs:
+  - get
+  - watch
+  - list
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: packetbeat-dynamic
+  namespace: kube-system
+  labels:
+    k8s-app: packetbeat-dynamic
