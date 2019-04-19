@@ -18,6 +18,10 @@ data:
     packetbeat.interfaces.device: any
 
     packetbeat.protocols:
+
+    - type: dhcpv4
+      ports: [67, 68]
+
     - type: dns
       ports: [53]
       include_authorities: true
@@ -27,10 +31,28 @@ data:
       ports: [80, 8000, 8080, 9200]
 
     - type: mysql
-      ports: [3306]
+      ports: [3306, 3307]
+
+    - type: memcache
+      ports: [11211]
 
     - type: redis
       ports: [6379]
+
+    - type: pgsql
+      ports: [5432]
+
+    - type: thrift
+      ports: [9090]
+
+    - type: mongodb
+      ports: [27017]
+
+    - type: cassandra
+      ports: [9042]
+
+    - type: tls
+      ports: [443, 993, 995, 5223, 8443, 8883, 9243]
 
     packetbeat.flows:
       timeout: 30s
