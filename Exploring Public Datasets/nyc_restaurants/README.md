@@ -105,6 +105,9 @@ If using the snapshot, the above represents the minimal compatible Elasticsearch
 
   ![Kibana Dashboard Screenshot](https://github.com/elastic/examples/blob/master/Exploring%20Public%20Datasets/nyc_restaurants/restaurants_kibana.jpg?raw=true)
 
+  #### Option 3: Use the CURL as described in this blog (works great with cloud!) 
+https://www.elastic.co/blog/indexing-csv-elasticsearch-ingest-node
+
   ### We would love to hear from you!
   If you run into issues running this example or have suggestions to improve it, please use Github issues to let us know. Have an easy fix? Submit a pull request. We will try our best to respond in a timely manner!
 
