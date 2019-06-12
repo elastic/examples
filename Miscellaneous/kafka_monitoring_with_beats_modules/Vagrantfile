@@ -1,0 +1,24 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "ubuntu/bionic64"
+  config.vm.provision "shell", path: "provisioner.sh", env: {
+    "CLOUD_ID" => "#{ENV['CLOUD_ID']}",
+    "CLOUD_AUTH" => "#{ENV['CLOUD_AUTH']}"
+  }
+
+  config.vm.provider "virtualbox" do |v|
+    v.memory = 2096
+    v.cpus = 2
+  end
+
+  config.vm.provision :hosts, :sync_hosts => true, :add_localhost_hostnames => false
+
+  (0..2).each do |node_index|
+    config.vm.define "kafka#{node_index}" do |node|
+      node.vm.network :private_network, :ip => "10.200.200.#{node_index + 10}"
+      node.vm.hostname = "kafka#{node_index}"
+    end
+  end
+end
