@@ -41,7 +41,6 @@ spec:
           "-c", "/etc/filebeat.yml",
           "-e",
           "setup",
-          "--ilm-policy",
         ]
         env:
         - name: ELASTICSEARCH_HOSTS
