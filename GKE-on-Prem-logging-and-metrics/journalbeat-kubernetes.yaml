@@ -78,9 +78,6 @@ spec:
         - name: systemd
           mountPath: /run/systemd
           readOnly: true
-        - name: hostname
-          mountPath: /etc/hostname
-          readOnly: true
       volumes:
       - name: config
         configMap:
@@ -95,9 +92,6 @@ spec:
       - name: systemd
         hostPath:
           path: /run/systemd
-      - name: hostname
-        hostPath:
-          path: /etc/hostname
       - name: data
         emptyDir: {}
 
