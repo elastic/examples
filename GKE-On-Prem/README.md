@@ -1,11 +1,11 @@
-# GKE-on-Prem-logging-and-metrics
+# GKE-On-Prem
 
 ### Grab the configuration
 `git clone https://github.com/elastic/examples.git`
 or
 Click the *Clone or Download* button at the top right of https://github.com/elastic/examples
 
-All of the rest of the commands will be run from the directory `examples/GKE-on-Prem-logging-and-metrics`
+All of the rest of the commands will be run from the directory `examples/GKE-On-Prem`
 
 ### Set the cluster-admin-binding
 Logging and metrics tools like Filebeat, Fluentd, Metricbeat, Prometheus, etc. run as DameonSets.  To deploy DaemonSets you need the cluster role binding `cluster-admin-binding`.  Create it now:
