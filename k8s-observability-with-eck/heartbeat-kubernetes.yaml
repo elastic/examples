@@ -28,6 +28,7 @@ data:
     - type: http
       schedule: '@every 5s'
       urls:
+        - "http://frontend.guestbook.svc.cluster.local"
         - "https://www.google.com"
         - "http://www.google.com"
         - "https://discuss.elastic.co"
