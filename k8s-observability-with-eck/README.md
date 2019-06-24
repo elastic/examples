@@ -168,16 +168,6 @@ NAME            HEALTH   NODES   VERSION   AGE
 kibana-sample   green    1       7.1.1     3m
 ```
 
-
-## Get the user credentials
-
-The Elasticsearch cluster has a non-default password applied, so to log in to Kibana you will need the password.  The password is stored in a Kubernetes Secret.  Get the elastic user's password.  
-
-```bash
-echo `kubectl get secret elasticsearch-sample-elastic-user -o=jsonpath='{.data.elastic}' | base64 --decode`
-```
-Copy the password
-
 # Deploy Beats
 
 The operators perform many tasks for the user.  Included in the list is setting up TLS certs and securing
