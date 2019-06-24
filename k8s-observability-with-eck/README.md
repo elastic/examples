@@ -1,7 +1,7 @@
 # Goal
 Collect logs, metrics, and APM data from a Kubernetes environment, and the application(s) running in that environment and store, analyze, and visualize the resulting information in Elastic Cloud on Kubernetes, which provides a Kubernetes Operator to deploy and manage Elasticsearch and Kibana in k8s.
 
-https://raw.githubusercontent.com/elastic/examples/master/k8s-observability-with-eck/ECK-obs-infrastructure.png
+![Dashboard image](https://raw.githubusercontent.com/elastic/examples/master/k8s-observability-with-eck/ECK-obs-infrastructure.png)
 
 # About GKE
 GKE == Google Kubernetes Engine. If you have never used GKE, you might want to go through the [GKE quickstart](https://cloud.google.com/kubernetes-engine/docs/quickstart).  
