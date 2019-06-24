@@ -1,0 +1,240 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: heartbeat-deployment-config
+  namespace: kube-system
+  labels:
+    k8s-app: heartbeat
+data:
+  heartbeat.yml: |-
+    heartbeat.monitors:
+    - type: icmp
+      schedule: '@every 5s'
+      hosts:
+        - "www.elastic.co"
+        - "discuss.elastic.co"
+        - "www.google.com"
+        - "localhost"
+    - type: http
+      schedule: '@every 5s'
+      urls:
+        - "http://www.elastic.co"
+      check.response.status: 301
+    - type: tcp
+      schedule: '@every 30s'
+      hosts:
+        - "8.8.8.8:53"
+    - type: http
+      schedule: '@every 5s'
+      urls:
+        - "https://www.google.com"
+        - "http://www.google.com"
+        - "https://discuss.elastic.co"
+        - "https://www.elastic.co"
+        - "https://demo.elastic.co"
+        - "http://fake.elastic.co"
+        - "https://github.com/elastic/kibana"
+      check.response.status: 200
+    - type: http
+      schedule: '@every 5s'
+      urls:
+        - "https://www.elastic.co/solutions/apm"
+      check.response:
+        status: 200
+        body: "Open Source Application Performance Monitoring"
+    - type: http
+      schedule: '@every 5s'
+      urls:
+        - "https://www.elastic.co/solutions/apm"
+      check.response:
+        status: 200
+        body: "Not there"
+    - type: http
+      schedule: '@every 1s'
+      urls:
+        - "https://www.elastic.co/solutions/security-analytics"
+      check.response:
+        body: "Can't find this"
+    - type: http
+      schedule: '@every 5s'
+      urls:
+        - "https://www.elastic.co/solutions/security-analytics"
+      check.response:
+        body: "Threats don't follow templates"
+    - type: http
+      schedule: '@every 1s'
+      urls:
+        - "https://www.elastic.co/products/beats/heartbeat"
+      check.response:
+        body: "Lightweight Shipper for Uptime Monitoring!"
+        status: 200
+    - type: http
+      schedule: '@every 5s'
+      urls:
+        - "https://www.elastic.co/use-cases/"
+      check.response:
+        body: "Stories from Users Like YouXX"
+    - type: http
+      schedule: '@every 6s'
+      urls:
+        - "https://www.elastic.co/use-cases/"
+      check.response:
+        body: "Stories from Users Like You"
+
+    cloud.auth: ${ELASTIC_CLOUD_AUTH}
+    cloud.id: ${ELASTIC_CLOUD_ID}
+
+    output.elasticsearch:
+      hosts: ${ELASTICSEARCH_HOSTS}
+      username: ${ELASTICSEARCH_USERNAME}
+      password: ${ELASTICSEARCH_PASSWORD}
+      ssl.certificate_authorities:
+        - /etc/certificate/ca.pem
+    setup.kibana:
+      host: ${KIBANA_HOST}
+      ssl.certificate_authorities:
+        - /etc/certificate/ca.pem
+---
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: heartbeat
+  namespace: kube-system
+  labels:
+    k8s-app: heartbeat
+spec:
+  template:
+    metadata:
+      labels:
+        k8s-app: heartbeat
+    spec:
+      serviceAccountName: heartbeat
+      hostNetwork: true
+      dnsPolicy: ClusterFirstWithHostNet
+      containers:
+      - name: heartbeat
+        image: docker.elastic.co/beats/heartbeat:7.1.0-SNAPSHOT
+        args: [
+          "-c", "/etc/heartbeat.yml",
+          "-e",
+        ]
+        env:
+        - name: ELASTIC_CLOUD_ID
+          valueFrom:
+            secretKeyRef:
+              name: dynamic-logging
+              key: ELASTIC_CLOUD_ID
+              optional: true
+        - name: ELASTIC_CLOUD_AUTH
+          valueFrom:
+            secretKeyRef:
+              name: dynamic-logging
+              key: ELASTIC_CLOUD_AUTH
+              optional: true
+        - name: ELASTICSEARCH_HOSTS
+          valueFrom:
+            secretKeyRef:
+              name: dynamic-logging
+              key: ELASTICSEARCH_HOSTS
+              optional: true
+        - name: KIBANA_HOST
+          valueFrom:
+            secretKeyRef:
+              name: dynamic-logging
+              key: KIBANA_HOST
+              optional: true
+        - name: ELASTICSEARCH_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: dynamic-logging
+              key: ELASTICSEARCH_USERNAME
+              optional: true
+        - name: ELASTICSEARCH_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: dynamic-logging
+              key: ELASTICSEARCH_PASSWORD
+              optional: true
+        - name: NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        securityContext:
+          runAsUser: 0
+        resources:
+          limits:
+            memory: 200Mi
+          requests:
+            cpu: 100m
+            memory: 100Mi
+        volumeMounts:
+        - name: config
+          mountPath: /etc/heartbeat.yml
+          readOnly: true
+          subPath: heartbeat.yml
+        - name: certificate
+          mountPath: /etc/certificate/ca.pem
+          readOnly: true
+          subPath: ca.pem
+      volumes:
+      - name: config
+        configMap:
+          defaultMode: 0600
+          name: heartbeat-deployment-config
+      - name: certificate
+        configMap:
+          defaultMode: 0400
+          name: certificate
+---
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRoleBinding
+metadata:
+  name: heartbeat
+subjects:
+- kind: ServiceAccount
+  name: heartbeat
+  namespace: kube-system
+roleRef:
+  kind: ClusterRole
+  name: heartbeat
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRole
+metadata:
+  name: heartbeat
+  labels:
+    k8s-app: heartbeat
+rules:
+- apiGroups: [""]
+  resources:
+  - nodes
+  - namespaces
+  - events
+  - pods
+  verbs: ["get", "list", "watch"]
+- apiGroups: ["extensions"]
+  resources:
+  - replicasets
+  verbs: ["get", "list", "watch"]
+- apiGroups: ["apps"]
+  resources:
+  - statefulsets
+  - deployments
+  verbs: ["get", "list", "watch"]
+- apiGroups:
+  - ""
+  resources:
+  - nodes/stats
+  verbs:
+  - get
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: heartbeat
+  namespace: kube-system
+  labels:
+    k8s-app: heartbeat
+---
