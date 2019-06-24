@@ -369,6 +369,22 @@ kubectl get pods -w -n guestbook
 ```
 
 # Access Kibana
+Kibana is available through a LoadBalancer service, get the details:
+```bash
+kubectl get service kibana-sample-kibana
+```
+
+Output:
+```bash
+NAME                   TYPE           CLUSTER-IP     EXTERNAL-IP    PORT(S)          AGE
+kibana-sample-kibana   LoadBalancer   10.10.10.105   34.66.51.175   5601:31229/TCP   20m
+```
+
+In the ablve sample, the Kibana URL is `http://34.66.51.175:5601`.  You also need the password for the Elastic user, this is stored in the file ELASTICSEARCH_PASSWORD:
+
+```bash
+cat ELASTICSEARCH_PASSWORD
+```
 
 ## Set a default Index Pattern
 
