@@ -25,8 +25,8 @@ export PS1='\[\033[01;32m\]\[\033[00m\]:\[\033[01;34m\]\W\[\033[00m\]\$ '
 ## Grab the elastic/examples GitHub repo
 This README and the files needed for the demo app are in elastic/examples.  Clone the repo:
 ```
-mkdir eck-example
-cd eck-example
+mkdir k8s-observability-with-eck
+cd k8s-observability-with-eck
 git clone https://github.com/elastic/examples.git
 cd examples/k8s-observability-with-eck
 ```
