@@ -392,6 +392,7 @@ Open Kibana, and navigate to the Management -> Kibana -> Index Patterns page, cl
 ## Create a Heartbeat index pattern
 - In the same Index Pattern page click on **Create index pattern** 
 - Set the index pattern name to `heartbeat-*`
+- Set the time field to @Timestamp
 
 ## Enable Monitoring
 Navigate to Monitoring and enable monitoring.
@@ -409,9 +410,20 @@ frontend   LoadBalancer   10.76.7.248   35.224.82.103   80:32594/TCP   16m
 ```
 
 Access the application at http://<EXTERNAL-IP from output>
+
+Add some entries, and then add some fake paths so that some 404's show up in the Kibana dashboard for Apache.
+
 ## Open dashboards
+Here are some dashboards that will be populated:
+- [Filebeat Apache2] Access and error logs
+- [Metricbeat Apache] Overview
+- [Filebeat Redis] Overview
+- [Metricbeat Redis] Overview
+- [Metricbeat Kubernetes] Overview
+- [Metricbeat System] Overview
 
 ## Open Uptime
+To Do: Need to add the sample app to the Heartbeat config
 
 ## Navigate from Infrastructure app to Metrics and Logs
 
@@ -420,7 +432,7 @@ Note: When you open the Infrastructure UI follow these steps so that you will be
 * Group by Namespace
 * click on `guestbook`
 
-All of the guestbook pods will have logs.
+All of the guestbook pods will have logs and metrics.
 
 
 ## Look at details in Monitoring app
