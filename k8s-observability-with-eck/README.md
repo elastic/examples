@@ -380,16 +380,35 @@ NAME                   TYPE           CLUSTER-IP     EXTERNAL-IP    PORT(S)     
 kibana-sample-kibana   LoadBalancer   10.10.10.105   34.66.51.175   5601:31229/TCP   20m
 ```
 
-In the ablve sample, the Kibana URL is `http://34.66.51.175:5601`.  You also need the password for the Elastic user, this is stored in the file ELASTICSEARCH_PASSWORD:
+In the above sample, the Kibana URL is `http://34.66.51.175:5601`.  You also need the password for the Elastic user, this is stored in the file ELASTICSEARCH_PASSWORD:
 
 ```bash
 cat ELASTICSEARCH_PASSWORD
 ```
 
 ## Set a default Index Pattern
+Open Kibana, and navigate to the Management -> Kibana -> Index Patterns page, click on filebeat-* or metricbeat-* and make one the default (click on the star)
+
+## Create a Heartbeat index pattern
+- In the same Index Pattern page click on **Create index pattern** 
+- Set the index pattern name to `heartbeat-*`
 
 ## Enable Monitoring
+Navigate to Monitoring and enable monitoring.
 
+# Access the sample application
+The Guestbook application has an APache / PHP frontend, and a Redis backend.  It is also available behind a GKE LoadBalancer.  Get the details like so:
+```bash
+kubectl get service frontend -n guestbook
+```
+
+Output:
+```bash
+NAME       TYPE           CLUSTER-IP    EXTERNAL-IP     PORT(S)        AGE
+frontend   LoadBalancer   10.76.7.248   35.224.82.103   80:32594/TCP   16m
+```
+
+Access the application at http://<EXTERNAL-IP from output>
 ## Open dashboards
 
 ## Open Uptime
@@ -406,73 +425,3 @@ All of the guestbook pods will have logs.
 
 ## Look at details in Monitoring app
 
-history file:
-```
-gcloud container clusters get-credentials eck-webinar-dan --zone us-central1-a --project elastic-product
-
-export PS1='\[\033[01;32m\]\[\033[00m\]:\[\033[01;34m\]\W\[\033[00m\]\$ '
-
-mkdir eck-webinar
-cd eck-webinar/
-git clone git@github.com:elastic/kubecon2019.git
-
-cd eck-example/
-git clone....
-cd examples/k8s-observability-with-eck/
-
-kubectl apply -f https://download.elastic.co/downloads/eck/0.8.1/all-in-one.yaml
-kubectl get ns
-kubectl get pods -n elastic-system
-kubectl logs elastic-operator-0 -n elastic-system
-
-Do the cat EOF | kubectl apply for the storage class
-Do the cat EOF | kubectl apply for the Elasticsearch cluster
-kubectl get pods
-kubectl get pods -w
-kubectl logs -f elasticsearch-sample-es-2cqm7rr8pq
-kubectl get pods -w
-kubectl logs -f elasticsearch-sample-es-2cqm7rr8pq
-kubectl get elasticsearch
-kubectl get pvc
-
-Do the cat EOF | kubectl apply for the Kibana instance
-kubectl get kibana
-kubectl get services
-kubectl get service kibana-sample-kibana
-kubectl get service kibana-sample-kibana -w
-echo `kubectl get secret elasticsearch-sample-elastic-user -o=jsonpath='{.data.elastic}' | base64 --decode`
-clear
-kubectl get secrets| grep ca
-kubectl get secret elasticsearch-sample-ca -o=json
-kubectl get secret elasticsearch-sample-ca -o=jsonpath='{.data.ca\.pem}' | base64 --decode
-
-vi cert.yaml
-kubectl create -f cert.yaml
-kubectl get secrets | grep user
-echo `kubectl get secret elasticsearch-sample-elastic-user -o=jsonpath='{.data.elastic}' | base64 --decode` > ELASTICSEARCH_PASSWORD
-cat ELASTICSEARCH_PASSWORD
-kubectl create secret generic dynamic-logging \
-  --from-file=./ELASTICSEARCH_HOSTS \
-  --from-file=./ELASTICSEARCH_PASSWORD \
-  --from-file=./ELASTICSEARCH_USERNAME \
-  --from-file=./KIBANA_HOST \
-  --namespace=kube-system
-
-kubectl get pods --namespace=kube-system | grep kube-state
-git clone https://github.com/kubernetes/kube-state-metrics.git kube-state-metrics
-kubectl create -f kube-state-metrics/kubernetes
-kubectl get pods --namespace=kube-system | grep kube-state
-
-kubectl create -f filebeat-kubernetes.yaml
-
-kubectl create -f metricbeat-kubernetes.yaml
-
-kubectl create -f heartbeat-kubernetes.yaml
-
-kubectl create -f guestbook.yaml
-
-kubectl get pods -n kube-system
-kubectl get pods -n kube-system -w
-
-kubectl get services -n guestbook
-```
