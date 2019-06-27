@@ -1,0 +1,15 @@
+#
+---
+# IBM WebSphere MQ
+wmq:
+  :factory: com.ibm.mq.jms.MQQueueConnectionFactory
+  :queue_manager: QM1
+  :host_name: localhost
+  :channel: DEV.APP.SVRCONN
+  :port: 1414
+  # Transport Type: com.ibm.mq.jms.JMSC::MQJMS_TP_CLIENT_MQ_TCPIP
+  :transport_type: 1
+  :username: app
+  :password: password
+  :require_jars:
+    - /Users/droscigno/Projects/logstash-7.1.1/lib/IBMMQ/wmq/JavaSE/com.ibm.mq.allclient.jar
