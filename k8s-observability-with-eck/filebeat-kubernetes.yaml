@@ -121,7 +121,7 @@ spec:
       terminationGracePeriodSeconds: 30
       containers:
       - name: filebeat-dynamic
-        image: docker.elastic.co/beats/filebeat:6.7.1
+        image: docker.elastic.co/beats/filebeat:7.2.0
         imagePullPolicy: Always
         args: [
           "-c", "/etc/filebeat.yml",
