@@ -59,6 +59,7 @@ apiVersion: storage.k8s.io/v1
 metadata:
   name: ssd
 provisioner: kubernetes.io/gce-pd
+volumeBindingMode: WaitForFirstConsumer
 parameters:
   type: pd-ssd
 EOF
