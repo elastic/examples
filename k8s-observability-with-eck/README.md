@@ -88,7 +88,7 @@ Rather than have you apply a YAML file on disk, this is copied and pasted so tha
 
 - The type of thing being deployed is Elasticsearch
 - The name of the cluster is `elasticsearch-sample`
-- Use version 7.1.1
+- Use version 7.2.0
 - Make this a three node cluster
 - Mount a 200Gi volume `data` on each node using the storage class `ssd` that we just created
 
@@ -99,7 +99,7 @@ kind: Elasticsearch
 metadata:
   name: elasticsearch-sample
 spec:
-  version: "7.1.1"
+  version: "7.2.0"
   nodes:
   - nodeCount: 3
     volumeClaimTemplates:
@@ -124,7 +124,7 @@ kubectl get elasticsearch
 Look for **green**:
 ```bash
 NAME                   HEALTH   NODES   VERSION   PHASE         AGE
-elasticsearch-sample   green    3       7.1.1     Operational   3m
+elasticsearch-sample   green    3       7.2.0     Operational   3m
 ```
 
 ## Kibana
@@ -136,7 +136,7 @@ Next deploy Kibana.  Detailing the YAML below:
 
 - Deploy Kibana
 - Name it kibana-sample
-- Use version 7.1.1
+- Use version 7.2.0
 - A single node
 - (this is the important bit) Associate it with the Elasticsearch cluster `elasticsearch-sample`
 - Deploy a LoadBalancer service pointing to Kibana
@@ -148,7 +148,7 @@ kind: Kibana
 metadata:
   name: kibana-sample
 spec:
-  version: "7.1.1"
+  version: "7.2.0"
   nodeCount: 1
   elasticsearchRef:
     name: "elasticsearch-sample"
@@ -168,7 +168,7 @@ kubectl get kibana
 Look for **green**:
 ```bash
 NAME            HEALTH   NODES   VERSION   AGE
-kibana-sample   green    1       7.1.1     3m
+kibana-sample   green    1       7.2.0     3m
 ```
 
 # Deploy Beats
