@@ -1,2 +1,7 @@
 cloud.id: <Insert cloud.id from Elasticsearch Service console>
 cloud.auth: elastic:<Insert password for elastic user from Elasticsearch Service console>
+# Enable monitoring, and specify the destination for monitoring data:
+xpack.monitoring.enabled: true
+xpack.monitoring.elasticsearch.hosts: ["https://elasticsearch-endpoint-url-from-Cloud-Console:9243"]
+xpack.monitoring.elasticsearch.username: "<username>" 
+xpack.monitoring.elasticsearch.password: "<password>"
