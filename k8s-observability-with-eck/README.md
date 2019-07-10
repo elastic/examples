@@ -265,8 +265,7 @@ echo elastic > ELASTICSEARCH_USERNAME
 Decode and record the password:
 
 ```bash
-echo \
-  `kubectl get secret elasticsearch-sample-elastic-user -o=jsonpath='{.data.elastic}' | base64 --decode` \
+`kubectl get secret elasticsearch-sample-elastic-user -o=jsonpath='{.data.elastic}' | base64 --decode` \
   > ELASTICSEARCH_PASSWORD
 ```
 
@@ -412,7 +411,7 @@ NAME       TYPE           CLUSTER-IP    EXTERNAL-IP     PORT(S)        AGE
 frontend   LoadBalancer   10.76.7.248   35.224.82.103   80:32594/TCP   16m
 ```
 
-Access the application at http://<EXTERNAL-IP from output>
+Access the application at `http://<EXTERNAL-IP from output>`
 
 Add some entries, and then add some fake paths so that some 404's show up in the Kibana dashboard for Apache.
 
