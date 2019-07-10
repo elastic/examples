@@ -265,6 +265,7 @@ echo elastic > ELASTICSEARCH_USERNAME
 Decode and record the password:
 
 ```bash
+echo \
 `kubectl get secret elasticsearch-sample-elastic-user -o=jsonpath='{.data.elastic}' | base64 --decode` \
   > ELASTICSEARCH_PASSWORD
 ```
