@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "original_flight_path",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { }, "geometry": { "type": "LineString", "coordinates": [ [ -71.00192980731326, 42.362430078961033 ], [ -70.919524749846204, 43.6519362548866 ], [ -70.599875089458095, 44.29554107328692 ], [ -69.592677689750033, 44.672089214951654 ], [ -68.829108982759479, 44.808036568889044 ] ] } }
+]
+}

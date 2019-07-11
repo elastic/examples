@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "bangor_international_airport",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { }, "geometry": { "type": "Point", "coordinates": [ -68.825774282298767, 44.80601309218136 ] } }
+]
+}
