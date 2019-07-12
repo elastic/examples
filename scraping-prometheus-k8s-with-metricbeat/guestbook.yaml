@@ -203,7 +203,7 @@ spec:
           readOnly: true
           subPath: redis.conf
       - name: redis-exporter
-        image: oliver006/redis_exporter:latest
+        image: oliver006/redis_exporter:v0.17.2
         resources:
           requests:
             cpu: 100m
@@ -264,7 +264,7 @@ spec:
         ports:
         - containerPort: 6379
       - name: redis-exporter
-        image: oliver006/redis_exporter:latest
+        image: oliver006/redis_exporter:v0.17.2
         resources:
           requests:
             cpu: 100m
