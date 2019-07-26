@@ -3,7 +3,7 @@
 You can use the [Elastic Helm Charts](https://github.com/elastic/helm-charts), or a [local deployment](https://www.elastic.co/guide/en/elastic-stack/current/installing-elastic-stack.html).  
 
 # Set the credentials
-There are four files to edit to create a k8s secret when you are connectign to self managed Elasticsearch and Kibana (self managed is effectively anything other than the managed Elasticsearch Service in Elastic Cloud).  The files are:
+There are four files to edit to create a k8s secret when you are connecting to self managed Elasticsearch and Kibana (self managed is effectively anything other than the managed Elasticsearch Service in Elastic Cloud).  The files are:
 
 1. ELASTICSEARCH_HOSTS
 1. ELASTICSEARCH_PASSWORD
