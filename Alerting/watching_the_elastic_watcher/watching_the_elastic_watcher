@@ -1,0 +1,210 @@
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-
+
+"""
+Quick and dirty impelemntation of Elasticsearch watcher in Python. The watch
+definition is kept very similar to the original.  The main use case for this
+watcher outside of Elasticsearch is to monitor the operation of Elasticsearch
+watches because those watches cannot effectively be used to watch themselves.
+"""
+
+__version__ = '0.1.0'
+__license__ = 'AGPL-3.0-only'
+__author__ = 'Robin Schneider <robin.schneider@geberit.com>'
+__copyright__ = [
+    'Copyright (C) 2019 Robin Schneider <robin.schneider@geberit.com>',
+    'Copyright (C) 2019 Geberit Verwaltungs GmbH https://www.geberit.de',
+]
+
+import sys
+import logging
+import argparse
+import json
+import smtplib
+import traceback
+
+from email.message import EmailMessage
+
+import yaml
+import pystache
+from systemd.journal import JournalHandler
+from elasticsearch import Elasticsearch
+from elasticsearch.helpers import scan
+
+
+class SetJSONEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, set):
+            return list(obj)
+        return json.JSONEncoder.default(self, obj)
+
+
+class LogExtraAsJsonDataAdapter(logging.LoggerAdapter):
+    def process(self, msg, kwargs):
+        if 'extra' in kwargs:
+            kwargs['extra'] = {'JSON_SD': json.dumps(kwargs['extra'], cls=SetJSONEncoder)}
+        return msg, kwargs
+
+
+_LOG = logging.getLogger(__name__)
+LOG = LogExtraAsJsonDataAdapter(_LOG, {})
+# Please always log structured data.
+# Ref: https://stackify.com/what-is-structured-logging-and-why-developers-need-it/
+# Follow ECS if possible: https://github.com/elastic/ecs/blob/master/docs/field-details.asciidoc
+
+
+def get_args_parser():
+    args_parser = argparse.ArgumentParser(
+        epilog=__doc__,
+    )
+    args_parser.add_argument(
+        '-c', '--curator-file',
+        help="File path to curator YAML file used to get Elasticsearch entpoint and credentials.",
+        default='/etc/curator/curator.yml',
+    )
+    args_parser.add_argument(
+        '-w', '--watch-file',
+        help="File path to watch YAML file.",
+        required=True,
+    )
+    args_parser.add_argument(
+        '-n', '--dry-run', help="Trail run without changing anything.",
+        action="store_true",
+    )
+    args_parser.add_argument(
+        '-d', '--debug',
+        help="Write debugging and higher to STDOUT|STDERR.",
+        action="store_const",
+        dest="loglevel",
+        const=logging.DEBUG,
+    )
+    #  args_parser.add_argument(
+    #      '-v', '--verbose',
+    #      help="Write information and higher to STDOUT|STDERR.",
+    #      action="store_const",
+    #      dest="loglevel",
+    #      const=logging.INFO,
+    #  )
+    args_parser.add_argument(
+        '-q', '--quiet', '--silent',
+        help="Only write errors and higher to STDOUT|STDERR.",
+        action="store_const",
+        dest="loglevel",
+        const=logging.ERROR,
+    )
+    args_parser.add_argument(
+        '-j', '--journald',
+        help="Log to systemd-journald.",
+        action="store_true",
+    )
+    args_parser.add_argument(
+        '-V', '--version',
+        action='version',
+        version='%(prog)s {version}'.format(version=__version__),
+    )
+
+    args_parser.set_defaults(loglevel=logging.INFO)
+
+    return args_parser
+
+
+if __name__ == '__main__':
+    args_parser = get_args_parser()
+    args = args_parser.parse_args()
+
+    if args.journald and args.loglevel == logging.ERROR:
+        args.loglevel = logging.CRITICAL
+
+    _LOG.setLevel(logging.DEBUG)
+    log_stderr_handler = logging.StreamHandler(sys.stdout)
+    log_stderr_handler.setLevel(args.loglevel)
+    log_stderr_handler.setFormatter(logging.Formatter(
+        '%(levelname)s{dry_run}{pos}, %(asctime)s: %(message)s'.format(
+            dry_run=', DRY RUN' if args.dry_run else '',
+            pos=' (%(filename)s:%(lineno)s)' if args.loglevel <= logging.DEBUG else '',
+        )
+    ))
+    _LOG.addHandler(log_stderr_handler)
+
+    def exception_logger(type, value, tb):
+        LOG.exception("Uncaught exception: {0}".format(str(value)))
+    if args.journald:
+        _LOG.addHandler(JournalHandler(SYSLOG_IDENTIFIER='watching_the_elastic_watcher'))
+        sys.excepthook = exception_logger
+
+    ctx = {}
+
+    try:
+        with open(args.watch_file, 'r') as s_fh:
+            watch_definition = yaml.safe_load(s_fh.read())
+
+        ctx['metadata'] = watch_definition['metadata']
+
+        with open(args.curator_file, 'r') as c_fh:
+            curator_config = yaml.safe_load(c_fh.read())
+
+        es_creds = curator_config['client']['http_auth'].split(':')
+        es_url = 'http{}://{}:{}'.format(
+            's' if curator_config['client'].get('use_ssl', True) else '',
+            curator_config['client']['hosts'][0],
+            curator_config['client'].get('port', 9200),
+        )
+        es_cacert = curator_config['client'].get('certificate')
+
+        es = Elasticsearch(
+            es_url,
+            http_auth=(es_creds[0], es_creds[1]),
+            ca_certs=es_cacert,
+        )
+
+        LOG.info("Executing ElasticSearch search: {}".format(watch_definition['input']['search']))
+
+        if watch_definition['input']['search']['request']['type'] == 'scroll':
+            ctx['scan'] = scan(
+                es,
+                index=watch_definition['input']['search']['request']['indices'],
+                query=watch_definition['input']['search']['request']['body'],
+                timeout=watch_definition['input']['search'].get('timeout', 10),
+            )
+        else:
+            ctx['payload'] = es.search(
+                index=watch_definition['input']['search']['request']['indices'],
+                body=watch_definition['input']['search']['request']['body'],
+                timeout=watch_definition['input']['search'].get('timeout', 10),
+            )
+            if args.loglevel <= logging.DEBUG:
+                LOG.debug("Elasticsearch response: {}".format(
+                    json.dumps(
+                        ctx['payload'],
+                        sort_keys=True,
+                        indent=4
+                    ),
+                ))
+
+        exec(watch_definition['transform']['script']['source'], {'ctx': ctx})
+    except:
+        ctx['payload'] = traceback.format_exc()
+
+    if 'payload' in ctx:
+
+        for action_id, action in watch_definition['actions'].items():
+            for action_type, action_def in action.items():
+
+                if action_type == 'email':
+
+                    # Create the base text message.
+                    msg = EmailMessage()
+                    msg['Subject'] = pystache.render(action_def['subject'], {'ctx': ctx})
+                    msg['From'] = action_def['from']
+                    msg['To'] = action_def['to']
+                    if 'reply_to' in action_def:
+                        msg['Reply-To'] = action_def['reply_to']
+                    msg.set_content(pystache.render(action_def['body']['text'], {'ctx': ctx}))
+
+                    LOG.info("Sending email:\n{}".format(
+                        msg,
+                    ))
+
+                    if not args.dry_run:
+                        with smtplib.SMTP('localhost') as s:
+                            s.send_message(msg)

@@ -1,0 +1,164 @@
+---
+
+# yamllint disable rule:line-length rule:comments-indentation
+
+metadata:
+  name: 'watching_the_elastic_watcher'
+  comment: 'Watches did not trigger the number of times matching their schedule specification.'
+
+  time_window: '2h'
+
+## We never want to throttle/drop actions.
+throttle_period: '0s'
+
+input:
+  search:
+    timeout: '5m'
+    request:
+      type: 'search'
+
+      indices:
+        - '.watcher-history-*'
+
+      body:
+
+        size: 0
+
+        query:
+          bool:
+            must:
+
+              # - query_string:
+              #     query: '+trigger_event.triggered_time:>"2019-08-01T11:01:23.416Z"'
+
+              - range:
+                  'trigger_event.triggered_time':
+                    # Ref for details: https://discuss.elastic.co/t/ensure-that-watcher-does-not-miss-documents-logs/127780/1
+                    # gte: 'now-12h-5m/h'
+                    gte: 'now-2h-5m/h'
+                    lt: 'now-5m/h'
+
+        aggregations:
+
+          watch_id:
+            terms:
+              field: 'watch_id'
+              size: 1000
+
+            aggregations:
+              watch_with_time_window_metadata:
+                filter:
+                  query_string:
+                    query: '+_exists_:(metadata.time_window)'
+
+                aggregations:
+                  metadata.time_window:
+                    ## FIXME: Handle the case when a the time_window of a watch
+                    ## is changed.
+                    terms:
+                      field: 'metadata.time_window.keyword'
+                      size: 1000
+
+              watch_without_time_window_metadata:
+                filter:
+                  query_string:
+                    query: '-_exists_:(metadata.time_window)'
+                    # query: '+_exists_:(metadata.time_window)'
+
+                aggregations:
+                  time_window:
+                    filters:
+                      other_bucket_key: 'unclassified'
+                      filters:
+
+                        # Even if you don’t use this feature, you need to leave
+                        # this aggregation enabled because it is also used to
+                        # find unclassified watches. That is what this is for.
+                        'dummy_to_keep_syntax_valid_if_all_other_disabled':
+                          query_string:
+                            query: '-_exists_:watch_id'
+
+
+                        # '5m':
+                        #   bool:
+                        #     should:
+                        #       - query_string:
+                        #               query: '+watch_id:(some_watch_id OR some_other_watch_id)'
+
+transform:
+  script:
+    source: |-
+      import pytimeparse
+
+      def handle_compare_time_windows(msg_body_lines, watch, expected_tw_s, actual_tw_s):
+          if abs(expected_tw_s - actual_tw_s) != 0:
+              msg_body_lines.append('Watch ID: {}, Actual time window: {}s, expected time window: {}s'.format(
+                  watch['key'],
+                  expected_tw_s,
+                  actual_tw_s,
+              ))
+
+
+      msg_body_lines = []
+
+      if ctx['payload']['aggregations']['watch_id']['sum_other_doc_count'] != 0:
+          msg_body_lines.append("ES found more aggregated hosts than we assumed. Number of unprocessed hosts: {}".format(
+              ctx['payload']['aggregations']['watch_id']['sum_other_doc_count'],
+          ))
+
+
+      monitoring_time_window_seconds = pytimeparse.parse(ctx['metadata']['time_window'])
+
+      for watch in ctx['payload']['aggregations']['watch_id']['buckets']:
+          actual_run_count = watch['doc_count']
+          for time_window_bucket in watch.get('watch_with_time_window_metadata', {}).get('metadata.time_window', {}).get('buckets', []):
+              expected_time_window_seconds = pytimeparse.parse(time_window_bucket['key'])
+              actual_time_window_seconds = monitoring_time_window_seconds / actual_run_count
+
+              handle_compare_time_windows(
+                  msg_body_lines,
+                  watch,
+                  expected_time_window_seconds,
+                  actual_time_window_seconds,
+              )
+
+          for expected_time_window, time_window_bucket in watch.get('watch_without_time_window_metadata', {}).get('time_window', {}).get('buckets', {}).items():
+              if time_window_bucket['doc_count'] > 0:
+                  if expected_time_window == 'unclassified':
+                      msg_body_lines.append("The interval for {} is not defined.".format(
+                          watch['key'],
+                      ))
+                  else:
+                      expected_time_window_seconds = pytimeparse.parse(expected_time_window)
+                      actual_time_window_seconds = monitoring_time_window_seconds / actual_run_count
+
+                      handle_compare_time_windows(
+                          msg_body_lines,
+                          watch,
+                          expected_time_window_seconds,
+                          actual_time_window_seconds,
+                      )
+
+      ctx.pop('payload', None)
+      if len(msg_body_lines):
+          # \t is used as workaround for not behaving MUAs.
+          # Ref: https://stackoverflow.com/questions/247546/outlook-autocleaning-my-line-breaks-and-screwing-up-my-email-format/436114#436114
+          ctx['payload'] = '\t\n'.join(msg_body_lines)
+
+actions:
+  send_email:
+
+    email:
+      from: 'something@geberit.com'
+
+      ## Not supported in the Python version of Muctache. It works in Elastic Watcher.
+      # to: '{{#join}}ctx.metadata.email_recipient_groups.ITS_INS_elastic_and_monitoring{{/join}}'
+
+      to:
+        - 'Robin Schneider <robin.schneider@geberit.com>'
+      reply_to:
+        - 'Robin Schneider <robin.schneider@geberit.com>'
+
+      subject: '{{ctx.metadata.name}}: {{ctx.metadata.comment}}'
+      body:
+        text: '{{ctx.payload}}'

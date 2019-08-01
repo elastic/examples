@@ -1,0 +1,9 @@
+[Unit]
+Description=Trigger watcher_history_errors.yaml using watching_the_elastic_watcher.
+
+[Timer]
+OnCalendar=00/2:25:00
+Persistent=true
+
+[Install]
+WantedBy=multi-user.target

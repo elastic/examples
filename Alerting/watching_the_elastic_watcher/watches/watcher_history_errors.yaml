@@ -1,0 +1,113 @@
+---
+
+# yamllint disable rule:line-length rule:comments-indentation
+
+metadata:
+  name: 'watching_the_elastic_watcher'
+  comment: 'Errors in .watcher-history-*'
+
+## We never want to throttle/drop actions.
+throttle_period: '0s'
+
+input:
+  search:
+    timeout: '5m'
+    request:
+      type: 'scroll'
+
+      indices:
+        - '.watcher-history-*'
+
+      body:
+
+        # size: 100
+
+        _source:
+          includes:
+            - 'watch_id'
+            - 'exception'
+
+        query:
+          bool:
+            must:
+
+              - query_string:
+                  query: "+state:(failed)"
+
+              - range:
+                  'trigger_event.triggered_time':
+                    # Ref for details: https://discuss.elastic.co/t/ensure-that-watcher-does-not-miss-documents-logs/127780/1
+                    # gte: 'now-44h/h'
+                    gte: 'now-2h-5m/h'
+                    lt: 'now-5m/h'
+
+        # aggregations:
+
+        #   watch_id:
+        #     terms:
+        #       field: 'watch_id'
+        #       size: 1000
+
+        #     aggregations:
+        #       exception.caused_by.reason:
+        #         terms:
+        #           field: 'exception.caused_by.reason'
+        #           size: 1000
+        #
+
+transform:
+  script:
+    source: |-
+      aggr = {}
+
+      for hit in ctx['scan']:
+          if 'exception' in hit['_source']:
+              key = '{}_{}'.format(
+                  hit['_source']['watch_id'],
+                  hit['_source']['exception']['type'],
+              )
+              if key in aggr:
+                  aggr[key]['count'] += 1
+              else:
+                  aggr[key] = {
+                      'count': 1,
+                      'keys': (
+                          hit['_source']['watch_id'],
+                          hit['_source']['exception']['type'],
+                      ),
+                  }
+
+      if len(aggr):
+          msg_body_lines = [
+              'count, watch_id, exception_type',
+              ''
+          ]
+          for k in sorted(aggr, key=lambda x: (-aggr[x]['count'], x)):
+              hit = aggr[k]
+              msg_body_lines.append('{count}, {watch_id}, {exception_type}'.format(
+                  count=hit['count'],
+                  watch_id=hit['keys'][0],
+                  exception_type=hit['keys'][1],
+              ))
+
+          # \t is used as workaround for not behaving MUAs.
+          # Ref: https://stackoverflow.com/questions/247546/outlook-autocleaning-my-line-breaks-and-screwing-up-my-email-format/436114#436114
+          ctx['payload'] = '\t\n'.join(msg_body_lines)
+
+actions:
+  send_email:
+
+    email:
+      from: 'something@geberit.com'
+
+      ## Not supported in the Python version of Muctache. It works in Elastic Watcher.
+      # to: '{{#join}}ctx.metadata.email_recipient_groups.ITS_INS_elastic_and_monitoring{{/join}}'
+
+      to:
+        - 'Robin Schneider <robin.schneider@geberit.com>'
+      reply_to:
+        - 'Robin Schneider <robin.schneider@geberit.com>'
+
+      subject: '{{ctx.metadata.name}}: {{ctx.metadata.comment}}'
+      body:
+        text: '{{ctx.payload}}'
