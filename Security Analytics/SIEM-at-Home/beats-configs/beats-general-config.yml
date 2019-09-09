@@ -1,0 +1,45 @@
+# Configuration applicable for all beats on a specific device
+#================================ General =====================================
+name: myHostName
+tags: ["myTag", "myHostName"]
+fields:
+  env: myEnv
+
+#========================== Top Level Processor ===============================
+processors:
+  - add_host_metadata:
+      #netinfo.enabled: true
+      netinfo.enabled: false #set to false due to pipeline processor array error
+  - add_locale: ~
+  - add_cloud_metadata: ~
+  - add_fields:
+      #when.network.source.ip: 10.101.101.0/24
+      when.network.source.ip: private
+      fields:
+        source.geo.location:
+          lat: 40.78
+          lon: -73.97
+        source.geo.continent_name: North America
+        source.geo.region_iso_code: US-NY
+        source.geo.country_iso_code: US
+        source.geo.region_name: New York
+        source.geo.name: New York City
+      target: ''
+  - add_fields:
+      #when.network.destination.ip: 10.101.101.0/24
+      when.network.destination.ip: private
+      fields:
+        destination.geo.location:
+          lat: 40.78
+          lon: -73.97
+        destination.geo.continent_name: North America
+        destination.geo.region_iso_code: US-NY
+        destination.geo.country_iso_code: US
+        destination.geo.region_name: New York
+        destination.geo.name: New York City
+      target: ''
+
+#============================= Elastic Cloud ==================================
+# These settings simplify using beats with the Elastic Cloud (https://cloud.elastic.co/).
+cloud.id: "My_Elastic_Cloud_Deployment:abcdefghijklmnopqrstuvwxyz1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+cloud.auth: "data_shipper:0987654321abcDEF"
