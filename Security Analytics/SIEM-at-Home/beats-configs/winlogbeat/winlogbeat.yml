@@ -1,0 +1,39 @@
+###################### SIEM at Home - Winlogbeat Configuration Example ##########################
+# This file is an example configuration file highlighting only the most common
+# options. The winlogbeat.reference.yml file from the same directory contains all the
+# supported options with more comments. You can use it as a reference.
+#
+# You can find the full configuration reference here:
+# https://www.elastic.co/guide/en/beats/winlogbeat/index.html
+#======================= Winlogbeat specific options ==========================
+winlogbeat.event_logs:
+  - name: Application
+    ignore_older: 72h
+  - name: Security
+  - name: System
+  - name: Setup
+  - name: HardwareEvents
+  - name: Windows PowerShell
+  - name: OAlerts
+  - name: Microsoft-Windows-PowerShell/Operational
+  - name: Microsoft-Windows-Time-Service/Operational
+  - name: Microsoft-Windows-Windows Firewall With Advanced Security/Firewall
+  - name: Microsoft-Windows-Windows Remote Management/Operational
+  - name: Microsoft-Windows-Winlogon/Operational
+  - name: Microsoft-Windows-WMI-Activity/Operational
+  - name: Microsoft-Windows-WindowsUpdateClient/Operational
+  - name: Microsoft-Windows-Win32k/Operational
+  - name: Microsoft-Windows-TaskScheduler/Maintenance
+  - name: Microsoft-Windows-RemoteDesktopServices-RdpCoreTS/Operational
+  - name: Security # requires the Security module
+    processors:
+      - script:
+          lang: javascript
+          id: security
+          file: ${path.home}/module/security/config/winlogbeat-security.js
+  - name: Microsoft-Windows-Sysmon/Operational # requires the Sysmon module
+    processors:
+      - script:
+          lang: javascript
+          id: sysmon
+          file: ${path.home}/module/sysmon/config/winlogbeat-sysmon.js
