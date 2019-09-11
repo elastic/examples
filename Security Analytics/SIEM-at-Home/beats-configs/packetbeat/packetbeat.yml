@@ -1,0 +1,19 @@
+#################### SIEM at Home - Packetbeat Configuration Example #########################
+# This file is an example configuration file highlighting only the most common
+# options. The packetbeat.reference.yml file from the same directory contains all the
+# supported options with more comments. You can use it as a reference.
+#
+# You can find the full configuration reference here:
+# https://www.elastic.co/guide/en/beats/packetbeat/index.html
+
+#========================== Transaction protocols =============================
+packetbeat.protocols:
+- type: myapplication
+  # New entry for monitoring my application
+  ports: [1234]
+  
+#================================ Outputs =====================================
+# The geoip-info pipeline is used to ship geoip information to Elastic Cloud
+# You must configure the pipeline in Elasticsearech before enabling the
+# pipeline in Packetbeat.
+output.elasticsearch.pipeline: geoip-info
