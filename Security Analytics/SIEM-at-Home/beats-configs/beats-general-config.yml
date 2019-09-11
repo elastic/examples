@@ -8,8 +8,15 @@ fields:
 #========================== Top Level Processor ===============================
 processors:
   - add_host_metadata:
-      #netinfo.enabled: true
-      netinfo.enabled: false #set to false due to pipeline processor array error
+      netinfo.enabled: true
+      Geo: # These Geo configurations are optional
+        name: myHomeLocation
+        location: 40.7128, -74.0060
+        continent_name: North America
+        country_iso_code: US
+        region_name: New York
+        region_iso_code: NY
+        city_name: New York
   - add_locale: ~
   - add_cloud_metadata: ~
   - add_fields:
