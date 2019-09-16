@@ -1,0 +1,984 @@
+### TRANSACTIONS SPEED LAYER
+### Made for Elasticsearch 7.3.x
+
+#DELETE transactions_dirty
+DELETE transactions_clean
+DELETE transactions_clean_lean
+DELETE transactions_clean_lean_sorted
+DELETE transactions_clean_lean_sorted_routed
+
+DELETE _ingest/pipeline/transactions_cleaner
+
+POST _data_frame/transforms/transactions_data_frame/_stop?wait_for_completion=true
+DELETE _data_frame/transforms/transactions_data_frame
+DELETE transactions_data_frame
+# Delete Kibana index pattern manually
+# GET .kibana/_search?q=index-pattern.title:transactions_clean
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Lab 0: Getting data from our system of record
+
+# Run logstash -f logstash_batch_export.conf
+
+# Logstash config:
+# input {
+#   jdbc {
+#     jdbc_driver_library => "mysql-connector-java-5.1.48-bin.jar"
+#     jdbc_driver_class => "com.mysql.jdbc.Driver"
+#     jdbc_connection_string => "jdbc:mysql://54.208.47.98:3306/transactions"
+#     jdbc_user => "transactions"
+#     jdbc_password => ""
+#     statement => "SELECT * FROM transactions_flat"
+#   }
+# }
+#
+# output {
+#   elasticsearch {
+#     hosts => ["https://82cbc48056274f209eba58ef258e3d37.europe-west1.gcp.cloud.es.io:9243"]
+#     index => "transactions_dirty"
+#     user => speedlayer
+#     password => vAbQt2tdQm7cKZV
+#   }
+# }
+
+
+
+
+
+
+
+
+
+
+
+# SQL View:
+# SELECT
+#     `transactions`.`transactions`.`timestamp` AS `timestamp`,
+#     `transactions`.`transactions`.`description` AS `description`,
+#     `transactions`.`transactions`.`transaction_type` AS `transaction_type`,
+#     `transactions`.`transactions`.`transaction_category` AS `transaction_category`,
+#     `transactions`.`transactions`.`transaction_classification` AS `transaction_classification`,
+#     `transactions`.`transactions`.`amount` AS `amount`,
+#     `transactions`.`transactions`.`currency` AS `currency`,
+#     `transactions`.`transactions`.`transaction_id` AS `transaction_id`,
+#     `transactions`.`transactions`.`running_balance_currency` AS `running_balance_currency`,
+#     `transactions`.`transactions`.`running_balance_amount` AS `running_balance_amount`,
+#     `transactions`.`transactions`.`meta_provider_transaction_category_id` AS `meta_provider_transaction_category_id`,
+#     `transactions`.`transactions`.`account_id` AS `account_id`,
+#     `transactions`.`transactions`.`bank_id` AS `bank_id`,
+#     `transactions`.`transactions`.`card_type` AS `card_type`,
+#     `transactions`.`banks`.`bank_name` AS `bank_name`
+# FROM
+#     `transactions`.`provider_transaction_categories`
+# JOIN
+#     (
+#         `transactions`.`banks`
+#     JOIN
+#         `transactions`.`transactions`
+#     )
+# WHERE
+#     (
+#         (
+#             `transactions`.`transactions`.`bank_id` = `transactions`.`banks`.`bank_id`
+#         ) AND(
+#             `transactions`.`provider_transaction_categories`.`id` = `transactions`.`transactions`.`meta_provider_transaction_category_id`
+#         )
+#     )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# In case there is no data ingest possible, here are some documents instead:
+PUT transactions_dirty/_doc/b5owAm0BnQhTI3iit7KH
+{"transaction_id":"4c5e417f474a68b70ace5b09f25ce2a8","timestamp":"2016-04-12T00:00:00+00:00","transaction_category":"BILL_PAYMENT","amount":-0.41,"bank_name":"Kibana Bank","transaction_classification":"[]","currency":"GBP","description":"SAVE THE CHANGE","meta_provider_transaction_category_id":"ae3bf39e-cfc3-11e9-8694-129b23e668d4","@timestamp":"2019-09-05T16:10:10.073Z","transaction_type":"DEBIT","bank_id":"00ae4031-849a-4326-a6c5-7ca43fcf63ba","account_id":"56c7b029e0f8ec5a2334fb0ffc2fface","running_balance_amount":"37.603","card_type":"debit","@version":"1","running_balance_currency":"GBP"}
+PUT transactions_dirty/_doc/cJowAm0BnQhTI3iit7KH
+{"transaction_id":"837c9f2f12a4dddb7694c7a5a5d9f552","timestamp":"2016-05-05T00:00:00+00:00","transaction_category":"DIRECT_DEBIT","amount":-5.79,"bank_name":"Kibana Bank","transaction_classification":"[\"Pensions and insurances\"]","currency":"GBP","description":"THE INSURANCE EMPO","meta_provider_transaction_category_id":"ae3bfcb6-cfc3-11e9-8694-129b23e668d4","@timestamp":"2019-09-05T16:10:10.078Z","transaction_type":"DEBIT","bank_id":"00ae4031-849a-4326-a6c5-7ca43fcf63ba","account_id":"56c7b029e0f8ec5a2334fb0ffc2fface","running_balance_amount":"58.719","card_type":"debit","@version":"1","running_balance_currency":"GBP"}
+PUT transactions_dirty/_doc/u4TSH20BYG5ufHpxxQJC
+{"@timestamp":"2019-09-11T10:16:09.612Z","meta_provider_transaction_category_id":"ae3c026a-cfc3-11e9-8694-129b23e668d4","transaction_classification":"[]","description":"CIRCLE UK TRADING REFUND","@version":"1","transaction_type":"CREDIT","transaction_category":"CREDIT","account_id":"56c7b029e0f8ec5a2334fb0ffc2fface","bank_id":"00ae4031-849a-4326-a6c5-7ca43fcf63ba","bank_name":"Kibana Bank","timestamp":"2018-03-27T00:00:00+00:00","currency":"GBP","transaction_id":"e01e11dc3c59ebaf3fb43e62495886e6","running_balance_currency":"GBP","card_type":"debit","running_balance_amount":455.77,"amount":50.59}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Lab 1: Cleaning dirty data
+
+# Let's look at some documents. Some are less than perfect.
+GET transactions_dirty/_search
+
+# The auto-generated mapping is correct but somewhat larger than necessary
+GET transactions_dirty
+
+# Let's get a document count
+GET transactions_dirty/_count
+
+# This is what a pipeline looks like (simulate API)
+POST _ingest/pipeline/_simulate
+{
+  "pipeline": {
+    "processors": [
+      {
+        "remove": {
+          "field": [
+            "@timestamp",
+            "@version"
+          ]
+        },
+        "json": {
+          "field": "transaction_classification",
+          "target_field": "transaction_classification"
+        },
+        "lowercase": {
+          "field": "transaction_type"
+        }
+      },
+      {
+        "gsub": {
+          "field": "transaction_category",
+          "pattern": "_",
+          "replacement": " "
+        }
+      },
+      {
+        "lowercase": {
+          "field": "transaction_category"
+        }
+      },
+      {
+        "script": {
+          "lang": "painless",
+          "source": "ctx.transaction_category = ctx.transaction_category.substring(0, 1).toUpperCase(Locale.ROOT) + ctx.transaction_category.substring(1).toLowerCase(Locale.ROOT)"
+        }
+      }
+    ]
+  },
+  "docs": [
+    {
+      "_index": "transactions_dirty",
+      "_id": "b5owAm0BnQhTI3iit7KH",
+      "_score": 1,
+      "_source": {
+        "transaction_id": "4c5e417f474a68b70ace5b09f25ce2a8",
+        "timestamp": "2016-04-12T00:00:00+00:00",
+        "transaction_category": "BILL_PAYMENT",
+        "amount": -0.41,
+        "bank_name": "Kibana Bank",
+        "transaction_classification": "[]",
+        "currency": "GBP",
+        "description": "SAVE THE CHANGE",
+        "meta_provider_transaction_category_id": "ae3bf39e-cfc3-11e9-8694-129b23e668d4",
+        "@timestamp": "2019-09-05T16:10:10.073Z",
+        "transaction_type": "DEBIT",
+        "bank_id": "00ae4031-849a-4326-a6c5-7ca43fcf63ba",
+        "account_id": "56c7b029e0f8ec5a2334fb0ffc2fface",
+        "running_balance_amount": "37.603",
+        "card_type": "debit",
+        "@version": "1",
+        "running_balance_currency": "GBP"
+      }
+    }
+  ]
+}
+
+# Actually store that same pipeline as transactions_cleaner
+PUT _ingest/pipeline/transactions_cleaner
+{
+  "processors": [
+    {
+      "remove": {
+        "field": [
+          "@timestamp",
+          "@version"
+        ]
+      },
+      "json": {
+        "field": "transaction_classification",
+        "target_field": "transaction_classification"
+      },
+      "lowercase": {
+        "field": "transaction_type"
+      }
+    },
+    {
+      "gsub": {
+        "field": "transaction_category",
+        "pattern": "_",
+        "replacement": " "
+      }
+    },
+    {
+      "lowercase": {
+        "field": "transaction_category"
+      }
+    },
+    {
+      "script": {
+        "lang": "painless",
+        "source": "ctx.transaction_category = ctx.transaction_category.substring(0, 1).toUpperCase(Locale.ROOT) + ctx.transaction_category.substring(1).toLowerCase(Locale.ROOT)"
+      }
+    }
+  ]
+}
+
+# Set up a better index, with more strict mapping
+PUT transactions_clean
+{
+  "mappings": {
+    "dynamic": false,
+    "properties": {
+      "account_id": {
+        "type": "keyword"
+      },
+      "amount": {
+        "type": "float"
+      },
+      "bank_id": {
+        "type": "keyword"
+      },
+      "bank_name": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "card_type": {
+        "type": "keyword"
+      },
+      "currency": {
+        "type": "keyword"
+      },
+      "description": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "meta_provider_transaction_category_id": {
+        "type": "keyword"
+      },
+      "running_balance_amount": {
+        "type": "float"
+      },
+      "running_balance_currency": {
+        "type": "keyword"
+      },
+      "timestamp": {
+        "type": "date"
+      },
+      "transaction_category": {
+        "type": "keyword"
+      },
+      "transaction_classification": {
+        "type": "keyword"
+      },
+      "transaction_id": {
+        "type": "keyword"
+      },
+      "transaction_type": {
+        "type": "keyword"
+      }
+    }
+  },
+  "settings": {
+    "index": {
+      "number_of_shards": "5",
+      "number_of_replicas": "1",
+      "default_pipeline": "transactions_cleaner"
+    }
+  }
+}
+
+# Clean the data in a reindex using a forced pipeline
+POST _reindex?wait_for_completion&refresh
+{
+  "source": {
+    "index": "transactions_dirty"
+  },
+  "dest": {
+    "index": "transactions_clean"
+  }
+}
+
+# Verify count of dirty and clean
+GET transactions_dirty/_count
+GET transactions_clean/_count
+
+# Let's look at some clean documents
+GET transactions_clean/_search
+
+# The clean data is nicely trimmed in disk usage
+GET _cat/indices/transactions*?v&s=index
+
+
+
+
+
+# Lab 2: Search
+
+# For novice users, there is a SQL interface and a translate endpoint
+GET _sql/translate
+{
+  "query": "SELECT * FROM transactions_clean WHERE account_id = '3c6edb9484ecd581dc1cedde8bedb1f1' ORDER BY timestamp DESC LIMIT 10"
+}
+
+# This is what an actual Elasticsearch query looks like
+GET transactions_clean/_search
+{
+  "size": 10,
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "match": {
+            "account_id": "3c6edb9484ecd581dc1cedde8bedb1f1"
+          }
+        },
+        {
+          "match": {
+            "description": "john"
+          }
+        }
+      ],
+      "filter": {
+        "range": {
+          "timestamp": {
+            "gte": "2018-01-01"
+          }
+        }
+      }
+    }
+  },
+  "sort": [
+    {
+      "timestamp": {
+        "order": "desc"
+      }
+    }
+  ]
+}
+
+
+
+
+
+
+
+
+
+
+
+# Lab 3: Quantitative analysis
+# - Kibana Discover, Visualization, Dashboard
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Lab 4: Large scale search
+
+# 1. Query context vs. filter context
+
+# Here, we replaced "match" with "filter" for account_id, enabling caching
+# Otherwise it's the same query
+GET transactions_clean/_search
+{
+  "size": 10,
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "match": {
+            "description": "john"
+          }
+        }
+      ],
+      "filter": [
+        {
+          "range": {
+            "timestamp": {
+              "gte": "2018-01-01"
+            }
+          }
+        },
+        {
+          "term": {
+            "account_id": "3c6edb9484ecd581dc1cedde8bedb1f1"
+          }
+        }
+      ]
+    }
+  },
+  "sort": [
+    {
+      "timestamp": {
+        "order": "desc"
+      }
+    }
+  ]
+}
+
+
+
+
+# 2. Index carving
+
+# Add another version of the index:
+# - with many fields unsearchable
+# - ...but with an extra single search field
+# - using scaled_float
+# - with doc_values disabled in some places
+# - less shards and best_compression
+# - description.keyword removed
+# - strict mapping enabled
+PUT transactions_clean_lean
+{
+  "mappings": {
+    "dynamic": false,
+    "properties": {
+      "search_field": {
+        "type": "text",
+        "doc_values": false
+      },
+      "account_id": {
+        "type": "keyword"
+      },
+      "amount": {
+        "type": "scaled_float",
+        "scaling_factor": 10000,
+        "copy_to": "search",
+        "index": false
+      },
+      "bank_id": {
+        "type": "keyword",
+        "copy_to": "search_field",
+        "index": false
+      },
+      "bank_name": {
+        "type": "keyword",
+        "copy_to": "search_field",
+        "index": false
+      },
+      "card_type": {
+        "type": "keyword",
+        "copy_to": "search_field",
+        "index": false
+      },
+      "currency": {
+        "type": "keyword",
+        "copy_to": "search_field",
+        "index": false
+      },
+      "description": {
+        "type": "text",
+        "copy_to": "search_field",
+        "index": false
+      },
+      "meta_provider_transaction_category_id": {
+        "type": "keyword",
+        "copy_to": "search_field",
+        "index": false
+      },
+      "running_balance_amount": {
+        "type": "scaled_float",
+        "scaling_factor": 10000
+      },
+      "running_balance_currency": {
+        "type": "keyword"
+      },
+      "timestamp": {
+        "type": "date"
+      },
+      "transaction_category": {
+        "type": "keyword",
+        "copy_to": "search_field",
+        "index": false
+      },
+      "transaction_classification": {
+        "type": "keyword",
+        "copy_to": "search_field",
+        "index": false
+      },
+      "transaction_id": {
+        "type": "keyword",
+        "doc_values": false
+      },
+      "transaction_type": {
+        "type": "keyword",
+        "index": false
+      }
+    }
+  },
+  "settings": {
+    "index": {
+      "number_of_shards": "5",
+      "number_of_replicas": "1",
+      "codec": "best_compression"
+    }
+  }
+}
+
+# Copy the clean data into the leaner index
+POST _reindex?wait_for_completion&refresh
+{
+  "source": {
+    "index": "transactions_clean"
+  },
+  "dest": {
+    "index": "transactions_clean_lean"
+  }
+}
+
+# Did we lose some more bytes? What else did we reduce that is not in this API query?
+GET _cat/indices/transactions*?v&s=index
+
+# We must now use the new search field to search in
+GET transactions_clean_lean/_search?q=search_field:john+kibana
+
+
+
+
+# 3. Index sorting
+
+# Put in an index sort
+PUT transactions_clean_lean_sorted
+{
+  "mappings": {
+    "dynamic": false,
+    "properties": {
+      "search_field": {
+        "type": "text",
+        "doc_values": false
+      },
+      "account_id": {
+        "type": "keyword"
+      },
+      "amount": {
+        "type": "scaled_float",
+        "scaling_factor": 10000,
+        "copy_to": "search",
+        "index": false
+      },
+      "bank_id": {
+        "type": "keyword",
+        "copy_to": "search_field",
+        "index": false
+      },
+      "bank_name": {
+        "type": "keyword",
+        "copy_to": "search_field",
+        "index": false
+      },
+      "card_type": {
+        "type": "keyword",
+        "copy_to": "search_field",
+        "index": false
+      },
+      "currency": {
+        "type": "keyword",
+        "copy_to": "search_field",
+        "index": false
+      },
+      "description": {
+        "type": "text",
+        "copy_to": "search_field",
+        "index": false
+      },
+      "meta_provider_transaction_category_id": {
+        "type": "keyword",
+        "copy_to": "search_field",
+        "index": false
+      },
+      "running_balance_amount": {
+        "type": "scaled_float",
+        "scaling_factor": 10000
+      },
+      "running_balance_currency": {
+        "type": "keyword"
+      },
+      "timestamp": {
+        "type": "date"
+      },
+      "transaction_category": {
+        "type": "keyword",
+        "copy_to": "search_field",
+        "index": false
+      },
+      "transaction_classification": {
+        "type": "keyword",
+        "copy_to": "search_field",
+        "index": false
+      },
+      "transaction_id": {
+        "type": "keyword",
+        "doc_values": false
+      },
+      "transaction_type": {
+        "type": "keyword",
+        "index": false
+      }
+    }
+  },
+  "settings": {
+    "index": {
+      "number_of_shards": "5",
+      "number_of_replicas": "1",
+      "codec": "best_compression",
+      "sort.field" : "timestamp",
+      "sort.order" : "desc"
+    }
+  }
+}
+
+# Reindex into sorted index
+POST _reindex?wait_for_completion&refresh
+{
+  "source": {
+    "index": "transactions_clean"
+  },
+  "dest": {
+    "index": "transactions_clean_lean_sorted"
+  }
+}
+
+GET transactions_clean_lean_sorted/_search
+{
+  "size": 10,
+  "query": {
+    "term": {
+      "account_id": "3c6edb9484ecd581dc1cedde8bedb1f1"
+    }
+  },
+  "sort": [
+    {
+      "timestamp": "desc"
+    }
+  ],
+  "track_total_hits": false
+}
+
+# Did we lose some more bytes? What else did we reduce that is not in this _cat output?
+GET _cat/indices/transactions*?v&s=index
+
+
+
+
+
+
+# 4. Bonus: Use routing to lower shard hit
+
+# Add a new 10-shard index where we will store the routed transactions
+PUT transactions_clean_lean_sorted_routed
+{
+  "mappings": {
+    "dynamic": false,
+    "properties": {
+      "search_field": {
+        "type": "text",
+        "doc_values": false
+      },
+      "account_id": {
+        "type": "keyword"
+      },
+      "amount": {
+        "type": "scaled_float",
+        "scaling_factor": 10000,
+        "copy_to": "search",
+        "index": false
+      },
+      "bank_id": {
+        "type": "keyword",
+        "copy_to": "search_field",
+        "index": false
+      },
+      "bank_name": {
+        "type": "keyword",
+        "copy_to": "search_field",
+        "index": false
+      },
+      "card_type": {
+        "type": "keyword",
+        "copy_to": "search_field",
+        "index": false
+      },
+      "currency": {
+        "type": "keyword",
+        "copy_to": "search_field",
+        "index": false
+      },
+      "description": {
+        "type": "text",
+        "copy_to": "search_field",
+        "index": false
+      },
+      "meta_provider_transaction_category_id": {
+        "type": "keyword",
+        "copy_to": "search_field",
+        "index": false
+      },
+      "running_balance_amount": {
+        "type": "scaled_float",
+        "scaling_factor": 10000
+      },
+      "running_balance_currency": {
+        "type": "keyword"
+      },
+      "timestamp": {
+        "type": "date"
+      },
+      "transaction_category": {
+        "type": "keyword",
+        "copy_to": "search_field",
+        "index": false
+      },
+      "transaction_classification": {
+        "type": "keyword",
+        "copy_to": "search_field",
+        "index": false
+      },
+      "transaction_id": {
+        "type": "keyword",
+        "doc_values": false
+      },
+      "transaction_type": {
+        "type": "keyword",
+        "index": false
+      }
+    }
+  },
+  "settings": {
+    "index": {
+      "number_of_shards": "5",
+      "number_of_replicas": "1",
+      "codec": "best_compression",
+      "sort.field" : "timestamp",
+      "sort.order" : "desc"
+    }
+  }
+}
+
+# Reindex using routing option
+POST _reindex?wait_for_completion&refresh
+{
+  "source": {
+    "index": "transactions_clean"
+  },
+  "dest": {
+    "index": "transactions_clean_lean_sorted_routed"
+  },
+  "script": {
+    "source": "ctx._routing = ctx._source.account_id"
+  }
+}
+
+# Check if our routed shards are balanced
+GET _cat/shards/transactions_clean,transactions_clean_routed?v
+
+# Without routing, we will alwyas hit all 10 shards in the index
+GET transactions_clean/_search_shards?filter_path=shards
+{
+  "query": {
+    "match": {
+      "account_id": "3c6edb9484ecd581dc1cedde8bedb1f1"
+    }
+  }
+}
+
+# Although we have 10 shards in the index, only 1+1 will get queried
+GET transactions_clean_routed/_search_shards?routing=3c6edb9484ecd581dc1cedde8bedb1f1&filter_path=shards
+{
+  "query": {
+    "match": {
+      "account_id": "3c6edb9484ecd581dc1cedde8bedb1f1"
+    }
+  }
+}
+
+# A coordinating node can be added to route the query directly to the right nodes
+
+#GET _cat/segments/transactions_*?v
+#POST _forcemerge?max_num_segments=1
+
+GET _cat/indices/transactions*?v&s=index
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Lab 5: Scaling analytics through Data Frames
+# 1. Data Frames for aggregations
+
+# Data Frame:
+# - Data: transactions_clean
+# - Group by:
+#   - terms(account_id)
+#   - terms(currency)
+#   - date_histogram(timestamp) 1d
+# - Aggregations:
+#   - transaction_id.cardinality
+#   - amount.sum
+# - ID and target index: transactions_data_frame
+
+# Or, create the Data Frame with an API call
+PUT _data_frame/transforms/transactions_data_frame
+{
+  "id": "transactions_data_frame",
+  "source": {
+    "index": [
+      "transactions_clean"
+    ],
+    "query": {
+      "match_all": {}
+    }
+  },
+  "dest": {
+    "index": "transactions_data_frame"
+  },
+  "sync": {
+    "time": {
+      "field": "timestamp",
+      "delay": "1m"
+    }
+  },
+  "pivot": {
+    "group_by": {
+      "account_id": {
+        "terms": {
+          "field": "account_id"
+        }
+      },
+      "timestamp": {
+        "date_histogram": {
+          "field": "timestamp",
+          "calendar_interval": "1d"
+        }
+      }
+    },
+    "aggregations": {
+      "transaction_id.cardinality": {
+        "cardinality": {
+          "field": "transaction_id"
+        }
+      },
+      "amount.sum": {
+        "sum": {
+          "field": "amount"
+        }
+      }
+    }
+  }
+}
+
+# Start the Data Frame
+POST _data_frame/transforms/transactions_data_frame/_start
+
+# See what it looks like
+GET transactions_data_frame/_search
+
+# The data frame index will be much smaller and faster to query
+GET _cat/indices/transactions*?v&s=index
