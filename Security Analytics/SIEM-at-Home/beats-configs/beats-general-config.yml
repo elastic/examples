@@ -8,6 +8,8 @@ fields:
 #========================== Top Level Processor ===============================
 processors:
   - add_host_metadata:
+      # netinfo.enabled should be set to `false` in packetbeat until GitHub
+      # issue https://github.com/elastic/elasticsearch/issues/46193 is closed
       netinfo.enabled: true
       Geo: # These Geo configurations are optional
         name: myHomeLocation
@@ -50,3 +52,9 @@ processors:
 # These settings simplify using beats with the Elastic Cloud (https://cloud.elastic.co/).
 cloud.id: "My_Elastic_Cloud_Deployment:abcdefghijklmnopqrstuvwxyz1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 cloud.auth: "data_shipper:0987654321abcDEF"
+
+# When deploying beats to multiple systems or locations, uncomment the following 
+# setup.template.* and setup.ilm.* configurations after running the beats setup command
+#setup.template.enabled: false
+#setup.ilm.check_exists: false
+#setup.ilm.overwrite: false
