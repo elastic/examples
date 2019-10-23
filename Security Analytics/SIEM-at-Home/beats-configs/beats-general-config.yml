@@ -26,8 +26,8 @@ processors:
       when.network.source.ip: private
       fields:
         source.geo.location:
-          lat: 40.78
-          lon: -73.97
+          lat: 40.7128
+          lon: -74.0060
         source.geo.continent_name: North America
         source.geo.region_iso_code: US-NY
         source.geo.country_iso_code: US
@@ -39,8 +39,8 @@ processors:
       when.network.destination.ip: private
       fields:
         destination.geo.location:
-          lat: 40.78
-          lon: -73.97
+          lat: 40.7128
+          lon: -74.0060
         destination.geo.continent_name: North America
         destination.geo.region_iso_code: US-NY
         destination.geo.country_iso_code: US
@@ -53,8 +53,23 @@ processors:
 cloud.id: "My_Elastic_Cloud_Deployment:abcdefghijklmnopqrstuvwxyz1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 cloud.auth: "data_shipper:0987654321abcDEF"
 
+# The `max_retries` setting is the number of times to retry publishing an event after 
+# a publishing failure. After the specified number of retries, the events are typically dropped.
+output.elasticsearch.max_retries: 5
+
 # When deploying beats to multiple systems or locations, uncomment the following 
 # setup.template.* and setup.ilm.* configurations after running the beats setup command
 #setup.template.enabled: false
 #setup.ilm.check_exists: false
 #setup.ilm.overwrite: false
+
+#================================= Queue ======================================
+# See the 'Configure the internal queue' documentation for each beat before 
+# configuring the queue.  Note that only one queue type can be configured.
+# The `queue.mem` settings will cache events to memory in case the system is offline
+queue.mem:
+  events: 4096
+  flush.min_events: 512
+  flush.timeout: 1s
+# The `queue.spool` settings will cache events to disk in case the system is offline
+# NOTE: The file spool queue is a beta functionality in 7.4
