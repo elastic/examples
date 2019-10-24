@@ -63,6 +63,10 @@ output.elasticsearch.max_retries: 5
 #setup.ilm.check_exists: false
 #setup.ilm.overwrite: false
 
+#=========================== Xpack Monitoring =================================
+# When monitoring is enabled, the beat will ship monitoring data to the cluster
+monitoring.enabled: true
+
 #================================= Queue ======================================
 # See the 'Configure the internal queue' documentation for each beat before 
 # configuring the queue.  Note that only one queue type can be configured.
