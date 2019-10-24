@@ -1,5 +1,5 @@
 # Elastic-SIEM-at-Home
-References and examples for deploying an Elastic SIEM at Home running on Elastic Cloud
+References and examples for deploying an Elastic SIEM at Home running on Elastic Cloud for the blog post [Elastic SIEM for home and small business: Getting started](https://www.elastic.co/blog/elastic-siem-for-small-business-and-home-1-getting-started)
 
 ## beats-configs
 Example configurations for beats when deploying an Elastic SIEM at Home running on Elasticsearch Service
