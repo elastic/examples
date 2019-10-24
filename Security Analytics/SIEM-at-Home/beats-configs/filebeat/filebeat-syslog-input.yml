@@ -1,4 +1,4 @@
-###################### SIEM at Home - Filebeat Configuration Example #########################
+###################### SIEM at Home - Filebeat Syslog Input Configuration Example #########################
 # This file is an example configuration file highlighting only the most common
 # options. The filebeat.reference.yml file from the same directory contains all the
 # supported options with more comments. You can use it as a reference.
