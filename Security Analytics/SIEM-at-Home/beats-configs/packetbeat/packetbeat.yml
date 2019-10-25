@@ -11,6 +11,15 @@ packetbeat.protocols:
 - type: myapplication
   # New entry for monitoring my application
   ports: [1234]
+  fields:
+    service_id: myapplication
+ 
+- type: dns
+  ports: [53]
+  include_authorities: true
+  include_additionals: true
+  send_request: true
+  send_response: true
   
 #================================ Outputs =====================================
 # The geoip-info pipeline is used to ship geoip information to Elastic Cloud
