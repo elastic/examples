@@ -59,6 +59,7 @@ output.elasticsearch.max_retries: 5
 
 # When deploying beats to multiple systems or locations, uncomment the following 
 # setup.template.* and setup.ilm.* configurations after running the beats setup command
+# Otherwise, uncomment the following configurations for beats that will only publish data
 #setup.template.enabled: false
 #setup.ilm.check_exists: false
 #setup.ilm.overwrite: false
