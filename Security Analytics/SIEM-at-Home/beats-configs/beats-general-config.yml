@@ -4,6 +4,7 @@ name: myHostName
 tags: ["myTag", "myHostName"]
 fields:
   env: myEnv
+  version: 10-28-2019
 
 #========================== Top Level Processor ===============================
 processors:
