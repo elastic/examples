@@ -13,13 +13,13 @@ processors:
       # issue https://github.com/elastic/elasticsearch/issues/46193 is closed
       netinfo.enabled: true
       Geo: # These Geo configurations are optional
-        name: myHomeLocation
         location: 40.7128, -74.0060
         continent_name: North America
         country_iso_code: US
         region_name: New York
-        region_iso_code: NY
-        city_name: New York
+        region_iso_code: US-NY
+        city_name: New York City
+        name: myHomeLocation
   - add_locale: ~
   - add_cloud_metadata: ~
   - add_fields:
@@ -30,10 +30,11 @@ processors:
           lat: 40.7128
           lon: -74.0060
         source.geo.continent_name: North America
-        source.geo.region_iso_code: US-NY
         source.geo.country_iso_code: US
         source.geo.region_name: New York
-        source.geo.name: New York City
+        source.geo.region_iso_code: US-NY
+        source.geo.city_name: New York City
+        source.geo.name: myHomeLocation
       target: ''
   - add_fields:
       #when.network.destination.ip: 10.101.101.0/24
@@ -43,10 +44,11 @@ processors:
           lat: 40.7128
           lon: -74.0060
         destination.geo.continent_name: North America
-        destination.geo.region_iso_code: US-NY
         destination.geo.country_iso_code: US
         destination.geo.region_name: New York
-        destination.geo.name: New York City
+        destination.geo.region_iso_code: US-NY
+        destination.geo.city_name: New York City
+        destination.geo.name: myHomeLocation
       target: ''
 
 #============================= Elastic Cloud ==================================
