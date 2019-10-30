@@ -1,15 +1,11 @@
 # Elastic-SIEM-at-Home
-References and examples for deploying an Elastic SIEM at Home running on Elastic Cloud for the blog post [Elastic SIEM for home and small business: Getting started](https://www.elastic.co/blog/elastic-siem-for-small-business-and-home-1-getting-started)
+Monitoring your servers and workstations doesn't have to be difficult or expensive. Learn how to use Elastic SIEM at home or for your small business. The `SIEM-at-HOME` folder in the `elastic/examples` repo contains references and examples for the **Elastic SIEM for home and small business** blog series:
+1. [Elastic SIEM for home and small business: Getting started](https://www.elastic.co/blog/elastic-siem-for-small-business-and-home-1-getting-started)
 
 ## beats-configs
 Example configurations for beats when deploying an Elastic SIEM at Home running on Elasticsearch Service
 
-Use the `General`, `Elastic Cloud`, and `Xpack Monitoring` sections within the `beats-general-config.yml` file for configurations used for all beats.
-
-This example includes:
-* Filebeat configuration for reference
-* Packetbeat configuration for reference
-* Winlogbeat configuration for reference
+The example sections within the `beats-general-config.yml` file are configurations used for all beats.
 
 ### Beats Privileges
 For version 7.4, see documentation for each specific beat:
