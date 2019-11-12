@@ -6,7 +6,22 @@
 # You can find the full configuration reference here:
 # https://www.elastic.co/guide/en/beats/packetbeat/index.html
 
+#============================== Network device ================================
+# Select the network interface to sniff the data. On Linux, you can use the
+# "any" keyword to sniff on all connected interfaces.
+
+# Windows configuration
+#packetbeat.interfaces.device: 0
+
+# Linux configuration
+#packetbeat.interfaces.device: any
+
+#================================== Flows =====================================
+# I’m using the default configuration in this section
+
 #========================== Transaction protocols =============================
+# With the exception of DNS, I’m using the default configuration in this section
+# You can optionally add a known application with known port(s)
 packetbeat.protocols:
 - type: myapplication
   # New entry for monitoring my application
@@ -20,9 +35,3 @@ packetbeat.protocols:
   include_additionals: true
   send_request: true
   send_response: true
-  
-#================================ Outputs =====================================
-# The geoip-info pipeline is used to ship geoip information to Elastic Cloud
-# You must configure the pipeline in Elasticsearech before enabling the
-# pipeline in Packetbeat.
-output.elasticsearch.pipeline: geoip-info
