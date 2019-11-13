@@ -4,7 +4,7 @@ name: myHostName
 tags: ["myTag", "myHostName"]
 fields:
   env: myEnv
-  version: 10-28-2019
+  version: 11-12-2019
 
 #========================== Top Level Processor ===============================
 processors:
@@ -56,6 +56,10 @@ processors:
 cloud.id: "My_Elastic_Cloud_Deployment:abcdefghijklmnopqrstuvwxyz1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 cloud.auth: "data_shipper:0987654321abcDEF"
 
+# The geoip-info pipeline is used to enrich GeoIP information in Elasticsearch
+# You must configure the pipeline in Elasticsearch before enabling the pipeline in Beats.
+output.elasticsearch.pipeline: geoip-info
+
 # The `max_retries` setting is the number of times to retry publishing an event after 
 # a publishing failure. After the specified number of retries, the events are typically dropped.
 output.elasticsearch.max_retries: 5
@@ -72,9 +76,10 @@ output.elasticsearch.max_retries: 5
 monitoring.enabled: true
 
 #================================= Queue ======================================
-# See the 'Configure the internal queue' documentation for each beat before 
+# See the 'Configure the internal queue' documentation for each Beat before 
 # configuring the queue.  Note that only one queue type can be configured.
-# The `queue.mem` settings will cache events to memory in case the system is offline
+# The `queue.mem` settings will cache events to memory in case access to the
+# Elasticsearch cluster, via the internet, is unavailable (internet outage)
 queue.mem:
   events: 4096
   flush.min_events: 512

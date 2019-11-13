@@ -1,6 +1,8 @@
 # Elastic-SIEM-at-Home
 Monitoring your servers and workstations doesn't have to be difficult or expensive. Learn how to use Elastic SIEM at home or for your small business. The `SIEM-at-HOME` folder in the `elastic/examples` repo contains references and examples for the **Elastic SIEM for home and small business** blog series:
 1. [Elastic SIEM for home and small business: Getting started](https://www.elastic.co/blog/elastic-siem-for-small-business-and-home-1-getting-started)
+2. Elastic SIEM for home and small business: Securing cluster access _(coming soon)_
+3. Elastic SIEM for home and small business: GeoIP data and Beats config review _(coming soon)_
 
 ## beats-configs
 Example configurations for beats when deploying an Elastic SIEM at Home running on Elasticsearch Service
