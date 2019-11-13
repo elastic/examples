@@ -78,11 +78,23 @@ monitoring.enabled: true
 #================================= Queue ======================================
 # See the 'Configure the internal queue' documentation for each Beat before 
 # configuring the queue.  Note that only one queue type can be configured.
+# You need to uncomment the specific queue settings you decide to use.
+
 # The `queue.mem` settings will cache events to memory in case access to the
 # Elasticsearch cluster, via the internet, is unavailable (internet outage)
-queue.mem:
-  events: 4096
-  flush.min_events: 512
-  flush.timeout: 1s
+#queue.mem:
+#  events: 4096
+#  flush.min_events: 512
+#  flush.timeout: 1s
+
 # The `queue.spool` settings will cache events to disk in case the system is offline
 # NOTE: The file spool queue is a beta functionality in 7.4
+#queue.spool:
+#  file:
+#    size: 512MiB
+#    page_size: 16KiB
+#    prealloc: ~
+#  write:
+#    buffer_size: 10MiB
+#    flush.timeout: 1s
+#    flush.min.events: 1024
