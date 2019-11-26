@@ -1,0 +1,37 @@
+#=== Winlogbeat specific options ===
+winlogbeat.event_logs:
+ - name: Application
+    ignore_older: 72h
+
+  - name: System
+
+  - name: Security
+    ignore_older: 24h
+    processors:
+      - drop_event.when.and: # drop local service login events
+        - equals.event.code: '4672'   
+        - equals.winlog.event_data.SubjectUserName: 'LOCAL SERVICE'
+      - script:
+          lang: javascript
+          id: security
+          file: ${path.home}/module/security/config/winlogbeat-security.js
+		  
+  - name: Windows PowerShell
+    ignore_older: 72h
+	
+  - name: Microsoft-Windows-PowerShell/Operational
+    ignore_older: 72h
+    event_id: 4103, 4104
+
+  - name: Microsoft-Windows-Sysmon/Operational
+    ignore_older: 24h
+    processors:
+      - script:
+          lang: javascript
+          id: sysmon
+          file: ${path.home}/module/sysmon/config/winlogbeat-sysmon.js
+
+#=== Beats Common Configs Here ===
+# Add the settings from the Beats General Config file (beats-general-config.yml)
+# to the end of this configuration file. The Beats General Config file example can be found at this link:
+# https://github.com/elastic/examples/blob/master/Security%20Analytics/SIEM-at-Home/beats-configs/beats-general-config.yml
