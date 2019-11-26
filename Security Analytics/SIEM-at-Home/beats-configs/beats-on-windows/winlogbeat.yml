@@ -15,10 +15,10 @@ winlogbeat.event_logs:
           lang: javascript
           id: security
           file: ${path.home}/module/security/config/winlogbeat-security.js
-		  
+
   - name: Windows PowerShell
     ignore_older: 72h
-	
+
   - name: Microsoft-Windows-PowerShell/Operational
     ignore_older: 72h
     event_id: 4103, 4104
