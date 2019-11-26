@@ -1,6 +1,8 @@
+# Example for the Beats on Windows blog
+# Configuration version: 11-25-2019
 #=== Winlogbeat specific options ===
 winlogbeat.event_logs:
- - name: Application
+  - name: Application
     ignore_older: 72h
 
   - name: System
