@@ -4,14 +4,14 @@ name: myHostName
 tags: ["myTag", "myHostName"]
 fields:
   env: myEnv
-  version: 11-13-2019
+  version: 11-26-2019
 
 #========================== Top Level Processor ===============================
 processors:
   - add_host_metadata:
-      # netinfo.enabled should be set to `false` in packetbeat until GitHub
-      # issue https://github.com/elastic/elasticsearch/issues/46193 is closed
-      netinfo.enabled: true
+      # netinfo.enabled should be set to `false` until GitHub issue
+      # https://github.com/elastic/elasticsearch/issues/46193 is resolved
+      netinfo.enabled: false
       Geo: # These Geo configurations are optional
         location: 40.7128, -74.0060
         continent_name: North America
