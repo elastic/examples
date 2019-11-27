@@ -4,14 +4,14 @@ name: myHostName
 tags: ["myTag", "myHostName"]
 fields:
   env: myEnv
-  version: 11-13-2019
+  version: 11-26-2019
 
 #========================== Top Level Processor ===============================
 processors:
   - add_host_metadata:
-      # netinfo.enabled should be set to `false` in packetbeat until GitHub
-      # issue https://github.com/elastic/elasticsearch/issues/46193 is closed
-      netinfo.enabled: true
+      # netinfo.enabled should be set to `false` until GitHub issue
+      # https://github.com/elastic/elasticsearch/issues/46193 is resolved
+      netinfo.enabled: false
       Geo: # These Geo configurations are optional
         location: 40.7128, -74.0060
         continent_name: North America
@@ -58,7 +58,9 @@ cloud.auth: "data_shipper:0987654321abcDEF"
 
 # The geoip-info pipeline is used to enrich GeoIP information in Elasticsearch
 # You must configure the pipeline in Elasticsearch before enabling the pipeline in Beats.
-output.elasticsearch.pipeline: geoip-info
+# The `output.elasticsearch.pipeline: geoip-info` setting should be commented out until
+# until GitHub issue https://github.com/elastic/elasticsearch/issues/46193 is resolved
+#output.elasticsearch.pipeline: geoip-info
 
 # The `max_retries` setting is the number of times to retry publishing an event after 
 # a publishing failure. After the specified number of retries, the events are typically dropped.
