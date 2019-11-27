@@ -1,0 +1,34 @@
+# Example for the Beats on Windows blog
+# Configuration version: 11-27-2019
+#=== Auditbeat specific options ===
+#===  Modules configuration ===
+auditbeat.modules:
+
+- module: file_integrity
+  paths:
+  - C:/windows
+  - C:/windows/system32
+  - C:/windows/SysWOW64
+  - C:/Program Files
+  - C:/Program Files (x86)
+  - C:/ProgramData
+
+- module: system
+  datasets:
+    - host
+  state.period: 12h
+  period: 1h
+
+- module: system
+  datasets:
+    - process
+  processors:
+    - add_process_metadata:
+        match_pids: [process.ppid]
+        target: system.process.parent
+  period: 3m
+
+#=== Beats Common Configs Here ===
+# Add the settings from the Beats General Config file (beats-general-config.yml)
+# to the end of this configuration file. The Beats General Config file example can be found at this link:
+# https://github.com/elastic/examples/blob/master/Security%20Analytics/SIEM-at-Home/beats-configs/beats-general-config.yml
