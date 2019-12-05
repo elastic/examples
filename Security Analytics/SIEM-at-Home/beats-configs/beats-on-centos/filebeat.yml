@@ -1,0 +1,53 @@
+# Example for the Beats on CentOS blog
+# Configuration version: 11-27-2019
+#=== Filebeat specific options ===
+#=== Filebeat modules ===
+filebeat.config.modules:
+  path: ${path.config}/modules.d/*.yml
+  reload.enabled: true
+  reload.period: 30s
+
+#=== Filebeat inputs ===
+filebeat.inputs:
+
+- type: log
+  enabled: true
+  paths:
+    - /var/log/yum.log
+
+- type: log
+  enabled: true
+  paths:
+    - /var/log/pihole.log
+  fields:
+    app: pihole
+    name: pihole
+
+- type: log
+  enabled: true
+  paths:
+    - /var/log/pihole-FTL.log
+  fields:
+    app: pihole
+    name: pihole-FTL
+
+- type: log
+  enabled: true
+  paths:
+    - /var/log/pihole_updateGravity.log
+  fields:
+    app: pihole
+    name: pihole-updateGravity
+
+- type: log
+  enabled: true
+  paths:
+    - /var/log/lighttpd/*.log
+  fields:
+    app: pihole
+    name: pihole-lighttpd
+
+#=== Beats Common Configs Here ===
+# Add the settings from the Beats General Config file (beats-general-config.yml)
+# to the end of this configuration file. The Beats General Config file example can be found at this link:
+# https://github.com/elastic/examples/blob/master/Security%20Analytics/SIEM-at-Home/beats-configs/beats-general-config.yml
