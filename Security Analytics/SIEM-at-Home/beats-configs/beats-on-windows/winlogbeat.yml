@@ -33,6 +33,18 @@ winlogbeat.event_logs:
           id: sysmon
           file: ${path.home}/module/sysmon/config/winlogbeat-sysmon.js
 
+#=== Winlogbeat logging ===
+# Configure logging for Winlogbeat if you plan on using the GeoIP ingest processor
+# Initially use `info` for the logging.level, set logging.level to `debug` if you see
+# an `Failed to publish events: temporary bulk send failure` error message in the logs
+#logging.level: info
+#logging.to_files: true
+#logging.files:
+#  path: C:\Program Files\Elastic\logs\
+#  name: winlogbeat
+#  keepfiles: 7
+#  permissions: 0644
+
 #=== Beats Common Configs Here ===
 # Add the settings from the Beats General Config file (beats-general-config.yml)
 # to the end of this configuration file. The Beats General Config file example can be found at this link:

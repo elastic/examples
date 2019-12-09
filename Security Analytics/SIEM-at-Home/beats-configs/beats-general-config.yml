@@ -1,12 +1,12 @@
 # Configuration applicable for all beats on a specific device
-#================================ General =====================================
+#=== General ===
 name: myHostName
 tags: ["myTag", "myHostName"]
 fields:
   env: myEnv
   version: 11-26-2019
 
-#========================== Top Level Processor ===============================
+#=== Top Level Processor ===
 processors:
   - add_host_metadata:
       # netinfo.enabled should be set to `false` until GitHub issue
@@ -51,7 +51,7 @@ processors:
         destination.geo.name: myHomeLocation
       target: ''
 
-#============================= Elastic Cloud ==================================
+#=== Elastic Cloud ===
 # These settings simplify using beats with the Elastic Cloud (https://cloud.elastic.co/).
 cloud.id: "My_Elastic_Cloud_Deployment:abcdefghijklmnopqrstuvwxyz1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 cloud.auth: "data_shipper:0987654321abcDEF"
@@ -73,11 +73,11 @@ output.elasticsearch.max_retries: 5
 #setup.ilm.check_exists: false
 #setup.ilm.overwrite: false
 
-#=========================== Xpack Monitoring =================================
+#=== Xpack Monitoring ===
 # When monitoring is enabled, the beat will ship monitoring data to the cluster
 monitoring.enabled: true
 
-#================================= Queue ======================================
+#=== Queue ===
 # See the 'Configure the internal queue' documentation for each Beat before 
 # configuring the queue.  Note that only one queue type can be configured.
 # You need to uncomment the specific queue type you decide to use.

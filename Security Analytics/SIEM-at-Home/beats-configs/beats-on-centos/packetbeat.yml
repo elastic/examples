@@ -1,11 +1,10 @@
-# Example for the Beats on Windows blog
+# Example for the Beats on CentOS blog
 # Configuration version: 11-27-2019
 #=== Packetbeat specific options ===
 #=== Network device ===
-# Issue the `.\packetbeat.exe devices` command to determine the interfaces on your system
 # Select the network interface to sniff the data. On Linux, you can use the
 # "any" keyword to sniff on all connected interfaces.
-packetbeat.interfaces.device: 3
+packetbeat.interfaces.device: any
 
 #=== Flows ===
 packetbeat.flows:
@@ -32,6 +31,8 @@ packetbeat.protocols:
   ports: [53]
   include_authorities: true
   include_additionals: true
+  send_request: true
+  send_response: true
 
 - type: http
   # Configure the ports where to listen for HTTP traffic. You can disable
@@ -49,18 +50,6 @@ packetbeat.protocols:
     - 8443
     - 8883  # Secure MQTT
     - 9243  # Elasticsearch
-
-#=== Packetbeat logging ===
-# Configure logging for Packetbeat if you plan on using the GeoIP ingest processor
-# Initially use `info` for the logging.level, set logging.level to `debug` if you see
-# an `Failed to publish events: temporary bulk send failure` error message in the logs
-#logging.level: info
-#logging.to_files: true
-#logging.files:
-#  path: C:\Program Files\Elastic\logs\
-#  name: packetbeat
-#  keepfiles: 7
-#  permissions: 0644
 
 #=== Beats Common Configs Here ===
 # Add the settings from the Beats General Config file (beats-general-config.yml)
