@@ -1,5 +1,5 @@
 # Example for the Beats on CentOS blog
-# Configuration version: 11-27-2019
+# Configuration version: 12-11-2019
 #=== Filebeat specific options ===
 #=== Filebeat modules ===
 filebeat.config.modules:
