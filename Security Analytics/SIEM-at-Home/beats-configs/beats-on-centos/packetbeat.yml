@@ -1,5 +1,5 @@
 # Example for the Beats on CentOS blog
-# Configuration version: 11-27-2019
+# Configuration version: 12-11-2019
 #=== Packetbeat specific options ===
 #=== Network device ===
 # Select the network interface to sniff the data. On Linux, you can use the
