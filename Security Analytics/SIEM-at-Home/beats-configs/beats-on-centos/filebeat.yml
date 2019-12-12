@@ -14,6 +14,7 @@ filebeat.inputs:
   enabled: true
   paths:
     - /var/log/yum.log
+  close_inactive: 1m
 
 - type: log
   enabled: true
