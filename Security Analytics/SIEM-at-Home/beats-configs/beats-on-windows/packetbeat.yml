@@ -1,5 +1,5 @@
 # Example for the Beats on Windows blog
-# Configuration version: 11-27-2019
+# Configuration version: 12-06-2019
 #=== Packetbeat specific options ===
 #=== Network device ===
 # Issue the `.\packetbeat.exe devices` command to determine the interfaces on your system
