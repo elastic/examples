@@ -1,5 +1,5 @@
 # Example for the Beats on Windows blog
-# Configuration version: 11-25-2019
+# Configuration version: 12-06-2019
 #=== Winlogbeat specific options ===
 winlogbeat.event_logs:
   - name: Application
