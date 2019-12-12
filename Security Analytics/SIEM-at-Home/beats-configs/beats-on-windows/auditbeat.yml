@@ -1,5 +1,5 @@
 # Example for the Beats on Windows blog
-# Configuration version: 11-27-2019
+# Configuration version: 12-06-2019
 #=== Auditbeat specific options ===
 #===  Modules configuration ===
 auditbeat.modules:

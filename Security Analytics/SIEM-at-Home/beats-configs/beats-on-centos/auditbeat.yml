@@ -1,5 +1,5 @@
 # Example for the Beats on CentOS blog
-# Configuration version: 11-27-2019
+# Configuration version: 12-11-2019
 #=== Auditbeat specific options ===
 #===  Modules configuration ===
 auditbeat.modules:
@@ -45,6 +45,18 @@ auditbeat.modules:
         match_pids: [process.ppid]
         target: process.parent
   period: 5s
+
+#=== Auditbeat logging ===
+# Configure logging for Auditbeat if you plan on using the GeoIP ingest processor
+# Initially use `info` for the logging.level, set logging.level to `debug` if you see
+# an `Failed to publish events: temporary bulk send failure` error message in the logs
+#logging.level: info
+#logging.to_files: true
+#logging.files:
+#  path: /var/log/elastic
+#  name: auditbeat
+#  keepfiles: 7
+#  permissions: 0644
 
 #=== Beats Common Configs Here ===
 # Add the settings from the Beats General Config file (beats-general-config.yml)
