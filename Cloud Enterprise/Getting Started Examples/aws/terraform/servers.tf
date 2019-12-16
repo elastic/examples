@@ -35,7 +35,7 @@ resource "aws_instance" "server" {
   key_name = "${aws_key_pair.server.key_name}"
 
   root_block_device {
-    volume_size = 100
+    volume_size = "${var.root_device_size}"
   }
 
   tags {
@@ -43,5 +43,36 @@ resource "aws_instance" "server" {
     managed-by = "terraform"
   }
 
-  user_data = "${file(var.user_data)}"
+  ebs_block_device {
+    delete_on_termination = true
+    device_name = "${var.secondary_device_name}"
+    volume_type = "gp2"
+    volume_size = "${var.secondary_device_size}"
+  }
+}
+
+data "template_file" "ansible-install" {
+  template = "${file("ansible-install.sh")}"
+  depends_on = ["aws_instance.server"]
+  vars = {
+    # Created servers and appropriate AZs
+    ece-server0 = "${aws_instance.server.0.public_dns}"
+    ece-server0-zone = "${aws_instance.server.0.availability_zone}"
+    ece-server1 = "${aws_instance.server.1.public_dns}"
+    ece-server1-zone = "${aws_instance.server.1.availability_zone}"
+    ece-server2 = "${aws_instance.server.2.public_dns}"
+    ece-server2-zone = "${aws_instance.server.2.availability_zone}"
+
+    # Keys to server
+    key = "${var.private_key}"
+
+    # Server Device Name
+    device = "${var.secondary_device_name}"
+
+    # User to login
+    user = "${var.remote_user}"
+
+    # Ece version to install
+    ece-version = "${var.ece-version}"
+  }
 }
