@@ -27,6 +27,7 @@ IFS=$'\n\t'
 ###############################################################################
 # Program Functions
 ###############################################################################
+
 _verify_ansible() {
 if [ -x "$(command -v ansible-galaxy)" ]; then
 	# install role
@@ -116,7 +117,10 @@ _run_ansible() {
 # Description:
 #   Entry point for the program, handling basic option parsing and dispatching.
 _main() {
+<<<<<<< HEAD
     _verify_ansible
+=======
+>>>>>>> d2bcea54a13f7f468fe9d380a521398b8ace7d17
     _write_ansible_playbook
     _write_ansible_hosts
     sleep 30
