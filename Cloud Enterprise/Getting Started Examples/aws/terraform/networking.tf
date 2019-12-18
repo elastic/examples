@@ -77,6 +77,13 @@ resource "aws_security_group" "administration" {
     protocol    = "tcp"
     cidr_blocks = ["${var.trusted_network}"]
   }
+
+  ingress {
+    from_port   = 12343
+    to_port     = 12343
+    protocol    = "tcp"
+    cidr_blocks = ["${var.trusted_network}"]
+  }
 }
 
 resource "aws_security_group" "servers" {
