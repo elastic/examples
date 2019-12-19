@@ -4,7 +4,7 @@ name: myHostName
 tags: ["myTag", "myHostName"]
 fields:
   env: myEnv
-  version: 11-26-2019
+  version: 12-18-2019
 
 #=== Top Level Processor ===
 processors:
@@ -21,8 +21,9 @@ processors:
         city_name: New York City
         name: myHomeLocation
   - add_locale: ~
-  - add_cloud_metadata: ~
+#  - add_cloud_metadata: ~
   - add_fields:
+      # Consider defining known subnets on portable systems instead of `private`
       #when.network.source.ip: 10.101.101.0/24
       when.network.source.ip: private
       fields:
@@ -37,6 +38,7 @@ processors:
         source.geo.name: myHomeLocation
       target: ''
   - add_fields:
+      # Consider defining known subnets on portable systems instead of `private`
       #when.network.destination.ip: 10.101.101.0/24
       when.network.destination.ip: private
       fields:
