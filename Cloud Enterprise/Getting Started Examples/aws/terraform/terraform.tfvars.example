@@ -1,7 +1,12 @@
-# See variables.tf for descriptions
+## See variables.tf for descriptions
 
-profile = "YOUR-AWS-PROFILE"
+project_name = "magical-ece-ansible-and-terraform-mystery-tour"
 
-trusted_network = "YOUR-IP/32"
+trusted_network = "<your ip>/32"
 
-name = "YOUR-NAME"
+## AWS provider settings
+aws_access_key = "<your key>"
+aws_secret_key = "<your secret>"
+#aws_region = "us-east-1"
+#public_key = "~/.ssh/id_rsa.pub"
+#private_key = "~/.ssh/id_rsa"
