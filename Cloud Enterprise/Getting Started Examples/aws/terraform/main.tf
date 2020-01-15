@@ -10,6 +10,10 @@ resource "null_resource" "run-ansible" {
    value = ["${aws_instance.server.*.public_dns}"]
 }
 
-output "installed-ece-url" {
+output "ece-ui-url" {
    value = "${format("https://%s:12443","${aws_instance.server.0.public_dns}")}"
+}
+
+output "ece-api-url" {
+   value = "${format("https://%s:12343","${aws_instance.server.0.public_dns}")}"
 }

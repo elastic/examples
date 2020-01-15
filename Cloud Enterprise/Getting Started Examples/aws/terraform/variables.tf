@@ -9,7 +9,7 @@ variable "profile" {
 
 # Your IP address, so that you will be whitelisted against security groups
 variable "trusted_network" {
-  description = "CIDR formatted IP (<IP Address>/32) or Network that will be allowed administrative access"
+  description = "CIDR formatted IP (<IP Address>/32) or network that will be allowed access (you can use 0.0.0.0/0 for unrestricted access)"
 }
 
 # General name tag that will be given to spun up instances
