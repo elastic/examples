@@ -4,7 +4,7 @@
 
 # Your IP address, so that you will be whitelisted against security groups
 variable "trusted_network" {
-  description = "CIDR formatted IP (<IP Address>/32) or Network that will be allowed ssh access (you can use 0.0.0.0/0 for unrestricted access)"
+  description = "CIDR formatted IP (<IP Address>/32) or network that will be allowed access (you can use 0.0.0.0/0 for unrestricted access)"
 }
 
 # General name tag that will be given to spun up instances
@@ -32,17 +32,23 @@ variable "aws_region" {
 # The name of the AMI in the AWS Marketplace
 variable "aws_ami_name" {
   default = "CentOS Linux 7 x86_64 HVM*"
+  # For ubuntu, uncomment this 
+  # default = "ubuntu/images/hvm-ssd/ubuntu-xenial-16.04-amd64-server-*"
 }
 
 # The owner of the AMI
 variable "aws_ami_owner" {
   default = "679593333241" # centos.org
+  # For ubuntu, uncomment this
+  # default = "099720109477" # Canonical
 }
 
 # User to log in to instances and perform install
 # This is dependent upon the AMI you use, so make sure these are in sync. For example, an Ubuntu AMI would use the ubuntu user
 variable "remote_user" {
   default = "centos"
+  # For ubuntu, uncomment this
+  # default = "ubuntu"
 }
 
 # Desired AZs, must have 3.
