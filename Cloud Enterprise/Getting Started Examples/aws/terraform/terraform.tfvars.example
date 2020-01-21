@@ -1,6 +1,6 @@
 ## See variables.tf for descriptions
 
-project_name = "magical-ece-ansible-and-terraform-mystery-tour"
+project_name = "ece-terraform-example"
 
 trusted_network = "<your ip>/32"
 
