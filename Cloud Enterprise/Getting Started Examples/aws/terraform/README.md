@@ -6,10 +6,10 @@ This tree provides a basic example installation of [Elastic Cloud Enterprise](ht
 
 Note that the terraform files and installation script are intentionally basic.
 
-A full production deployment should make use of auto scaling groups, load balancers and other high-availability constructs which have been left out of this setup. See [the Elastic Cloud Enterprise planning docs](https://www.elastic.co/guide/en/cloud-enterprise/1.1/ece-planning.html) for additional details regarding production planning and deployment.
+A full production deployment should make use of auto scaling groups, load balancers and other high-availability constructs which have been left out of this setup. See [the Elastic Cloud Enterprise planning docs](https://www.elastic.co/guide/en/cloud-enterprise/current/ece-planning.html) for additional details regarding production planning and deployment.
 
 ## Prereqs on your machine
-- Terraform v0.11.X
+- Terraform v0.12.x
 - Ansible
 
 ## Usage
