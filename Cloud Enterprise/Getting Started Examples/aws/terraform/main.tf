@@ -1,5 +1,5 @@
 terraform {
-  required_version >= 0.12.19
+  required_version >= 0.12
 }
 
 # Initiate ece installation through ansible playbook
@@ -14,6 +14,10 @@ output "ece-instances" {
    value = [aws_instance.server.*.public_dns]
 }
 
-output "installed-ece-url" {
+output "ece-ui-url" {
    value = format("https://%s:12443",aws_instance.server.0.public_dns)
+}
+
+output "ece-api-url" {
+   value = format("https://%s:12343",aws_instance.server.0.public_dns)
 }
