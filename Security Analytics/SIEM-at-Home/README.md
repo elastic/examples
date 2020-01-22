@@ -5,7 +5,8 @@ Monitoring your servers and workstations doesn't have to be difficult or expensi
 3. [GeoIP data and Beats config review](https://www.elastic.co/blog/elastic-siem-for-small-business-and-home-3-geoip-data-and-beats-config-review)
 4. [Beats on Windows](https://www.elastic.co/blog/elastic-siem-for-small-business-and-home-4-beats-on-windows)
 5. [Beats on CentOS](https://www.elastic.co/blog/elastic-siem-for-small-business-and-home-5-beats-on-centos)  
-6. Beats on MacOS _(coming soon)_
+6. [Beats on macOS](https://www.elastic.co/blog/elastic-siem-for-small-business-and-home-6-beats-on-mac)
+7. Elastic SIEM Overview _(coming soon)_
 
 ## `beats-configs`
 Example configurations for beats when deploying an Elastic SIEM at Home running on Elasticsearch Service
