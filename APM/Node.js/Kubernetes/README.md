@@ -1,4 +1,4 @@
-# node-APM
+# Elastic APM: Instrument a Node.js Express app running in Kubernetes
 
 This is a very simple example, and is meant to show the method of including the Elastic APM Agent for Node.js in your application.  The application is a very basic getting started example, and does not involve any external datastore or other services, but it does illustrate the method for including the APM details in a Node.js app running in Kubernetes.
 
