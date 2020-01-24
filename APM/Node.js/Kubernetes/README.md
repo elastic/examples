@@ -8,10 +8,10 @@ const apm = require('elastic-apm-node').start()
 ```
 
 Here is the original code:
-![Original Code](https://github.com/elastic/examples/raw/master/APM/Node.js/Kubernetes/images/Node-1.png)
+![Original Code](images/Node-1.png)
 
 and here is the modified code:
-![Original Code](https://github.com/elastic/examples/raw/master/APM/Node.js/Kubernetes/images/Node-2.png)
+![Original Code](images/Node-2.png)
 
 Follow the instructions in the [Node.js Guide](https://nodejs.org/en/docs/guides/nodejs-docker-webapp/), and once you have the code working in a Docker container then open Kibana and follow these instructions to instrument your application with Elastic APM.
 
@@ -19,11 +19,11 @@ Follow the instructions in the [Node.js Guide](https://nodejs.org/en/docs/guides
 Follow the instructions in Kibana Home -> Add APM, with a Kubernetes twist, as 
 instead of adding the APM details to the `.js` file pass in Kubernetes secrets.
 
-![Kibana Home > Add APM](https://github.com/elastic/examples/raw/master/APM/Node.js/Kubernetes/images/APM-1.png)
+![Kibana Home > Add APM](images/APM-1.png)
 
 
 In this example, the code is Node.js, so select Node.js, and run the `npm install elastic-apm-node --save` as shown:
-![Select Language](https://github.com/elastic/examples/raw/master/APM/Node.js/Kubernetes/images/APM-2.png)
+![Select Language](images/APM-2.png)
 
 The next block shows the APM details for your Elasticsearch Service in Elastic Cloud.  Since this is a Kubernetes example, use a Kubernetes Secret rather than adding the details to your `.js` file.  There are three details needed:
 
@@ -33,7 +33,7 @@ The next block shows the APM details for your Elasticsearch Service in Elastic C
 
 These variables are described in the [advanced docs](https://www.elastic.co/guide/en/apm/agent/nodejs/3.x/express.html#express-advanced-configuration).  The docs are written for an environment where the variables would be set in the environment, and because this is a Kubernetes deployment use Kubernetes secrets to set them.
 
-![APM details](https://github.com/elastic/examples/raw/master/APM/Node.js/Kubernetes/images/APM-3.png)
+![APM details](images/APM-3.png)
 
 Copy the `serverUrl` and `secretToken`, and decide what the `serviceName` should be set to for your service.  You will use these in the next step.
 
@@ -87,4 +87,4 @@ curl http://localhost:31080/foo
 
 ## View APM:
 
-![Original Code](https://github.com/elastic/examples/raw/master/APM/Node.js/Kubernetes/images/APM-5.png)
+![APM](images/APM-5.png)
