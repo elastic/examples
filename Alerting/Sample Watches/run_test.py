@@ -138,7 +138,7 @@ if __name__ == '__main__':
         print("Received: Watch Condition: %s" % met)
         if match:
             if met and response['watch_record']['result']['condition']['status'] == "success":
-                print("Expected: %s" % test['expected_response'])
+                print("Expected: %s" % test.get('expected_response'))
                 if len(response['watch_record']['result']['actions']) == 0:
                     if response['watch_record']['result']['transform']['status'] == 'failure':
                         print("No actions where taken because transform failed: {}".format(
@@ -169,7 +169,7 @@ if __name__ == '__main__':
                 logging = logging_action['logging']
                 if logging:
                     print("Received: %s" % logging['logged_text'])
-                    if logging['logged_text'] == test['expected_response']:
+                    if logging['logged_text'] == test.get('expected_response'):
                         print("TEST PASS")
                         sys.exit(0)
                 else:
