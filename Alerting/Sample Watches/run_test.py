@@ -130,7 +130,7 @@ if __name__ == '__main__':
         print("Expected: Watch Condition: %s" % match)
         if 'condition' not in response['watch_record']['result']:
             print("Condition not evaluated due to watch error: {}".format(
-                json.dumps(response['watch_record']['result'], sort_keys=True, indent=2)
+                json.dumps(response['watch_record'], sort_keys=True, indent=2)
             ))
             print("TEST FAIL")
             sys.exit(1)
