@@ -81,7 +81,7 @@ data:
       host: ${KIBANA_HOST}
 
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: DaemonSet
 metadata:
   name: packetbeat-dynamic
@@ -90,6 +90,10 @@ metadata:
     k8s-app: packetbeat-dynamic
     kubernetes.io/cluster-service: "true"
 spec:
+  selector:
+    matchLabels:
+      k8s-app: packetbeat-dynamic
+      kubernetes.io/cluster-service: "true"
   template:
     metadata:
       labels:
