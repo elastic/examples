@@ -1,0 +1,64 @@
+# Example for the Beats on CentOS blog
+# Configuration version: 12-11-2019
+#=== Auditbeat specific options ===
+#===  Modules configuration ===
+auditbeat.modules:
+
+- module: file_integrity
+  paths:
+  - /bin
+  - /usr/bin
+  - /sbin
+  - /usr/sbin
+  - /etc
+
+- module: system
+  datasets:
+    - user
+    - login
+  user.detect_password_changes: true
+  period: 10s 
+  state.period: 12h
+
+- module: system
+  datasets:
+    - package
+    - host
+  period: 30m
+  state.period: 12h
+
+- module: system
+  datasets:
+    - socket
+  socket.include_localhost: false
+  period: 3s
+
+- module: system
+  datasets:
+    - process 
+  processors:
+    - drop_event.when:
+         or:
+          - contains.event.action: "existing_process"
+          - contains.event.action: "process_error"
+    - add_process_metadata:
+        match_pids: [process.ppid]
+        target: process.parent
+  period: 5s
+
+#=== Auditbeat logging ===
+# Configure logging for Auditbeat if you plan on using the GeoIP ingest processor
+# Initially use `info` for the logging.level, set logging.level to `debug` if you see
+# an `Failed to publish events: temporary bulk send failure` error message in the logs
+#logging.level: info
+#logging.to_files: true
+#logging.files:
+#  path: /var/log/elastic
+#  name: auditbeat
+#  keepfiles: 7
+#  permissions: 0644
+
+#=== Beats Common Configs Here ===
+# Add the settings from the Beats General Config file (beats-general-config.yml)
+# to the end of this configuration file. The Beats General Config file example can be found at this link:
+# https://github.com/elastic/examples/blob/master/Security%20Analytics/SIEM-at-Home/beats-configs/beats-general-config.yml

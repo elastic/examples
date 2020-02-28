@@ -1,0 +1,13 @@
+wget https://raw.githubusercontent.com/elastic/examples/master/scraping-prometheus-k8s-with-metricbeat/CLOUD_ID
+
+wget https://raw.githubusercontent.com/elastic/examples/master/scraping-prometheus-k8s-with-metricbeat/ELASTIC_PASSWORD
+
+wget https://raw.githubusercontent.com/elastic/examples/master/scraping-prometheus-k8s-with-metricbeat/README.md
+
+wget https://raw.githubusercontent.com/elastic/examples/master/scraping-prometheus-k8s-with-metricbeat/guestbook.yaml
+
+wget https://raw.githubusercontent.com/elastic/examples/master/scraping-prometheus-k8s-with-metricbeat/metricbeat-clusterrolebinding.yaml
+
+wget https://raw.githubusercontent.com/elastic/examples/master/scraping-prometheus-k8s-with-metricbeat/metricbeat-kube-state-and-prometheus-server.yaml
+
+wget https://raw.githubusercontent.com/elastic/examples/master/scraping-prometheus-k8s-with-metricbeat/metricbeat-prometheus-auto-discover.yaml

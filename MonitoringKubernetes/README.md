@@ -1,14 +1,9 @@
-#### Note: These instructions have been tested in Google Cloud Platform Kubernetes Engine and IBM Cloud Kubernetes Service.  I hope that they work everywhere else, and I will test them in other places as I am able.
-
 ### Create an Elastic Cloud deployment
-You can use Elastic Cloud ( http://cloud.elastic.co ), or a local deployment, or deploy containers from https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html
+You can use Elastic Cloud ( http://cloud.elastic.co ), or a local deployment.  whichever you choose, https://elastic.co/start will get you started.
 
 If this is your first experience with the Elastic stack I would recommend Elastic Cloud; and don't worry, you do not need a credit card.
 
 Make sure that you take note of the CLOUD ID and Elastic Password if you use Elastic Cloud or Elastic Cloud Enterprise.
-
-### Connect to your Kubernetes environment
-In Google I use the web based console provided by Google.  In IBM Cloud I use an Ubuntu VM running in Virtualbox and connect to IBM Cloud Container service.
 
 ### Authorization
 Create a cluster level role binding so that you can manipulate the system level namespace
@@ -56,10 +51,8 @@ kubectl get pods --namespace=kube-system | grep kube-state
 and create it if needed (by default it will not be there)
 
 ```
-go get k8s.io/kube-state-metrics
-cd ${USER}/gopath/src/k8s.io/kube-state-metrics # Note: you may not have a gopath dir, it may be ${USER}/go/ instead, or ?
-make container
-kubectl create -f kubernetes
+git clone https://github.com/kubernetes/kube-state-metrics.git kube-state-metrics
+kubectl create -f kube-state-metrics/kubernetes
 kubectl get pods --namespace=kube-system | grep kube-state 
 ```
 

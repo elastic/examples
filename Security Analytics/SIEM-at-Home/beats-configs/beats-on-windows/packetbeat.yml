@@ -1,0 +1,68 @@
+# Example for the Beats on Windows blog
+# Configuration version: 12-06-2019
+#=== Packetbeat specific options ===
+#=== Network device ===
+# Issue the `.\packetbeat.exe devices` command to determine the interfaces on your system
+# Select the network interface to sniff the data. On Linux, you can use the
+# "any" keyword to sniff on all connected interfaces.
+packetbeat.interfaces.device: 3
+
+#=== Flows ===
+packetbeat.flows:
+  timeout: 30s
+  period: 10s
+
+#=== Transaction protocols ===
+# For more information on the transaction protocols, see
+# https://www.elastic.co/guide/en/beats/packetbeat/7.4/configuration-protocols.html
+packetbeat.protocols:
+- type: icmp
+  # Enable ICMPv4 and ICMPv6 monitoring. Default: false
+  enabled: true
+
+- type: dhcpv4
+  # Configure the DHCP for IPv4 ports.
+  ports: [67, 68]
+  send_request: true
+  send_response: true
+
+- type: dns
+  # Configure the ports where to listen for DNS traffic. You can disable
+  # the DNS protocol by commenting out the list of ports.
+  ports: [53]
+  include_authorities: true
+  include_additionals: true
+
+- type: http
+  # Configure the ports where to listen for HTTP traffic. You can disable
+  # the HTTP protocol by commenting out the list of ports.
+  ports: [80, 8080, 8000, 5000, 8002]
+
+- type: tls
+  # Configure the ports where to listen for TLS traffic. You can disable
+  # the TLS protocol by commenting out the list of ports.
+  ports:
+    - 443   # HTTPS
+    - 993   # IMAPS
+    - 995   # POP3S
+    - 5223  # XMPP over SSL
+    - 8443
+    - 8883  # Secure MQTT
+    - 9243  # Elasticsearch
+
+#=== Packetbeat logging ===
+# Configure logging for Packetbeat if you plan on using the GeoIP ingest processor
+# Initially use `info` for the logging.level, set logging.level to `debug` if you see
+# an `Failed to publish events: temporary bulk send failure` error message in the logs
+#logging.level: info
+#logging.to_files: true
+#logging.files:
+#  path: C:\Program Files\Elastic\logs\
+#  name: packetbeat
+#  keepfiles: 7
+#  permissions: 0644
+
+#=== Beats Common Configs Here ===
+# Add the settings from the Beats General Config file (beats-general-config.yml)
+# to the end of this configuration file. The Beats General Config file example can be found at this link:
+# https://github.com/elastic/examples/blob/master/Security%20Analytics/SIEM-at-Home/beats-configs/beats-general-config.yml

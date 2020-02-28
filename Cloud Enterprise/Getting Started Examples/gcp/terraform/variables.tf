@@ -1,18 +1,14 @@
 variable "region" {
-  default = "asia-northeast1"
+  default = "us-central1"
 }
 
 variable "zones" {
-  type    = "list"
-  default = ["a", "b"]
-}
-
-variable "project" {
-  description = "Your google project ID"
+  type    = list(string)
+  default = ["a", "b", "c"]
 }
 
 variable "trusted_network" {
-  description = "Network ranges (your IP) that will be allowed administrative access"
+  description = "CIDR formatted IP (<IP Address>/32) or network that will be allowed access (you can use 0.0.0.0/0 for unrestricted access)"
 }
 
 variable "name" {
@@ -20,15 +16,19 @@ variable "name" {
 }
 
 variable "cidr" {
-  default = "10.13.37.0/24"
+  default = "192.168.100.0/24"
 }
 
 variable "machine_type" {
   default = "n1-standard-16"
 }
 
-variable "user_data" {
-  default = "user_data.sh"
+variable "gcp_key_filename" {
+  description = "What's the json key filename located in your <home>/.gcloud/ directory path?"
+}
+
+variable "project" {
+  description = "What is the name of the project you would like resources to be created under in GCP?"
 }
 
 variable "remote_user" {
@@ -37,4 +37,12 @@ variable "remote_user" {
 
 variable "public_key" {
   default = "~/.ssh/id_rsa.pub"
+}
+
+variable "private_key" {
+  default = "~/.ssh/id_rsa"
+}
+
+variable "ece_version" {
+  default = "2.4.3"
 }

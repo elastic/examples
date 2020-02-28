@@ -2,6 +2,6 @@
 
 project = "YOUR-CLOUD-PROJECT"
 
-trusted_network = "YOUR-IP/32"
+gcp_key_filename = "key-file-name.json"
 
 name = "YOUR-NAME"

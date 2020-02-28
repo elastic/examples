@@ -38,7 +38,7 @@ If using the snapshot, the above represents the minimal compatible Elasticsearch
 
   ### Download & Ingest Data
 
-  You have 2 options to index the data into Elasticsearch. You can either use the Elasticsearch [snapshot and restore](https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-snapshots.html) API to directly restore the `nyc_restaurants` index from a snapshot. OR, you can download the raw data from the data.cityofnewyork.us website and then use the scripts in the [Scripts-Python](https://github.com/elastic/examples/tree/master/kibana_nyc_restaurants/Scripts-Python) folder to process the raw files and index the data.
+  You have 3 options to index the data into Elasticsearch. You can either use the Elasticsearch [snapshot and restore](https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-snapshots.html) API to directly restore the `nyc_restaurants` index from a snapshot. OR, you can download the raw data from the data.cityofnewyork.us website and then use the scripts in the [Scripts-Python](https://github.com/elastic/examples/tree/master/kibana_nyc_restaurants/Scripts-Python) folder to process the raw files and index the data.
 
   #### Option 1. Load data by restoring index snapshot
   (Learn more about snapshot / restore [here](https://www.elastic.co/guide/en/elasticsearch/reference/5.0/modules-snapshots.html) )
@@ -104,6 +104,9 @@ If using the snapshot, the above represents the minimal compatible Elasticsearch
       * Click on **Dashboard** tab and open `DOHMH: Overview` dashboard. Voila! You should see the following dashboard. Happy Data Exploration!
 
   ![Kibana Dashboard Screenshot](https://github.com/elastic/examples/blob/master/Exploring%20Public%20Datasets/nyc_restaurants/restaurants_kibana.jpg?raw=true)
+
+  #### Option 3: Use the CURL as described in this blog (works great with cloud!) 
+https://www.elastic.co/blog/indexing-csv-elasticsearch-ingest-node
 
   ### We would love to hear from you!
   If you run into issues running this example or have suggestions to improve it, please use Github issues to let us know. Have an easy fix? Submit a pull request. We will try our best to respond in a timely manner!

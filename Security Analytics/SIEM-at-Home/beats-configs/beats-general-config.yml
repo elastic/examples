@@ -1,0 +1,104 @@
+# Configuration applicable for all beats on a specific device
+#=== General ===
+name: myHostName
+tags: ["myTag", "myHostName"]
+fields:
+  env: myEnv
+  version: 12-18-2019
+
+#=== Top Level Processor ===
+processors:
+  - add_host_metadata:
+      # netinfo.enabled should be set to `false` until GitHub issue
+      # https://github.com/elastic/elasticsearch/issues/46193 is resolved
+      netinfo.enabled: false
+      Geo: # These Geo configurations are optional
+        location: 40.7128, -74.0060
+        continent_name: North America
+        country_iso_code: US
+        region_name: New York
+        region_iso_code: US-NY
+        city_name: New York City
+        name: myHomeLocation
+  - add_locale: ~
+#  - add_cloud_metadata: ~
+  - add_fields:
+      # Consider defining known subnets on portable systems instead of `private`
+      #when.network.source.ip: 10.101.101.0/24
+      when.network.source.ip: private
+      fields:
+        source.geo.location:
+          lat: 40.7128
+          lon: -74.0060
+        source.geo.continent_name: North America
+        source.geo.country_iso_code: US
+        source.geo.region_name: New York
+        source.geo.region_iso_code: US-NY
+        source.geo.city_name: New York City
+        source.geo.name: myHomeLocation
+      target: ''
+  - add_fields:
+      # Consider defining known subnets on portable systems instead of `private`
+      #when.network.destination.ip: 10.101.101.0/24
+      when.network.destination.ip: private
+      fields:
+        destination.geo.location:
+          lat: 40.7128
+          lon: -74.0060
+        destination.geo.continent_name: North America
+        destination.geo.country_iso_code: US
+        destination.geo.region_name: New York
+        destination.geo.region_iso_code: US-NY
+        destination.geo.city_name: New York City
+        destination.geo.name: myHomeLocation
+      target: ''
+
+#=== Elastic Cloud ===
+# These settings simplify using beats with the Elastic Cloud (https://cloud.elastic.co/).
+cloud.id: "My_Elastic_Cloud_Deployment:abcdefghijklmnopqrstuvwxyz1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+cloud.auth: "data_shipper:0987654321abcDEF"
+
+# The geoip-info pipeline is used to enrich GeoIP information in Elasticsearch
+# You must configure the pipeline in Elasticsearch before enabling the pipeline in Beats.
+# The `output.elasticsearch.pipeline: geoip-info` setting should be commented out until
+# until GitHub issue https://github.com/elastic/elasticsearch/issues/46193 is resolved
+#output.elasticsearch.pipeline: geoip-info
+
+# The `max_retries` setting is the number of times to retry publishing an event after 
+# a publishing failure. After the specified number of retries, the events are typically dropped.
+output.elasticsearch.max_retries: 5
+
+# When deploying beats to multiple systems or locations, uncomment the following 
+# setup.template.* and setup.ilm.* configurations after running the beats setup command
+# Otherwise, uncomment the following configurations for beats that will only publish data
+#setup.template.enabled: false
+#setup.ilm.check_exists: false
+#setup.ilm.overwrite: false
+
+#=== Xpack Monitoring ===
+# When monitoring is enabled, the beat will ship monitoring data to the cluster
+monitoring.enabled: true
+
+#=== Queue ===
+# See the 'Configure the internal queue' documentation for each Beat before 
+# configuring the queue.  Note that only one queue type can be configured.
+# You need to uncomment the specific queue type you decide to use.
+
+# The `queue.mem` settings will cache events to memory in case access to the
+# Elasticsearch cluster, via the internet, is unavailable (internet outage)
+#queue.mem:
+#  events: 4096
+#  flush.min_events: 512
+#  flush.timeout: 1s
+
+# The `queue.spool` settings will cache events to disk in case the system is offline
+# NOTE: The file spool queue is a beta functionality in 7.4
+#queue.spool:
+#  file:
+#    size: 512MiB
+#    page_size: 16KiB
+#    prealloc: ~
+#  write:
+#    buffer_size: 10MiB
+#    flush.timeout: 1s
+#    flush.min.events: 1024

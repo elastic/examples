@@ -1,0 +1,7 @@
+Single line
+One or more URLs
+Double quotes around each URL
+Comma between each double quoted URL
+Square brackets around the list
+Remove these instructions once you edit the line below
+["http://<hostname or IP>:<port>", "http://<hostname or IP>:<port>", "http://<hostname or IP>:<port>"]

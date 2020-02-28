@@ -1,0 +1,50 @@
+---
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: express-demo-deployment
+  namespace: express-demo
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: express-demo  
+    spec:
+      containers: 
+      - name: express-demo 
+        image: danroscigno/node-web-app
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+        env:
+        - name: ELASTIC_APM_SECRET_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: apm-details
+              key: ELASTIC_APM_SECRET_TOKEN
+        - name: ELASTIC_APM_SERVER_URL
+          valueFrom:
+            secretKeyRef:
+              name: apm-details
+              key: ELASTIC_APM_SERVER_URL
+        - name: ELASTIC_APM_SERVICE_NAME
+          # Name that will appear in the APM UI
+          valueFrom:
+            secretKeyRef:
+              name: apm-details
+              key: ELASTIC_APM_SERVICE_NAME
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: express-demo-deployment
+  namespace: express-demo
+spec:
+  type: NodePort
+  ports:
+    - protocol: TCP
+      port: 8080
+      nodePort: 31080
+  selector:
+    app: express-demo

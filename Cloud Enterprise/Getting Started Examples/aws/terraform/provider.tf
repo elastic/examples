@@ -1,13 +1,10 @@
 provider "aws" {
-  region  = "${var.region}"
-  profile = "${var.profile}"
-  version = "1.3.0"
-}
+  region  = var.aws_region
 
-provider "template" {
-  version = "1.0.0"
-}
+  # You can use access keys
+  access_key = var.aws_access_key
+  secret_key = var.aws_secret_key
 
-terraform {
-  required_version = "0.11.1"
+  # Or specify an aws profile, instead.
+  # profile = "<aws profile>"
 }

@@ -1,0 +1,14 @@
+{
+  "name": "docker_web_app",
+  "version": "1.0.0",
+  "description": "Node.js on Docker",
+  "author": "Dan Roscigno <dan.roscigno@elastic.co>",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "elastic-apm-node": "^3.3.0",
+    "express": "^4.16.1"
+  }
+}
