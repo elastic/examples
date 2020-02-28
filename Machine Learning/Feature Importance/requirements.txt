@@ -1,0 +1,19 @@
+dash==1.8.0
+dash-core-components==1.7.0
+iml==0.6.2
+ipykernel==5.1.3
+ipywidgets==7.5.1
+jupyter==1.0.0
+matplotlib==3.1.1
+numpy==1.18.1
+plotly==4.4.1
+seaborn==0.10.0
+widgetsnbextension==3.5.1
+xgboost==0.90
+requests==2.22.0
+elasticsearch==7.5.1
+eland==7.5.1a3
+pandas==0.25.3
+psutil==5.6.7
+orca==1.5.3
+xlrd >= 1.0.0
