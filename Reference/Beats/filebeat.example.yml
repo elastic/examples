@@ -1,0 +1,58 @@
+#===================== Filebeat inputs ===================
+filebeat.inputs:
+
+#==================== Filebeat modules ===================
+filebeat.config.modules:
+ # Glob pattern for configuration loading
+ path: ${path.config}/modules.d/*.yml
+
+ # Set to true to enable config reloading
+ reload.enabled: false
+
+#============== Elasticsearch template setting ===========
+# Please see these resources to size your cluster and
+# determine the settings that should go here.
+# https://www.elastic.co/elasticon/conf/2016/sf/quantitative-cluster-sizing
+# https://www.elastic.co/webinars/elasticsearch-scaling-best-practices
+# https://www.elastic.co/consulting/design-services
+# https://www.elastic.co/webinars/using-rally-to-get-your-elasticsearch-cluster-size-right
+# https://www.elastic.co/videos/pro-tips-from-elastic-support-engineers
+
+setup.template.settings:
+ index.number_of_shards: 2
+
+#============== Index Lifecycle Management (ILM) =========
+#
+# setup.ilm.check_exists should be set to false in
+# order to limit the privs required by the publish
+# role and to ensure that the ILM policy is not
+# overwritten once customized by the admin
+
+setup.ilm.check_exists: false
+
+#====================== Elastic Cloud =====================
+cloud.id: "${CLOUD_ID}"
+cloud.auth: "${ES_WRITER_USER}:${ES_WRITER_PASSWORD}"
+
+#======================= Processors =======================
+processors:
+ - add_host_metadata:
+     netinfo.enabled: true
+ - add_cloud_metadata: ~
+ - add_docker_metadata: ~
+ - add_kubernetes_metadata: ~
+ - add_fields:
+     target: ''
+     fields:
+       service.name: 'Online Banking'
+       service.id: 'ob-canada'
+
+#==================== Spool to Disk =======================
+queue.spool: ~
+
+#======================== Logging =========================
+logging.level: error
+
+#====================== Monitoring ========================
+monitoring.enabled: true
+
