@@ -5,7 +5,6 @@ These YAML files for Filebeat, Metricbeat, and Heartbeat go along with the webin
 If you are looking at these files without watching the webinar please note that you will need to create and populate the keystores for each Beat.
 
 # Links from the webinar slides
-links from slides:
 
 [RBAC for Filebeat](https://www.elastic.co/guide/en/beats/filebeat/current/feature-roles.html)
 
