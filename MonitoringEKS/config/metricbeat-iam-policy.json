@@ -1,0 +1,21 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Action": [
+                "ec2:DescribeRegions",
+                "cloudwatch:GetMetricData",
+                "cloudwatch:ListMetrics",
+                "tag:getResources",
+                "sts:GetCallerIdentity",
+                "iam:ListAccountAliases",
+                "ec2:DescribeInstances",
+                "rds:DescribeDBInstances",
+                "sqs:ListQueues"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
