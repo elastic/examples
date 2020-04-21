@@ -78,10 +78,10 @@ kubectl apply -f beats/filebeat-kubernetes.yaml
 
 All done. You should have EKS logs and metrics data flowing into Elasticsearch.
 
-![K8s resources](/images/k8s.png)
+![K8s resources](images/k8s.png)
 
-![K8s overview dashboard](/images/k8s-overview.png)
+![K8s overview dashboard](images/k8s-overview.png)
 
-![Metrics app](/images/metrics-app.png)
+![Metrics app](images/metrics-app.png)
 
-![Logs resources](/images/logs-app.png)
+![Logs resources](images/logs-app.png)
