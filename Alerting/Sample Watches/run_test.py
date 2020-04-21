@@ -81,11 +81,13 @@ if __name__ == '__main__':
         # Index data
         current_data = last_time = datetime.datetime.utcnow()
         i = 0
-        time_field = test["time_field"] if "time_field" in test else "@timestamp"
+        time_fields = test.get('time_fields', test.get('time_field', '@timestamp'))
+        time_fields = set([time_fields] if isinstance(time_fields, str) else time_fields)
         for event in test['events']:
             # All offsets are in seconds.
             event_time = current_data+datetime.timedelta(seconds=int(event['offset'] if 'offset' in event else 0))
-            event[time_field] = event_time.strftime('%Y-%m-%dT%H:%M:%S.%fZ') if time_field not in event else event[time_field]
+            for time_field in time_fields:
+                event.setdefault(time_field, event_time.strftime('%Y-%m-%dT%H:%M:%S.%fZ'))
             es.index(index=test['index'], doc_type=test['type'], body=event, id=event['id'] if "id" in event else i, params=params)
             i += 1
         es.indices.refresh(index=test["index"])
