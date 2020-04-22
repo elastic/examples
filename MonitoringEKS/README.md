@@ -1,6 +1,6 @@
 # Monitoring EKS using the Elastic Stack
 
-This example is intended to be used with [this blog post](https://placeholder)
+This example is intended to be used with [this blog post](https://elastic.co/blog/observability-monitoring-amazon-eks-logs-and-metrics-with-the-elastic-stack)
 
 The main artifacts are:
 * [`filebeat-kubernetes.yaml`](beats/filebeat-kubernetes.yaml)
