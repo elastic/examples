@@ -1,0 +1,1222 @@
+{
+	"info": {
+		"_postman_id": "87de2060-fddd-4857-ae4a-c015fcc8b484",
+		"name": "Kibana",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Privileges",
+			"item": [
+				{
+					"name": "Get Privileges",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "kbn-xsrf",
+								"value": "{{$guid}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{protocol}}://{{hostname}}:{{port}}{{space_id}}/api/detection_engine/privileges",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{hostname}}"
+							],
+							"port": "{{port}}{{space_id}}",
+							"path": [
+								"api",
+								"detection_engine",
+								"privileges"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Prepackaged",
+			"item": [
+				{
+					"name": "Get Prepackaged rule status",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "kbn-xsrf",
+								"type": "text",
+								"value": "{{$guid}}"
+							}
+						],
+						"url": {
+							"raw": "{{protocol}}://{{hostname}}:{{port}}{{space_id}}/api/detection_engine/rules/prepackaged/_status",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{hostname}}"
+							],
+							"port": "{{port}}{{space_id}}",
+							"path": [
+								"api",
+								"detection_engine",
+								"rules",
+								"prepackaged",
+								"_status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put Prepackaged rules",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "kbn-xsrf",
+								"type": "text",
+								"value": "{{$guid}}"
+							}
+						],
+						"url": {
+							"raw": "{{protocol}}://{{hostname}}:{{port}}{{space_id}}/api/detection_engine/rules/prepackaged",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{hostname}}"
+							],
+							"port": "{{port}}{{space_id}}",
+							"path": [
+								"api",
+								"detection_engine",
+								"rules",
+								"prepackaged"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Index",
+			"item": [
+				{
+					"name": "Get SIEM index",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "kbn-xsrf",
+								"type": "text",
+								"value": "{{$guid}}"
+							}
+						],
+						"url": {
+							"raw": "{{protocol}}://{{hostname}}:{{port}}{{space_id}}/api/detection_engine/index",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{hostname}}"
+							],
+							"port": "{{port}}{{space_id}}",
+							"path": [
+								"api",
+								"detection_engine",
+								"index"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create SIEM Index",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "kbn-xsrf",
+								"type": "text",
+								"value": "{{$guid}}"
+							}
+						],
+						"url": {
+							"raw": "{{protocol}}://{{hostname}}:{{port}}{{space_id}}/api/detection_engine/index",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{hostname}}"
+							],
+							"port": "{{port}}{{space_id}}",
+							"path": [
+								"api",
+								"detection_engine",
+								"index"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete SIEM Index",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "kbn-xsrf",
+								"type": "text",
+								"value": "{{$guid}}"
+							}
+						],
+						"url": {
+							"raw": "{{protocol}}://{{hostname}}:{{port}}{{space_id}}/api/detection_engine/index",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{hostname}}"
+							],
+							"port": "{{port}}{{space_id}}",
+							"path": [
+								"api",
+								"detection_engine",
+								"index"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Tags",
+			"item": [
+				{
+					"name": "Get SIEM tags",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "kbn-xsrf",
+								"type": "text",
+								"value": "{{$guid}}"
+							}
+						],
+						"url": {
+							"raw": "{{protocol}}://{{hostname}}:{{port}}{{space_id}}/api/detection_engine/tags",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{hostname}}"
+							],
+							"port": "{{port}}{{space_id}}",
+							"path": [
+								"api",
+								"detection_engine",
+								"tags"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Rules",
+			"item": [
+				{
+					"name": "Find Rules",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "kbn-xsrf",
+								"type": "text",
+								"value": "{{$guid}}"
+							}
+						],
+						"url": {
+							"raw": "{{protocol}}://{{hostname}}:{{port}}{{space_id}}/api/detection_engine/rules/_find?per_page=100",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{hostname}}"
+							],
+							"port": "{{port}}{{space_id}}",
+							"path": [
+								"api",
+								"detection_engine",
+								"rules",
+								"_find"
+							],
+							"query": [
+								{
+									"key": "per_page",
+									"value": "100"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Specific Rule",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "kbn-xsrf",
+								"type": "text",
+								"value": "{{$guid}}"
+							}
+						],
+						"url": {
+							"raw": "{{protocol}}://{{hostname}}:{{port}}{{space_id}}/api/detection_engine/rules?id=c41d170b-8ba6-4de6-b8ec-76440a35ace3",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{hostname}}"
+							],
+							"port": "{{port}}{{space_id}}",
+							"path": [
+								"api",
+								"detection_engine",
+								"rules"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "c41d170b-8ba6-4de6-b8ec-76440a35ace3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Rule",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "kbn-xsrf",
+								"type": "text",
+								"value": "{{$guid}}"
+							}
+						],
+						"url": {
+							"raw": "{{protocol}}://{{hostname}}:{{port}}{{space_id}}/api/detection_engine/rules?id=c41d170b-8ba6-4de6-b8ec-76440a35ace3",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{hostname}}"
+							],
+							"port": "{{port}}{{space_id}}",
+							"path": [
+								"api",
+								"detection_engine",
+								"rules"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "c41d170b-8ba6-4de6-b8ec-76440a35ace3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Rule",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "kbn-xsrf",
+								"type": "text",
+								"value": "{{$guid}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"rule_id\": \"process_started_by_ms_office_program_possible_payload\",\n  \"risk_score\": 50,\n  \"description\": \"Process started by MS Office program - possible payload\",\n  \"interval\": \"1h\", \n  \"name\": \"MS Office child process\",\n  \"severity\": \"low\",\n  \"tags\": [\n   \"child process\",\n   \"ms office\"\n   ],\n  \"type\": \"query\",\n  \"from\": \"now-70m\", \n  \"query\": \"process.parent.name:EXCEL.EXE or process.parent.name:MSPUB.EXE or process.parent.name:OUTLOOK.EXE or process.parent.name:POWERPNT.EXE or process.parent.name:VISIO.EXE or process.parent.name:WINWORD.EXE\",\n  \"language\": \"kuery\",\n  \"filters\": [\n     {\n      \"query\": {\n         \"match\": {\n            \"event.action\": {\n               \"query\": \"Process Create (rule: ProcessCreate)\",\n               \"type\": \"phrase\"\n            }\n         }\n      }\n     }\n  ],\n  \"enabled\": false\n}"
+						},
+						"url": {
+							"raw": "{{protocol}}://{{hostname}}:{{port}}{{space_id}}/api/detection_engine/rules",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{hostname}}"
+							],
+							"port": "{{port}}{{space_id}}",
+							"path": [
+								"api",
+								"detection_engine",
+								"rules"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Bulk Create Rule",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "kbn-xsrf",
+								"type": "text",
+								"value": "{{$guid}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n  {\n    \"rule_id\": \"process_started_by_ms_office_program_possible_payload\",\n    \"risk_score\": 50,\n    \"description\": \"Process started by MS Office program - possible payload\",\n    \"interval\": \"5m\",\n    \"name\": \"MS Office child process\",\n    \"severity\": \"low\",\n    \"tags\": [\n     \"child process\",\n     \"ms office\"\n     ],\n    \"type\": \"query\",\n    \"from\": \"now-6m\",\n    \"query\": \"process.parent.name:EXCEL.EXE or process.parent.name:MSPUB.EXE or process.parent.name:OUTLOOK.EXE or process.parent.name:POWERPNT.EXE or process.parent.name:VISIO.EXE or process.parent.name:WINWORD.EXE\",\n    \"language\": \"kuery\",\n    \"filters\": [\n       {\n        \"query\": {\n           \"match\": {\n              \"event.action\": {\n                 \"query\": \"Process Create (rule: ProcessCreate)\",\n                 \"type\": \"phrase\"\n              }\n           }\n        }\n       }\n    ],\n    \"enabled\": false\n  },\n  {\n    \"name\": \"Second bulk rule\",\n    \"description\": \"Query with a rule_id for referencing an external id\",\n    \"rule_id\": \"query-rule-id-2\",\n    \"risk_score\": 2,\n    \"severity\": \"low\",\n    \"type\": \"query\",\n    \"from\": \"now-6m\",\n    \"query\": \"user.name: root or user.name: admin\"\n  }\n]"
+						},
+						"url": {
+							"raw": "{{protocol}}://{{hostname}}:{{port}}{{space_id}}/api/detection_engine/rules/_bulk_create",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{hostname}}"
+							],
+							"port": "{{port}}{{space_id}}",
+							"path": [
+								"api",
+								"detection_engine",
+								"rules",
+								"_bulk_create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Bulk Delete Rules",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "kbn-xsrf",
+								"type": "text",
+								"value": "{{$guid}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n  {\n    \"rule_id\": \"process_started_by_ms_office_program_possible_payload\"\n  },\n  {\n    \"id\": \"51658332-a15e-4c9e-912a-67214e2e2359\"\n  }\n]"
+						},
+						"url": {
+							"raw": "{{protocol}}://{{hostname}}:{{port}}{{space_id}}/api/detection_engine/rules/_bulk_delete",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{hostname}}"
+							],
+							"port": "{{port}}{{space_id}}",
+							"path": [
+								"api",
+								"detection_engine",
+								"rules",
+								"_bulk_delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Bulk Update Rules",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "kbn-xsrf",
+								"type": "text",
+								"value": "{{$guid}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n  {\n    \"threat\": [\n     {\n        \"framework\": \"MITRE ATT&CK\",\n        \"tactic\": {\n           \"id\": \"TA0001\",\n           \"reference\": \"https://attack.mitre.org/tactics/TA0001\",\n           \"name\": \"Initial Access\"\n        },\n        \"technique\": [\n           {\n              \"id\": \"T1193\",\n              \"name\": \"Spearphishing Attachment\",\n              \"reference\": \"https://attack.mitre.org/techniques/T1193\"\n           }\n        ]\n     }\n   ],\n    \"rule_id\": \"process_started_by_ms_office_program_possible_payload\"\n  },\n  {\n    \"name\": \"New name\",\n    \"id\": \"56b22b65-173e-4a5b-b27a-82599cb1433e\"\n  }\n]"
+						},
+						"url": {
+							"raw": "{{protocol}}://{{hostname}}:{{port}}{{space_id}}/api/detection_engine/rules/_bulk_update",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{hostname}}"
+							],
+							"port": "{{port}}{{space_id}}",
+							"path": [
+								"api",
+								"detection_engine",
+								"rules",
+								"_bulk_update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Bulk Replace Rules",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "kbn-xsrf",
+								"type": "text",
+								"value": "{{$guid}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n  {\n    \"rule_id\": \"process_started_by_ms_office_program_possible_payload\",\n    \"risk_score\": 50,\n    \"description\": \"Process started by MS Office program - possible payload\",\n    \"interval\": \"5m\",\n    \"name\": \"MS Office child process\",\n    \"severity\": \"low\",\n    \"tags\": [\n     \"child process\",\n     \"ms office\"\n     ],\n    \"type\": \"query\",\n    \"from\": \"now-6m\",\n    \"query\": \"process.parent.name:EXCEL.EXE or process.parent.name:MSPUB.EXE or process.parent.name:OUTLOOK.EXE or process.parent.name:POWERPNT.EXE or process.parent.name:VISIO.EXE or process.parent.name:WINWORD.EXE\",\n    \"language\": \"kuery\",\n    \"filters\": [\n       {\n        \"query\": {\n           \"match\": {\n              \"event.action\": {\n                 \"query\": \"Process Create (rule: ProcessCreate)\",\n                 \"type\": \"phrase\"\n              }\n           }\n        }\n       }\n    ],\n    \"enabled\": false\n  },\n  {\n    \"rule_id\": \"someotherid\",\n    \"risk_score\": 10,\n    \"description\": \"Process started sadfsadfby MS Office program - possible payload\",\n    \"interval\": \"5m\",\n    \"name\": \"MS Office child process\",\n    \"severity\": \"low\",\n    \"tags\": [\n     \"child process\",\n     \"ms office\"\n     ],\n    \"type\": \"query\",\n    \"from\": \"now-6m\",\n    \"query\": \"process.parent.name:EXCEL.EXE or process.parent.name:MSPUB.EXE or process.parent.name:OUTLOOK.EXE or process.parent.name:POWERPNT.EXE or process.parent.name:VISIO.EXE or process.parent.name:WINWORD.EXE\",\n    \"language\": \"kuery\",\n    \"filters\": [\n       {\n        \"query\": {\n           \"match\": {\n              \"event.action\": {\n                 \"query\": \"Process Create (rule: ProcessCreate)\",\n                 \"type\": \"phrase\"\n              }\n           }\n        }\n       }\n    ],\n    \"enabled\": false\n  }\n]"
+						},
+						"url": {
+							"raw": "{{protocol}}://{{hostname}}:{{port}}{{space_id}}/api/detection_engine/rules/_bulk_update",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{hostname}}"
+							],
+							"port": "{{port}}{{space_id}}",
+							"path": [
+								"api",
+								"detection_engine",
+								"rules",
+								"_bulk_update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Rule",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "kbn-xsrf",
+								"type": "text",
+								"value": "{{$guid}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"rule_id\": \"process_started_by_ms_office_program_possible_payload\",\n  \"enabled\": true\n}"
+						},
+						"url": {
+							"raw": "{{protocol}}://{{hostname}}:{{port}}{{space_id}}/api/detection_engine/rules",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{hostname}}"
+							],
+							"port": "{{port}}{{space_id}}",
+							"path": [
+								"api",
+								"detection_engine",
+								"rules"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Import Rule",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "multipart/form-data"
+							},
+							{
+								"key": "kbn-xsrf",
+								"type": "text",
+								"value": "{{$guid}}"
+							}
+						],
+						"body": {
+							"mode": "file",
+							"file": {}
+						},
+						"url": {
+							"raw": "{{protocol}}://{{hostname}}:{{port}}{{space_id}}/api/detection_engine/rules/_import",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{hostname}}"
+							],
+							"port": "{{port}}{{space_id}}",
+							"path": [
+								"api",
+								"detection_engine",
+								"rules",
+								"_import"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Export Rule",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": " application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "kbn-xsrf",
+								"value": "{{$guid}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"objects\": [\n    {\n      \"rule_id\":\"343580b5-c811-447c-8d2d-2ccf052c6900\"\n    },\n    {\n      \"rule_id\":\"2938c9fa-53eb-4c04-b79c-33cbf041b18d\"\n    }\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}://{{hostname}}:{{port}}{{space_id}}/api/detection_engine/rules/_export?exclude_export_details=true&file_name=exported_rules.ndjson",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{hostname}}"
+							],
+							"port": "{{port}}{{space_id}}",
+							"path": [
+								"api",
+								"detection_engine",
+								"rules",
+								"_export"
+							],
+							"query": [
+								{
+									"key": "exclude_export_details",
+									"value": "true"
+								},
+								{
+									"key": "file_name",
+									"value": "exported_rules.ndjson"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Replace Rule",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "kbn-xsrf",
+								"type": "text",
+								"value": "{{$guid}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"rule_id\": \"process_started_by_ms_office_program_possible_payload\",\n  \"risk_score\": 60,\n  \"description\": \"Process started by MS Office program - possible payload\",\n  \"interval\": \"1h\", \n  \"name\": \"MS Office child process\",\n  \"severity\": \"low\",\n  \"tags\": [\n   \"child process\",\n   \"ms office\"\n   ],\n  \"type\": \"query\",\n  \"from\": \"now-70m\", \n  \"query\": \"process.parent.name:EXCEL.EXE or process.parent.name:MSPUB.EXE or process.parent.name:OUTLOOK.EXE or process.parent.name:POWERPNT.EXE or process.parent.name:VISIO.EXE or process.parent.name:WINWORD.EXE\",\n  \"language\": \"kuery\",\n  \"filters\": [\n     {\n      \"query\": {\n         \"match\": {\n            \"event.action\": {\n               \"query\": \"Process Create (rule: ProcessCreate)\",\n               \"type\": \"phrase\"\n            }\n         }\n      }\n     }\n  ],\n  \"enabled\": false\n}"
+						},
+						"url": {
+							"raw": "{{protocol}}://{{hostname}}:{{port}}{{space_id}}/api/detection_engine/rules",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{hostname}}"
+							],
+							"port": "{{port}}{{space_id}}",
+							"path": [
+								"api",
+								"detection_engine",
+								"rules"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Signals",
+			"item": [
+				{
+					"name": "Signal Search",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "kbn-xsrf",
+								"type": "text",
+								"value": "{{$guid}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"aggs\": {\n    \"latest\": {\n      \"max\": {\n        \"field\": \"@timestamp\"\n      }\n    },\n    \"oldest\": {\n      \"min\": {\n        \"field\": \"@timestamp\"\n      }\n    }\n  },\n  \"query\": {\n    \"bool\": {\n      \"filter\": [\n        {\n          \"match\": {\n            \"signal.status\": \"open\"\n          }\n        },\n        {\n          \"range\": {\n            \"signal.rule.risk_score\": {\n              \"gte\": 70\n            }\n          }\n        }\n      ]\n    }\n  },\n  \"size\": 0\n}"
+						},
+						"url": {
+							"raw": "{{protocol}}://{{hostname}}:{{port}}{{space_id}}/api/detection_engine/signals/search",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{hostname}}"
+							],
+							"port": "{{port}}{{space_id}}",
+							"path": [
+								"api",
+								"detection_engine",
+								"signals",
+								"search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Set Signal Status",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "kbn-xsrf",
+								"type": "text",
+								"value": "{{$guid}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"signal_ids\": [\n    \"694156bbe6a487e06d049bd6019bd49fec4172cfb33f5d81c3b4a977f0026fba\",\n    \"f4d1c62c4e8946c835cb497329127803c09b955de49a8fa186be3899522667b0\"\n  ],\n  \"status\": \"closed\"\n}"
+						},
+						"url": {
+							"raw": "{{protocol}}://{{hostname}}:{{port}}{{space_id}}/api/detection_engine/signals/status",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{hostname}}"
+							],
+							"port": "{{port}}{{space_id}}",
+							"path": [
+								"api",
+								"detection_engine",
+								"signals",
+								"status"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
