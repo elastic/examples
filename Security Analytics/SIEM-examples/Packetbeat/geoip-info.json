@@ -1,0 +1,93 @@
+PUT _ingest/pipeline/geoip-info
+{
+  "description": "Add geoip and ASN info",
+  "processors": [
+    {
+      "geoip": {
+        "field": "client.ip",
+        "target_field": "client.geo",
+        "ignore_missing": true
+      }
+    },
+    {
+      "geoip": {
+        "field": "source.ip",
+        "target_field": "source.geo",
+        "ignore_missing": true
+      }
+    },
+    {
+      "geoip": {
+        "field": "destination.ip",
+        "target_field": "destination.geo",
+        "ignore_missing": true
+      }
+    },
+    {
+      "geoip": {
+        "field": "server.ip",
+        "target_field": "server.geo",
+        "ignore_missing": true
+      }
+    },
+    {
+      "geoip": {
+        "field": "host.ip",
+        "target_field": "host.geo",
+        "ignore_missing": true
+      }
+    },
+    {
+      "geoip": {
+        "field": "source.ip",
+        "target_field": "source.as",
+        "properties": [
+          "asn",
+          "organization_name"
+        ],
+        "ignore_missing": true,
+        "database_file": "GeoLite2-ASN.mmdb"
+      }
+    },
+    {
+      "rename": {
+        "field": "source.as.asn",
+        "target_field": "source.as.number",
+        "ignore_missing": true
+      }
+    },
+    {
+      "rename": {
+        "field": "source.as.organization_name",
+        "target_field": "source.as.organization.name",
+        "ignore_missing": true
+      }
+    },
+    {
+      "geoip": {
+        "field": "destination.ip",
+        "target_field": "destination.as",
+        "properties": [
+          "asn",
+          "organization_name"
+        ],
+        "ignore_missing": true,
+        "database_file": "GeoLite2-ASN.mmdb"
+      }
+    },
+    {
+      "rename": {
+        "field": "destination.as.asn",
+        "target_field": "destination.as.number",
+        "ignore_missing": true
+      }
+    },
+    {
+      "rename": {
+        "field": "destination.as.organization_name",
+        "target_field": "destination.as.organization.name",
+        "ignore_missing": true
+      }
+    }
+  ]
+}
