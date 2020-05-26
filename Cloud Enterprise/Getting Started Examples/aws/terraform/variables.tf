@@ -74,7 +74,7 @@ variable "private_key" {
 # Ece version to be installed by ansible
 # Must be supported by the ansible playbook
 variable "ece-version" {
-  default="2.4.3"
+  default="2.5.0"
 }
 
 # ECE instances's VPC & Subnet cidr

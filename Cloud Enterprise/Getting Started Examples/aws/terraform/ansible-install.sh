@@ -120,7 +120,7 @@ _main() {
     _verify_ansible
     _write_ansible_playbook
     _write_ansible_hosts
-    sleep 30
+    sleep 90
     _run_ansible
 }
 
