@@ -62,5 +62,8 @@ data "template_file" "ansible-install" {
 
     # Ece version to install
     ece-version = var.ece-version
+
+    # Sleep timeout waiting for cloud provider instances
+    sleep-timeout = var.sleep-timeout
   }
 }

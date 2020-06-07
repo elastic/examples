@@ -1,26 +1,32 @@
 #!/usr/bin/env bash
 
+###############################################################################
+# Debug Options
+###############################################################################
 # Short form: set -u
-set -o nounset
+# set -o nounset
 # Short form: set -e
-set -o errexit
+# set -o errexit
 
 # Print a helpful message if a pipeline with non-zero exit code causes the
 # script to exit as described above.
-trap 'echo "Aborting due to errexit on line $LINENO. Exit code: $?" >&2' ERR
+# trap 'echo "Aborting due to errexit on line $LINENO. Exit code: $?" >&2' ERR
 
 # Allow the above trap be inherited by all functions in the script.
 #
 # Short form: set -E
-set -o errtrace
+# set -o errtrace
 
 # Return value of a pipeline is the value of the last (rightmost) command to
 # exit with a non-zero status, or zero if all commands in the pipeline exit
 # successfully.
-set -o pipefail
+# set -o pipefail
+
+###############################################################################
+# Program Variables
+###############################################################################
 
 # Set $IFS to only newline and tab.
-#
 # http://www.dwheeler.com/essays/filenames-in-shell.html
 IFS=$'\n\t'
 
@@ -30,7 +36,7 @@ IFS=$'\n\t'
 
 _verify_ansible() {
 if [ -x "$(command -v ansible-galaxy)" ]; then
-	# install role
+  # install role
   ansible-galaxy install git+https://github.com/elastic/ansible-elastic-cloud-enterprise.git
 else
   echo "ERROR: Ansible isn't installed on this machine, aborting ece installation"
@@ -120,7 +126,7 @@ _main() {
     _verify_ansible
     _write_ansible_playbook
     _write_ansible_hosts
-    sleep 30
+    sleep ${sleep-timeout}
     _run_ansible
 }
 
