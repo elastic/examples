@@ -31,24 +31,24 @@ variable "aws_region" {
 
 # The name of the AMI in the AWS Marketplace
 variable "aws_ami_name" {
-  default = "CentOS Linux 7 x86_64 HVM*"
-  # For ubuntu, uncomment this 
-  # default = "ubuntu/images/hvm-ssd/ubuntu-xenial-16.04-amd64-server-*"
+  # default = "CentOS Linux 7 x86_64 HVM*"
+  # For ubuntu, uncomment this
+  default = "ubuntu/images/hvm-ssd/ubuntu-xenial-16.04-amd64-server-*"
 }
 
 # The owner of the AMI
 variable "aws_ami_owner" {
-  default = "679593333241" # centos.org
+  # default = "679593333241" # centos.org
   # For ubuntu, uncomment this
-  # default = "099720109477" # Canonical
+  default = "099720109477" # Canonical
 }
 
 # User to log in to instances and perform install
 # This is dependent upon the AMI you use, so make sure these are in sync. For example, an Ubuntu AMI would use the ubuntu user
 variable "remote_user" {
-  default = "centos"
+  # default = "centos"
   # For ubuntu, uncomment this
-  # default = "ubuntu"
+  default = "ubuntu"
 }
 
 # Desired AZs, must have 3.
@@ -74,7 +74,13 @@ variable "private_key" {
 # Ece version to be installed by ansible
 # Must be supported by the ansible playbook
 variable "ece-version" {
-  default="2.4.3"
+  default="2.5.0"
+}
+
+# Time (sec) to wait for cloud instances to come
+# up before running the ece installer (ansible)
+variable "sleep-timeout" {
+  default="30"
 }
 
 # ECE instances's VPC & Subnet cidr
@@ -93,4 +99,3 @@ variable "aws_instance_type" {
 variable "device_name" {
   default="nvme0n1"
 }
-
