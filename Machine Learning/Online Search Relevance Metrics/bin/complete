@@ -1,0 +1,43 @@
+#!venv/bin/python
+
+"""
+Generate auto-complete suggestions from a provided query prefix string.
+"""
+
+import argparse
+
+from elasticsearch import Elasticsearch
+
+DEFAULT_FUZZINESS = 0
+DEFAULT_URL = 'http://localhost:9200'
+INDEX = 'ecs-search-metrics_transform_completion'
+
+
+def main():
+    parser = argparse.ArgumentParser(prog='complete')
+    parser.add_argument('--url', default=DEFAULT_URL, help="an Elasticsearch connection URL, e.g. http://user:secret@localhost:9200")
+    parser.add_argument('--fuzziness', default=DEFAULT_FUZZINESS, help="amount of fuzziness for the completion suggestor")
+    parser.add_argument('query')
+    args = parser.parse_args()
+
+    es = Elasticsearch(args.url)
+    results = es.search(index=INDEX, body={
+      'suggest': {
+        'suggest': {
+          'prefix': args.query,
+          'completion': {
+            'field': 'search.query.value.completion',
+            'fuzzy': {
+              'fuzziness': args.fuzziness,
+            },
+          },
+        },
+      },
+    })
+
+    for suggestion in results['suggest']['suggest'][0]['options']:
+        print(suggestion['text'])
+
+
+if __name__ == "__main__":
+    main()

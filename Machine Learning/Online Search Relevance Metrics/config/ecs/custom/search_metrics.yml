@@ -1,0 +1,110 @@
+---
+- name: SearchMetrics
+  title: Search Metrics
+  group: 2
+  short: Fields to describe details of a search event for metrics and ML.
+  description: >
+    The Search Metrics fields describe information about search request events:
+    query, pagination or click. The fields that should be used with this field
+    set include: `event.action` to describe the search action (e.g.
+    `SearchMetrics.query`, `SearchMetrics.page`, `SearchMetrics.click`),
+    `event.duration` to describe the duration of a search request, `@timestamp`
+    to record the event's original timestamp and optionally the `source` fields
+    to record context information such as `user.id` or `geo`.
+  type: group
+  fields:
+
+    - name: query.id
+      level: extended
+      type: keyword
+      short: An opaque query identifier.
+      description: >
+        An opaque query identifier. This identifier needs to be unique to a
+        user query, and all subsequent events (pagination, clicks) need to have
+        the same query identifier.
+      example: "2dc15175-de0d-44db-86d8-8a99f41b7a11"
+
+    - name: query.value
+      level: extended
+      type: keyword
+      ignore_above: 4096
+      short: The query string being searched on.
+      description: >
+        The query string being searched on. This field is not analyzed and
+        should not be pre-processed in any way in the event (e.g. normalization
+        list lowercasing). This is useful for search use-cases that use a one-
+        box style search interface. Other interfaces will have to rely on
+        additional custom fields or labels to represent things like filters
+        applied, extra parameters, user context, etc.
+      example: "where does the rain in Spain mainly fall"
+
+    - name: query.page
+      level: extended
+      type: long
+      short: The page of search results being requested.
+      description: >
+        For search results that support pagination, this represents the current
+        page being requested. Initial search requests are `1` while
+        subsequent page requests are incremental.
+      example: 1
+
+    - name: results.size
+      level: extended
+      type: long
+      short: The size of the result set displayed to the user.
+      description: >
+        The size of the result set displayed to the user. This should be
+        equivalent to the length of the results in `results.ids`. This is also
+        known as the page size or limit.
+      example: 10
+
+    - name: results.total
+      level: extended
+      type: long
+      short: The total number of matches for this query.
+      description: >
+        The total number of matches for this query. This number is always
+        greater than or equal to `results.size`. This is the `hits.total` field
+        in the query response.
+      example: 134509
+
+    - name: results.ids
+      level: extended
+      type: keyword
+      normalize:
+        - array
+      short: A list of document IDs in the result set.
+      description: >
+        A list of opaque document IDs representing the results that were shown
+        to the user. This is effectively the impression list and it's size
+        should be equal to `results.size`. This field can be empty when there
+        are no results to return.
+      example: ["user:82375akja9f", "issue:2782630"]
+
+    - name: click.result.id
+      level: extended
+      type: keyword
+      description: >
+        The document ID of the result from `results.ids` that this click was
+        on.
+      example: "issue:2782630"
+
+    - name: click.result.rank
+      level: extended
+      type: long
+      description: >
+        The position in the overall result set that this click was on. For
+        example, if the click was on result #3 on page 1, the rank is 3.
+        However if the click was on result #3 on page 2, where the page size is
+        10, then the rank would be 13.
+      example: 3
+
+    - name: click.result.reciprocal_rank
+      level: extended
+      type: float
+      description: >
+        The reciprocal of `click.result.rank` or `1 / click.result.rank`. This
+        is typically added by an ingest pipeline processor based on the value
+        of `click.result.rank`, but can be calculated by the application
+        emitting the event.
+      example: 0.25

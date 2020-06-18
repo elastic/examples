@@ -1,0 +1,29 @@
+#!venv/bin/python
+
+"""
+Creates a Kibana saved objects file from a template. This requires the user to
+manually create an index pattern and fill in the saved object ID for the index
+pattern. We expect the index and index pattern to be named
+"ecs-search-metrics_transform_queryid".
+"""
+
+import argparse
+
+from string import Template
+
+
+def main():
+    parser = argparse.ArgumentParser(prog='kibana')
+    parser.add_argument('--input', required=True, help="the Kibana saved object input template file")
+    parser.add_argument('--output', required=True, help="the Kibana saved object output file")
+    parser.add_argument('id', help="ID of the metrics index pattern")
+    args = parser.parse_args()
+
+    with open(args.input, 'r') as fin:
+        with open(args.output, 'w') as fout:
+            for line in fin:
+                fout.write(Template(line).substitute(index_pattern_id=args.id))
+
+
+if __name__ == "__main__":
+    main()

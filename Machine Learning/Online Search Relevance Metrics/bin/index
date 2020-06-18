@@ -1,0 +1,90 @@
+#!venv/bin/python
+
+"""
+Indexes NDJSON events split into files in a directory. Optionally provide a pipeline to pre-process events
+at ingest time.
+"""
+
+import argparse
+import os
+import sys
+
+from elasticsearch import Elasticsearch, helpers
+
+# project library
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from metrics.resources import *
+
+DEFAULT_CHUNK_SIZE = 10000
+DEFAULT_THREAD_COUNT = 4
+DEFAULT_URL = 'http://localhost:9200'
+
+SC_PIPELINE_NAMES = ['sc-click-events', 'sc-query-events']
+
+
+def create_pipeline_from_file(es, filename):
+    pipeline = load_json(filename)
+    pipeline_name = os.path.splitext(os.path.basename(filename))[0]
+
+    es.ingest.put_pipeline(pipeline_name, body=pipeline)
+
+    return pipeline_name
+
+
+def index_events(es, filenames, pipeline, thread_count=DEFAULT_THREAD_COUNT, chunk_size=DEFAULT_CHUNK_SIZE):
+    """
+    Indexes event docs from the given directory using the given pipeline at ingest.
+    We use a bulk index in parallel with large chunks, since the documents are
+    very small, and a big timeout to just get it done.
+    """
+
+    def actions():
+        for filename in filenames:
+            with open(filename, 'r') as f:
+                for line in f:
+                    yield {
+                        '_index': INDEX,
+                        'pipeline': pipeline,
+                        '_source': line,
+                    }
+
+    print(f"Indexing events into '{INDEX}' with pipeline '{pipeline}'")
+
+    with Timer() as t:
+        for success, info in helpers.parallel_bulk(es, actions(), thread_count=thread_count, chunk_size=chunk_size, request_timeout=600, refresh='wait_for'):
+            if not success:
+                print(" - failure: ", info)
+
+    print(f" - duration: {t.interval:.04f} sec")
+
+
+def main():
+    parser = argparse.ArgumentParser(prog='index')
+    parser.add_argument('--url', default=DEFAULT_URL, help="An Elasticsearch connection URL, e.g. http://user:secret@localhost:9200")
+    parser.add_argument('--pipeline', required=False, help="Pipeline config file to use for indexing events")
+    parser.add_argument('--thread-count', required=False, default=DEFAULT_THREAD_COUNT, help="Number of threads for bulk indexing")
+    parser.add_argument('--chunk-size', required=False, default=DEFAULT_CHUNK_SIZE, help="Chunk size to for bulk indexing")
+    parser.add_argument('events', nargs='+', help="The NDJSON file(s) or pattern containing events, e.g. data/events-*.ndjson")
+    args = parser.parse_args()
+
+    es = Elasticsearch(args.url)
+
+    if args.pipeline:
+        # create and use the specified indexing pipeline
+        pipeline_name = create_pipeline_from_file(es, args.pipeline)
+    else:
+        # no pipeline specified, use default which is the same as the index name
+        pipeline_name = INDEX
+
+    index_events(es, args.events, pipeline_name, args.thread_count, args.chunk_size)
+
+    # make index searchable
+    es.indices.refresh(INDEX)
+
+    # show index size
+    index_size = es.count(index=INDEX)['count']
+    print(f"Index size: {index_size}")
+
+
+if __name__ == "__main__":
+    main()

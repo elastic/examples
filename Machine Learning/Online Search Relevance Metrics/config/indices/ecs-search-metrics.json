@@ -1,0 +1,146 @@
+{
+  "settings": {
+    "index": {
+      "number_of_shards": 2,
+      "number_of_replicas": 0,
+      "refresh_interval": "10m"
+    }
+  },
+  "mappings": {
+    "_meta": {
+      "version": "1.5.0"
+    },
+    "date_detection": false,
+    "dynamic": "strict",
+    "properties": {
+      "@timestamp": {
+        "type": "date"
+      },
+      "SearchMetrics": {
+        "properties": {
+          "click": {
+            "properties": {
+              "result": {
+                "properties": {
+                  "id": {
+                    "ignore_above": 1024,
+                    "type": "keyword"
+                  },
+                  "rank": {
+                    "type": "long"
+                  },
+                  "reciprocal_rank": {
+                    "type": "float"
+                  }
+                }
+              }
+            }
+          },
+          "query": {
+            "properties": {
+              "id": {
+                "ignore_above": 1024,
+                "type": "keyword"
+              },
+              "page": {
+                "type": "long"
+              },
+              "value": {
+                "ignore_above": 4096,
+                "type": "keyword"
+              }
+            }
+          },
+          "results": {
+            "properties": {
+              "ids": {
+                "ignore_above": 1024,
+                "type": "keyword"
+              },
+              "size": {
+                "type": "long"
+              },
+              "total": {
+                "type": "long"
+              }
+            }
+          }
+        }
+      },
+      "SearchMetricsSimulation": {
+        "properties": {
+          "ab": {
+            "properties": {
+              "experiment": {
+                "ignore_above": 256,
+                "type": "keyword"
+              },
+              "variant": {
+                "ignore_above": 256,
+                "type": "keyword"
+              }
+            }
+          },
+          "page_name": {
+            "ignore_above": 256,
+            "type": "keyword"
+          }
+        }
+      },
+      "ecs": {
+        "properties": {
+          "version": {
+            "ignore_above": 1024,
+            "type": "keyword"
+          }
+        }
+      },
+      "event": {
+        "properties": {
+          "action": {
+            "ignore_above": 1024,
+            "type": "keyword"
+          },
+          "dataset": {
+            "ignore_above": 1024,
+            "type": "keyword"
+          },
+          "duration": {
+            "type": "long"
+          },
+          "id": {
+            "ignore_above": 1024,
+            "type": "keyword"
+          }
+        }
+      },
+      "source": {
+        "properties": {
+          "geo": {
+            "properties": {
+              "city_name": {
+                "ignore_above": 1024,
+                "type": "keyword"
+              },
+              "country_iso_code": {
+                "ignore_above": 1024,
+                "type": "keyword"
+              },
+              "location": {
+                "type": "geo_point"
+              }
+            }
+          },
+          "user": {
+            "properties": {
+              "id": {
+                "ignore_above": 1024,
+                "type": "keyword"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

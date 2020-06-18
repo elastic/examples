@@ -1,0 +1,83 @@
+#!venv/bin/python
+
+"""
+A script to generate simulated query and click logs. Logs are printed interleaved to stdout on a per-user basis. Clicks
+will be generated in proper time order after the query. All events are from a single 24-hour period.
+
+TODO: Interleave "business goal" events with click events. They need to be interleaved as you wouldn't usually have a
+     business goal event after an unrelated click event.
+"""
+
+import argparse
+import os
+import sys
+
+from elasticsearch import Elasticsearch
+
+# project library
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from metrics import simulate
+from metrics.resources import *
+
+DEFAULT_NUM_DOCS = 10000
+DEFAULT_NUM_USERS = 100
+DEFAULT_MAX_QUERIES = 10
+DEFAULT_URL = 'http://localhost:9200'
+
+
+def command_stdout(args):
+    simulate.generate_events(
+      args.num_documents,
+      args.num_users,
+      args.max_queries,
+      lambda x: print(json.dumps(x)),
+    )
+
+
+def command_elasticsearch(args):
+    es = Elasticsearch(args.url)
+
+    # create all resources
+    prepare(es)
+
+    simulate.generate_events(
+      args.num_documents,
+      args.num_users,
+      args.max_queries,
+      lambda x: es.index(index=INDEX, pipeline=INDEX, body=x),
+      with_progress=True,
+    )
+
+    # make index searchable
+    es.indices.refresh(INDEX)
+
+    # run transforms
+    start_transforms(es, TRANSFORM_NAMES)
+
+    # show index size
+    index_size = es.count(index=INDEX)['count']
+    print(f"Index size: {index_size}")
+
+
+def main():
+    parser = argparse.ArgumentParser(prog='simulate')
+
+    parser.add_argument('--num-documents', type=int, default=DEFAULT_NUM_DOCS, help="the number of documents in the corpus")
+    parser.add_argument('--num-users', type=int, default=DEFAULT_NUM_USERS, help="the number of users to generate queries for")
+    parser.add_argument('--max-queries', type=int, default=DEFAULT_MAX_QUERIES, help="the maximum number of queries per user")
+
+    subparsers = parser.add_subparsers()
+
+    stdout_subparser = subparsers.add_parser('stdout', help="write events to stdout")
+    stdout_subparser.set_defaults(func=command_stdout)
+
+    es_subparser = subparsers.add_parser('elasticsearch', help="write events to an Elasticsearch instance")
+    es_subparser.add_argument('--url', default=DEFAULT_URL, help="an Elasticsearch connection URL, e.g. http://user:secret@localhost:9200")
+    es_subparser.set_defaults(func=command_elasticsearch)
+
+    args = parser.parse_args()
+    args.func(args)
+
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,77 @@
+{
+  "processors": [
+    {
+      "script": {
+        "source": "ctx.labels = new HashMap()"
+      }
+    },
+    {
+      "set": {
+        "field": "event.action",
+        "value": "search.click"
+      }
+    },
+    {
+      "date": {
+        "field": "event_created",
+        "target_field": "event.created",
+        "formats": [
+          "UNIX_MS"
+        ],
+        "timezone": "UTC"
+      }
+    },
+    {
+      "set": {
+        "field": "@timestamp",
+        "value": "{{event.created}}",
+        "override": false
+      }
+    },
+    {
+      "rename": {
+        "field": "search_query_id",
+        "target_field": "search.query.id"
+      }
+    },
+    {
+      "rename": {
+        "field": "search_click_result_id",
+        "target_field": "SearchMetrics.click.result.id"
+      }
+    },
+    {
+      "convert": {
+        "field": "search_click_result_rank",
+        "target_field": "SearchMetrics.click.result.rank",
+        "type": "long"
+      }
+    },
+    {
+      "script": {
+        "lang": "painless",
+        "source": "ctx.SearchMetrics.click.result.rank = ctx.SearchMetrics.click.result.rank + 1"
+      }
+    },
+    {
+      "script": {
+        "lang": "painless",
+        "source": "ctx.labels.interactions = []; for (x in ctx.label_interactions) ctx.labels.interactions.add(x['element'])"
+      }
+    },
+    {
+      "remove": {
+        "field": [
+          "event_created",
+          "search_click_result_rank",
+          "label_interactions"
+        ]
+      }
+    },
+    {
+      "pipeline": {
+        "name": "ecs-search-metrics"
+      }
+    }
+  ]
+}
