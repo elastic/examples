@@ -6,12 +6,9 @@ venv/bin/activate:
 	@rm -rf venv/
 	@python3 -m venv venv
 
-tmp:
-	@mkdir -p $@
-
 .PHONY: clean
 clean:
-	@rm -rf venv/ tmp/
+	@rm -rf venv/
 
 .PHONY: init
 init: venv/bin/activate
