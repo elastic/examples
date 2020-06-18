@@ -1,0 +1,21 @@
+{
+  "script": {
+    "lang": "painless",
+    "source": """
+String nGramAtPosition(String fulldomain, int fieldcount
+, int n){
+  String domain = fulldomain.splitOnToken('.')[0];
+  if (fieldcount+n>=domain.length()){
+    return ''
+  }
+  else 
+{
+  return domain.substring(fieldcount, fieldcount+n)
+}
+}
+for (int i=0;i<ctx['domain'].length();i++){
+  ctx[Integer.toString(params.ngram_count)+'-gram_field'+Integer.toString(i)] = nGramAtPosition(ctx['domain'], i, params.ngram_count)
+}
+ """
+  }
+}
