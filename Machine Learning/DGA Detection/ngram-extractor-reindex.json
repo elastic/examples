@@ -2,8 +2,7 @@
   "script": {
     "lang": "painless",
     "source": """
-String nGramAtPosition(String fulldomain, int fieldcount
-, int n){
+String nGramAtPosition(String fulldomain, int fieldcount, int n){
   String domain = fulldomain.splitOnToken('.')[0];
   if (fieldcount+n>=domain.length()){
     return ''
