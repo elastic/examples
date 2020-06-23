@@ -23,7 +23,9 @@ into a set of n-grams, for some value of `n`.
 The script is available in the file `ngram-extractor-reindex.json`, but is also
 reproduced below. 
 
-You can store it in Elasticsearch using the following Dev Console command
+You can store it in Elasticsearch using the following Dev Console command.
+As you can see, the scripts accepts one parameters with is `n`, the length
+of the n-gram. 
 
 
 ```
@@ -50,3 +52,60 @@ for (int i=0;i<ctx['domain'].length();i++){
 }
 
 ```
+
+We can then use the stored scripts to configure an Ingest Pipeline as follows.
+
+
+```
+PUT _ingest/pipeline/dga_ngram_expansion_reindex
+{
+    "description": "Expands a domain into chars, bigrams and trigrams",
+    "processors": [
+      {
+        "script": {
+          "id": "ngram-extractor-reindex",
+          "params":{
+            "ngram_count":1
+          }
+        }
+      },
+       {
+        "script": {
+          "id": "ngram-extractor-reindex",
+          "params":{
+            "ngram_count":2
+          }
+        }
+      },
+       {
+        "script": {
+          "id": "ngram-extractor-reindex",
+          "params": {
+            "ngram_count":3
+          }
+        }
+      }
+    ]
+}
+```
+
+Once the Ingest Pipeline has been configured we can re-index
+our original index with the raw data into a new index which contains the 
+n-gram expansion of each domain.
+
+
+```
+POST _reindex
+{
+  "source": {
+    "index": "dga_raw"
+  },
+  "dest": {
+    "index": "dga_ngram_expansion",
+    "pipeline": "dga_ngram_expansion_reindex"
+  }
+}
+```
+
+Once you have all of the data re-indexed through the Ingest Pipeline, you can follow
+the screenshots in the [blog post](https://www.elastic.co/blog/machine-learning-in-cybersecurity-training-supervised-models-to-detect-dga-activity) to configure your ML job. 
