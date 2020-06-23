@@ -24,7 +24,7 @@ The script is available in the file `ngram-extractor-reindex.json`, but is also
 reproduced below. 
 
 You can store it in Elasticsearch using the following Dev Console command.
-As you can see, the script accepts one parameters which is `n`, the length
+As you can see, the script accepts one parameter which is `n`, the length
 of the n-gram. 
 
 
