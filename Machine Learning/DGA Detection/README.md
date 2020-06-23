@@ -59,7 +59,7 @@ We can then use the stored script to configure an Ingest Pipeline as follows.
 ```
 PUT _ingest/pipeline/dga_ngram_expansion_reindex
 {
-    "description": "Expands a domain into chars, bigrams and trigrams",
+    "description": "Expands a domain into unigrams, bigrams and trigrams",
     "processors": [
       {
         "script": {
