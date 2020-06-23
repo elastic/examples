@@ -6,11 +6,31 @@ For a high-level introduction, please see the accompanying blog post, [Exploring
 
 ![Kibana dashboard](https://user-images.githubusercontent.com/181622/85378369-c40ae380-b53a-11ea-9d0c-5a97d1c00d24.png)
 
-## TODO
+**TODO**:
 
-- Add ToC to this README
-- Fix link to blog post
+- Fix link to blog post once it's available
 - Kibana import scripts to support Kibana API
+
+## Contents
+
+- [Online Search Relevance Metrics](#online-search-relevance-metrics)
+  - [Setup](#setup)
+     - [Prerequisites](#prerequisites)
+     - [Get started](#get-started)
+  - [Simulating events and visualizing metrics](#simulating-events-and-visualizing-metrics)
+     - [Run simulation](#run-simulation)
+     - [Kibana visualizations](#kibana-visualizations)
+  - [Implementation details](#implementation-details)
+     - [Event schema](#event-schema)
+        - [Generate a custom ECS schema](#generate-a-custom-ecs-schema)
+     - [Transforming events into per-query metrics](#transforming-events-into-per-query-metrics)
+        - [Ingest pipeline](#ingest-pipeline)
+        - [Output index](#output-index)
+     - [Aggregate metrics](#aggregate-metrics)
+        - [Counting with queries](#counting-with-queries)
+        - [Single-metric aggregations](#single-metric-aggregations)
+        - [Using Kibana for visualisation](#using-kibana-for-visualisation)
+        - [Using eland for deeper exploration](#using-eland-for-deeper-exploration)
 
 ## Setup
 
