@@ -2,9 +2,15 @@
 
 A simulation and set of configurations for calculating and exploring online search relevance metrics.
 
-For a high-level introduction, please see the accompanying blog post, [Exploring online search relevance metrics with the Elastic Stack](http://elastic.co/blog/).
+For a high-level introduction, please see the accompanying blog post, [Exploring online search relevance metrics with the Elastic Stack](http://elastic.co/blog/). (pending)
 
-TODO: Add ToC to this README.
+![Kibana dashboard](https://user-images.githubusercontent.com/181622/85378369-c40ae380-b53a-11ea-9d0c-5a97d1c00d24.png)
+
+## TODO
+
+- Add ToC to this README
+- Fix link to blog post
+- Kibana import scripts to support Kibana API
 
 ## Setup
 
@@ -29,7 +35,7 @@ Use the `Makefile` for all setup, building, testing, etc. Common commands (and t
  - `make clean`: cleanup environment
  - `make test`: run tests
  - `make jupyter`: run Jupyter Lab (notebooks)
- 
+
 Most operations are performed using scripts in the `bin` directory. Use `-h` or `--help` on the commands to explore their functionality and arguments.
 
 ## Simulating events and visualizing metrics
@@ -125,60 +131,62 @@ We don't need all of the ECS field sets, so we'll stick to a [subset](config/ecs
 Some attributes of our events are not described in ECS, but we can easily extend ECS with custom fields for our specific solution. Here's some fields that we will need. The purpose of each field is described in the [custom field set](config/ecs/custom).
 
 ```json
-"SearchMetrics": {
-   "properties": {
-     "click": {
-       "properties": {
-         "result": {
-           "properties": {
-             "id": {
-               "ignore_above": 1024,
-               "type": "keyword"
-             },
-             "rank": {
-               "type": "long"
-             },
-             "reciprocal_rank": {
-               "type": "float"
-             }
-           }
-         }
-       }
-     },
-     "query": {
-       "properties": {
-         "id": {
-           "ignore_above": 1024,
-           "type": "keyword"
-         },
-         "page": {
-           "type": "long"
-         },
-         "value": {
-           "ignore_above": 4096,
-           "type": "keyword"
-         }
-       }
-     },
-     "results": {
-       "properties": {
-         "ids": {
-           "ignore_above": 1024,
-           "type": "keyword"
-         },
-         "size": {
-           "type": "long"
-         },
-         "total": {
-           "type": "long"
-         }
-       }
-     }
-   }
- }
+{
+  "SearchMetrics": {
+    "properties": {
+      "click": {
+        "properties": {
+          "result": {
+            "properties": {
+              "id": {
+                "ignore_above": 1024,
+                "type": "keyword"
+              },
+              "rank": {
+                "type": "long"
+              },
+              "reciprocal_rank": {
+                "type": "float"
+              }
+            }
+          }
+        }
+      },
+      "query": {
+        "properties": {
+          "id": {
+            "ignore_above": 1024,
+            "type": "keyword"
+          },
+          "page": {
+            "type": "long"
+          },
+          "value": {
+            "ignore_above": 4096,
+            "type": "keyword"
+          }
+        }
+      },
+      "results": {
+        "properties": {
+          "ids": {
+            "ignore_above": 1024,
+            "type": "keyword"
+          },
+          "size": {
+            "type": "long"
+          },
+          "total": {
+            "type": "long"
+          }
+        }
+      }
+    }
+  }
+}
 ```
 
-With the extended ECS schema we can create the event index `ecs-search-metrics`. Make sure that you configure the index settings appropriate for your environment as the settings that are generated are not for production purposes (e.g. number of shards and replicas). 
+With the extended ECS schema we can create the event index `ecs-search-metrics`. Make sure that you configure the index settings appropriate for your environment as the settings that are generated are not for production purposes (e.g. number of shards and replicas).
 
 Have a look at the simulation's `ecs-search-metrics` index configuration for a complete example of this step: [config/indices/ecs-search-metrics.json](config/indices/ecs-search-metrics.json)
 
@@ -210,13 +218,13 @@ build/ve/bin/python scripts/generator.py \
   --subset $SIM_DIR/config/ecs/subset.yml \
   --include $SIM_DIR/config/ecs/custom \
   --out generated_custom
-``` 
+```
 
 After generating the custom schema, you can find it in `generated_custom/generated/elasticsearch/7/template.json`. This will have to be changed again, manually, to set the index settings appropriate for the simulation. The easiest thing to do is just copy the `properties` of the `mappings` and replace that in the existing schema. All the index settings don't need to be copied.
 
 ### Transforming events into per-query metrics
 
-The heart of calculating per-query metrics is in this step. Once you have events indexed in `ecs-search-metrics`, you can apply a transform to group events by their search query ID and calculate per-query metrics. This step requires three components: a transform, an ingest pipeline, and an output index. 
+The heart of calculating per-query metrics is in this step. Once you have events indexed in `ecs-search-metrics`, you can apply a transform to group events by their search query ID and calculate per-query metrics. This step requires three components: a transform, an ingest pipeline, and an output index.
 
 As mentioned above, the transform is where we define the group-by strategy, as well as the basic aggregations we want to do on our events in each group. This includes any basic counting of events like total clicks, as well as descriptive statistics like the average number of clicks, etc.
 
@@ -417,15 +425,21 @@ Returns:
 
 Now that we've seen some examples of calculating aggregate metrics directly with the Elasticsearch Query DSL, we know that we can use Kibana to visualize metrics and show more useful metrics that are bucketed by time. For example, plotting our CTR@3 metric can be achieved using a simple [TSVB time series chart](https://www.elastic.co/guide/en/kibana/7.8/TSVB.html), bucketing out metrics every hour:
 
-<IMAGE>
+<img alt="Kibana TSVB time series chart" src="https://user-images.githubusercontent.com/181622/85377828-ee0fd600-b539-11ea-99bb-f6342d80b51b.png" width="768" />
+<br />
+<br />
 
 When we configure this time series chart for CTR@3 we only want to include queries that have clicks, so we'll set a filter on this time series using the [KQL](https://www.elastic.co/guide/en/kibana/7.8/kuery-query.html) clause `metrics.clicks.count > 0`:
 
-<IMAGE>
+<img alt="TSVB chart metric config" src="https://user-images.githubusercontent.com/181622/85377820-eb14e580-b539-11ea-9428-b37790995866.png" width="768" />
+<br />
+<br />
 
 We'll use then a ratio filter to calculate ratio of the number of queries with clicks at 3 (KQL: `metrics.clicks.exists_at_3 : true`) over the number of queries with clicks in any position (KQL: `*`):
 
-<IMAGE>
+<img alt="TSVB chart options config" src="https://user-images.githubusercontent.com/181622/85377825-ecdea900-b539-11ea-9f79-a2eef78736b9.png" width="768" />
+<br />
+<br />
 
 In this simulation project, we've created a large number of visualizations and a dashboard. These can be imported into a fresh Elasticsearch using Kibana's import saved objects feature. Instructions for this can be found above in the [Kibana Visualizations](#kibana-visualizations) section.
 
@@ -433,6 +447,8 @@ In this simulation project, we've created a large number of visualizations and a
 
 Sometimes we want to dig deeper into our datasets and metrics and using Kibana or the Elasticsearch Query DSL statements can be cumbersome or insufficient. Many Data Scientists and Analysts are more comfortable with using Python, Jupyter notebooks and Pandas to do this type of exploration. Using the [eland](https://eland.readthedocs.io/) library provides a Pandas interface to explore large datasets natively in Elasticsearch, by executing Elasticsearch queries and aggregations behind the scene. This allows you to explore all the metrics using a familiar interface.
 
-<IMAGE>
+<img alt="Jupyter eland chart" src="https://user-images.githubusercontent.com/181622/85378079-5c549880-b53a-11ea-98cc-7fea0d9a8af5.png" width="512" />
+<br />
+<br />
 
 For a full example of calculating the same set of online search relevance metrics as in our Kibana example, check out the [Jupyter notebook](notebooks/Metrics%20with%20eland.ipynb).
