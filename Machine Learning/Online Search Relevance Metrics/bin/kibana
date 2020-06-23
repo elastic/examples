@@ -1,28 +1,37 @@
 #!venv/bin/python
 
 """
-Creates a Kibana saved objects file from a template. This requires the user to
-manually create an index pattern and fill in the saved object ID for the index
-pattern. We expect the index and index pattern to be named
-"ecs-search-metrics_transform_queryid".
+Sets up a Kibana index pattern for metrics and imports a pre-generated dashboard
+and dependent visualizations.
 """
 
 import argparse
+import os
+import requests
+import sys
 
-from string import Template
+# project library
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from metrics.resources import load_config
+
+DEFAULT_URL = 'http://localhost:5600'
 
 
 def main():
     parser = argparse.ArgumentParser(prog='kibana')
-    parser.add_argument('--input', required=True, help="the Kibana saved object input template file")
-    parser.add_argument('--output', required=True, help="the Kibana saved object output file")
-    parser.add_argument('id', help="ID of the metrics index pattern")
+    parser.add_argument('--url', default=DEFAULT_URL,
+                        help="A Kibana connection URL, e.g. http://user:secret@localhost:5600")
     args = parser.parse_args()
 
-    with open(args.input, 'r') as fin:
-        with open(args.output, 'w') as fout:
-            for line in fin:
-                fout.write(Template(line).substitute(index_pattern_id=args.id))
+    with requests.Session() as s:
+        payload = load_config('kibana', 'dashboard')
+        s.headers['kbn-xsrf'] = 'true'
+        r = s.post(f'{args.url}/api/kibana/dashboards/import', json=payload)
+        if r.status_code == 200:
+            print(f"Done. Go to Kibana and load the dashboard 'Search Metrics'.")
+        else:
+            print(f"Got {r.status_code} instead of a 200 response from Kibana. Here's the response:")
+            print(r.text)
 
 
 if __name__ == "__main__":

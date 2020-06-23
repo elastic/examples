@@ -6,11 +6,6 @@ For a high-level introduction, please see the accompanying blog post, [Exploring
 
 ![Kibana dashboard](https://user-images.githubusercontent.com/181622/85378369-c40ae380-b53a-11ea-9d0c-5a97d1c00d24.png)
 
-**TODO**:
-
-- Fix link to blog post once it's available
-- Kibana import scripts to support Kibana API
-
 ## Contents
 
 - [Online Search Relevance Metrics](#online-search-relevance-metrics)
@@ -84,22 +79,17 @@ Use the `-h` or `--help` arguments to explore more functionality and arguments.
 
 ### Kibana visualizations
 
-**WIP**: This section is being renewed to support a single command to do all of this behind the scenes.
-
-To recreate the visualisations in Kibana, you need to first make sure you have data in your Elasticsearch instance using the above `simulate` command.
-
-Once you have data in Kibana, [create an index pattern](https://www.elastic.co/guide/en/kibana/current/index-patterns.html) with the same name as the metrics index: `ecs-search-metrics_transform_queryid`. When creating the index pattern, use the `query_event.@timestamp` field as the timestamp field of the index pattern. Once the index pattern has been created, click on the link to the index pattern and find the index pattern ID in the URL of the page. It'll be the long UUID almost at the end of the URL, that looks something like this: `d84e0c50-8aec-11ea-aa75-e59eded2bd43`.
-
-With the Kibana saved objects template as input, a location for the saved object output file, and the index pattern ID, you can use the `bin/kibana` script to generate a valid set of Kibana visualizations linked to the correct index pattern. Here's an example invocation:
+To recreate the visualisations in Kibana, you need to first make sure you have data in your Elasticsearch instance using the above `simulate` command. Then you just need to run `kibana` to create the dashboard, index pattern and visualizations.
 
 ```bash
-bin/kibana \
-  --input config/kibana/saved_objects.template.ndjson \
-  --output tmp/kibana.ndjson \
-  d84e0c50-8aec-11ea-aa75-e59eded2bd43
+bin/kibana
 ```
 
-Open up Kibana again and select the "Saved Objects" page from "Stack Management", and Import (top right corner). Drag the newly created `kibana.ndjson` file with the saved objects in it and drop it into the "Import saved objects" dialog, and hit "Import".
+As with `simulate`, if you are running on Cloud, ensure that your credentials are set and the correct Kibana URL is used (don't use the Elasticsearch URL!). You can find your Kibana endpoint just below where you found the Elasticsearch endpoint, and your credentials should be the same as with Elasticsearch.
+
+```bash
+bin/kibana --url https://elastic:changeme@YYY.us-central1.gcp.cloud.es.io:9243
+```
 
 You're all set! Have a look at the Dashboard and Visualizations pages now and you should see a large set of ready-made visualizations. Make sure that your time range is set to the entire day of 15 Nov 2019 UTC.
 

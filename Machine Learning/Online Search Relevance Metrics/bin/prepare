@@ -12,7 +12,7 @@ from elasticsearch import Elasticsearch
 
 # project library
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from metrics.resources import *
+from metrics.resources import prepare
 
 DEFAULT_URL = 'http://localhost:9200'
 

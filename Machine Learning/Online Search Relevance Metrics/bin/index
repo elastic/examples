@@ -13,7 +13,7 @@ from elasticsearch import Elasticsearch, helpers
 
 # project library
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from metrics.resources import *
+from metrics.resources import INDEX, Timer, load_json
 
 DEFAULT_CHUNK_SIZE = 10000
 DEFAULT_THREAD_COUNT = 4

@@ -12,6 +12,7 @@ pip==20.*
 # non-core
 ## misc
 Faker==2.0.*
+requests==2.24.*
 tqdm==4.38.*
 wheel==0.33.*
 
