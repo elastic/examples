@@ -24,7 +24,7 @@ The script is available in the file `ngram-extractor-reindex.json`, but is also
 reproduced below. 
 
 You can store it in Elasticsearch using the following Dev Console command.
-As you can see, the scripts accepts one parameters with is `n`, the length
+As you can see, the script accepts one parameters which is `n`, the length
 of the n-gram. 
 
 
@@ -53,7 +53,7 @@ for (int i=0;i<ctx['domain'].length();i++){
 
 ```
 
-We can then use the stored scripts to configure an Ingest Pipeline as follows.
+We can then use the stored script to configure an Ingest Pipeline as follows.
 
 
 ```
@@ -90,7 +90,7 @@ PUT _ingest/pipeline/dga_ngram_expansion_reindex
 ```
 
 Once the Ingest Pipeline has been configured we can re-index
-our original index with the raw data into a new index which contains the 
+our original index with the raw data into a new index which will contain the 
 n-gram expansion of each domain.
 
 
