@@ -1,5 +1,5 @@
 # Supplementary materials for "Machine learning in cybersecurity: Training supervised models to detect DGA activity"
-This folder contains the supplementary materials for the blogpost["Machine learning in cybersecurity: Training supervised models to detect DGA activity](https://www.elastic.co/blog/machine-learning-in-cybersecurity-training-supervised-models-to-detect-dga-activity).
+This folder contains the supplementary materials for the blogpost ["Machine learning in cybersecurity: Training supervised models to detect DGA activity](https://www.elastic.co/blog/machine-learning-in-cybersecurity-training-supervised-models-to-detect-dga-activity).
 
 ## Training the classification model
 
