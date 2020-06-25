@@ -1,0 +1,16 @@
+{
+  "processors": [
+    {
+      "script": {
+        "if": "(ctx.event.action == 'SearchMetrics.query' || ctx.event.action == 'SearchMetrics.page') && ctx.SearchMetrics.results.size == null",
+        "source": "ctx.SearchMetrics.results.size = ctx.SearchMetrics.results.ids.size()"
+      }
+    },
+    {
+      "script": {
+        "if": "ctx.event.action == 'SearchMetrics.click' && ctx.SearchMetrics.click.result.reciprocal_rank == null",
+        "source": "ctx.SearchMetrics.click.result.reciprocal_rank = 1.0 / ctx.SearchMetrics.click.result.rank"
+      }
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+#!venv/bin/python
+
+"""
+Prepares the basic resources required: indices, pipelines, transforms.
+"""
+
+import argparse
+import os
+import sys
+
+from elasticsearch import Elasticsearch
+
+# project library
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from metrics.resources import prepare
+
+DEFAULT_URL = 'http://localhost:9200'
+
+
+def main():
+    parser = argparse.ArgumentParser(prog='prepare')
+    parser.add_argument('--url', default=DEFAULT_URL, help="An Elasticsearch connection URL, e.g. http://user:secret@localhost:9200")
+    args = parser.parse_args()
+
+    es = Elasticsearch(args.url)
+
+    # create all resources
+    prepare(es)
+
+
+if __name__ == "__main__":
+    main()

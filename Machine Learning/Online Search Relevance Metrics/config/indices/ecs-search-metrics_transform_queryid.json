@@ -1,0 +1,252 @@
+{
+  "settings": {
+    "analysis": {
+      "filter": {
+        "__stop": {
+          "type": "stop",
+          "stopwords": "_english_"
+        }
+      },
+      "analyzer": {
+        "query_analyzer": {
+          "type": "custom",
+          "tokenizer": "standard",
+          "filter": [
+            "lowercase",
+            "asciifolding",
+            "__stop"
+          ]
+        },
+        "query_fingerprint": {
+          "type": "custom",
+          "tokenizer": "standard",
+          "filter": [
+            "lowercase",
+            "asciifolding",
+            "__stop",
+            "fingerprint"
+          ]
+        }
+      },
+      "normalizer": {
+        "query_normalizer": {
+          "type": "custom",
+          "filter": [
+            "lowercase",
+            "asciifolding"
+          ]
+        }
+      }
+    },
+    "index" : {
+      "number_of_shards" : 2,
+      "number_of_replicas" : 0,
+      "refresh_interval": "10m"
+    }
+  },
+  "mappings": {
+    "date_detection": false,
+    "dynamic": "strict",
+    "properties": {
+      "SearchMetrics": {
+        "properties": {
+          "query": {
+            "properties": {
+              "id": {
+                "type": "keyword",
+                "ignore_above": 1024
+              }
+            }
+          }
+        }
+      },
+      "query_event": {
+        "properties": {
+          "@timestamp": {
+            "type": "date"
+          },
+          "event": {
+            "properties": {
+              "action": {
+                "type": "keyword",
+                "ignore_above": 1024
+              },
+              "dataset": {
+                "type": "keyword",
+                "ignore_above": 1024
+              },
+              "duration": {
+                "type": "long"
+              },
+              "id": {
+                "type": "keyword",
+                "ignore_above": 1024
+              }
+            }
+          },
+          "SearchMetrics": {
+            "properties": {
+              "query": {
+                "properties": {
+                  "id": {
+                    "type": "keyword",
+                    "ignore_above": 1024
+                  },
+                  "page": {
+                    "type": "long"
+                  },
+                  "value": {
+                    "type": "keyword",
+                    "fields": {
+                      "fingerprint": {
+                        "type": "text",
+                        "analyzer": "query_fingerprint",
+                        "fielddata": true,
+                        "fielddata_frequency_filter": {
+                          "min": 0.01
+                        }
+                      },
+                      "normalized": {
+                        "type": "keyword",
+                        "normalizer": "query_normalizer"
+                      },
+                      "text": {
+                        "type": "text",
+                        "analyzer": "query_analyzer",
+                        "fielddata": true,
+                        "fielddata_frequency_filter": {
+                          "min": 0.01
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "results": {
+                "properties": {
+                  "ids": {
+                    "type": "keyword",
+                    "ignore_above": 1024
+                  },
+                  "size": {
+                    "type": "long"
+                  },
+                  "total": {
+                    "type": "long"
+                  }
+                }
+              }
+            }
+          },
+          "SearchMetricsSimulation": {
+            "properties": {
+              "ab": {
+                "properties": {
+                  "experiment": {
+                    "type": "text",
+                    "fields": {
+                      "keyword": {
+                        "type": "keyword",
+                        "ignore_above": 256
+                      }
+                    }
+                  },
+                  "variant": {
+                    "type": "text",
+                    "fields": {
+                      "keyword": {
+                        "type": "keyword",
+                        "ignore_above": 256
+                      }
+                    }
+                  }
+                }
+              },
+              "page_name": {
+                "type": "text",
+                "fields": {
+                  "keyword": {
+                    "type": "keyword",
+                    "ignore_above": 256
+                  }
+                }
+              }
+            }
+          },
+          "source": {
+            "properties": {
+              "geo": {
+                "properties": {
+                  "city_name": {
+                    "type": "keyword",
+                    "ignore_above": 1024
+                  },
+                  "country_iso_code": {
+                    "type": "keyword",
+                    "ignore_above": 1024
+                  },
+                  "location": {
+                    "type": "geo_point"
+                  }
+                }
+              },
+              "user": {
+                "properties": {
+                  "id": {
+                    "type": "keyword",
+                    "ignore_above": 1024
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "metrics": {
+        "properties": {
+          "clicks": {
+            "properties": {
+              "count": {
+                "type": "long"
+              },
+              "exist_at_10": {
+                "type": "boolean"
+              },
+              "exist_at_3": {
+                "type": "boolean"
+              },
+              "max_page_clicked": {
+                "type": "long"
+              },
+              "max_reciprocal_rank": {
+                "type": "float"
+              },
+              "mean_reciprocal_rank": {
+                "type": "float"
+              },
+              "num_above_fold": {
+                "type": "long"
+              },
+              "num_below_fold": {
+                "type": "long"
+              },
+              "time_to_first_click": {
+                "type": "long"
+              },
+              "time_to_last_click": {
+                "type": "long"
+              }
+            }
+          },
+          "pages": {
+            "properties": {
+              "max_page_requested": {
+                "type": "long"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

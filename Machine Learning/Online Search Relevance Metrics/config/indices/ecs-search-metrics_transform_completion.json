@@ -1,0 +1,53 @@
+{
+  "settings": {
+    "index": {
+      "number_of_shards": 2,
+      "number_of_replicas": 0,
+      "refresh_interval": "10m"
+    }
+  },
+  "mappings": {
+    "dynamic": "strict",
+    "properties": {
+      "SearchMetrics": {
+        "properties": {
+          "query": {
+            "properties": {
+              "value": {
+                "type": "keyword",
+                "ignore_above": 1024,
+                "fields": {
+                  "text": {
+                    "type": "text"
+                  },
+                  "completion": {
+                    "type": "completion"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "metrics": {
+        "properties": {
+          "num_queries": {
+            "type": "long"
+          },
+          "mean_num_clicks": {
+            "type": "float"
+          },
+          "mean_max_reciprocal_rank": {
+            "type": "float"
+          },
+          "mean_mean_reciprocal_rank": {
+            "type": "float"
+          },
+          "mean_time_to_first_click": {
+            "type": "float"
+          }
+        }
+      }
+    }
+  }
+}

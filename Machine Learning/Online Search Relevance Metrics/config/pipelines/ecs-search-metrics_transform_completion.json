@@ -1,0 +1,17 @@
+{
+  "processors" : [
+    {
+      "drop": {
+        "if": "ctx.metrics.num_queries < 3 || ctx.metrics.mean_max_reciprocal_rank < 0.2"
+      }
+    }
+  ],
+  "on_failure" : [
+    {
+      "set" : {
+        "field" : "_index",
+        "value" : "{{_index}}_failed"
+      }
+    }
+  ]
+}

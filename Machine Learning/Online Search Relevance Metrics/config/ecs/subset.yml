@@ -1,0 +1,70 @@
+base:
+  fields:
+    "@timestamp":
+       fields: "*"
+ecs:
+  fields:
+    version:
+      fields: "*"
+event:
+  fields:
+    action:
+      fields: "*"
+    dataset:
+      fields: "*"
+    duration:
+      fields: "*"
+    id:
+      fields: "*"
+SearchMetrics:
+  fields:
+    click:
+      fields:
+        result:
+          fields:
+            id:
+              fields: "*"
+            rank:
+              fields: "*"
+            reciprocal_rank:
+              fields: "*"
+    query:
+      fields:
+        id:
+          fields: "*"
+        page:
+          fields: "*"
+        value:
+          fields: "*"
+    results:
+      fields:
+        ids:
+          fields: "*"
+        size:
+          fields: "*"
+        total:
+          fields: "*"
+SearchMetricsSimulation:
+  fields:
+    ab:
+      fields:
+        experiment:
+          fields: "*"
+        variant:
+          fields: "*"
+    page_name:
+      fields: "*"
+source:
+  fields:
+    user:
+      fields:
+        id:
+          fields: "*"
+    geo:
+      fields:
+        city_name:
+          fields: "*"
+        country_iso_code:
+          fields: "*"
+        location:
+          fields: "*"

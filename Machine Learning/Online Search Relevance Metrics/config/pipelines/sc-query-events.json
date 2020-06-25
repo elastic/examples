@@ -1,0 +1,123 @@
+{
+  "processors": [
+    {
+      "script": {
+        "source": "ctx.labels = new HashMap(); ctx.event = new HashMap()"
+      }
+    },
+    {
+      "script": {
+        "source": "if (ctx.search_query_page == '1') { ctx.event.action = 'search.query' } else { ctx.event.action = 'search.page' }"
+      }
+    },
+    {
+      "date": {
+        "field": "event_created",
+        "target_field": "event.created",
+        "formats": [
+          "UNIX_MS"
+        ],
+        "timezone": "UTC"
+      }
+    },
+    {
+      "rename": {
+        "field": "event_id",
+        "target_field": "event.id"
+      }
+    },
+    {
+      "convert": {
+        "field": "search_results_took",
+        "target_field": "event.duration",
+        "type": "long"
+      }
+    },
+    {
+      "set": {
+        "field": "@timestamp",
+        "value": "{{event.created}}",
+        "override": false
+      }
+    },
+    {
+      "rename": {
+        "field": "search_query_id",
+        "target_field": "search.query.id"
+      }
+    },
+    {
+      "rename": {
+        "field": "search_query_value",
+        "target_field": "search.query.value"
+      }
+    },
+    {
+      "convert": {
+        "field": "search_query_page",
+        "target_field": "search.query.page",
+        "type": "long"
+      }
+    },
+    {
+      "convert": {
+        "field": "search_results_size",
+        "target_field": "search.results.size",
+        "type": "long"
+      }
+    },
+    {
+      "convert": {
+        "field": "search_results_total",
+        "target_field": "search.results.total",
+        "type": "long"
+      }
+    },
+    {
+      "rename": {
+        "field": "source_geo_country_iso_code",
+        "target_field": "source.geo.country_iso_code"
+      }
+    },
+    {
+      "rename": {
+        "field": "source_geo_city_name",
+        "target_field": "source.geo.city_name"
+      }
+    },
+    {
+      "rename": {
+        "field": "resourceId",
+        "target_field": "labels.platform"
+      }
+    },
+    {
+      "rename": {
+        "field": "label_user_tier",
+        "target_field": "labels.user_tier"
+      }
+    },
+    {
+      "rename": {
+        "field": "variant_id",
+        "target_field": "labels.ab.variant"
+      }
+    },
+    {
+      "remove": {
+        "field": [
+          "offset",
+          "event_created",
+          "search_query_page",
+          "search_results_total",
+          "search_results_took"
+        ]
+      }
+    },
+    {
+      "pipeline": {
+        "name": "ecs-search-metrics"
+      }
+    }
+  ]
+}

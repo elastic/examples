@@ -1,0 +1,38 @@
+#!venv/bin/python
+
+"""
+Sets up a Kibana index pattern for metrics and imports a pre-generated dashboard
+and dependent visualizations.
+"""
+
+import argparse
+import os
+import requests
+import sys
+
+# project library
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from metrics.resources import load_config
+
+DEFAULT_URL = 'http://localhost:5600'
+
+
+def main():
+    parser = argparse.ArgumentParser(prog='kibana')
+    parser.add_argument('--url', default=DEFAULT_URL,
+                        help="A Kibana connection URL, e.g. http://user:secret@localhost:5600")
+    args = parser.parse_args()
+
+    with requests.Session() as s:
+        payload = load_config('kibana', 'dashboard')
+        s.headers['kbn-xsrf'] = 'true'
+        r = s.post(f'{args.url}/api/kibana/dashboards/import', json=payload)
+        if r.status_code == 200:
+            print(f"Done. Go to Kibana and load the dashboard 'Search Metrics'.")
+        else:
+            print(f"Got {r.status_code} instead of a 200 response from Kibana. Here's the response:")
+            print(r.text)
+
+
+if __name__ == "__main__":
+    main()

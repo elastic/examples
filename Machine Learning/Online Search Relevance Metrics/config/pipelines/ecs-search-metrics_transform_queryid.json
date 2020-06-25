@@ -1,0 +1,46 @@
+{
+  "processors": [
+    {
+      "script": {
+        "source": "ctx.metrics.clicks.time_to_first_click = ChronoUnit.MILLIS.between(ZonedDateTime.parse(ctx.query_event['@timestamp']), ZonedDateTime.parse(ctx.metrics.clicks.first_click_time))",
+        "if": "ctx.metrics.clicks.first_click_time != null"
+      }
+    },
+    {
+      "script": {
+        "source": "ctx.metrics.clicks.time_to_last_click = ChronoUnit.MILLIS.between(ZonedDateTime.parse(ctx.query_event['@timestamp']), ZonedDateTime.parse(ctx.metrics.clicks.last_click_time))",
+        "if": "ctx.metrics.clicks.last_click_time != null"
+      }
+    },
+    {
+      "script": {
+        "source": "ctx.metrics.clicks.exist_at_3 = ctx.metrics.clicks.count_at_3 > 0"
+      }
+    },
+    {
+      "script": {
+        "source": "ctx.metrics.clicks.exist_at_10 = ctx.metrics.clicks.count_at_10 > 0"
+      }
+    },
+    {
+      "remove": {
+        "field": [
+          "query_event.ecs",
+          "metrics.clicks.count_at_3",
+          "metrics.clicks.count_at_10",
+          "metrics.clicks.first_click_time",
+          "metrics.clicks.last_click_time"
+        ],
+        "ignore_missing": true
+      }
+    }
+  ],
+  "on_failure" : [
+    {
+      "set" : {
+        "field" : "_index",
+        "value" : "{{_index}}_failed"
+      }
+    }
+  ]
+}
