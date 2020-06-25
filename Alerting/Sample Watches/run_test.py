@@ -9,6 +9,7 @@ import datetime
 import json
 import yaml
 import subprocess
+import logging
 
 from elasticsearch import Elasticsearch
 from elasticsearch.client import XPackClient
@@ -27,6 +28,7 @@ if __name__ == '__main__':
     import argparse
 
     parser = argparse.ArgumentParser(description='Index Connection Log data into ES with the last event at the current time')
+    parser.add_argument('-v', '--verbose', help='verbose output', action='store_true')
     parser.add_argument('--host', help='host name')
     parser.add_argument('--port', help='port')
     parser.add_argument('--user', help='user')
@@ -56,6 +58,10 @@ if __name__ == '__main__':
 
     parser.set_defaults(host='localhost', port="9200", protocol="http", test_file='data.json', user='elastic', password='changeme')
     args = parser.parse_args()
+
+    if args.verbose:
+        logging.basicConfig(level=logging.DEBUG)
+
     es = Elasticsearch([args.protocol+"://"+args.host+":"+args.port], http_auth=(args.user, args.password), ca_certs=args.cacert)
 
     test = load_file(args.test_file)
