@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 import sys
@@ -11,7 +11,7 @@ import yaml
 import subprocess
 
 from elasticsearch import Elasticsearch
-from elasticsearch_xpack import XPackClient
+from elasticsearch.client import XPackClient
 
 
 def load_file(serialized_file):
@@ -117,7 +117,7 @@ if __name__ == '__main__':
     watcher.put_watch(id=test["watch_name"], body=watch)
 
     if args.execute_watch:
-        response = watcher.execute_watch(test["watch_name"])
+        response = watcher.execute_watch(id=test["watch_name"])
 
         # Cleanup after the test to not pollute the environment for other tests.
         if not args.keep_index:
