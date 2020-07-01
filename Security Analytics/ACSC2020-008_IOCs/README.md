@@ -15,4 +15,4 @@ IOCs often change rapidly during campaigns and should not solely be relied upon 
 
 Note that the SIEM rules currently run every 60 minutes, looking back at events from the last 60 minutes. The rules currently do not run actions for every execution. If you need to act on detections, it would be a good idea to set the frequency to `Hourly` rather than on each rule execution, to reduce the amount of noise created.
 
-[Here is a full blog post](https/elastic.co/blog) on the campaign and Elastic Security.
+[Here is a full blog post](https://www.elastic.co/blog/preventing-copy-paste-compromises-acsc-2020-008-with-elastic-security) on the campaign and Elastic Security.
