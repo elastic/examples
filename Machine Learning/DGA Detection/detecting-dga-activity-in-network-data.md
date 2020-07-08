@@ -1,6 +1,7 @@
 # Supplementary materials for "Machine learning in cybersecurity: Detecting DGA activity in network data"
 
-This folder contains the supplementary materials for the blogpost "Machine learning in cybersecurity: Detecting DGA activity in network data"
+This folder contains the supplementary materials for the blogpost "Machine learning in cybersecurity: Detecting DGA activity in network data".
+These configurations have been tested on Elasticsearch version 7.6.2
 
 ## Painless Script for Extracting Unigrams, Bigrams and Trigrams from Packetbeat data
 
@@ -59,3 +60,99 @@ You can obtain the model ID by using the Kibana Dev Console and running the comm
 ```
 GET _ml/inference
 ```
+
+You can then scroll through the response to find the model you trained for DGA detection. 
+Make note of the model ID value. Below is a snippet of the model data showing the
+`model_id` field. 
+
+```
+   {
+      "model_id" : "dga-ngram-job-1587729368929",
+      "created_by" : "_xpack",
+      "version" : "7.6.2",
+      "description" : "",
+      "create_time" : 1587729368929,
+      "tags" : [
+        "dga-ngram-job"
+      ],
+```
+
+If you have many models in your cluster, it can be easier to use part of your ML job's name in a search pattern like this
+
+```
+GET _ml/inference/dga-ngram-job*
+```
+
+Once, we have the model id, we can configure the Ingest pipeline for DNS data as below
+
+```
+PUT _ingest/pipeline/dga_ngram_expansion_inference
+{
+    "description": "Expands a domain into unigrams, bigrams and trigrams and makes a prediction of maliciousness",
+    "processors": [
+      {
+        "script": {
+          "id": "ngram-extractor-packetbeat",
+          "params":{
+            "ngram_count":1
+          }
+        }
+      },
+       {
+        "script": {
+          "id": "ngram-extractor-packetbeat",
+          "params":{
+            "ngram_count":2
+          }
+        }
+      },
+       {
+        "script": {
+          "id": "ngram-extractor-packetbeat",
+          "params": {
+            "ngram_count":3
+          }
+        }
+      },
+              {
+  "inference": {
+    "model_id": "dga-ngram-job-1587729368929",
+    "target_field": "predicted_label",
+    "field_mappings":{},
+    "inference_config": { "classification": {"num_top_classes": 2} }
+  }
+},
+      {
+        "script": {
+          "id": "ngram-remover-packetbeat",
+          "params":{
+            "ngram_count":1
+          }
+        }
+      },
+       {
+        "script": {
+          "id": "ngram-remover-packetbeat",
+          "params":{
+            "ngram_count":2
+          }
+        }
+      },
+       {
+        "script": {
+          "id": "ngram-remover-packetbeat",
+          "params": {
+            "ngram_count":3
+          }
+        }
+      }
+    ]
+}
+
+```
+
+In the pipeline above, the first three processor invoke the same Painless script `ngram-extractor-packetbeat` to extract unigrams, bigrams and trigrams respectively (see the parameter `ngram_count` which varies in each processor). They are followed by the Inference processor which references our trained model (your model id will be different). Finally, we have three Painless script processor, which reference the script `ngram-remover-packetbeat` to remove the features required by the model. 
+
+## Conditional Ingest pipeline execution
+
+
