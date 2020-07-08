@@ -155,4 +155,28 @@ In the pipeline above, the first three processor invoke the same Painless script
 
 ## Conditional Ingest pipeline execution
 
+Not every document ingested through Packetbeat will describe a DNS flow. Hence, it would be ideal to make
+the pipeline we configured above execute conditionally only when our document contains the desired fields. There are a few ways to achieve our goal here. Both use Pipeline processors and check for the presence of specific fields in the Packetbeat document before deciding whether or not to direct it to the pipeline that contains our inference processor. 
 
+
+```
+PUT _ingest/pipeline/dns_classification_pipeline
+{
+  "description": "A pipeline of pipelines for performing DGA detection",
+  "version": 1,
+  "processors": [
+    {
+      "pipeline": {
+        "if": "ctx.containsKey('dns') && ctx['dns'].containsKey('question')  && ctx['dns']['question'].containsKey('registered_domain') && !ctx['dns']['question']['registered_domain'].empty",
+        "name": "dga_ngram_expansion_inference"
+      }
+    }
+  ]
+}
+
+```
+
+In the conditional above, we first check whether the packetbeat document contains the nested structure `dns.question.registered_domain` and then do a further check to make sure the field is not empty.
+
+Alternatively, one could check `"if": "ctx?.type=='dns'"` in the conditional. 
+For a production usecase, please also make sure you think about error handling in the ingest pipeline. 
