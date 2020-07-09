@@ -7,6 +7,6 @@ This folder contains the supplementary materials for the following blogposts
 * [supplementary materials](training-supervised-models-to-detect-dga-activity.md)
 
 ### Machine learning in cybersecurity: Detecting DGA activity in network data
-* [blogpost]()
+* [blogpost](https://www.elastic.co/blog/machine-learning-in-cybersecurity-detecting-dga-activity-in-network-data)
 * [supplementary materials](detecting-dga-activity-in-network-data.md)
 
