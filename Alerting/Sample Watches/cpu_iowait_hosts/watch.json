@@ -16,9 +16,6 @@
                 "indices": [
                     "metricbeat-*"
                 ],
-                "types": [
-                    "doc"
-                ],
                 "body": {
                   "size": 0,
                   "aggs": {
@@ -27,7 +24,7 @@
                         "per_minute": {
                           "date_histogram": {
                             "field": "@timestamp",
-                            "interval": "{{ctx.metadata.interval}}"
+                            "fixed_interval": "{{ctx.metadata.interval}}"
                           },
                           "aggs": {
                             "iowait": {

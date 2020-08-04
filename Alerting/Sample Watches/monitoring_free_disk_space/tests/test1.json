@@ -1,8 +1,7 @@
 {
   "watch_name":"monitoring_free_disk_space",
   "mapping_file":"./monitoring_free_disk_space/mapping.json",
-  "index":".monitoring-es-test",
-  "type":"doc",
+  "index":"monitoring-es-test",
   "time_field":"timestamp",
   "watch_file":"./monitoring_free_disk_space/watch.json",
   "comments":"Tests that each nodes host has more than lower_bound free disk space. Nodes a and c matches, b does not.",

@@ -94,8 +94,7 @@
         }
       },
       "index": {
-        "index": "connection-scans",
-        "doc_type": "scan"
+        "index": "connection-scans"
       }
     }
   }

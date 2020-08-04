@@ -1,6 +1,5 @@
 {
   "mappings": {
-    "doc":{
       "properties": {
         "beat":{
           "properties": {
@@ -106,6 +105,5 @@
           }
         }
       }
-    }
   }
 }
