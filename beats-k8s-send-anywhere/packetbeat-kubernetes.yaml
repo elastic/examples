@@ -102,7 +102,7 @@ spec:
       dnsPolicy: ClusterFirstWithHostNet
       containers:
       - name: packetbeat-dynamic
-        image: docker.elastic.co/beats/packetbeat:7.6.2
+        image: docker.elastic.co/beats/packetbeat:6.7.1
         imagePullPolicy: Always
         args: [
           "-c", "/etc/packetbeat.yml",

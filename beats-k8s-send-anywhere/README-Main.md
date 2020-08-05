@@ -6,7 +6,7 @@ and create it if needed (by default it will not be there)
 
 ```
 git clone https://github.com/kubernetes/kube-state-metrics.git kube-state-metrics
-kubectl apply -f kube-state-metrics/examples/standard
+kubectl create -f kube-state-metrics/kubernetes
 kubectl get pods --namespace=kube-system | grep kube-state 
 ```
 
@@ -80,14 +80,6 @@ NAME       DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
 frontend   2         2         2            2           5m
 ```
 
-Scale the frontend back up to three pods:
-```
-kubectl scale --replicas=3 deployment/frontend
-
-deployment "frontend" scaled
-```
-
-
 # View the changes in Kibana
 See the screenshot, add the indicated filters and then add the columns to the view.  You can see the ScalingReplicaSet entry that is marked, following from there to the top of the list of events shows the image being pulled, the volumes mounted, the pod starting, etc.
-![Kibana Discover](https://raw.githubusercontent.com/elastic/examples/master/MonitoringKubernetes/scaling-up.png)
+![Kibana Discover](https://raw.githubusercontent.com/elastic/examples/master/MonitoringKubernetes/scaling-discover.png)
