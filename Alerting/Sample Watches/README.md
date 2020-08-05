@@ -24,10 +24,10 @@ In each watch directory the following is provided:
 
 The parent directory includes the following utility scripts:
 
-* run_test.py - A python script which can be used to run a specific test e.g. python run_test.py --test_file new_process_started/tests/test1.json. Include optional username and password with --user and --password parameters.
+* run_test.py - A python script which can be used to run a specific test e.g. python run_test.py --test_file new_process_started/tests/test1.json. Include optional username and password with --user, --password, --endpoint, --port, and --protocol parameters.
 * load_watch.sh.  Utility script for loading a watch to a local Elasticsearch cluster.  Each watch can be loaded by running `load_watch.sh <watch folder name>`.  This will also index any scripts. Username and password for the cluster can be specified as parameters e.g.
-`load_watch.sh <watch folder name> <username> <password> <protocol>`
-* run_test.sh - Runs a specified watches tests. Specify watch by directory name e.g. `run_test.sh port_scan`. Include optional username and password e.g. `run_test.sh port_scan <username> <password> <protocol>`.
+`load_watch.sh <watch folder name> <optional_username> <optional_password> <optional_endpoint>:<optional_port> <optional_protocol>"`
+* run_test.sh - Runs a specified watches tests. Specify watch by directory name e.g. `run_test.sh port_scan`. Include optional username and password e.g. `run_test.sh <watch folder name> <username> <password> <endpoint> <protocol>`.
 * run_all_tests.sh - Runs all tests. Include optional username and password e.g. `run_all_tests.sh <username> <password> <protocol>`.
 
 If username, password, and protocol are not specified, the above scripts assume the x-pack default of "elastic", "changeme", and "http" respectively.
