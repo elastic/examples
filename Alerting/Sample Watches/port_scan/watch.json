@@ -34,7 +34,7 @@
                 "series": {
                   "date_histogram": {
                     "field": "@timestamp",
-                    "interval": "{{ctx.metadata.time_period}}"
+                    "fixed_interval": "{{ctx.metadata.time_period}}"
                   },
                   "aggs": {
                     "num_ports": {
