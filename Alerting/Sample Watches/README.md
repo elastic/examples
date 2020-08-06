@@ -28,7 +28,7 @@ The parent directory includes the following utility scripts:
 * load_watch.sh.  Utility script for loading a watch to a local Elasticsearch cluster.  Each watch can be loaded by running `load_watch.sh <watch folder name>`.  This will also index any scripts. Username and password for the cluster can be specified as parameters e.g.
 `load_watch.sh <watch folder name> <optional_username> <optional_password> <optional_endpoint>:<optional_port> <optional_protocol>"`
 * run_test.sh - Runs a specified watches tests. Specify watch by directory name e.g. `run_test.sh port_scan`. Include optional username and password e.g. `run_test.sh <watch folder name> <username> <password> <endpoint> <protocol>`.
-* run_all_tests.sh - Runs all tests. Include optional username and password e.g. `run_all_tests.sh <username> <password> <protocol>`.
+* run_all_tests.sh - Runs all tests. Include optional username and password e.g. `run_all_tests.sh <username> <password> <endpoint> <protocol>`.
 
 If username, password, and protocol are not specified, the above scripts assume the x-pack default of "elastic", "changeme", and "http" respectively.
 

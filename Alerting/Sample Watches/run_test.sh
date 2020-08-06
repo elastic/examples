@@ -28,8 +28,8 @@ if [ "$4" ] ; then
 fi
 
 protocol=http
-if [ "$4" ] ; then
-  protocol=$4
+if [ "$5" ] ; then
+  protocol=$5
 fi
 
 num_tests=0
@@ -39,6 +39,7 @@ echo "--------------------------------------------------"
 for test in `ls $1/tests/*.json`; do
 echo "Running test $test"
 python3 run_test.py --user $username --password $password --endpoint $endpoint --port $port --protocol $protocol --test_file $test
+
 if [ $? -eq 0 ]; then
 let pass=pass+1
 else
