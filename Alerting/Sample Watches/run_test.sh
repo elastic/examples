@@ -12,9 +12,24 @@ if [ "$3" ] ; then
   password=$3
 fi
 
-protocol=http
+port=9200
+endpoint=localhost
 if [ "$4" ] ; then
-  protocol=$4
+  if ":" in $4; then
+    endpoint=${4%":"*} # extractthe host value from the provided endpoint
+    port=${4#*":"}  # extract the port value if provided in endpoint:port format
+    if [ "$port" == "" ]; then
+      # if port is blank, due to endpoint provided as localhost: or no port providedthen use default port
+      port=9200
+    fi
+  else
+    endpoint=$4
+  fi
+fi
+
+protocol=http
+if [ "$5" ] ; then
+  protocol=$5
 fi
 
 num_tests=0
@@ -23,7 +38,8 @@ fails=0
 echo "--------------------------------------------------"
 for test in `ls $1/tests/*.json`; do
 echo "Running test $test"
-python3 run_test.py --test_file $test --user $username --password $password --protocol $protocol
+python3 run_test.py --user $username --password $password --endpoint $endpoint --port $port --protocol $protocol --test_file $test
+
 if [ $? -eq 0 ]; then
 let pass=pass+1
 else

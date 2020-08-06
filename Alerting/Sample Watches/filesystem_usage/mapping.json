@@ -1,6 +1,5 @@
 {
   "mappings": {
-    "filesystem":{
       "properties": {
         "hostname":{
           "type": "keyword"
@@ -12,6 +11,5 @@
           "type":"date"
         }
       }
-    }
   }
 }

@@ -14,9 +14,6 @@
         "indices": [
           "logs"
         ],
-        "types": [
-          "filesystem"
-        ],
         "body": {
           "aggs": {
             "host": {
@@ -75,7 +72,7 @@
     "log": {
       "logging": {
         "text": {
-          "inline": "Some hosts are over {{ctx.payload.threshold}}% utilized:{{#ctx.payload.hosts}}{{disk_usage}}%-{{key}}:{{/ctx.payload.hosts}}"
+          "source": "Some hosts are over {{ctx.payload.threshold}}% utilized:{{#ctx.payload.hosts}}{{disk_usage}}%-{{key}}:{{/ctx.payload.hosts}}"
         }
       }
     }

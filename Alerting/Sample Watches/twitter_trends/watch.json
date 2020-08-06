@@ -39,7 +39,7 @@
             "date_buckets": {
               "date_histogram": {
                 "field": "@timestamp",
-                "interval": "{{ctx.metadata.bucket_interval}}",
+                "fixed_interval": "{{ctx.metadata.bucket_interval}}",
                 "min_doc_count": 0
               }
             },

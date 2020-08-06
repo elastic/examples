@@ -1,9 +1,5 @@
 {
   "mappings": {
-    "doc": {
-      "_all": {
-        "enabled": false
-      },
       "date_detection": false,
       "properties": {
         "type": {
@@ -75,6 +71,5 @@
           "format": "date_time"
         }
       }
-    }
   }
 }
