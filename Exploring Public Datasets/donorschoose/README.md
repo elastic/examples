@@ -110,7 +110,7 @@ Once the index is created using either of the above options, you can check to se
     * Click the **Settings** tab >> **Indices** tab >> **Create New**. Specify `donorschoose` as the index pattern name, select `donation_timestamp` as the **Time-field name**, and click **Create** to define the index pattern.
     * If this is the only index pattern declared, you will also need to select the star in the top upper right to ensure a default is defined. 
 * Load sample dashboard into Kibana
-    * Click the **Settings** tab >> **Objects** tab >> **Import**, and select `donorschoose_kibana.json`
+    * Click the **Settings** tab >> **Objects** tab >> **Import**, and select `donorschoose_kibana.ndjson`
     * On import you will be asked to overwrite existing objects - select "Yes, overwrite all". Additionally, select the index pattern "donorschoose" when asked to specify a index pattern for the dashboards.
 * Open dashboard
     * Click on **Dashboard** tab and open `Donors Choose` dashboard. Voila! You should see the following dashboard. Happy Data Exploration!
