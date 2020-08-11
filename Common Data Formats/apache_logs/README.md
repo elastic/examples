@@ -73,7 +73,7 @@ wget https://raw.githubusercontent.com/elastic/examples/master/Common%20Data%20F
 
 ```shell
 cd <path_to_filebeat_root_dir>
-./filebeat -e --modules=apache2 --setup -M "apache2.access.var.paths=[<PATH_TO_APACHE_LOGS_FILE>]"
+./filebeat -e --modules=apache2 -M "apache2.access.var.paths=[<PATH_TO_APACHE_LOGS_FILE>]"
 ```
 
 Further details on the apache2 module configuration can be found [here](https://www.elastic.co/guide/en/beats/filebeat/6.0/filebeat-module-apache2.html).
