@@ -10,7 +10,9 @@ from datetime import datetime
 from elasticsearch import helpers
 from time import perf_counter
 import concurrent
-#from numba import jit
+import multiprocessing
+from multiprocessing import Pool
+from elasticsearch import Elasticsearch
 
 # Define elasticsearch class
 es = elasticsearch.Elasticsearch()
@@ -80,23 +82,30 @@ print(end - start)
 
 ### Merge multiple resource row per projectid into a single row
 # NOTE: section may take a few minutes to execute
-print("Grouping Data by ProjectId")
+# this parallel path reduces stage time from 920sec to 169sec on multi-core 2ghz machine
+print("Grouping Data by ProjectId parallel")
 start = perf_counter()
 
 concat_resource = pd.DataFrame()
 # a DataFrameGroupBy
 resources_grouped_by_projectid = resources.groupby('projectid')
 
-# try and set this up for parallel operations later
-def do_concat(one_group_by):
-    return one_group_by.apply(lambda x: concatdf(x))
+# return a tuple we can assign
+def do_concat_by_index(index):
+    print("starting : "+index)
+    return (index, resources_grouped_by_projectid[index].apply(lambda x: concatdf(x)))
 
-for a in resources.columns.values:
-    # Iterate across the DataFrameGroupBy operating on one SeriesGroupBy at a time
-    print("column "+ a)
-    concat_resource[a]=do_concat(resources_grouped_by_projectid[a])
-    # print(concat_resource[a])
-
+indexes = resources.columns.values
+print ('Manipulating : {}'.format(indexes))
+# pool size could be 8 the number in of tasks we need
+with Pool(10) as pool:
+    our_result = pool.starmap(do_concat_by_index, zip(indexes))
+    
+# move the results from the return list into concat_result
+for one_result in our_result:
+    # print('one result index is {} '.format(one_result[0]))
+    concat_resource[one_result[0]]=one_result[1]
+ 
 concat_resource['projectid'] = concat_resource.index;
 concat_resource.reset_index(drop=True);
 concat_resource.index.name = None
@@ -129,20 +138,30 @@ print(end - start)
 
 #### Process columns
 # Modify date formats
+# moving to parallel execution took us from 1450sec to 380sec
 print("Modifying Date Formats")
 start = perf_counter()
-data['project_date_expiration'] = data['project_date_expiration'].map(lambda x: str_to_iso(x));
-data['project_date_posted'] = data['project_date_posted'].map(lambda x: str_to_iso(x))
-data['project_date_thank_you_packet_mailed'] = data['project_date_thank_you_packet_mailed'].map(lambda x: str_to_iso(x))
-data['project_date_completed'] = data['project_date_completed'].map(lambda x: str_to_iso(x))
-data['donation_timestamp'] = data['donation_timestamp'].map(lambda x: str_to_iso(x))
-end = perf_counter()
-print(end - start)
 
-# Create location field that combines lat/lon information
-data['project_location'] = data[['project_school_longitude','project_school_latitude']].values.tolist()
-del(data['project_school_latitude'])  # delete latitude field
-del(data['project_school_longitude']) # delete longitude
+def do_date_fix(some_data):
+    #print(some_data.describe())
+    some_data['project_date_expiration'] = some_data['project_date_expiration'].map(lambda x: str_to_iso(x));
+    some_data['project_date_posted'] = some_data['project_date_posted'].map(lambda x: str_to_iso(x))
+    some_data['project_date_thank_you_packet_mailed'] = some_data['project_date_thank_you_packet_mailed'].map(lambda x: str_to_iso(x))
+    some_data['project_date_completed'] = some_data['project_date_completed'].map(lambda x: str_to_iso(x))
+    some_data['donation_timestamp'] = some_data['donation_timestamp'].map(lambda x: str_to_iso(x))
+
+    # Create location field that combines lat/lon information
+    some_data['project_location'] = some_data[['project_school_longitude','project_school_latitude']].values.tolist()
+    del(some_data['project_school_latitude'])  # delete latitude field
+    del(some_data['project_school_longitude']) # delete longitude
+    return some_data
+
+num_workers = 8
+data_split = np.array_split(data,num_workers)
+with Pool(num_workers) as pool:
+    fixed_dates = pool.map(do_date_fix,data_split)
+data = pd.concat(fixed_dates)
+
 end = perf_counter()
 print(end - start)
 
