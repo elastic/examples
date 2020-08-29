@@ -103,7 +103,7 @@ We define a rule in Elastalert (which is basically a query) -> if a match found 
 # Configuration changes
 
 1. Elasticsearch :
-    Replace the below in your config/elasticsearch.yml file with `elasticsearch.yml` 
+    Replace your `elasticsearch-7.8.0-linux-x86_64/config/elasticsearch.yml` file with `elasticsearch.yml` 
     
     - Save it
 
@@ -116,14 +116,112 @@ We define a rule in Elastalert (which is basically a query) -> if a match found 
         which will be showing your cluster details
 
 2. Kibana :
-    Replace the below in your config/kibana.yml file with `kibana.yml` 
+    Replace your `kibana-7.8.0-linux-x86_64/config/kibana.yml` file with `kibana.yml` 
     
     - Save it
 
-    - Run it 
+    - Run it
+
     ```cmd
         ./bin/elasticsearch
     ```
+    
     - Verify it 
-        by opening [localhost:9200](http://localhost:9200) in your browser
-        which will be showing your cluster details
+        by opening [localhost:5601](http://localhost:5601) in your browser
+        which will open your kibana
+
+3. ElastAlert 
+    * go to cloned project
+
+    ```cmd
+        cd elastalert
+    ```
+    do the following
+
+    ```cmd
+        sudo pip3 install "setuptools>=11.3" 
+        sudo pip3 install pyOpenSSL 
+        sudo python3 setup.py install 
+        sudo pip3 install "elasticsearch>=5.0.0" 
+
+    ```
+    
+    * Copy config.yaml.example into config.yaml  
+    
+    ```cmd
+
+        cp config.example.yaml config.yaml
+
+    ```
+    and replace new copied `config.yaml` it with `config.yaml` in this project and save it.
+
+    * Create Elastalert Indices 
+
+        ```cmd
+            elastalert-create-index
+        ```
+       output :
+
+        ```cmd
+            Elastic Version: 7.8.0
+            Reading Elastic 6 index mappings:
+            Reading index mapping 'es_mappings/6/silence.json'
+            Reading index mapping 'es_mappings/6/elastalert_status.json'
+            Reading index mapping 'es_mappings/6/elastalert.json'
+            Reading index mapping 'es_mappings/6/past_elastalert.json'
+            Reading index mapping 'es_mappings/6/elastalert_error.json'
+            New index elastalert_status created
+            Done!
+         ```
+
+    * Writing the test rules  
+    
+        rules are defined in example_rules folder
+
+        We are going to use only `frequency based` testrule which means
+
+        > Alert an email if the match found at X events in Y time 
+
+        replace the `./example_rules/example_frequency.yaml` with `example_frequency.yaml` in this project and also download and add  'stmp_auth_file.txt' in the same directory `./example_rules/`
+
+        and modify the both files content in way that serves your needs
+
+    example_frequency.yaml
+
+    ```YAML
+        email:
+            - "yourgmail@gmail.com"
+        smtp_host: "smtp.gmail.com."
+        smtp_port: 465
+        smtp_ssl: true
+        from_addr: "yourgmail@gmail.com"
+        smtp_auth_file: '/path/to/file/smtp_auth_file.txt'
+    ```
+    smtp_auth_file.txt
+
+    ```txt
+        user : yourgmail@gmail.com
+        password: yourgmailpwd
+    ```
+
+4. Logstash 
+    Add the `elasalert_logstash.conf` into your `logstash-7.8.0/config/` and also
+    Download the sample logsfile `cpustruck_syslogs.log` in the same path
+    
+    - Save it
+
+    ```cmd
+         ./bin/logstash -f /path/to/elastalert_logstash.conf
+    ```
+    This will push the sample logs to elasticsearch and also prints them to console
+
+5. Test Run it before running Elastalert
+
+    ```cmd
+         elastalert-test-rule example_rules/example_frequency.yaml
+    ```
+    
+    Output :
+
+    ![Image of TestRun]()
+ 
