@@ -1,7 +1,6 @@
-# Email ALerts example :
+# Email Alerts example :
 
-Basically one needs a gold or platinum package to activate/send email alerts via ELK using X-pack watchers but in this example i'm going to demonstrate how to configure ELK stack of basic license to send free email alerts for life time.
-We can do this using [ElastAlert](https://github.com/Yelp/elastalert).
+Basically one needs a gold or platinum package to activate/send email alerts via ELK using X-pack watchers but in this example i'm going to demonstrate how to configure ELK stack(basic license) to send free email alerts using [ElastAlert](https://github.com/Yelp/elastalert).
 
 `Note: This whole example is demostrated assuming that you are using Linux/Ubuntu based operating system.`
 
@@ -12,7 +11,7 @@ We can do this using [ElastAlert](https://github.com/Yelp/elastalert).
 * ElastAlert (Latest Version)
 
 
-### Dependencies you need have in your host
+### Dependencies you need have in your host :
 
 * Java 8 or above 
 
@@ -22,7 +21,7 @@ To check which version you have
     java --version
 ```
 
-output : (In my case i'm having java 11)
+Output : (In my case i'm having java 11)
 
 ```cmd 
     openjdk 11.0.8 2020-07-14
@@ -47,15 +46,19 @@ Output :
 ``` cmd 
         Python 3.8.2 (version no can be varied) 
 ```
-The above output tells that python has been installed successfully
+The above output tells that python has been installed successfully.
 
 * ElasticSearch 7.8.0 (Linux x86_64)  : [Download from here](https://www.elastic.co/downloads/past-releases/elasticsearch-7-8-0)
 
+
 * Kibana 7.8.0 (Linux 64-bit)          : [Download from here](https://www.elastic.co/downloads/past-releases/kibana-7-8-0)
+
 
 * Logstash 7.8.0 (TAR.GZ)               : [Download from here](https://www.elastic.co/downloads/past-releases/logstash-7-8-0)
 
-Now visit the directory where you have cloned and downloaded and execute the command to find your tar files
+
+Now visit the directory where you have cloned , downloaded and 
+execute the below command to find your tar files
  
 ```cmd 
 ls -lh | grep tar.gz
@@ -73,6 +76,7 @@ Extract them one by one :
 
 ```cmd 
     Format :  tar -xvf <tar file>
+
     tar -xvf elasticsearch-7.8.0-linux-x86_64.tar.gz
     tar -xvf kibana-7.8.0-linux-x86_64.tar.gz
     tar -xuf logstash-7.8.0.tar.gz
@@ -85,22 +89,22 @@ Extract them one by one :
 ```
 Now your directory should have the following files :
 
-![Image of Downloaded Dependencies](https://raw.githubusercontent.com/vvvk-gh/examples/master/Email-Alerting-with-Elastalert/Images/Downloads.png)
+![Downloaded Dependencies](https://raw.githubusercontent.com/vvvk-gh/examples/master/Email-Alerting-with-Elastalert/Images/Downloads.png)
 
 
 # Introduction 
 
-Before making any changes further, let's understand why, where and how Elastalert is useful and configured.
+Before making any new changes, let's understand why, where and how Elastalert is useful and configured.
 
 ## What is ElastAlert ?
 
-ElastAlert is an opensource framework for alerting duplicates, system spikes and for many other patterns present in the data of Elasticsearch.
+ElastAlert is an opensource framework for alerting duplicates, system spikes and for many other patterns present in the data/documents of Elasticsearch.
 
 ## How it works ?
 
 We define a rule in Elastalert (which is basically a query) -> if a match found in Elasticsearch data -> Elastalert sends an alert to your gmail  
 
-# Configuration changes
+# Configuration changes :
 
 1. Elasticsearch :
     Replace your `elasticsearch-7.8.0-linux-x86_64/config/elasticsearch.yml` file with `elasticsearch.yml` 
@@ -123,7 +127,7 @@ We define a rule in Elastalert (which is basically a query) -> if a match found 
     - Run it
 
     ```cmd
-        ./bin/elasticsearch
+        ./bin/kibana
     ```
     
     - Verify it 
@@ -152,14 +156,14 @@ We define a rule in Elastalert (which is basically a query) -> if a match found 
         cp config.example.yaml config.yaml
 
     ```
-    and replace new copied `config.yaml` it with `config.yaml` in this project and save it.
+    and replace new copied `config.yaml` with `config.yaml` in this project and save it.
 
     * Create Elastalert Indices 
 
         ```cmd
             elastalert-create-index
         ```
-       output :
+       Output :
 
         ```cmd
             Elastic Version: 7.8.0
@@ -174,16 +178,14 @@ We define a rule in Elastalert (which is basically a query) -> if a match found 
          ```
 
     * Writing the test rules  
-    
-        rules are defined in example_rules folder
 
-        We are going to use only `frequency based` testrule which means
+        rules are defined in example_rules folder and we are going to use only `frequency based` test rule in this example which means
 
-        > Alert an email if the match found at X events in Y time 
+        > Alert an email if a match found at X events/documents in Y time 
 
-        replace the `./example_rules/example_frequency.yaml` with `example_frequency.yaml` in this project and also download and add  'stmp_auth_file.txt' in the same directory `./example_rules/`
+        replace the `./example_rules/example_frequency.yaml` with `example_frequency.yaml` in this project and also download and add 'stmp_auth_file.txt' in the same directory `./example_rules/`
 
-        and modify the both files content in way that serves your needs
+        Now, modify the both files in a way that serves your needs
 
     example_frequency.yaml
 
@@ -200,21 +202,25 @@ We define a rule in Elastalert (which is basically a query) -> if a match found 
 
     ```txt
         user : yourgmail@gmail.com
-        password: yourgmailpwd
+        password: yourgmailpassword
     ```
 
 4. Logstash 
+
     Add the `elasalert_logstash.conf` into your `logstash-7.8.0/config/` and also
-    Download the sample logsfile `cpustruck_syslogs.log` in the same path
+    download the sample logs file `cpustruck_syslogs.log` in the same path
     
     - Save it
+
+    - Run it
 
     ```cmd
          ./bin/logstash -f /path/to/elastalert_logstash.conf
     ```
+    
     This will push the sample logs to elasticsearch and also prints them to console
 
-5. Test Run it before running Elastalert
+5. Test Run Elastalert 
 
     ```cmd
          elastalert-test-rule example_rules/example_frequency.yaml
@@ -222,6 +228,35 @@ We define a rule in Elastalert (which is basically a query) -> if a match found 
     
     Output :
 
-    ![Image of TestRun]()
+    ![Image of TestRun](https://raw.githubusercontent.com/vvvk-gh/examples/master/Email-Alerting-with-Elastalert/Images/Testrun.png)
  
-6. Running 
+6. Running ElastAlert
+
+    ```teriminal
+        python3 -m elastalert.elastalert --verbose --rule example_frequency.yaml
+    ```
+
+If you get a match it will alert to configured email.
+
+
+![Emailnotification](https://raw.githubusercontent.com/vvvk-gh/examples/master/Email-Alerting-with-Elastalert/Images/Emailnotificatin.png)
+
+![Image of EmailNotification](https://raw.githubusercontent.com/vvvk-gh/examples/master/Email-Alerting-with-Elastalert/Images/Emailalert.png)
+
+
+Its additional supports alerts via 
+   * Command
+   * JIRA
+   * OpsGenie
+   * SNS
+   * HipChat
+   * Slack
+   * Telegram
+   * GoogleChat
+   * Debug
+   * Stomp
+   * theHive
+
+For more details 
+
+visit the [documentation](https://elastalert.readthedocs.io/en/latest/elastalert.html)

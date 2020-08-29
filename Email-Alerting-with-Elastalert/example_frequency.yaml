@@ -17,7 +17,7 @@
 
 # (Required)
 # Rule name, must be unique
-name: RockDB Instance Error
+name: CPU STRUCK
 # (Required)
 # Type of alert.
 # the frequency rule type alerts when num_events events occur with timeframe time
