@@ -85,7 +85,7 @@ Extract them one by one :
 ```
 Now your directory should have the following files :
 
-![Image of Downloaded Dependencies](https://raw.githubusercontent.com/vvvk-gh/examples/master/Email-Alerting-with-Elastalert/Downloads.png)
+![Image of Downloaded Dependencies](https://raw.githubusercontent.com/vvvk-gh/examples/master/Email-Alerting-with-Elastalert/Images/Downloads.png)
 
 
 # Introduction 
@@ -143,7 +143,6 @@ We define a rule in Elastalert (which is basically a query) -> if a match found 
         sudo pip3 install pyOpenSSL 
         sudo python3 setup.py install 
         sudo pip3 install "elasticsearch>=5.0.0" 
-
     ```
     
     * Copy config.yaml.example into config.yaml  
@@ -225,3 +224,4 @@ We define a rule in Elastalert (which is basically a query) -> if a match found 
 
     ![Image of TestRun]()
  
+6. Running 
