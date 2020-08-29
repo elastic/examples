@@ -83,13 +83,14 @@ Extract them one by one :
 ```cmd 
      git clone https://github.com/Yelp/elastalert.git
 ```
-Now your directory should have the following files
+Now your directory should have the following files :
+
+![Image of Downloaded Dependencies](https://raw.githubusercontent.com/vvvk-gh/examples/master/Email-Alerting-with-Elastalert/Downloads.png)
 
 
+# Introduction 
 
-
-
-# Intro
+Before making any changes further, let's understand why, where and how Elastalert is useful and configured.
 
 ## What is ElastAlert ?
 
@@ -99,3 +100,30 @@ ElastAlert is an opensource framework for alerting duplicates, system spikes and
 
 We define a rule in Elastalert (which is basically a query) -> if a match found in Elasticsearch data -> Elastalert sends an alert to your gmail  
 
+# Configuration changes
+
+1. Elasticsearch :
+    Replace the below in your config/elasticsearch.yml file with `elasticsearch.yml` 
+    
+    - Save it
+
+    - Run it 
+    ```cmd
+        ./bin/elasticsearch
+    ```
+    - Verify it 
+        by opening [localhost:9200](http://localhost:9200) in your browser
+        which will be showing your cluster details
+
+2. Kibana :
+    Replace the below in your config/kibana.yml file with `kibana.yml` 
+    
+    - Save it
+
+    - Run it 
+    ```cmd
+        ./bin/elasticsearch
+    ```
+    - Verify it 
+        by opening [localhost:9200](http://localhost:9200) in your browser
+        which will be showing your cluster details
