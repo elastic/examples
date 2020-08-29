@@ -258,5 +258,4 @@ Its additional supports alerts via
    * theHive
 
 For more details 
-
 visit the [documentation](https://elastalert.readthedocs.io/en/latest/elastalert.html)
