@@ -1,6 +1,5 @@
 {
   "mappings": {
-    "doc": {
       "date_detection": false,
       "properties": {
         "cluster_state": {
@@ -37,6 +36,5 @@
           "type": "keyword"
         }
       }
-    }
   }
 }

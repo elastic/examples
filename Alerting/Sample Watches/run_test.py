@@ -6,13 +6,14 @@ import sys
 __author__ = 'dalem@elastic.co'
 
 import datetime
+import argparse
 import json
 import yaml
 import subprocess
 import logging
 
-from elasticsearch import Elasticsearch
-from elasticsearch.client import XPackClient
+from elasticsearch7 import Elasticsearch
+from elasticsearch7.client.ingest import IngestClient
 
 
 def load_file(serialized_file):
@@ -29,12 +30,12 @@ if __name__ == '__main__':
 
     parser = argparse.ArgumentParser(description='Index Connection Log data into ES with the last event at the current time')
     parser.add_argument('-v', '--verbose', help='verbose output', action='store_true')
-    parser.add_argument('--host', help='host name')
+    parser.add_argument('--endpoint', help='endpoint')
     parser.add_argument('--port', help='port')
-    parser.add_argument('--user', help='user')
-    parser.add_argument('--password', help='password')
     parser.add_argument('--protocol', help='protocol')
     parser.add_argument('--cacert', help='CA certificate to trust for HTTPS')
+    parser.add_argument('--user', help='user')
+    parser.add_argument('--password', help='password')
     parser.add_argument('--test_file', help='test file')
     parser.add_argument(
         '--minify-scripts',
@@ -56,13 +57,13 @@ if __name__ == '__main__':
         action='store_false',
         dest='execute_watch')
 
-    parser.set_defaults(host='localhost', port="9200", protocol="http", test_file='data.json', user='elastic', password='changeme')
+    parser.set_defaults(endpoint='localhost', port="9200", protocol="http", test_file='data.json', user='elastic', password='changeme')
     args = parser.parse_args()
 
     if args.verbose:
         logging.basicConfig(level=logging.DEBUG)
 
-    es = Elasticsearch([args.protocol+"://"+args.host+":"+args.port], http_auth=(args.user, args.password), ca_certs=args.cacert)
+    es = Elasticsearch([args.protocol+"://"+args.endpoint+":"+args.port], http_auth=(args.user, args.password), ca_certs=args.cacert)
 
     test = load_file(args.test_file)
 
@@ -81,7 +82,9 @@ if __name__ == '__main__':
         # Load pipeline if its declared
         params = {}
         if "ingest_pipeline_file" in test:
-            es.index(index="_ingest", doc_type="pipeline", id=test["watch_name"], body=load_file(test['ingest_pipeline_file']))
+            pipeline = load_file(test['ingest_pipeline_file'])
+            p = IngestClient(es)
+            p.put_pipeline(id=test["watch_name"], body=pipeline)
             params["pipeline"] = test["watch_name"]
 
         # Index data
@@ -94,7 +97,7 @@ if __name__ == '__main__':
             event_time = current_data+datetime.timedelta(seconds=int(event['offset'] if 'offset' in event else 0))
             for time_field in time_fields:
                 event.setdefault(time_field, event_time.strftime('%Y-%m-%dT%H:%M:%S.%fZ'))
-            es.index(index=test['index'], doc_type=test['type'], body=event, id=event['id'] if "id" in event else i, params=params)
+            es.index(index=test['index'], body=event, id=event['id'] if "id" in event else i, params=params)
             i += 1
         es.indices.refresh(index=test["index"])
 
@@ -119,11 +122,10 @@ if __name__ == '__main__':
         watch['metadata']['git_commit_hash'] = subprocess.check_output(['git', 'rev-parse', '--short', 'HEAD']).strip()
         watch['metadata']['git_uncommitted_changes'] = True if len(subprocess.check_output(['git', 'status', '--porcelain']).strip()) > 0 else False
 
-    watcher = XPackClient(es).watcher
-    watcher.put_watch(id=test["watch_name"], body=watch)
+    es.watcher.put_watch(id=test["watch_name"], body=watch)
 
     if args.execute_watch:
-        response = watcher.execute_watch(id=test["watch_name"])
+        response = es.watcher.execute_watch(id=test["watch_name"])
 
         # Cleanup after the test to not pollute the environment for other tests.
         if not args.keep_index:

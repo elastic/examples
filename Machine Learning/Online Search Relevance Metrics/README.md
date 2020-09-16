@@ -2,7 +2,7 @@
 
 A simulation and set of configurations for calculating and exploring online search relevance metrics.
 
-For a high-level introduction, please see the accompanying blog post, [Exploring online search relevance metrics with the Elastic Stack](http://elastic.co/blog/). (pending)
+For a high-level introduction, please see the accompanying blog post, [Analyzing online search relevance metrics with the Elastic Stack](https://www.elastic.co/blog/analyzing-online-search-relevance-metrics-with-the-elastic-stack).
 
 ![Kibana dashboard](https://user-images.githubusercontent.com/181622/85378369-c40ae380-b53a-11ea-9d0c-5a97d1c00d24.png)
 

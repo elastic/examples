@@ -48,7 +48,7 @@ fi
 echo "Loading $1 scripts"
 
 shopt -s nullglob
-for script in $1/scripts/*.json
+for script in "$1/scripts"/*.json
 do
     filename=$(basename "$script")
     scriptname="${filename%.*}"
@@ -62,14 +62,15 @@ do
     fi
 done
 
-echo "Loading $1 watch "
 
-curl -H "Content-Type: application/json" -s -o /dev/null -X DELETE "$endpoint:$port/_xpack/watcher/watch/$1" -u "$username:$password"
+echo "Removing existing $1 watch "
+curl -H "Content-Type: application/json" -s -X DELETE "$protocol$endpoint:$port/_xpack/watcher/watch/$1" -u "$username:$password"
+echo "Loading $1 watch "
 es_response=$(curl -H "Content-Type: application/json" --w "%{http_code}" -s -o /dev/null -X PUT "$protocol$endpoint:$port/_xpack/watcher/watch/$1" -u "$username:$password" -d "@$1/watch.json")
-if [ 0 -eq $? ] && [ "$es_response" = "201" ]; then
-  echo "Loading $2 watch...OK"
+if [ 0 -eq $? ] && [ $es_response = "201" ]; then
+  echo "Loading $1 watch...OK"
   exit 0
 else
-  echo "Loading $2 watch...FAILED: $es_response"
+  echo "Loading $1 watch...FAILED with response code $es_response"
   exit 1
 fi

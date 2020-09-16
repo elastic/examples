@@ -1,33 +1,51 @@
-#!/usr/bin/env bash
-set -o pipefail -o errexit
-
 if [ -z "$1" ]; then
   echo "Specify watch name e.g. run_test.sh <foldername>"
+  exit 1
 fi
 
-run_test_args=()
-if [ -n "${2:-}" ]; then
-  run_test_args+=(--username "$2")
+username=elastic
+if [ "$2" ] ; then
+  username="$2"
 fi
-if [ -n "${3:-}" ]; then
-  run_test_args+=(--password "$3")
+
+password=changeme
+if [ "$3" ] ; then
+  password="$3"
 fi
-if [ -n "${4:-}" ]; then
-  run_test_args+=(--protocol "$4")
+
+port=9200
+endpoint=localhost
+if [ "$4" ] ; then
+  if ":" in "$4"; then
+    endpoint=${4%":"*} # extract the host value from the provided endpoint
+    port=${4#*":"}  # extract the port value if provided in endpoint:port format
+    if [ "$port" == "" ]; then
+      # if port is blank, due to endpoint provided as localhost: or no port provided then use default port
+      port=9200
+    fi
+  else
+    endpoint=$4
+  fi
+fi
+
+protocol=http
+if [ "$5" ] ; then
+  protocol=$5
 fi
 
 num_tests=0
 pass=0
 fails=0
 echo "--------------------------------------------------"
-for test in ./$1/tests/*.*; do
+for test in "$1/tests"/*.json; do
   echo "Running test $test"
-  if python3 run_test.py --test_file "$test" "${run_test_args[@]}"; then
-    let pass=pass+1
+
+  if python3 run_test.py --user "$username" --password "$password" --endpoint "$endpoint" --port "$port" --protocol "$protocol" --test_file "$test"; then
+    pass=$(( pass+1 ))
   else
-    let fails=fails+1
+    fails=$(( fails+1 ))
   fi
-  let num_tests=num_tests+1
+  num_tests=$(( num_tests+1 ))
   echo "--------------------------------------------------"
 done
 

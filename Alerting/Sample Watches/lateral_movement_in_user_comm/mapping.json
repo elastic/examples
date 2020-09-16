@@ -1,6 +1,5 @@
 {
   "mappings": {
-    "doc": {
       "properties": {
         "user_server": {
           "type": "keyword"
@@ -14,6 +13,5 @@
           "format": "HH:mm:ss||strict_time_no_millis"
         }
       }
-    }
   }
 }

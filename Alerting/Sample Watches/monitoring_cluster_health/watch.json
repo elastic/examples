@@ -12,8 +12,7 @@
   "input": {
     "search": {
       "request": {
-        "indices": ".monitoring-es-test",
-        "types": "doc",
+        "indices": "monitoring-es-test",
         "body": {
           "query": {
             "bool": {
