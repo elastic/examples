@@ -142,7 +142,7 @@ if __name__ == '__main__':
 
         # Confirm Matches
         match = test['match'] if 'match' in test else True
-        print("Expected: Watch Condition: %s" % match)
+        print("Expected: Watch Condition: {}".format(match))
         if 'condition' not in response['watch_record']['result']:
             print("Condition not evaluated due to watch error: {}".format(
                 json.dumps(response['watch_record'], sort_keys=True, indent=2)
@@ -150,10 +150,10 @@ if __name__ == '__main__':
             print("TEST FAIL")
             sys.exit(1)
         met = response['watch_record']['result']['condition']['met']
-        print("Received: Watch Condition: %s" % met)
+        print("Received: Watch Condition: {}".format(met))
         if match:
             if met and response['watch_record']['result']['condition']['status'] == "success":
-                print("Expected: %s" % test.get('expected_response'))
+                print("Expected: {}".format(test.get('expected_response')))
                 if len(response['watch_record']['result']['actions']) == 0:
                     if response['watch_record']['result']['transform']['status'] == 'failure':
                         print("No actions where taken because transform failed: {}".format(
@@ -183,7 +183,7 @@ if __name__ == '__main__':
                     sys.exit(1)
                 logging = logging_action['logging']
                 if logging:
-                    print("Received: %s" % logging['logged_text'])
+                    print("Received: {}".format(logging['logged_text']))
                     if logging['logged_text'] == test.get('expected_response'):
                         print("TEST PASS")
                         sys.exit(0)
@@ -192,5 +192,5 @@ if __name__ == '__main__':
             print("TEST FAIL")
             sys.exit(1)
         else:
-            print("TEST %s" % ("FAIL" if response['watch_record']['result']['condition']['met'] else "PASS"))
+            print("TEST {}".format("FAIL" if response['watch_record']['result']['condition']['met'] else "PASS"))
             sys.exit(met)
