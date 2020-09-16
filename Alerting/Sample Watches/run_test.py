@@ -1,16 +1,18 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import sys
-
 __author__ = 'dalem@elastic.co'
 
+from __future__ import (print_function, unicode_literals,
+                        absolute_import, division)
+
 import datetime
-import argparse
 import json
-import yaml
-import subprocess
 import logging
+import subprocess
+import sys
+
+import yaml
 
 from elasticsearch7 import Elasticsearch
 from elasticsearch7.client.ingest import IngestClient
