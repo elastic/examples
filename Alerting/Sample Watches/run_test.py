@@ -192,5 +192,5 @@ if __name__ == '__main__':
             print("TEST FAIL")
             sys.exit(1)
         else:
-            print("TEST %s" % ("PASS" if not response['watch_record']['result']['condition']['met'] else "FAIL"))
+            print("TEST %s" % ("FAIL" if response['watch_record']['result']['condition']['met'] else "PASS"))
             sys.exit(met)
