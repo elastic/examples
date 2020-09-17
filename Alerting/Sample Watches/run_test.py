@@ -81,7 +81,7 @@ if __name__ == '__main__':
             pass
         index_template = load_file(test['mapping_file'])
         for unneeded_keys in ['order', 'version', 'index_patterns']:
-            index_template.pop(unneeded_keys)
+            index_template.pop(unneeded_keys, None)
         es.indices.create(index=test["index"], body=index_template)
 
         # Load pipeline if its declared

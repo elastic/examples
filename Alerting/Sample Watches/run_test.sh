@@ -37,7 +37,8 @@ num_tests=0
 pass=0
 fails=0
 echo "--------------------------------------------------"
-for test in "$1/tests"/*.json; do
+# shellcheck disable=SC2231
+for test in $1/tests/*.json; do
   echo "Running test $test"
 
   if python3 run_test.py --user "$username" --password "$password" --endpoint "$endpoint" --port "$port" --protocol "$protocol" --test_file "$test"; then
