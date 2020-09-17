@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-__author__ = 'dalem@elastic.co'
+# SPDX-FileCopyrightText: 2017 Dale McDiarmid <dalem@elastic.co>
+# SPDX-FileCopyrightText: 2017-2020 Robin Schneider <robin.schneider@geberit.com>
+# SPDX-FileCopyrightText: 2020 Dan Roscigno <dan@roscigno.com>
+# SPDX-License-Identifier: Apache-2.0
 
 from __future__ import (print_function, unicode_literals,
                         absolute_import, division)
