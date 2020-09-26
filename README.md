@@ -67,6 +67,7 @@ X-Pack lets you set up watches (or rules) to detect and alert on changes in your
 - [Trending hashtag on twitter](https://github.com/elastic/examples/tree/master/Alerting/Sample%20Watches/twitter_trends)
 - [Unexpected account activity](https://github.com/elastic/examples/tree/master/Alerting/Sample%20Watches/unexpected_account_activity)
 - [Watch history dashboard](https://github.com/elastic/examples/tree/master/Alerting/watcher_dashboard)
+- [Alert on Large Shards](https://github.com/elastic/examples/tree/master/Alerting/Sample%20Watches/large_shard_watch)
 
 #### Machine learning
 
