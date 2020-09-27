@@ -1,0 +1,44 @@
+version: '3.3'
+# created from https://www.elastic.co/guide/en/elastic-stack-get-started/current/get-started-docker.html
+services:
+  es-single:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.8.0
+    container_name: es-single
+    environment:
+      - node.name=es-single
+      - cluster.name=es-docker-cluster
+      - discovery.type=single-node
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms6g -Xmx6g"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - es_single_data:/usr/share/elasticsearch/data
+    ports:
+      - 9200:9200
+    networks:
+      - private_net
+
+
+  kib01:
+    image: docker.elastic.co/kibana/kibana:7.8.0
+    container_name: kib01
+    ports:
+      - 5601:5601
+    environment:
+      ELASTICSEARCH_URL: http://es-single:9200
+      ELASTICSEARCH_HOSTS: http://es-single:9200
+    networks:
+      - private_net
+
+volumes:
+  # will be <svc_name>_data01
+  es_single_data:
+    driver: local
+
+# the actual name will be <directory_name>_<network_name>
+networks:
+  private_net:
+    driver: bridge

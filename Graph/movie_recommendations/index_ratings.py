@@ -2,11 +2,13 @@ import csv
 from collections import deque
 import elasticsearch
 from elasticsearch import helpers
+import json
 
+#Change if not using default credentials
 es = elasticsearch.Elasticsearch(http_auth=('elastic', 'changeme'))
-movies_file = "./data/ml-20m/movies.csv"
-ratings_file = "./data/ml-20m/ratings.csv"
-mapping_file = "movie_recommendations.json"
+movies_file = "./data/ml-25m/movies.csv"
+ratings_file = "./data/ml-25m/ratings.csv"
+mapping_file = "movie_lens.json"
 
 def read_movies(filename):
     movie_dict = dict()
@@ -35,9 +37,17 @@ def read_ratings(filename,movies):
                 print("Indexed %s ratings" % (num_ratings))
             yield row
 
-es.indices.delete(index="movie_lens_ratings",ignore=404)
-es.indices.create(index="movie_lens_ratings", body=open(mapping_file,"r").read(), ignore=404)
+index_name="movie_lens_ratings"
+doc_name="rating"
+es.indices.delete(index=index_name, ignore=404)
+es.indices.create(index=index_name, ignore=404)
+
+# Add mapping
+with open('movie_lens.json') as json_mapping:
+    d = json.load(json_mapping)
+es.indices.put_mapping(index=index_name, doc_type=doc_name, body=d, include_type_name=True)
+
 print("Indexing ratings...")
-deque(helpers.parallel_bulk(es,read_ratings(ratings_file,read_movies(movies_file)),index="movie_lens_ratings",doc_type="rating"), maxlen=0)
+deque(helpers.parallel_bulk(es, read_ratings(ratings_file, read_movies(movies_file)), index=index_name, doc_type=doc_name), maxlen=0)
 print ("Indexing Complete")
 es.indices.refresh()

@@ -1,80 +1,56 @@
 {
-  "template": "movie_lens*",
-    "settings": {
-      "number_of_shards": 1,
-      "number_of_replicas" : 0,
-      "index.refresh_interval": "30s"
+  "properties": {
+    "movieId": {
+      "type": "integer"
     },
-    "mappings": {
-      "_default_": {
-        "dynamic_templates": [
-        {
-          "strings": {
-            "match": "*",
-            "match_mapping_type": "string",
-            "mapping": {
-              "type": "keyword"
-            }
-          }
-        }
-        ],
-        "properties": {
-          "movieId": {
-            "type": "integer"
-          },
-          "rating": {
-            "type": "scaled_float",
-            "scaling_factor": 10
-          },
-          "userId": {
-            "type": "integer"
-          },
-          "year": {
-            "type": "short"
-          },
-          "liked": {
-            "type": "keyword"
-          },
-          "disliked": {
-            "type": "keyword"
-          },
-          "indifferent": {
-            "type": "keyword"
-          },
-          "all_rated": {
-            "type": "keyword"
-          },
-          "all_years": {
-            "type": "short"
-          },
-          "liked_years": {
-            "type": "short"
-          },
-          "disliked_years":{
-            "type": "short"
-          },
-          "indifferent_years":{
-            "type": "short"
-          },
-          "most_liked_yr": {
-            "type": "short"
-          },
-          "timestamp":{
-            "type":"date",
-            "format":"epoch_second"
-          },
-          "title": {
-            "type": "text",
-            "fields":{
-              "raw": {
-                "type":  "keyword"
-              }
-            }
-          }
-        },
-        "_all": {
-          "enabled": true
+    "rating": {
+      "type": "scaled_float",
+      "scaling_factor": 10
+    },
+    "userId": {
+      "type": "integer"
+    },
+    "year": {
+      "type": "short"
+    },
+    "liked": {
+      "type": "keyword"
+    },
+    "disliked": {
+      "type": "keyword"
+    },
+    "indifferent": {
+      "type": "keyword"
+    },
+    "all_rated": {
+      "type": "keyword"
+    },
+    "all_years": {
+      "type": "short"
+    },
+    "liked_years": {
+      "type": "short"
+    },
+    "disliked_years": {
+      "type": "short"
+    },
+    "indifferent_years": {
+      "type": "short"
+    },
+    "most_liked_yr": {
+      "type": "short"
+    },
+    "timestamp": {
+      "type": "date",
+      "format": "epoch_second"
+    },
+    "title": {
+      "type": "text",
+      "fields": {
+        "raw": {
+          "type": "keyword"
         }
       }
     }
+  }
 }
