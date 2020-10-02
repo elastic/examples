@@ -1,0 +1,8 @@
+{
+  "team": "Josh Devins - Elastic",
+  "model_description": "Elasticsearch optimized multi_match best_fields",
+  "date": "2020/11/17",
+  "paper": "https://www.elastic.co/blog/",
+  "code": "https://github.com/elastic/examples/tree/master/Machine%20Learning/Query%20Optimization/",
+  "type": "full ranking"
+}

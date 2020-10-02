@@ -1,0 +1,79 @@
+[
+  {
+    "id": "cross_fields",
+    "template": {
+      "lang": "mustache",
+      "source": {
+        "query": {
+          "multi_match": {
+            "type": "cross_fields",
+            "query": "{{query_string}}",
+            "operator": "{{operator}}",
+            "minimum_should_match": "{{minimum_should_match}}%",
+            "tie_breaker": "{{tie_breaker}}",
+            "fields": [
+              "url^{{url|boost}}",
+              "title^{{title|boost}}",
+              "body^{{body|boost}}"
+            ]
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "best_fields",
+    "template": {
+      "lang": "mustache",
+      "source": {
+        "query": {
+          "multi_match": {
+            "type": "best_fields",
+            "query": "{{query_string}}",
+            "tie_breaker": "{{tie_breaker}}",
+            "fields": [
+              "url^{{url|boost}}",
+              "title^{{title|boost}}",
+              "body^{{body|boost}}"
+            ]
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "combined_matches",
+    "template": {
+      "lang": "mustache",
+      "source": {
+        "query": {
+          "bool": {
+            "should": [
+              {
+                "match": {
+                  "url": {
+                    "query": "{{query_string}}"
+                  }
+                }
+              },
+              {
+                "match": {
+                  "title": {
+                    "query": "{{query_string}}"
+                  }
+                }
+              },
+              {
+                "match": {
+                  "body": {
+                    "query": "{{query_string}}"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+]

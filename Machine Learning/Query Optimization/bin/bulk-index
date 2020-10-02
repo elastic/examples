@@ -1,0 +1,82 @@
+#!venv/bin/python
+
+"""
+Recreates the destination index and performs bulk indexing from the provided
+JSONL file of index actions. Actions must already be in the supported format as
+specified in the Elasticsearch Python library, `Bulk Helpers
+<https://elasticsearch-py.readthedocs.io/en/master/helpers.html#bulk-helpers>_`.
+"""
+
+import argparse
+import json
+import os
+import sys
+
+from elasticsearch import Elasticsearch, helpers
+
+# project library
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from qopt.util import Timer, file_length, load_json
+
+DEFAULT_CHUNK_SIZE = 10000
+DEFAULT_NUM_PROCS = 4
+DEFAULT_URL = 'http://elastic:changeme@localhost:9200'
+
+
+def recreate_index(es, index, config):
+    """Recreates an index from a configuration file with the same name."""
+    print(f"Recreating index: {index}")
+    es.indices.delete(index=index, ignore=404)
+    es.indices.create(index=index, body=load_json(config))
+
+
+def index_docs(es, index, actions_file, num_procs, chunk_size):
+    """
+    Indexes documents from a JSONL file of actions. Index name will be set to
+    match the index name provided at runtime. This supports easy reuse and
+    multi-destination indexing from the same action file.
+    We use a bulk index in parallel with large chunks by default, since most
+    documents are very small. Chunk size can be overriden on the command line.
+    We always use a big timeout to just "get it done".
+    """
+
+    print(f"Indexing documents into '{index}'")
+
+    def actions():
+        with open(actions_file, 'r') as f:
+            for s in f:
+                action = json.loads(s)
+                action['_index'] = index
+                yield action
+
+    num_actions = file_length(actions_file)
+    print(f" - size: {num_actions:,}")
+
+    with Timer() as t:
+        for success, info in helpers.parallel_bulk(
+                es, actions(), thread_count=num_procs, chunk_size=chunk_size, request_timeout=600, refresh='wait_for'):
+            if not success:
+                print(f" - failure: ", info)
+    print(f" - duration: {t.interval_str()}")
+
+
+def main():
+    parser = argparse.ArgumentParser(prog='bulk-index')
+    parser.add_argument('--url', default=DEFAULT_URL,
+                        help="An Elasticsearch connection URL, e.g. http://user:secret@localhost:9200")
+    parser.add_argument('--index', required=True, help="The destination index to recreate and index into")
+    parser.add_argument('--config', required=True, help="The index configuration file to use")
+    parser.add_argument('--procs', type=int, default=DEFAULT_NUM_PROCS,
+                        help=f"The number of processes to use. Default: {DEFAULT_NUM_PROCS}.")
+    parser.add_argument('--chunk-size', type=int, default=DEFAULT_CHUNK_SIZE,
+                        help=f"The chunk size to use when sending actions to Elasticsearch in bulk. Default: {DEFAULT_CHUNK_SIZE}.")
+    parser.add_argument('actions', help="The JSONL index actions file to use")
+    args = parser.parse_args()
+
+    es = Elasticsearch(args.url)
+    recreate_index(es, args.index, args.config)
+    index_docs(es, args.index, args.actions, args.procs, args.chunk_size)
+
+
+if __name__ == "__main__":
+    main()

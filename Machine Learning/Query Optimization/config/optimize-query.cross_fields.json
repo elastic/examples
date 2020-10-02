@@ -1,0 +1,14 @@
+{
+  "num_iterations": 75,
+  "num_initial_points": 30,
+  "space": {
+    "minimum_should_match": { "low": 30, "high": 70 },
+    "tie_breaker": { "low": 0.0, "high": 1.0 },
+    "url|boost": { "low": 0.0, "high": 10.0 },
+    "title|boost": { "low": 0.0, "high": 10.0 },
+    "body|boost": { "low": 0.0, "high": 10.0 }
+  },
+  "default": {
+    "operator": "OR"
+  }
+}

@@ -1,0 +1,54 @@
+#!venv/bin/python
+
+"""
+Converts a MSMARCO Document collection into bulk index actions for indexing
+with ``bulk-index``.
+"""
+
+import argparse
+import csv
+import json
+import os
+import sys
+
+from tqdm import tqdm
+
+# project library
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from qopt.util import file_length, maximize_csv_field_size_limit
+
+maximize_csv_field_size_limit()
+
+
+def convert(input, output):
+    print(f"Counting number of documents")
+    n_docs = file_length(input)
+
+    print(f"Converting {n_docs} documents")
+    with open(input, 'r') as infile:
+        reader = csv.reader(infile, delimiter='\t')
+        with open(output, 'wt') as outfile:
+            for id, url, title, body in tqdm(reader, total=n_docs):
+                action = {
+                    '_id': id,
+                    '_source': {
+                        'id': id,
+                        'url': url,
+                        'title': title,
+                        'body': body,
+                    },
+                }
+                outfile.write(json.dumps(action) + '\n')
+
+
+def main():
+    parser = argparse.ArgumentParser(prog='convert-msmarco-document-corpus')
+    parser.add_argument('input', help="The collection/corpus to convert, in a MSMARCO Document TSV format")
+    parser.add_argument('output', help="The bulk action JSONL output file")
+    args = parser.parse_args()
+
+    convert(args.input, args.output)
+
+
+if __name__ == "__main__":
+    main()

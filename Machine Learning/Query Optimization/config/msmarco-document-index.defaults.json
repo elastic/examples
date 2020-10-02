@@ -1,0 +1,29 @@
+{
+  "settings": {
+    "index": {
+      "number_of_shards": 1,
+      "number_of_replicas": 0
+    }
+  },
+  "mappings": {
+    "dynamic": "strict",
+    "properties": {
+      "id": {
+        "ignore_above": 1024,
+        "type": "keyword"
+      },
+      "url": {
+        "type": "text",
+        "analyzer": "standard"
+      },
+      "title": {
+        "type": "text",
+        "analyzer": "english"
+      },
+      "body": {
+        "type": "text",
+        "analyzer": "english"
+      }
+    }
+  }
+}
