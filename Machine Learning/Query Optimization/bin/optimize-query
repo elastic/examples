@@ -1,0 +1,84 @@
+#!venv/bin/python
+
+"""
+Optimize parameters of a search template using the rank evaluation API for
+measurements. This is a black-box optimization problem where we treat
+Elasticsearch and a relevance metric as a non-convex function to optimize the
+parameter space over. We use either basic grid or random search techniques to
+explore the parameter space, or for larger parameter spaces we use more advanced
+techniques such as Bayesian optimization.
+"""
+
+import argparse
+import json
+import sys
+import os
+
+from elasticsearch import Elasticsearch
+
+# project library
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from qopt.optimize import Config, optimize_query
+from qopt.trec import load_queries_as_tuple_list, load_qrels
+from qopt.util import Timer, load_json
+
+DEFAULT_MAX_CONCURRENT_SEARCHES = 10
+DEFAULT_METRIC = os.path.join('config', 'metric-mrr-100.json')
+DEFAULT_PARAMS = os.path.join('config', 'params-defaults.json')
+DEFAULT_TEMPLATE_ID = 'template'
+DEFAULT_URL = 'http://elastic:changeme@localhost:9200'
+
+
+def main():
+    parser = argparse.ArgumentParser(prog='optimize-query')
+    parser.add_argument('--url', default=DEFAULT_URL,
+                        help="An Elasticsearch connection URL, e.g. http://user:secret@localhost:9200")
+    parser.add_argument('--index', required=True, help="The index name to use")
+    parser.add_argument('--max-concurrent-searches', type=int, default=DEFAULT_MAX_CONCURRENT_SEARCHES,
+                        help=f"The number of concurrent threads to use during search, this is a parameters of the Rank Evaluation API. Default: {DEFAULT_MAX_CONCURRENT_SEARCHES}.")
+    parser.add_argument('--metric', default=DEFAULT_METRIC,
+                        help=f"A JSON file containing the rank eval metric definition. Default: {DEFAULT_METRIC}.")
+    parser.add_argument('--templates', required=True, help="A JSON file containing search templates to use")
+    parser.add_argument('--template-id', default=DEFAULT_TEMPLATE_ID,
+                        help=f"The template ID of the template to use for all requests. Default: {DEFAULT_TEMPLATE_ID}.")
+    parser.add_argument('--queries', required=True,
+                        help="The TREC Topic file with the queries that correspond to the 'qrels' file")
+    parser.add_argument('--qrels', required=True, help="The TREC QRELs file corresponding to the 'queries' file")
+    parser.add_argument('--config', required=True,
+                        help="A file containing the configuration for the parameters to optimize.")
+    parser.add_argument('--output', required=True,
+                        help="A file to store the optimal parameters in.")
+    args = parser.parse_args()
+
+    es = Elasticsearch(args.url)
+    metric = load_json(args.metric)
+    templates = load_json(args.templates)
+    queries = load_queries_as_tuple_list(args.queries)
+    qrels = load_qrels(args.qrels)
+    config = Config.parse(load_json(args.config))
+
+    print("Using configuration")
+    print(f" - metric: {json.dumps(metric, indent=2)}")
+    print(f" - selected method: {config.selected_method}")
+    print(f" - default params: {json.dumps(config.default)}")
+
+    def logger(iteration, score, params):
+        print(f"   - iteration {iteration} scored {score:.04f} with: {json.dumps(params)}")
+
+    with Timer() as t:
+        best_score, best_params, final_params, _ = optimize_query(
+            es, args.max_concurrent_searches, args.index, config, metric, templates,
+            args.template_id, queries, qrels, logger)
+
+    with open(args.output, 'w') as outfile:
+        json.dump(final_params, outfile, indent=2)
+
+    print(f" - duration: {t.interval_str()}")
+    print(f" - best score: {best_score:.04f}")
+    print(f" - best params: {json.dumps(best_params)}")
+    print(f" - final params: {json.dumps(final_params)}")
+    print()
+
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,86 @@
+{
+  "settings": {
+    "index": {
+      "number_of_shards": 1,
+      "number_of_replicas": 0
+    },
+    "analysis": {
+      "tokenizer": {
+        "non_word_pattern_tokenizer": {
+          "type": "pattern",
+          "pattern": "\\W+",
+          "flags": "CASE_INSENSITIVE"
+        }
+      },
+      "filter": {
+        "english_stop": {
+          "type": "stop",
+          "stopwords": [
+            "a", "an", "and", "are", "as", "at", "be", "but", "by", "for", "if", "in", "into", "is", "it", "no", "not", "of", "on", "or", "such", "that", "the", "their", "then", "there", "these", "they", "this", "to", "was", "will", "with",
+            "who", "what", "when", "where", "why", "how"
+          ]
+        },
+        "english_url_stop": {
+          "type": "stop",
+          "stopwords": [
+            "a", "an", "and", "are", "as", "at", "be", "but", "by", "for", "if", "in", "into", "is", "it", "no", "not", "of", "on", "or", "such", "that", "the", "their", "then", "there", "these", "they", "this", "to", "was", "will", "with",
+            "who", "what", "when", "where", "why", "how",
+            "http", "https", "www",
+            "gov", "edu",
+            "com", "net", "org", "info", "biz", "de", "ru", "icu", "uk", "xyz", "top", "cn", "nl", "online", "site", "se", "fr", "it", "eu", "wang", "club",
+            "html", "htm", "xhtml", "js", "css", "cgi", "dll", "exe", "php", "asp", "aspx", "jsp", "do", "cfm"
+          ]
+        },
+        "english_stemmer": {
+          "type": "stemmer",
+          "language": "english"
+        },
+        "english_possessive_stemmer": {
+          "type": "stemmer",
+          "language": "possessive_english"
+        }
+      },
+      "analyzer": {
+        "english_url_custom": {
+          "tokenizer": "non_word_pattern_tokenizer",
+          "filter": [
+            "lowercase",
+            "english_url_stop",
+            "english_possessive_stemmer",
+            "english_stemmer"
+          ]
+        },
+        "english_custom": {
+          "tokenizer": "standard",
+          "filter": [
+            "english_possessive_stemmer",
+            "lowercase",
+            "english_stop",
+            "english_stemmer"
+          ]
+        }
+      }
+    }
+  },
+  "mappings": {
+    "dynamic": "strict",
+    "properties": {
+      "id": {
+        "ignore_above": 1024,
+        "type": "keyword"
+      },
+      "url": {
+        "type": "text",
+        "analyzer": "english_url_custom"
+      },
+      "title": {
+        "type": "text",
+        "analyzer": "english_custom"
+      },
+      "body": {
+        "type": "text",
+        "analyzer": "english_custom"
+      }
+    }
+  }
+}

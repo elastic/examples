@@ -1,0 +1,5 @@
+*.pyc
+trec_eval-9.0.7*
+/data/
+/venv/
+/notebooks/.ipynb_checkpoints/

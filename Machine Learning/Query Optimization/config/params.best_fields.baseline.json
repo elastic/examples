@@ -1,0 +1,6 @@
+{
+  "tie_breaker": 0.0,
+  "url|boost": 1.0,
+  "title|boost": 1.0,
+  "body|boost": 1.0
+}

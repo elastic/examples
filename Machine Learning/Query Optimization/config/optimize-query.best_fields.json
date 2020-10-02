@@ -1,0 +1,10 @@
+{
+  "num_iterations": 100,
+  "num_initial_points": 40,
+  "space": {
+    "tie_breaker": { "low": 0.0, "high": 1.0 },
+    "url|boost": { "low": 0.0, "high": 10.0 },
+    "title|boost": { "low": 0.0, "high": 10.0 },
+    "body|boost": { "low": 0.0, "high": 10.0 }
+  }
+}
