@@ -1,0 +1,204 @@
+---
+
+# yamllint disable rule:line-length rule:comments-indentation
+
+metadata:
+  comment: 'Watch failures in .watcher-history-*'
+
+  time_window: '2h'
+
+## We never want to throttle/drop actions.
+throttle_period: '0s'
+
+input:
+  search:
+    timeout: '5m'
+    request:
+      type: 'scroll'
+
+      indices:
+        - '.watcher-history-*'
+
+      body:
+
+        # size: 100
+
+        _source:
+          includes:
+            - 'watch_id'
+            - 'exception.type'
+            - 'result.input.error.reason'
+            - 'node'
+            # - 'result.actions'
+            # - 'trigger_event.triggered_time'
+
+        query:
+          bool:
+            must:
+
+              - bool:
+                  should:
+
+                    - query_string:
+                        query: "+state:(failed)"
+
+                    ## This lasl matches emails where the mail body contains "failure": Thus a false positive.
+                    ## result.actions is not mapped to suitable datatypes for such a query.
+                    ## Disable this part of the query for now.
+                    # - nested:
+                    #     path: 'result.actions'
+                    #     query:
+                    #       query_string:
+                    #         query: "+failure"
+
+              - range:
+                  'trigger_event.triggered_time':
+                    # Ref for details: https://discuss.elastic.co/t/ensure-that-watcher-does-not-miss-documents-logs/127780/1
+                    # gte: 'now-44h/h'
+                    gte: 'now-2h-5m/h'
+                    lt: 'now-5m/h'
+
+        # aggregations:
+
+        #   watch_id:
+        #     terms:
+        #       field: 'watch_id'
+        #       size: 1000
+
+        #     aggregations:
+        #       exception.caused_by.reason:
+        #         terms:
+        #           field: 'exception.caused_by.reason'
+        #           size: 1000
+        #
+
+transform:
+  script:
+    source: |-
+      import functools
+
+      from tabulate import tabulate
+
+
+      def nested_dict_get(dictionary, dotted_key):
+          keys = dotted_key.split('.')
+          return functools.reduce(lambda d, key: d[key], keys, dictionary)
+
+
+      aggr = {}
+      ctx['nagios'] = {
+          'output': 'Plugin error.',
+          'state': 'Unknown',
+      }
+
+      for hit in ctx['scan']:
+          failure = 'unknown'
+          failure_paths = [
+              'exception.type',
+              'result.input.error.reason',
+          ]
+          for failure_path in failure_paths:
+              try:
+                  failure = "{}: {}".format(
+                      failure_path,
+                      nested_dict_get(hit['_source'], failure_path),
+                  )
+              except KeyError:
+                  pass
+              else:
+                  break
+
+          if 'type' in hit['_source'].get('exception', {}):
+              failure = "exception.type: {}".format(
+                  hit['_source']['exception']['type'],
+              )
+          elif 'error' in hit['_source'].get('result', {}).get('input', {}).get('error'):
+              failure = "result.input.error.reason: {}".format(
+                  hit['_source']['result']['input']['error'],
+              )
+
+          # ctx['debug'] = hit
+          group_by_key = "_".join([
+              hit['_source']['watch_id'],
+              failure,
+              hit['_source']['node'],
+          ])
+          if group_by_key in aggr:
+              aggr[group_by_key]['count'] += 1
+          else:
+              aggr[group_by_key] = {
+                  'count': 1,
+                  'failure': failure,
+                  '_source': hit['_source'],
+              }
+
+      if len(aggr):
+          watches_with_failures_time_exception_type = len(aggr)
+          msg_table = []
+          msg_body_lines = [
+              "",
+              "",
+              "The following table lists Elasticsearch watches that failed to execute. This conclusion was reached by searching the `.watcher-history-*` Elasticsearch index pattern for state:failed. This means that for example potential errors in logs have not been notified by the watch."
+              "",
+              "",
+          ]
+
+          for k in sorted(aggr, key=lambda x: (aggr[x]['_source']['watch_id'], -int(aggr[x]['count']))):
+              hit = aggr[k]
+              msg_table.append([
+                  hit['_source']['watch_id'],
+                  hit['count'],
+                  hit['_source']['node'],
+                  hit['failure'],
+              ])
+          msg_body_lines.extend(tabulate(
+              msg_table,
+              headers=["Watch ID", "Failed runs", "ES node ID", "Failure"],
+              #  disable_numparse=True,
+              # floatfmt=".3f",
+          ).split('\n'))
+
+          # \t is used as workaround for not behaving MUAs.
+          # Ref: https://stackoverflow.com/questions/247546/outlook-autocleaning-my-line-breaks-and-screwing-up-my-email-format/436114#436114
+          ctx['payload'] = '\t\n'.join(msg_body_lines)
+
+          ctx['nagios'] = {
+              'output': '{} watches and exception type combinations over the last {}. {}'.format(
+                  watches_with_failures_time_exception_type,
+                  ctx['metadata']['time_window'],
+                  '\n'.join(msg_body_lines)
+              ),
+              'state': 'Warn',
+          }
+      else:
+          ctx['nagios'] = {
+              'output': 'No failures found in .watcher-history-* over the last {}.'.format(
+                  ctx['metadata']['time_window'],
+              ),
+              'state': 'Ok',
+          }
+
+actions:
+  send_email:
+
+    email:
+      from: 'monitoring@example.net'
+
+      ## Not supported in the Python version of Mustache. It works in Elastic Watcher.
+      # to: '{{#join}}ctx.metadata.email_recipient_groups.ITS_INS_elastic_and_monitoring{{/join}}'
+
+      to:
+        - 'Robin Schneider <robin.schneider@geberit.com>'
+      reply_to:
+        - 'Robin Schneider <robin.schneider@geberit.com>'
+
+      subject: '{{ctx.watch_id}}: {{ctx.metadata.comment}}'
+      body:
+        text: '{{ctx.payload}}'
+
+
+  monitoring:
+
+    nagios:
+      output: '{{ctx.nagios.output}}'
+      state: '{{ctx.nagios.state}}'

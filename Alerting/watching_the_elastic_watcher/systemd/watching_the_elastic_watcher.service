@@ -1,8 +1,0 @@
-[Unit]
-Description=Run watching_the_elastic_watcher.
-
-[Service]
-Type=oneshot
-
-ExecStart=/usr/local/bin/watching_the_elastic_watcher --journald --quiet --watch-file /etc/watching_the_elastic_watcher/watches/watcher_history_errors.yaml
-ExecStart=/usr/local/bin/watching_the_elastic_watcher --journald --quiet --watch-file /etc/watching_the_elastic_watcher/watches/watcher_history_running.yaml

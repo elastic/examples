@@ -1,0 +1,232 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+#
+# SPDX-FileCopyrightText: 2019-2020 Robin Schneider <robin.schneider@geberit.com>
+# SPDX-FileCopyrightText: 2019-2020 Geberit Verwaltungs GmbH https://www.geberit.de
+# SPDX-License-Identifier: AGPL-3.0-only
+
+"""
+Implementation of Elasticsearch watcher in Python. The watch definition is kept
+very similar to the original.  The main use case for this watcher outside of
+Elasticsearch is to monitor the operation of Elasticsearch watches because
+we don’t want to rely on self monitoring alone.
+"""
+
+from __future__ import (print_function, unicode_literals,
+                        absolute_import, division)
+
+import sys
+import argparse
+import logging
+import os
+import json
+import smtplib
+import traceback
+
+from io import StringIO
+from email.message import EmailMessage
+
+import sendmail
+import yaml
+import pystache
+import nagiosplugin
+
+from elasticsearch import Elasticsearch
+from elasticsearch.helpers import scan
+
+__version__ = '0.3.0'
+_LOG = logging.getLogger(__name__)
+
+
+class EsWatches(nagiosplugin.Resource):
+
+    def __init__(self, ctx):
+        self._ctx = ctx
+
+    def probe(self):
+        yield nagiosplugin.Metric(
+            'watch nagios action',
+            self._ctx['nagios'])
+
+
+class EsWatchesContext(nagiosplugin.Context):
+    def __init__(self, name, result_cls=nagiosplugin.Result):
+        self.name = name
+        self.fmt_metric = '{value[output]}'
+        self.result_cls = result_cls
+
+    def evaluate(self, metric, resource):
+        state = getattr(nagiosplugin.state, metric.value['state'].capitalize(), nagiosplugin.state.Unknown)
+        return self.result_cls(state, metric=metric)
+
+    def performance(self, metric, resource):
+        return None
+
+
+def get_watch_definition(watch_file):
+    with open(watch_file, 'r') as s_fh:
+        return yaml.safe_load(s_fh.read())
+
+
+def execute_watch_without_actions(watch_file, curator_file):
+    ctx = {}
+
+    watch_definition = get_watch_definition(watch_file)
+    ctx['watch_id'] = os.path.basename(watch_file)
+    ctx['metadata'] = watch_definition['metadata']
+
+    with open(curator_file, 'r') as c_fh:
+        curator_config = yaml.safe_load(c_fh.read())
+
+    es_creds = curator_config['client']['http_auth'].split(':')
+    es_url = 'http{}://{}:{}'.format(
+        's' if curator_config['client'].get('use_ssl', True) else '',
+        curator_config['client']['hosts'][0],
+        curator_config['client'].get('port', 9200),
+    )
+    es_cacert = curator_config['client'].get('certificate')
+
+    es = Elasticsearch(
+        es_url,
+        http_auth=(es_creds[0], es_creds[1]),
+        ca_certs=es_cacert,
+    )
+
+    _LOG.info("Executing ElasticSearch search: {}".format(watch_definition['input']['search']))
+
+    if watch_definition['input']['search']['request']['type'] == 'scroll':
+        ctx['scan'] = scan(
+            es,
+            index=watch_definition['input']['search']['request']['indices'][0],
+            query=watch_definition['input']['search']['request']['body'],
+            timeout=watch_definition['input']['search'].get('timeout', 10),
+        )
+    else:
+        ctx['payload'] = es.search(
+            index=watch_definition['input']['search']['request']['indices'][0],
+            body=watch_definition['input']['search']['request']['body'],
+            timeout=watch_definition['input']['search'].get('timeout', 10),
+        )
+        #  if args.loglevel <= logging.DEBUG:
+        #      _LOG.debug("Elasticsearch response: {}".format(
+        #          json.dumps(
+        #              ctx['payload'],
+        #              sort_keys=True,
+        #              indent=4
+        #          ),
+        #      ))
+
+    _LOG.info("Transform payload.")
+    old_stdout = sys.stdout
+    captured_stdout = sys.stdout = StringIO()
+    try:
+        exec(watch_definition['transform']['script']['source'], {'ctx': ctx})
+    except BaseException:
+        raise
+    finally:
+        sys.stdout = old_stdout
+
+    if captured_stdout.getvalue() != "":
+        _LOG.info("Transform stdout: {}".format(captured_stdout.getvalue()))
+    if 'debug' in ctx:
+        yaml.safe_dump(ctx['debug'], sys.stdout, default_flow_style=False)
+
+    return ctx
+
+
+def take_emulated_watch_actions(watch_file, ctx, dry_run=False):
+    watch_definition = get_watch_definition(watch_file)
+
+    if 'payload' in ctx:
+
+        #  if args.loglevel <= logging.DEBUG:
+        #      _LOG.debug("Payload: {}".format(
+        #          json.dumps(
+        #              ctx['payload'],
+        #              sort_keys=True,
+        #              indent=4
+        #          ),
+        #      ))
+
+        for action_id, action in watch_definition['actions'].items():
+            for action_type, action_def in action.items():
+
+                if action_type == 'email':
+
+                    # Create the base text message.
+                    msg = EmailMessage()
+                    msg['Subject'] = pystache.render(action_def['subject'], {'ctx': ctx})
+                    msg['From'] = action_def['from']
+                    msg['To'] = action_def['to']
+                    if 'reply_to' in action_def:
+                        msg['Reply-To'] = action_def['reply_to']
+                    msg.set_content(pystache.render(action_def['body']['text'], {'ctx': ctx}))
+
+                    _LOG.info("Sending email:\n{}".format(
+                        msg,
+                    ))
+
+                    if not dry_run:
+                        #  with smtplib.SMTP('localhost') as s:
+                        #      s.send_message(msg)
+                        #  with smtplib.LMTP() as s:
+                        #      s.send_message(msg)
+                        s = sendmail.Sendmail()
+                        s.sendmail(
+                            msg['From'],
+                            msg['To'],
+                            msg.as_string(),
+                        )
+
+
+@nagiosplugin.guarded
+def main():
+    args_parser = argparse.ArgumentParser(description=__doc__)
+    args_parser.add_argument(
+        '-m', '--mode',
+        help="The mode in which the check should run. (default: %(default)s)",
+        choices=['es_emulation', 'nagios_active', 'nagios_passive'],
+        default='nagios_active')
+    args_parser.add_argument(
+        '-c', '--curator-file',
+        help="File path to curator YAML file used to get Elasticsearch entpoint and credentials. (default: %(default)s)",
+        default='/etc/curator/curator.yml')
+    args_parser.add_argument(
+        '-w', '--watch-file',
+        help="File path to watch YAML file.",
+        required=True)
+    args_parser.add_argument(
+        '-n', '--dry-run', help="Do not take any actions.",
+        action="store_true")
+    args_parser.add_argument(
+        '-v', '--verbose',
+        action='count', default=0)
+    args_parser.add_argument(
+        '-V', '--version', action='version',
+        version='%(prog)s {}'.format(__version__))
+    cli_args = args_parser.parse_args()
+    logging.basicConfig(
+        format='%(levelname)s %(asctime)s (%(filename)s:%(lineno)s) %(message)s', datefmt="%a %F %T%z",
+        level={0: logging.WARNING, 1: logging.WARNING, 2: logging.INFO}.get(
+            cli_args.verbose, logging.DEBUG))
+
+    ctx = execute_watch_without_actions(cli_args.watch_file, cli_args.curator_file)
+
+    if cli_args.mode in ['es_emulation']:
+        take_emulated_watch_actions(cli_args.watch_file, ctx, dry_run=cli_args.dry_run)
+    else:
+        check = nagiosplugin.Check(
+            EsWatches(ctx),
+            EsWatchesContext('watch nagios action'))
+        if cli_args.mode == 'nagios_passive':
+            check.main(
+                verbose=cli_args.verbose,
+                command_file='/tmp/nagios.cmd',
+                command_host='TODO',
+                command_service='sdfs')
+        else:
+            check.main(verbose=cli_args.verbose)
+
+
+if __name__ == '__main__':
+    main()

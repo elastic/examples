@@ -1,0 +1,227 @@
+---
+
+# yamllint disable rule:line-length rule:comments-indentation
+
+metadata:
+  comment: 'Watches did not trigger the number of times matching their schedule specification'
+
+  time_window: '2h'
+
+## We never want to throttle/drop actions.
+throttle_period: '0s'
+
+input:
+  search:
+    timeout: '5m'
+    request:
+      type: 'search'
+
+      indices:
+        - '.watcher-history-*'
+
+      body:
+
+        size: 0
+
+        query:
+          bool:
+            must:
+
+              # - query_string:
+              #     query: '+trigger_event.triggered_time:>"2019-08-01T11:01:23.416Z"'
+
+              - range:
+                  'trigger_event.triggered_time':
+                    # Ref for details: https://discuss.elastic.co/t/ensure-that-watcher-does-not-miss-documents-logs/127780/1
+                    # gte: 'now-12h-5m/h'
+                    gte: 'now-2h-5m/h'
+                    lt: 'now-5m/h'
+
+        aggregations:
+
+          watch_id:
+            terms:
+              field: 'watch_id'
+              size: 1000
+
+            aggregations:
+              watch_with_time_window_metadata:
+                filter:
+                  query_string:
+                    query: '+_exists_:(metadata.time_window)'
+
+                aggregations:
+                  metadata.time_window:
+                    ## FIXME: Handle the case when a time_window of a watch
+                    ## is changed.
+                    terms:
+                      field: 'metadata.time_window.keyword'
+                      size: 1000
+
+              watch_without_time_window_metadata:
+                filter:
+                  query_string:
+                    query: '-_exists_:(metadata.time_window)'
+                    # query: '+_exists_:(metadata.time_window)'
+
+                aggregations:
+                  time_window:
+                    filters:
+                      other_bucket_key: '1m'
+                      filters:
+
+                        # Even if you don’t use this feature, you need to leave
+                        # this aggregation enabled because it is also used to
+                        # find unclassified watches. That is what this is for.
+                        'dummy_to_keep_syntax_valid_if_all_other_are_disabled':
+                          query_string:
+                            query: '-_exists_:watch_id'
+
+
+                        # '1h':
+                        #   bool:
+                        #     should:
+                        #       - query_string:
+                        #           query: '+watch_id:(ITS_INS_log_issues OR ITS_INS_log_issues_staging)'
+
+                        '5m':
+                          bool:
+                            should:
+                              - query_string:
+                                      query: '+watch_id:("a7e654dd-28ad-40a2-8680-0376642aae64")'
+
+                        # '1m':
+                        #   bool:
+                        #     should:
+                        #       - query_string:
+                        #           query: '+watch_id:(ITS_INS_dc_automation* OR ERP_SAP_Integration_BizTalk_log_issues OR APS_windows_eventlog_dc_root_user_enabled)'
+
+transform:
+  script:
+    source: |-
+      import pytimeparse
+
+      from tabulate import tabulate
+
+      def compare_number_of_runs(msg_table, watch, defined_time_window, actual_runs):
+          monitoring_time_window_seconds = pytimeparse.parse(ctx['metadata']['time_window'])
+          expected_runs = int(monitoring_time_window_seconds / defined_time_window)
+
+          if expected_runs != actual_runs:
+              # msg_table.append('Watch ID: {}, defined time window: {}s, expected runs: {:f}, actual runs: {:f}'.format(
+              msg_table.append([
+                  watch['key'],
+                  int(defined_time_window),
+                  expected_runs,
+                  actual_runs,
+              ])
+
+      msg_body_lines = []
+      msg_table = []
+      ctx['nagios'] = {
+          'output': 'Plugin error.',
+          'state': 'Unknown',
+      }
+
+      if ctx['payload']['aggregations']['watch_id']['sum_other_doc_count'] != 0:
+          msg_body_lines.append("ES found more aggregated hosts than we assumed. Number of unprocessed hosts: {}".format(
+              ctx['payload']['aggregations']['watch_id']['sum_other_doc_count'],
+          ))
+
+
+      for watch in ctx['payload']['aggregations']['watch_id']['buckets']:
+          actual_runs = watch['doc_count']
+          for time_window_bucket in watch.get('watch_with_time_window_metadata', {}).get('metadata.time_window', {}).get('buckets', []):
+              defined_time_window = pytimeparse.parse(time_window_bucket['key'])
+
+              compare_number_of_runs(
+                  msg_table,
+                  watch,
+                  defined_time_window,
+                  actual_runs,
+              )
+
+          for expected_time_window, time_window_bucket in watch.get('watch_without_time_window_metadata', {}).get('time_window', {}).get('buckets', {}).items():
+             if time_window_bucket['doc_count'] > 0:
+                 if expected_time_window == 'unclassified':
+                     msg_body_lines.append("The interval for {} is not defined.".format(
+                         watch['key'],
+                     ))
+                 else:
+                     defined_time_window = pytimeparse.parse(expected_time_window)
+
+                     compare_number_of_runs(
+                         msg_table,
+                         watch,
+                         defined_time_window,
+                         actual_runs,
+                     )
+
+
+      ctx.pop('payload', None)
+      if len(msg_table):
+          watches_with_issues = len(msg_table)
+          msg_table = sorted(msg_table, key = lambda x: x[0])
+          msg_body_lines.extend([
+            "",
+            "",
+            "The following table lists Elasticsearch watches that did not run the number of times that they should have run. This conclusion was reached by comparing the schedule specifications to the actually occurred watch runs according to the `.watcher-history-*` Elasticsearch index pattern. Watches (typically) search a defined time window per run. When the number of actual runs is lower than the expected runs this means that not all time windows have been observed by the given watch. The result of this is that for example potential errors in logs have not been notified by the watch.".format(
+              metadata=ctx['metadata'],
+            ),
+            "",
+            "",
+          ])
+          msg_body_lines.extend(tabulate(
+              msg_table,
+              headers=["Watch ID", "Time window (s)", "Expected runs", "Actual runs"],
+              #  disable_numparse=True,
+              floatfmt=".3f",
+          ).split('\n'))
+      if len(msg_body_lines):
+          # \t is used as workaround for not behaving MUAs.
+          # Ref: https://stackoverflow.com/questions/247546/outlook-autocleaning-my-line-breaks-and-screwing-up-my-email-format/436114#436114
+          ctx['payload'] = '\t\n'.join(msg_body_lines)
+
+          ctx['nagios'] = {
+              'output': '{} watches did not trigger the number of times matching their schedule specification over the last {}. {}'.format(
+                  watches_with_issues,
+                  ctx['metadata']['time_window'],
+                  '\n'.join(msg_body_lines)
+              ),
+              'state': 'Warn',
+          }
+      else:
+          ctx['nagios'] = {
+              'output': 'All watches triggered the number of times matching their schedule specification over the last {}.'.format(
+                  ctx['metadata']['time_window'],
+              ),
+              'state': 'Ok',
+          }
+
+actions:
+  send_email:
+
+    condition:
+        ## TODO: Implement.
+        script: "'payload' in ctx"
+    email:
+      from: 'monitoring@example.net'
+
+      ## Not supported in the Python version of Mustache. It works in Elastic Watcher.
+      # to: '{{#join}}ctx.metadata.email_recipient_groups.ITS_INS_elastic_and_monitoring{{/join}}'
+
+      to:
+        - 'Robin Schneider <robin.schneider@geberit.com>'
+      reply_to:
+        - 'Robin Schneider <robin.schneider@geberit.com>'
+
+      subject: '{{ctx.watch_id}}: {{ctx.metadata.comment}}'
+      body:
+        text: '{{ctx.payload}}'
+
+
+  monitoring:
+
+    nagios:
+      output: '{{ctx.nagios.output}}'
+      state: '{{ctx.nagios.state}}'

@@ -1,5 +1,5 @@
 [Unit]
-Description=Trigger watcher_history_errors.yaml using watching_the_elastic_watcher.
+Description=Trigger check_es_watches.
 
 [Timer]
 OnCalendar=00/2:25:00
