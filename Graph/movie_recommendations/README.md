@@ -14,7 +14,7 @@ This structure allows Graph to explore the connections in data using the relevan
 The demo aims to provide movie suggestions based on a user liking existing films. Rather than simply suggest movies which are universally popular e.g. Star Wars, and thus represent super connections, 
 Graph aims to identify those films which are relevant to the user based on their previous preferences by exploiting the "wisdom of crowds" properties within the data set i.e. User A liked the Film "Rocky". Other users who liked "Rocky" also statistically liked "Rambo".
 
-### Versions and Pre-requisites
+## Versions and Pre-requisites
 
 Example has been tested in following versions:
 
@@ -23,7 +23,9 @@ Example has been tested in following versions:
 - ~~X-Pack 5.0~~
 - Python 3.x
 
-### Installation & Setup
+------------------
+
+## Installation & Setup
 
 * Follow the [Installation & Setup Guide](https://github.com/elastic/examples/blob/master/Installation%20and%20Setup.md) to install and test the elastic stack (*you can skip this step if you already have a working installation of the Elastic stack*)
 
@@ -37,7 +39,8 @@ Example has been tested in following versions:
   <path_to_kibana_root_dir>/bin/kibana
   ```
 
-* Run Elasticsearch and Kibana in Docker with docker-compose
+* Run Elasticsearch and Kibana in Docker with docker-compose.
+This project has a docker-compose.yml you can leverage.
 ```
     docker-compose up
 ```
@@ -52,7 +55,9 @@ The following assumes the default username and password of "elastic" and "change
 
   **Note:** By default, Elasticsearch runs on port 9200, and Kibana run on ports 5601. If you changed the default ports, change   the above calls to use appropriate ports.
 
-### Download & Ingest Data
+------------------
+
+## Download & Ingest Data
  
   The following details the required steps:
   
@@ -82,17 +87,19 @@ The following assumes the default username and password of "elastic" and "change
       python3 index_users.py
     ```
    
-5. Check data availability. Once the index is indexed you can check to see if all the data is available in Elasticsearch. You should get a `count` of `138493` when you run the following command (assumes default user).
+5. Check data availability. Once the index is indexed you can check to see if all the data is available in Elasticsearch. You should get a `count` of `162541` when you run the following command (assumes default user).
 
     ```shell
-    curl -XGET localhost:9200/movie_lens_users/_count -d '{"query": {"match_all": {}}}' -u elastic:changeme
+    curl -X GET localhost:9200/movie_lens_users/_count -u elastic:changeme
     ```
 
-### Configure Kibana for Index
+------------------
+
+## Configure Kibana for the Movie Lens Users Index
   
   * Access Kibana by going to `http://localhost:5601` in a web browser
   * Connect Kibana to the `movie_lens_users` index in Elasticsearch
-      * Click the **Management** tab >> **Index Patterns** tab >> **Create New**. 
+      * Click the **Management** tab >> **Kibana** >> **Dashboard** >> **Index Patterns** tab >> **Create New**. 
       * **I don't want a time filter**
       * Specify `movie_lens_users` as the index pattern name, ensuring **Index contains time-based events** is **not** selected, and click **Create** to define the index pattern.
   * Open graph
@@ -100,7 +107,9 @@ The following assumes the default username and password of "elastic" and "change
         * Graph is a platinum feature.  You may have to enable a 30 day trial license if you do not have a platinum license
         * **Elasticsearch mangement** >> **License Management** >> **enable trial*
       
-### Explore Recommendations
+------------------
+
+## Explore Recommendations
     
    * Create your first graph **Create Graph** 
    * click on `Select a data source`
@@ -113,7 +122,7 @@ The following illustrates a search for `Rocky`, using default Graph settings,mov
 
   ![Graph Screenshot](https://cloud.githubusercontent.com/assets/12695796/20490466/072dea1a-b006-11e6-924d-d4f7c55a5aa5.jpg)
 
-### Data Insights - Structure, Challenges and Areas for Exploration
+# Data Insights - Structure, Challenges and Areas for Exploration
 
 ## Structure
 In addition to the field "liked", the script produces a list of complementary fields including:
