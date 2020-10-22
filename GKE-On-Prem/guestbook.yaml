@@ -164,7 +164,7 @@ metadata:
   labels:
     app: redis
     tier: backend
-    role: master
+    role: primary
 spec:
   ports:
   - port: 6379
@@ -172,7 +172,7 @@ spec:
   selector:
     app: redis
     tier: backend
-    role: master
+    role: primary
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -183,17 +183,17 @@ spec:
   selector:
     matchLabels:
       app: redis
-      role: master
+      role: primary
       tier: backend
   template:
     metadata:
       labels:
         app: redis
-        role: master
+        role: primary
         tier: backend
     spec:
       containers:
-      - name: master
+      - name: primary
         image: k8s.gcr.io/redis:e2e  # or just image: redis
         resources:
           requests:
@@ -219,14 +219,14 @@ metadata:
   labels:
     app: redis
     tier: backend
-    role: slave
+    role: replica
 spec:
   ports:
   - port: 6379
   selector:
     app: redis
     tier: backend
-    role: slave
+    role: replica
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -237,17 +237,17 @@ spec:
   selector:
     matchLabels:
       app: redis
-      role: slave
+      role: replica
       tier: backend
   template:
     metadata:
       labels:
         app: redis
-        role: slave
+        role: replica
         tier: backend
     spec:
       containers:
-      - name: slave
+      - name: replica
         image: gcr.io/google_samples/gb-redisslave:v1
         resources:
           requests:
