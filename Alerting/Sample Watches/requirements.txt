@@ -1,5 +1,5 @@
 cffi==1.11.5
-cryptography==2.2.2
+cryptography==3.2
 elasticsearch==6.0.0
 elasticsearch-xpack==6.0.0
 idna==2.1
