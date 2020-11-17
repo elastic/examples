@@ -37,7 +37,7 @@ score=90.7 at time=1455034500000
 
 file: `bucket_record_chain_watch.json`
 
-This watch queries for results at the summary (bucket) level, then if a bucket is found for with a high score, the results are subsequently queried for that bucket time. Some things to note: 
+This watch queries for results at the summary (bucket) level, then if a bucket is found with a high score, the results are subsequently queried for that bucket time. Some things to note: 
 
 
 * Uses “chained” inputs to make 2 queries:
