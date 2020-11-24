@@ -63,7 +63,14 @@ ES_JAVA_OPTS="-Xmx8g -Xms8g" ./bin/elasticsearch
 
 ### Data
 
-We use [MSMARCO](https://msmarco.org) as a large-scale, public benchmark. Download the dataset and make it available in `data/msmarco-document`.
+We use [MS MARCO](https://msmarco.org) as a large-scale, public benchmark. Before you use data from MS MARCO, you must accept the dataset license as seen on the main [MS MARCO](https://msmarco.org) page. Download files from the [document ranking task](https://github.com/microsoft/MSMARCO-Document-Ranking#document-ranking-dataset) and make them available in `data/msmarco-document`. Specifically, we need the following files:
+
+ * Corpus: [`msmarco-docs.tsv`](https://msmarco.blob.core.windows.net/msmarcoranking/msmarco-docs.tsv.gz)
+ * Training queries: [`msmarco-doctrain-queries.tsv`](https://msmarco.blob.core.windows.net/msmarcoranking/msmarco-doctrain-queries.tsv.gz)
+ * Training labeled results ("qrels"): [`msmarco-doctrain-qrels.tsv`](https://msmarco.blob.core.windows.net/msmarcoranking/msmarco-doctrain-qrels.tsv.gz)
+ * Development queries (holdout set): [`msmarco-docdev-queries.tsv`](https://msmarco.blob.core.windows.net/msmarcoranking/msmarco-docdev-queries.tsv.gz)
+ * Development labeled results ("qrels"): [`msmarco-docdev-qrels.tsv`](https://msmarco.blob.core.windows.net/msmarcoranking/msmarco-docdev-qrels.tsv.gz) 
+ * Evaluation queries (for leaderboard submission): [`docleaderboard-queries.tsv`](https://msmarco.blob.core.windows.net/msmarcoranking/docleaderboard-queries.tsv.gz)
 
 Convert the corpus into indexable documents (~5 mins):
 
