@@ -4,7 +4,7 @@ In the following example code and notebooks we present a principled, data-driven
 
 In the context of the MS MARCO Document ranking task, we believe this provides a stronger baseline for comparison with neural ranking approaches. It can also be tuned for recall to provide a strong "retriever" component of a Q&A pipeline. What is often not talked about on leaderboards is also the latency of queries. You may achieve a higher relevance score (MRR@100) with neural ranking approaches but at what cost to real performance? This technique allows us to get the most relevance out of a query while maintaining high scalability and low latency search queries.   
 
-For a high-level overview of the motivation, prerequisite knowledge and summary, please see the accompanying blog post (pending publishing).
+For a high-level overview of the motivation, prerequisite knowledge and summary, please see the accompanying [blog post](https://www.elastic.co/blog/improving-search-relevance-with-data-driven-query-optimization).
 
 ## Results
 
@@ -259,8 +259,8 @@ Prepare the submission files.
 ```bash
 cut -f 1,3,4 submissions/$SUBMISSION_NAME/results-dev.tsv > submissions/$SUBMISSION_NAME/dev.txt
 cut -f 1,3,4 submissions/$SUBMISSION_NAME/results-eval.tsv > submissions/$SUBMISSION_NAME/eval.txt
-bzip2 -zf submissions/$SUBMISSION_NAME/dev.txt
-bzip2 -zf submissions/$SUBMISSION_NAME/eval.txt
+bzip2 -zfk submissions/$SUBMISSION_NAME/dev.txt
+bzip2 -zfk submissions/$SUBMISSION_NAME/eval.txt
 ```
 
 Run the official evaluation script and package the submission files.
