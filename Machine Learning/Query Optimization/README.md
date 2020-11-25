@@ -220,10 +220,10 @@ For making submissions to the MS MARCO Document ranking leaderboard, we need to 
 
 For all the commands below, make sure you symlink a local `data/submissions` to the `submissions` folder in the `MSMARCO-Document-Ranking-Submissions` fork on your local machine. Note that the commands from the [`microsoft/MSMARCO-Document-Ranking-Submissions`](https://github.com/microsoft/MSMARCO-Document-Ranking-Submissions) repository seem to not work on macOS, so please use a Linux OS for this process.
 
-Here's an example that outlines how we made our first submission `20201117-elastic-optimal_best_fields`. For this submission, we've saved the best parameters from the `multi_match` `best_fields` query, as seen in the notbeook [2 - Query tuning - best_fields](notebooks/2%20-%20Query%20tuning%20-%20best_fields.ipynb).
+Here's an example that outlines how we made our first submission `20201125-elastic-optimal_best_fields`. For this submission, we've saved the best parameters from the `multi_match` `best_fields` query, as seen in the notbeook [2 - Query tuning - best_fields](notebooks/2%20-%20Query%20tuning%20-%20best_fields.ipynb).
 
 ```bash
-export SUBMISSION_NAME=20201117-elastic-optimized_best_fields
+export SUBMISSION_NAME=20201125-elastic-optimized_best_fields
 mkdir data/submissions/$SUBMISSION_NAME
 cp submissions/$SUBMISSION_NAME/metadata.json data/submissions/$SUBMISSION_NAME-metadata.json
 ```
