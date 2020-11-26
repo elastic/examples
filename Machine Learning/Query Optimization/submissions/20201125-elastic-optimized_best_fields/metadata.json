@@ -1,7 +1,7 @@
 {
   "team": "Josh Devins - Elastic",
   "model_description": "Elasticsearch optimized multi_match best_fields",
-  "paper": "https://www.elastic.co/blog/",
+  "paper": "https://www.elastic.co/blog/improving-search-relevance-with-data-driven-query-optimization",
   "code": "https://github.com/elastic/examples/tree/master/Machine%20Learning/Query%20Optimization/",
   "type": "full ranking"
 }
