@@ -75,5 +75,47 @@
         }
       }
     }
+  },
+  {
+    "id": "combined",
+    "template": {
+      "lang": "mustache",
+      "source": {
+        "query": {
+          "bool": {
+            "should": [
+              {
+                "multi_match": {
+                  "type": "cross_fields",
+                  "query": "{{query_string}}",
+                  "operator": "{{cross_fields|operator}}",
+                  "minimum_should_match": "{{cross_fields|minimum_should_match}}%",
+                  "tie_breaker": "{{cross_fields|tie_breaker}}",
+                  "fields": [
+                    "url^{{cross_fields|url|boost}}",
+                    "title^{{cross_fields|title|boost}}",
+                    "body^{{cross_fields|body|boost}}"
+                  ],
+                  "boost": "{{cross_fields|boost}}"
+                }
+              },
+              {
+                "multi_match": {
+                  "type": "best_fields",
+                  "query": "{{query_string}}",
+                  "tie_breaker": "{{best_fields|tie_breaker}}",
+                  "fields": [
+                    "url^{{best_fields|url|boost}}",
+                    "title^{{best_fields|title|boost}}",
+                    "body^{{best_fields|body|boost}}"
+                  ],
+                  "boost": "{{best_fields|boost}}"
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
   }
 ]

@@ -70,6 +70,7 @@ We use [MS MARCO](https://msmarco.org) as a large-scale, public benchmark. Befor
  * Training labeled results ("qrels"): [`msmarco-doctrain-qrels.tsv`](https://msmarco.blob.core.windows.net/msmarcoranking/msmarco-doctrain-qrels.tsv.gz)
  * Development queries (holdout set): [`msmarco-docdev-queries.tsv`](https://msmarco.blob.core.windows.net/msmarcoranking/msmarco-docdev-queries.tsv.gz)
  * Development labeled results ("qrels"): [`msmarco-docdev-qrels.tsv`](https://msmarco.blob.core.windows.net/msmarcoranking/msmarco-docdev-qrels.tsv.gz) 
+ * Development top 100 baseline results: [`msmarco-docdev-top100.gz`](https://msmarco.blob.core.windows.net/msmarcoranking/msmarco-docdev-top100.gz)
  * Evaluation queries (for leaderboard submission): [`docleaderboard-queries.tsv`](https://msmarco.blob.core.windows.net/msmarcoranking/docleaderboard-queries.tsv.gz)
 
 Convert the corpus into indexable documents (~5 mins):
