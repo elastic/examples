@@ -55,7 +55,7 @@
     "log": {
       "logging": {
         "level": "info",
-        "text": "{{ctx.payload.hits.total}} Errors have occured in the logs:{{#ctx.payload.hits.hits}}{{_id}}:{{/ctx.payload.hits.hits}}"
+        "text": "{{ctx.payload.hits.total}} Errors have occurred in the logs:{{#ctx.payload.hits.hits}}{{_id}}:{{/ctx.payload.hits.hits}}"
       }
     }
   }

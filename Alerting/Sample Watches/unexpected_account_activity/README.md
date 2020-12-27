@@ -2,7 +2,7 @@
 
 ## Description
 
-A watch which aims detect and to alert if a user is created in Active Directory/LDAP and subsequently deleted within N mins.
+A watch which aims to detect and alert if a user is created in Active Directory/LDAP and subsequently deleted within N mins.
 
 ## Mapping Assumptions
 

@@ -25,12 +25,12 @@
               ],
               "should": [
                 {
-                 "terms": {
-                   "event_type": [
-                     "add",
-                     "remove"
-                   ]
-                 } 
+                  "terms": {
+                    "event_type": [
+                      "add",
+                      "remove"
+                    ]
+                  }
                 }
               ]
             }
@@ -80,7 +80,7 @@
     "log": {
       "transform": {
         "script": {
-          "id":"transform"
+          "id": "transform"
         }
       },
       "logging": {

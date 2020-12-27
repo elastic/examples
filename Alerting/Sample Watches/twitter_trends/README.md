@@ -17,12 +17,12 @@ The watch assumes each document in Elasticsearch represents a tweet.  All tweets
 
 ## Other Assumptions
 
-* The approach measures the 90th percentiles over the previous 8hrs of tweets, using a percentiles aggregation.  If the value in the last 5 minutes is greater than 3 std. deviations above this value an alert is raised.  This approach has been tested on Elasticsearch data, where volume is typially low and spikes during specific periods e.g. product releases, and may thus not be robust on other datasets.  Elastic would recommend the user modify this query as required. 
+* The approach measures the 90th percentiles over the previous 8hrs of tweets, using a percentiles aggregation.  If the value in the last 5 minutes is greater than 3 std. deviations above this value an alert is raised.  This approach has been tested on Elasticsearch data, where volume is typically low and spikes during specific periods e.g. product releases, and may thus not be robust on other datasets.  Elastic would recommend the user modify this query as required.
 
-# Configuration
+## Configuration
 
 The following watch metadata parameters influence behaviour:
 
 * time_period - The period N (hrs) over which which the percentile and std. dev is calculated.  Defaults to 8hrs. Increase to make the trend less sensitive to recent changes.
-* bucket_interval - The bucket width over which the number of tweets are counted and the percentiles/std. dev. calculated.  Increasing will make the trend detection less responsive to trends and mean alerts can be raised less infrequently.  Should always be equal to the schedule interval.  
+* bucket_interval - The bucket width over which the number of tweets are counted and the percentiles/std. dev. calculated.  Increasing will make the trend detection less responsive to trends and mean alerts can be raised less infrequently.  Should always be equal to the schedule interval.
 * query_string - Query string used to identify relevant tweets. Defaults to 'text:elasticsearch'.
