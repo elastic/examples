@@ -98,7 +98,7 @@ data:
       host: ${KIBANA_HOST}
     
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: DaemonSet
 metadata:
   name: filebeat-dynamic
@@ -107,6 +107,10 @@ metadata:
     k8s-app: filebeat-dynamic
     kubernetes.io/cluster-service: "true"
 spec:
+  selector:
+     matchLabels:
+       k8s-app: filebeat-dynamic
+       kubernetes.io/cluster-service: "true"
   template:
     metadata:
       labels:
@@ -117,7 +121,7 @@ spec:
       terminationGracePeriodSeconds: 30
       containers:
       - name: filebeat-dynamic
-        image: docker.elastic.co/beats/filebeat:7.6.2
+        image: docker.elastic.co/beats/filebeat:7.10.1
         imagePullPolicy: Always
         args: [
           "-c", "/etc/filebeat.yml",
@@ -194,7 +198,7 @@ spec:
       - name: data
         emptyDir: {}
 ---
-apiVersion: rbac.authorization.k8s.io/v1beta1
+apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
   name: filebeat-dynamic
@@ -207,7 +211,7 @@ roleRef:
   name: filebeat-dynamic
   apiGroup: rbac.authorization.k8s.io
 ---
-apiVersion: rbac.authorization.k8s.io/v1beta1
+apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
   name: filebeat-dynamic

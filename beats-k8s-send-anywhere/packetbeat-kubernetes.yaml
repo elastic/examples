@@ -81,20 +81,21 @@ data:
       host: ${KIBANA_HOST}
 
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: DaemonSet
 metadata:
-  name: packetbeat-dynamic
+  name: packetbeat
   namespace: kube-system
   labels:
-    k8s-app: packetbeat-dynamic
-    kubernetes.io/cluster-service: "true"
+    k8s-app: packetbeat
 spec:
+  selector:
+     matchLabels:
+       k8s-app: packetbeat-dynamic
   template:
     metadata:
       labels:
         k8s-app: packetbeat-dynamic
-        kubernetes.io/cluster-service: "true"
     spec:
       serviceAccountName: packetbeat-dynamic
       terminationGracePeriodSeconds: 30
@@ -102,7 +103,7 @@ spec:
       dnsPolicy: ClusterFirstWithHostNet
       containers:
       - name: packetbeat-dynamic
-        image: docker.elastic.co/beats/packetbeat:7.6.2
+        image: docker.elastic.co/beats/packetbeat:7.10.1
         imagePullPolicy: Always
         args: [
           "-c", "/etc/packetbeat.yml",
@@ -165,7 +166,7 @@ spec:
       - name: data
         emptyDir: {}
 ---
-apiVersion: rbac.authorization.k8s.io/v1beta1
+apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
   name: packetbeat-dynamic
@@ -178,7 +179,7 @@ roleRef:
   name: packetbeat-dynamic
   apiGroup: rbac.authorization.k8s.io
 ---
-apiVersion: rbac.authorization.k8s.io/v1beta1
+apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
   name: packetbeat-dynamic
