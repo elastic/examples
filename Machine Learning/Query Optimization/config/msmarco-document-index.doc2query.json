@@ -1,0 +1,144 @@
+{
+  "settings": {
+    "index": {
+      "number_of_shards": 1,
+      "number_of_replicas": 0,
+      "similarity": {
+        "bm25-url": { "type": "BM25" },
+        "bm25-title": { "type": "BM25" },
+        "bm25-title-bigrams": { "type": "BM25" },
+        "bm25-body": { "type": "BM25" },
+        "bm25-body-bigrams": { "type": "BM25" },
+        "bm25-expansions": { "type": "BM25" },
+        "bm25-expansions-bigrams": { "type": "BM25" }
+      }
+    },
+    "analysis": {
+      "tokenizer": {
+        "non_word_pattern_tokenizer": {
+          "type": "pattern",
+          "pattern": "[\\W_]+",
+          "flags": "CASE_INSENSITIVE"
+        }
+      },
+      "filter": {
+        "english_stop": {
+          "type": "stop",
+          "stopwords": "_english_"
+        },
+        "english_stop_questions": {
+          "type": "stop",
+          "stopwords": [
+            "a", "an", "and", "are", "as", "at", "be", "but", "by", "for", "if", "in", "into", "is", "it", "no", "not", "of", "on", "or", "such", "that", "the", "their", "then", "there", "these", "they", "this", "to", "was", "will", "with",
+            "who", "what", "when", "where", "why", "how"
+          ]
+        },
+        "english_stop_url": {
+          "type": "stop",
+          "stopwords": [
+            "a", "an", "and", "are", "as", "at", "be", "but", "by", "for", "if", "in", "into", "is", "it", "no", "not", "of", "on", "or", "such", "that", "the", "their", "then", "there", "these", "they", "this", "to", "was", "will", "with",
+            "who", "what", "when", "where", "why", "how",
+            "http", "https", "www",
+            "gov", "edu",
+            "com", "net", "org", "info", "biz", "de", "ru", "icu", "uk", "xyz", "top", "cn", "nl", "online", "site", "se", "fr", "it", "eu", "wang", "club",
+            "html", "htm", "xhtml", "js", "css", "cgi", "dll", "exe", "php", "asp", "aspx", "jsp", "do", "cfm"
+          ]
+        },
+        "english_stemmer": {
+          "type": "stemmer",
+          "language": "english"
+        },
+        "english_possessive_stemmer": {
+          "type": "stemmer",
+          "language": "possessive_english"
+        },
+        "bigrammer": {
+          "type": "shingle",
+          "max_shingle_size": 2,
+          "min_shingle_size": 2,
+          "output_unigrams": "false"
+        }
+      },
+      "analyzer": {
+        "url": {
+          "tokenizer": "non_word_pattern_tokenizer",
+          "filter": [
+            "english_possessive_stemmer",
+            "lowercase",
+            "english_stop_url",
+            "english_stemmer"
+          ]
+        },
+        "english_questions": {
+          "tokenizer": "standard",
+          "filter": [
+            "english_possessive_stemmer",
+            "lowercase",
+            "english_stop_questions",
+            "english_stemmer"
+          ]
+        },
+        "english_bigrams": {
+          "tokenizer": "standard",
+          "filter": [
+            "english_possessive_stemmer",
+            "lowercase",
+            "english_stop_questions",
+            "english_stemmer",
+            "bigrammer"
+          ]
+        }
+      }
+    }
+  },
+  "mappings": {
+    "dynamic": "strict",
+    "properties": {
+      "id": {
+        "ignore_above": 1024,
+        "type": "keyword"
+      },
+      "url": {
+        "type": "text",
+        "analyzer": "url",
+        "similarity": "bm25-url"
+      },
+      "title": {
+        "type": "text",
+        "analyzer": "english_questions",
+        "similarity": "bm25-title",
+        "fields": {
+          "bigrams": {
+            "type": "text",
+            "analyzer": "english_bigrams",
+            "similarity": "bm25-title-bigrams"
+          }
+        }
+      },
+      "body": {
+        "type": "text",
+        "analyzer": "english_questions",
+        "similarity": "bm25-body",
+        "fields": {
+          "bigrams": {
+            "type": "text",
+            "analyzer": "english_bigrams",
+            "similarity": "bm25-body-bigrams"
+          }
+        }
+      },
+      "expansions": {
+        "type": "text",
+        "analyzer": "english_questions",
+        "similarity": "bm25-expansions",
+        "fields": {
+          "bigrams": {
+            "type": "text",
+            "analyzer": "english_bigrams",
+            "similarity": "bm25-expansions-bigrams"
+          }
+        }
+      }
+    }
+  }
+}

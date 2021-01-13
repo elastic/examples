@@ -42,6 +42,25 @@
     }
   },
   {
+    "id": "most_fields",
+    "template": {
+      "lang": "mustache",
+      "source": {
+        "query": {
+          "multi_match": {
+            "type": "most_fields",
+            "query": "{{query_string}}",
+            "fields": [
+              "url^{{url|boost}}",
+              "title^{{title|boost}}",
+              "body^{{body|boost}}"
+            ]
+          }
+        }
+      }
+    }
+  },
+  {
     "id": "combined_matches",
     "template": {
       "lang": "mustache",

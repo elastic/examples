@@ -62,8 +62,8 @@ def main():
     print(f" - selected method: {config.selected_method}")
     print(f" - default params: {json.dumps(config.default)}")
 
-    def logger(iteration, score, params):
-        print(f"   - iteration {iteration} scored {score:.04f} with: {json.dumps(params)}")
+    def logger(iteration, total_iterations, score, _, duration, params):
+        print(f"   - iteration {iteration}/{total_iterations} ({duration:.04f}s) scored {score:.04f} with: {json.dumps(params)}")
 
     with Timer() as t:
         best_score, best_params, final_params, _ = optimize_query(

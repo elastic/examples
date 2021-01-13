@@ -7,7 +7,18 @@ from skopt import gp_minimize
 from skopt.callbacks import DeltaXStopper
 from skopt.space import Categorical, Integer, Real
 from sklearn.model_selection import ParameterGrid
+from time import time
 from .eval import build_requests
+
+
+def _convert_param_types(params):
+    def _convert(x):
+        if isinstance(x, np.int64):
+            return int(x)
+        else:
+            return x
+
+    return {k: _convert(v) for k, v in params.items()}
 
 
 class Config:
@@ -128,14 +139,41 @@ class Config:
             default=config.get('default'))
 
 
-def _convert_param_types(params):
-    def _convert(x):
-        if isinstance(x, np.int64):
-            return int(x)
-        else:
-            return x
+class SkoptLogger(object):
 
-    return {k: _convert(v) for k, v in params.items()}
+    def __init__(self, config, logger_fn):
+        self._config = config
+        self._logger_fn = logger_fn
+        self._last_time = time()
+
+        self.iter_times = []
+
+    def __call__(self, res):
+        if not self._logger_fn:
+            return
+
+        # calculate durations
+        elapsed_time = time() - self._last_time
+        self.iter_times.append(elapsed_time)
+        self._last_time = time()
+
+        x0 = res.x_iters  # list of input points
+        y0 = res.func_vals  # evaluation of input points
+
+        curr_iter = len(x0)
+        curr_x = x0[-1]
+        curr_y = y0[-1]
+        curr_min_score = -1 * res.fun
+        score = -1 * curr_y
+        params = _convert_param_types(self._config.param_dict_from_values(curr_x))
+
+        self._logger_fn(
+            iteration=curr_iter,
+            total_iterations=self._config.num_iterations,
+            score=score,
+            curr_min_score=curr_min_score,
+            duration=elapsed_time,
+            params=params)
 
 
 def merge_params(params):
@@ -157,7 +195,7 @@ def merge_params(params):
 
 
 def optimize_bm25(es, max_concurrent_searches, index, config, metric, templates,
-                  template_id, queries, qrels, query_params, logger_fn=None):
+                  template_id, queries, qrels, query_params, name=None, logger_fn=None):
 
     # initial points, assumes parameter order k1,b
     initial_points = [
@@ -166,7 +204,7 @@ def optimize_bm25(es, max_concurrent_searches, index, config, metric, templates,
     ]
 
     def objective_fn(trial_params):
-        set_bm25_parameters(es, index, **trial_params)
+        set_bm25_parameters(es, index, name=name, **trial_params)
         return -1 * search_and_evaluate(
             es, max_concurrent_searches, index, metric, templates, template_id,
             queries, qrels, params=query_params)
@@ -190,27 +228,21 @@ def optimize(config, objective_fn, initial_points=None, logger_fn=None):
     best_score = 0.0
     metadata = None
 
-    def skopt_logger(result):
-        x0 = result.x_iters  # list of input points
-        y0 = result.func_vals  # evaluation of input points
-
-        num_iters = len(x0)
-        params = config.param_dict_from_values(x0[-1])
-        params = _convert_param_types(params)
-        score = -1 * y0[-1]
-
-        if logger_fn:
-            logger_fn(num_iters, score, params)
+    logger = SkoptLogger(config, logger_fn)
 
     if config.selected_method == 'grid':
         grid_space = config.param_dict_from_values([list(dim.categories) for dim in config.space])
+        _last_time = time()
         for i, params in enumerate(list(ParameterGrid(grid_space))):
             # keep the same order as in the configuration to make reading logs easier
             ordered_params = {k: params[k] for k in config.dimension_names()}
             score = -1 * objective_fn(ordered_params)
 
             if logger_fn:
-                logger_fn(i + 1, score, ordered_params)
+                elapsed_time = time() - _last_time
+                _last_time = time()
+                # iteration, total_iterations, score, curr_min_score, duration, params
+                logger_fn(i + 1, config.num_iterations, score, best_score, elapsed_time, ordered_params)
 
             if score > best_score:
                 best_score = score
@@ -229,7 +261,7 @@ def optimize(config, objective_fn, initial_points=None, logger_fn=None):
                           n_calls=config.num_iterations,  # total calls to func, includes initial points
                           n_initial_points=config.num_initial_points,  # random points to seed process
                           verbose=False,
-                          callback=[DeltaXStopper(0.001), skopt_logger],
+                          callback=[DeltaXStopper(0.001), logger],
                           x0=initial_points)
         best_params = config.param_dict_from_values(res.x)
         best_score = -1 * res.fun
@@ -263,12 +295,14 @@ def search_and_evaluate(es, max_concurrent_searches, index, metric, templates, t
     return results['metric_score']
 
 
-def set_bm25_parameters(es, index, k1, b):
+def set_bm25_parameters(es, index, k1, b, name=None):
+    if not name:
+        name = 'default'
     es.indices.close(index=index, ignore_unavailable=False)
     es.indices.put_settings(index=index, body={
         'index': {
             'similarity': {
-                'default': {
+                name: {
                     'type': 'BM25',
                     'k1': k1,
                     'b': b,

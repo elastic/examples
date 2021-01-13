@@ -27,6 +27,7 @@ Based on a series of evaluations with various analyzers, query types, and optimi
 | [2 - Query tuning - best_fields](notebooks/2%20-%20Query%20tuning%20-%20best_fields.ipynb) | `multi_match` `best_fields` baseline: default params | 0.2873 |
 | [2 - Query tuning - best_fields](notebooks/2%20-%20Query%20tuning%20-%20best_fields.ipynb) | `multi_match` `best_fields` tuned (all-in-one): all params | **0.3079** |
 
+
 ## Setup
 
 ### Prerequisites
@@ -109,11 +110,11 @@ bin/split-and-sample \
     data/msmarco-document-sampled-queries.10000.tsv,10000
 ```
 
-At this point, you can choose to either carry on running things from the command line or you can jump to the notebooks and walk through a more detailed set of examples. We recommend the notebooks first, then come back and use the command line scripts when you have larger scale experimentation or evaluation that you'd like to perform.
+At this point, you can choose to either carry on running things from the command line, or you can jump to the notebooks and walk through a more detailed set of examples. We recommend the notebooks first, then come back and use the command line scripts when you have larger scale experimentation or evaluation that you'd like to perform.
 
 ## Notebooks
 
-The notebooks are structued as teaching walkthroughs and contain a lot of detail on the process. We recommend going through the notebooks in the following order:
+The notebooks are structured as teaching walkthroughs and contain a lot of detail on the process. We recommend going through the notebooks in the following order:
 
 - [0 - Analyzers](notebooks/0%20-%20Analyzers.ipynb)
 - [1 - Query tuning](notebooks/1%20-%20Query%20tuning.ipynb)
