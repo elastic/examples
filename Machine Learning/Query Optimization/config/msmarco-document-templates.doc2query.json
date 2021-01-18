@@ -1,0 +1,25 @@
+[
+  {
+    "id": "most_fields",
+    "template": {
+      "lang": "mustache",
+      "source": {
+        "query": {
+          "multi_match": {
+            "type": "most_fields",
+            "query": "{{query_string}}",
+            "fields": [
+              "url^{{url|boost}}",
+              "title^{{title|boost}}",
+              "title.bigrams^{{title_bigrams|boost}}",
+              "body^{{body|boost}}",
+              "body.bigrams^{{body_bigrams|boost}}",
+              "expansions^{{expansions|boost}}",
+              "expansions.bigrams^{{expansions_bigrams|boost}}"
+            ]
+          }
+        }
+      }
+    }
+  }
+]

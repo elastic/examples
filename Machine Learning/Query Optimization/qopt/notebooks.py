@@ -5,12 +5,24 @@ import os
 
 from copy import deepcopy
 from .eval import build_requests
-from .optimize import optimize_query, optimize_bm25
+from .optimize import optimize_query, optimize_bm25, set_bm25_parameters
 from .trec import load_queries_as_tuple_list, load_qrels
 from .util import load_json
 
 ROOT_DIR = os.path.abspath('..')
 TEMPLATES_FILE = os.path.join(ROOT_DIR, 'config', 'msmarco-document-templates.json')
+
+
+def set_bm25_params(es, index, best):
+    """Sets the BM25 parameters for given field names and params."""
+
+    def similarity_name(field):
+        return f"bm25-{field.replace('.', '-')}"
+
+    print("Setting BM25 params fields:")
+    for field, params in best:
+        print(f" - {field}: {params}")
+        set_bm25_parameters(es, index, name=similarity_name(field), **params)
 
 
 def mrr(k):
