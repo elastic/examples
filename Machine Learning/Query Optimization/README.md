@@ -15,9 +15,9 @@ Based on a series of evaluations with various analyzers, query types, and optimi
 | [0 - Analyzers](notebooks/0%20-%20Analyzers.ipynb) | Default analyzers, combined per-field `match`es | 0.2403 |
 | [0 - Analyzers](notebooks/0%20-%20Analyzers.ipynb) | Custom analyzers, combined per-field `match`es | 0.2504 |
 | [0 - Analyzers](notebooks/0%20-%20Analyzers.ipynb) | Default analyzers, `multi_match` `cross_fields` (default params) | 0.2475 |
-| [0 - Analyzers](notebooks/0%20-%20Analyzers.ipynb) | Default analyzers, `multi_match` `cross_fields` (default params) | 0.2683 |
+| [0 - Analyzers](notebooks/0%20-%20Analyzers.ipynb) | Custom analyzers, `multi_match` `cross_fields` (default params) | 0.2683 |
 | [0 - Analyzers](notebooks/0%20-%20Analyzers.ipynb) | Default analyzers, `multi_match` `best_fields` (default params) | 0.2714 |
-| [0 - Analyzers](notebooks/0%20-%20Analyzers.ipynb) | Default analyzers, `multi_match` `best_fields` (default params) | **0.2873** |
+| [0 - Analyzers](notebooks/0%20-%20Analyzers.ipynb) | Custom analyzers, `multi_match` `best_fields` (default params) | **0.2873** |
 | [1 - Query tuning](notebooks/1%20-%20Query%20tuning.ipynb) | `multi_match` `cross_fields` baseline: default params | 0.2683 |
 | [1 - Query tuning](notebooks/1%20-%20Query%20tuning.ipynb) | `multi_match` `cross_fields` tuned (step-wise): `tie_breaker`, `minimum_should_match` | 0.28419 |
 | [1 - Query tuning](notebooks/1%20-%20Query%20tuning.ipynb) | `multi_match` `cross_fields` tuned (step-wise): all params | **0.3007** |
@@ -79,7 +79,9 @@ Based on a series of evaluations with various analyzers, query types, and optimi
 | [doc2query - 2 - best_fields](notebooks/doc2query%20-%202%20-%20best_fields.ipynb) | Base fields + expansions; default params | 0.3229 |
 | [doc2query - 2 - best_fields](notebooks/doc2query%20-%202%20-%20best_fields.ipynb) | Base fields + expansions; tuned params | 0.3369 |
 | [doc2query - 2 - best_fields](notebooks/doc2query%20-%202%20-%20best_fields.ipynb) | Base fields + expansions + bigrams; default params | 0.3240 |
-| [doc2query - 2 - best_fields](notebooks/doc2query%20-%202%20-%20best_fields.ipynb) | Base fields + expansions + bigrams; tuned params |  |
+| [doc2query - 2 - best_fields](notebooks/doc2query%20-%202%20-%20best_fields.ipynb) | Base fields + expansions + bigrams; tuned params | **0.3420** |
+| [doc2query - 2 - best_fields](notebooks/doc2query%20-%202%20-%20best_fields.ipynb) | Selective fields; default params | 0.3227 |
+| [doc2query - 2 - best_fields](notebooks/doc2query%20-%202%20-%20best_fields.ipynb) | Selective fields; tuned params | 0.3398 |
 | [doc2query - 3 - most_fields](notebooks/doc2query%20-%203%20-%20most_fields.ipynb) | Base fields; default params | 0.2866 |
 | [doc2query - 3 - most_fields](notebooks/doc2query%20-%203%20-%20most_fields.ipynb) | Base fields; tuned params | 0.3001 |
 | [doc2query - 3 - most_fields](notebooks/doc2query%20-%203%20-%20most_fields.ipynb) | Base fields + bigrams; default params | 0.2696 |
@@ -87,15 +89,19 @@ Based on a series of evaluations with various analyzers, query types, and optimi
 | [doc2query - 3 - most_fields](notebooks/doc2query%20-%203%20-%20most_fields.ipynb) | Base fields + expansions; default params | 0.3269 |
 | [doc2query - 3 - most_fields](notebooks/doc2query%20-%203%20-%20most_fields.ipynb) | Base fields + expansions; tuned params | 0.3292 |
 | [doc2query - 3 - most_fields](notebooks/doc2query%20-%203%20-%20most_fields.ipynb) | Base fields + expansions + bigrams; default params | 0.3203 |
-| [doc2query - 3 - most_fields](notebooks/doc2query%20-%203%20-%20most_fields.ipynb) | Base fields + expansions + bigrams; tuned params | **0.3416** |
+| [doc2query - 3 - most_fields](notebooks/doc2query%20-%203%20-%20most_fields.ipynb) | Base fields + expansions + bigrams; tuned params | 0.3416 |
+| [doc2query - 3 - most_fields](notebooks/doc2query%20-%203%20-%20most_fields.ipynb) | Selective fields; default params | 0.3389 |
+| [doc2query - 3 - most_fields](notebooks/doc2query%20-%203%20-%20most_fields.ipynb) | Selective fields; tuned params | **0.3425** |
 | [doc2query - 4 - linear combo](notebooks/doc2query%20-%204%20-%20linear%20combo.ipynb) | Base fields; default params | 0.2866 |
-| [doc2query - 4 - linear combo](notebooks/doc2query%20-%204%20-%20linear%20combo.ipynb) | Base fields; tuned params |  |
-| [doc2query - 4 - linear combo](notebooks/doc2query%20-%204%20-%20linear%20combo.ipynb) | Base fields + bigrams; default params |  |
-| [doc2query - 4 - linear combo](notebooks/doc2query%20-%204%20-%20linear%20combo.ipynb) | Base fields + bigrams; tuned params |  |
-| [doc2query - 4 - linear combo](notebooks/doc2query%20-%204%20-%20linear%20combo.ipynb) | Base fields + expansions; default params |  |
-| [doc2query - 4 - linear combo](notebooks/doc2query%20-%204%20-%20linear%20combo.ipynb) | Base fields + expansions; tuned params |  |
-| [doc2query - 4 - linear combo](notebooks/doc2query%20-%204%20-%20linear%20combo.ipynb) | Base fields + expansions + bigrams; default params |  |
-| [doc2query - 4 - linear combo](notebooks/doc2query%20-%204%20-%20linear%20combo.ipynb) | Base fields + expansions + bigrams; tuned params |  |
+| [doc2query - 4 - linear combo](notebooks/doc2query%20-%204%20-%20linear%20combo.ipynb) | Base fields; tuned params | 0.2976 |
+| [doc2query - 4 - linear combo](notebooks/doc2query%20-%204%20-%20linear%20combo.ipynb) | Base fields + bigrams; default params | 0.2696 |
+| [doc2query - 4 - linear combo](notebooks/doc2query%20-%204%20-%20linear%20combo.ipynb) | Base fields + bigrams; tuned params | 0.2982 |
+| [doc2query - 4 - linear combo](notebooks/doc2query%20-%204%20-%20linear%20combo.ipynb) | Base fields + expansions; default params | 0.3269 |
+| [doc2query - 4 - linear combo](notebooks/doc2query%20-%204%20-%20linear%20combo.ipynb) | Base fields + expansions; tuned params | 0.3355 |
+| [doc2query - 4 - linear combo](notebooks/doc2query%20-%204%20-%20linear%20combo.ipynb) | Base fields + expansions + bigrams; default params | 0.3203 |
+| [doc2query - 4 - linear combo](notebooks/doc2query%20-%204%20-%20linear%20combo.ipynb) | Base fields + expansions + bigrams; tuned params | **0.3407** |
+| [doc2query - 4 - linear combo](notebooks/doc2query%20-%204%20-%20linear%20combo.ipynb) | Selective fields; default params | 0.3318 |
+| [doc2query - 4 - linear combo](notebooks/doc2query%20-%204%20-%20linear%20combo.ipynb) | Selective fields; tuned params | 0.3402 |
 
 ## Setup
 
