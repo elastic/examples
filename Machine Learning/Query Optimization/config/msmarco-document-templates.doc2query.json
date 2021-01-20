@@ -1,5 +1,29 @@
 [
   {
+    "id": "best_fields",
+    "template": {
+      "lang": "mustache",
+      "source": {
+        "query": {
+          "multi_match": {
+            "type": "best_fields",
+            "query": "{{query_string}}",
+            "tie_breaker": "{{tie_breaker}}",
+            "fields": [
+              "url^{{url|boost}}",
+              "title^{{title|boost}}",
+              "title.bigrams^{{title_bigrams|boost}}",
+              "body^{{body|boost}}",
+              "body.bigrams^{{body_bigrams|boost}}",
+              "expansions^{{expansions|boost}}",
+              "expansions.bigrams^{{expansions_bigrams|boost}}"
+            ]
+          }
+        }
+      }
+    }
+  },
+  {
     "id": "most_fields",
     "template": {
       "lang": "mustache",

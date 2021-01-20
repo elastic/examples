@@ -89,9 +89,9 @@ Based on a series of evaluations with various analyzers, query types, and optimi
 | [doc2query - 3 - most_fields](notebooks/doc2query%20-%203%20-%20most_fields.ipynb) | Base fields + expansions; default params | 0.3269 |
 | [doc2query - 3 - most_fields](notebooks/doc2query%20-%203%20-%20most_fields.ipynb) | Base fields + expansions; tuned params | 0.3292 |
 | [doc2query - 3 - most_fields](notebooks/doc2query%20-%203%20-%20most_fields.ipynb) | Base fields + expansions + bigrams; default params | 0.3203 |
-| [doc2query - 3 - most_fields](notebooks/doc2query%20-%203%20-%20most_fields.ipynb) | Base fields + expansions + bigrams; tuned params | 0.3416 |
+| [doc2query - 3 - most_fields](notebooks/doc2query%20-%203%20-%20most_fields.ipynb) | Base fields + expansions + bigrams; tuned params | **0.3436** |
 | [doc2query - 3 - most_fields](notebooks/doc2query%20-%203%20-%20most_fields.ipynb) | Selective fields; default params | 0.3389 |
-| [doc2query - 3 - most_fields](notebooks/doc2query%20-%203%20-%20most_fields.ipynb) | Selective fields; tuned params | **0.3425** |
+| [doc2query - 3 - most_fields](notebooks/doc2query%20-%203%20-%20most_fields.ipynb) | Selective fields; tuned params | 0.3405 |
 | [doc2query - 4 - linear combo](notebooks/doc2query%20-%204%20-%20linear%20combo.ipynb) | Base fields; default params | 0.2866 |
 | [doc2query - 4 - linear combo](notebooks/doc2query%20-%204%20-%20linear%20combo.ipynb) | Base fields; tuned params | 0.2976 |
 | [doc2query - 4 - linear combo](notebooks/doc2query%20-%204%20-%20linear%20combo.ipynb) | Base fields + bigrams; default params | 0.2696 |
@@ -236,7 +236,6 @@ time bin/bulk-index \
   data/msmarco-document-index-actions.doc2query.jsonl
 ```
 
-
 ## Notebooks
 
 The notebooks are structured as teaching walkthroughs and contain a lot of detail on the process. We recommend going through the notebooks in the following order:
@@ -337,7 +336,7 @@ time bin/bulk-search \
   --output data/msmarco-docdev-best_fields-top100.tsv
 ```
 
-And now evalute on the new results.
+And now evaluate on the new results.
 
 ```bash
 trec_eval-9.0.7/trec_eval -c -mmap -M 100 \
