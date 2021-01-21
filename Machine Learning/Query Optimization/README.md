@@ -8,16 +8,16 @@ For a high-level overview of the motivation, prerequisite knowledge and summary,
 
 ## Results
 
-Based on a series of evaluations with various analyzers, query types, and optimization, we’ve achieved the following results on the MS MARCO Document "Full Ranking" task as measured by MRR@100 on the "development" dataset. All experiments with full details and explanations can be found in the referenced Jupyter notebook. The best scores from each notebook are highlighted.
+Based on a series of evaluations with various analyzers, query types, and optimization, we’ve achieved the following results on the MS MARCO Document "Full Ranking" task as measured by MRR@100 on the "development" dataset. All experiments with full details and explanations can be found in the referenced Jupyter notebook. The best scores from each experiment are highlighted.
 
 | Reference notebook | Experiment | MRR@100 |
 |---|---|---|
 | [0 - Analyzers](notebooks/0%20-%20Analyzers.ipynb) | Default analyzers, combined per-field `match`es | 0.2403 |
 | [0 - Analyzers](notebooks/0%20-%20Analyzers.ipynb) | Custom analyzers, combined per-field `match`es | 0.2504 |
 | [0 - Analyzers](notebooks/0%20-%20Analyzers.ipynb) | Default analyzers, `multi_match` `cross_fields` (default params) | 0.2475 |
-| [0 - Analyzers](notebooks/0%20-%20Analyzers.ipynb) | Default analyzers, `multi_match` `cross_fields` (default params) | 0.2683 |
+| [0 - Analyzers](notebooks/0%20-%20Analyzers.ipynb) | Custom analyzers, `multi_match` `cross_fields` (default params) | 0.2683 |
 | [0 - Analyzers](notebooks/0%20-%20Analyzers.ipynb) | Default analyzers, `multi_match` `best_fields` (default params) | 0.2714 |
-| [0 - Analyzers](notebooks/0%20-%20Analyzers.ipynb) | Default analyzers, `multi_match` `best_fields` (default params) | **0.2873** |
+| [0 - Analyzers](notebooks/0%20-%20Analyzers.ipynb) | Custom analyzers, `multi_match` `best_fields` (default params) | **0.2873** |
 | [1 - Query tuning](notebooks/1%20-%20Query%20tuning.ipynb) | `multi_match` `cross_fields` baseline: default params | 0.2683 |
 | [1 - Query tuning](notebooks/1%20-%20Query%20tuning.ipynb) | `multi_match` `cross_fields` tuned (step-wise): `tie_breaker`, `minimum_should_match` | 0.28419 |
 | [1 - Query tuning](notebooks/1%20-%20Query%20tuning.ipynb) | `multi_match` `cross_fields` tuned (step-wise): all params | **0.3007** |
@@ -26,6 +26,82 @@ Based on a series of evaluations with various analyzers, query types, and optimi
 | [1 - Query tuning](notebooks/1%20-%20Query%20tuning.ipynb) | `multi_match` `cross_fields` tuned (all-in-one v3, random): all params | 0.2966 |
 | [2 - Query tuning - best_fields](notebooks/2%20-%20Query%20tuning%20-%20best_fields.ipynb) | `multi_match` `best_fields` baseline: default params | 0.2873 |
 | [2 - Query tuning - best_fields](notebooks/2%20-%20Query%20tuning%20-%20best_fields.ipynb) | `multi_match` `best_fields` tuned (all-in-one): all params | **0.3079** |
+| [doc2query - 1 - BM25 tuning](notebooks/doc2query%20-%201%20-%20BM25%20tuning.ipynb) | `url`: `standard` analyzer; default params | 0.1843 |
+| [doc2query - 1 - BM25 tuning](notebooks/doc2query%20-%201%20-%20BM25%20tuning.ipynb) | `url`: `standard` analyzer; tuned params | 0.1876 |
+| [doc2query - 1 - BM25 tuning](notebooks/doc2query%20-%201%20-%20BM25%20tuning.ipynb) | `url`: non-word tokenizer, english filters, english+url stopwords; default params | 0.2060 |
+| [doc2query - 1 - BM25 tuning](notebooks/doc2query%20-%201%20-%20BM25%20tuning.ipynb) | `url`: non-word tokenizer, english filters, english+url stopwords; tuned params | 0.2139 |
+| [doc2query - 1 - BM25 tuning](notebooks/doc2query%20-%201%20-%20BM25%20tuning.ipynb) | `url`: non-word tokenizer, english filters, english+question+url stopwords; default params | 0.2094 |
+| [doc2query - 1 - BM25 tuning](notebooks/doc2query%20-%201%20-%20BM25%20tuning.ipynb) | `url`: non-word tokenizer, english filters, english+question+url stopwords; tuned params | **0.2201** |
+| [doc2query - 1 - BM25 tuning](notebooks/doc2query%20-%201%20-%20BM25%20tuning.ipynb) | `title`: `standard` analyzer; default params | 0.2012 |
+| [doc2query - 1 - BM25 tuning](notebooks/doc2query%20-%201%20-%20BM25%20tuning.ipynb) | `title`: `standard` analyzer; tuned params | 0.2000 |
+| [doc2query - 1 - BM25 tuning](notebooks/doc2query%20-%201%20-%20BM25%20tuning.ipynb) | `title`: `english` analyzer; default params | 0.2280 |
+| [doc2query - 1 - BM25 tuning](notebooks/doc2query%20-%201%20-%20BM25%20tuning.ipynb) | `title`: `english` analyzer; tuned params | 0.2305 |
+| [doc2query - 1 - BM25 tuning](notebooks/doc2query%20-%201%20-%20BM25%20tuning.ipynb) | `title`: `standard` tokenizer, english filters, english+question stopwords; default params | 0.2298 |
+| [doc2query - 1 - BM25 tuning](notebooks/doc2query%20-%201%20-%20BM25%20tuning.ipynb) | `title`: `standard` tokenizer, english filters, english+question stopwords; tuned params | **0.2354** |
+| [doc2query - 1 - BM25 tuning](notebooks/doc2query%20-%201%20-%20BM25%20tuning.ipynb) | `title.bigrams`: `standard` analyzer; default params | 0.1080 |
+| [doc2query - 1 - BM25 tuning](notebooks/doc2query%20-%201%20-%20BM25%20tuning.ipynb) | `title.bigrams`: `standard` analyzer; tuned params | 0.1084 |
+| [doc2query - 1 - BM25 tuning](notebooks/doc2query%20-%201%20-%20BM25%20tuning.ipynb) | `title.bigrams`: `standard` tokenizer, english bigrammer, no stopwords; default params | 0.1176 |
+| [doc2query - 1 - BM25 tuning](notebooks/doc2query%20-%201%20-%20BM25%20tuning.ipynb) | `title.bigrams`: `standard` tokenizer, english bigrammer, no stopwords; tuned params | 0.1166 |
+| [doc2query - 1 - BM25 tuning](notebooks/doc2query%20-%201%20-%20BM25%20tuning.ipynb) | `title.bigrams`: `standard` tokenizer, english bigrammer, english+question stopwords; default params | **0.1295** |
+| [doc2query - 1 - BM25 tuning](notebooks/doc2query%20-%201%20-%20BM25%20tuning.ipynb) | `title.bigrams`: `standard` tokenizer, english bigrammer, english+question stopwords; tuned params | 0.1272 |
+| [doc2query - 1 - BM25 tuning](notebooks/doc2query%20-%201%20-%20BM25%20tuning.ipynb) | `body`: `standard` analyzer; default params | 0.2503 |
+| [doc2query - 1 - BM25 tuning](notebooks/doc2query%20-%201%20-%20BM25%20tuning.ipynb) | `body`: `standard` analyzer; tuned params | 0.2617 |
+| [doc2query - 1 - BM25 tuning](notebooks/doc2query%20-%201%20-%20BM25%20tuning.ipynb) | `body`: `english` analyzer; default params | 0.2463 |
+| [doc2query - 1 - BM25 tuning](notebooks/doc2query%20-%201%20-%20BM25%20tuning.ipynb) | `body`: `english` analyzer; tuned params | 0.2617 |
+| [doc2query - 1 - BM25 tuning](notebooks/doc2query%20-%201%20-%20BM25%20tuning.ipynb) | `body`: `standard` tokenizer, english filters, english+question stopwords; default params | 0.2568 |
+| [doc2query - 1 - BM25 tuning](notebooks/doc2query%20-%201%20-%20BM25%20tuning.ipynb) | `body`: `standard` tokenizer, english filters, english+question stopwords; tuned params | **0.2645** |
+| [doc2query - 1 - BM25 tuning](notebooks/doc2query%20-%201%20-%20BM25%20tuning.ipynb) | `body.bigrams`: `standard` analyzer; default params | 0.1575 |
+| [doc2query - 1 - BM25 tuning](notebooks/doc2query%20-%201%20-%20BM25%20tuning.ipynb) | `body.bigrams`: `standard` analyzer; tuned params | 0.1580 |
+| [doc2query - 1 - BM25 tuning](notebooks/doc2query%20-%201%20-%20BM25%20tuning.ipynb) | `body.bigrams`: `standard` tokenizer, english bigrammer, no stopwords; default params | 0.1675 |
+| [doc2query - 1 - BM25 tuning](notebooks/doc2query%20-%201%20-%20BM25%20tuning.ipynb) | `body.bigrams`: `standard` tokenizer, english bigrammer, no stopwords; tuned params | 0.1674 |
+| [doc2query - 1 - BM25 tuning](notebooks/doc2query%20-%201%20-%20BM25%20tuning.ipynb) | `body.bigrams`: `standard` tokenizer, english bigrammer, english stopwords; default params | 0.2013 |
+| [doc2query - 1 - BM25 tuning](notebooks/doc2query%20-%201%20-%20BM25%20tuning.ipynb) | `body.bigrams`: `standard` tokenizer, english bigrammer, english stopwords; tuned params | 0.2040 |
+| [doc2query - 1 - BM25 tuning](notebooks/doc2query%20-%201%20-%20BM25%20tuning.ipynb) | `body.bigrams`: `standard` tokenizer, english bigrammer, english+question stopwords; default params | 0.2015 |
+| [doc2query - 1 - BM25 tuning](notebooks/doc2query%20-%201%20-%20BM25%20tuning.ipynb) | `body.bigrams`: `standard` tokenizer, english bigrammer, english+question stopwords; tuned params | **0.2045** |
+| [doc2query - 1 - BM25 tuning](notebooks/doc2query%20-%201%20-%20BM25%20tuning.ipynb) | `expansions`: `standard` analyzer; default params | 0.3066 |
+| [doc2query - 1 - BM25 tuning](notebooks/doc2query%20-%201%20-%20BM25%20tuning.ipynb) | `expansions`: `standard` analyzer; tuned params | 0.3123 |
+| [doc2query - 1 - BM25 tuning](notebooks/doc2query%20-%201%20-%20BM25%20tuning.ipynb) | `expansions`: `english` analyzer; default params | 0.3078 |
+| [doc2query - 1 - BM25 tuning](notebooks/doc2query%20-%201%20-%20BM25%20tuning.ipynb) | `expansions`: `english` analyzer; tuned params | 0.3199 |
+| [doc2query - 1 - BM25 tuning](notebooks/doc2query%20-%201%20-%20BM25%20tuning.ipynb) | `expansions`: `standard` tokenizer, english filters, english+question stopwords; default params | 0.3081 |
+| [doc2query - 1 - BM25 tuning](notebooks/doc2query%20-%201%20-%20BM25%20tuning.ipynb) | `expansions`: `standard` tokenizer, english filters, english+question stopwords; tuned params | **0.3220** |
+| [doc2query - 1 - BM25 tuning](notebooks/doc2query%20-%201%20-%20BM25%20tuning.ipynb) | `expansions.bigrams`: `standard` analyzer; default params | 0.2596 |
+| [doc2query - 1 - BM25 tuning](notebooks/doc2query%20-%201%20-%20BM25%20tuning.ipynb) | `expansions.bigrams`: `standard` analyzer; tuned params | 0.2596 |
+| [doc2query - 1 - BM25 tuning](notebooks/doc2query%20-%201%20-%20BM25%20tuning.ipynb) | `expansions.bigrams`: `standard` tokenizer, english bigrammer, no stopwords; default params | 0.2679 |
+| [doc2query - 1 - BM25 tuning](notebooks/doc2query%20-%201%20-%20BM25%20tuning.ipynb) | `expansions.bigrams`: `standard` tokenizer, english bigrammer, no stopwords; tuned params | 0.2679 |
+| [doc2query - 1 - BM25 tuning](notebooks/doc2query%20-%201%20-%20BM25%20tuning.ipynb) | `expansions.bigrams`: `standard` tokenizer, english bigrammer, english stopwords; default params | 0.2795 |
+| [doc2query - 1 - BM25 tuning](notebooks/doc2query%20-%201%20-%20BM25%20tuning.ipynb) | `expansions.bigrams`: `standard` tokenizer, english bigrammer, english stopwords; tuned params | 0.2793 |
+| [doc2query - 1 - BM25 tuning](notebooks/doc2query%20-%201%20-%20BM25%20tuning.ipynb) | `expansions.bigrams`: `standard` tokenizer, english bigrammer, english+question stopwords; default params | **0.2837** |
+| [doc2query - 1 - BM25 tuning](notebooks/doc2query%20-%201%20-%20BM25%20tuning.ipynb) | `expansions.bigrams`: `standard` tokenizer, english bigrammer, english+question stopwords; tuned params | 0.2832 |
+| [doc2query - 2 - best_fields](notebooks/doc2query%20-%202%20-%20best_fields.ipynb) | Base fields; default params | 0.2873 |
+| [doc2query - 2 - best_fields](notebooks/doc2query%20-%202%20-%20best_fields.ipynb) | Base fields; tuned params | 0.3079 |
+| [doc2query - 2 - best_fields](notebooks/doc2query%20-%202%20-%20best_fields.ipynb) | Base fields + bigrams; default params | 0.2582 |
+| [doc2query - 2 - best_fields](notebooks/doc2query%20-%202%20-%20best_fields.ipynb) | Base fields + bigrams; tuned params | 0.3036 |
+| [doc2query - 2 - best_fields](notebooks/doc2query%20-%202%20-%20best_fields.ipynb) | Base fields + expansions; default params | 0.3229 |
+| [doc2query - 2 - best_fields](notebooks/doc2query%20-%202%20-%20best_fields.ipynb) | Base fields + expansions; tuned params | 0.3369 |
+| [doc2query - 2 - best_fields](notebooks/doc2query%20-%202%20-%20best_fields.ipynb) | Base fields + expansions + bigrams; default params | 0.3240 |
+| [doc2query - 2 - best_fields](notebooks/doc2query%20-%202%20-%20best_fields.ipynb) | Base fields + expansions + bigrams; tuned params | **0.3420** |
+| [doc2query - 2 - best_fields](notebooks/doc2query%20-%202%20-%20best_fields.ipynb) | Selective fields; default params | 0.3227 |
+| [doc2query - 2 - best_fields](notebooks/doc2query%20-%202%20-%20best_fields.ipynb) | Selective fields; tuned params | 0.3398 |
+| [doc2query - 3 - most_fields](notebooks/doc2query%20-%203%20-%20most_fields.ipynb) | Base fields; default params | 0.2866 |
+| [doc2query - 3 - most_fields](notebooks/doc2query%20-%203%20-%20most_fields.ipynb) | Base fields; tuned params | 0.3001 |
+| [doc2query - 3 - most_fields](notebooks/doc2query%20-%203%20-%20most_fields.ipynb) | Base fields + bigrams; default params | 0.2696 |
+| [doc2query - 3 - most_fields](notebooks/doc2query%20-%203%20-%20most_fields.ipynb) | Base fields + bigrams; tuned params | 0.2978 |
+| [doc2query - 3 - most_fields](notebooks/doc2query%20-%203%20-%20most_fields.ipynb) | Base fields + expansions; default params | 0.3269 |
+| [doc2query - 3 - most_fields](notebooks/doc2query%20-%203%20-%20most_fields.ipynb) | Base fields + expansions; tuned params | 0.3292 |
+| [doc2query - 3 - most_fields](notebooks/doc2query%20-%203%20-%20most_fields.ipynb) | Base fields + expansions + bigrams; default params | 0.3203 |
+| [doc2query - 3 - most_fields](notebooks/doc2query%20-%203%20-%20most_fields.ipynb) | Base fields + expansions + bigrams; tuned params | **0.3436** |
+| [doc2query - 3 - most_fields](notebooks/doc2query%20-%203%20-%20most_fields.ipynb) | Selective fields; default params | 0.3389 |
+| [doc2query - 3 - most_fields](notebooks/doc2query%20-%203%20-%20most_fields.ipynb) | Selective fields; tuned params | 0.3405 |
+| [doc2query - 4 - linear combo](notebooks/doc2query%20-%204%20-%20linear%20combo.ipynb) | Base fields; default params | 0.2866 |
+| [doc2query - 4 - linear combo](notebooks/doc2query%20-%204%20-%20linear%20combo.ipynb) | Base fields; tuned params | 0.2976 |
+| [doc2query - 4 - linear combo](notebooks/doc2query%20-%204%20-%20linear%20combo.ipynb) | Base fields + bigrams; default params | 0.2696 |
+| [doc2query - 4 - linear combo](notebooks/doc2query%20-%204%20-%20linear%20combo.ipynb) | Base fields + bigrams; tuned params | 0.2982 |
+| [doc2query - 4 - linear combo](notebooks/doc2query%20-%204%20-%20linear%20combo.ipynb) | Base fields + expansions; default params | 0.3269 |
+| [doc2query - 4 - linear combo](notebooks/doc2query%20-%204%20-%20linear%20combo.ipynb) | Base fields + expansions; tuned params | 0.3355 |
+| [doc2query - 4 - linear combo](notebooks/doc2query%20-%204%20-%20linear%20combo.ipynb) | Base fields + expansions + bigrams; default params | 0.3203 |
+| [doc2query - 4 - linear combo](notebooks/doc2query%20-%204%20-%20linear%20combo.ipynb) | Base fields + expansions + bigrams; tuned params | **0.3407** |
+| [doc2query - 4 - linear combo](notebooks/doc2query%20-%204%20-%20linear%20combo.ipynb) | Selective fields; default params | 0.3318 |
+| [doc2query - 4 - linear combo](notebooks/doc2query%20-%204%20-%20linear%20combo.ipynb) | Selective fields; tuned params | 0.3402 |
 
 ## Setup
 
@@ -109,17 +185,70 @@ bin/split-and-sample \
     data/msmarco-document-sampled-queries.10000.tsv,10000
 ```
 
-At this point, you can choose to either carry on running things from the command line or you can jump to the notebooks and walk through a more detailed set of examples. We recommend the notebooks first, then come back and use the command line scripts when you have larger scale experimentation or evaluation that you'd like to perform.
+At this point, you can choose to either carry on running things from the command line, or you can jump to the notebooks and walk through a more detailed set of examples. We recommend the notebooks first, then come back and use the command line scripts when you have larger scale experimentation or evaluation that you'd like to perform. If you need to perform the doc2query examples, please continue to the next section first.
+
+### Data - doc2query
+
+In order to perform the doc2query experiments, we need to download pre-generated expansion text (predicted queries) from and generate the index actions with a new mapping to support extra fields.
+
+We're interested in performing the plain expansion on a document level so you can also follow along on the [castorini/docTTTTTquery](https://github.com/castorini/docTTTTTquery#replicating-ms-marco-document-ranking-results-with-anserini) repo.
+
+From the above repo, use the links there to download two files:
+
+ - `predicted_queries_doc.tar.gz` - contains the actual predicted queries, per passage
+ - `msmarco_doc_passage_ids.txt` - contains the mappings of passages to documents (which we will index)
+
+Next, follow the instructions for [Per-Document Expansion](https://github.com/castorini/docTTTTTquery#per-document-expansion) and stop at the step to generate index actions using the command `convert_msmarco_doc_to_anserini.py` and make sure to output to `data/doc2query`. Before we run this command, we will want to adjust the output. Open that file and edit the top to output JSONL with the fields separated:
+
+```python
+def generate_output_dict(doc, predicted_queries):
+    doc_id, doc_url, doc_title, doc_body = doc[0], doc[1], doc[2], doc[3]
+    doc_body = doc_body.strip()
+    predicted_queries = predicted_queries.strip()
+    return {
+        '_id': doc_id,
+        '_source': {
+            'id': doc_id,
+            'url': doc_url,
+            'title': doc_title,
+            'body': doc_body,
+            'expansions': predicted_queries,
+        }
+    }
+```
+
+Now generate the action commands that we will use for indexing.
+
+```bash
+python3 convert_msmarco_doc_to_anserini.py \
+  --original_docs_path=data/msmarco/document/msmarco-docs.tsv.gz \
+  --doc_ids_path=data/doc2query/msmarco_doc_passage_ids.txt \
+  --predictions_path=data/doc2query/doc-predictions/predicted_queries_doc_sample_all.txt \
+  --output_docs_path=data/msmarco-document-index-actions.doc2query.jsonl
+```
+
+Last, you can index the fields with the mapping which includes an `expansions` field.
+
+```bash
+time bin/bulk-index \
+  --index msmarco-document.doc2query \
+  --config config/msmarco-document-index.doc2query.json \
+  data/msmarco-document-index-actions.doc2query.jsonl
+```
 
 ## Notebooks
 
-The notebooks are structued as teaching walkthroughs and contain a lot of detail on the process. We recommend going through the notebooks in the following order:
+The notebooks are structured as teaching walkthroughs and contain a lot of detail on the process. We recommend going through the notebooks in the following order:
 
 - [0 - Analyzers](notebooks/0%20-%20Analyzers.ipynb)
 - [1 - Query tuning](notebooks/1%20-%20Query%20tuning.ipynb)
 - [2 - Query tuning - best_fields](notebooks/2%20-%20Query%20tuning%20-%20best_fields.ipynb)
 - [Appendix A - BM25 tuning](notebooks/Appendix%20A%20-%20BM25%20tuning.ipynb)
 - [Appendix B - Combining queries](notebooks/Appendix%20B%20-%20Combining%20queries.ipynb)
+- [doc2query - 1 - BM25 tuning](notebooks/doc2query%20-%201%20-%20BM25%20tuning.ipynb)
+- [doc2query - 2 - best_fields](notebooks/doc2query%20-%202%20-%20best_fields.ipynb)
+- [doc2query - 3 - most_fields](notebooks/doc2query%20-%203%20-%20most_fields.ipynb)
+- [doc2query - 4 - linear combo](notebooks/doc2query%20-%204%20-%20linear%20combo.ipynb)
 
 To start the Jupyter Labs (notebooks) server, use `make jupyter`.
 
@@ -207,7 +336,7 @@ time bin/bulk-search \
   --output data/msmarco-docdev-best_fields-top100.tsv
 ```
 
-And now evalute on the new results.
+And now evaluate on the new results.
 
 ```bash
 trec_eval-9.0.7/trec_eval -c -mmap -M 100 \

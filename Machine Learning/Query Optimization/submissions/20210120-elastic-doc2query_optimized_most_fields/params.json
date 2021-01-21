@@ -1,0 +1,9 @@
+{
+  "url|boost": 5.019618907965658,
+  "title|boost": 2.1715172653248564,
+  "title_bigrams|boost": 0.6258343432390224,
+  "body|boost": 8.97005088495938,
+  "body_bigrams|boost": 0.785011613141371,
+  "expansions|boost": 9.958043226768973,
+  "expansions_bigrams|boost": 2.6104666149721205
+}
