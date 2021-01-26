@@ -153,7 +153,7 @@ Convert the corpus into indexable documents (~5 mins):
 
 ```bash
 time bin/convert-msmarco-document-corpus \
-  data/msmarco/document/msmarco-docs.tsv \
+  data/msmarco-document/msmarco-docs.tsv \
   data/msmarco-document-index-actions.jsonl
 ```
 
@@ -177,7 +177,7 @@ For debugging, experimentation and the final optimization process, sample the qu
 
 ```bash
 bin/split-and-sample \
-  --input data/msmarco/document/msmarco-doctrain-queries.tsv \
+  --input data/msmarco-document/msmarco-doctrain-queries.tsv \
   --output \
     data/msmarco-document-sampled-queries.10.tsv,10 \
     data/msmarco-document-sampled-queries.100.tsv,100 \
