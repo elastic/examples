@@ -153,7 +153,7 @@ Convert the corpus into indexable documents (~5 mins):
 
 ```bash
 time bin/convert-msmarco-document-corpus \
-  data/msmarco/document/msmarco-docs.tsv \
+  data/msmarco-document/msmarco-docs.tsv \
   data/msmarco-document-index-actions.jsonl
 ```
 
@@ -177,7 +177,7 @@ For debugging, experimentation and the final optimization process, sample the qu
 
 ```bash
 bin/split-and-sample \
-  --input data/msmarco/document/msmarco-doctrain-queries.tsv \
+  --input data/msmarco-document/msmarco-doctrain-queries.tsv \
   --output \
     data/msmarco-document-sampled-queries.10.tsv,10 \
     data/msmarco-document-sampled-queries.100.tsv,100 \
@@ -221,7 +221,7 @@ Now generate the action commands that we will use for indexing.
 
 ```bash
 python3 convert_msmarco_doc_to_anserini.py \
-  --original_docs_path=data/msmarco/document/msmarco-docs.tsv.gz \
+  --original_docs_path=data/msmarco-document/msmarco-docs.tsv.gz \
   --doc_ids_path=data/doc2query/msmarco_doc_passage_ids.txt \
   --predictions_path=data/doc2query/doc-predictions/predicted_queries_doc_sample_all.txt \
   --output_docs_path=data/msmarco-document-index-actions.doc2query.jsonl
@@ -266,8 +266,8 @@ time bin/eval \
   --metric config/metric-mrr-100.json \
   --templates config/msmarco-document-templates.json \
   --template-id best_fields \
-  --queries data/msmarco/document/msmarco-docdev-queries.tsv \
-  --qrels data/msmarco/document/msmarco-docdev-qrels.tsv \
+  --queries data/msmarco-document/msmarco-docdev-queries.tsv \
+  --qrels data/msmarco-document/msmarco-docdev-qrels.tsv \
   --params config/params.best_fields.baseline.json
 ```
 
@@ -282,7 +282,7 @@ time bin/optimize-query \
   --templates config/msmarco-document-templates.json \
   --template-id best_fields \
   --queries data/msmarco-document-sampled-queries.10000.tsv \
-  --qrels data/msmarco/document/msmarco-doctrain-qrels.tsv \
+  --qrels data/msmarco-document/msmarco-doctrain-qrels.tsv \
   --config config/optimize-query.best_fields.json \
   --output data/params.best_fields.optimal.json
 ```
@@ -295,8 +295,8 @@ time bin/eval \
   --metric config/metric-mrr-100.json \
   --templates config/msmarco-document-templates.json \
   --template-id best_fields \
-  --queries data/msmarco/document/msmarco-docdev-queries.tsv \
-  --qrels data/msmarco/document/msmarco-docdev-qrels.tsv \
+  --queries data/msmarco-document/msmarco-docdev-queries.tsv \
+  --qrels data/msmarco-document/msmarco-docdev-qrels.tsv \
   --params data/params.best_fields.optimal.json
 ```
 
@@ -330,7 +330,7 @@ time bin/bulk-search \
   --name best_fields \
   --templates config/msmarco-document-templates.json \
   --template-id best_fields \
-  --queries data/msmarco/document/msmarco-docdev-queries.tsv \
+  --queries data/msmarco-document/msmarco-docdev-queries.tsv \
   --params data/params.best_fields.optimal.json \
   --size 100 \
   --output data/msmarco-docdev-best_fields-top100.tsv
@@ -340,7 +340,7 @@ And now evaluate on the new results.
 
 ```bash
 trec_eval-9.0.7/trec_eval -c -mmap -M 100 \
-    data/msmarco/document/msmarco-docdev-qrels.tsv \
+    data/msmarco-document/msmarco-docdev-qrels.tsv \
     data/msmarco-docdev-best_fields-top100.tsv
 ```
 
@@ -366,7 +366,7 @@ time bin/bulk-search \
   --name best_fields \
   --templates config/msmarco-document-templates.json \
   --template-id best_fields \
-  --queries data/msmarco/document/msmarco-docdev-queries.tsv \
+  --queries data/msmarco-document/msmarco-docdev-queries.tsv \
   --params submissions/$SUBMISSION_NAME/params.json \
   --size 100 \
   --output data/submissions/$SUBMISSION_NAME/results-dev.tsv
@@ -376,7 +376,7 @@ time bin/bulk-search \
   --name best_fields \
   --templates config/msmarco-document-templates.json \
   --template-id best_fields \
-  --queries data/msmarco/document/docleaderboard-queries.tsv \
+  --queries data/msmarco-document/docleaderboard-queries.tsv \
   --params submissions/$SUBMISSION_NAME/params.json \
   --size 100 \
   --output data/submissions/$SUBMISSION_NAME/results-eval.tsv
