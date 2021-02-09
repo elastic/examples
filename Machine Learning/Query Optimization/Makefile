@@ -10,10 +10,18 @@ venv/bin/activate:
 clean:
 	rm -rf venv/
 
-.PHONY: init
-init: venv/bin/activate
+.PHONY: pip-init
+pip-init: venv/bin/activate
 	. venv/bin/activate ; \
 	pip install -r requirements.txt
+
+.PHONY: jupyter-init
+jupyter-init: venv/bin/activate
+	. venv/bin/activate ; \
+	jupyter labextension install @jupyter-widgets/jupyterlab-manager
+
+.PHONY: init
+init: pip-init jupyter-init
 
 .PHONY: test
 test: venv/bin/activate

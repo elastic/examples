@@ -1,0 +1,130 @@
+#!venv/bin/python
+
+"""
+Enrich MSMARCO Document bulk index actions by adding named entities extracted
+from the body text.
+"""
+
+import argparse
+import json
+import multiprocessing
+import os
+import psutil
+import sys
+
+# from flair.models import SequenceTagger as FlairSequenceTagger
+from flair.data import Sentence as FlairSentence
+from syntok import segmenter
+from tqdm import tqdm
+from transformers import pipeline, AutoTokenizer, AutoModelForTokenClassification
+
+# project library
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from qopt.util import file_length
+
+DEFAULT_NUM_PROCS = psutil.cpu_count(logical=False) - 1
+
+
+def build_bert_base_ner_pipeline():
+    # model_name = 'dbmdz/bert-base-cased-finetuned-conll03-english'
+    model_name = 'mrm8488/mobilebert-finetuned-ner'
+
+    tokenizer = AutoTokenizer.from_pretrained(model_name, model_max_length=512)
+    model = AutoModelForTokenClassification.from_pretrained(model_name)
+    return pipeline('ner', tokenizer=tokenizer, model=model,
+                    ignore_subwords=True, grouped_entities=True,
+                    ignore_labels="LABEL_0")
+
+
+def init_process():
+    global bert_base_ner
+    # global flair_tagger
+
+    bert_base_ner = build_bert_base_ner_pipeline()
+    # flair_tagger = FlairSequenceTagger.load('ner-fast')
+
+
+def _extract_entities_process(line):
+    action = json.loads(line)
+    entities = extract_entities_bert_base(bert_base_ner, action['_source']['body'])
+    # entities = extract_entities_flair(flair_tagger, action['_source']['body'])
+    action['_source']['entities'] = list(entities)
+    return action
+
+
+def extract_entities_flair(tagger, text):
+    # tokenize into paragraphs, sentences and tokens
+    paragraphs = segmenter.process(text)
+
+    words = set()
+    for sentences in paragraphs:
+        for tokens in sentences:
+            flair_sentence = FlairSentence([token.value for token in tokens], use_tokenizer=False)
+            tagger.predict(flair_sentence)
+            for entity in flair_sentence.get_spans('ner'):
+                words.add(entity.text)
+
+    # print(words)
+    return words
+
+
+def extract_entities_bert_base(ner, text):
+    # tokenize into paragraphs, sentences and tokens
+    paragraphs = segmenter.process(text)
+
+    passages = [""]
+    limit = 512
+    i = 0
+    i_len = 0
+    for sentences in paragraphs:
+        for tokens in sentences:
+            tokens_str = [token.value for token in tokens]
+            sentence_str = " ".join(tokens_str) + ". "
+            encoding = ner.tokenizer(tokens_str, is_split_into_words=True)
+            tokens_len = len(encoding['input_ids'])
+
+            if i_len + tokens_len <= limit:
+                passages[i] += sentence_str
+                i_len += tokens_len
+            else:
+                passages.append(sentence_str)
+                i_len = 0
+                i += 1
+
+    words = set()
+    for passage in passages:
+        for word_meta in ner(passage):
+            words.add(word_meta['word'])
+
+    # print(words)
+    return words
+
+
+def enrich(input_file, output_file, num_procs):
+    print(f"Counting number of documents")
+    n_docs = file_length(input_file)
+
+    print(f"Enriching {n_docs} documents")
+    with open(input_file, 'r') as infile:
+        with open(output_file, 'wt') as outfile:
+            pool = multiprocessing.Pool(num_procs, initializer=init_process)
+            for action in tqdm(pool.imap(_extract_entities_process, infile), total=n_docs):
+                outfile.write(json.dumps(action) + '\n')
+
+
+def main():
+    parser = argparse.ArgumentParser(prog='enrich-with-named-entities')
+    parser.add_argument('--procs', type=int, default=DEFAULT_NUM_PROCS,
+                        help=f"The number of processes to use. Default: {DEFAULT_NUM_PROCS}.")
+    parser.add_argument('input', help="The file containing MS MARCO Document bulk index actions")
+    parser.add_argument('output', help="The enriched bulk action JSONL output file")
+    args = parser.parse_args()
+
+    # pre-load models
+    # FlairSequenceTagger.load('ner')
+
+    enrich(args.input, args.output, args.procs)
+
+
+if __name__ == "__main__":
+    main()
