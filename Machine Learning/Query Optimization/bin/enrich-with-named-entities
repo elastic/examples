@@ -11,6 +11,7 @@ import multiprocessing
 import os
 import psutil
 import sys
+import torch
 
 # from flair.models import SequenceTagger as FlairSequenceTagger
 from flair.data import Sentence as FlairSentence
@@ -27,13 +28,15 @@ DEFAULT_NUM_PROCS = psutil.cpu_count(logical=False) - 1
 
 def build_bert_base_ner_pipeline():
     # model_name = 'dbmdz/bert-base-cased-finetuned-conll03-english'
-    model_name = 'mrm8488/mobilebert-finetuned-ner'
+    # model_name = 'mrm8488/mobilebert-finetuned-ner'
+    model_name = 'elastic/distilbert-base-cased-finetuned-conll03-english'
 
     tokenizer = AutoTokenizer.from_pretrained(model_name, model_max_length=512)
     model = AutoModelForTokenClassification.from_pretrained(model_name)
-    return pipeline('ner', tokenizer=tokenizer, model=model,
-                    ignore_subwords=True, grouped_entities=True,
-                    ignore_labels="LABEL_0")
+    model.to("cpu")
+    quantized_model = torch.quantization.quantize_dynamic(model, {torch.nn.Linear}, dtype=torch.qint8)
+    return pipeline('ner', tokenizer=tokenizer, model=quantized_model,
+                    grouped_entities=True, ignore_subwords=True)
 
 
 def init_process():
