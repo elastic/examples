@@ -72,6 +72,9 @@ def extract_entities_flair(tagger, text):
 
 
 def extract_entities_bert_base(ner, text):
+    if len(text.strip()) == 0:
+        return []
+
     # tokenize into paragraphs, sentences and tokens
     paragraphs = segmenter.process(text)
 
@@ -95,8 +98,8 @@ def extract_entities_bert_base(ner, text):
                 i += 1
 
     words = set()
-    for passage in passages:
-        for word_meta in ner(passage):
+    for passage in ner(passages):
+        for word_meta in passage:
             words.add(word_meta['word'])
 
     # print(words)
@@ -122,6 +125,8 @@ def main():
     parser.add_argument('input', help="The file containing MS MARCO Document bulk index actions")
     parser.add_argument('output', help="The enriched bulk action JSONL output file")
     args = parser.parse_args()
+
+    torch.set_num_threads(1)  # we will parallelize in the application layer
 
     # pre-load models
     # FlairSequenceTagger.load('ner')
