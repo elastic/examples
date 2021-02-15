@@ -31,9 +31,10 @@ def build_bert_base_ner_pipeline():
     # model_name = 'mrm8488/mobilebert-finetuned-ner'
     model_name = 'elastic/distilbert-base-cased-finetuned-conll03-english'
 
+    print(f"Loading model: {model_name}")
     tokenizer = AutoTokenizer.from_pretrained(model_name, model_max_length=512)
     model = AutoModelForTokenClassification.from_pretrained(model_name)
-    model.to("cpu")
+    print(f"Quantizing model")
     quantized_model = torch.quantization.quantize_dynamic(model, {torch.nn.Linear}, dtype=torch.qint8)
     return pipeline('ner', tokenizer=tokenizer, model=quantized_model,
                     grouped_entities=True, ignore_subwords=True)
@@ -98,8 +99,8 @@ def extract_entities_bert_base(ner, text):
                 i += 1
 
     words = set()
-    for passage in ner(passages):
-        for word_meta in passage:
+    for passage in passages:
+        for word_meta in ner(passage):
             words.add(word_meta['word'])
 
     # print(words)
