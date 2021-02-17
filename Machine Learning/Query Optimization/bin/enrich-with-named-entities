@@ -34,7 +34,7 @@ def build_bert_base_ner_pipeline():
     print(f"Loading model: {model_name}")
     tokenizer = AutoTokenizer.from_pretrained(model_name, model_max_length=512)
     model = AutoModelForTokenClassification.from_pretrained(model_name)
-    print(f"Quantizing model")
+    model.to("cpu")  # ensure we're on CPU, as expected
     quantized_model = torch.quantization.quantize_dynamic(model, {torch.nn.Linear}, dtype=torch.qint8)
     return pipeline('ner', tokenizer=tokenizer, model=quantized_model,
                     grouped_entities=True, ignore_subwords=True)
