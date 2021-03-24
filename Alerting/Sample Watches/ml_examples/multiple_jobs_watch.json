@@ -1,0 +1,131 @@
+{
+    "trigger": {
+      "schedule": {
+        "interval": "1m"
+      }
+    },
+    "metadata": {
+      "watch_timespan" : "5y",        //how far back in time watch looks
+      "job1_name" : "it_ops_kpi",     
+      "job1_min_anomaly_score": 75,   //minimum anomaly score (bucket score) for job1
+      "job2_name" : "it_ops_network",
+      "job2_min_anomaly_score" : 10,   //minimum anomaly score (bucket score) for job2
+      "job3_name" : "it_ops_sql",
+      "job3_min_anomaly_score" : 5     //minimum anomaly score (bucket score) for job3
+    },
+    "input": {
+      "chain": {
+        "inputs": [
+          {
+            "job1": {
+              "search": {
+                "request": {
+                  "indices": [
+                    ".ml-anomalies-*"
+                  ],
+                  "body": {
+                    "size" : 0,
+                    "query": {
+                      "bool": {
+                        "filter": [
+                          { "range": { "timestamp": {"gte": "now-{{ctx.metadata.watch_timespan}}"}}},
+                          { "term":  {"result_type": "bucket"}},
+                          { "term":  {"job_id": "{{ctx.metadata.job1_name}}"}},
+                          { "range": {"anomaly_score": {"gte": "{{ctx.metadata.job1_min_anomaly_score}}"}}}
+                        ]
+                      }
+                    },
+                    "aggs": {
+                      "max_anomaly_score": {
+                          "max": {
+                            "field": "anomaly_score"
+                          }
+                        }
+                      }
+                  }  
+                }
+              }
+            }
+          },
+          {
+            "job2": {
+              "search": {
+                "request": {
+                  "indices": [
+                    ".ml-anomalies-*"
+                  ],
+                  "body": {
+                    "size" : 0,
+                    "query": {
+                      "bool": {
+                        "filter": [
+                          { "range": { "timestamp": {"gte": "now-{{ctx.metadata.watch_timespan}}"}}},
+                          { "term":  {"result_type": "bucket"}},
+                          { "term":  {"job_id": "{{ctx.metadata.job2_name}}"}},
+                          { "range": {"anomaly_score": {"gte": "{{ctx.metadata.job2_min_anomaly_score}}"}}}
+                        ]
+                      }
+                    },
+                    "aggs": {
+                      "max_anomaly_score": {
+                          "max": {
+                            "field": "anomaly_score"
+                          }
+                        }
+                      }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "job3": {
+              "search": {
+                "request": {
+                  "indices": [
+                    ".ml-anomalies-*"
+                  ],
+                  "body": {
+                    "size" : 0,
+                    "query": {
+                      "bool": {
+                        "filter": [
+                          { "range": { "timestamp": {"gte": "now-{{ctx.metadata.watch_timespan}}"}}},
+                          { "term":  {"result_type": "bucket"}},
+                          { "term":  {"job_id": "{{ctx.metadata.job3_name}}"}},
+                          { "range": {"anomaly_score": {"gte": "{{ctx.metadata.job3_min_anomaly_score}}"}}}
+                        ]
+                      }
+                    },
+                    "aggs": {
+                      "max_anomaly_score": {
+                          "max": {
+                            "field": "anomaly_score"
+                          }
+                        }
+                      }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+  "condition" : {
+    "script" : {
+// return true only if the combined weighted scores are greater than 75
+      "source" : "return ((ctx.payload.job1.aggregations.max_anomaly_score.value * 0.5) + (ctx.payload.job2.aggregations.max_anomaly_score.value * 0.2) + (ctx.payload.job3.aggregations.max_anomaly_score.value * 0.1)) > 75"
+    }
+  },
+    "actions": {
+      "log": {
+        "transform": {
+          "script": "return ((ctx.payload.job1.aggregations.max_anomaly_score.value * 0.5) + (ctx.payload.job2.aggregations.max_anomaly_score.value * 0.2) + (ctx.payload.job3.aggregations.max_anomaly_score.value * 0.1))"
+        },
+        "logging": {
+          "text": "[CRITICAL] Anomaly Alert for combined score of 3 jobs: score={{ctx.payload._value}}"
+        }
+      }
+    }
+  }
