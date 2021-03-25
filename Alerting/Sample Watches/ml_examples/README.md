@@ -13,6 +13,12 @@ Machine Learning (ML) creates anomalies in a results index that can be found via
 * “influeners”
 	* Answers: What are the most unusual entities in a range of time?
 
+## Example default ML watch
+
+file: `default_ml_watch.json`
+
+This watch is what was created by ML if you were to enable a watch directly in the UI. You must replace  `input.search.request.body.query.bool.filter[0].term.job_id` with the job id of the anomaly detection job that you want the watch to query.
+
 
 ## Example bucket watch
 
