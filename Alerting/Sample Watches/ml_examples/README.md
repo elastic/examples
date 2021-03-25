@@ -20,6 +20,15 @@ file: `default_ml_watch.json`
 This watch is what was created by ML if you were to enable a watch directly in the UI. You must replace  `input.search.request.body.query.bool.filter[0].term.job_id` with the job id of the anomaly detection job that you want the watch to query.
 
 
+## Example default ML watch
+
+file: `default_ml_watch_email.json`
+
+Same as the first example, but this time, we include an email action. If you have [email enabled for watcher](https://www.elastic.co/guide/en/elasticsearch/reference/current/actions-email.html) you can use this configuration to send an email alert. If you do, the following need to be updated:
+   1. change `actions.send_email.to` to include a list of email addresses that should recieve the email.
+   2. change any instance of `<es_url>` in `actions.send_email.email.body.html` to your elasticsearch cluster's url.
+
+
 ## Example bucket watch
 
 file:  `bucket_watch.json`
