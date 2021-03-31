@@ -3,7 +3,7 @@ cryptography==2.2.2
 elasticsearch==6.0.0
 elasticsearch-xpack==6.0.0
 idna==2.1
-lxml==3.6.4
+lxml==4.6.3
 ndg-httpsclient==0.4.4
 ordereddict==1.1
 protobuf==3.1.0.post1
