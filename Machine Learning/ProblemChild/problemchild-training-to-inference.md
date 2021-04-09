@@ -4,7 +4,7 @@ This folder contains the supplementary materials for the blogpost ["ProblemChild
 
 ## Extracting features For the classification model
 
-The goal of this model is to classify Windows process events as either malicious or benign. We used a dataset of labeled (benign or malicious) Windows process events to train the model. The model supports Elastic Endpoint, Elastic Endgame and Winlogbeat events by normalizing the feature names across the three configurations into to a common set of feature names for the model to work with(some field names have not been converted to a common ECS format yet and could vary across the three configurations). 
+The goal of this model is to classify Windows process events as either malicious or benign. We used a dataset of labeled (benign or malicious) Windows process events to train the model. The model supports Elastic Endpoint, Elastic Endgame and Winlogbeat events by normalizing the feature names across the three configurations into a common set of feature names for the model to work with(some field names have not been converted to a common ECS format yet and could vary across the three configurations). 
 
 An ingest pipeline is used to featurize raw Windows process events upon ingest, which is available in the file `problemchild_features.json`. The ingest pipeline consists of various processors, which are broken down as follows:
 
