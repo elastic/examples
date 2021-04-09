@@ -1,0 +1,167 @@
+PUT _ingest/pipeline/problemchild_features
+{
+    "processors": [
+        {
+            "script": {
+                "if": "ctx['agent']['type']=='endgame'",
+                "id": "features_endgame"
+            }
+        },
+        {
+            "script": {
+                "if": "ctx['agent']['type']=='endpoint'",
+                "id": "features_endpoint"
+            }
+        },
+        {
+            "script": {
+                "if": "ctx['agent']['type']=='winlogbeat'",
+                "id": "features_winlogbeat"
+            }
+        },
+        {
+            "script": {
+                "lang": "painless",
+                "source": """
+            if(ctx.feature_process_name != ctx.feature_process_pe_original_file_name) {
+              ctx.feature_filename_mismatch = true
+                }
+            else {
+              ctx.feature_filename_mismatch = false
+                }
+          """
+            }
+        },
+        {
+            "script": {
+                "lang": "painless",
+                "source": """
+            if(params.win_system_sids.contains(ctx.feature_user_id)) {
+              ctx.feature_running_as_system = true
+                }
+            else {
+              ctx.feature_running_as_system = false
+                }
+          """,
+          "params": {
+                    "win_system_sids": [
+                        "S-1-5-18",
+                        "S-1-5-19",
+                        "S-1-5-20"
+                    ]
+                }
+            }
+        },
+        {
+            "script": {
+                "lang": "painless",
+                "source": """
+            if(ctx.feature_process_name.contains(".exe")) {
+              ctx.feature_ends_with_exe = true
+                }
+            else {
+              ctx.feature_ends_with_exe = false
+                }
+          """
+            }
+        },
+        {
+            "lowercase": {
+                "field": "feature_process_executable"
+            }
+        },
+        {
+            "lowercase": {
+                "field": "feature_process_parent_executable"
+            }
+        },
+        {
+            "lowercase": {
+                "field": "feature_command_line"
+            }
+        },
+        {
+            "script": {
+                "id": "normalize_ppath"
+            }
+        },
+        {
+            "gsub": {
+                "field": "feature_command_line",
+                "pattern": "[0-9a-f]{4,}-[0-9a-f]{4,}-[0-9a-f]{4,}-[0-9a-f-]{4,}",
+                "replacement": "process_id"
+            }
+        },
+        {
+            "gsub": {
+                "field": "feature_command_line",
+                "pattern": "0x[0-9a-f]+|[0-9a-f]{8}",
+                "replacement": "hex"
+            }
+        },
+        {
+            "gsub": {
+                "field": "feature_command_line",
+                "pattern": "[a-f0-9]{128}|[a-f0-9]{64}|[a-f0-9]{56}|[a-f0-9]{40}|[a-f0-9]{32}",
+                "replacement": "hash"
+            }
+        },
+        {
+            "gsub": {
+                "field": "feature_command_line",
+                "pattern": "[0-9]{4,}",
+                "replacement": "num"
+            }
+        },
+        {
+            "script": {
+                "id": "ngram-extractor",
+                "params": {
+                    "ngram_count": 2,
+                    "field": "feature_process_name",
+                    "max_length": 100
+                }
+            }
+        },
+        {
+            "script": {
+                "id": "ngram-extractor",
+                "params": {
+                    "ngram_count": 2,
+                    "field": "feature_process_parent_name",
+                    "max_length": 100
+                }
+            }
+        },
+        {
+            "script": {
+                "id": "ngram-extractor",
+                "params": {
+                    "ngram_count": 2,
+                    "field": "feature_process_executable",
+                    "max_length": 100
+                }
+            }
+        },
+        {
+            "script": {
+                "id": "ngram-extractor",
+                "params": {
+                    "ngram_count": 2,
+                    "field": "feature_process_parent_executable",
+                    "max_length": 100
+                }
+            }
+        },
+        {
+            "script": {
+                "id": "ngram-extractor",
+                "params": {
+                    "ngram_count": 2,
+                    "field": "feature_command_line",
+                    "max_length": 100
+                }
+            }
+        }
+    ]
+}

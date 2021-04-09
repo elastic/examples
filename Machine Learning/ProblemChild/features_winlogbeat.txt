@@ -1,0 +1,88 @@
+POST _scripts/features_winlogbeat
+{
+  "script": {
+    "lang": "painless",
+    "source": """
+      if (ctx.containsKey('process') && ctx['process'].containsKey('name') && !ctx['process']['name'].empty){
+        ctx.feature_process_name = ctx['process']['name']
+      }
+      else{
+        ctx.feature_process_name = 'unknown'
+      }
+      if (ctx.containsKey('process') && ctx['process'].containsKey('parent') && ctx['process']['parent'].containsKey('name') && !ctx['process']['parent']['name'].empty){
+        ctx.feature_process_parent_name = ctx['process']['parent']['name']
+      }
+      else{
+        ctx.feature_process_parent_name = 'unknown'
+      }
+      if (ctx.containsKey('process') && ctx['process'].containsKey('command_line') && !ctx['process']['command_line'].empty){
+        ctx.feature_command_line = ctx['process']['command_line']
+      }
+      else if (ctx.containsKey('process') && ctx['process'].containsKey('args') && !ctx['process']['args'].empty){
+        ctx.feature_command_line = ctx['process']['args'].join(" ")
+      }
+      else{
+        ctx.feature_command_line = 'unknown'
+      }
+      if (ctx.containsKey('event') && ctx['event'].containsKey('action') && !ctx['event']['action'].empty){
+        ctx.feature_event_action = ctx['event']['action']
+      }
+      else{
+        ctx.feature_event_action = 'unknown'
+      }
+      if (ctx.containsKey('process') && ctx['process'].containsKey('executable') && !ctx['process']['executable'].empty){
+        ctx.feature_process_executable = ctx['process']['executable']
+      }
+      else{
+        ctx.feature_process_executable = 'unknown'
+      }
+      if (ctx.containsKey('process') && ctx['process'].containsKey('parent') && ctx['process']['parent'].containsKey('executable') && !ctx['process']['parent']['executable'].empty){
+        ctx.feature_process_parent_executable = ctx['process']['parent']['executable']
+      }
+      else{
+        ctx.feature_process_parent_executable = 'unknown'
+      }
+      if (ctx.containsKey('winlog') && ctx['winlog'].containsKey('event_data') && ctx['winlog']['event_data'].containsKey('TokenElevationType') && !ctx['winlog']['event_data']['TokenElevationType'].empty){
+        ctx.feature_elevation_type = ctx['winlog']['event_data']['TokenElevationType'];
+        ctx.feature_elevated = true;
+      }
+      else{
+        ctx.feature_elevation_type = 'unknown';
+        ctx.feature_elevated = false;
+      }
+      if (ctx.containsKey('winlog') && ctx['winlog'].containsKey('event_data') && ctx['winlog']['event_data'].containsKey('IntegrityLevel') && !ctx['winlog']['event_data']['IntegrityLevel'].empty){
+        ctx.feature_integrity_level = ctx['winlog']['event_data']['IntegrityLevel']
+      }
+      else{
+        ctx.feature_integrity_level = 'unknown'
+      }
+      if (ctx.containsKey('winlog') && ctx['winlog'].containsKey('event_data') && ctx['winlog']['event_data'].containsKey('OriginalFileName') && !ctx['winlog']['event_data']['OriginalFileName'].empty){
+        ctx.feature_process_pe_original_file_name = ctx['winlog']['event_data']['OriginalFileName']
+      }
+      else{
+        ctx.feature_process_pe_original_file_name = 'unknown'
+      }
+      if (ctx.containsKey('winlog') && ctx['winlog'].containsKey('user') && ctx['winlog']['user'].containsKey('identifier') && !ctx['winlog']['user']['identifier'].empty){
+        ctx.feature_user_id = ctx['winlog']['user']['identifier']
+      }
+      else if (ctx.containsKey('user') && ctx['user'].containsKey('id') && !ctx['user']['id'].empty){
+        ctx.feature_user_id = ctx['user']['id']
+      }
+      else{
+        ctx.feature_user_id = 'unknown'
+      }
+      if (ctx.containsKey('winlog') && ctx['winlog'].containsKey('event_data') && ctx['winlog']['event_data'].containsKey('Signed') && !ctx['winlog']['event_data']['Signed'].empty){
+        ctx.feature_process_signed = Boolean.parseBoolean(ctx['winlog']['event_data']['Signed'])
+      }
+      else{
+        ctx.feature_process_signed = false
+      }
+      if (ctx.containsKey('winlog') && ctx['winlog'].containsKey('event_data') && ctx['winlog']['event_data'].containsKey('SignatureStatus') && ctx['winlog']['event_data']['SignatureStatus'] == "Valid"){
+        ctx.feature_process_signer_trusted = true
+      }
+      else{
+        ctx.feature_process_signer_trusted = false
+      }
+ """
+  }
+}

@@ -1,0 +1,92 @@
+POST _scripts/features_endpoint
+{
+  "script": {
+    "lang": "painless",
+    "source": """
+      if (ctx.containsKey('process') && ctx['process'].containsKey('name') && !ctx['process']['name'].empty){
+        ctx.feature_process_name = ctx['process']['name']
+      }
+      else{
+        ctx.feature_process_name = 'unknown'
+      }
+      if (ctx.containsKey('process') && ctx['process'].containsKey('parent') && ctx['process']['parent'].containsKey('name') && !ctx['process']['parent']['name'].empty){
+        ctx.feature_process_parent_name = ctx['process']['parent']['name']
+      }
+      else{
+        ctx.feature_process_parent_name = 'unknown'
+      }
+      if (ctx.containsKey('process') && ctx['process'].containsKey('command_line') && !ctx['process']['command_line'].empty){
+        ctx.feature_command_line = ctx['process']['command_line']
+      }
+      else{
+        ctx.feature_command_line = 'unknown'
+      }
+      if (ctx.containsKey('event') && ctx['event'].containsKey('action') && !ctx['event']['action'].empty){
+        ctx.feature_event_action = ctx['event']['action']
+      }
+      else{
+        ctx.feature_event_action = 'unknown'
+      }
+      if (ctx.containsKey('process') && ctx['process'].containsKey('executable') && !ctx['process']['executable'].empty){
+        ctx.feature_process_executable = ctx['process']['executable']
+      }
+      else{
+        ctx.feature_process_executable = 'unknown'
+      }
+      if (ctx.containsKey('process') && ctx['process'].containsKey('parent') && ctx['process']['parent'].containsKey('executable') && !ctx['process']['parent']['executable'].empty){
+        ctx.feature_process_parent_executable = ctx['process']['parent']['executable']
+      }
+      else{
+        ctx.feature_process_parent_executable = 'unknown'
+      }
+      if (ctx.containsKey('process') && ctx['process'].containsKey('Ext') && ctx['process']['Ext'].containsKey('token') && ctx['process']['Ext']['token'].containsKey('elevation_type') && !ctx['process']['Ext']['token']['elevation_type'].empty){
+        ctx.feature_elevation_type = ctx['process']['Ext']['token']['elevation_type']
+      }
+      else{
+        ctx.feature_elevation_type = 'unknown'
+      }
+      if (ctx.containsKey('process') && ctx['process'].containsKey('Ext') && ctx['process']['Ext'].containsKey('token') && ctx['process']['Ext']['token'].containsKey('integrity_level_name') && !ctx['process']['Ext']['token']['integrity_level_name'].empty){
+        ctx.feature_integrity_level = ctx['process']['Ext']['token']['integrity_level_name']
+      }
+      else{
+        ctx.feature_integrity_level = 'unknown'
+      }
+      if (ctx.containsKey('process') && ctx['process'].containsKey('pe') && ctx['process']['pe'].containsKey('original_file_name') && !ctx['process']['pe']['original_file_name'].empty){
+        ctx.feature_process_pe_original_file_name = ctx['process']['pe']['original_file_name']
+      }
+      else{
+        ctx.feature_process_pe_original_file_name = 'unknown'
+      }
+      if (ctx.containsKey('user') && ctx['user'].containsKey('id') && !ctx['user']['id'].empty){
+        ctx.feature_user_id = ctx['user']['id']
+      }
+      else{
+        ctx.feature_user_id = 'unknown'
+      }
+      if (ctx.containsKey('process') && ctx['process'].containsKey('Ext') && ctx['process']['Ext'].containsKey('token') && ctx['process']['Ext']['token'].containsKey('elevation')){
+        ctx.feature_elevated = ctx['process']['Ext']['token']['elevation']
+      }
+      else{
+        ctx.feature_elevated = false
+      }
+      if (ctx.containsKey('process') && ctx['process'].containsKey('Ext') && ctx['process']['Ext'].containsKey('code_signature') && ctx['process']['Ext']['code_signature'].containsKey('exists')){
+        ctx.feature_process_signed = ctx['process']['Ext']['code_signature']['exists']
+      }
+      else if (ctx.containsKey('process') && ctx['process'].containsKey('code_signature') && ctx['process']['code_signature'].containsKey('exists')){
+        ctx.feature_process_signed = ctx['process']['code_signature']['exists']
+      }
+      else{
+        ctx.feature_process_signed = false
+      }
+      if (ctx.containsKey('process') && ctx['process'].containsKey('Ext') && ctx['process']['Ext'].containsKey('code_signature') && ctx['process']['Ext']['code_signature'].containsKey('trusted')){
+        ctx.feature_process_signer_trusted = ctx['process']['Ext']['code_signature']['trusted']
+      }
+      else if (ctx.containsKey('process') && ctx['process'].containsKey('code_signature') && ctx['process']['code_signature'].containsKey('trusted')){
+        ctx.feature_process_signer_trusted = ctx['process']['code_signature']['trusted']
+      }
+      else{
+        ctx.feature_process_signer_trusted = false
+      }
+ """
+  }
+}

@@ -1,0 +1,14 @@
+POST _scripts/blocklist
+{
+  "script": {
+    "lang": "painless",
+    "source": """
+    for(item in params.blocklist){
+      if(ctx['feature_command_line'].contains(item)){
+        ctx.blocklist_label = 1
+      }
+    }
+   
+ """
+  }
+}
