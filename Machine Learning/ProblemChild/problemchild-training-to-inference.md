@@ -122,7 +122,9 @@ Once you have all of your data re-indexed through the ingest pipeline, you can f
 
 Once we have trained a model, we can use it to predict/infer on new Windows process events. In order to do this, we will have to extract the same features as above on the new events. Hence, before passing the events through an inference processor, we first have to pass them through the same series of processors as discussed in the previous section and make sure all the required scripts are stored in the cluster state.
 
-Users also have the option of having a blocklist to override the model's benign verdict using a blocklist. The blocklist labels events malicious if certain keywords are present in the commandline arguments associated with the event. This is done using a script processor that invokes the script below. Ofcourse, this is optional and you can choose not to use the blocklist, in which case, you can leave the corresponding script processor out of your ingest pipeline.
+Users also have the option of using a blocklist to override the model's benign verdict after inference. The blocklist marks events as malicious if certain keywords are present in the commandline arguments associated with the event. This is done using a script processor that is invoked after the inference processor in the ingest pipeline. Ofcourse, this is optional and you can choose not to use the blocklist, in which case, you can leave the script processor out of your ingest pipeline.
+
+Script invoked by the blocklist script processor:
 
 
 ```
@@ -157,9 +159,9 @@ Sample script processor invoking the blocklist script with a blocklist consistin
 }
 ```
 
-The blocklist script is available in the file `blocklist.txt`. You can add to the list of keywords as needed but a starter list is avilable in the file `blocklist_keywords.txt`.
+The blocklist script is available in the file `blocklist.txt`. You can add to the list of keywords as needed but a starter list is available in the file `blocklist_keywords.txt`.
 
-Finally, since we don't want the features that are created for inference to be ingested together with our event data, we will also configure a script processor to remove these features. This script processor will be invoked in the ingest pipeline after the inference processor. Of course, if you wish, you can leave the features in the documents, in which case, you can leave this script processor out of your ingest pipeline configuration. 
+Finally, since we don't want the features that are created for inference to be ingested together with our event data, we will also configure a script processor to remove these features. This script processor will be invoked in the ingest pipeline after the blocklist processor (or after the inference processor if you are not using the blocklist). Of course, if you wish, you can leave the features in the documents, in which case, you can leave this script processor out of your ingest pipeline configuration. 
 
 
 ```
