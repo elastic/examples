@@ -11,6 +11,7 @@ An ingest pipeline is used to featurize raw Windows process events upon ingest, 
 * Script processors to extract fields from raw events based on agent type into a common set of fields for the model to work with: Scripts available in `features_endpoint.txt`, `features_endgame.txt`, `features_winlogbeat.txt` for Elastic Endpoint, Elastic Endgame and Winlogbeat respectively.
 
 * Script processors to extract features from the common fields: The scripts for these are in-line within the ingest pipeline configuration, except `normalize_ppath.txt`.
+
 Eg: The following script processor sets the feature `feature_ends_with_exe` to `true` if the process name associated with the event ends with ".exe" and `false` otherwise.
 
 
@@ -30,7 +31,8 @@ Eg: The following script processor sets the feature `feature_ends_with_exe` to `
 }
 ```
 
-* Lowercase processors to convert certain fields like paths and commandline arguments to lowercase
+* Lowercase processors to convert certain fields like paths and commandline arguments to lowercase.
+
 Eg: The following processor converts the field `feature_command_line` to lowercase.
 
 
@@ -42,7 +44,8 @@ Eg: The following processor converts the field `feature_command_line` to lowerca
 }
 ```
 
-* Gsub processors to replace certain patterns in the commandline arguments with a normalized value
+* Gsub processors to replace certain patterns in the commandline arguments with a normalized value.
+
 Eg: The following processor replaces the pattern defined by the `pattern` field, by the string "process_id" in the `feature_command_line` field.
 
 
@@ -56,7 +59,8 @@ Eg: The following processor replaces the pattern defined by the `pattern` field,
         }
 ```
 
-* Script processors to extract bigram features from certain fields: Script avilable in `ngram_extractor.txt`
+* Script processors to extract bigram features from certain fields: Script avilable in `ngram_extractor.txt`.
+
 Eg: The following processor gets the first 100 bigrams for the field `feature_process_name`.
 
 
@@ -116,7 +120,7 @@ POST _scripts/blocklist
 }
 ```
 
-Sample script processor invoking the blocklist script with a blocklist consisting of keywords "suspicious" andd "evil".
+Sample script processor invoking the blocklist script with a blocklist consisting of keywords "suspicious" and "evil":
 
 
 ```
