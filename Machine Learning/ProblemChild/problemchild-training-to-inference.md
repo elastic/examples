@@ -118,7 +118,7 @@ POST _reindex
 Once you have all of your data re-indexed through the ingest pipeline, you can follow the steps in the [blog post](insert link here) to configure your Data Frame Analytics job to train an ML model.
 
 
-## Inference on new raw Windows process events
+## Inference on new Windows process events
 
 Once we have trained a model, we can use it to predict/infer on new Windows process events. In order to do this, we will have to extract the same features as above on the new events. Hence, before passing the events through an inference processor, we first have to pass them through the same series of processors as discussed in the previous section and make sure all the required scripts are stored in the cluster state.
 
