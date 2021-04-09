@@ -73,12 +73,12 @@ Eg: The following processor replaces the pattern defined by the `pattern` field,
 
 ```
 {
-            "gsub": {
-                "field": "feature_command_line",
-                "pattern": "[0-9a-f]{4,}-[0-9a-f]{4,}-[0-9a-f]{4,}-[0-9a-f-]{4,}",
-                "replacement": "process_id"
-            }
-        }
+    "gsub": {
+        "field": "feature_command_line",
+        "pattern": "[0-9a-f]{4,}-[0-9a-f]{4,}-[0-9a-f]{4,}-[0-9a-f-]{4,}",
+        "replacement": "process_id"
+    }
+}
 ```
 
 * Script processors to extract bigram features from certain fields: Script avilable in `ngram_extractor.txt`.
