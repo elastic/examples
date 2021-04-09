@@ -8,7 +8,7 @@ The goal of this model is to classify Windows process events as either malicious
 
 An ingest pipeline is used to featurize raw Windows process events upon ingest, which is available in the file `problemchild_features.json`. The ingest pipeline consists of various processors, which are broken down as follows:
 
-* Script processors to extract fields from raw events based on agent type into a common set of fields for the model to work with: Scripts available in `features_endgame.txt`, `features_endpoint.txt`, `features_winlogbeat.txt` for Elastic Endpoint, Elastic Endgame and Winlogbeat respectively.
+* Script processors to extract fields from raw events based on agent type into a common set of fields for the model to work with: Scripts available in `features_endgame.txt`, `features_endpoint.txt`, `features_winlogbeat.txt` for Elastic Endgame, Elastic Endpoint and Winlogbeat respectively.
 
 
 ```
