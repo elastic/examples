@@ -206,13 +206,13 @@ If you have many models in your cluster, it can be easier to use part of your ML
 GET _ml/inference/problemchild_713_*
 ```
 
-Once, we have the model id, we can configure the Ingest pipeline for new Windows Process events similar to how we did prior to training the model, but with the inference processor and the featural removal script processor included in the list of processors. This updated ingest pipeline is available in the file `problemchild_inference.json`
+Once, we have the model id, we can configure the Ingest pipeline for new Windows Process events similar to how we did prior to training the model, but with the inference processor, blocklist processor and the featural removal script processor included in the list of processors. This updated ingest pipeline is available in the file `problemchild_inference.json`
 
-In the pipeline configured in `problemchild_inference.json`, we first have all the processors that were used in the training ingest pipeline. They are followed by the inference processor which references our trained model (your model id will be different). Finally, we have the script processor, which removes the features required for inference. 
+In the pipeline configured in `problemchild_inference.json`, we first have all the processors that were used in the training ingest pipeline. They are followed by the inference processor which references our trained model (your model id will be different), followed by the blocklist processor. Finally, we have the script processor which removes the features the were added for inference. 
 
 ## Conditional Ingest pipeline execution
 
-Not every event ingested will be a Windows process event. There are other OSes (macOS, Linux) as well as different types of events (network, registry) for each OS. Hence, it would be ideal to make the pipeline we configured above execute conditionally only when our document contains the desired fields. We will use a pipeline processor and check for the presence of specific fields in the document before deciding whether or not to direct it to the pipeline that contains our inference processor. 
+Not every event ingested will be a Windows process event. There are other OS (macOS, Linux) as well as different types of events (network, registry) for each OS. Hence, it would be ideal to make the pipeline we configured above execute conditionally only when our document contains the desired fields. We will use a pipeline processor and check for the presence of specific fields in the document before deciding whether or not to direct it to the pipeline that contains our inference processor. 
 
 
 ```
@@ -231,6 +231,6 @@ PUT _ingest/pipeline/problemchild_pipeline
 
 ```
 
-In the conditional above, we first check whether the document being ingested contains the nested structure `event.kind` and make sure it is equal to "event". We then look for the nested structure `event.category` and make sure it is equal to "process". We also make sure that either `host.os.type` or `host.os.family` equal "windows". Finally we make sure that the events we will infer on have a valid agent type ("endgame", "endpoint" or "winlogbeat") associated with them.
+In the conditional above, we first check whether the document being ingested contains the nested structure `event.kind` and make sure it is equal to "event". We then look for the nested structure `event.category` and make sure it is equal to "process". We also ensure that either `host.os.type` or `host.os.family` equal "windows". Finally, we check that the events we will infer on have a valid agent type ("endgame", "endpoint" or "winlogbeat") associated with them.
 
 For a production usecase, please also make sure you think about error handling in the ingest pipeline. 
