@@ -2,7 +2,7 @@
 
 This folder contains the supplementary materials for the blogpost ["ProblemChild in the Elastic Stack"](insert link here). These configurations have been tested on Elasticsearch version 7.10 and above.
 
-## Extracting features For the classification model
+## Extracting features for the classification model
 
 The goal of this model is to classify Windows process events as either malicious or benign. We used a dataset of labeled (benign or malicious) Windows process events to train the model. The model supports Elastic Endpoint, Elastic Endgame and Winlogbeat events by normalizing the feature names across the three configurations into a common set of feature names for the model to work with (some field names have not been converted to a common ECS format yet and could vary across the three configurations). 
 
