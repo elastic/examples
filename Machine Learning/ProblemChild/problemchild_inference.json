@@ -170,6 +170,7 @@ PUT _ingest/pipeline/problemchild_inference
                 "field_mappings": {},
                 "inference_config": {
                     "classification": {
+                        "results_field": "prediction",
                         "num_top_classes": 2
                     }
                 }
