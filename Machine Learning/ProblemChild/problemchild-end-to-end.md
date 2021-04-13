@@ -234,3 +234,11 @@ PUT _ingest/pipeline/problemchild_pipeline
 In the conditional above, we first check whether the document being ingested contains the nested structure `event.kind` and make sure it is equal to "event". We then look for the nested structure `event.category` and make sure it is equal to "process". We also ensure that either `host.os.type` or `host.os.family` equal "windows". Finally, we check that the events we will infer on have a valid agent type ("endgame", "endpoint" or "winlogbeat") associated with them.
 
 For a production usecase, please also make sure you think about error handling in the ingest pipeline. 
+
+## Second-order analytics using the Anomaly Detection module
+
+You can also setup unsupervised ML jobs to pick out the most suspicious events out of those detected by the supervised model (or blocklist if you have used it). We have made two anomaly detection jobs available for use at `experimental-high-sum-problemchild-probability.txt` and `experimental-rare-process-problemchild.txt`. 
+The `experimental-high-sum-problemchild-probability` job looks for a cluster of malicious child processes spawned by the same parent process and the 
+`experimental-rare-process-problemchild` job looks for looks for rare child processes spawned by a parent process. 
+
+You also need to configure datafeeds that will feed data these jobs. The data in this case is Windows process events that are marked malicious by the supervised model or blocklist. The datafeeds for the two jobs above are available in `datafeed_experimental-high-sum-problemchild-probability.txt` and `datafeed_experimental-rare-process-problemchild.txt` respectively.
