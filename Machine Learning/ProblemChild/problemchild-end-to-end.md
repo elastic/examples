@@ -237,8 +237,4 @@ For a production usecase, please also make sure you think about error handling i
 
 ## Second-order analytics using the Anomaly Detection module
 
-You can also setup unsupervised ML jobs to pick out the most suspicious events out of those detected by the supervised model (or blocklist if you have used it). We have made two anomaly detection jobs available for use at `experimental-high-sum-problemchild-probability.txt` and `experimental-rare-process-problemchild.txt`. 
-The `experimental-high-sum-problemchild-probability` job looks for a cluster of malicious child processes spawned by the same parent process and the 
-`experimental-rare-process-problemchild` job looks for looks for rare child processes spawned by a parent process. 
-
-You also need to configure datafeeds that will feed data these jobs. The data in this case is Windows process events that are marked malicious by the supervised model or blocklist. The datafeeds for the two jobs above are available in `datafeed_experimental-high-sum-problemchild-probability.txt` and `datafeed_experimental-rare-process-problemchild.txt` respectively.
+You can also setup unsupervised ML jobs to pick out the most suspicious events out of those detected by the supervised model (or blocklist if you have used it). This can be done using the Anomaly detection module in the Stack. We have made several anomaly detection job configurations available in the `job_configs` directory. You also need to configure datfeeds that will feed these jobs. The datafeeds are available in the `datafeeds` directory and are named as `datafeed_JOB_NAME` to identify the appropriate datafeed for each job.

@@ -1,6 +1,6 @@
-PUT _ml/datafeeds/experimental-high-sum-problemchild-probability
+PUT _ml/datafeeds/experimental-rare-process-by-parent-problemchild
 {
-  "job_id": "experimental-high-sum-problemchild-probability",
+  "job_id": "experimental-rare-process-by-parent-problemchild",
   "indices": [
     "endgame-*",
     "logs-endpoint.events.process.*",
