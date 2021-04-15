@@ -18,6 +18,12 @@ POST _scripts/features_endgame
       if (ctx.containsKey('process') && ctx['process'].containsKey('command_line') && !ctx['process']['command_line'].empty){
         ctx.feature_command_line = ctx['process']['command_line']
       }
+      else if (ctx.containsKey('process') && ctx['process'].containsKey('args') && !ctx['process']['args'].empty){
+        ctx.feature_command_line = ctx['process']['args'].join(" ")
+      }
+      else if (ctx.containsKey('endgame') && ctx['endgame'].containsKey('command_line') && !ctx['endgame']['command_line'].empty){
+        ctx.feature_command_line = ctx['endgame']['command_line']
+      }
       else{
         ctx.feature_command_line = 'unknown'
       }
