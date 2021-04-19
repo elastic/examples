@@ -1,4 +1,3 @@
-POST _scripts/ngram-extractor
 {
   "script": {
     "lang": "painless",

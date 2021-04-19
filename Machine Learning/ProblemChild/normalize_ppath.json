@@ -1,4 +1,3 @@
-POST _scripts/normalize_ppath
 {
   "script": {
     "lang": "painless",

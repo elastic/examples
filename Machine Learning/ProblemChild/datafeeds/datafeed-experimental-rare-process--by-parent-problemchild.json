@@ -1,4 +1,3 @@
-PUT _ml/datafeeds/experimental-rare-process-by-parent-problemchild
 {
   "job_id": "experimental-rare-process-by-parent-problemchild",
   "indices": [

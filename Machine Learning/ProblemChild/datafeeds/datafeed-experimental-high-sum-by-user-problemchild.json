@@ -1,6 +1,5 @@
-PUT _ml/datafeeds/experimental-rare-process-by-user-problemchild
 {
-  "job_id": "experimental-rare-process-by-user-problemchild",
+  "job_id": "experimental-high-sum-by-user-problemchild",
   "indices": [
     "endgame-*",
     "logs-endpoint.events.process.*",

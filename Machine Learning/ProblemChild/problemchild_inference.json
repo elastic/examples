@@ -1,4 +1,3 @@
-PUT _ingest/pipeline/problemchild_inference
 {
     "processors": [
         {

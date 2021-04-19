@@ -1,4 +1,3 @@
-PUT _ml/anomaly_detectors/experimental-high-sum-by-host-problemchild
 {
   "description": "A machine learning job to detect potential living off the land activity. Looks for a set of one or more malicious child processes on a single host. This is an experimental job and is therefore unsupported.",
   "analysis_config": {

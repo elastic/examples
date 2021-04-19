@@ -1,4 +1,3 @@
-PUT _ml/datafeeds/experimental-high-sum-by-parent-problemchild
 {
   "job_id": "experimental-high-sum-by-parent-problemchild",
   "indices": [
