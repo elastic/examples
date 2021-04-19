@@ -8,7 +8,7 @@ The goal of this model is to classify Windows process events as either malicious
 
 An ingest pipeline is used to featurize raw Windows process events upon ingest, which is available in the file `problemchild_features.json`. The ingest pipeline consists of various processors, which are broken down as follows:
 
-* Script processors to extract fields from raw events based on agent type into a common set of fields for the model to work with: Scripts available in `features_endgame.txt`, `features_endpoint.txt`, `features_winlogbeat.txt` for Elastic Endgame, Elastic Endpoint and Winlogbeat respectively.
+* Script processors to extract fields from raw events based on agent type into a common set of fields for the model to work with: Scripts available in `features_endgame.json`, `features_endpoint.json`, `features_winlogbeat.json` for Elastic Endgame, Elastic Endpoint and Winlogbeat respectively.
 
 
 ```
@@ -32,7 +32,7 @@ An ingest pipeline is used to featurize raw Windows process events upon ingest, 
 }
 ```
 
-* Script processors to extract features from the common fields: The scripts for these are in-line within the ingest pipeline configuration, except `normalize_ppath.txt`.
+* Script processors to extract features from the common fields: The scripts for these are in-line within the ingest pipeline configuration, except `normalize_ppath.json`.
 
 Eg: The following script processor sets the feature `feature_ends_with_exe` to `true` if the process name associated with the event ends with ".exe" and `false` otherwise.
 
@@ -81,7 +81,7 @@ Eg: The following processor replaces the pattern defined by the `pattern` field,
 }
 ```
 
-* Script processors to extract bigram features from certain fields: Script avilable in `ngram_extractor.txt`.
+* Script processors to extract bigram features from certain fields: Script avilable in `ngram_extractor.json`.
 
 Eg: The following processor gets the first 100 bigrams for the field `feature_process_name`.
 
