@@ -99,6 +99,16 @@ Eg: The following processor gets the first 100 bigrams for the field `feature_pr
 }
 ```
 
+You can set the ingest pipeline configuration defined in `problemchild_features.json` as follows:
+
+
+```
+PUT _ingest/pipeline/problemchild_features
+{
+INSERT PIPELINE CONFIGURATION HERE
+}
+```
+
 Once the ingest pipeline has been configured, we can re-index our original index with labeled raw Windows process events into a new index which will contain the featurized documents for the events with their corresponding labels.
 
 
@@ -109,7 +119,7 @@ POST _reindex
     "index": "problemchild_raw"
   },
   "dest": {
-    "index": "problemchild_featurized_reindex",
+    "index": "problemchild_featurized",
     "pipeline": "problemchild_features"
   }
 }
