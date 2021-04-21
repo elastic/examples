@@ -1,0 +1,53 @@
+{
+  "job_id": "experimental-high-sum-by-user-problemchild",
+  "indices": [
+    "endgame-*",
+    "logs-endpoint.events.process.*",
+    "winlogbeat-*"
+  ],
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "match": {
+            "event.category": "process"
+          }
+        },
+        {
+          "bool": {
+            "minimum_should_match": 1,
+            "should": [
+              {
+                "match": {
+                  "host.os.family": "windows"
+                }
+              },
+              {
+                "match": {
+                  "host.os.type": "windows"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "bool": {
+            "minimum_should_match": 1,
+            "should": [
+              {
+                "match": {
+                  "problemchild.prediction": 1
+                }
+              },
+              {
+                "match": {
+                  "blocklist_label": 1
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

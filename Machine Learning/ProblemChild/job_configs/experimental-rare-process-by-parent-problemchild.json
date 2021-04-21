@@ -1,0 +1,24 @@
+{
+  "description": "A machine learning job to detect potential living off the land activity. Looks for rare malicious child processes spawned by a parent process. This is an experimental job and is therefore unsupported.",
+  "analysis_config": {
+    "bucket_span": "15m",
+    "detectors": [
+      {
+        "detector_description": "rare process given a parent process",
+        "function": "rare",
+        "by_field_name": "process.name",
+        "partition_field_name": "process.parent.name",
+        "detector_index": 0
+      }
+    ],
+    "influencers": [
+      "process.name",
+      "process.parent.name",
+      "process.command_line"
+    ]
+  },
+  "data_description": {
+    "time_field": "@timestamp",
+    "time_format": "epoch_ms"
+  }
+}

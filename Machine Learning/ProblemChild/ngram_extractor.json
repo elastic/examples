@@ -1,0 +1,26 @@
+{
+  "script": {
+    "lang": "painless",
+    "source": """
+String nGramAtPosition(String field, int fieldcount, int n){
+  if (fieldcount+n>field.length()){
+    return ''
+  }
+  else 
+{
+  return field.substring(fieldcount, fieldcount+n)
+}
+}
+String fieldtext = ctx[params.field];
+if(fieldtext.length()>=params.max_length){
+  fieldtext = fieldtext.substring(0, params.max_length);
+}
+else{
+  fieldtext = fieldtext;
+}
+for (int i=0;i<(fieldtext.length());i++){
+  ctx[params.field+'_'+Integer.toString(params.ngram_count)+'-gram_feature'+Integer.toString(i)] = nGramAtPosition(fieldtext, i, params.ngram_count)
+}
+ """
+  }
+}
