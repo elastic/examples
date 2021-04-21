@@ -109,8 +109,8 @@ POST _reindex
     "index": "problemchild_raw"
   },
   "dest": {
-    "index": "problemchild_features",
-    "pipeline": "problemchild_featurized_reindex"
+    "index": "problemchild_featurized_reindex",
+    "pipeline": "problemchild_features"
   }
 }
 ```
