@@ -1,4 +1,3 @@
-POST _scripts/blocklist
 {
   "script": {
     "lang": "painless",
