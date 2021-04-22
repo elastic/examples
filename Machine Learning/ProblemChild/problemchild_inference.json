@@ -170,7 +170,8 @@
                 "inference_config": {
                     "classification": {
                         "results_field": "prediction",
-                        "num_top_classes": 2
+                        "num_top_classes": 0,
+                        "num_top_feature_importance_values": 0
                     }
                 }
             }
@@ -191,6 +192,8 @@
                 "lang": "painless",
                 "source": """
           ctx.entrySet().removeIf(field -> field.getKey() =~ /feature_.*/);
+          ctx['problemchild'].remove('prediction_score');
+          ctx['problemchild'].remove('model_id');
         """
             }
         }
