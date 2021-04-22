@@ -180,6 +180,8 @@ Finally, since we don't want the features that are created for inference to be i
       "lang": "painless",
       "source": """
         ctx.entrySet().removeIf(field -> field.getKey() =~ /feature_.*/);
+        ctx['problemchild'].remove('prediction_score');
+        ctx['problemchild'].remove('model_id');
       """
     }
   }
