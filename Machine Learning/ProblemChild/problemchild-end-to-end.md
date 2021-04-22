@@ -230,7 +230,7 @@ Not every event ingested will be a Windows process event. There are other OS (ma
 ```
 PUT _ingest/pipeline/problemchild_pipeline
 {
-  "description": "A pipeline of pipelines for Problemchild detection",
+  "description": "A pipeline of pipelines for ProblemChild detection",
   "processors": [
     {
       "pipeline": {
