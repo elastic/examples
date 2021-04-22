@@ -182,7 +182,8 @@
                 "id": "blocklist",
                 "params": {
                     "blocklist": [
-                        "suspicious"
+                        "suspicious",
+                        "evil"
                     ]
                 }
             }
