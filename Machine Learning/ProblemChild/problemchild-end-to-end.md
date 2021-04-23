@@ -89,7 +89,7 @@ Eg: The following processor gets the first 100 bigrams for the field `feature_pr
 ```
 {
     "script": {
-        "id": "ngram-extractor",
+        "id": "ngram_extractor",
         "params": {
             "ngram_count": 2,
             "field": "feature_process_name",
