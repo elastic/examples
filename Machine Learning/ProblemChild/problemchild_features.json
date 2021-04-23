@@ -114,7 +114,7 @@
         },
         {
             "script": {
-                "id": "ngram-extractor",
+                "id": "ngram_extractor",
                 "params": {
                     "ngram_count": 2,
                     "field": "feature_process_name",
@@ -124,7 +124,7 @@
         },
         {
             "script": {
-                "id": "ngram-extractor",
+                "id": "ngram_extractor",
                 "params": {
                     "ngram_count": 2,
                     "field": "feature_process_parent_name",
@@ -134,7 +134,7 @@
         },
         {
             "script": {
-                "id": "ngram-extractor",
+                "id": "ngram_extractor",
                 "params": {
                     "ngram_count": 2,
                     "field": "feature_process_executable",
@@ -144,7 +144,7 @@
         },
         {
             "script": {
-                "id": "ngram-extractor",
+                "id": "ngram_extractor",
                 "params": {
                     "ngram_count": 2,
                     "field": "feature_process_parent_executable",
@@ -154,7 +154,7 @@
         },
         {
             "script": {
-                "id": "ngram-extractor",
+                "id": "ngram_extractor",
                 "params": {
                     "ngram_count": 2,
                     "field": "feature_command_line",
