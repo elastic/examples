@@ -80,6 +80,13 @@
             }
         },
         {
+            "gsub": {
+                "field": "feature_command_line",
+                "pattern": "\"",
+                "replacement": ""
+            }
+        },
+        {
             "script": {
                 "id": "normalize_ppath"
             }
