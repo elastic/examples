@@ -108,6 +108,27 @@
         {
             "gsub": {
                 "field": "feature_command_line",
+                "pattern": "\\\\{2,}",
+                "replacement": "\\\\"
+            }
+        },
+        {
+            "gsub": {
+                "field": "feature_process_executable",
+                "pattern": "\\\\{2,}",
+                "replacement": "\\\\"
+            }
+        },
+        {
+            "gsub": {
+                "field": "feature_process_parent_executable",
+                "pattern": "\\\\{2,}",
+                "replacement": "\\\\"
+            }
+        }
+        {
+            "gsub": {
+                "field": "feature_command_line",
                 "pattern": "(users)\\\\([^\\\\]+)",
                 "replacement": "$1"
             }
@@ -129,21 +150,21 @@
         {
             "gsub": {
                 "field": "feature_command_line",
-                "pattern": "windows\\\\system32|windows\\\\syswow64",
+                "pattern": "windows\\\\system32|windows\/system32|windows\\\\syswow64|windows\/syswow64",
                 "replacement": "win_system_dir"
             }
         },
         {
             "gsub": {
                 "field": "feature_process_executable",
-                "pattern": "windows\\\\system32|windows\\\\syswow64",
+                "pattern": "windows\\\\system32|windows\/system32|windows\\\\syswow64|windows\/syswow64",
                 "replacement": "win_system_dir"
             }
         },
         {
             "gsub": {
                 "field": "feature_process_parent_executable",
-                "pattern": "windows\\\\system32|windows\\\\syswow64",
+                "pattern": "windows\\\\system32|windows\/system32|windows\\\\syswow64|windows\/syswow64",
                 "replacement": "win_system_dir"
             }
         },
