@@ -125,7 +125,7 @@
                 "pattern": "\\\\{2,}",
                 "replacement": "\\\\"
             }
-        }
+        },
         {
             "gsub": {
                 "field": "feature_command_line",
