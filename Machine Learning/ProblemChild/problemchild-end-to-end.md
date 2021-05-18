@@ -1,6 +1,6 @@
 # Supplementary materials for "ProblemChild in the Elastic Stack"
 
-This folder contains the supplementary materials for the blogpost ["ProblemChild in the Elastic Stack"](insert link here). These configurations have been tested on Elasticsearch version 7.10 and above.
+This folder contains the supplementary materials for the blogpost ["ProblemChild in the Elastic Stack"](https://www.elastic.co/blog/problemchild-detecting-living-off-the-land-attacks). These configurations have been tested on Elasticsearch version 7.10 and above.
 
 ## Extracting features for the classification model
 
