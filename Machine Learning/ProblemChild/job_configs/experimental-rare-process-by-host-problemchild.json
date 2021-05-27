@@ -1,8 +1,5 @@
 
 {
-  "name": "experimental-rare-process-by-host-problemchild",
-  "type": "anomaly_detection",
-  "body":{
   "description": "A machine learning job to detect potential living off the land activity. Looks for a process that has been classified as malicious on a host that does not commonly manifest malicious process activity. This is an experimental job and is therefore unsupported.",
   "analysis_config": {
     "bucket_span": "15m",
@@ -25,5 +22,4 @@
     "time_field": "@timestamp",
     "time_format": "epoch_ms"
   }
-}
 }
