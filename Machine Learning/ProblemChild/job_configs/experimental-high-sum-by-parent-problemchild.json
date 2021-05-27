@@ -6,8 +6,8 @@
       {
         "detector_description": "high sum by parent process",
         "function": "high_sum",
-        "by_field_name": "problemchild.prediction_probability",
-        "partition_field_name": "process.parent.name",
+        "field_name": "problemchild.prediction_probability",
+        "by_field_name": "process.parent.name",
         "detector_index": 0
       }
     ],

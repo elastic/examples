@@ -6,8 +6,8 @@
       {
         "detector_description": "high sum by user",
         "function": "high_sum",
-        "by_field_name": "problemchild.prediction_probability",
-        "partition_field_name": "user.name",
+        "field_name": "problemchild.prediction_probability",
+        "by_field_name": "user.name",
         "detector_index": 0
       }
     ],
