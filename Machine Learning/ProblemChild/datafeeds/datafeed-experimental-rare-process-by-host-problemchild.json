@@ -1,8 +1,4 @@
 {
-  "name": "experimental-rare-process-by-host-problemchild",
-  "type": "datafeed",
-  "body":
-{
   "job_id": "experimental-rare-process-by-host-problemchild",
   "indices": [
     "endgame-*",
@@ -74,5 +70,4 @@
       ]
     }
   }
-}
 }
