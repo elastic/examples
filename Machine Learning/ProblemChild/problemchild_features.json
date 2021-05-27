@@ -2,20 +2,7 @@
     "processors": [
         {
             "script": {
-                "if": "ctx['agent']['type']=='endgame'",
-                "id": "features_endgame"
-            }
-        },
-        {
-            "script": {
-                "if": "ctx['agent']['type']=='endpoint'",
-                "id": "features_endpoint"
-            }
-        },
-        {
-            "script": {
-                "if": "ctx['agent']['type']=='winlogbeat'",
-                "id": "features_winlogbeat"
+                "id": "features"
             }
         },
         {

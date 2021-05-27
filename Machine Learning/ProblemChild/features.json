@@ -1,14 +1,14 @@
 {
-  "script": {
-    "lang": "painless",
-    "source": """
+    "script": {
+      "lang": "painless",
+      "source": """
       if (ctx.containsKey('process') && ctx['process'].containsKey('name') && !ctx['process']['name'].empty) {
         ctx.feature_process_name = ctx['process']['name']
       }
       else {
         ctx.feature_process_name = 'unknown'
       }
-      if (ctx.containsKey('process') && ctx['process'].containsKey('parent') && ctx['process']['parent'].containsKey('name') && !ctx['process']['parent']['name'].empty) { 
+      if (ctx.containsKey('process') && ctx['process'].containsKey('parent') && ctx['process']['parent'].containsKey('name') && !ctx['process']['parent']['name'].empty) {
         ctx.feature_process_parent_name = ctx['process']['parent']['name']
       }
       else {
@@ -19,6 +19,9 @@
       }
       else if (ctx.containsKey('process') && ctx['process'].containsKey('args') && !ctx['process']['args'].empty) {
         ctx.feature_command_line = ctx['process']['args'].join(" ")
+      }
+      else if (ctx.containsKey('endgame') && ctx['endgame'].containsKey('command_line') && !ctx['endgame']['command_line'].empty) {
+        ctx.feature_command_line = ctx['endgame']['command_line']
       }
       else {
         ctx.feature_command_line = 'unknown'
@@ -44,11 +47,23 @@
       if (ctx.containsKey('process') && ctx['process'].containsKey('Ext') && ctx['process']['Ext'].containsKey('token') && ctx['process']['Ext']['token'].containsKey('elevation_type') && !ctx['process']['Ext']['token']['elevation_type'].empty) {
         ctx.feature_elevation_type = ctx['process']['Ext']['token']['elevation_type']
       }
+      else if (ctx.containsKey('endgame') && ctx['endgame'].containsKey('elevation_type') && !ctx['endgame']['elevation_type'].empty) {
+        ctx.feature_elevation_type = ctx['endgame']['elevation_type']
+      }
+      else if (ctx.containsKey('winlog') && ctx['winlog'].containsKey('event_data') && ctx['winlog']['event_data'].containsKey('TokenElevationType') && !ctx['winlog']['event_data']['TokenElevationType'].empty) {
+        ctx.feature_elevation_type = ctx['winlog']['event_data']['TokenElevationType']
+      }
       else {
         ctx.feature_elevation_type = 'unknown'
       }
       if (ctx.containsKey('process') && ctx['process'].containsKey('Ext') && ctx['process']['Ext'].containsKey('token') && ctx['process']['Ext']['token'].containsKey('integrity_level_name') && !ctx['process']['Ext']['token']['integrity_level_name'].empty) {
         ctx.feature_integrity_level = ctx['process']['Ext']['token']['integrity_level_name']
+      }
+      else if (ctx.containsKey('endgame') && ctx['endgame'].containsKey('integrity_level') && !ctx['endgame']['integrity_level'].empty) {
+        ctx.feature_integrity_level = ctx['endgame']['integrity_level']
+      }
+      else if (ctx.containsKey('winlog') && ctx['winlog'].containsKey('event_data') && ctx['winlog']['event_data'].containsKey('IntegrityLevel') && !ctx['winlog']['event_data']['IntegrityLevel'].empty) {
+        ctx.feature_integrity_level = ctx['winlog']['event_data']['IntegrityLevel']
       }
       else {
         ctx.feature_integrity_level = 'unknown'
@@ -56,17 +71,29 @@
       if (ctx.containsKey('process') && ctx['process'].containsKey('pe') && ctx['process']['pe'].containsKey('original_file_name') && !ctx['process']['pe']['original_file_name'].empty) {
         ctx.feature_process_pe_original_file_name = ctx['process']['pe']['original_file_name']
       }
+      else if (ctx.containsKey('winlog') && ctx['winlog'].containsKey('event_data') && ctx['winlog']['event_data'].containsKey('OriginalFileName') && !ctx['winlog']['event_data']['OriginalFileName'].empty) {
+        ctx.feature_process_pe_original_file_name = ctx['winlog']['event_data']['OriginalFileName']
+      }
       else {
         ctx.feature_process_pe_original_file_name = 'unknown'
       }
       if (ctx.containsKey('user') && ctx['user'].containsKey('id') && !ctx['user']['id'].empty) {
         ctx.feature_user_id = ctx['user']['id']
       }
+      else if (ctx.containsKey('winlog') && ctx['winlog'].containsKey('user') && ctx['winlog']['user'].containsKey('identifier') && !ctx['winlog']['user']['identifier'].empty) {
+        ctx.feature_user_id = ctx['winlog']['user']['identifier']
+      }
       else {
         ctx.feature_user_id = 'unknown'
       }
       if (ctx.containsKey('process') && ctx['process'].containsKey('Ext') && ctx['process']['Ext'].containsKey('token') && ctx['process']['Ext']['token'].containsKey('elevation')) {
         ctx.feature_elevated = ctx['process']['Ext']['token']['elevation']
+      }
+      else if (ctx.containsKey('endgame') && ctx['endgame'].containsKey('elevated')) {
+        ctx.feature_elevated = ctx['endgame']['elevated']
+      }
+      else if (ctx.containsKey('winlog') && ctx['winlog'].containsKey('event_data') && ctx['winlog']['event_data'].containsKey('TokenElevationType') && !ctx['winlog']['event_data']['TokenElevationType'].empty) {
+        ctx.feature_elevated = true;
       }
       else {
         ctx.feature_elevated = false
@@ -77,6 +104,9 @@
       else if (ctx.containsKey('process') && ctx['process'].containsKey('code_signature') && ctx['process']['code_signature'].containsKey('exists')) {
         ctx.feature_process_signed = ctx['process']['code_signature']['exists']
       }
+      else if (ctx.containsKey('winlog') && ctx['winlog'].containsKey('event_data') && ctx['winlog']['event_data'].containsKey('Signed') && !ctx['winlog']['event_data']['Signed'].empty) {
+        ctx.feature_process_signed = Boolean.parseBoolean(ctx['winlog']['event_data']['Signed'])
+      }
       else {
         ctx.feature_process_signed = false
       }
@@ -86,9 +116,13 @@
       else if (ctx.containsKey('process') && ctx['process'].containsKey('code_signature') && ctx['process']['code_signature'].containsKey('trusted')) {
         ctx.feature_process_signer_trusted = ctx['process']['code_signature']['trusted']
       }
+      else if (ctx.containsKey('winlog') && ctx['winlog'].containsKey('event_data') && ctx['winlog']['event_data'].containsKey('SignatureStatus') && ctx['winlog']['event_data']['SignatureStatus'] == "Valid") {
+        ctx.feature_process_signer_trusted = true
+      }
       else {
         ctx.feature_process_signer_trusted = false
       }
- """
+   """
+    }
   }
-}
+  

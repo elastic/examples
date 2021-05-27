@@ -8,27 +8,14 @@ The goal of this model is to classify Windows process events as either malicious
 
 An ingest pipeline is used to featurize raw Windows process events upon ingest, which is available in the file `problemchild_features.json`. The ingest pipeline consists of various processors, which are broken down as follows:
 
-* Script processors to extract fields from raw events based on agent type into a common set of fields for the model to work with: Scripts available in `features_endgame.json`, `features_endpoint.json`, `features_winlogbeat.json` for Elastic Endgame, Elastic Endpoint and Winlogbeat respectively.
+* Script processor to extract fields from raw events irrespective of agent type into a common set of fields for the model to work with: Script available in `features.json`.
 
 
 ```
 {
     "script": {
-      "if": "ctx['agent']['type']=='endgame'",
-      "id": "features_endgame"
+      "id": "features"
     }
-  },
-  {
-    "script": {
-      "if": "ctx['agent']['type']=='endpoint'",
-      "id": "features_endpoint"
-    }
-  },
-  {
-    "script": {
-      "if": "ctx['agent']['type']=='winlogbeat'",
-      "id": "features_winlogbeat"
-  }
 }
 ```
 
@@ -234,7 +221,7 @@ PUT _ingest/pipeline/problemchild_pipeline
   "processors": [
     {
       "pipeline": {
-        "if": "ctx.containsKey('event') && ctx['event'].containsKey('kind')  && ctx['event'].containsKey('category') && ctx['event']['kind'] == 'event' && ctx['event']['category'] == 'process' && ctx.containsKey('host') && ctx['host'].containsKey('os') && (ctx['host']['os'].containsKey('family') || ctx['host']['os'].containsKey('type')) && (ctx['host']['os']['family'] == 'windows' || ctx['host']['os']['type'] == 'windows') && ctx.containsKey('agent') && ctx['agent'].containsKey('type') && !ctx['agent']['type'].empty",
+        "if": "ctx.containsKey('event') && ctx['event'].containsKey('kind')  && ctx['event'].containsKey('category') && ctx['event']['kind'] == 'event' && ctx['event']['category'].contains('process') && ctx.containsKey('host') && ctx['host'].containsKey('os') && (ctx['host']['os'].containsKey('family') || ctx['host']['os'].containsKey('type') || ctx['host']['os'].containsKey('platform')) && (ctx['host']['os']['type'] == 'windows' || ctx['host']['os']['type'] == 'Windows' || ctx['host']['os']['family'] == 'windows' || ctx['host']['os']['family'] == 'Windows' || ctx['host']['os']['platform'] == 'windows' || ctx['host']['os']['platform'] == 'Windows')",
         "name": "problemchild_inference"
       }
     }
@@ -243,10 +230,10 @@ PUT _ingest/pipeline/problemchild_pipeline
 
 ```
 
-In the conditional above, we first check whether the document being ingested contains the nested structure `event.kind` and make sure it is equal to "event". We then look for the nested structure `event.category` and make sure it is equal to "process". We also ensure that either `host.os.type` or `host.os.family` equal "windows". Finally, we check that the events we will infer on have a valid agent type ("endgame", "endpoint" or "winlogbeat") associated with them.
+In the conditional above, we first check whether the document being ingested contains the nested structure `event.kind` and make sure it is equal to "event". We then look for the nested structure `event.category` and make sure it is equal to "process". We also ensure that either `host.os.type`, `host.os.family`, or `host.os.platform` equal "windows".
 
 For a production usecase, please also make sure you think about error handling in the ingest pipeline. 
 
 ## Second-order analytics using the Anomaly Detection module
 
-You can also setup unsupervised ML jobs to pick out the most suspicious events out of those detected by the supervised model (or blocklist if you have used it). This can be done using the Anomaly detection module in the Stack. We have made several anomaly detection job configurations available in the `job_configs` directory. You also need to configure datfeeds that will feed these jobs. The datafeeds are available in the `datafeeds` directory and are named as `datafeed_JOB_NAME` to identify the appropriate datafeed for each job.
+You can also setup unsupervised ML jobs to pick out the most suspicious events out of those detected by the supervised model (or blocklist if you have used it). This can be done using the Anomaly detection module in the Stack. We have made several anomaly detection job configurations available in the `job_configs` directory. You also need to configure datafeeds that will feed these jobs. The datafeeds are available in the `datafeeds` directory and are named as `datafeed_JOB_NAME` to identify the appropriate datafeed for each job.
