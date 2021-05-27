@@ -1,4 +1,8 @@
 {
+  "name": "experimental-high-sum-by-host-problemchild",
+  "type": "anomaly_detection",
+  "body":
+{
   "description": "A machine learning job to detect potential living off the land activity. Looks for a set of one or more malicious child processes on a single host. This is an experimental job and is therefore unsupported.",
   "analysis_config": {
     "bucket_span": "15m",
@@ -6,8 +10,8 @@
       {
         "detector_description": "high sum by host",
         "function": "high_sum",
-        "by_field_name": "problemchild.prediction_probability",
-        "partition_field_name": "host.hostname",
+        "field_name": "problemchild.prediction_probability",
+        "by_field_name": "host.hostname",
         "detector_index": 0
       }
     ],
@@ -21,4 +25,5 @@
     "time_field": "@timestamp",
     "time_format": "epoch_ms"
   }
+}
 }

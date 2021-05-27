@@ -19,12 +19,32 @@
             "should": [
               {
                 "match": {
+                  "host.os.type": "windows"
+                }
+              },
+              {
+                "match": {
+                  "host.os.type": "Windows"
+                }
+              },
+              {
+                "match": {
                   "host.os.family": "windows"
                 }
               },
               {
                 "match": {
-                  "host.os.type": "windows"
+                  "host.os.family": "Windows"
+                }
+              },
+              {
+                "match": {
+                  "host.os.platform": "windows"
+                }
+              },
+              {
+                "match": {
+                  "host.os.platform": "Windows"
                 }
               }
             ]
@@ -50,4 +70,5 @@
       ]
     }
   }
+}
 }
