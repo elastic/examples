@@ -95,27 +95,6 @@
         {
             "gsub": {
                 "field": "feature_command_line",
-                "pattern": " {2,}",
-                "replacement": " "
-            }
-        },
-        {
-            "gsub": {
-                "field": "feature_process_executable",
-                "pattern": " {2,}",
-                "replacement": " "
-            }
-        },
-        {
-            "gsub": {
-                "field": "feature_process_parent_executable",
-                "pattern": " {2,}",
-                "replacement": " "
-            }
-        },
-        {
-            "gsub": {
-                "field": "feature_command_line",
                 "pattern": "\\\\{2,}",
                 "replacement": "\\\\"
             }
