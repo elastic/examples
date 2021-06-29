@@ -14,4 +14,3 @@ Artifacts and code snippets from the blog post.
 | [YARA Signature](./mozi-obfuscation-technique.yara) | Mozi obfuscation technique YARA signature | NA |
 | [Geo Ingest Pipeline](./ingest-pipeline.yml) | Artifact desc. | Artifact note |
 | [Mozi Collection Script](./collection-script.sh) | Script to collect Mozi samples | NA |
-| [Etc.]() | Artifact desc. | Artifact note |
