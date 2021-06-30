@@ -1,0 +1,245 @@
+{
+  "description": "Pipeline for processing ThreatFox data",
+  "processors": [
+    {
+      "set": {
+        "field": "event.ingested",
+        "value": "{{{_ingest.timestamp}}}"
+      }
+    },
+    {
+      "set": {
+        "field": "event.type",
+        "value": "indicator"
+      }
+    },
+    {
+      "set": {
+        "field": "event.kind",
+        "value": "enrichment"
+      }
+    },
+    {
+      "set": {
+        "field": "event.category",
+        "value": "threat"
+      }
+    },
+    {
+      "dissect": {
+        "field": "ioc",
+        "pattern": "%{threat.indicator.ip}:%{threat.indicator.port}"
+      }
+    },
+    {
+      "append": {
+        "field": "related.ip",
+        "value": [
+          "{{{threat.indicator.ip}}}"
+        ],
+        "ignore_failure": true
+      }
+    },
+    {
+      "convert": {
+        "field": "threat.indicator.port",
+        "type": "long"
+      }
+    },
+    {
+      "rename": {
+        "field": "id",
+        "target_field": "event.id",
+        "if": "ctx.id != null"
+      }
+    },
+    {
+      "rename": {
+        "field": "threat_type",
+        "target_field": "threat.software.type",
+        "ignore_missing": true,
+        "if": "ctx.threat_type != null"
+      }
+    },
+    {
+      "rename": {
+        "field": "threat_type_desc",
+        "target_field": "threat.indicator.description",
+        "if": "ctx.threat_type_desc != null"
+      }
+    },
+    {
+      "set": {
+        "field": "threat.indicator.type",
+        "value": "ipv4-addr",
+        "if": "ctx.ioc =~ /^(?:[0-9]{1,3}\\.){3}[0-9]{1,3}:[0-9]+$/\n"
+      }
+    },
+    {
+      "set": {
+        "field": "threat.indicator.type",
+        "value": "ipv6-addr",
+        "if": "ctx.ioc =~ /^([A-Fa-f0-9:]+:+)+[A-Fa-f0-9]+:[0-9]+$/"
+      }
+    },
+    {
+      "rename": {
+        "field": "malware",
+        "target_field": "threat.software.name",
+        "ignore_missing": true,
+        "if": "ctx.malware != null"
+      }
+    },
+    {
+      "rename": {
+        "field": "malware_printable",
+        "target_field": "threat.threatfox.malware_printable",
+        "ignore_missing": true,
+        "if": "ctx.malware_printable != null"
+      }
+    },
+    {
+      "rename": {
+        "field": "malware_alias",
+        "target_field": "threat.software.alias",
+        "ignore_missing": true,
+        "if": "ctx.malware_alias != null"
+      }
+    },
+    {
+      "rename": {
+        "field": "malware_malpedia",
+        "target_field": "threat.software.reference",
+        "ignore_missing": true,
+        "if": "ctx.malware_malpedia != null"
+      }
+    },
+    {
+      "rename": {
+        "field": "confidence_level",
+        "target_field": "threat.indicator.confidence",
+        "ignore_missing": true,
+        "if": "ctx.confidence_level != null"
+      }
+    },
+    {
+      "rename": {
+        "field": "first_seen",
+        "target_field": "threat.indicator.first_seen",
+        "ignore_missing": true,
+        "if": "ctx.first_seen != null"
+      }
+    },
+    {
+      "rename": {
+        "field": "last_seen",
+        "target_field": "threat.indicator.last_seen",
+        "ignore_missing": true,
+        "if": "ctx.last_seen != null"
+      }
+    },
+    {
+      "rename": {
+        "field": "reference",
+        "target_field": "event.reference",
+        "ignore_missing": true,
+        "if": "ctx.reference != null"
+      }
+    },
+    {
+      "grok": {
+        "field": "event.reference",
+        "patterns": [
+          "%{GREEDYDATA:temp.base}[/]%{GREEDYDATA:file.hash.sha256}[/]"
+        ],
+        "ignore_missing": true
+      }
+    },
+    {
+      "append": {
+        "field": "related.hash",
+        "value": [
+          "{{{file.hash.sha256}}}"
+        ],
+        "ignore_failure": true
+      }
+    },
+    {
+      "rename": {
+        "field": "reporter",
+        "target_field": "event.provider",
+        "ignore_missing": true,
+        "if": "ctx.reporter != null"
+      }
+    },
+    {
+      "geoip": {
+        "field": "threat.indicator.ip",
+        "target_field": "threat.indicator.geo",
+        "database_file": "mozi-enrichment-City.mmdb",
+        "properties": [
+          "country_iso_code",
+          "country_name",
+          "continent_name",
+          "region_iso_code",
+          "region_name",
+          "city_name",
+          "timezone",
+          "location"
+        ],
+        "first_only": false,
+        "description": "Adds City geo data"
+      }
+    },
+    {
+      "geoip": {
+        "field": "threat.indicator.ip",
+        "target_field": "temp.geo",
+        "database_file": "mozi-enrichment-ASN.mmdb",
+        "properties": [
+          "asn",
+          "organization_name"
+        ],
+        "first_only": false,
+        "description": "Adds ASN geo data"
+      }
+    },
+    {
+      "rename": {
+        "field": "temp.geo.asn",
+        "target_field": "threat.indicator.geo.asn",
+        "ignore_missing": true
+      }
+    },
+    {
+      "rename": {
+        "field": "temp.geo.organization_name",
+        "target_field": "threat.indicator.geo.organization_name",
+        "ignore_missing": true
+      }
+    },
+    {
+      "remove": {
+        "field": [
+          "id",
+          "ioc",
+          "threat_type",
+          "threat_type_desc",
+          "ioc_type",
+          "malware",
+          "malware_printable",
+          "malware_alias",
+          "malware_malpedia",
+          "confidence_level",
+          "first_seen",
+          "last_seen",
+          "reference",
+          "reporter",
+          "ioc_type_desc",
+          "temp"
+        ],
+        "ignore_missing": true
+      }
+    }
+  ]
+}
