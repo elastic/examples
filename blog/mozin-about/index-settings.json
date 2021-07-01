@@ -1,0 +1,159 @@
+{
+  "settings": {
+    "number_of_shards": 1,
+    "default_pipeline": "threatfox-enrichment"
+  },
+  "mappings": {
+    "properties": {
+      "event": {
+        "properties": {
+          "category": {
+            "type": "keyword"
+          },
+          "id": {
+            "type": "keyword"
+          },
+          "ingested": {
+            "type": "date"
+          },
+          "kind": {
+            "type": "keyword"
+          },
+          "provider": {
+            "type": "keyword"
+          },
+          "reference": {
+            "type": "keyword"
+          },
+          "type": {
+            "type": "keyword"
+          }
+        }
+      },
+      "file": {
+        "properties": {
+          "hash": {
+            "properties": {
+              "sha256": {
+                "type": "keyword"
+              }
+            }
+          }
+        }
+      },
+      "related": {
+        "properties": {
+          "hash": {
+            "type": "keyword"
+          },
+          "ip": {
+            "type": "ip"
+          }
+        }
+      },
+      "tags": {
+        "type": "keyword"
+      },
+      "threat": {
+        "properties": {
+          "indicator": {
+            "properties": {
+              "confidence": {
+                "type": "long"
+              },
+              "description": {
+                "type": "text"
+              },
+              "first_seen": {
+                "type": "date"
+              },
+              "last_seen": {
+                "type": "date"
+              },
+              "geo": {
+                "properties": {
+                  "city_name": {
+                    "type": "keyword",
+                    "ignore_above": 1024
+                  },
+                  "continent_name": {
+                    "type": "keyword",
+                    "ignore_above": 1024
+                  },
+                  "country_iso_code": {
+                    "type": "keyword",
+                    "ignore_above": 1024
+                  },
+                  "country_name": {
+                    "type": "keyword",
+                    "ignore_above": 1024
+                  },
+                  "location": {
+                    "type": "geo_point"
+                  },
+                  "name": {
+                    "type": "keyword",
+                    "ignore_above": 1024
+                  },
+                  "region_iso_code": {
+                    "type": "keyword",
+                    "ignore_above": 1024
+                  },
+                  "region_name": {
+                    "type": "keyword",
+                    "ignore_above": 1024
+                  },
+                  "timezone": {
+                    "type": "keyword",
+                    "ignore_above": 1024
+                  },
+                  "asn": {
+                    "type": "long"
+                  },
+                  "organization_name": {
+                    "type": "text",
+                    "fields": {
+                      "keyword": {
+                        "type": "keyword",
+                        "ignore_above": 256
+                      }
+                    }
+                  }
+                }
+              },
+              "ip": {
+                "type": "ip"
+              },
+              "port": {
+                "type": "long"
+              },
+              "type": {
+                "type": "keyword"
+              }
+            }
+          },
+          "software": {
+            "properties": {
+              "name": {
+                "type": "keyword"
+              },
+              "reference": {
+                "type": "keyword"
+              },
+              "type": {
+                "type": "keyword"
+              }
+            }
+          },
+          "threatfox": {
+            "properties": {
+              "malware_printable": {
+                "type": "keyword"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
