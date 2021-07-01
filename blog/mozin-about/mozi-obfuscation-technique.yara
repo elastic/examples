@@ -1,12 +1,14 @@
-rule Mozi Obfuscation Technique {
+rule MoziObfuscationTechnique
+{
    meta:
        author =  "Elastic Security, Lars Wallenborn (@larsborn)"
        description = "Detects obfuscation technique used by Mozi botnet."
-string:
+  strings:
         $a = { 55 50 58 21
-              [4]         
-              00 00 00 00 
-              00 00 00 00 
+              [4]
+              00 00 00 00
+              00 00 00 00
               00 00 00 00 }
-condition:
+  condition:
         all of them
+}
