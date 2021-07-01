@@ -1,5 +1,5 @@
 {
-  "description": "Pipeline for processing ThreatFox data",
+  "description": "Ingest pipeline for parsing and enriching ThreatFox data",
   "processors": [
     {
       "set": {
@@ -123,19 +123,23 @@
       }
     },
     {
-      "rename": {
+      "date": {
         "field": "first_seen",
+        "formats": [
+          "uuuu-MM-dd HH:mm:ss z"
+        ],
         "target_field": "threat.indicator.first_seen",
-        "ignore_missing": true,
-        "if": "ctx.first_seen != null"
+        "if": "ctx?.first_seen != null"
       }
     },
     {
-      "rename": {
+      "date": {
         "field": "last_seen",
+        "formats": [
+          "uuuu-MM-dd HH:mm:ss z"
+        ],
         "target_field": "threat.indicator.last_seen",
-        "ignore_missing": true,
-        "if": "ctx.last_seen != null"
+        "if": "ctx?.last_seen != null"
       }
     },
     {
@@ -176,7 +180,6 @@
       "geoip": {
         "field": "threat.indicator.ip",
         "target_field": "threat.indicator.geo",
-        "database_file": "GeoLite2-City.mmdb",
         "properties": [
           "country_iso_code",
           "country_name",
