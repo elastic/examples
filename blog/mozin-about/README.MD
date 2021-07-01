@@ -11,6 +11,6 @@ Artifacts and code snippets from the blog post.
 
 | Artifact | Description | Note |
 | - | - | - |
-| [Geo Ingest Pipeline](./ingest-pipeline.yml) | Artifact desc. | Artifact note |
-| [Mozi Collection Script](./collection-script.sh) | Script to collect Mozi samples | NA |
-| [Etc.]() | Artifact desc. | Artifact note |
+| [Mozi Collection Script](./collection.sh) | Script to collect Mozi samples and send to Elasticsearch | NA |
+| [Ingest Node Pipeline](./ingest-node-pipeline.json) | ThreatFox Ingest Node Pipeline | NA |
+| [YARA Signature](./mozi-obfuscation-technique.yara) | Mozi obfuscation technique YARA signature | NA |
