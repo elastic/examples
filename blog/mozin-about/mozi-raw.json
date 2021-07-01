@@ -1,0 +1,2085 @@
+{
+    "query_status": "ok",
+    "data": [
+        {
+            "id": "115772",
+            "ioc": "46.229.199.126:53822",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:22:52 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115771",
+            "ioc": "188.254.247.90:37294",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:22:51 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115770",
+            "ioc": "119.195.9.2:5611",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:22:50 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115769",
+            "ioc": "120.48.30.81:11767",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:22:49 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115767",
+            "ioc": "82.102.27.163:47917",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:22:48 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115768",
+            "ioc": "77.236.161.34:52279",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:22:48 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115766",
+            "ioc": "195.154.216.53:55389",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:22:47 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115765",
+            "ioc": "81.171.18.105:53461",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:22:46 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115764",
+            "ioc": "95.73.16.112:38813",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:22:45 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115763",
+            "ioc": "83.85.194.134:34413",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:22:44 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115762",
+            "ioc": "148.63.87.6:1107",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:22:43 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115761",
+            "ioc": "109.252.47.117:2069",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:22:42 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115758",
+            "ioc": "93.152.170.47:18137",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:22:41 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115759",
+            "ioc": "24.126.210.135:8462",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:22:41 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115757",
+            "ioc": "218.215.81.165:37627",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:22:40 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115756",
+            "ioc": "202.164.138.74:46233",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:22:39 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115754",
+            "ioc": "94.26.48.17:61422",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:22:38 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115753",
+            "ioc": "213.108.36.115:49160",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:22:37 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115752",
+            "ioc": "93.173.84.81:27191",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:22:36 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115751",
+            "ioc": "83.102.217.52:8869",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:22:35 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115749",
+            "ioc": "168.195.133.16:5574",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:22:34 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115750",
+            "ioc": "176.10.206.228:49354",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:22:34 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115748",
+            "ioc": "149.255.6.193:27214",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:22:32 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115746",
+            "ioc": "94.236.250.141:56888",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:22:31 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115747",
+            "ioc": "202.164.139.37:5832",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:22:31 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115745",
+            "ioc": "178.175.50.115:4000",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:22:30 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115744",
+            "ioc": "178.141.70.64:12938",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:22:29 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115743",
+            "ioc": "116.68.99.92:13933",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:22:28 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115742",
+            "ioc": "79.100.230.5:53114",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:22:27 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115741",
+            "ioc": "91.92.56.171:59331",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:22:26 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115740",
+            "ioc": "76.65.169.41:52663",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:22:25 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115738",
+            "ioc": "87.227.228.115:29282",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:22:24 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115739",
+            "ioc": "70.52.55.132:33764",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:22:24 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115737",
+            "ioc": "95.42.122.244:15652",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:22:23 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115736",
+            "ioc": "14.133.79.64:31204",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:22:22 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115735",
+            "ioc": "170.249.44.26:25855",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:22:21 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115734",
+            "ioc": "70.77.31.212:8999",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:22:20 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115733",
+            "ioc": "86.157.185.242:61703",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:22:19 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115731",
+            "ioc": "46.10.58.230:55966",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:22:18 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115732",
+            "ioc": "195.154.227.213:1775",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:22:18 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115730",
+            "ioc": "111.92.81.109:30830",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:22:17 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115729",
+            "ioc": "113.161.208.9:5353",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:22:16 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115728",
+            "ioc": "182.57.71.104:5353",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:22:15 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115727",
+            "ioc": "117.221.182.109:30301",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:22:14 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115726",
+            "ioc": "178.175.114.74:17726",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:22:13 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115725",
+            "ioc": "94.26.3.178:15249",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:22:12 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115724",
+            "ioc": "111.92.80.205:2290",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:22:09 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115723",
+            "ioc": "42.111.143.113:46265",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:22:08 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115722",
+            "ioc": "77.70.64.137:51417",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:22:07 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115721",
+            "ioc": "46.10.21.237:54867",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:22:06 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115719",
+            "ioc": "51.15.126.85:24007",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:22:05 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115720",
+            "ioc": "213.152.161.219:39015",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:22:05 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115718",
+            "ioc": "124.123.238.112:8000",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:22:03 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115717",
+            "ioc": "178.175.23.130:8000",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:22:02 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115716",
+            "ioc": "117.221.181.48:8000",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:22:01 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115715",
+            "ioc": "116.68.111.210:40084",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:22:00 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115714",
+            "ioc": "213.163.117.48:29340",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:21:59 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115713",
+            "ioc": "83.239.19.142:57264",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:21:58 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115712",
+            "ioc": "85.217.205.235:32394",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:21:57 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115711",
+            "ioc": "81.171.17.89:50000",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:21:56 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115710",
+            "ioc": "179.210.76.174:32846",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:21:55 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115709",
+            "ioc": "73.123.252.123:42068",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:21:54 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115707",
+            "ioc": "140.82.57.106:6995",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:21:53 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115708",
+            "ioc": "178.175.51.17:44062",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:21:53 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115706",
+            "ioc": "178.175.90.43:10032",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:21:52 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115705",
+            "ioc": "77.70.5.68:14335",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:21:51 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115704",
+            "ioc": "79.100.94.239:64155",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:21:50 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115703",
+            "ioc": "94.236.255.92:57399",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:21:49 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115702",
+            "ioc": "83.148.81.95:41382",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:21:48 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115701",
+            "ioc": "117.215.211.164:56042",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:21:47 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115699",
+            "ioc": "49.83.240.235:20805",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:21:46 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115700",
+            "ioc": "77.70.127.32:63786",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:21:46 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115698",
+            "ioc": "123.130.214.244:24684",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:21:45 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115697",
+            "ioc": "188.209.56.49:28028",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:21:44 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115696",
+            "ioc": "188.0.11.122:49001",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:21:43 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115695",
+            "ioc": "87.172.157.213:55500",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:21:42 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115694",
+            "ioc": "178.216.125.66:17331",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:21:41 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115692",
+            "ioc": "87.121.60.145:41787",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:21:40 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115693",
+            "ioc": "178.175.122.120:45746",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:21:40 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115691",
+            "ioc": "95.42.106.240:46797",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:21:39 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115690",
+            "ioc": "87.121.61.146:32895",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:21:38 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115689",
+            "ioc": "212.47.227.255:51413",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:21:37 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115688",
+            "ioc": "89.169.50.19:51413",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:21:36 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115687",
+            "ioc": "178.175.49.1:3884",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:21:35 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4afdd41880118abd911a52d401ce30548f2455f0f71a3aeb23b79cb6e32d4901\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115686",
+            "ioc": "213.163.119.15:1434",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:21:34 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115684",
+            "ioc": "176.99.142.210:1434",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:21:33 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115683",
+            "ioc": "125.25.191.233:1434",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:21:32 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115682",
+            "ioc": "37.194.148.191:17247",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:21:31 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115681",
+            "ioc": "178.72.75.189:1264",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:21:30 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115680",
+            "ioc": "188.209.56.10:28038",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:21:29 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115679",
+            "ioc": "88.80.102.35:18136",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:21:28 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115678",
+            "ioc": "85.11.171.247:28749",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:21:27 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115677",
+            "ioc": "93.123.90.39:56361",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:21:26 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115675",
+            "ioc": "134.119.193.138:6881",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:21:25 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115676",
+            "ioc": "78.130.237.60:30154",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:21:25 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115674",
+            "ioc": "178.175.69.241:6881",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:21:24 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115673",
+            "ioc": "85.83.133.45:6881",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:21:23 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115672",
+            "ioc": "178.175.105.163:6881",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:21:22 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115671",
+            "ioc": "169.61.218.53:6881",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:21:21 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115670",
+            "ioc": "151.71.103.107:6881",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:21:20 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115669",
+            "ioc": "58.153.204.9:6881",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:21:19 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115667",
+            "ioc": "78.90.77.217:6881",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:21:18 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115668",
+            "ioc": "31.184.254.119:6881",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:21:18 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        },
+        {
+            "id": "115666",
+            "ioc": "117.194.161.59:6881",
+            "threat_type": "botnet_cc",
+            "threat_type_desc": "Indicator that identifies a botnet command&control server (C&C)",
+            "ioc_type": "ip:port",
+            "ioc_type_desc": "ip:port combination that is used for botnet Command&control (C&C)",
+            "malware": "elf.mozi",
+            "malware_printable": "Mozi",
+            "malware_alias": null,
+            "malware_malpedia": "https:\/\/malpedia.caad.fkie.fraunhofer.de\/details\/elf.mozi",
+            "confidence_level": 75,
+            "first_seen": "2021-06-15 08:21:17 UTC",
+            "last_seen": null,
+            "reference": "https:\/\/bazaar.abuse.ch\/sample\/4b41223ca64ab6ef4b3b9c9d4257902a32f9fa8cdf4d9f6261b24b8dee81d233\/",
+            "reporter": "abuse_ch",
+            "tags": [
+                "Mozi"
+            ]
+        }
+    ]
+}
