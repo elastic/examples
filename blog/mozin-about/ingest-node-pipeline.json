@@ -176,7 +176,7 @@
       "geoip": {
         "field": "threat.indicator.ip",
         "target_field": "threat.indicator.geo",
-        "database_file": "mozi-enrichment-City.mmdb",
+        "database_file": "GeoLite2-City.mmdb",
         "properties": [
           "country_iso_code",
           "country_name",
@@ -195,7 +195,7 @@
       "geoip": {
         "field": "threat.indicator.ip",
         "target_field": "temp.geo",
-        "database_file": "mozi-enrichment-ASN.mmdb",
+        "database_file": "GeoLite2-ASN.mmdb",
         "properties": [
           "asn",
           "organization_name"
