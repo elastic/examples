@@ -1,4 +1,4 @@
-rule MoziObfuscationTechnique
+rule Mozi_Obfuscation_Technique
 {
   meta:
     author =  "Elastic Security, Lars Wallenborn (@larsborn)"
