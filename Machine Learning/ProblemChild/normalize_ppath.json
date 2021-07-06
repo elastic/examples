@@ -1,0 +1,50 @@
+{
+  "script": {
+    "lang": "painless",
+    "source": """
+      if(ctx.feature_process_executable =~ /:\\windows\\system32/i) {
+            ctx.feature_normalized_ppath = "win_system_dir"
+      }
+      else  if(ctx.feature_process_executable =~ /:\\windows\\syswow64/i) {
+            ctx.feature_normalized_ppath = "win_system_dir"
+      }
+      else  if(ctx.feature_process_executable =~ /:\\windows\\temp/i) {
+            ctx.feature_normalized_ppath = "win_temp_dir"
+      }
+      else  if(ctx.feature_process_executable =~ /(:\\users\\)(.*?)(\\appdata\\local\\temp)/i) {
+            ctx.feature_normalized_ppath = "win_user_appdata_local_temp"
+      }
+      else  if(ctx.feature_process_executable =~ /(:\\users\\)(.*?)(\\appdata)/i) {
+            ctx.feature_normalized_ppath = "win_user_appdata"
+      }
+      else  if(ctx.feature_process_executable =~ /(:\\users\\)(.*?)(\\downloads)/i) {
+            ctx.feature_normalized_ppath = "win_user_downloads"
+      }
+      else  if(ctx.feature_process_executable =~ /(:\\users\\)(.*?)(\\)/i) {
+            ctx.feature_normalized_ppath = "win_user_dir"
+      }
+      else  if(ctx.feature_process_executable =~ /:\\users$/i) {
+            ctx.feature_normalized_ppath = "win_users_root_dir"
+      }
+      else  if(ctx.feature_process_executable =~ /:\\program files/i) {
+            ctx.feature_normalized_ppath = "win_program_files"
+      }
+      else  if(ctx.feature_process_executable =~ /:\\programdata/i) {
+            ctx.feature_normalized_ppath = "win_program_data_dir"
+      }
+      else  if(ctx.feature_process_executable =~ /:\\system volume information/i) {
+            ctx.feature_normalized_ppath = "win_sys_vol_info_dir"
+      }
+      else  if(ctx.feature_process_executable =~ /:\\\$recycle\.bin/i) {
+            ctx.feature_normalized_ppath = "win_recycle_bin_dir"
+      }
+      else  if(ctx.feature_process_executable =~ /:\\windows/i) {
+            ctx.feature_normalized_ppath = "win_dir"
+      }
+      else if(ctx.feature_process_executable =~ /[a-z]:\\$/i) {
+            ctx.feature_normalized_ppath = "win_root"
+      }
+      else ctx.feature_normalized_ppath = "unknown"
+ """
+  }
+}

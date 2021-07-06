@@ -52,7 +52,7 @@ and create it if needed (by default it will not be there)
 
 ```
 git clone https://github.com/kubernetes/kube-state-metrics.git kube-state-metrics
-kubectl create -f kube-state-metrics/kubernetes
+kubectl apply -f kube-state-metrics/examples/standard
 kubectl get pods --namespace=kube-system | grep kube-state 
 ```
 

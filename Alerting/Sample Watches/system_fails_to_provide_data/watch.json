@@ -12,7 +12,6 @@
     "search": {
       "request": {
         "indices": "log",
-        "types": "doc",
         "body": {
           "query": {
             "range": {

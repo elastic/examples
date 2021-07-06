@@ -1,0 +1,140 @@
+[
+  {
+    "id": "cross_fields",
+    "template": {
+      "lang": "mustache",
+      "source": {
+        "query": {
+          "multi_match": {
+            "type": "cross_fields",
+            "query": "{{query_string}}",
+            "operator": "{{operator}}",
+            "minimum_should_match": "{{minimum_should_match}}%",
+            "tie_breaker": "{{tie_breaker}}",
+            "fields": [
+              "url^{{url|boost}}",
+              "title^{{title|boost}}",
+              "body^{{body|boost}}"
+            ]
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "best_fields",
+    "template": {
+      "lang": "mustache",
+      "source": {
+        "query": {
+          "multi_match": {
+            "type": "best_fields",
+            "query": "{{query_string}}",
+            "tie_breaker": "{{tie_breaker}}",
+            "fields": [
+              "url^{{url|boost}}",
+              "title^{{title|boost}}",
+              "body^{{body|boost}}"
+            ]
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "most_fields",
+    "template": {
+      "lang": "mustache",
+      "source": {
+        "query": {
+          "multi_match": {
+            "type": "most_fields",
+            "query": "{{query_string}}",
+            "fields": [
+              "url^{{url|boost}}",
+              "title^{{title|boost}}",
+              "body^{{body|boost}}"
+            ]
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "combined_matches",
+    "template": {
+      "lang": "mustache",
+      "source": {
+        "query": {
+          "bool": {
+            "should": [
+              {
+                "match": {
+                  "url": {
+                    "query": "{{query_string}}"
+                  }
+                }
+              },
+              {
+                "match": {
+                  "title": {
+                    "query": "{{query_string}}"
+                  }
+                }
+              },
+              {
+                "match": {
+                  "body": {
+                    "query": "{{query_string}}"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "combined",
+    "template": {
+      "lang": "mustache",
+      "source": {
+        "query": {
+          "bool": {
+            "should": [
+              {
+                "multi_match": {
+                  "type": "cross_fields",
+                  "query": "{{query_string}}",
+                  "operator": "{{cross_fields|operator}}",
+                  "minimum_should_match": "{{cross_fields|minimum_should_match}}%",
+                  "tie_breaker": "{{cross_fields|tie_breaker}}",
+                  "fields": [
+                    "url^{{cross_fields|url|boost}}",
+                    "title^{{cross_fields|title|boost}}",
+                    "body^{{cross_fields|body|boost}}"
+                  ],
+                  "boost": "{{cross_fields|boost}}"
+                }
+              },
+              {
+                "multi_match": {
+                  "type": "best_fields",
+                  "query": "{{query_string}}",
+                  "tie_breaker": "{{best_fields|tie_breaker}}",
+                  "fields": [
+                    "url^{{best_fields|url|boost}}",
+                    "title^{{best_fields|title|boost}}",
+                    "body^{{best_fields|body|boost}}"
+                  ],
+                  "boost": "{{best_fields|boost}}"
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+]

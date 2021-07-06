@@ -11,7 +11,7 @@ This example adapts the machine learning recipe described here.
 This example utilises:
 
 - [auditd.cef.tar.gz](https://github.com/elastic/examples/blob/master/Security%20Analytics/auditd_analysis/example_2/auditd.cef.tar.gz) - Sample Auditd logs in CEF format used in the above blog post.
-- [unusual_process.json](https://github.com/elastic/examples/blob/master/Security%20Analytics/auditd_analysis/example_2/unusual_process.json) -  A watch that alerts on anamolies detected by X-Pack Machine Learning. REFERENCE ONLY. 
+- [unusual_process.json](https://github.com/elastic/examples/blob/master/Security%20Analytics/auditd_analysis/example_2/unusual_process.json) -  A watch that alerts on anomalies detected by X-Pack Machine Learning. REFERENCE ONLY. 
 - [unusual_process.inline.json](https://github.com/elastic/examples/blob/master/Security%20Analytics/auditd_analysis/example_2/unusual_process.inline.json) - The above watch in an inline execution format so it can be used with the `simulate_watch.py` script and be executed over the full dataset.
 - [simulate_watch.py](https://github.com/elastic/examples/blob/master/Security%20Analytics/auditd_analysis/simulate_watch.py) - A convenience script to execute the above watch. In order to test this watch against the provided test data set, this script which performs a “sliding window” execution of the watch. 
 This repeatedly executes the watch, each time adjusting the date filters to target the next 5 minute time range thus simulating the execution against a live stream of several days of data in a few seconds.
@@ -148,6 +148,6 @@ python simulate_watch.py --interval 1200 --start_time 2017-06-05T17:06:30Z --end
 * `es_host` - Elasticsearch host and port. Defaults to `localhost:9200`
 * `interval` - Size of the window in seconds. Defaults to 300 or 5m as indicated in the blog.
 
-The watch uses a log action to record the alert.  The dataset contains only a single critical anamoly. During execution the user should therefore see a message similar to the following in the Elasticsearch logs:
+The watch uses a log action to record the alert.  The dataset contains only a single critical anomaly. During execution the user should therefore see a message similar to the following in the Elasticsearch logs:
 
  `Alert for job [unusual_process] at [2017-06-12T07:30:00.000Z] score [78]`

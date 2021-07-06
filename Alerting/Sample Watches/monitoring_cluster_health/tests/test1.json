@@ -1,7 +1,7 @@
 {
   "watch_name":"monitoring_cluster_health",
   "mapping_file":"./monitoring_cluster_health/mapping.json",
-  "index":".monitoring-es-test",
+  "index":"monitoring-es-test",
   "type":"doc",
   "time_field":"timestamp",
   "watch_file":"./monitoring_cluster_health/watch.json",

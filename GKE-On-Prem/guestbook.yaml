@@ -164,7 +164,7 @@ metadata:
   labels:
     app: redis
     tier: backend
-    role: master
+    role: primary
 spec:
   ports:
   - port: 6379
@@ -172,23 +172,28 @@ spec:
   selector:
     app: redis
     tier: backend
-    role: master
+    role: primary
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: redis-master
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app: redis
+      role: primary
+      tier: backend
   template:
     metadata:
       labels:
         app: redis
-        role: master
+        role: primary
         tier: backend
     spec:
       containers:
-      - name: master
+      - name: primary
         image: k8s.gcr.io/redis:e2e  # or just image: redis
         resources:
           requests:
@@ -214,30 +219,35 @@ metadata:
   labels:
     app: redis
     tier: backend
-    role: slave
+    role: replica
 spec:
   ports:
   - port: 6379
   selector:
     app: redis
     tier: backend
-    role: slave
+    role: replica
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: redis-slave
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app: redis
+      role: replica
+      tier: backend
   template:
     metadata:
       labels:
         app: redis
-        role: slave
+        role: replica
         tier: backend
     spec:
       containers:
-      - name: slave
+      - name: replica
         image: gcr.io/google_samples/gb-redisslave:v1
         resources:
           requests:
@@ -271,12 +281,16 @@ spec:
     tier: frontend
   loadBalancerIP: 10.0.10.42
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: frontend
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app: guestbook
+      tier: frontend
   template:
     metadata:
       labels:

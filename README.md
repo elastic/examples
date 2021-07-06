@@ -1,6 +1,6 @@
 # Introduction
 
-This is a collection of examples to help you get familiar with the Elastic Stack and X-Pack. Each example folder includes a README with detailed instructions for getting up and running with the  particular example. The following information pertains to the [examples](https://github.com/elastic/examples) repo as a whole.
+This is a collection of examples to help you get familiar with the Elastic Stack. Each example folder includes a README with detailed instructions for getting up and running with the  particular example. The following information pertains to the [examples](https://github.com/elastic/examples) repo as a whole.
 
 ### Contents
 
@@ -52,7 +52,7 @@ Examples using the Elastic Stack for analyzing public dataset.
 
 #### Alerting on Elastic Stack
 
-X-Pack lets you set up watches (or rules) to detect and alert on changes in your Elasticsearch data. Below is a list of examples watches that configured to detect and alert on a few common scenarios:
+Alerting lets you set up watches (or rules) to detect and alert on changes in your Elasticsearch data. Below is a list of examples watches that configured to detect and alert on a few common scenarios:
 
 - [High I/O wait on CPU](https://github.com/elastic/examples/tree/master/Alerting/Sample%20Watches/cpu_iowait_hosts)
 - [Critical error  in logs](https://github.com/elastic/examples/tree/master/Alerting/Sample%20Watches/errors_in_logs)
@@ -67,6 +67,7 @@ X-Pack lets you set up watches (or rules) to detect and alert on changes in your
 - [Trending hashtag on twitter](https://github.com/elastic/examples/tree/master/Alerting/Sample%20Watches/twitter_trends)
 - [Unexpected account activity](https://github.com/elastic/examples/tree/master/Alerting/Sample%20Watches/unexpected_account_activity)
 - [Watch history dashboard](https://github.com/elastic/examples/tree/master/Alerting/watcher_dashboard)
+- [Alert on Large Shards](https://github.com/elastic/examples/tree/master/Alerting/Sample%20Watches/large_shard_watch)
 
 #### Machine learning
 

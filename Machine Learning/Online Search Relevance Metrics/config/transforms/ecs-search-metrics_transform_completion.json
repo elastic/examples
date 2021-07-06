@@ -1,0 +1,39 @@
+{
+  "source": {
+    "index": "ecs-search-metrics_transform_queryid",
+    "query": {
+      "bool": {
+        "must": [
+          {
+            "range": {
+              "metrics.clicks.count": {
+                "gt": 0
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "pivot": {
+    "group_by": {
+      "SearchMetrics.query.value": {
+        "terms": {
+          "field": "query_event.SearchMetrics.query.value"
+        }
+      }
+    },
+    "max_page_search_size": 10000,
+    "aggregations": {
+      "metrics.num_queries": { "value_count": { "field": "query_event.SearchMetrics.query.id" } },
+      "metrics.mean_num_clicks": { "avg": { "field": "metrics.clicks.count" } },
+      "metrics.mean_max_reciprocal_rank": { "avg": { "field": "metrics.clicks.max_reciprocal_rank" } },
+      "metrics.mean_mean_reciprocal_rank": { "avg": { "field": "metrics.clicks.mean_reciprocal_rank" } },
+      "metrics.mean_time_to_first_click": { "avg": { "field": "metrics.clicks.time_to_first_click" } }
+    }
+  },
+  "dest": {
+    "index": "ecs-search-metrics_transform_completion",
+    "pipeline": "ecs-search-metrics_transform_completion"
+  }
+}

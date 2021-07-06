@@ -1,0 +1,73 @@
+{
+  "job_id": "experimental-rare-process-by-host-problemchild",
+  "indices": [
+    "endgame-*",
+    "logs-endpoint.events.process.*",
+    "winlogbeat-*"
+  ],
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "match": {
+            "event.category": "process"
+          }
+        },
+        {
+          "bool": {
+            "minimum_should_match": 1,
+            "should": [
+              {
+                "match": {
+                  "host.os.type": "windows"
+                }
+              },
+              {
+                "match": {
+                  "host.os.type": "Windows"
+                }
+              },
+              {
+                "match": {
+                  "host.os.family": "windows"
+                }
+              },
+              {
+                "match": {
+                  "host.os.family": "Windows"
+                }
+              },
+              {
+                "match": {
+                  "host.os.platform": "windows"
+                }
+              },
+              {
+                "match": {
+                  "host.os.platform": "Windows"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "bool": {
+            "minimum_should_match": 1,
+            "should": [
+              {
+                "match": {
+                  "problemchild.prediction": 1
+                }
+              },
+              {
+                "match": {
+                  "blocklist_label": 1
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

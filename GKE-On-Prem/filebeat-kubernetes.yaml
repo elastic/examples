@@ -76,9 +76,9 @@ data:
     output.elasticsearch:
       hosts: ${ELASTICSEARCH_HOSTS}
       ilm.enabled: true
-    
+
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: DaemonSet
 metadata:
   name: filebeat-dynamic
@@ -87,6 +87,10 @@ metadata:
     k8s-app: filebeat-dynamic
     kubernetes.io/cluster-service: "true"
 spec:
+  selector:
+    matchLabels:
+      k8s-app: filebeat-dynamic
+      kubernetes.io/cluster-service: "true"
   template:
     metadata:
       labels:

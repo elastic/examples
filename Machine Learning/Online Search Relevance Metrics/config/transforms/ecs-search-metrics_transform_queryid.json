@@ -1,0 +1,53 @@
+{
+  "source": {
+    "index": "ecs-search-metrics",
+    "query": {
+      "match_all": { }
+    }
+  },
+  "dest": {
+    "index": "ecs-search-metrics_transform_queryid",
+    "pipeline": "ecs-search-metrics_transform_queryid"
+  },
+  "pivot": {
+    "group_by": {
+      "SearchMetrics.query.id": {
+        "terms": {
+          "field": "SearchMetrics.query.id"
+        }
+      }
+    },
+    "max_page_search_size": 10000,
+    "aggregations": {
+      "query_event": {
+        "scripted_metric": {
+          "init_script": "state.query_event = new HashMap()",
+          "map_script": "if (doc['event.action'].value == 'SearchMetrics.query') state.query_event.putAll(params['_source'])",
+          "combine_script": "return state.query_event",
+          "reduce_script": "for (x in states) { if (!x.isEmpty()) { return x } }"
+        }
+      },
+      "metrics.pages": {
+        "filter": { "terms": { "event.action": [ "SearchMetrics.query", "SearchMetrics.page" ] } },
+        "aggregations": {
+          "max_page_requested": { "max": { "field": "SearchMetrics.query.page" } }
+        }
+      },
+      "metrics.clicks": {
+        "filter": { "term": { "event.action": "SearchMetrics.click" } },
+        "aggregations": {
+          "count": { "value_count": { "field": "event.id" } },
+          "count_at_3": { "filter": { "range": { "SearchMetrics.click.result.rank": { "lte": 3 } } } },
+          "count_at_10": { "filter": { "range": { "SearchMetrics.click.result.rank": { "lte": 10 } } } },
+          "max_reciprocal_rank": { "max": { "field": "SearchMetrics.click.result.reciprocal_rank" } },
+          "mean_reciprocal_rank": { "avg": { "field": "SearchMetrics.click.result.reciprocal_rank" } },
+          "first_click_time": { "min": { "field": "@timestamp" } },
+          "last_click_time": { "max": { "field": "@timestamp" } },
+          "max_page_clicked": { "max": { "field": "SearchMetrics.query.page" } },
+          "num_above_fold": { "filter": { "term": { "SearchMetrics.query.page": 1 } } },
+          "num_below_fold": { "filter": { "range": { "SearchMetrics.query.page": { "gt": 1 } } } }
+        }
+      }
+    }
+  }
+}

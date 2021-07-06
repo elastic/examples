@@ -1,0 +1,127 @@
+{
+  "trigger": {
+    "schedule": {
+      "interval": "1h"
+    }
+  },
+  "input": {
+    "chain": {
+      "inputs": [
+        {
+          "first": {
+            "http": {
+              "request": {
+                "scheme": "https",
+                "host": "localhost",
+                "port": 9243,
+                "method": "get",
+                "path": "/_cat/shards",
+                "params": {
+                  "format": "json",
+                  "bytes": "b"
+                },
+                "headers": {},
+                "auth": {
+                  "basic": {
+                    "username": "elastic",
+                    "password": "changeme"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "second": {
+            "search": {
+              "request": {
+                "indices": [
+                  "large*"
+                ],
+                "types": [
+                  "_doc"
+                ],
+                "body": {
+                  "size": 400,
+                  "query": {
+                    "match_all": {}
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "condition": {
+    "always": {}
+  },
+  "transform": {
+    "script": {
+      "source": """
+        HashMap final = new HashMap();
+        def docs = [];
+if (ctx.payload.second.hits.total > 0) {
+  ctx.payload.second.hits.hits.stream()
+  .forEach(e -> {
+    final.put(e._source.indexName+"-"+e._source.shardNumber, e._source.shardSizeInBytes);
+  });
+}
+List result = ctx.payload.first.data.stream()
+  .forEach(s -> {
+    def size = s.store == null ? 0 : Long.parseLong(s.store);
+    if(size > ctx.metadata.threshold_in_bytes && !final.containsKey(s.index+"-"+ s.shard)) {
+      docs.add([
+        '_id' : s.index+ "-"+ s.shard,
+        'shardSizeInBytes': size,
+        'indexName': s.index,
+        'shardNumber': s.shard,
+        'node': s.node
+      ]);
+    }
+    return true;
+  });
+return ['_doc' : docs];
+        """,
+      "lang": "painless"
+    }
+  },
+  "actions": {
+    "index_payload": {
+      "condition": {
+        "script": {
+          "source": "return ctx.payload._doc.size() > 0",
+          "lang": "painless"
+        }
+      },
+      "index": {
+        "index": "large-shards",
+        "doc_type": "_doc"
+      }
+    },
+    "logging": {
+      "condition": {
+        "script": {
+          "source": "return ctx.payload._doc.size() > 0",
+          "lang": "painless"
+        }
+      },
+      "logging": {
+        "level": "info",
+        "text": """
+The following shards are bigger than {{ctx.metadata.threshold_in_bytes}} bytes:
+{{#ctx.payload._doc}}
+Node [{{node}}] Shard #{{shardNumber}} Index [{{indexName}}] Size [{{shardSizeInBytes}}]
+{{/ctx.payload._doc}}
+"""
+      }
+    }
+  },
+  "metadata": {
+    "threshold_in_bytes": 3221225400,
+    "xpack": {
+      "type": "json"
+    }
+  }
+}

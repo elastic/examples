@@ -1,0 +1,23 @@
+# Please:
+## * use version pinning
+## * version pin to a major or minor version but not to a patch version (when possible)
+## * keep things organized and clear (sort alphabetically within each category)
+## * put common dependencies here
+## * use in-notebook `%pip install x` for one-off needs
+
+# core
+jupyterlab==2.1.*
+pip==20.*
+wheel==0.35.*
+
+# non-core
+## misc
+tqdm==4.38.*
+
+## search
+elasticsearch==7.*
+
+## data science
+matplotlib==3.2.*
+scikit-learn==0.23.*
+scikit-optimize==0.8.*

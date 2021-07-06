@@ -1,0 +1,41 @@
+---
+- name: SearchMetricsSimulation
+  title: Search Metrics Simulation
+  group: 2
+  short: Fields to describe details of a search event in this simulation only.
+  description: >
+    The Search Metrics Simulation fields describe information about search
+    request events that are unique just to this simulation. The fields in the
+    Search Metrics group are comparatively general purpose. We use this group
+    instead of `labels` since we'd like to show how to add custom fields for
+    an application, and to show that we can have more than just `keyword`
+    custom fields.
+  type: group
+  fields:
+
+    - name: ab.experiment
+      level: extended
+      type: keyword
+      ignore_above: 256
+      short: An A/B test experiment name.
+      description: >
+        An A/B test experiment name.
+      example: "ranking-experiment_2020-04-30"
+
+    - name: ab.variant
+      level: extended
+      type: keyword
+      ignore_above: 256
+      short: An A/B test experiment variant.
+      description: >
+        An A/B test experiment variant.
+      example: "A"
+
+    - name: page_name
+      level: extended
+      type: keyword
+      ignore_above: 256
+      short: An page name on a hypothetical site.
+      description: >
+        An page name on a hypothetical site.
+      example: "home"

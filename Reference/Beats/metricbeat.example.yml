@@ -1,0 +1,55 @@
+#==================  Modules configuration ==============
+metricbeat.config.modules:
+  path: ${path.config}/modules.d/*.yml
+  reload.enabled: false
+
+#============ Elasticsearch template setting ============
+# Please see these resources to size your cluster and
+# determine the settings that should go here.
+# https://www.elastic.co/elasticon/conf/2016/sf/quantitative-cluster-sizing
+# https://www.elastic.co/webinars/elasticsearch-scaling-best-practices
+# https://www.elastic.co/consulting/design-services
+# https://www.elastic.co/webinars/using-rally-to-get-your-elasticsearch-cluster-size-right
+# https://www.elastic.co/videos/pro-tips-from-elastic-support-engineers
+
+setup.template.settings:
+  index.number_of_shards: 1
+  index.codec: best_compression
+
+#============== Index Lifecycle Management (ILM) =========
+# setup.ilm.check_exists should be set to false in
+# order to limit the privs required by the publish
+# role and to ensure that the ILM policy is not
+# overwritten once customized by the admin
+
+setup.ilm.check_exists: false
+
+#=================== Elastic Cloud ======================
+# You can find the `cloud.id` in the Elastic Cloud web UI.
+# Use the keys entered into the metricbeat keystore
+
+cloud.id: "${CLOUD_ID}"
+cloud.auth: "${ES_USER}:${ES_USER_PASSWORD}"
+
+#====================== Processors =======================
+processors:
+  - add_host_metadata:
+      netinfo.enabled: true
+  - add_cloud_metadata: ~
+  - add_fields:
+      target: ''
+      fields:
+        service.name: 'Online Banking'
+        service.id: 'ob-canada'
+
+#================== Spool to Disk =======================
+queue.spool: ~
+
+#===================== Logging ==========================
+# Available log levels are: error, warning, info, debug
+
+logging.level: error
+
+#==================== Monitoring ======================
+monitoring.enabled: true
+

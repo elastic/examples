@@ -24,16 +24,7 @@ kubectl create clusterrolebinding cluster-admin-binding \
 ```
 
 # Clone the YAML files
-Either clone the entire Elastic examples repo or use the wget commands in download.txt:
-
-```
-mkdir beats-k8s-send-anywhere
-cd beats-k8s-send-anywhere
-wget https://raw.githubusercontent.com/elastic/examples/master/beats-k8s-send-anywhere/download.txt
-sh download.txt
-```
-
-OR
+Clone the Elastic examples repo:
 
 ```
 git clone https://github.com/elastic/examples.git

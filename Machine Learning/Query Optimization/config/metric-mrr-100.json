@@ -1,0 +1,6 @@
+{
+  "mean_reciprocal_rank": {
+    "k": 100,
+    "relevant_rating_threshold": 1
+  }
+}

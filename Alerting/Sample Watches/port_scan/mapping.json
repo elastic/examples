@@ -1,6 +1,5 @@
 {
   "mappings": {
-    "doc": {
       "properties": {
         "source_dest": {
           "type": "keyword"
@@ -15,6 +14,5 @@
           "type":"date"
         }
       }
-    }
   }
 }

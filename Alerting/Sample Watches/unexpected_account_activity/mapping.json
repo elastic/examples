@@ -1,6 +1,5 @@
 {
   "mappings": {
-    "doc": {
       "properties": {
         "event_type": {
           "type": "keyword"
@@ -12,6 +11,5 @@
           "type":"date"
         }
       }
-    }
   }
 }
