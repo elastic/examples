@@ -106,11 +106,11 @@ if __name__ == '__main__':
         time_fields = set([time_fields] if isinstance(time_fields, str) else time_fields)
         for event in test['events']:
             # All offsets are in seconds.
-            event_time = current_data+datetime.timedelta(seconds=int(event['offset'] if 'offset' in event else 0))
+            event_time = current_data+datetime.timedelta(seconds=int(event.get('offset', 0)))
             for time_field in time_fields:
                 time_field = time_field.split('.')
                 set_value_as_default_for_leaf(event, time_field, event_time.strftime('%Y-%m-%dT%H:%M:%S.%fZ'))
-            es.index(index=test['index'], body=event, id=event['id'] if "id" in event else i, params=params)
+            es.index(index=test['index'], body=event, id=event.get('id', i), params=params)
             i += 1
         es.indices.refresh(index=test["index"])
 
