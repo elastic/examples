@@ -21,6 +21,13 @@ from elasticsearch7 import Elasticsearch
 from elasticsearch7.client.ingest import IngestClient
 
 
+def set_value_as_default_for_leaf(nested_dict, path_exp, value):
+    if len(path_exp) == 1:
+        nested_dict.setdefault(path_exp[0], value)
+    elif path_exp[0] in nested_dict:
+        set_value_as_default_for_leaf(nested_dict[path_exp[0]], path_exp[1:], value)
+
+
 def load_file(serialized_file):
     with open(serialized_file, 'r') as serialized_file_fh:
         if serialized_file.endswith('.json'):
@@ -101,7 +108,8 @@ if __name__ == '__main__':
             # All offsets are in seconds.
             event_time = current_data+datetime.timedelta(seconds=int(event['offset'] if 'offset' in event else 0))
             for time_field in time_fields:
-                event.setdefault(time_field, event_time.strftime('%Y-%m-%dT%H:%M:%S.%fZ'))
+                time_field = time_field.split('.')
+                set_value_as_default_for_leaf(event, time_field, event_time.strftime('%Y-%m-%dT%H:%M:%S.%fZ'))
             es.index(index=test['index'], body=event, id=event['id'] if "id" in event else i, params=params)
             i += 1
         es.indices.refresh(index=test["index"])
