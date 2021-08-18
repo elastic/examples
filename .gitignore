@@ -6,6 +6,7 @@ node_modules
 /ElasticStack_nyc_traffic_accidents/nyc_collision_data.csv
 /ElasticStack_twitter/twitter_logstash.conf.local
 *.idea*
+*.iml
 /ElasticStack_usfec/Scripts-Python+Logstash/data/
 /packetbeat_dns_tunnel_detection/dns-tunnel-iodine-timeshifted.pcap
 /dallas_crime_linking_with_graph/
