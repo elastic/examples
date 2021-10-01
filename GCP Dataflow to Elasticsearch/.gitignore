@@ -1,0 +1,4 @@
+# Ignore any terraform specific folder & hidden files
+.terraform*
+# Ignore terraform state and vars
+terraform.tf*
