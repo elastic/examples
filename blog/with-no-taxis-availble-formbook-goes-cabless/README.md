@@ -16,8 +16,8 @@ https://
 Artifacts and code snippets from the blog post.
 
 | Artifact | Description | Note |  
+| - | - | - |
 | 70defbb4b846868ba5c74a526405f2271ab71de01b24fbe2d6db2c7035f8a7df | SHA256        | Request Document.docx | Testing phase email attachment       |
-|------------------------------------------------------------------|---------------|-----------------------|--------------------------------------|
 | 7c98db2063c96082021708472e1afb81f3e54fe6a4a8b8516e22b3746e65433b | SHA256        | comres.cab            | Testing phase CAB archive            |
 | 363837d5c41ea6b2ff6f6184d817c704e0dc5749e45968a3bc4e45ad5cf028d7 | SHA256        | 1.doc.inf             | Testing phase VMProtect DLL          |
 | 22cffbcad42363841d01cc7fef290511c0531aa2b4c9ca33656cc4aef315e723 | SHA256        | IEcache.inf           | Testing phase DLL loader             |
