@@ -1,0 +1,62 @@
+#!venv/bin/python
+
+"""
+Performs a search for each of the specified queries and templates. The output is
+stored for use with TREC evaluation tools.
+"""
+
+import argparse
+import os
+import sys
+
+from elasticsearch import Elasticsearch, helpers
+
+# project library
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from qopt.search import bulk_search
+from qopt.trec import load_queries_as_tuple
+from qopt.util import load_json
+
+DEFAULT_NUM_PROCS = 4
+DEFAULT_TEMPLATE_ID = 'template'
+DEFAULT_URL = 'http://elastic:changeme@localhost:9200'
+
+
+def build_query(query_id, query_string, params):
+    p = params.copy()
+    p['query_string'] = query_string
+    return {
+        'id': query_id,
+        'params': p,
+    }
+
+
+def main():
+    parser = argparse.ArgumentParser(prog='bulk-search')
+    parser.add_argument('--url', default=DEFAULT_URL,
+                        help="An Elasticsearch connection URL, e.g. http://user:secret@localhost:9200")
+    parser.add_argument('--index', required=True, help="The index name to use")
+    parser.add_argument('--name', required=True, help=f"The name of this run")
+    parser.add_argument('--templates', required=True, help="A JSON file containing search templates to use")
+    parser.add_argument('--template-id', default=DEFAULT_TEMPLATE_ID,
+                        help=f"The template ID of the template to use for all requests. Default: {DEFAULT_TEMPLATE_ID}.")
+    parser.add_argument('--queries', required=True,
+                        help="The TREC Topic file with the queries that correspond to the 'qrels' file")
+    parser.add_argument('--params', required=True,
+                        help=f"A file containing the static search template parameters to use")
+    parser.add_argument('--size', required=True, type=int,
+                        help=f"Number of results per request to return and store")
+    parser.add_argument('--output', required=True, help="Output filename")
+    parser.add_argument('--procs', type=int, default=DEFAULT_NUM_PROCS,
+                        help=f"The number of processes to use. Default: {DEFAULT_NUM_PROCS}.")
+    args = parser.parse_args()
+
+    params = load_json(args.params)
+    query_tuples = load_queries_as_tuple(args.queries)
+    queries = [build_query(query_id, query_string, params) for query_id, query_string in query_tuples]
+    bulk_search(args.url, args.procs, args.index, args.name, args.templates,
+                args.template_id, queries, args.output, args.size)
+
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,80 @@
+#!venv/bin/python
+
+"""
+Runs an evaluation using the rank evaluation API and the necessary components of
+that request: metric, templates, requests.
+"""
+
+import argparse
+import json
+import os
+import sys
+
+from elasticsearch import Elasticsearch
+
+# project library
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from qopt.util import Timer, load_json
+from qopt.trec import load_queries_as_tuple, load_qrels
+from qopt.eval import build_requests
+
+DEFAULT_MAX_CONCURRENT_SEARCHES = 10
+DEFAULT_METRIC = os.path.join('config', 'metric-mrr-100.json')
+DEFAULT_TEMPLATE_ID = 'template'
+DEFAULT_URL = 'http://elastic:changeme@localhost:9200'
+
+
+def build_rank_eval_request(index, metric_file, templates_file, template_id, queries_file, qrels_file, params_file):
+    """
+    Builds a rank evaluation API request from the requisite files and arguments.
+    """
+
+    queries = load_queries_as_tuple(queries_file)
+    qrels = load_qrels(qrels_file)
+    params = load_json(params_file)
+
+    return {
+        'metric': load_json(metric_file),
+        'templates': load_json(templates_file),
+        'requests': build_requests(index, template_id, queries, qrels, params),
+    }
+
+
+def main():
+    parser = argparse.ArgumentParser(prog='eval')
+    parser.add_argument('--url', default=DEFAULT_URL,
+                        help="An Elasticsearch connection URL, e.g. http://user:secret@localhost:9200")
+    parser.add_argument('--index', required=True, help="The index name to use")
+    parser.add_argument('--max-concurrent-searches', type=int, default=DEFAULT_MAX_CONCURRENT_SEARCHES,
+                        help=f"The number of concurrent threads to use during search, this is a parameters of the Rank Evaluation API. Default: {DEFAULT_MAX_CONCURRENT_SEARCHES}.")
+    parser.add_argument('--metric', default=DEFAULT_METRIC,
+                        help=f"A JSON file containing the rank eval metric definition. Default: {DEFAULT_METRIC}.")
+    parser.add_argument('--templates', required=True, help="A JSON file containing search templates to use")
+    parser.add_argument('--template-id', default=DEFAULT_TEMPLATE_ID,
+                        help=f"The template ID of the template to use for all requests. Default: {DEFAULT_TEMPLATE_ID}.")
+    parser.add_argument('--queries', required=True,
+                        help="The TREC Topic file with the queries that correspond to the 'qrels' file")
+    parser.add_argument('--qrels', required=True, help="The TREC QRELs file corresponding to the 'queries' file")
+    parser.add_argument('--params', required=True,
+                        help=f"A file containing the static search template parameters to use.")
+    args = parser.parse_args()
+
+    es = Elasticsearch(args.url)
+    body = build_rank_eval_request(args.index, args.metric, args.templates,
+                                   args.template_id, args.queries, args.qrels,
+                                   args.params)
+
+    print("Running evaluation")
+    print(f" - metric: {json.dumps(body['metric'], indent=2)}")
+
+    with Timer() as t:
+        results = es.rank_eval(body=body, index=args.index, request_timeout=1200,
+                               allow_no_indices=False, ignore_unavailable=False,
+                               search_type='dfs_query_then_fetch')
+
+    print(f" - score: {results['metric_score']:.04f}")
+    print(f" - duration: {t.interval_str()}")
+
+
+if __name__ == "__main__":
+    main()
