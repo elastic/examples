@@ -32,6 +32,8 @@ Example has been tested in following versions:
 * X-Pack no longer needs to be installed
      > In versions 6.3 and later, X-Pack is included with the default distributions of Elastic Stack, with all free features enabled by default. (https://www.elastic.co/downloads/x-pack)
 
+* The license needs to be upgraded to use Graph.
+
 * Run Elasticsearch & Kibana - standalone
 
   ```shell
