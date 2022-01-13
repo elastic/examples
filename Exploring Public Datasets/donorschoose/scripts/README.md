@@ -1,8 +1,7 @@
 # Ingest Data using Python scripts
 
 If you want to ingest data into Elasticsearch starting with the raw data files from DonorsChoose.org, follow the instructions below.
-You will need **64GB** of memory to run the ingestion while running ES on a local machine. 
-The ingestion python has been modified to manipulate the data with 8 parallel processes.
+The ingestion python has been modified to manipulate the data with 8 parallel processes. You will need a bunch of memory.
 
 There are two options. 
 1. There is a single script that will do everything .
