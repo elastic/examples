@@ -25,4 +25,4 @@ PUT _ml/anomaly_detectors/abnormal_span_durations_jsbase
 * `high_count_by_user_agent_jsbase.json`: Models the request rate of user agents. Detects user agents that are making requests at a suspiciously high rate. This job is useful in identifying bots.
 
 For more information about anomaly detection and running machine learning jobs,
-refer to [Finding anomalies](https://www.elastic.co/guide/en/machine-learning/master/ml-ad-finding-anomalies.html).
+refer to [Finding anomalies](https://www.elastic.co/guide/en/machine-learning/8.0/ml-ad-finding-anomalies.html).
