@@ -23,4 +23,4 @@ Detects periods during which the application is processing fewer requests than n
 
 
 For more information about anomaly detection and running machine learning jobs,
-refer to [Finding anomalies](https://www.elastic.co/guide/en/machine-learning/master/ml-ad-finding-anomalies.html).
+refer to [Finding anomalies](https://www.elastic.co/guide/en/machine-learning/8.0/ml-ad-finding-anomalies.html).
