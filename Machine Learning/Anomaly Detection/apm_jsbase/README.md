@@ -7,7 +7,7 @@ These jobs are applicable to data from Elastic APM RUM JavaScript Agents (where
 ### Create anomaly detection jobs and datafeeds
 
 Copy the contents of the appropriate *.json file into the
-[create anomaly detection jobs API](https://www.elastic.co/guide/en/elasticsearch/reference/master/ml-put-job.html) in the Kibana Dev Console. For example:
+[create anomaly detection jobs API](https://www.elastic.co/guide/en/elasticsearch/reference/8.0/ml-put-job.html) in the Kibana Dev Console. For example:
 
 ```
 PUT _ml/anomaly_detectors/abnormal_span_durations_jsbase
