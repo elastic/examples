@@ -1,5 +1,8 @@
 # Ingest Data using Python scripts
 
+**The python program uses 34GB of virtual memory when processing the latest data set as of 2022.**
+**You will need at least a 64GB (48GB?) machine to run Docker, Elasticsearch and the Python program.**
+
 If you want to ingest data into Elasticsearch starting with the raw data files from DonorsChoose.org, follow the instructions below.
 The ingestion python has been modified to manipulate the data with 8 parallel processes. You will need a bunch of memory.
 

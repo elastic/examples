@@ -7,10 +7,10 @@ In this example, we will be analyzing the historical donations and projects data
 ##### Version
 
 Example has been tested in following versions:
-- Elasticsearch 6.0
-- Kibana 6.0
+- Elasticsearch 7.8
+- Kibana 7.8
 
-**We recommend atleast 8GB of availble RAM for this example**. The dataset continues to grow and thus the counts indicated might no longer be accurate as of the time of writing - 11/2017.
+**We recommend atleast 8GB of availble RAM for running ElasticSearch for this example**. The dataset continues to grow and thus the counts indicated might no longer be accurate as of the time of writing - 11/2017.
 
 ### Installation & Setup
 

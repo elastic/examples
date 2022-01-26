@@ -100,10 +100,14 @@ print ('Manipulating : {}'.format(indexes))
 # pool size could be 8 the number in of tasks we need
 with Pool(10) as pool:
     our_result = pool.starmap(do_concat_by_index, zip(indexes))
-    
+
+end = perf_counter()
+print(end - start)
+start = perf_counter()
+   
 # move the results from the return list into concat_result
 for one_result in our_result:
-    # print('one result index is {} '.format(one_result[0]))
+    # print('concat results: one result {} '.format(one_result[0]))
     concat_resource[one_result[0]]=one_result[1]
  
 concat_resource['projectid'] = concat_resource.index;

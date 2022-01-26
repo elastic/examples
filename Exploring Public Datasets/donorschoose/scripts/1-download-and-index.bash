@@ -34,6 +34,7 @@ fi
 cd ..
 
 # install require python libraries - assumes pip3 installed
+# sudo apt-get update
 # sudo apt install python3-pip
 # assumes that pip is installed
 echo "Installing Python dependencies"
