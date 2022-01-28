@@ -1,8 +1,5 @@
 # Ingest Data using Python scripts
 
-**The python program uses 34GB of virtual memory when processing the latest data set as of 2022.**
-**You will need at least a 64GB (48GB?) machine to run Docker, Elasticsearch and the Python program.**
-
 If you want to ingest data into Elasticsearch starting with the raw data files from DonorsChoose.org, follow the instructions below.
 The ingestion python has been modified to manipulate the data with 8 parallel processes. You will need a bunch of memory.
 
@@ -38,6 +35,12 @@ The DonorsChoose.org provide ~ decade's worth of donations, projects, resources,
 Copy the downloaded files to a sub-folder called `data` - no need to decompress. The `donorschoose_process_data.py` is configured to read `opendata_resources000.gz`, `opendata_donations000.gz` and `opendata_projects000.gz` from the `data` folder. If you saved the data files to a different folder, be sure to modify the path in the Python script.
 
 ## Run the imports
+### Verify memory requirements
+
+**The python program uses 60GB when processing the latest data set as of 2022/01.**
+* You will need at least a 64GB machine to run Docker, Elasticsearch and the Python program.
+* If running WSL2 then you need 64GB available to the Linux subsytem. You can use the `free -m` command to see your configuration
+
 ### Setup Python Environment
 
 Requires Python 3.  Install dependencies with pip i.e. `pip install -r requirements.txt`
@@ -51,6 +54,12 @@ Run `donorschoose_process_data.py` (requires Python 3). When the script is done 
 NOTE:
 - It might take ~ 30 minutes for this step. 
 - We have also included a iPython Notebook version of the script `donorschoose_process_data.ipynb` in case you prefer running in a cell-by-cell mode.
+
+#### Troubleshooting
+If the python program dies you can try this command to see if it ran out of memory
+```
+ dmesg -T| grep -E -i -B100 'killed process'
+ ```
 
 ## 4. Check if data is available in Elasticsearch
 

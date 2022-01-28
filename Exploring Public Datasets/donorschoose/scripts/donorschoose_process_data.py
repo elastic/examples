@@ -1,6 +1,7 @@
 # coding: utf-8
 
 ### Import Packages
+import gc
 import pandas as pd
 import numpy as np
 import elasticsearch
@@ -16,6 +17,7 @@ from elasticsearch import Elasticsearch
 
 # Define elasticsearch class
 es = elasticsearch.Elasticsearch()
+num_workers = 8
 
 ### Hfelper Functions
 # convert np.int64 into int. json.dumps does not work with int64
@@ -97,8 +99,8 @@ def do_concat_by_index(index):
 
 indexes = resources.columns.values
 print ('Manipulating : {}'.format(indexes))
-# pool size could be 8 the number in of tasks we need
-with Pool(10) as pool:
+# we have 8 items to process
+with Pool(num_workers) as pool:
     our_result = pool.starmap(do_concat_by_index, zip(indexes))
 
 end = perf_counter()
@@ -139,6 +141,10 @@ data = pd.merge(donations, data, how='left', right_on='projectid', left_on='proj
 data = data.fillna('')
 end = perf_counter()
 print(end - start)
+del projects
+del concat_resource
+del donations
+gc.collect()
 
 #### Process columns
 # Modify date formats
@@ -160,14 +166,15 @@ def do_date_fix(some_data):
     del(some_data['project_school_longitude']) # delete longitude
     return some_data
 
-num_workers = 8
 data_split = np.array_split(data,num_workers)
 with Pool(num_workers) as pool:
     fixed_dates = pool.map(do_date_fix,data_split)
+print("Concat splits")
 data = pd.concat(fixed_dates)
-
 end = perf_counter()
 print(end - start)
+del data_split
+gc.collect()
 
 
 ### Create and configure Elasticsearch index
