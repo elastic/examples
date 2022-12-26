@@ -61,7 +61,7 @@ Download the following files in this repo to a local directory:
 - `ncedc-earthquakes-pipeline.json` - ingest pipeline for processing documents produced by Filebeat
 - `ncedc-earthquakes-dashboards.json` - config file to load prebuilt creating Kibana dashboard
 
-Unfortunately, Github does not provide a convenient one-click option to download entire contents of a subfolder in a repo. You can either (a) [download](https://github.com/elastic/examples/archive/master.zip) or [clone](https://github.com/elastic/examples.git) the entire examples repo and navigate to `Exploring Public Datasets/nyc_traffic_accidents` subfolder, or (b) individually download the above files. The code below makes option (b) a little easier:
+Unfortunately, Github does not provide a convenient one-click option to download entire contents of a subfolder in a repo. You can either (a) [download](https://github.com/elastic/examples/archive/master.zip) or [clone](https://github.com/elastic/examples.git) the entire examples repo and navigate to `Exploring Public Datasets/earthquakes` subfolder, or (b) individually download the above files. The code below makes option (b) a little easier:
     
 ```shell
 wget https://raw.githubusercontent.com/elastic/examples/master/Exploring%20Public%20Datasets/earthquakes/ncedc-earthquakes-dataset.tar.gz
