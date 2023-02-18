@@ -1,0 +1,220 @@
+
+#transforms to create super-alerts correlated by hostname using a non-linar join and preserving key fields from the original alert set
+
+# Index to use for outputing super-alerts - edit/use as needed 
+PUT /rule_corr_index_host_name
+
+# All transform stuff from here 
+POST _scripts/init_script_host_name
+{
+  "script": {
+    "lang": "painless",
+    "source": """
+    
+    state.rule_info = new HashMap();
+    
+    """
+  }
+}
+
+#create the map script
+POST _scripts/map_script_host_name
+{
+  "script": {
+    "lang": "painless",
+    "source": """
+    
+    Map current_info = new HashMap();
+    
+    if (doc.containsKey("kibana.alert.rule.name") && doc["kibana.alert.rule.name"].size() != 0) {
+      current_info.put("rule_names", doc["kibana.alert.rule.name"].value);
+    }
+    
+    if (doc.containsKey("host.id") && doc["host.id"].size() != 0) {
+      current_info.put("host_ids", doc["host.id"].value);
+    }
+    
+    if (doc.containsKey("host.name") && doc["host.name"].size() != 0) {
+      current_info.put("host_names", doc["host.name"].value);
+    }
+    
+    if (doc.containsKey("host.os.Ext.variant") && doc["host.os.Ext.variant"].size() != 0) {
+      current_info.put("host_variants", doc["host.os.Ext.variant"].value);
+    }
+    
+    if (doc.containsKey("host.os.family") && doc["host.os.family"].size() != 0) {
+      current_info.put("host_families", doc["host.os.family"].value);
+    }
+    
+    if (doc.containsKey("host.os.full") && doc["host.os.full"].size() != 0) {
+      current_info.put("host_os_full", doc["host.os.full"].value);
+    }
+
+    if (doc.containsKey("kibana.alert.rule.tags") && doc["kibana.alert.rule.tags"].size() != 0) {
+      current_info.put("rule_tags", doc["kibana.alert.rule.tags"].value);
+    }
+    
+    if (doc.containsKey("kibana.alert.original_event.action") && doc["kibana.alert.original_event.action"].size() != 0) {
+      current_info.put("original_event_actions", doc["kibana.alert.original_event.action"].value);
+    }
+    
+    if (doc.containsKey("kibana.alert.original_event.category") && doc["kibana.alert.original_event.category"].size() != 0) {
+      current_info.put("original_event_categories", doc["kibana.alert.original_event.category"].value);
+    }
+    
+    if (doc.containsKey("kibana.alert.original_event.outcome") && doc["kibana.alert.original_event.outcome"].size() != 0) {
+      current_info.put("original_event_outcomes", doc["kibana.alert.original_event.outcome"].value);
+    }
+    
+    if (doc.containsKey("kibana.alert.rule.threat.tactic.name") && doc["kibana.alert.rule.threat.tactic.name"].size() != 0) {
+      current_info.put("rule_threat_tactic_names", doc["kibana.alert.rule.threat.tactic.name"].value);
+    }
+    
+    if (doc.containsKey("kibana.alert.original_event.type") && doc["kibana.alert.original_event.type"].size() != 0) {
+      current_info.put("original_event_types", doc["kibana.alert.original_event.type"].value);
+    }
+    
+    if (doc.containsKey("kibana.alert.rule.threat.technique.name") && doc["kibana.alert.rule.threat.technique.name"].size() != 0) {
+      current_info.put("rule_threat_technique_names", doc["kibana.alert.rule.threat.technique.name"].value);
+    }
+    
+    if (doc.containsKey("kibana.alert.rule.threat.technique.subtechnique.name") && doc["kibana.alert.rule.threat.technique.subtechnique.name"].size() != 0) {
+      current_info.put("rule_threat_subtechnique_names", doc["kibana.alert.rule.threat.technique.subtechnique.name"].value);
+    }
+    
+    if (doc.containsKey("kibana.alert.severity") && doc["kibana.alert.severity"].size() != 0) {
+      current_info.put("kibana_alert_severities", doc["kibana.alert.severity"].value);
+    }
+    
+    if (doc.containsKey("process.name") && doc["process.name"].size() != 0) {
+      current_info.put("process_names", doc["process.name"].value);
+    }
+    
+    if (doc.containsKey("user.name") && doc["user.name"].size() != 0) {
+      current_info.put("user_names", doc["user.name"].value);
+    }
+    
+    if (doc.containsKey("winlog.event_data.User") && doc["winlog.event_data.User"].size() != 0) {
+      current_info.put("rule_names", doc["winlog.event_data.User"].value);
+    }
+    
+    for (key in current_info.keySet()) {
+      if (state.rule_info.containsKey(key)) {
+        if (current_info.get(key) != null) {
+          def updated_info = state.rule_info.get(key);
+          def current_val = current_info.get(key);
+          updated_info.add(current_val);
+          state.rule_info.put(key, updated_info);
+        }
+      }
+      else {
+        if (current_info.get(key) != null) {
+          def current_val = current_info.get(key);
+          def info_list = new HashSet();
+          info_list.add(current_val);
+          state.rule_info.put(key, info_list);
+        }
+      }
+    }
+
+    
+
+    """
+  }
+}
+
+#create the reduce script
+POST _scripts/reduce_script_host_name
+{
+  "script": {
+    "lang": "painless",
+    "source": """
+    
+    Map total_rule_info = new HashMap();
+    
+    for (state in states) {
+      if (state.rule_info != null) {
+        for (key in state.rule_info.keySet()) {
+          if (total_rule_info.containsKey(key)) {
+            def updated_info = total_rule_info.get(key);
+            def add_info = state.rule_info.get(key);
+            updated_info.add(add_info);
+            total_rule_info.put(key, updated_info);
+          }
+          else {
+            if (state.rule_info.get(key) != null) {
+              total_rule_info.put(key, state.rule_info.get(key));
+            }
+          }
+        }
+      }
+    }
+    
+    return ["rules": total_rule_info];
+    
+    """
+  }
+}
+
+#create the transform
+PUT _transform/test_transform_host_name
+{
+  "source": {
+    "index": [
+      ".siem-signals*"
+    ],
+    "query": {
+      "bool": {
+        "filter": [
+          {
+            "range": {
+              "@timestamp": {
+                "gte": "now-180d"
+              }
+            }
+          },
+          {
+            "match": {
+              "signal.status": "open"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "dest": {
+    "index": "rule_corr_index_host_name"
+  },
+  "frequency": "1h",
+  "sync": {
+    "time": {
+      "field": "@timestamp",
+      "delay": "120s"
+    }
+  },
+  "pivot": {
+    "group_by": {
+      "host.name": {
+        "terms": {
+          "field": "host.name"
+        }
+      }
+    },
+    "aggregations": {
+      "@timestamp": {
+        "max": {
+          "field": "@timestamp"
+        }
+      },
+      "rule_stats": {
+        "scripted_metric": {
+          "params": {},
+          "init_script": {"id": "init_script_host_name"},
+          "map_script": {"id": "map_script_host_name"},
+          "combine_script": "return state",
+          "reduce_script": {"id": "reduce_script_host_name"}
+        }
+      }
+    }
+  }
+}
