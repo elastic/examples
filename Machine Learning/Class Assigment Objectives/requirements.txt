@@ -4,6 +4,6 @@ jupyter==1.0.0
 matplotlib==3.3.4
 numpy==1.19.5
 pandas==1.1.5
-requests==2.25.1
+requests==2.31.0
 scikit-learn==0.24.1
 seaborn==0.11.1
