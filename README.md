@@ -88,6 +88,7 @@ Alerting lets you set up watches (or rules) to detect and alert on changes in yo
 - [DNS Tunnel Detection](https://github.com/elastic/examples/tree/master/Security%20Analytics/dns_tunnel_detection)
 - [Malware Analysis](https://github.com/elastic/examples/tree/master/Security%20Analytics/malware_analysis)	
 - [SSH Analysis](https://github.com/elastic/examples/tree/master/Security%20Analytics/ssh_analysis)
+- [Elastic SIEM at Home](https://github.com/elastic/examples/tree/master/Security%20Analytics/SIEM-at-Home)
 
 
 #### Miscellaneous
