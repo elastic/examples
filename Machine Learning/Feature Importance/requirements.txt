@@ -10,7 +10,7 @@ plotly==4.4.1
 seaborn==0.10.0
 widgetsnbextension==3.5.1
 xgboost==0.90
-requests==2.22.0
+requests==2.31.0
 elasticsearch==7.5.1
 eland==7.5.1a3
 pandas==0.25.3
