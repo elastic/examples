@@ -39,7 +39,7 @@ pyrsistent==0.15.6
 python-dateutil==2.8.1
 pyzmq==18.1.1
 qtconsole==4.6.0
-requests==2.22.0
+requests==2.31.0
 Send2Trash==1.5.0
 six==1.13.0
 terminado==0.8.3
