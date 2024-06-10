@@ -4,7 +4,7 @@ This example demonstrates how to analyze & visualize New York City traffic incid
 
 Feel free to read the [#byodemos: New York city traffic incidents](https://www.elastic.co/blog/byodemos-new-york-city-traffic-incidents) blog post for additional commentary on this analysis. A couple of notes on the blog. The screenshots in the blog post were created with an older version of Kibana. So, don't be alarmed if your Kibana UI looks a little different. Secondly, the good folks at [NYC Open Data](https://data.cityofnewyork.us/) are great at updating their dataset with latest information. So the visualization and metrics that you see might not match the ones highlighted in the blog post. But, that is the fun part of exploring a living & dynamic dataset, isn't it? 
 
-This example originally used Logstash for data ingestion. Per Elastic best practicers, it has been updated to use Filebeat and Ingest Node. The Logstash configuration is provided for reference only.
+This example originally used Logstash for data ingestion. Per Elastic best practices, it has been updated to use Filebeat and Ingest Node. The Logstash configuration is provided for reference only.
 
 ##### Version
 
