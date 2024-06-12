@@ -1,0 +1,66 @@
+{
+  "metadata": {
+    "window_secs": 1800,
+    "number_of_master_nodes_threshold" : 1
+  },
+  "trigger": {
+    "schedule": {
+      "interval": "30m"
+    }
+  },
+  "input": {
+    "search": {
+      "request": {
+        "search_type": "query_then_fetch",
+        "indices": [
+          ".monitoring-es-6-*"
+        ],
+        "types": ["doc"],
+        "body": {
+          "size": 0,
+          "query": {
+            "bool": {
+              "filter": {
+                "range": {
+                  "timestamp": {
+                    "gte": "now-{{ctx.metadata.window_secs}}s"
+                  }
+                }
+              }
+            }
+          },
+          "aggs": {
+            "master_nodes_by_cluster_id": {
+              "terms": {
+                "field": "cluster_uuid",
+                "size": 10
+              },
+              "aggs": {
+                "master_nodes": {
+                  "terms": {
+                    "field": "cluster_state.master_node",
+                    "size": 10
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "condition": {
+    "script": {
+      "source": "def clusters = new HashMap(); ctx.vars.clusters_over_threshold = new HashMap(); for (cluster_bucket in ctx.payload.aggregations.master_nodes_by_cluster_id.buckets) { if (!clusters.containsKey(cluster_bucket.key)) { clusters.put(cluster_bucket.key, new HashSet()); } for (master_bucket in cluster_bucket.master_nodes.buckets) { clusters[cluster_bucket.key].add(master_bucket.key) } if (clusters[cluster_bucket.key].size() > ctx.metadata.number_of_master_nodes_threshold) { ctx.vars.clusters_over_threshold.put(cluster_bucket.key, clusters[cluster_bucket.key]); }} if (ctx.vars.clusters_over_threshold.size() > 0) { return true; } return false;",
+      "lang": "painless"
+    }
+  },
+  "actions": {
+    "my-logging-action": {
+      "logging": {
+        "level": "info",
+        "text": "There were clusters that had master nodes greater than the threshold of 1 in the past 30m. The cluster and master nodes for each were: {{ctx.vars.clusters_over_threshold}}"
+      }
+    }
+  }
+}
