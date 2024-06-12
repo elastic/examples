@@ -87,7 +87,7 @@ wget https://raw.githubusercontent.com/elastic/examples/master/Exploring%20Publi
     curl -XPUT -H 'Content-Type: application/json' 'localhost:9200/_template/ncedc-earthquakes' -d @ncedc-earthquakes-template.json
     ```
 
-1. Modify the `ncedc-earthquakes-filebeat.conf` file as follows:
+1. Modify the `ncedc-earthquakes-filebeat.yml` file as follows:
 
     * The parameter `hosts: ["localhost:9200"]` in case your are not running Elasticsearch node on your local host
     * The files path to each of the data files extracted above i.e.
