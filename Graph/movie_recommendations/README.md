@@ -1,7 +1,7 @@
 ## Using Graph to Analyze Movie Ratings to Produce Recommendations
 
 This example demonstrates how to use the Elastic Stack to analyze entity centric data for the purpose of producing recommendations - specifically the Graph plugin is used to produce recommendations for movie ratings. 
-This dataset is provided with the permission of GroupLens Research and originates from data collected by [MovieLens](https://movielens.org) .  Further license details can be found [here](http://files.grouplens.org/datasets/movielens/ml-20m-README.html). 
+This dataset is provided with the permission of GroupLens Research and originates from data collected by [MovieLens](https://movielens.org) .  Further license details can be found [here](http://files.grouplens.org/datasets/movielens/ml-25m-README.html). 
 
 This dataset provides the following:
 
@@ -14,43 +14,52 @@ This structure allows Graph to explore the connections in data using the relevan
 The demo aims to provide movie suggestions based on a user liking existing films. Rather than simply suggest movies which are universally popular e.g. Star Wars, and thus represent super connections, 
 Graph aims to identify those films which are relevant to the user based on their previous preferences by exploiting the "wisdom of crowds" properties within the data set i.e. User A liked the Film "Rocky". Other users who liked "Rocky" also statistically liked "Rambo".
 
-### Versions and Pre-requisites
+## Versions and Pre-requisites
 
 Example has been tested in following versions:
 
-- Elasticsearch 5.0
-- X-Pack 5.0
-- Kibana 5.0
+- Elasticsearch 7.8
+- Kibana 7.8
+- ~~X-Pack 5.0~~
 - Python 3.x
 
-### Installation & Setup
+------------------
+
+## Installation & Setup
 
 * Follow the [Installation & Setup Guide](https://github.com/elastic/examples/blob/master/Installation%20and%20Setup.md) to install and test the elastic stack (*you can skip this step if you already have a working installation of the Elastic stack*)
 
-* Install the X-Pack in Kibana and Elasticsearch 
+* X-Pack no longer needs to be installed
+     > In versions 6.3 and later, X-Pack is included with the default distributions of Elastic Stack, with all free features enabled by default. (https://www.elastic.co/downloads/x-pack)
 
-  ```shell
-  <path_to_elasticsearch_root_dir>/elasticsearch-plugin install x-pack
-  <path_to_kibana_root_dir>/bin/kibana-plugin install x-pack
-  ```
+* The license needs to be upgraded to use Graph.
 
-* Run Elasticsearch & Kibana
+* Run Elasticsearch & Kibana - standalone
 
   ```shell
   <path_to_elasticsearch_root_dir>/bin/elasticsearch
   <path_to_kibana_root_dir>/bin/kibana
   ```
 
+* Run Elasticsearch and Kibana in Docker with docker-compose.
+This project has a docker-compose.yml you can leverage.
+```
+    docker-compose up
+```
 
 The following assumes the default username and password of "elastic" and "changeme".  These can be changed as detailed [here](https://www.elastic.co/guide/en/shield/current/native-realm.html).  If changed, ensure the Python Script file is updated accordingly to permit ingestion.
 
 * Check that Elasticsearch and Kibana are up and running.
-  - Open `localhost:9200` in web browser and authenticate with "elastic" and "changeme" -- should return status code 200
-  - Open `localhost:5601` in web browser -- should display Kibana UI.
+  - **Elasticsearch** http://localhost:9200 
+    - in web browser and authenticate with "elastic" and "changeme" -- should return status code 200
+  - **Kibana** http://localhost:5601 
+    - in web browser -- should display Kibana UI.
 
   **Note:** By default, Elasticsearch runs on port 9200, and Kibana run on ports 5601. If you changed the default ports, change   the above calls to use appropriate ports.
 
-### Download & Ingest Data
+------------------
+
+## Download & Ingest Data
  
   The following details the required steps:
   
@@ -66,7 +75,7 @@ The following assumes the default username and password of "elastic" and "change
 
     Requires Python 3.  Install dependencies with pip i.e. `pip install -r requirements.txt`
     
-3. Download the raw data from the [grouplens](http://grouplens.org/datasets/movielens/) website either [manually](http://files.grouplens.org/datasets/movielens/ml-20m.zip) or using the script `download_data.py`.  The script automatically extracts the zip into a sub folder `./data`.  The subsequent indexing
+3. Download the raw data from the [grouplens](http://grouplens.org/datasets/movielens/) website either [manually](http://files.grouplens.org/datasets/movielens/ml-25m.zip) or using the script `download_data.py`.  The script automatically extracts the zip into a sub folder `./data`.  The subsequent indexing
    script relies on this structure, so replicate if downloading the file manually.
 
     ```
@@ -80,23 +89,34 @@ The following assumes the default username and password of "elastic" and "change
       python3 index_users.py
     ```
    
-5. Check data availability. Once the index is indexed you can check to see if all the data is available in Elasticsearch. You should get a `count` of `138493` when you run the following command (assumes default user).
+5. Check data availability. Once the index is indexed you can check to see if all the data is available in Elasticsearch. You should get a `count` of `162541` when you run the following command (assumes default user).
 
     ```shell
-    curl -XGET localhost:9200/movie_lens_users/_count -d '{"query": {"match_all": {}}}' -u elastic:changeme
+    curl -X GET localhost:9200/movie_lens_users/_count -u elastic:changeme
     ```
 
-### Configure Kibana for Index
+------------------
+
+## Configure Kibana for the Movie Lens Users Index
   
   * Access Kibana by going to `http://localhost:5601` in a web browser
   * Connect Kibana to the `movie_lens_users` index in Elasticsearch
-      * Click the **Management** tab >> **Index Patterns** tab >> **Create New**. Specify `movie_lens_users` as the index pattern name, ensuring **Index contains time-based events** is **not** selected, and click **Create** to define the index pattern.
+      * Click the **Management** tab >> **Kibana** >> **Dashboard** >> **Index Patterns** tab >> **Create New**. 
+      * **I don't want a time filter**
+      * Specify `movie_lens_users` as the index pattern name, ensuring **Index contains time-based events** is **not** selected, and click **Create** to define the index pattern.
   * Open graph
       * Click on **Graph** tab.
+        * Graph is a platinum feature.  You may have to enable a 30 day trial license if you do not have a platinum license
+        * **Elasticsearch mangement** >> **License Management** >> **enable trial*
       
-### Explore Recommendations
+------------------
+
+## Explore Recommendations
     
-   * Select index `movie_lens_users` in the upper left. 
+   * Create your first graph **Create Graph** 
+   * click on `Select a data source`
+   * select `movie_lens_users`
+   * select `Add Fields`
    * Add the field `liked` as graph nodes using the (+) icon.  Select an appropriate icon/colour for the node types. 
    * Search for a movie e.g. `Rocky`. Expand nodes to see recommendations for each film.  Try turning off **Settings** >> **Significant Links** to see the impact on recommendations.
 
@@ -104,7 +124,7 @@ The following illustrates a search for `Rocky`, using default Graph settings,mov
 
   ![Graph Screenshot](https://cloud.githubusercontent.com/assets/12695796/20490466/072dea1a-b006-11e6-924d-d4f7c55a5aa5.jpg)
 
-### Data Insights - Structure, Challenges and Areas for Exploration
+# Data Insights - Structure, Challenges and Areas for Exploration
 
 ## Structure
 In addition to the field "liked", the script produces a list of complementary fields including:

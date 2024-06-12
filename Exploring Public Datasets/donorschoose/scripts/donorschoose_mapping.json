@@ -1,97 +1,211 @@
 {
- "donation": {
-    "properties": {
-       "cartid": {
-          "type": "keyword"
-       },
-       "donor_acctid": {
-          "type": "keyword"
-       },
-       "projectid": {
-          "type": "keyword"
-       },
-       "dollar_amount": {
-          "type": "keyword"
-       },
-       "donation_included_optional_support": {
-          "type": "keyword"
-       },
-       "donation_message": {
-          "type": "text"
-       },
-       "donation_optional_support": {
-          "type": "double"
-       },
-       "donation_timestamp": {
-          "type": "date",
-          "format": "dateOptionalTime"
-       },
-       "donation_to_project": {
-          "type": "double"
-       },
-       "donation_total": {
-          "type": "double"
-       },
-       "donor_city": {
-          "type": "keyword"
-       },
-       "donor_state": {
-          "type": "keyword"
-       },
-       "donor_zip": {
-          "type": "keyword"
-       },
-       "for_honoree": {
-          "type": "keyword"
-       },
-       "is_teacher_acct": {
-          "type": "keyword"
-       },
-       "payment_included_acct_credit": {
-          "type": "keyword"
-       },
-       "payment_included_campaign_gift_card": {
-          "type": "keyword"
-       },
-       "payment_included_web_purchased_gift_card": {
-          "type": "keyword"
-       },
-       "payment_method": {
-          "type": "keyword"
-       },
-       "payment_was_promo_matched": {
-          "type": "keyword"
-       },
-       "resourceid": {
-          "type": "text"
-       },
-       "resource_item_name": {
-          "type": "keyword"
-       },
-       "resource_item_number": {
-          "type": "text"
-       },
-       "resource_item_quantity": {
-          "type": "float"
-        },
-        "resource_item_unit_price": {
-            "type": "float"
-        },
-        "resource_vendor_name": {
-            "type": "keyword"
-        },
-        "resource_vendorid": {
+   "donation": {
+      "properties": {
+         "cartid": {
+            "type": "text",
+            "fields": {
+               "keyword": {
+                  "type": "keyword",
+                  "ignore_above": 256
+               }
+            }
+         },
+         "donor_acctid": {
+            "type": "text",
+            "fields": {
+               "keyword": {
+                  "type": "keyword",
+                  "ignore_above": 256
+               }
+            }
+         },
+         "projectid": {
+            "type": "text",
+            "fields": {
+               "keyword": {
+                  "type": "keyword",
+                  "ignore_above": 256
+               }
+            }
+         },
+         "dollar_amount": {
+            "type": "text",
+            "fields": {
+               "keyword": {
+                  "type": "keyword",
+                  "ignore_above": 256
+               }
+            }
+         },
+         "donation_included_optional_support": {
+            "type": "text",
+            "fields": {
+               "keyword": {
+                  "type": "keyword",
+                  "ignore_above": 256
+               }
+            }
+         },
+         "donation_message": {
             "type": "text"
-        },
+         },
+         "donation_optional_support": {
+            "type": "double"
+         },
+         "donation_timestamp": {
+            "type": "date",
+            "format": "dateOptionalTime"
+         },
+         "donation_to_project": {
+            "type": "double"
+         },
+         "donation_total": {
+            "type": "double"
+         },
+         "donor_city": {
+            "type": "text",
+            "fields": {
+               "keyword": {
+                  "type": "keyword",
+                  "ignore_above": 256
+               }
+            }
+         },
+         "donor_state": {
+            "type": "text",
+            "fields": {
+               "keyword": {
+                  "type": "keyword",
+                  "ignore_above": 256
+               }
+            }
+         },
+         "donor_zip": {
+            "type": "text",
+            "fields": {
+               "keyword": {
+                  "type": "keyword",
+                  "ignore_above": 256
+               }
+            }
+         },
+         "for_honoree": {
+            "type": "text",
+            "fields": {
+               "keyword": {
+                  "type": "keyword",
+                  "ignore_above": 256
+               }
+            }
+         },
+         "is_teacher_acct": {
+            "type": "text",
+            "fields": {
+               "keyword": {
+                  "type": "keyword",
+                  "ignore_above": 256
+               }
+            }
+         },
+         "payment_included_acct_credit": {
+            "type": "text",
+            "fields": {
+               "keyword": {
+                  "type": "keyword",
+                  "ignore_above": 256
+               }
+            }
+         },
+         "payment_included_campaign_gift_card": {
+            "type": "text",
+            "fields": {
+               "keyword": {
+                  "type": "keyword",
+                  "ignore_above": 256
+               }
+            }
+         },
+         "payment_included_web_purchased_gift_card": {
+            "type": "text",
+            "fields": {
+               "keyword": {
+                  "type": "keyword",
+                  "ignore_above": 256
+               }
+            }
+         },
+         "payment_method": {
+            "type": "text",
+            "fields": {
+               "keyword": {
+                  "type": "keyword",
+                  "ignore_above": 256
+               }
+            }
+         },
+         "payment_was_promo_matched": {
+            "type": "text",
+            "fields": {
+               "keyword": {
+                  "type": "keyword",
+                  "ignore_above": 256
+               }
+            }
+         },
+         "resourceid": {
+            "type": "text"
+         },
+         "resource_item_name": {
+            "type": "text",
+            "fields": {
+               "keyword": {
+                  "type": "keyword",
+                  "ignore_above": 256
+               }
+            }
+         },
+         "resource_item_number": {
+            "type": "text"
+         },
+         "resource_item_quantity": {
+            "type": "float"
+         },
+         "resource_item_unit_price": {
+            "type": "float"
+         },
+         "resource_vendor_name": {
+            "type": "text",
+            "fields": {
+               "keyword": {
+                  "type": "keyword",
+                  "ignore_above": 256
+               }
+            }
+         },
+         "resource_vendorid": {
+            "type": "text"
+         },
          "project_schoolid": {
-            "type": "keyword"
+            "type": "text",
+            "fields": {
+               "keyword": {
+                  "type": "keyword",
+                  "ignore_above": 256
+               }
+            }
          },
          "project_teacher_acctid": {
-            "type": "keyword"
+            "type": "text",
+            "fields": {
+               "keyword": {
+                  "type": "keyword",
+                  "ignore_above": 256
+               }
+            }
          },
          "project_date_completed": {
-           "type": "date",
-           "format": "dateOptionalTime"
+            "type": "date",
+            "format": "dateOptionalTime"
          },
          "project_date_expiration": {
             "type": "date",
@@ -102,14 +216,26 @@
             "format": "dateOptionalTime"
          },
          "project_date_thank_you_packet_mailed": {
-           "type": "date",
-           "format": "dateOptionalTime"
+            "type": "date",
+            "format": "dateOptionalTime"
          },
          "project_eligible_almost_home_match": {
-            "type": "keyword"
+            "type": "text",
+            "fields": {
+               "keyword": {
+                  "type": "keyword",
+                  "ignore_above": 256
+               }
+            }
          },
          "project_eligible_double_your_impact_match": {
-            "type": "keyword"
+            "type": "text",
+            "fields": {
+               "keyword": {
+                  "type": "keyword",
+                  "ignore_above": 256
+               }
+            }
          },
          "project_fulfillment_labor_materials": {
             "type": "double"
@@ -118,7 +244,13 @@
             "type": "text"
          },
          "project_grade_level": {
-            "type": "keyword"
+            "type": "text",
+            "fields": {
+               "keyword": {
+                  "type": "keyword",
+                  "ignore_above": 256
+               }
+            }
          },
          "project_location": {
             "type": "geo_point"
@@ -130,16 +262,40 @@
             "type": "double"
          },
          "project_poverty_level": {
-            "type": "keyword"
+            "type": "text",
+            "fields": {
+               "keyword": {
+                  "type": "keyword",
+                  "ignore_above": 256
+               }
+            }
          },
          "project_primary_focus_area": {
-            "type": "keyword"
+            "type": "text",
+            "fields": {
+               "keyword": {
+                  "type": "keyword",
+                  "ignore_above": 256
+               }
+            }
          },
          "project_primary_focus_subject": {
-            "type": "keyword"
+            "type": "text",
+            "fields": {
+               "keyword": {
+                  "type": "keyword",
+                  "ignore_above": 256
+               }
+            }
          },
          "project_resource_type": {
-            "type": "keyword"
+            "type": "text",
+            "fields": {
+               "keyword": {
+                  "type": "keyword",
+                  "ignore_above": 256
+               }
+            }
          },
          "project_sales_tax": {
             "type": "double"
@@ -151,22 +307,52 @@
             "type": "text"
          },
          "project_school_city": {
-            "type": "keyword"
+            "type": "text",
+            "fields": {
+               "keyword": {
+                  "type": "keyword",
+                  "ignore_above": 256
+               }
+            }
          },
          "project_school_county": {
-            "type": "keyword"
+            "type": "text",
+            "fields": {
+               "keyword": {
+                  "type": "keyword",
+                  "ignore_above": 256
+               }
+            }
          },
          "project_school_district": {
-            "type": "keyword"
+            "type": "text",
+            "fields": {
+               "keyword": {
+                  "type": "keyword",
+                  "ignore_above": 256
+               }
+            }
          },
          "project_school_kipp": {
-            "type": "keyword"
+            "type": "text",
+            "fields": {
+               "keyword": {
+                  "type": "keyword",
+                  "ignore_above": 256
+               }
+            }
          },
          "project_school_magnet": {
             "type": "text"
          },
          "project_school_metro": {
-            "type": "keyword"
+            "type": "text",
+            "fields": {
+               "keyword": {
+                  "type": "keyword",
+                  "ignore_above": 256
+               }
+            }
          },
          "project_school_ncesid": {
             "type": "double"
@@ -175,7 +361,13 @@
             "type": "text"
          },
          "project_school_state": {
-            "type": "keyword"
+            "type": "text",
+            "fields": {
+               "keyword": {
+                  "type": "keyword",
+                  "ignore_above": 256
+               }
+            }
          },
          "project_school_year_round": {
             "type": "text"
@@ -184,22 +376,52 @@
             "type": "double"
          },
          "project_secondary_focus_area": {
-            "type": "keyword"
+            "type": "text",
+            "fields": {
+               "keyword": {
+                  "type": "keyword",
+                  "ignore_above": 256
+               }
+            }
          },
          "project_secondary_focus_subject": {
-            "type": "keyword"
+            "type": "text",
+            "fields": {
+               "keyword": {
+                  "type": "keyword",
+                  "ignore_above": 256
+               }
+            }
          },
          "project_students_reached": {
             "type": "double"
          },
          "project_teacher_ny_teaching_fellow": {
-            "type": "keyword"
+            "type": "text",
+            "fields": {
+               "keyword": {
+                  "type": "keyword",
+                  "ignore_above": 256
+               }
+            }
          },
          "project_teacher_prefix": {
-            "type": "keyword"
+            "type": "text",
+            "fields": {
+               "keyword": {
+                  "type": "keyword",
+                  "ignore_above": 256
+               }
+            }
          },
          "project_teacher_teach_for_america": {
-            "type": "keyword"
+            "type": "text",
+            "fields": {
+               "keyword": {
+                  "type": "keyword",
+                  "ignore_above": 256
+               }
+            }
          },
          "project_total_donations": {
             "type": "double"
@@ -212,10 +434,16 @@
          },
          "project_vendor_shipping_charges": {
             "type": "double"
-       },
-        "via_giving_page": {
-          "type": "keyword"
-       }
-    }
- }
+         },
+         "via_giving_page": {
+            "type": "text",
+            "fields": {
+               "keyword": {
+                  "type": "keyword",
+                  "ignore_above": 256
+               }
+            }
+         }
+      }
+   }
 }

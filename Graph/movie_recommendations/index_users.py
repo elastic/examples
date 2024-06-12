@@ -2,21 +2,21 @@ import csv
 from collections import deque
 import elasticsearch
 from elasticsearch import helpers
+import json
 
 #Change if not using default credentials
 es = elasticsearch.Elasticsearch(http_auth=('elastic', 'changeme'))
-movies_file = "./data/ml-20m/movies.csv"
-ratings_file = "./data/ml-20m/ratings.csv"
+movies_file = "./data/ml-25m/movies.csv"
+ratings_file = "./data/ml-25m/ratings.csv"
 mapping_file = "movie_lens.json"
-
 
 def read_movies(filename):
     movie_dict = dict()
     with open(filename, encoding="utf-8") as f:
         f.seek(0)
         for x, row in enumerate(csv.DictReader(f, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)):
+            movie = {'title':row['title'],'genres':row['genres'].split('|')}
             t = row['title']
-            movie = {'title': t, 'genres': row['genres'].split('|')}
             try:
                 year = int((row['title'][t.rfind("(") + 1: t.rfind(")")]).replace("-", ""))
                 if year <= 2016 and year > 1900:
@@ -62,11 +62,17 @@ def read_users(filename, movies):
             user["indifferent"].append(title) if rating > 2.0 else user["disliked"].append(title))
         yield user
 
-index = "movie_lens_users"
-doc_type = "user"
-es.indices.delete(index=index, ignore=404)
-es.indices.create(index=index, body=open(mapping_file,"r").read(), ignore=404)
+index_name = "movie_lens_users"
+doc_name="user"
+es.indices.delete(index=index_name, ignore=404)
+es.indices.create(index=index_name, ignore=404)
+
+# Add mapping
+with open('movie_lens.json') as json_mapping:
+    d = json.load(json_mapping)
+es.indices.put_mapping(index=index_name, doc_type=doc_name, body=d, include_type_name=True)
+
 print("Indexing users...")
-deque(helpers.parallel_bulk(es, read_users(ratings_file, read_movies(movies_file)), index = index, doc_type = doc_type), maxlen = 0)
+deque(helpers.parallel_bulk(es, read_users(ratings_file, read_movies(movies_file)), index=index_name, doc_type=doc_name), maxlen = 0)
 print("Indexing Complete")
 es.indices.refresh()

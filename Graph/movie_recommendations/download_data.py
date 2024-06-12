@@ -2,7 +2,7 @@ import requests,shutil, zipfile
 
 import os
 
-url="http://files.grouplens.org/datasets/movielens/ml-20m.zip"
+url="http://files.grouplens.org/datasets/movielens/ml-25m.zip"
 filename="data.zip"
 output_folder="./data"
 

@@ -1,6 +1,7 @@
 # coding: utf-8
 
 ### Import Packages
+import gc
 import pandas as pd
 import numpy as np
 import elasticsearch
@@ -8,12 +9,17 @@ import re
 import json
 from datetime import datetime
 from elasticsearch import helpers
-import timeit
+from time import perf_counter
+import concurrent
+import multiprocessing
+from multiprocessing import Pool
+from elasticsearch import Elasticsearch
 
 # Define elasticsearch class
 es = elasticsearch.Elasticsearch()
+num_workers = 8
 
-### Helper Functions
+### Hfelper Functions
 # convert np.int64 into int. json.dumps does not work with int64
 class SetEncoder(json.JSONEncoder):
     def default(self, obj):
@@ -44,13 +50,17 @@ def concatdf(x):
 ### Import Data
 # Load projects, resources & donations data
 print("Loading datasets")
+start = perf_counter()
 projects = pd.read_csv('./data/opendata_projects000.gz', escapechar='\\', names=['projectid', 'teacher_acctid', 'schoolid', 'school_ncesid', 'school_latitude', 'school_longitude', 'school_city', 'school_state', 'school_zip', 'school_metro', 'school_district', 'school_county', 'school_charter', 'school_magnet', 'school_year_round', 'school_nlns', 'school_kipp', 'school_charter_ready_promise', 'teacher_prefix', 'teacher_teach_for_america', 'teacher_ny_teaching_fellow', 'primary_focus_subject', 'primary_focus_area' ,'secondary_focus_subject', 'secondary_focus_area', 'resource_type', 'poverty_level', 'grade_level', 'vendor_shipping_charges', 'sales_tax', 'payment_processing_charges', 'fulfillment_labor_materials', 'total_price_excluding_optional_support', 'total_price_including_optional_support', 'students_reached', 'total_donations', 'num_donors', 'eligible_double_your_impact_match', 'eligible_almost_home_match', 'funding_status', 'date_posted', 'date_completed', 'date_thank_you_packet_mailed', 'date_expiration'])
 donations = pd.read_csv('./data/opendata_donations000.gz', escapechar='\\', names=['donationid', 'projectid', 'donor_acctid', 'cartid', 'donor_city', 'donor_state', 'donor_zip', 'is_teacher_acct', 'donation_timestamp', 'donation_to_project', 'donation_optional_support', 'donation_total', 'donation_included_optional_support', 'payment_method', 'payment_included_acct_credit', 'payment_included_campaign_gift_card', 'payment_included_web_purchased_gift_card', 'payment_was_promo_matched', 'is_teacher_referred', 'giving_page_id', 'giving_page_type', 'for_honoree', 'thank_you_packet_mailed'])
 resources = pd.read_csv('./data/opendata_resources000.gz', escapechar='\\', names=['resourceid', 'projectid', 'vendorid', 'vendor_name', 'item_name', 'item_number', 'item_unit_price', 'item_quantity'])
+end = perf_counter()
+print(end - start)
 
 ### Data Cleanup
 # replace nan with ''
 print("Cleaning Data")
+start = perf_counter()
 projects = projects.fillna('')
 donations = donations.fillna('')
 resources = resources.fillna('')
@@ -69,53 +79,107 @@ resources['projectid'] = resources['projectid'].map(lambda x: '"' + x +'"')
 resources.rename(columns={'vendorid': 'resource_vendorid', 'vendor_name': 'resource_vendor_name', 'item_name': 'resource_item_name',
        'item_number' :'resource_item_number', "item_unit_price": 'resource_item_unit_price',
        'item_quantity': 'resource_item_quantity'}, inplace=True)
+end = perf_counter()
+print(end - start)
 
 ### Merge multiple resource row per projectid into a single row
 # NOTE: section may take a few minutes to execute
-print("Grouping Data by ProjectId")
+# this parallel path reduces stage time from 920sec to 169sec on multi-core 2ghz machine
+print("Grouping Data by ProjectId parallel")
+start = perf_counter()
+
 concat_resource = pd.DataFrame()
-gb = resources.groupby('projectid')
+# a DataFrameGroupBy
+resources_grouped_by_projectid = resources.groupby('projectid')
 
-start = timeit.timeit()
-for a in resources.columns.values:
-    print(a)
-    concat_resource[a] = gb[a].apply(lambda x: concatdf(x))
-    #print(xx.index)
+# return a tuple we can assign
+def do_concat_by_index(index):
+    print("starting : "+index)
+    return (index, resources_grouped_by_projectid[index].apply(lambda x: concatdf(x)))
 
-end = timeit.timeit()
+indexes = resources.columns.values
+print ('Manipulating : {}'.format(indexes))
+# we have 8 items to process
+with Pool(num_workers) as pool:
+    our_result = pool.starmap(do_concat_by_index, zip(indexes))
+
+end = perf_counter()
 print(end - start)
-
+start = perf_counter()
+   
+# move the results from the return list into concat_result
+for one_result in our_result:
+    # print('concat results: one result {} '.format(one_result[0]))
+    concat_resource[one_result[0]]=one_result[1]
+ 
 concat_resource['projectid'] = concat_resource.index;
 concat_resource.reset_index(drop=True);
+concat_resource.index.name = None
+concat_resource.set_index('projectid', inplace=True, drop=True)
+
+end = perf_counter()
+print(end - start)
 
 ### Rename Project columns
+print("Renaming project columns")
+start = perf_counter()
+
 projects.rename(columns=lambda x: "project_" + x, inplace=True)
 projects.rename(columns={"project_projectid": "projectid"}, inplace=True)
 projects.columns.values
+projects.index.name = None
+projects.set_index('projectid', inplace=True, drop=True)
 
+end = perf_counter()
+print(end - start)
 
 #### Merge data into single frame
 print("Merging datasets")
+start = perf_counter()
 data = pd.merge(projects, concat_resource, how='left', right_on='projectid', left_on='projectid')
 data = pd.merge(donations, data, how='left', right_on='projectid', left_on='projectid')
 data = data.fillna('')
+end = perf_counter()
+print(end - start)
+del projects
+del concat_resource
+del donations
+gc.collect()
 
 #### Process columns
 # Modify date formats
-data['project_date_expiration'] = data['project_date_expiration'].map(lambda x: str_to_iso(x));
-data['project_date_posted'] = data['project_date_posted'].map(lambda x: str_to_iso(x))
-data['project_date_thank_you_packet_mailed'] = data['project_date_thank_you_packet_mailed'].map(lambda x: str_to_iso(x))
-data['project_date_completed'] = data['project_date_completed'].map(lambda x: str_to_iso(x))
-data['donation_timestamp'] = data['donation_timestamp'].map(lambda x: str_to_iso(x))
+# moving to parallel execution took us from 1450sec to 380sec
+print("Modifying Date Formats")
+start = perf_counter()
 
-# Create location field that combines lat/lon information
-data['project_location'] = data[['project_school_longitude','project_school_latitude']].values.tolist()
-del(data['project_school_latitude'])  # delete latitude field
-del(data['project_school_longitude']) # delete longitude
+def do_date_fix(some_data):
+    #print(some_data.describe())
+    some_data['project_date_expiration'] = some_data['project_date_expiration'].map(lambda x: str_to_iso(x));
+    some_data['project_date_posted'] = some_data['project_date_posted'].map(lambda x: str_to_iso(x))
+    some_data['project_date_thank_you_packet_mailed'] = some_data['project_date_thank_you_packet_mailed'].map(lambda x: str_to_iso(x))
+    some_data['project_date_completed'] = some_data['project_date_completed'].map(lambda x: str_to_iso(x))
+    some_data['donation_timestamp'] = some_data['donation_timestamp'].map(lambda x: str_to_iso(x))
+
+    # Create location field that combines lat/lon information
+    some_data['project_location'] = some_data[['project_school_longitude','project_school_latitude']].values.tolist()
+    del(some_data['project_school_latitude'])  # delete latitude field
+    del(some_data['project_school_longitude']) # delete longitude
+    return some_data
+
+data_split = np.array_split(data,num_workers)
+with Pool(num_workers) as pool:
+    fixed_dates = pool.map(do_date_fix,data_split)
+print("Concat splits")
+data = pd.concat(fixed_dates)
+end = perf_counter()
+print(end - start)
+del data_split
+gc.collect()
 
 
 ### Create and configure Elasticsearch index
 print("Preparing to Index to ES")
+start = perf_counter()
 # Name of index and document type
 index_name = 'donorschoose'
 doc_name = 'donation'
@@ -131,13 +195,16 @@ es.indices.create(index_name)
 with open('donorschoose_mapping.json') as json_mapping:
     d = json.load(json_mapping)
 
-es.indices.put_mapping(index=index_name, doc_type=doc_name, body=d)
+es.indices.put_mapping(index=index_name, doc_type=doc_name, body=d, include_type_name=True)
+end = perf_counter()
+print(end - start)
 
-def read_data(data):
-    for don_id, thisDonation in data.iterrows():
+### function used by all below
+def read_data(df):
+    for don_id, thisDonation in df.iterrows():
         # print every 10000 iteration
         if don_id % 10000 == 0:
-            print(don_id)
+            print('{} / {}'.format(don_id, len(df.index) ))
         doc={}
         doc["_index"]=index_name
         doc["_id"]=thisDonation['donationid']
@@ -145,6 +212,17 @@ def read_data(data):
         doc["_source"]=thisDonation.to_dict()
         yield doc
 
-### Index Data into Elasticsearch
-print("Indexing")
-helpers.bulk(es,read_data(data),index=index_name,doc_type=doc_name)
+### Index Data into Elasticsearch - parallel bulk - default parallel_bulk thread_count = 4
+print("Indexing parallel_bulk")
+start = perf_counter()
+# parallel_bulk returns generators which must be consumed https://elasticsearch-py.readthedocs.io/en/master/helpers.html
+# default request_timeout=10
+# 1000 may have timeout
+for success, info in helpers.parallel_bulk(es, read_data(data),thread_count=8, request_timeout=20.0, chunk_size=500, index=index_name,doc_type=doc_name):
+    if not success:
+        print('A document failed:', info)
+
+# non parallel bulk - can run this instead - parallel takes about 40% of the time
+# helpers.bulk(es,read_data(data), index=index_name,doc_type=doc_name)
+end = perf_counter()
+print(end - start)
