@@ -1,0 +1,219 @@
+---
+
+# yamllint disable rule:line-length rule:comments-indentation
+
+metadata:
+  ## Use a offset to allow events to travel thought their pipeline.
+  ## See: https://discuss.elastic.co/t/ensure-that-watcher-does-not-miss-documents-logs/127780/1
+  time_offset: '30m'
+  time_window: '1h'
+
+  index_category: 'log'
+  index_type: 'issues'
+  index_kv: ''
+  index_revision: 'v4'
+
+## We never want to throttle/drop actions.
+throttle_period: '0s'
+
+trigger:
+  schedule:
+    ## `hourly` is based on ctx.metadata.time_window.
+    hourly:
+      ## `minute` can be changed freely, the actual time range is
+      ## calculated/rounded in the range filter to full hours.
+      minute: 32
+
+input:
+  search:
+    timeout: '5m'
+    request:
+
+      indices:
+        ## System and hidden indexes should be excluded.
+        ##
+        ## Also, the output index of this watch should be excluded for obvious
+        ## reasons. Even without this it would be ensured because we enforce
+        ## the '@timestamp' field to exist in all documents found.
+
+        ## Include all (log) index-sets by default and blacklist later.
+        - '*-*'
+
+        ## Exclude system and hidden indexes.
+        - '-.*'
+
+        ## Exclude our own output index-set.
+        - '-critical-logs-*'
+        - '-log_issues_*'
+
+        # ## With Index naming convention version 2, we could simply switch to
+        # ## a whitelist approach which would be much better.
+        # - 'logs_*'
+        # - '-log_issues_*'
+        # ## Exclude all non-prod logs.
+        # - '-logs_*_env=*'
+
+      body:
+
+        size: 0
+        # _source:
+        #   - 'msg'
+        # sort:
+        #   - '@timestamp':
+        #       order: 'desc'
+
+        query:
+          bool:
+            must:
+              ## We require these fields to exist.
+              ## If they don’t, the aggregation might be shortened/incomplete which would cause the scripts to fail.
+              - exists:
+                  field: '@timestamp'
+              - exists:
+                  field: '#source.keyword'
+              - exists:
+                  field: 'severity'
+              - exists:
+                  field: 'host.keyword'
+              - exists:
+                  field: 'msg.keyword'
+
+              - range:
+                  '@timestamp':
+                    gte: 'now-{{ctx.metadata.time_window}}-{{ctx.metadata.time_offset}}/h'
+                    lt: 'now-{{ctx.metadata.time_offset}}/h'
+
+              - bool:
+                  should:
+
+                    - bool:
+                        ## Include events
+                        ## * severity: Critical or worse
+                        ## * severity: Notice or worse AND msg contains one or more keywords
+                        must:
+                          - range:
+                              severity:
+                                lte: 5
+                          - bool:
+                              should:
+                                - terms:
+                                    msg:
+                                      - attack
+                                      - crash
+                                      - conflict
+                                      - critical
+                                      - denied
+                                      - down
+                                      - dump
+                                      - error
+                                      - exit
+                                      - fail
+                                      - failed
+                                      - fatal
+                                      - fault
+                                      - overflow
+                                      - poison
+                                      - quit
+                                      - restart
+                                      - unable
+                                - range:
+                                    severity:
+                                      lte: 2
+
+            must_not:
+              - terms:
+                  '#source.keyword':
+                    - 'monitoring-alerts'
+
+              - bool:
+                  must:
+                    - term:
+                        '#source.keyword': 'wireless-eventlog'
+                    - bool:
+                        should:
+
+                          - match_phrase:
+                              msg:
+                                query: 'denied association on radio'
+
+                          - regexp:
+                              'msg.keyword': '.*failed .* on wlan.*'
+
+
+        ## Aggregation is ordered from low bucket size to high bucket size
+        ## where possible to keep the total bucket count down.
+        aggregations:
+          severity:
+            terms:
+              field: 'severity'
+              size: 100
+            aggregations:
+              host:
+                terms:
+                  field: 'host.keyword'
+                  size: 100000
+                aggregations:
+                  msg:
+                    terms:
+                      field: 'msg.keyword'
+                      size: 100000000
+                    aggregations:
+                      source:
+                        terms:
+                          field: '#source.keyword'
+                          size: 100000000
+                      min_timestamp:
+                        top_hits:
+                          size: 1
+                          sort:
+                            '@timestamp': 'asc'
+                          _source:
+                            includes:
+                              - '@timestamp'
+                      max_timestamp:
+                        top_hits:
+                          size: 1
+                          sort:
+                            '@timestamp': 'desc'
+                          # _source:
+                          #   includes:
+                          #     - '@timestamp'
+                          #     - '#source'
+
+                      ## We can not do that but we would like to do this.
+                      ## Refer to aggregated_issues_in_logs-index_transform for details.
+                      # example_doc:
+                      #   top_hits:
+                      #     size: 1
+                      #     sort:
+                      #       '_uid': 'asc'
+
+condition:
+  compare:
+    ctx.payload.hits.total:
+      gt: 0
+
+transform:
+  script:
+    id: 'aggregated_issues_in_logs-index_transform'
+
+actions:
+  index_payload:
+    index:
+      ## Mustache templates are not supported here as of Elasticsearch 6.2 so we
+      ## rewrite them via the Makefile.
+      # index: '{{ctx.metadata.index_category}}_{{ctx.metadata.index_type}}_{{ctx.metadata.index_kv}}__{{ctx.metadata.index_revision}}_<{now/y{YYYY}}>'
+      index: '<log_issues_env=staging__v4_{now/y{YYYY}}>'
+      doc_type: 'doc'
+
+  ## Needs to be removed when deploying to production. This is done in the Makefile.
+  log:
+
+    ## Bug: This transform also influences the `index_payload` action?
+    transform:
+      script:
+        id: 'aggregated_issues_in_logs-deterministic_log'
+
+    logging:
+      level: info
+      text: 'Watch payload to be indexed by Elasticsearch: {{ctx.payload}}'

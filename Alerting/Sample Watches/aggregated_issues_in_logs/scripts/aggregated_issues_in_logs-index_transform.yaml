@@ -1,0 +1,111 @@
+---
+
+# yamllint disable rule:line-length
+
+script:
+  lang: 'painless'
+  source: |
+    List new_docs = new ArrayList();
+
+    /* Error handling {{{ */
+    /* TODO: This code might not be run if all shards fail. Implement some other way to catch watch errors. */
+    if (false && ctx.payload._shards.failed > 0) {
+      def failed_on_indexes = ctx.payload._shards.failures.stream().map(
+        failure -> failure['index']
+      ).collect(Collectors.toSet());
+
+      new_docs.add([
+        'host': 'gxmneh6[1-5]',
+        /* Warning */
+        'severity': 4,
+        'msg': ctx.payload._shards.failed + ' Elasticsearch shards failed to being queried. This affects the following indexes: ' + failed_on_indexes,
+        '#count': 1,
+        '#source': 'automation-elastic',
+        '@first_timestamp': ctx.execution_time,
+        '@last_timestamp':  ctx.execution_time,
+        '#timeframe': 0,
+        '#watch_timestamp': ctx.execution_time
+      ]);
+    }
+
+    if (ctx.payload.aggregations.severity.containsKey('sum_other_doc_count') && ctx.payload.aggregations.severity.sum_other_doc_count > 0) {
+      new_docs.add([
+        'host': 'gxmneh6[1-5]',
+        /* Warning */
+        'severity': 4,
+        'msg': 'Elasticsearch returned more aggregations than we assumed. Number of unprocessed aggregation buckets: ' + ctx.payload.aggregations.severity.sum_other_doc_count,
+        '#count': 1,
+        '#source': 'automation-elastic',
+        '@first_timestamp': ctx.execution_time,
+        '@last_timestamp':  ctx.execution_time,
+        '#timeframe': 0,
+        '#watch_timestamp': ctx.execution_time
+      ]);
+    }
+    /* }}} */
+
+    /* Create new documents based on aggregation {{{ */
+    for (HashMap severity : ctx.payload.aggregations.severity.buckets) {
+      for (HashMap host : severity.host.buckets) {
+        for (HashMap msg : host.msg.buckets) {
+
+          List sources = msg.source.buckets.stream().map(
+            source_aggr -> source_aggr.key
+          ).collect(Collectors.toList());
+
+          String min_timestamp = msg.min_timestamp.hits.hits[0]._source['@timestamp'];
+          String max_timestamp = msg.max_timestamp.hits.hits[0]._source['@timestamp'];
+
+          long min_timestamp_ms = msg.min_timestamp.hits.hits[0].sort[0];
+          long max_timestamp_ms = msg.max_timestamp.hits.hits[0].sort[0];
+
+          String example_index = msg.max_timestamp.hits.hits[0]._index;
+          String example_type = msg.max_timestamp.hits.hits[0]._type;
+          String example_id = msg.max_timestamp.hits.hits[0]._id;
+          String example_source = msg.max_timestamp.hits.hits[0]._source['#source'];
+
+          HashMap example_doc_source = msg.max_timestamp.hits.hits[0]._source;
+          example_doc_source.remove('host');
+          example_doc_source.remove('severity');
+          example_doc_source.remove('msg');
+          example_doc_source.remove('#source');
+
+          /* Currently the same as @last_timestamp. */
+          example_doc_source.remove('@timestamp');
+
+          /* This field is pointless for us. It serves a purpose in very big indexes thought. */
+          example_doc_source.remove('@random');
+
+          if (example_doc_source.containsKey('user') && example_doc_source['user'] instanceof HashMap) {
+            /* Failsafe: "user" HashMap can not be indexed in "user" field
+             * because of conflicting data types across the source indexes.
+             */
+            example_doc_source['user_object'] = example_doc_source.remove('user');
+          }
+
+          new_docs.add([
+            'host': host.key,
+            'severity': severity.key,
+            'msg': msg.key,
+            /* '_index': ctx.metadata.index_category + '_' + ctx.metadata.index_type + '_' + ctx.metadata.index_kv + '__' + ctx.metadata.index_revision + '_' + ZonedDateTime.ofInstant(Instant.parse(min_timestamp), ZoneId.of("UTC")).getYear(), */
+            '_id': example_index + '_' + example_id,
+            // Link to single document:
+            // https://example.org/app/kibana#/doc/gnulinux-eventlog-*/gnulinux-eventlog-2017.11.14/event?id=AV-4P0nn1ZjIWeK5zvkg&_g=h@44136fa
+            '#doc_ref': '#/doc/' + example_source + '-*/' + example_index + '/' + example_type + '?id=' + example_id,
+            // Link to document plus surrounding documents:
+            // https://example.org/app/kibana#/context/gnulinux-eventlog-*/event/AV-4P0nn1ZjIWeK5zvkg?_g=h@44136fa&_a=h@c57b9b3
+            '#doc_context_ref': '#/context/' + example_source + '-*/' + example_type + '/' + example_id,
+            'doc': msg.max_timestamp.hits.hits[0]._source,
+            '#count': msg.doc_count,
+            '#source': sources,
+            '@first_timestamp': min_timestamp,
+            '@last_timestamp': max_timestamp,
+            '#timeframe': max_timestamp_ms - min_timestamp_ms,
+            '#watch_timestamp': ctx.execution_time
+          ]);
+        }
+      }
+    }
+    /* }}} */
+
+    return [ '_doc': new_docs ];

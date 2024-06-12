@@ -1,0 +1,40 @@
+---
+
+# yamllint disable rule:line-length rule:comments-indentation
+
+script:
+  lang: 'painless'
+  source: |
+    /* Ensure deterministic log output for integration testing.
+     * Timestamps are converted to offsets.
+     */
+
+    def min_timestamp = Instant.parse(
+      Collections.min(ctx.payload._doc.stream().map(
+        new_doc -> new_doc['@first_timestamp']
+      ).collect(Collectors.toList()))
+    );
+
+    for (HashMap new_doc : ctx.payload._doc) {
+      if (new_doc.containsKey('_index')) {
+        new_doc['_index'] = 'log_issues_env=test__v4_2023';
+      }
+
+      if (new_doc.containsKey('#watch_timestamp')) {
+        if (new_doc.containsKey('@first_timestamp')) {
+          new_doc['@first_timestamp'] = Instant.parse(new_doc['@first_timestamp']).getEpochSecond() - min_timestamp.getEpochSecond();
+        }
+        if (new_doc.containsKey('@last_timestamp')) {
+          new_doc['@last_timestamp'] = Instant.parse(new_doc['@last_timestamp']).getEpochSecond() - min_timestamp.getEpochSecond();
+        }
+        new_doc['#watch_timestamp'] = '2023-05-23T23:23:23.555Z';
+      }
+
+      if (new_doc.containsKey('#doc')) {
+        new_doc['#doc'].remove('@timestamp');
+      }
+      /* TODO: Workaround: Integration testing. Output sometimes contains `_id`, sometimes not. This breaks reliability of the tests. -> Remove it for now. */
+      new_doc.remove('_id');
+    }
+
+    return ctx.payload;

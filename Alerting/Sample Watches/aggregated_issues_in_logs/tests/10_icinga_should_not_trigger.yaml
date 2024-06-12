@@ -1,0 +1,31 @@
+---
+
+# yamllint disable rule:line-length
+
+watch_name: aggregated_issues_in_logs
+mapping_file: ./aggregated_issues_in_logs/mapping.json
+index: log_monitoring-notifications__v1_1984-03
+type: doc
+match: false
+watch_file: ./aggregated_issues_in_logs/watch.yaml
+scripts:
+  - name: 'aggregated_issues_in_logs-index_transform'
+    path: './aggregated_issues_in_logs/scripts/aggregated_issues_in_logs-index_transform.yaml'
+  - name: 'aggregated_issues_in_logs-deterministic_log'
+    path: './aggregated_issues_in_logs/scripts/aggregated_issues_in_logs-deterministic_log.yaml'
+
+events:
+
+  - id: 1
+    offset: -5400
+    msg: Harmless message
+    severity: 1
+    '#source': monitoring-alerts
+    host: gnu.example.org
+
+  - id: 2
+    offset: -5400
+    msg: fault
+    severity: 4
+    '#source': monitoring-alerts
+    host: mux.example.org

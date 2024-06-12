@@ -1,0 +1,101 @@
+---
+
+# yamllint disable rule:line-length rule:comments-indentation
+
+watch_name: aggregated_issues_in_logs
+mapping_file: ./aggregated_issues_in_logs/mapping.json
+index: log_network-switch__v1_1984-05-23
+type: doc
+match: true
+watch_file: ./aggregated_issues_in_logs/watch.yaml
+scripts:
+  - name: 'aggregated_issues_in_logs-index_transform'
+    path: './aggregated_issues_in_logs/scripts/aggregated_issues_in_logs-index_transform.yaml'
+  - name: 'aggregated_issues_in_logs-deterministic_log'
+    path: './aggregated_issues_in_logs/scripts/aggregated_issues_in_logs-deterministic_log.yaml'
+
+events:
+
+  - id: 1
+    offset: -5400
+    msg: Ports Unrecoverable fault on PoE controller 1.
+    severity: 5
+    '#source': switch-eventlog
+    host: gnu.example.org
+    category: chassis
+
+  - id: 2
+    offset: -5400
+    msg: Ports Unrecoverable fault on PoE controller 2.
+    severity: 4
+    '#source': switch-eventlog
+    host: gnu.example.org
+    category: chassis
+
+  - id: 3
+    offset: -5400
+    msg: Ports Unrecoverable fault on PoE controller 3.
+    severity: 4
+    '#source': different-source
+    host: gnu.example.org
+    category: chassis
+
+  - id: 4
+    offset: -5400
+    msg: Ports Unrecoverable fault on PoE controller 2.
+    severity: 4
+    '#source': switch-eventlog
+    host: gnu.example.org
+    category: chassis
+
+  - id: 5
+    offset: -5400
+    msg: Ports Unrecoverable fault on PoE controller 3.
+    severity: 4
+    '#source': switch-eventlog
+    host: gnu.example.org
+    category: chassis
+
+  - id: 6
+    offset: -5400
+    msg: Harmless message
+    severity: 0
+    '#source': switch-eventlog
+    host: gnu.example.org
+    category: chassis
+
+  - id: 7
+    offset: -5400
+    msg: 'mac denied association on radio ''mux.example.org:R1'' : unsupported
+      data-rates '
+    severity: 5
+    '#source': switch-eventlog
+    host: mux.example.org
+    category: client
+
+  - id: 8
+    offset: -5400
+    msg: 'mac denied association on radio ''host2.example.org:R1'' : unsupported
+      data-rates '
+    severity: 5
+    '#source': switch-eventlog
+    host: host2.example.org
+    category: client
+
+  - id: 9
+    offset: -5400
+    msg: 'mac denied association on radio ''mux.example.org:R1'' : unsupported
+      data-rates '
+    severity: 5
+    '#source': switch-eventlog
+    host: mux.example.org
+    category: client
+
+  - id: 13
+    offset: -5400
+    severity: 5
+    msg: failed WPA2-AES handshake on wlan 'example-ssid' radio 'ap01.example.org:R2'
+    '#source': wireless-eventlog
+    host: ap01.example.org
+
+expected_response: "Watch payload to be indexed by Elasticsearch: {_doc=[{severity=4, msg=Ports Unrecoverable fault on PoE controller 2., @last_timestamp=0, #timeframe=0, #doc_ref=#/doc/switch-eventlog-*/log_network-switch__v1_1984-05-23/doc?id=2, @first_timestamp=0, #count=2, #source=[switch-eventlog], #doc_context_ref=#/context/switch-eventlog-*/doc/2, host=gnu.example.org, doc={offset=-5400, id=2, category=chassis}, #watch_timestamp=2023-05-23T23:23:23.555Z}, {severity=4, msg=Ports Unrecoverable fault on PoE controller 3., @last_timestamp=0, #timeframe=0, #doc_ref=#/doc/switch-eventlog-*/log_network-switch__v1_1984-05-23/doc?id=5, @first_timestamp=0, #count=2, #source=[different-source, switch-eventlog], #doc_context_ref=#/context/switch-eventlog-*/doc/5, host=gnu.example.org, doc={offset=-5400, id=5, category=chassis}, #watch_timestamp=2023-05-23T23:23:23.555Z}, {severity=5, msg=mac denied association on radio 'mux.example.org:R1' : unsupported data-rates , @last_timestamp=0, #timeframe=0, #doc_ref=#/doc/switch-eventlog-*/log_network-switch__v1_1984-05-23/doc?id=9, @first_timestamp=0, #count=2, #source=[switch-eventlog], #doc_context_ref=#/context/switch-eventlog-*/doc/9, host=mux.example.org, doc={offset=-5400, id=9, category=client}, #watch_timestamp=2023-05-23T23:23:23.555Z}, {severity=5, msg=Ports Unrecoverable fault on PoE controller 1., @last_timestamp=0, #timeframe=0, #doc_ref=#/doc/switch-eventlog-*/log_network-switch__v1_1984-05-23/doc?id=1, @first_timestamp=0, #count=1, #source=[switch-eventlog], #doc_context_ref=#/context/switch-eventlog-*/doc/1, host=gnu.example.org, doc={offset=-5400, id=1, category=chassis}, #watch_timestamp=2023-05-23T23:23:23.555Z}, {severity=5, msg=mac denied association on radio 'host2.example.org:R1' : unsupported data-rates , @last_timestamp=0, #timeframe=0, #doc_ref=#/doc/switch-eventlog-*/log_network-switch__v1_1984-05-23/doc?id=8, @first_timestamp=0, #count=1, #source=[switch-eventlog], #doc_context_ref=#/context/switch-eventlog-*/doc/8, host=host2.example.org, doc={offset=-5400, id=8, category=client}, #watch_timestamp=2023-05-23T23:23:23.555Z}, {severity=0, msg=Harmless message, @last_timestamp=0, #timeframe=0, #doc_ref=#/doc/switch-eventlog-*/log_network-switch__v1_1984-05-23/doc?id=6, @first_timestamp=0, #count=1, #source=[switch-eventlog], #doc_context_ref=#/context/switch-eventlog-*/doc/6, host=gnu.example.org, doc={offset=-5400, id=6, category=chassis}, #watch_timestamp=2023-05-23T23:23:23.555Z}]}"

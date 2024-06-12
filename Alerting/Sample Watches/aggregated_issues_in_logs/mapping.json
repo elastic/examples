@@ -1,0 +1,189 @@
+{
+  "order" : 100,
+  "version" : 5000,
+  "index_patterns" : [
+    "*-v*-*",
+    "*_*__v*_*"
+  ],
+  "settings" : {
+    "index" : {
+      "refresh_interval" : "5s"
+    }
+  },
+  "mappings" : {
+    "doc" : {
+      "dynamic_templates" : [
+        {
+          "type_long_fields" : {
+            "match_pattern" : "regex",
+            "path_match" : "^(?:#?doc\\.)?#?(?:byte|duration|rate|count)$",
+            "mapping" : {
+              "norms" : false,
+              "type" : "long"
+            }
+          }
+        },
+        {
+          "type_integer_fields" : {
+            "match_pattern" : "regex",
+            "path_match" : "^(?:#?doc\\.)?#?(?:signal|noise)$",
+            "mapping" : {
+              "norms" : false,
+              "type" : "integer"
+            }
+          }
+        },
+        {
+          "type_short_fields" : {
+            "match_pattern" : "regex",
+            "path_match" : "^(?:#?doc\\.)?#?(?:wlan_channel|cpu_usage|disk_usage|mem_usage)$",
+            "mapping" : {
+              "norms" : false,
+              "type" : "integer"
+            }
+          }
+        },
+        {
+          "type_byte_fields" : {
+            "match_pattern" : "regex",
+            "path_match" : "^(?:#?doc\\.)?#?(?:random|severity)$",
+            "mapping" : {
+              "norms" : false,
+              "type" : "byte"
+            }
+          }
+        },
+        {
+          "ip_fields" : {
+            "match_pattern" : "regex",
+            "path_match" : "^(?:#?doc\\.)?#?(?:(?:tran_)?(?:local|remote|src|dst)_ip|event_data\\.IpAddress)$",
+            "mapping" : {
+              "type" : "ip"
+            }
+          }
+        },
+        {
+          "tcpip_port_fields" : {
+            "match_pattern" : "regex",
+            "path_match" : "^(?:#?doc\\.)?#?(:?(?:tran_)?(?:dst|src|remote)_port|event_data\\.IpPort)$",
+            "mapping" : {
+              "norms" : false,
+              "type" : "integer"
+            }
+          }
+        },
+        {
+          "switch_port_fields" : {
+            "match_pattern" : "regex",
+            "path_match" : "^(?:#?doc\\.)?#?port$",
+            "mapping" : {
+              "norms" : false,
+              "type" : "text",
+              "fields" : {
+                "keyword" : {
+                  "type" : "keyword"
+                }
+              }
+            }
+          }
+        },
+        {
+          "packet_count_fields" : {
+            "match_pattern" : "regex",
+            "path_match" : "^(?:#?doc\\.)?#?(?:sent|rcvd|received)_(?:pkt|packet)$",
+            "mapping" : {
+              "norms" : false,
+              "type" : "long"
+            }
+          }
+        },
+        {
+          "information_size_fields" : {
+            "match_pattern" : "regex",
+            "path_match" : "^(?:#?doc\\.)?#?(?:sent|rcvd|received)_byte$",
+            "mapping" : {
+              "norms" : false,
+              "type" : "long"
+            }
+          }
+        },
+        {
+          "scaled_float_1000_fields" : {
+            "match_pattern" : "regex",
+            "path_match" : "^(?:#?doc\\.)?#?(?:elapsed_time)$",
+            "mapping" : {
+              "scaling_factor" : 1000,
+              "type" : "scaled_float"
+            }
+          }
+        },
+        {
+          "timestamp_post_ms" : {
+            "match_pattern" : "regex",
+            "path_match" : "^(?:#?doc\\.)?#?@timestamp_post_ms$",
+            "mapping" : {
+              "norms" : false,
+              "type" : "integer"
+            }
+          }
+        },
+        {
+          "#logstash_timestamp" : {
+            "match_pattern" : "regex",
+            "path_match" : "^(?:#?doc\\.)?#?(?:@timestamp|logstash_timestamp)$",
+            "mapping" : {
+              "norms" : false,
+              "type" : "date"
+            }
+          }
+        },
+        {
+          "forced_string_fields" : {
+            "match_pattern" : "regex",
+            "path_match" : "^(?:#?doc\\.)?#?(?:version)$",
+            "mapping" : {
+              "norms" : false,
+              "type" : "text",
+              "fields" : {
+                "keyword" : {
+                  "type" : "keyword"
+                }
+              }
+            }
+          }
+        },
+        {
+          "message_field" : {
+            "mapping" : {
+              "norms" : false,
+              "type" : "text",
+              "fields" : {
+                "keyword" : {
+                  "type" : "keyword"
+                }
+              }
+            },
+            "match_mapping_type" : "string",
+            "match" : "msg"
+          }
+        },
+        {
+          "string_fields" : {
+            "mapping" : {
+              "norms" : false,
+              "type" : "text",
+              "fields" : {
+                "keyword" : {
+                  "type" : "keyword"
+                }
+              }
+            },
+            "match_mapping_type" : "string",
+            "match" : "*"
+          }
+        }
+      ]
+    }
+  },
+  "aliases" : { }
+}

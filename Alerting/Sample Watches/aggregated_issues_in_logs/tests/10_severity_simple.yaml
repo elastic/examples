@@ -1,0 +1,39 @@
+---
+
+# yamllint disable rule:line-length rule:comments-indentation
+
+watch_name: aggregated_issues_in_logs
+mapping_file: ./aggregated_issues_in_logs/mapping.json
+index: log_network-switch__v1_1984-05-23
+type: doc
+match: true
+watch_file: ./aggregated_issues_in_logs/watch.yaml
+scripts:
+  - name: 'aggregated_issues_in_logs-index_transform'
+    path: './aggregated_issues_in_logs/scripts/aggregated_issues_in_logs-index_transform.yaml'
+  - name: 'aggregated_issues_in_logs-deterministic_log'
+    path: './aggregated_issues_in_logs/scripts/aggregated_issues_in_logs-deterministic_log.yaml'
+
+events:
+
+  - id: 1
+    offset: -5400
+    msg: Harmless message
+    severity: 2
+    '#source': test
+    host: sw01.example.org
+    category: chassis
+    # user: 'test string'
+
+  - id: 2
+    offset: -5400
+    msg: Ports Unrecoverable fault on PoE controller 2.
+    severity: 5
+    '#source': test2
+    host: sw01.example.org
+    category: chassis
+    user:
+      id: 23
+      name: 'fnord'
+
+expected_response: "Watch payload to be indexed by Elasticsearch: {_doc=[{severity=2, msg=Harmless message, @last_timestamp=0, #timeframe=0, #doc_ref=#/doc/test-*/log_network-switch__v1_1984-05-23/doc?id=1, @first_timestamp=0, #count=1, #source=[test], #doc_context_ref=#/context/test-*/doc/1, host=sw01.example.org, doc={offset=-5400, id=1, category=chassis}, #watch_timestamp=2023-05-23T23:23:23.555Z}, {severity=5, msg=Ports Unrecoverable fault on PoE controller 2., @last_timestamp=0, #timeframe=0, #doc_ref=#/doc/test2-*/log_network-switch__v1_1984-05-23/doc?id=2, @first_timestamp=0, #count=1, #source=[test2], #doc_context_ref=#/context/test2-*/doc/2, host=sw01.example.org, doc={offset=-5400, user_object={name=fnord, id=23}, id=2, category=chassis}, #watch_timestamp=2023-05-23T23:23:23.555Z}]}"
