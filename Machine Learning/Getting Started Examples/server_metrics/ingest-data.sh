@@ -49,13 +49,13 @@ curl -s  -u ${USERNAME}:${PASSWORD} -X PUT -H 'Content-Type: application/json' $
 }'
 
 printf "\n== Bulk uploading data to index... \n"
-curl -s -u ${USERNAME}:${PASSWORD} -X POST -H "Content-Type: application/json" ${URL}/${INDEX_NAME}/_bulk --data-binary "@server-metrics_1.json" > server-metrics_1.out 2>&1
+curl -s -u ${USERNAME}:${PASSWORD} -X POST -H "Content-Type: application/json" ${URL}/${INDEX_NAME}/_bulk --data-binary "@files/server-metrics_1.json" > server-metrics_1.out 2>&1
 printf "\nServer-metrics_1 uploaded"
-curl -s -u ${USERNAME}:${PASSWORD} -X POST -H "Content-Type: application/json" ${URL}/${INDEX_NAME}/_bulk --data-binary "@server-metrics_2.json" > server-metrics_2.out 2>&1
+curl -s -u ${USERNAME}:${PASSWORD} -X POST -H "Content-Type: application/json" ${URL}/${INDEX_NAME}/_bulk --data-binary "@files/server-metrics_2.json" > server-metrics_2.out 2>&1
 printf "\nServer-metrics_2 uploaded"
-curl -s -u ${USERNAME}:${PASSWORD} -X POST -H "Content-Type: application/json" ${URL}/${INDEX_NAME}/_bulk --data-binary "@server-metrics_3.json" > server-metrics_3.out 2>&1
+curl -s -u ${USERNAME}:${PASSWORD} -X POST -H "Content-Type: application/json" ${URL}/${INDEX_NAME}/_bulk --data-binary "@files/server-metrics_3.json" > server-metrics_3.out 2>&1
 printf "\nServer-metrics_3 uploaded"
-curl -s -u ${USERNAME}:${PASSWORD} -X POST -H "Content-Type: application/json" ${URL}/${INDEX_NAME}/_bulk --data-binary "@server-metrics_4.json" > server-metrics_4.out 2>&1
+curl -s -u ${USERNAME}:${PASSWORD} -X POST -H "Content-Type: application/json" ${URL}/${INDEX_NAME}/_bulk --data-binary "@files/server-metrics_4.json" > server-metrics_4.out 2>&1
 printf "\nServer-metrics_4 uploaded\n"
 
 printf "Adding index-pattern server-*"
