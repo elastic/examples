@@ -28,7 +28,7 @@
                     },
                     {
                       "term": {
-                        "type" : "cluster_state"
+                        "type" : "cluster_stats"
                       }
                     }
                   ]
