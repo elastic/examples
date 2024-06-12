@@ -1,0 +1,4 @@
+log/*.log
+bin/
+
+!.gitkeep

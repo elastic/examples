@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+curl -XPUT 'localhost:9200/bandit?pretty' -H 'Content-Type: application/json' -d  @- << EOF
+{
+    "settings" : {
+        "index" : {
+            "number_of_shards" : 3, 
+            "number_of_replicas" : 2 
+        }
+    }
+}
+EOF

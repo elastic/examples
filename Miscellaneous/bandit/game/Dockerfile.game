@@ -1,0 +1,16 @@
+FROM ruby:alpine
+MAINTAINER chussenot@gmail.com
+
+ARG git_sha1
+WORKDIR /app
+ENV RACK_ENV production
+ENV GIT_SHA1 $git_sha1
+
+RUN apk update && apk add ruby-json
+ADD Gemfile /app/
+ADD Gemfile.lock /app/
+RUN bundle install
+ADD . /app
+
+CMD bundle exec rackup -p 9292 /app/config.ru 
+EXPOSE 9292

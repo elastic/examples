@@ -1,0 +1,22 @@
+[
+  {
+    "_id": "AV6pCnzrrjbnSuvlUwtn",
+    "_type": "search",
+    "_source": {
+      "title": "apple",
+      "description": "",
+      "hits": 0,
+      "columns": [
+        "_source"
+      ],
+      "sort": [
+        "time",
+        "desc"
+      ],
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"bandit\",\"highlightAll\":true,\"version\":true,\"query\":{\"query_string\":{\"query\":\"apple\",\"analyze_wildcard\":true}},\"filter\":[{\"meta\":{\"negate\":false,\"index\":\"AV6pBKwGrjbnSuvlUwlz\",\"type\":\"phrase\",\"key\":\"fruits\",\"value\":\"apple\",\"disabled\":false,\"alias\":null},\"query\":{\"match\":{\"fruits\":{\"query\":\"apple\",\"type\":\"phrase\"}}},\"$state\":{\"store\":\"appState\"}}]}"
+      }
+    }
+  }
+]

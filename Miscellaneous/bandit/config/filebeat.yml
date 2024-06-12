@@ -1,0 +1,20 @@
+filebeat:
+  prospectors:
+    - input_type: log
+      paths:
+        - "/var/log/bandit.log"
+      json.message_key: log
+      json.keys_under_root: true
+      json.overwrite_keys: true
+
+processors:
+  - add_cloud_metadata:
+  - decode_json_fields:
+      fields: ['name', 'hostname', 'pid', 'msg', 'fruits']
+
+output:
+  elasticsearch:
+    hosts: ['elasticsearch:9200']
+    username: elastic
+    password: changeme
+    index: bandit
