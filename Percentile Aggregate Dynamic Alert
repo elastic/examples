@@ -1,0 +1,70 @@
+{
+  "trigger": {
+    "schedule": {
+      "interval": "1h"
+    }
+  },
+  "input": {
+    "search": {
+      "request": {
+        "search_type": "query_then_fetch",
+        "indices": [
+          "applicationlogs-*"
+        ],
+        "rest_total_hits_as_int": true,
+        "body": {
+          "query": {
+            "bool": {
+              "filter": [
+                {
+                  "range": {
+                    "@timestamp": {
+                      "gte": "now-1h"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "size": 0,
+          "aggs": {
+            "duration_percent": {
+              "percentiles": {
+                "field": "durationValue",
+                "percents": [
+                  99
+                ],
+                "script": {
+                  "lang": "painless",
+                  "source": "doc['durationValue'].value /params.timeUnit",
+                  "params": {
+                    "timeUnit": 60000
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "condition": {
+    "script": {
+      "source": "ctx.payload.aggregations.duration_percent.values['99.0'] > 10",
+      "lang": "painless"
+    }
+  },
+  "actions": {
+    "send_email": {
+      "email": {
+        "profile": "standard",
+        "to": [root@localhost],    
+       
+        "subject": "{{ctx.payload.aggregations.duration_percent.values}}99% ResponseTime Alert",
+        "body": {
+          "text": " 99% Response time Threshold Alert {{ctx.payload.aggregations.duration_percent.values}}"
+        }
+      }
+    }
+  }
+}
