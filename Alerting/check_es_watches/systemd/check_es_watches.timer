@@ -1,0 +1,9 @@
+[Unit]
+Description=Trigger check_es_watches.
+
+[Timer]
+OnCalendar=00/2:25:00
+Persistent=true
+
+[Install]
+WantedBy=multi-user.target

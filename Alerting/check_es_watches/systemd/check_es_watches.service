@@ -1,0 +1,8 @@
+[Unit]
+Description=Run check_es_watches.
+
+[Service]
+Type=oneshot
+
+ExecStart=/usr/local/bin/check_es_watches --mode es_emulation --curator-file /etc/curator/curator_prod.yml --watch-file /etc/check_es_watches/watches/watcher_history_failures.yaml
+ExecStart=/usr/local/bin/check_es_watches --mode es_emulation --curator-file /etc/curator/curator_prod.yml --watch-file /etc/check_es_watches/watches/watcher_history_running.yaml

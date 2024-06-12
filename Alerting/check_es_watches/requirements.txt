@@ -1,0 +1,10 @@
+PyYAML
+pystache
+systemd-python
+elasticsearch
+
+# To hook the watch action into Monitoring systems instead of direct Email alerting using the Nagios plugin API, this Python package will be needed:
+nagiosplugin
+
+# Additionally, to run the watches provided, you will need those Python packages as well:
+pytimeparse
