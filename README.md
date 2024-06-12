@@ -12,7 +12,7 @@ This is a collection of examples to help you get familiar with the Elastic Stack
 
 You have a few options to get started with the examples:
 
-- If you want to try them all, you can [download the entire repo ](https://github.com/elastic/examples/archive/master.zip). Or, if you are familiar with Git, you can [clone the repo](https://github.com/elastic/examples.git). Then, simply follow the instructions in the individual README of the examples you're interested in to get started.
+- If you want to try them all, you can [download the entire repo](https://github.com/elastic/examples/archive/master.zip). Or, if you are familiar with Git, you can [clone the repo](https://github.com/elastic/examples.git). Then, simply follow the instructions in the individual README of the examples you're interested in to get started.
 
 - If you are only interested in a specific example or two, you can download the contents of just those examples - follow instructions in the individual READMEs OR you can use some of the [options mentioned here](http://stackoverflow.com/questions/7106012/download-a-single-folder-or-directory-from-a-github-repo).
 
@@ -52,7 +52,7 @@ Examples using the Elastic Stack for analyzing public dataset.
 
 #### Alerting on Elastic Stack
 
-Alerting lets you set up watches (or rules) to detect and alert on changes in your Elasticsearch data. Below is a list of examples watches that configured to detect and alert on a few common scenarios:
+Alerting lets you set up watches (or rules) to detect and alert on changes in your Elasticsearch data. Below is a list of example watches that configured to detect and alert on a few common scenarios:
 
 - [High I/O wait on CPU](https://github.com/elastic/examples/tree/master/Alerting/Sample%20Watches/cpu_iowait_hosts)
 - [Critical error  in logs](https://github.com/elastic/examples/tree/master/Alerting/Sample%20Watches/errors_in_logs)
