@@ -1653,7 +1653,7 @@
             window.navigator.msSaveOrOpenBlob(new Blob([data]), filename);
           else {
             // Internet Explorer (<= 9) workaround by Darryl (https://github.com/dawiong/tableExport.jquery.plugin)
-            // based on sampopes answer on http://stackoverflow.com/questions/22317951
+            // based on sampopes answer on https://stackoverflow.com/questions/22317951
             // ! Not working for json and pdf format !
             var frame = document.createElement("iframe");
 

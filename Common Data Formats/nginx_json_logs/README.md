@@ -7,7 +7,7 @@ This example historically used Logstash for ingestion. Per recommended best prac
 
 ##### WARNING: Invalid JSON
 By default NGINX uses \xXX to encode some characters. The resulting "JSON" string is not valid (the JSON standard specifies \u00XX) and in Logstash you will get a json parse error for the invalid JSON string. It only happens when any variables e.g. $http_user_agent contain characters that NGINX will escape e.g. backslash or reverse solidus.
-Newer versions of NGINX (>=1.11.8) support `escape=json` as an argument to log_format. See the [ngx_http_log_module documentation](http://nginx.org/en/docs/http/ngx_http_log_module.html#log_format). 
+Newer versions of NGINX (>=1.11.8) support `escape=json` as an argument to log_format. See the [ngx_http_log_module documentation](https://nginx.org/en/docs/http/ngx_http_log_module.html#log_format). 
 
 ### Versions
 

@@ -659,7 +659,7 @@ Editableform is linked with one of input types, e.g. 'text', 'select' etc.
 
         /**
         * set caret position in input
-        * see http://stackoverflow.com/questions/499126/jquery-set-cursor-position-in-text-area
+        * see https://stackoverflow.com/questions/499126/jquery-set-cursor-position-in-text-area
         */        
         setCursorPosition: function(elem, pos) {
             if (elem.setSelectionRange) {
@@ -677,7 +677,7 @@ Editableform is linked with one of input types, e.g. 'text', 'select' etc.
         * function to parse JSON in *single* quotes. (jquery automatically parse only double quotes)
         * That allows such code as: <a data-source="{'a': 'b', 'c': 'd'}">
         * safe = true --> means no exception will be thrown
-        * for details see http://stackoverflow.com/questions/7410348/how-to-set-json-format-to-html5-data-attributes-in-the-jquery
+        * for details see https://stackoverflow.com/questions/7410348/how-to-set-json-format-to-html5-data-attributes-in-the-jquery
         */
         tryParseJson: function(s, safe) {
             if (typeof s === 'string' && s.length && s.match(/^[\{\[].*[\}\]]$/)) {
@@ -719,7 +719,7 @@ Editableform is linked with one of input types, e.g. 'text', 'select' etc.
                 }
 
                 //when getting data-* attributes via $.data() it's converted to lowercase.
-                //details: http://stackoverflow.com/questions/7602565/using-data-attributes-with-jquery
+                //details: https://stackoverflow.com/questions/7602565/using-data-attributes-with-jquery
                 //workaround is code below.
                 keyLower = key.toLowerCase();
                 if (obj.hasOwnProperty(keyLower)) {
@@ -864,7 +864,7 @@ Editableform is linked with one of input types, e.g. 'text', 'select' etc.
            }  
        },
        
-       //see http://stackoverflow.com/questions/7264899/detect-css-transitions-using-javascript-and-without-modernizr
+       //see https://stackoverflow.com/questions/7264899/detect-css-transitions-using-javascript-and-without-modernizr
        supportsTransitions: function () {
            var b = document.body || document.documentElement,
                s = b.style,
@@ -964,7 +964,7 @@ Applied as jQuery method.
 
                     //for some reason FF 20 generates extra event (click) in select2 widget with e.target = document
                     //we need to filter it via construction below. See https://github.com/vitalets/x-editable/issues/199
-                    //Possibly related to http://stackoverflow.com/questions/10119793/why-does-firefox-react-differently-from-webkit-and-ie-to-click-event-on-selec
+                    //Possibly related to https://stackoverflow.com/questions/10119793/why-does-firefox-react-differently-from-webkit-and-ie-to-click-event-on-selec
                     if($target.is(document)) {
                        return; 
                     }
@@ -1392,7 +1392,7 @@ Applied as jQuery method.
 
     /* 
     * workaround to have 'destroyed' event to destroy popover when element is destroyed
-    * see http://stackoverflow.com/questions/2200494/jquery-trigger-event-when-an-element-is-removed-from-the-dom
+    * see https://stackoverflow.com/questions/2200494/jquery-trigger-event-when-an-element-is-removed-from-the-dom
     */
     jQuery.event.special.destroyed = {
         remove: function(o) {
